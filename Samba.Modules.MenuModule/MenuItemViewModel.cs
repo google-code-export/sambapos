@@ -1,0 +1,139 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Collections.ObjectModel;
+using Samba.Domain.Models.Menus;
+using Samba.Infrastructure.Data;
+using Samba.Persistance.Data;
+using Samba.Presentation.Common;
+using Samba.Presentation.Common.ModelBase;
+
+namespace Samba.Modules.MenuModule
+{
+    public class MenuItemViewModel : EntityViewModelBase<MenuItem>
+    {
+        private IWorkspace _workspace;
+
+        private IEnumerable<string> _groupCodes;
+        public IEnumerable<string> GroupCodes { get { return _groupCodes ?? (_groupCodes = Dao.Distinct<MenuItem>(x => x.GroupCode)); } }
+
+        private ObservableCollection<PortionViewModel> _portions;
+        public ObservableCollection<PortionViewModel> Portions
+        {
+            get { return _portions ?? (_portions = new ObservableCollection<PortionViewModel>(GetPortions(Model))); }
+        }
+
+        private ObservableCollection<MenuItemPropertyGroupViewModel> _propertyGroups;
+        public ObservableCollection<MenuItemPropertyGroupViewModel> PropertyGroups
+        {
+            get { return _propertyGroups ?? (_propertyGroups = new ObservableCollection<MenuItemPropertyGroupViewModel>(GetProperties(Model))); }
+        }
+
+        public PortionViewModel SelectedPortion { get; set; }
+
+        public ICaptionCommand AddPortionCommand { get; set; }
+        public ICaptionCommand DeletePortionCommand { get; set; }
+
+        public MenuItemPropertyGroupViewModel SelectedProperty { get; set; }
+
+        public ICaptionCommand AddPropertyGroupCommand { get; set; }
+        public ICaptionCommand DeletePropertyGroupCommand { get; set; }
+
+        public string GroupCode
+        {
+            get { return Model.GroupCode ?? ""; }
+            set { Model.GroupCode = value; }
+        }
+
+        public string Barcode { get { return Model.Barcode; } set { Model.Barcode = value; } }
+
+        public MenuItemViewModel(MenuItem model)
+            : base(model)
+        {
+            AddPortionCommand = new CaptionCommand<string>("Porsiyon Ekle", OnAddPortion);
+            DeletePortionCommand = new CaptionCommand<string>("Porsiyon Sil", OnDeletePortion, CanDeletePortion);
+
+            AddPropertyGroupCommand = new CaptionCommand<string>("Özellik Grubu Ekle", OnAddPropertyGroup);
+            DeletePropertyGroupCommand = new CaptionCommand<string>("Özellik Grubu Sil", OnDeletePropertyGroup, CanDeletePropertyGroup);
+        }
+
+        private bool CanDeletePropertyGroup(string arg)
+        {
+            return SelectedProperty != null;
+        }
+
+        private void OnDeletePropertyGroup(string obj)
+        {
+            Model.PropertyGroups.Remove(SelectedProperty.Model);
+            PropertyGroups.Remove(SelectedProperty);
+        }
+
+        private void OnAddPropertyGroup(string obj)
+        {
+            var selectedValues =
+                InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<MenuItemPropertyGroup>().ToList<IOrderable>(),
+                Model.PropertyGroups.ToList<IOrderable>(), "Özellik Grupları", Model.Name + " ürününde kullanmak istediğiniz özellik gruplarını seçiniz.",
+                "Özellik Grubu", "Özellik Grupları");
+
+            foreach (MenuItemPropertyGroup selectedValue in selectedValues)
+            {
+                if (!Model.PropertyGroups.Contains(selectedValue))
+                    Model.PropertyGroups.Add(selectedValue);
+            }
+
+            _propertyGroups = new ObservableCollection<MenuItemPropertyGroupViewModel>(GetProperties(Model));
+
+            RaisePropertyChanged("PropertyGroups");
+        }
+
+
+        public string GroupValue { get { return Model.GroupCode; } }
+
+        private void OnAddPortion(string value)
+        {
+            var portion = MenuItem.AddDefaultMenuPortion(Model);
+            Portions.Add(new PortionViewModel(portion));
+            _workspace.Add(portion);
+        }
+
+        private void OnDeletePortion(string value)
+        {
+            if (SelectedPortion != null)
+            {
+                _workspace.Delete(SelectedPortion.Model);
+                Model.Portions.Remove(SelectedPortion.Model);
+                Portions.Remove(SelectedPortion);
+            }
+        }
+
+        private bool CanDeletePortion(string value)
+        {
+            return SelectedPortion != null;
+        }
+
+        public override string GetModelTypeString()
+        {
+            return "Ürün";
+        }
+
+        public override void Initialize(IWorkspace workspace)
+        {
+            _workspace = workspace;
+        }
+
+        public override Type GetViewType()
+        {
+            return typeof(MenuItemView);
+        }
+
+        private static IEnumerable<PortionViewModel> GetPortions(MenuItem baseModel)
+        {
+            return baseModel.Portions.Select(item => new PortionViewModel(item));
+        }
+
+        private static IEnumerable<MenuItemPropertyGroupViewModel> GetProperties(MenuItem model)
+        {
+            return model.PropertyGroups.Select(item => new MenuItemPropertyGroupViewModel(item));
+        }
+    }
+}

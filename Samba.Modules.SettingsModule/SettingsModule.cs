@@ -1,0 +1,201 @@
+﻿using System;
+using System.ComponentModel.Composition;
+using Microsoft.Practices.Prism.MefExtensions.Modularity;
+using Microsoft.Practices.Prism.Modularity;
+using Microsoft.Practices.Prism.Regions;
+using Samba.Modules.SettingsModule.WorkPeriods;
+using Samba.Presentation.Common;
+using Samba.Presentation.Common.ModelBase;
+using Samba.Services;
+
+namespace Samba.Modules.SettingsModule
+{
+    [ModuleExport(typeof(SettingsModule))]
+    public class SettingsModule : ModuleBase
+    {
+        public ICategoryCommand ListProgramSettingsCommand { get; set; }
+        public ICategoryCommand ListTerminalsCommand { get; set; }
+        public ICategoryCommand ListPrintJobsCommand { get; set; }
+        public ICategoryCommand ListPrintersCommand { get; set; }
+        public ICategoryCommand ListPrinterTemplatesCommand { get; set; }
+        public ICategoryCommand ListNumeratorsCommand { get; set; }
+        public ICategoryCommand ListVoidReasonsCommand { get; set; }
+        public ICategoryCommand ListGiftReasonsCommand { get; set; }
+        public ICategoryCommand ListMenuItemSettingsCommand { get; set; }
+        public ICategoryCommand ShowBrowser { get; set; }
+
+        private BrowserViewModel _browserViewModel;
+        private SettingsViewModel _settingsViewModel;
+        private TerminalListViewModel _terminalListViewModel;
+        private PrintJobListViewModel _printJobsViewModel;
+        private PrinterListViewModel _printerListViewModel;
+        private PrinterTemplateCollectionViewModel _printerTemplateCollectionViewModel;
+        private NumeratorListViewModel _numeratorListViewModel;
+        private VoidReasonListViewModel _voidReasonListViewModel;
+        private GiftReasonListViewModel _giftReasonListViewModel;
+        private ProgramSettingsViewModel _menuItemSettingsViewModel;
+        
+        public ICategoryCommand NavigateWorkPeriodsCommand { get; set; }
+
+        private readonly IRegionManager _regionManager;
+        private readonly WorkPeriodsView _workPeriodsView;
+
+        protected override void OnInitialization()
+        {
+            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(WorkPeriodsView));
+        }
+
+        protected override void OnPostInitialization()
+        {
+            CommonEventPublisher.PublishDashboardCommandEvent(ShowBrowser);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListProgramSettingsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListTerminalsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListPrintersCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListPrintJobsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListPrinterTemplatesCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListNumeratorsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListVoidReasonsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListGiftReasonsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemSettingsCommand);
+
+            CommonEventPublisher.PublishNavigationCommandEvent(NavigateWorkPeriodsCommand);
+        }
+
+        [ImportingConstructor]
+        public SettingsModule(IRegionManager regionManager, WorkPeriodsView workPeriodsView)
+        {
+            _regionManager = regionManager;
+            _workPeriodsView = workPeriodsView;
+
+            NavigateWorkPeriodsCommand = new CategoryCommand<string>("Gün İşlemleri", "Genel", "Images/Run.png", OnNavigateWorkPeriods, CanNavigateWorkPeriods);
+
+            ListProgramSettingsCommand = new CategoryCommand<string>("Yerel Ayarlar", "Ayarlar", OnListProgramSettings);
+            ListTerminalsCommand = new CategoryCommand<string>("Terminaller", "Ayarlar", OnListTerminals);
+            ListPrintersCommand = new CategoryCommand<string>("Yazıcılar", "Ayarlar", OnListPrinters);
+            ListPrintJobsCommand = new CategoryCommand<string>("Yazdırma Görevleri", "Ayarlar", OnListPrintJobs);
+            ListPrinterTemplatesCommand = new CategoryCommand<string>("Yazıcı Şablonları", "Ayarlar", OnListPrinterTemplates);
+            ListNumeratorsCommand = new CategoryCommand<string>("Numaratörler", "Ayarlar", OnListNumerators);
+            ListVoidReasonsCommand = new CategoryCommand<string>("İade Nedenleri", "Ürünler", OnListVoidReasons);
+            ListGiftReasonsCommand = new CategoryCommand<string>("İkram Nedenleri", "Ürünler", OnListGiftReasons);
+            ListMenuItemSettingsCommand = new CategoryCommand<string>("Program Ayarları", "Ayarlar", OnListMenuItemSettings) { Order = 10 };
+            
+            ShowBrowser = new CategoryCommand<string>("SambaPOS Websitesi", "Samba Network", OnShowBrowser) { Order = 99 };
+
+            PermissionRegistry.RegisterPermission(PermissionNames.OpenWorkPeriods, PermissionCategories.Navigation, "Gün sonu yapabilir");
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<VisibleViewModelBase>>().Subscribe(s =>
+            {
+                if (s.Topic == EventTopicNames.ViewClosed)
+                {
+                    if (s.Value == _settingsViewModel)
+                        _settingsViewModel = null;
+
+                    if (s.Value == _terminalListViewModel)
+                        _terminalListViewModel = null;
+
+                    if (s.Value == _printerListViewModel)
+                        _printerListViewModel = null;
+
+                    if (s.Value == _printerTemplateCollectionViewModel)
+                        _printerTemplateCollectionViewModel = null;
+
+                    if (s.Value == _printJobsViewModel)
+                        _printJobsViewModel = null;
+
+                    if (s.Value == _numeratorListViewModel)
+                        _numeratorListViewModel = null;
+
+                    if (s.Value == _voidReasonListViewModel)
+                        _voidReasonListViewModel = null;
+
+                    if (s.Value == _giftReasonListViewModel)
+                        _giftReasonListViewModel = null;
+
+                }
+            });
+        }
+
+        private void OnShowBrowser(string obj)
+        {
+            if (_browserViewModel == null)
+                _browserViewModel = new BrowserViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_browserViewModel);
+            new Uri("http://network.sambapos.com").PublishEvent(EventTopicNames.BrowseUrl);
+        }
+
+        private static bool CanNavigateWorkPeriods(string arg)
+        {
+            return AppServices.IsUserPermittedFor(PermissionNames.OpenWorkPeriods);
+        }
+
+        private void OnNavigateWorkPeriods(string obj)
+        {
+            AppServices.ActiveAppScreen = AppScreens.WorkPeriods;
+            _regionManager.Regions[RegionNames.MainRegion].Activate(_workPeriodsView);
+            ((WorkPeriodsViewModel)_workPeriodsView.DataContext).Refresh();
+        }
+
+        private void OnListGiftReasons(string obj)
+        {
+            if (_giftReasonListViewModel == null)
+                _giftReasonListViewModel = new GiftReasonListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_giftReasonListViewModel);
+        }
+
+        private void OnListVoidReasons(string obj)
+        {
+            if (_voidReasonListViewModel == null)
+                _voidReasonListViewModel = new VoidReasonListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_voidReasonListViewModel);
+        }
+
+        private void OnListNumerators(string obj)
+        {
+            if (_numeratorListViewModel == null)
+                _numeratorListViewModel = new NumeratorListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_numeratorListViewModel);
+        }
+
+        private void OnListPrinterTemplates(string obj)
+        {
+            if (_printerTemplateCollectionViewModel == null)
+                _printerTemplateCollectionViewModel = new PrinterTemplateCollectionViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_printerTemplateCollectionViewModel);
+        }
+
+        private void OnListPrinters(string obj)
+        {
+            if (_printerListViewModel == null)
+                _printerListViewModel = new PrinterListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_printerListViewModel);
+        }
+
+        private void OnListPrintJobs(string obj)
+        {
+            if (_printJobsViewModel == null)
+                _printJobsViewModel = new PrintJobListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_printJobsViewModel);
+        }
+
+        private void OnListTerminals(string obj)
+        {
+            if (_terminalListViewModel == null)
+                _terminalListViewModel = new TerminalListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_terminalListViewModel);
+        }
+
+        private void OnListMenuItemSettings(string obj)
+        {
+            if (_menuItemSettingsViewModel == null)
+                _menuItemSettingsViewModel = new ProgramSettingsViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_menuItemSettingsViewModel);
+        }
+
+        private void OnListProgramSettings(string obj)
+        {
+            if (_settingsViewModel == null)
+                _settingsViewModel = new SettingsViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_settingsViewModel);
+        }
+    }
+}

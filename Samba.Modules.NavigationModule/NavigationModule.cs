@@ -1,0 +1,61 @@
+﻿using System.ComponentModel.Composition;
+using Microsoft.Practices.Prism.Events;
+using Microsoft.Practices.Prism.MefExtensions.Modularity;
+using Microsoft.Practices.Prism.Modularity;
+using Microsoft.Practices.Prism.Regions;
+using Samba.Domain.Models.Users;
+using Samba.Presentation.Common;
+using Samba.Services;
+
+namespace Samba.Modules.NavigationModule
+{
+    [ModuleExport(typeof(NavigationModule), InitializationMode = InitializationMode.OnDemand)]
+    public class NavigationModule : ModuleBase
+    {
+        private readonly IRegionManager _regionManager;
+        private readonly NavigationView _navigationView;
+
+
+        [ImportingConstructor]
+        public NavigationModule(IRegionManager regionManager, NavigationView navigationView)
+        {
+            _regionManager = regionManager;
+            _navigationView = navigationView;
+
+            PermissionRegistry.RegisterPermission(PermissionNames.OpenNavigation, PermissionCategories.Navigation, "Navigasyon'a girebilir");
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<User>>().Subscribe(
+                x =>
+                {
+                    if (x.Topic == EventTopicNames.UserLoggedIn)
+                        ActivateNavigation();
+                });
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
+                x =>
+                {
+                    if (x.Topic == EventTopicNames.ActivateNavigation)
+                        ActivateNavigation();
+                });
+        }
+
+        protected override void OnInitialization()
+        {
+            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(NavigationView));
+        }
+
+        private void ActivateNavigation()
+        {
+            if (AppServices.IsUserPermittedFor(PermissionNames.OpenNavigation))
+            {
+                AppServices.ActiveAppScreen = AppScreens.Navigation;
+                _regionManager.Regions[RegionNames.MainRegion].Activate(_navigationView);
+                (_navigationView.DataContext as NavigationViewModel).Refresh();
+            }
+            else
+            {
+                EventServiceFactory.EventService.PublishEvent(EventTopicNames.NavigateTicketView);
+            }
+        }
+    }
+}

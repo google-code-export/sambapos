@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="Samba.Modules.SettingsModule.PrinterTemplateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Common="clr-namespace:Samba.Presentation.Common;assembly=Samba.Presentation.Common" mc:Ignorable="d" 
+             d:DesignWidth="575">
+    <ScrollViewer Common:KineticBehaviour.HandleKineticScrolling="True" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Label>Şablon Adı:</Label>
+                <TextBox Text="{Binding Name}" MinWidth="200" HorizontalAlignment="Left" />
+                <Label>Başlık Şablonu:</Label>
+                <TextBox Text="{Binding HeaderTemplate}" MinWidth="200" HorizontalAlignment="Left" MinHeight="50" AcceptsReturn="True" FontFamily="Lucida Console" />
+                <Label>Hareket Şablonu:</Label>
+                <TextBox Text="{Binding LineTemplate}" MinWidth="200" HorizontalAlignment="Left" AcceptsReturn="True" FontFamily="Lucida Console" />
+                <Label>İkram Hareketi Şablonu:</Label>
+                <TextBox Text="{Binding GiftLineTemplate}" MinWidth="200" HorizontalAlignment="Left" AcceptsReturn="True" FontFamily="Lucida Console" />
+                <Label>İptal Hareketi Şablonu:</Label>
+                <TextBox Text="{Binding VoidedLineTemplate}" MinWidth="200" HorizontalAlignment="Left" AcceptsReturn="True" FontFamily="Lucida Console" />
+                <Label>Alt Başlık Şablonu:</Label>
+                <TextBox Text="{Binding FooterTemplate}" MinWidth="200" HorizontalAlignment="Left" MinHeight="40" AcceptsReturn="True" FontFamily="Lucida Console" />
+                <CheckBox Margin="0,3,0,0" IsChecked="{Binding MergeLines}" HorizontalAlignment="Left">Satırları Birleştir</CheckBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <Button HorizontalAlignment="Left" Margin="0,10" Width="60" Content="{Binding SaveCommand.Caption}" Command="{Binding SaveCommand}"/>
+                <Label Content="{Binding Error}" Foreground="Red"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <FlowDocumentScrollViewer>
+                    <FlowDocument FontFamily="Segoe UI" FontSize="12">
+                        <Paragraph>
+                            <Bold>{ADİSYON TARİH}</Bold> Adisyon Tarihi
+                            <LineBreak/>
+                            <Bold>{ADİSYON SAAT}</Bold> Adisyon Saati
+                            <LineBreak/>
+                            <Bold>{TARİH}</Bold> Günün Tarihi
+                            <LineBreak/>
+                            <Bold>{SAAT}</Bold> Günün Saati
+                            <LineBreak/>
+                            <Bold>{ADİSYON ID}</Bold> Benzersiz Adisyon Numarası
+                            <LineBreak/>
+                            <Bold>{ADİSYON NO}</Bold> Adisyon Numarası
+                            <LineBreak/>
+                            <Bold>{ADİSYON ETİKET}</Bold> Adisyon Etiketi
+                            <LineBreak/>
+                            <Bold>{ADİSYON ETİKET:x,y,z}</Bold> Seçimli Adisyon Etiketi
+                            <LineBreak/>
+                            <Bold>{MASA GARSON}</Bold> Masa adı, yoksa garson adı
+                            <LineBreak/>
+                            <Bold>{GARSON}</Bold> Garson adı
+                            <LineBreak/>
+                            <Bold>{MASA}</Bold> Masa adı
+                            <LineBreak/>
+                            <Bold>{NOT}</Bold> Adisyon notu
+                            <LineBreak/>
+                            <Bold>{MÜŞTERİ ADI}</Bold> Müşteri Adı
+                            <LineBreak/>
+                            <Bold>{MÜŞTERİ ADRES}</Bold> Müşteri Adresi
+                            <LineBreak/>
+                            <Bold>{MÜŞTERİ TELEFON}</Bold> Müşteri Telefonu
+                            <LineBreak/>
+                            <Bold>{MİKTAR}</Bold> #Satır: Ürün Miktarı
+                            <LineBreak/>
+                            <Bold>{ÜRÜN}</Bold> #Satır: Ürün Adı
+                            <LineBreak/>
+                            <Bold>{FİYAT}</Bold> #Satır: Ürün Fiyatı
+                            <LineBreak/>
+                            <Bold>{YKR}</Bold> #Satır: Kuruş bazında fiyat
+                            <LineBreak/>
+                            <Bold>{TUTAR}</Bold> #Satır: Ürün Tutarı
+                            <LineBreak/>
+                            <Bold>{TOPLAM TUTAR}</Bold> #Satır: Ürün Tutarı x Miktar
+                            <LineBreak/>
+                            <Bold>{HAREKET TOPLAM}</Bold> #Satır: Ürün Tutarı (İkram hariç)
+                            <LineBreak/>
+                            <Bold>{ÖZELLİKLER}</Bold> #Satır: Ürün Detay Özellikleri
+                            <LineBreak/>
+                            <Bold>{ÖZELLİK FİYAT}</Bold> #Satır: Ürün Özellik Fiyatı
+                            <LineBreak/>
+                            <Bold>{ÖZELLİK MİKTAR}</Bold> #Satır: Ürün Özellik Miktarı
+                            <LineBreak/>
+                            <Bold>{SİPARİŞ NO}</Bold> #Satır: Sipariş Numarası
+                            <LineBreak/>
+                            <Bold>{NEDEN}</Bold> #Satır: İptal edilme veya ikram nedeni
+                            <LineBreak/>
+                            <Bold>{TOPLAM FİYAT}</Bold> Belge Toplamı
+                            <LineBreak/>
+                            <Bold>{TOPLAM ÖDENEN}</Bold> Belge Ödenen Tutar
+                            <LineBreak/>
+                            <Bold>{TOPLAM BAKİYE}</Bold> Belge Bakiyesi
+                            <LineBreak/>
+                            <Bold>{VARSA ÖDENEN}</Bold> Ödeme varsa ödenen ve bakiye satırları
+                            <LineBreak/>
+                            <Bold>{VARSA İSKONTO}</Bold> İskonto varsa belge toplamı ve iskonto satırları
+                        </Paragraph>
+                    </FlowDocument>
+                </FlowDocumentScrollViewer>
+                <!--<TextBox>
+                    
+            result = result.Replace("", DateTime.Now.ToShortDateString());
+            result = result.Replace("{SAAT}", DateTime.Now.ToShortTimeString());
+            result = result.Replace("{ADİSYON NO}", ticket.Id.ToString());
+
+            var title = ticket.LocationName;
+            if (string.IsNullOrEmpty(ticket.LocationName)) title = ticket.Owner.Name;
+            result = result.Replace("{MASA GARSON}", title);
+
+            result = result.Replace("{GARSON}", ticket.Owner.Name);
+            result = result.Replace("{MASA}", ticket.LocationName);
+
+
+            if (ticketItem != null)
+            {
+                result = result.Replace("{MİKTAR}", ticketItem.Quantity.ToString());
+                result = result.Replace("{ÜRÜN}", ticketItem.MenuItemName);
+                result = result.Replace("{FİYAT}", ticketItem.Price.ToString("#,#0.00"));
+                result = result.Replace("{HAREKET TOPLAM}", ticketItem.GetTotal().ToString("#,#0.00"));
+                if (ticketItem.Properties.Count > 0)
+                {
+                    string label = "";
+                    foreach (var property in ticketItem.Properties)
+                    {
+                        label = property.Name;
+                        if (property.PropertyPrice.Amount != 0)
+                            label += " " + property.PropertyPrice.Amount;
+                        label += "\r\n";
+                    }
+                    result = result.Replace("{ÖZELLİKLER}", label);
+                }
+            }
+
+            result = result.Replace("{TOPLAM FİYAT}", ticket.GetSum().ToString("#,#0.00"));
+            result = result.Replace("{TOPLAM ÖDENEN}", ticket.GetPaymentAmount().ToString("#,#0.00"));
+            result = result.Replace("{TOPLAM BAKİYE}", ticket.GetRemainingAmount().ToString("#,#0.00"));
+                </TextBox>-->
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>
