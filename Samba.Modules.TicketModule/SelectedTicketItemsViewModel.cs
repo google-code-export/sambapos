@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tickets;
+using Samba.Infrastructure;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
@@ -42,28 +44,21 @@ namespace Samba.Modules.TicketModule
             {
                 ResetValues(obj.Value);
                 _showFreeTagEditor = SelectedTicket.LastSelectedTicketTag.FreeTagging;
+
+                List<TicketTag> tags;
                 if (_showFreeTagEditor)
                 {
-                    TicketTags.AddRange(Dao.Query<TicketTagGroup>(x => x.Id == SelectedTicket.LastSelectedTicketTag.Id, x => x.TicketTags).SelectMany(x => x.TicketTags).OrderBy(x => x.Name));
+                    tags = Dao.Query<TicketTagGroup>(x => x.Id == SelectedTicket.LastSelectedTicketTag.Id,
+                                                 x => x.TicketTags).SelectMany(x => x.TicketTags).OrderBy(x => x.Name).ToList();
                 }
                 else
                 {
-                    var tags = AppServices.MainDataContext.SelectedDepartment.TicketTagGroups.Where(
-                            x => x.Name == obj.Value.LastSelectedTicketTag.Name).SelectMany(x => x.TicketTags);
-
-                    if (SelectedTicket.LastSelectedTicketTag.NumericTags)
-                    {
-                        try
-                        {
-                            TicketTags.AddRange(tags.OrderBy(x => Convert.ToInt32(x.Name)));
-                        }
-                        catch (FormatException)
-                        {
-                            TicketTags.AddRange(tags.OrderBy(x => x.Name));
-                        }
-                    }
-                    else TicketTags.AddRange(tags.OrderBy(x => x.Name));
+                    tags = AppServices.MainDataContext.SelectedDepartment.TicketTagGroups.Where(
+                           x => x.Name == obj.Value.LastSelectedTicketTag.Name).SelectMany(x => x.TicketTags).ToList();
                 }
+                tags.Sort(new AlphanumComparator());
+                TicketTags.AddRange(tags);
+
                 if (SelectedTicket.IsTaggedWith(SelectedTicket.LastSelectedTicketTag.Name)) TicketTags.Add(TicketTag.Empty);
                 if (TicketTags.Count == 1 && !_showFreeTagEditor) obj.Value.UpdateTag(SelectedTicket.LastSelectedTicketTag, TicketTags[0]);
                 RaisePropertyChanged("TagColumnCount");

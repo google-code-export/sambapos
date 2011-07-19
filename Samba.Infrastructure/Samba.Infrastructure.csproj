@@ -67,7 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphanumComparator.cs" />
     <Compile Include="IMessageListener.cs" />
+    <Compile Include="IStringCompareable.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="MessagingClient.cs" />
     <Compile Include="MessagingClientObject.cs" />

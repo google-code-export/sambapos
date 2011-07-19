@@ -478,6 +478,7 @@ namespace Samba.Domain.Models.Tickets
             if (string.IsNullOrEmpty(tagValue))
                 _tagValues.Remove(tagName);
             Tag = string.Join("\r", _tagValues.Select(x => string.Format("{0}:{1}", x.Key, x.Value)));
+            if (!string.IsNullOrEmpty(Tag)) Tag += "\r";
         }
 
         public string GetTagData()

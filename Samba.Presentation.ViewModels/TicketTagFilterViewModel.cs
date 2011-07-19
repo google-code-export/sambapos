@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Samba.Infrastructure;
 
 namespace Samba.Presentation.ViewModels
 {
-    public class TicketTagFilterViewModel
+    public class TicketTagFilterViewModel : IStringCompareable
     {
         public string ButtonDisplay
         {
             get
             {
-                var result = "Boş";
+                var result = "Geri";
                 if (TagValue == "*") return "Tümü";
-                if (!string.IsNullOrEmpty(TagValue)) { result = TagValue; }
+                if (TagValue == " ") result = "Boş";
+                if (!string.IsNullOrEmpty(TagValue.Trim())) { result = TagValue; }
                 if (Count > 0)
                     result += " [" + Count + "]";
                 return result;
@@ -27,6 +29,11 @@ namespace Samba.Presentation.ViewModels
         public TicketTagFilterViewModel()
         {
             ButtonColor = "Gray";
+        }
+
+        public string GetStringValue()
+        {
+            return TagValue;
         }
     }
 }

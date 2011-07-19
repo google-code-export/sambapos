@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Settings;
+using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Tickets
 {
-    public class TicketTag : IEntity
+    public class TicketTag : IEntity, IStringCompareable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -21,6 +22,11 @@ namespace Samba.Domain.Models.Tickets
         public static TicketTag Empty
         {
             get { return _emptyTicketTag ?? (_emptyTicketTag = new TicketTag()); }
+        }
+
+        public string GetStringValue()
+        {
+            return Name;
         }
     }
 }

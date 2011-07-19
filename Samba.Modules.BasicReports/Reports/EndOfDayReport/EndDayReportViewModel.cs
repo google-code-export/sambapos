@@ -185,7 +185,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
                 foreach (var ticket in ReportContext.Tickets.Where(x => !string.IsNullOrEmpty(x.Tag)))
                 {
-                    var tags = ticket.Tag.Split('\r');
+                    var tags = ticket.Tag.Split(new[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (var tag in tags)
                     {
                         if (!dict.ContainsKey(tag))
@@ -236,7 +236,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         {
                             sum = grp.Sum(x => x.TicketCount);
                         }
-                        
+
                         var average = totalAmount / sum;
                         report.AddRow("Etiket", string.Format("Toplam Tutar / {0}:", tag.Name), "", average.ToString(ReportContext.CurrencyFormat));
                     }

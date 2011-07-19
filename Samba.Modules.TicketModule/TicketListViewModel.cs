@@ -616,6 +616,7 @@ namespace Samba.Modules.TicketModule
         private void OnCancelItemCommand(string obj)
         {
             _selectedTicket.CancelSelectedItems();
+            RefreshSelectedTicket();
         }
 
         private bool CanGiftSelectedItems(string arg)
@@ -636,31 +637,14 @@ namespace Samba.Modules.TicketModule
 
         private void OnShowAllOpenTickets(string obj)
         {
-            UpdateOpenTickets(null, "");
+            UpdateOpenTickets(null, "", "");
             SelectedTicketView = OpenTicketListView;
             RaisePropertyChanged("OpenTickets");
         }
 
         private void OnFilterOpenTicketsExecute(TicketTagFilterViewModel obj)
         {
-            if (string.IsNullOrEmpty(obj.TagValue))
-            {
-                UpdateOpenTickets(SelectedDepartment, "");
-                OpenTickets = OpenTickets.Where(x =>
-                        string.IsNullOrEmpty(x.TicketTag) ||
-                        !x.TicketTag.ToLower().Contains((obj.TagGroup + ":").ToLower()));
-            }
-            else if (obj.TagValue == "*")
-            {
-                SelectedTag = obj.TagGroup;
-                RefreshOpenTickets();
-            }
-            else
-            {
-                UpdateOpenTickets(SelectedDepartment, obj.TagGroup);
-                OpenTickets = OpenTickets.Where(x => x.TicketTag.ToLower().Contains((obj.TagGroup + ":" + obj.TagValue).ToLower()));
-            }
-
+            UpdateOpenTickets(SelectedDepartment, obj.TagGroup, obj.TagValue);
             RaisePropertyChanged("OpenTickets");
             SelectedTag = null;
         }
@@ -817,6 +801,7 @@ namespace Samba.Modules.TicketModule
                 if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.Location)) return false;
                 if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.CustomerName)) return false;
                 if (SelectedTicket != null && SelectedTicket.IsTagged) return false;
+                if (SelectedTicket != null && SelectedTicket.TicketRemainingValue == 0) return false;
                 return SelectedDepartment != null && SelectedDepartment.IsFastFood;
             }
         }
@@ -828,11 +813,11 @@ namespace Samba.Modules.TicketModule
 
         public void RefreshOpenTickets()
         {
-            UpdateOpenTickets(SelectedDepartment, SelectedTag);
+            UpdateOpenTickets(SelectedDepartment, SelectedTag, "");
             SelectedTag = string.Empty;
         }
 
-        public void UpdateOpenTickets(Department department, string selectedTag)
+        public void UpdateOpenTickets(Department department, string selectedTag, string tagFilter)
         {
             StopTimer();
 
@@ -860,24 +845,32 @@ namespace Samba.Modules.TicketModule
 
             if (!string.IsNullOrEmpty(selectedTag))
             {
-                var tag = selectedTag.ToLower() + ":";
-                var cnt = OpenTickets.Count(x => string.IsNullOrEmpty(x.TicketTag) || !x.TicketTag.ToLower().Contains(tag));
+                var tagGroup = AppServices.MainDataContext.SelectedDepartment.TicketTagGroups.SingleOrDefault(
+                        x => x.Name == selectedTag);
 
-                OpenTickets = OpenTickets.Where(x => !string.IsNullOrEmpty(x.TicketTag) && x.TicketTag.ToLower().Contains(tag));
+                if (tagGroup != null)
+                {
+                    var openTickets = GetOpenTickets(OpenTickets, tagGroup, tagFilter);
 
-                var opt = OpenTickets.SelectMany(x => x.TicketTag.Split('\r'))
-                    .Where(x => x.ToLower().Contains(tag))
-                    .Distinct()
-                    .Select(x => x.Split(':')).Select(x => new TicketTagFilterViewModel { TagGroup = x[0], TagValue = x[1] }).OrderBy(x => x.TagValue).ToList();
+                    if (!string.IsNullOrEmpty(tagFilter))
+                    {
+                        if (openTickets.Count() == 1)
+                        {
+                            OpenTicketCommand.Execute(OpenTickets.ElementAt(0).Id);
+                            return;
+                        }
+                        if (openTickets.Count() == 0)
+                        {
+                            AppServices.MainDataContext.CreateNewTicket();
+                            AppServices.MainDataContext.SelectedTicket.SetTagValue(selectedTag, tagFilter);
+                            DisplayTickets();
+                            return;
+                        }
+                    }
 
-                opt.Insert(0, new TicketTagFilterViewModel { TagGroup = selectedTag, TagValue = "*", ButtonColor = "Blue" });
-
-                if (cnt > 0)
-                    opt.Insert(0, new TicketTagFilterViewModel { Count = cnt, TagGroup = selectedTag, ButtonColor = "Red" });
-
-                OpenTicketTags = opt.Count() > 1 ? opt : null;
-
-                OpenTickets.ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
+                    OpenTicketTags = GetOpenTicketTags(OpenTickets, tagGroup, tagFilter);
+                    OpenTickets = openTickets;
+                }
             }
             else
             {
@@ -886,7 +879,72 @@ namespace Samba.Modules.TicketModule
 
             SelectedTag = selectedTag;
 
+
             StartTimer();
+        }
+
+        private static IEnumerable<TicketTagFilterViewModel> GetOpenTicketTags(IEnumerable<OpenTicketView> openTickets, TicketTagGroup tagGroup, string tagFilter)
+        {
+
+            var tag = tagGroup.Name.ToLower() + ":";
+            var cnt = openTickets.Count(x => string.IsNullOrEmpty(x.TicketTag) || !x.TicketTag.ToLower().Contains(tag));
+
+            var opt = new List<TicketTagFilterViewModel>();
+
+            if (string.IsNullOrEmpty(tagFilter) && tagGroup.TicketTags.Count > 1)
+            {
+                opt = openTickets.Where(x => !string.IsNullOrEmpty(x.TicketTag))
+                    .SelectMany(x => x.TicketTag.Split('\r'))
+                    .Where(x => x.ToLower().Contains(tag))
+                    .Distinct()
+                    .Select(x => x.Split(':')).Select(x => new TicketTagFilterViewModel { TagGroup = x[0], TagValue = x[1] }).OrderBy(x => x.TagValue).ToList();
+
+                var usedTags = opt.Select(x => x.TagValue);
+
+                opt.AddRange(tagGroup.TicketTags.Select(x => x.Name).Where(x => !usedTags.Contains(x)).Select(x => new TicketTagFilterViewModel() { TagGroup = tagGroup.Name, ButtonColor = "White", TagValue = x }));
+
+                opt.Sort(new AlphanumComparator());
+            }
+
+            if (tagGroup.TicketTags.Count > 1)
+            {
+                if (string.IsNullOrEmpty(tagFilter))
+                    opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "*", ButtonColor = "Blue" });
+                else
+                    opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "", ButtonColor = "Green" });
+
+                if (cnt > 0)
+                    opt.Insert(0, new TicketTagFilterViewModel { Count = cnt, TagGroup = tagGroup.Name, ButtonColor = "Red", TagValue = " " });
+            }
+
+            return opt;
+        }
+
+        private IEnumerable<OpenTicketView> GetOpenTickets(IEnumerable<OpenTicketView> openTickets, TicketTagGroup tagGroup, string tagFilter)
+        {
+            var tag = tagGroup.Name.ToLower() + ":";
+            IEnumerable<OpenTicketView> result = openTickets.ToList();
+            if (tagFilter == " ")
+            {
+                result = result.Where(x =>
+                string.IsNullOrEmpty(x.TicketTag) ||
+                  !x.TicketTag.ToLower().Contains(tag));
+            }
+            else
+            {
+                result = result.Where(x => !string.IsNullOrEmpty(x.TicketTag) && x.TicketTag.ToLower().Contains(tag));
+            }
+
+            if (!string.IsNullOrEmpty(tagFilter.Trim()))
+            {
+                if (tagFilter != "*")
+                {
+                    result = result.Where(x => x.TicketTag.ToLower().Contains((tag + tagFilter + "\r").ToLower()));
+                }
+                result.ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
+            }
+
+            return result;
         }
 
         private void StartTimer()
@@ -990,6 +1048,11 @@ namespace Samba.Modules.TicketModule
                 ti.ItemSelectedCommand.Execute(ti);
             }
 
+            RefreshSelectedTicket();
+        }
+
+        private void RefreshSelectedTicket()
+        {
             SelectedTicketView = SingleTicketView;
 
             RaisePropertyChanged("SelectedTicket");
@@ -1000,6 +1063,8 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("CanChangeDepartment");
             RaisePropertyChanged("TicketBackground");
             RaisePropertyChanged("IsTicketSelected");
+            RaisePropertyChanged("IsFastPaymentButtonsVisible");
+            RaisePropertyChanged("IsCloseButtonVisible");
         }
 
         public void UpdateSelectedDepartment(int departmentId)
