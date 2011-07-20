@@ -852,24 +852,26 @@ namespace Samba.Modules.TicketModule
                 {
                     var openTickets = GetOpenTickets(OpenTickets, tagGroup, tagFilter);
 
-                    if (!string.IsNullOrEmpty(tagFilter))
+                    if (!string.IsNullOrEmpty(tagFilter.Trim()) && tagFilter != "*")
                     {
                         if (openTickets.Count() == 1)
                         {
-                            OpenTicketCommand.Execute(OpenTickets.ElementAt(0).Id);
-                            return;
+                            OpenTicketCommand.Execute(openTickets.ElementAt(0).Id);
                         }
                         if (openTickets.Count() == 0)
                         {
                             AppServices.MainDataContext.CreateNewTicket();
                             AppServices.MainDataContext.SelectedTicket.SetTagValue(selectedTag, tagFilter);
-                            DisplayTickets();
-                            return;
+                            RefreshSelectedTicket();
+                            RefreshVisuals();
                         }
                     }
 
-                    OpenTicketTags = GetOpenTicketTags(OpenTickets, tagGroup, tagFilter);
-                    OpenTickets = openTickets;
+                    if (SelectedTicket == null)
+                    {
+                        OpenTicketTags = GetOpenTicketTags(OpenTickets, tagGroup, tagFilter);
+                        OpenTickets = string.IsNullOrEmpty(tagFilter) ? null : openTickets;
+                    }
                 }
             }
             else
@@ -885,7 +887,6 @@ namespace Samba.Modules.TicketModule
 
         private static IEnumerable<TicketTagFilterViewModel> GetOpenTicketTags(IEnumerable<OpenTicketView> openTickets, TicketTagGroup tagGroup, string tagFilter)
         {
-
             var tag = tagGroup.Name.ToLower() + ":";
             var cnt = openTickets.Count(x => string.IsNullOrEmpty(x.TicketTag) || !x.TicketTag.ToLower().Contains(tag));
 
@@ -901,7 +902,7 @@ namespace Samba.Modules.TicketModule
 
                 var usedTags = opt.Select(x => x.TagValue);
 
-                opt.AddRange(tagGroup.TicketTags.Select(x => x.Name).Where(x => !usedTags.Contains(x)).Select(x => new TicketTagFilterViewModel() { TagGroup = tagGroup.Name, ButtonColor = "White", TagValue = x }));
+                opt.AddRange(tagGroup.TicketTags.Select(x => x.Name).Where(x => !usedTags.Contains(x)).Select(x => new TicketTagFilterViewModel { TagGroup = tagGroup.Name, ButtonColor = "White", TagValue = x }));
 
                 opt.Sort(new AlphanumComparator());
             }
@@ -920,7 +921,7 @@ namespace Samba.Modules.TicketModule
             return opt;
         }
 
-        private IEnumerable<OpenTicketView> GetOpenTickets(IEnumerable<OpenTicketView> openTickets, TicketTagGroup tagGroup, string tagFilter)
+        private static IEnumerable<OpenTicketView> GetOpenTickets(IEnumerable<OpenTicketView> openTickets, TicketTagGroup tagGroup, string tagFilter)
         {
             var tag = tagGroup.Name.ToLower() + ":";
             IEnumerable<OpenTicketView> result = openTickets.ToList();
