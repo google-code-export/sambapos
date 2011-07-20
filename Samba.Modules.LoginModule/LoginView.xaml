@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-       
+
         <Image Grid.Column="0" Stretch="None" Source="{Binding LogoPath}" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
         <TextBlock Grid.Row="1" FontSize="30" FontWeight="Black" Foreground="WhiteSmoke" Text="{Binding AppLabel}" Margin="5,0,0,-5">
             <TextBlock.Effect>
@@ -26,6 +26,11 @@
                 <Login1:LoginPadControl x:Name="PadControl" Margin="15" PinSubmitted="LoginPadControl_PinSubmitted" />
             </Border>
             <TextBlock FontSize="14" HorizontalAlignment="Center" Text="{Binding AdminPasswordHint}" TextAlignment="Center" />
+            <TextBlock FontSize="12" HorizontalAlignment="Center" TextAlignment="Center">
+                <Hyperlink NavigateUri="http://www.sambapos.com/content/client-server-baglantisi-nasil-yapilir" RequestNavigate="Hyperlink_RequestNavigate">
+                    <Label Content="{Binding SqlHint}" Margin="0" Padding="0" Foreground="Blue"/>
+                </Hyperlink>
+            </TextBlock>
             <Button HorizontalAlignment="Center" Width="110" Height="50" FontWeight="Bold" FontSize="18" Margin="5" Click="Button_Click">
                 <Button.Background>
                     <ImageBrush AlignmentX="Left" ImageSource="Images/LanShutDown.icon.gif" Stretch="None" TileMode="None" />

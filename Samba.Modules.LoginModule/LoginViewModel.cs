@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using Samba.Infrastructure.Settings;
@@ -26,6 +27,13 @@ namespace Samba.Login
 
         public string AppLabel { get { return "SAMBA POS " + LocalSettings.AppVersion + " - " + GetDatabaseLabel(); } }
         public string AdminPasswordHint { get { return GetAdminPasswordHint(); } }
+        public string SqlHint { get { return GetSqlHint(); } }
+
+        private static string GetSqlHint()
+        {
+            return !string.IsNullOrEmpty(GetAdminPasswordHint()) 
+                ? "Veritabanını SQL ile çalıştırmak ile ilgili bilgi için tıklayın." : "";
+        }
 
         private static string GetDatabaseLabel()
         {
@@ -40,7 +48,10 @@ namespace Samba.Login
             if (GetDatabaseLabel() == "TX"
                 && AppServices.MainDataContext.Users.Count() == 1
                 && AppServices.MainDataContext.Users.ElementAt(0).PinCode == "1234")
+            {
                 return "Admin PIN: 1234\rGizlemek için pin kodunu değiştirin";
+            }
+                
             return "";
         }
     }

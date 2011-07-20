@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
@@ -40,6 +41,12 @@ namespace Samba.Login
         {
             if(e.Key == Key.Enter)
                 PadControl.SubmitPin();
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
         
     }
