@@ -1,4 +1,4 @@
-﻿using System;
+ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -150,7 +150,6 @@ namespace Samba.Modules.TicketModule
                     AppServices.MainDataContext.SelectedDepartment = value;
                     RaisePropertyChanged("SelectedDepartment");
                     RaisePropertyChanged("SelectedTicket");
-                    //DisplayTickets();
                     SelectedDepartment.PublishEvent(EventTopicNames.SelectedDepartmentChanged);
                 }
                 else
