@@ -8,14 +8,22 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
+using Samba.Infrastructure.Settings;
 
-//// Register this namespace under admirals one with prefix
-[assembly: XmlnsDefinition("http://schemas.root-project.org/xaml/presentation", "WPFLocalizeExtension.Engine")]
-[assembly: XmlnsDefinition("http://schemas.root-project.org/xaml/presentation", "WPFLocalizeExtension.Extensions")]
-//// Assign a default namespace prefix for the schema
-[assembly: XmlnsPrefix("http://schemas.root-project.org/xaml/presentation", "lex")]
+////// Register this namespace under admirals one with prefix
+//[assembly: XmlnsDefinition("http://schemas.root-project.org/xaml/presentation", "Samba.Localization.Engine")]
+//[assembly: XmlnsDefinition("http://schemas.root-project.org/xaml/presentation", "Samba.Localization.Extensions")]
+////// Assign a default namespace prefix for the schema
+//[assembly: XmlnsPrefix("http://schemas.root-project.org/xaml/presentation", "ln")]
 
-namespace Samba.Presentation.Common.Localization.Engine
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Samba.Localization.Engine")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.microsoft.com/winfx/2007/xaml/presentation", "Samba.Localization.Engine")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.microsoft.com/winfx/2008/xaml/presentation", "Samba.Localization.Engine")]
+
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.microsoft.com/winfx/2006/xaml/presentation", "Samba.Localization.Extensions")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.microsoft.com/winfx/2007/xaml/presentation", "Samba.Localization.Extensions")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://schemas.microsoft.com/winfx/2008/xaml/presentation", "Samba.Localization.Extensions")]
+namespace Samba.Localization.Engine
 {
     /// <summary>
     /// Represents the culture interface for localization
@@ -346,7 +354,7 @@ namespace Samba.Presentation.Common.Localization.Engine
             string resourceKey,
             CultureInfo cultureToUse) where TType : class
         {
-            //// Validation
+            // Validation
             //if (resourceAssembly == null)
             //{
             //    throw new ArgumentNullException("resourceAssembly");
@@ -829,8 +837,12 @@ namespace Samba.Presentation.Common.Localization.Engine
                     }
                 }
             }
+        }
 
-
+        public static void ChangeLanguage(string twoLetterLang)
+        {
+            Instance.Culture = CultureInfo.GetCultureInfo(twoLetterLang);
+            LocalSettings.CurrentLanguage = twoLetterLang;
         }
     }
 }

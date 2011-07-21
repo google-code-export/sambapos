@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -14,6 +16,7 @@ namespace Samba.Infrastructure.Settings
         public bool StartMessagingClient { get; set; }
         public string LogoPath { get; set; }
         public string DefaultHtmlReportHeader { get; set; }
+        public string CurrentLanguage { get; set; }
 
         public SettingsObject()
         {
@@ -78,6 +81,18 @@ html
             set { _settingsObject.DefaultHtmlReportHeader = value; }
         }
 
+        private static CultureInfo _cultureInfo;
+        public static string CurrentLanguage
+        {
+            get { return _settingsObject.CurrentLanguage; }
+            set
+            {
+                _settingsObject.CurrentLanguage = value;
+                _cultureInfo = CultureInfo.GetCultureInfo(value);
+                UpdateThreadLanguage();
+            }
+        }
+
         public static string AppPath { get; set; }
         public static string DocumentPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SambaPOS2"; } }
         public static string DataPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\Ozgu Tech\\SambaPOS2"; } }
@@ -87,6 +102,7 @@ html
 
         public static int DbVersion { get { return 7; } }
         public static string AppVersion { get { return "2.10"; } }
+        public static string[] SupportedLanguages { get { return new[] { "tr", "en" }; } }
 
         public static long CurrentDbVersion { get; set; }
         public static void SaveSettings()
@@ -131,6 +147,10 @@ html
             LoadSettings();
         }
 
-
+        public static void UpdateThreadLanguage()
+        {
+            Thread.CurrentThread.CurrentCulture = _cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = _cultureInfo;
+        }
     }
 }

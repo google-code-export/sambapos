@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Properties;
 using Samba.Services;
 
 namespace Samba.Login
@@ -32,7 +33,7 @@ namespace Samba.Login
         private static string GetSqlHint()
         {
             return !string.IsNullOrEmpty(GetAdminPasswordHint()) 
-                ? "Veritabanını SQL ile çalıştırmak ile ilgili bilgi için tıklayın." : "";
+                ? Resources.SqlHint : "";
         }
 
         private static string GetDatabaseLabel()
@@ -49,7 +50,7 @@ namespace Samba.Login
                 && AppServices.MainDataContext.Users.Count() == 1
                 && AppServices.MainDataContext.Users.ElementAt(0).PinCode == "1234")
             {
-                return "Admin PIN: 1234\rGizlemek için pin kodunu değiştirin";
+                return Resources.AdminPasswordHint;
             }
                 
             return "";

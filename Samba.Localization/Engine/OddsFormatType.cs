@@ -1,4 +1,4 @@
-namespace Samba.Presentation.Common.Localization.Engine
+namespace Samba.Localization.Engine
 {
     /// <summary>
     /// Defines the Format of the odds output.

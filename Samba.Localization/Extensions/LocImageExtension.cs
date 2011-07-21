@@ -1,10 +1,12 @@
 using System;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Markup;
-using Samba.Presentation.Common.Localization.BaseExtensions;
-using Samba.Presentation.Common.Localization.Engine;
+using System.Windows.Media;
+using Samba.Localization.BaseExtensions;
+using Samba.Localization.Engine;
 
-namespace Samba.Presentation.Common.Localization.Extensions
+namespace Samba.Localization.Extensions
 {
     /// <summary>
     /// <c>BaseLocalizeExtension</c> for image objects
@@ -34,7 +36,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
         /// thrown if <paramref name="serviceProvider"/> is not type of <see cref="System.Windows.Markup.IProvideValueTarget"/>
         /// </exception>
         /// <exception cref="System.NotSupportedException">
-        /// thrown if the founded object is not type of <see cref="System.Drawing.Bitmap"/>
+        /// thrown if the founded object is not type of <see cref="Drawing.Bitmap"/>
         /// </exception>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -72,15 +74,15 @@ namespace Samba.Presentation.Common.Localization.Extensions
         }
 
         /// <summary>
-        /// Creates a <see cref="System.Windows.Media.Imaging.BitmapSource"/> from a <see cref="System.Drawing.Bitmap"/>.
+        /// Creates a <see cref="System.Windows.Media.Imaging.BitmapSource"/> from a <see cref="Bitmap"/>.
         /// This extension does NOT support a DesignValue.
         /// </summary>
-        /// <param name="input">The <see cref="System.Drawing.Bitmap"/> to convert</param>
+        /// <param name="input">The <see cref="Bitmap"/> to convert</param>
         /// <returns>The converted <see cref="System.Windows.Media.Imaging.BitmapSource"/></returns>
         protected override object FormatOutput(object input)
         {
             // allocate the memory for the bitmap
-            IntPtr bmpPt = ((System.Drawing.Bitmap)input).GetHbitmap();
+            IntPtr bmpPt = ((Bitmap)input).GetHbitmap();
 
             // create the bitmapSource
             System.Windows.Media.Imaging.BitmapSource bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(

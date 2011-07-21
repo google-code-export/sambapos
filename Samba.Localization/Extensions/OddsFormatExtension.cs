@@ -4,12 +4,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
-using Samba.Presentation.Common.Localization.Engine;
+using Samba.Localization.Engine;
 
-namespace Samba.Presentation.Common.Localization.Extensions
+namespace Samba.Localization.Extensions
 {
     /// <summary>
     /// Represents a OddsFormatExtension which provides a formated decimal odds value.

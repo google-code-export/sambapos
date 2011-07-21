@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace Samba.Presentation.Common.Localization.Engine
+namespace Samba.Localization.Engine
 {
     /// <summary>
     /// This class ensures, that a specific object lives as long a associated object is alive.

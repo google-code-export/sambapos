@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 
-namespace Samba.Presentation.Common.Localization.Engine
+namespace Samba.Localization.Engine
 {
     /// <summary>
     /// Implements the LocalizedObjectOperation.

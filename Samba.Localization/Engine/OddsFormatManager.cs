@@ -9,7 +9,7 @@ using System.Windows;
 //////// Assign a default namespace prefix for the schema
 ////[assembly: XmlnsPrefix("http://schemas.root-project.org/xaml/presentation", "lex")]
 
-namespace Samba.Presentation.Common.Localization.Engine
+namespace Samba.Localization.Engine
 {
     /// <summary>
     /// Represents the odds format manager

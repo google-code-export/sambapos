@@ -8,9 +8,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
-using Samba.Presentation.Common.Localization.Engine;
+using Samba.Localization.Engine;
 
-namespace Samba.Presentation.Common.Localization.BaseExtensions
+namespace Samba.Localization.BaseExtensions
 {
     /// <summary>
     /// Implements the BaseLocalizeExtension.
@@ -177,6 +177,8 @@ namespace Samba.Presentation.Common.Localization.BaseExtensions
 
         private static Assembly GetDialogAssembly(DependencyObject targetObject)
         {
+            //return System.Reflection.Assembly.LoadFrom("Samba.Localization.dll");
+         
             var w = Window.GetWindow(targetObject);
             if (w != null) return w.GetType().Assembly;
 
@@ -191,9 +193,9 @@ namespace Samba.Presentation.Common.Localization.BaseExtensions
 
                 targetObject = LogicalTreeHelper.GetParent(targetObject);
             }
-            // Design time
+             //Design time
 
-            // Try to find the main assembly
+             //Try to find the main assembly
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -330,7 +332,8 @@ namespace Samba.Presentation.Common.Localization.BaseExtensions
                 var targetObject = service.TargetObject as DependencyObject;
                 if (targetObject != null)
                 {
-                    var a = GetDialogAssembly(targetObject);
+
+                    var a = System.Reflection.Assembly.GetExecutingAssembly(); // GetDialogAssembly(targetObject);
                     if (a != null)
                     {
                         this.dialogAssembly = LocalizeDictionary.Instance.GetAssemblyName(a);

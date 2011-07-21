@@ -10,6 +10,7 @@ using System.Windows.Markup;
 using System.Windows.Threading;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Engine;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Interaction;
 using Samba.Services;
@@ -31,6 +32,8 @@ namespace Samba.Presentation
                                   typeof(FrameworkElement),
                                   new FrameworkPropertyMetadata(
                                       XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+
+            LocalizeDictionary.ChangeLanguage(LocalSettings.SupportedLanguages[0]);
 
             var selectedIndexChange = DependencyPropertyDescriptor.FromProperty(Selector.SelectedIndexProperty, typeof(TabControl));
 
@@ -130,6 +133,13 @@ namespace Samba.Presentation
             Title = Title + " [App: " + LocalSettings.AppVersion + "]";
             if (LocalSettings.CurrentDbVersion > 0)
                 Title += " [DB: " + LocalSettings.DbVersion + "-" + LocalSettings.CurrentDbVersion + "]";
+        }
+
+        private void TimeLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (LocalizeDictionary.Instance.Culture.TwoLetterISOLanguageName == "tr")
+                LocalizeDictionary.ChangeLanguage("en");
+            else LocalizeDictionary.ChangeLanguage("tr");
         }
     }
 }

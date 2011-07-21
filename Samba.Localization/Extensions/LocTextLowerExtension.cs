@@ -1,9 +1,9 @@
 using System;
 using System.Windows.Markup;
-using Samba.Presentation.Common.Localization.BaseExtensions;
-using Samba.Presentation.Common.Localization.Engine;
+using Samba.Localization.BaseExtensions;
+using Samba.Localization.Engine;
 
-namespace Samba.Presentation.Common.Localization.Extensions
+namespace Samba.Localization.Extensions
 {
     /// <summary>
     /// <c>BaseLocalizeExtension</c> for string objects.

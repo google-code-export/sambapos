@@ -7,6 +7,7 @@ using System.Text;
 using Samba.Domain;
 using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Customers;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
@@ -38,7 +39,7 @@ namespace Samba.Modules.CashModule
                                                       CashPaymentValue = operations[0],
                                                       CreditCardPaymentValue = operations[1],
                                                       TicketPaymentValue = operations[2],
-                                                      Description = "Faaliyet Gelirleri",
+                                                      Description = Resources.OperationIncome,
                                                       Date = DateTime.Now
                                                   };
                     (_incomeTransactions as IList).Insert(0, operationViewModel);
@@ -50,7 +51,7 @@ namespace Samba.Modules.CashModule
                                                             CashPaymentValue = AppServices.MainDataContext.CurrentWorkPeriod.CashAmount,
                                                             CreditCardPaymentValue = AppServices.MainDataContext.CurrentWorkPeriod.CreditCardAmount,
                                                             TicketPaymentValue = AppServices.MainDataContext.CurrentWorkPeriod.TicketAmount,
-                                                            Description = "Gün Başı",
+                                                            Description = Resources.StartOfDay,
                                                             Date = AppServices.MainDataContext.CurrentWorkPeriod.StartDate
                                                         };
                         (_incomeTransactions as IList).Insert(0, dayStartCashViewModel);
@@ -140,7 +141,7 @@ namespace Samba.Modules.CashModule
 
         public string TransactionDescription
         {
-            get { return TransactionType == TransactionType.Income ? "Yeni Gelir Hareketi" : "Yeni Gider Hareketi"; }
+            get { return TransactionType == TransactionType.Income ? Resources.NewIncomeTransaction : Resources.NewExpenseTransaction; }
         }
 
         private int _activeView;
@@ -167,14 +168,14 @@ namespace Samba.Modules.CashModule
 
         public CashViewModel()
         {
-            ActivateIncomeTransactionRecordCommand = new CaptionCommand<string>("Gelir\rHareketi", OnActivateIncomeTransactionRecord, CanActivateIncomeTransactionRecord);
-            ActivateExpenseTransactionRecordCommand = new CaptionCommand<string>("Gider\rHareketi", OnActivateExpenseTransactionRecord, CanActivateIncomeTransactionRecord);
-            CancelTransactionCommand = new CaptionCommand<string>("İptal", OnCancelTransaction);
+            ActivateIncomeTransactionRecordCommand = new CaptionCommand<string>(Resources.IncomeTransaction_r, OnActivateIncomeTransactionRecord, CanActivateIncomeTransactionRecord);
+            ActivateExpenseTransactionRecordCommand = new CaptionCommand<string>(Resources.ExpenseTransaction_r, OnActivateExpenseTransactionRecord, CanActivateIncomeTransactionRecord);
+            CancelTransactionCommand = new CaptionCommand<string>(Resources.Cancel, OnCancelTransaction);
 
-            ApplyCashTransactionCommand = new CaptionCommand<string>("Nakit", OnApplyCashTransaction, CanApplyTransaction);
-            ApplyCreditCardTransactionCommand = new CaptionCommand<string>("Kredi Kartı", OnApplyCreditCardTransaction, CanApplyTransaction);
-            ApplyTicketTransactionCommand = new CaptionCommand<string>("Yemek Çeki", OnApplyTicketTransaction, CanApplyTransaction);
-            DisplayCustomerAccountsCommand = new CaptionCommand<string>("Müşteri\rHesapları", OnDisplayCustomerAccounts);
+            ApplyCashTransactionCommand = new CaptionCommand<string>(Resources.Cash, OnApplyCashTransaction, CanApplyTransaction);
+            ApplyCreditCardTransactionCommand = new CaptionCommand<string>(Resources.CreditCard, OnApplyCreditCardTransaction, CanApplyTransaction);
+            ApplyTicketTransactionCommand = new CaptionCommand<string>(Resources.Voucher, OnApplyTicketTransaction, CanApplyTransaction);
+            DisplayCustomerAccountsCommand = new CaptionCommand<string>(Resources.CustomerAccounts, OnDisplayCustomerAccounts);
         }
 
         private static void OnDisplayCustomerAccounts(string obj)

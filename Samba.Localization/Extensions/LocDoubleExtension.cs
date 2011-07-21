@@ -1,50 +1,55 @@
 using System;
-using System.Windows;
+using System.Globalization;
 using System.Windows.Markup;
-using Samba.Presentation.Common.Localization.BaseExtensions;
-using Samba.Presentation.Common.Localization.Engine;
+using Samba.Localization.BaseExtensions;
+using Samba.Localization.Engine;
 
-namespace Samba.Presentation.Common.Localization.Extensions
+namespace Samba.Localization.Extensions
 {
     /// <summary>
-    /// <c>BaseLocalizeExtension</c> for <see cref="FlowDirection"/> values
+    /// <c>BaseLocalizeExtension</c> for double values
     /// </summary>
-    [MarkupExtensionReturnType(typeof(FlowDirection))]
-    public class LocFlowDirectionExtension : BaseLocalizeExtension<FlowDirection>
+    [MarkupExtensionReturnType(typeof(double))]
+    public class LocDoubleExtension : BaseLocalizeExtension<double>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocFlowDirectionExtension"/> class.
+        /// Initializes a new instance of the <see cref="LocDoubleExtension"/> class.
         /// </summary>
-        public LocFlowDirectionExtension() { }
+        public LocDoubleExtension() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocFlowDirectionExtension"/> class.
+        /// Initializes a new instance of the <see cref="LocDoubleExtension"/> class.
         /// </summary>
         /// <param name="key">The resource identifier.</param>
-        public LocFlowDirectionExtension(string key) : base(key) { }
+        public LocDoubleExtension(string key) : base(key) { }
 
         /// <summary>
-        /// Provides the Value for the first Binding as <see cref="LocFlowDirectionExtension"/>
+        /// Provides the Value for the first Binding as double
         /// </summary>
         /// <param name="serviceProvider">
         /// The <see cref="System.Windows.Markup.IProvideValueTarget"/> provided from the <see cref="MarkupExtension"/>
         /// </param>
-        /// <returns>The founded item from the .resx directory or LeftToRight if not founded</returns>
+        /// <returns>The founded item from the .resx directory or null if not founded</returns>
         /// <exception cref="System.InvalidOperationException">
         /// thrown if <paramref name="serviceProvider"/> is not type of <see cref="System.Windows.Markup.IProvideValueTarget"/>
         /// </exception>
         /// <exception cref="System.NotSupportedException">
-        /// thrown if the founded object is not type of <see cref="FlowDirection"/>
+        /// thrown if the founded object is not type of double
         /// </exception>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            object obj = base.ProvideValue(serviceProvider) ?? "LeftToRight";
+            object obj = base.ProvideValue(serviceProvider);
+
+            if (obj == null)
+            {
+                return null;
+            }
 
             if (this.IsTypeOf(obj.GetType(), typeof(BaseLocalizeExtension<>)))
             {
                 return obj;
             }
-
+            
             if (obj.GetType().Equals(typeof(string)))
             {
                 return this.FormatOutput(obj);
@@ -52,7 +57,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
 
             throw new NotSupportedException(
                 string.Format(
-                    "ResourceKey '{0}' returns '{1}' which is not type of FlowDirection",
+                    "ResourceKey '{0}' returns '{1}' which is not type of double",
                     this.Key,
                     obj.GetType().FullName));
         }
@@ -62,7 +67,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
         /// </summary>
         protected override void HandleNewValue()
         {
-            var obj = LocalizeDictionary.Instance.GetLocalizedObject<object>(this.Assembly, this.Dict, this.Key, this.GetForcedCultureOrDefault());
+            object obj = LocalizeDictionary.Instance.GetLocalizedObject<object>(this.Assembly, this.Dict, this.Key, this.GetForcedCultureOrDefault());
             this.SetNewValue(this.FormatOutput(obj));
         }
 
@@ -77,7 +82,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
             {
                 try
                 {
-                    return Enum.Parse(typeof(FlowDirection), (string) this.DesignValue, true);
+                    return double.Parse((string) this.DesignValue, new CultureInfo("en-US"));
                 }
                 catch
                 {
@@ -85,7 +90,12 @@ namespace Samba.Presentation.Common.Localization.Extensions
                 }
             }
 
-            return Enum.Parse(typeof(FlowDirection), (string)input, true);
+            return double.Parse((string)input, new CultureInfo("en-US"));
+
+            ////System.Reflection.MethodInfo method = typeof(System.ComponentModel.DoubleConverter).GetMethod("FromString", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            ////object result = method.Invoke(null, new object[] { source, new System.Globalization.CultureInfo("en-US") });
+
+            ////return (double)result;
         }
     }
 }

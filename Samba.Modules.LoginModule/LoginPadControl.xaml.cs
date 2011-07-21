@@ -14,19 +14,18 @@ namespace Samba.Login
     {
         public event PinSubmittedEventHandler PinSubmitted;
         private string _pinValue = string.Empty;
-        private const string emptyString = " PIN GİRİNİZ";
 
         public LoginPadControl()
         {
             InitializeComponent();
-            PinValue = emptyString;
+            PinValue = EmptyString;
         }
 
         private string PinValue { get { return _pinValue; } set { _pinValue = value; UpdatePinTextBox(_pinValue); } }
-
+        private static string EmptyString { get { return " " + Localization.Properties.Resources.EnterPin; } }
         private void UpdatePinTextBox(string _pinValue)
         {
-            if (_pinValue == emptyString)
+            if (_pinValue == EmptyString)
                 PinTextBox.Text = _pinValue;
             else
                 PinTextBox.Text = "".PadLeft(_pinValue.Length, '*');
@@ -34,7 +33,7 @@ namespace Samba.Login
 
         private bool CheckPinValue()
         {
-            if (_pinValue == emptyString)
+            if (_pinValue == EmptyString)
                 PinValue = "";
             return _pinValue.Length < 9;
         }
@@ -54,9 +53,9 @@ namespace Samba.Login
             else
             {
                 if (!AppServices.CanStartApplication())
-                    MessageBox.Show("Veritabanı sürümünü kontrol ediniz.");
+                    MessageBox.Show(Localization.Properties.Resources.CheckDBVersion);
             }
-            PinValue = emptyString;
+            PinValue = EmptyString;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

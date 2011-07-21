@@ -1,30 +1,32 @@
 using System;
-using System.ComponentModel;
+using System.Globalization;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Markup;
-using Samba.Presentation.Common.Localization.BaseExtensions;
-using Samba.Presentation.Common.Localization.Engine;
+using Samba.Localization.BaseExtensions;
+using Samba.Localization.Engine;
 
-namespace Samba.Presentation.Common.Localization.Extensions
+namespace Samba.Localization.Extensions
 {
     /// <summary>
-    /// <c>BaseLocalizeExtension</c> for brush objects as string (uses <see cref="TypeConverter"/>)
+    /// <c>BaseLocalizeExtension</c> for Thickness values
     /// </summary>
-    [MarkupExtensionReturnType(typeof(System.Windows.Media.Brush))]
-    public class LocBrushExtension : BaseLocalizeExtension<System.Windows.Media.Brush>
+    [MarkupExtensionReturnType(typeof(Thickness))]
+    public class LocThicknessExtension : BaseLocalizeExtension<Thickness>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocBrushExtension"/> class.
+        /// Initializes a new instance of the <see cref="LocThicknessExtension"/> class.
         /// </summary>
-        public LocBrushExtension() { }
+        public LocThicknessExtension() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LocBrushExtension"/> class.
+        /// Initializes a new instance of the <see cref="LocThicknessExtension"/> class.
         /// </summary>
         /// <param name="key">The resource identifier.</param>
-        public LocBrushExtension(string key) : base(key) { }
+        public LocThicknessExtension(string key) : base(key) { }
 
         /// <summary>
-        /// Provides the Value for the first Binding as <see cref="System.Windows.Media.Brush"/>
+        /// Provides the Value for the first Binding as Thickness
         /// </summary>
         /// <param name="serviceProvider">
         /// The <see cref="System.Windows.Markup.IProvideValueTarget"/> provided from the <see cref="MarkupExtension"/>
@@ -34,10 +36,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
         /// thrown if <paramref name="serviceProvider"/> is not type of <see cref="System.Windows.Markup.IProvideValueTarget"/>
         /// </exception>
         /// <exception cref="System.NotSupportedException">
-        /// thrown if the founded object is not type of <see cref="System.String"/>
-        /// </exception>
-        /// <exception cref="System.NotSupportedException">
-        /// The founded resource-string cannot be converted into the appropriate object.
+        /// thrown if the founded object is not type of Thickness
         /// </exception>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -52,7 +51,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
             {
                 return obj;
             }
-
+            
             if (obj.GetType().Equals(typeof(string)))
             {
                 return this.FormatOutput(obj);
@@ -60,7 +59,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
 
             throw new NotSupportedException(
                 string.Format(
-                    "ResourceKey '{0}' returns '{1}' which is not type of System.Drawing.Bitmap",
+                    "ResourceKey '{0}' returns '{1}' which is not type of double",
                     this.Key,
                     obj.GetType().FullName));
         }
@@ -71,7 +70,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
         protected override void HandleNewValue()
         {
             object obj = LocalizeDictionary.Instance.GetLocalizedObject<object>(this.Assembly, this.Dict, this.Key, this.GetForcedCultureOrDefault());
-            this.SetNewValue(new System.Windows.Media.BrushConverter().ConvertFromString((string)obj));
+            this.SetNewValue(this.FormatOutput(obj));
         }
 
         /// <summary>
@@ -81,11 +80,14 @@ namespace Samba.Presentation.Common.Localization.Extensions
         /// <returns>Returns the modified object</returns>
         protected override object FormatOutput(object input)
         {
+            MethodInfo method = typeof(ThicknessConverter).GetMethod("FromString", BindingFlags.Static | BindingFlags.NonPublic);
+
             if (LocalizeDictionary.Instance.GetIsInDesignMode() && this.DesignValue != null)
             {
                 try
                 {
-                    return new System.Windows.Media.BrushConverter().ConvertFromString((string) this.DesignValue);
+                    return
+                        (Thickness) method.Invoke(null, new[] { this.DesignValue, new CultureInfo("en-US") });
                 }
                 catch
                 {
@@ -93,7 +95,7 @@ namespace Samba.Presentation.Common.Localization.Extensions
                 }
             }
 
-            return new System.Windows.Media.BrushConverter().ConvertFromString((string)input);
+            return (Thickness)method.Invoke(null, new[] { input, new CultureInfo("en-US") });
         }
     }
 }

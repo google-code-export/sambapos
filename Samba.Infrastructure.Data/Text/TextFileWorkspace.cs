@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using Samba.Infrastructure.Data.Serializer;
+using Samba.Infrastructure.Settings;
 
 namespace Samba.Infrastructure.Data.Text
 {
@@ -45,6 +46,7 @@ namespace Samba.Infrastructure.Data.Text
         [MethodImpl(MethodImplOptions.Synchronized)]
         private void PersistAllAsync(object o)
         {
+            LocalSettings.UpdateThreadLanguage();
             if (!string.IsNullOrEmpty(o.ToString()) && (int)o != _tNumber) return;
             var serializerHelper = new XmlSerializerHelper { IgnoreSerializableAttribute = true, IgnoreSerialisationErrors = true };
             serializerHelper.Serialize(_storage, _fileName);
