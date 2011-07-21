@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Samba.Domain.Models.Inventory;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;
 
@@ -20,7 +21,7 @@ namespace Samba.Modules.InventoryModule
 
         public override string GetModelTypeString()
         {
-            return "Stok";
+            return Resources.InventoryItem;
         }
 
         private IEnumerable<string> _groupCodes;

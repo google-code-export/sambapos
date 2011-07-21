@@ -11,6 +11,7 @@ using Samba.Domain;
 using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
@@ -150,16 +151,16 @@ namespace Samba.Modules.CustomerModule
             _updateTimer = new Timer(500);
             _updateTimer.Elapsed += UpdateTimerElapsed;
             FoundCustomers = new ObservableCollection<CustomerViewModel>();
-            CloseScreenCommand = new CaptionCommand<string>("Kapat", OnCloseScreen);
-            SelectCustomerCommand = new CaptionCommand<string>("Müşteri\rSeç", OnSelectCustomer, CanSelectCustomer);
-            CreateCustomerCommand = new CaptionCommand<string>("Yeni\rMüşteri", OnCreateCustomer, CanCreateCustomer);
-            FindTicketCommand = new CaptionCommand<string>("Adisyon\rBul", OnFindTicket, CanFindTicket);
-            ResetCustomerCommand = new CaptionCommand<string>("Müşteri\rİptal", OnResetCustomer, CanResetCustomer);
-            MakePaymentCommand = new CaptionCommand<string>("Ödeme\rAl", OnMakePayment, CanMakePayment);
-            DisplayCustomerAccountCommand = new CaptionCommand<string>("Hesap\rKartı", OnDisplayCustomerAccount, CanSelectCustomer);
-            MakePaymentToCustomerCommand = new CaptionCommand<string>("Ödeme\rYap", OnMakePaymentToCustomerCommand, CanSelectCustomer);
-            GetPaymentFromCustomerCommand = new CaptionCommand<string>("Ödeme\rAl", OnGetPaymentFromCustomerCommand, CanSelectCustomer);
-            CloseAccountScreenCommand = new CaptionCommand<string>("Kapat", OnCloseAccountScreen);
+            CloseScreenCommand = new CaptionCommand<string>(Resources.Close, OnCloseScreen);
+            SelectCustomerCommand = new CaptionCommand<string>(Resources.SelectCustomer_r, OnSelectCustomer, CanSelectCustomer);
+            CreateCustomerCommand = new CaptionCommand<string>(Resources.NewCustomer_r, OnCreateCustomer, CanCreateCustomer);
+            FindTicketCommand = new CaptionCommand<string>(Resources.FindTicket_r, OnFindTicket, CanFindTicket);
+            ResetCustomerCommand = new CaptionCommand<string>(Resources.ResetCustomer_r, OnResetCustomer, CanResetCustomer);
+            MakePaymentCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnMakePayment, CanMakePayment);
+            DisplayCustomerAccountCommand = new CaptionCommand<string>(Resources.CustomerAccount_r, OnDisplayCustomerAccount, CanSelectCustomer);
+            MakePaymentToCustomerCommand = new CaptionCommand<string>(Resources.MakePayment_r, OnMakePaymentToCustomerCommand, CanSelectCustomer);
+            GetPaymentFromCustomerCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnGetPaymentFromCustomerCommand, CanSelectCustomer);
+            CloseAccountScreenCommand = new CaptionCommand<string>(Resources.Close, OnCloseAccountScreen);
 
             SelectedCustomerTransactions = new ObservableCollection<CustomerTransactionViewModel>();
         }
@@ -201,7 +202,7 @@ namespace Samba.Modules.CustomerModule
                 var transactions = new List<CustomerTransactionViewModel>();
                 transactions.AddRange(tickets.Select(x => new CustomerTransactionViewModel
                                                        {
-                                                           Description = x.TicketNumber + " numaralı adisyon",
+                                                           Description = string.Format(Resources.TicketNumber_f, x.TicketNumber),
                                                            Date = x.LastPaymentDate,
                                                            Receivable = x.GetAccountPaymentAmount() + x.GetAccountRemainingAmount(),
                                                            Liability = x.GetAccountPaymentAmount()

@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Data.Serializer;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Presentation.Common.ModelBase
@@ -88,7 +89,7 @@ namespace Samba.Presentation.Common.ModelBase
 
         protected override void OnDeleteItem(object obj)
         {
-            if (MessageBox.Show(ModelTitle + " [" + SelectedItem.Model.Name + "] silinsin mi?", "Onay", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show(string.Format(Resources.DeleteItemConfirmation_f, ModelTitle, SelectedItem.Model.Name), Resources.Confirmation, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 var errorMessage = CanDeleteItem(SelectedItem.Model);
                 if (string.IsNullOrEmpty(errorMessage))
@@ -102,7 +103,7 @@ namespace Samba.Presentation.Common.ModelBase
                 }
                 else
                 {
-                    MessageBox.Show(errorMessage, "Uyarı");
+                    MessageBox.Show(errorMessage, Resources.Warning);
                 }
             }
         }

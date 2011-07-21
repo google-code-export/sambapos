@@ -2,6 +2,7 @@
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -19,8 +20,8 @@ namespace Samba.Modules.DashboardModule
         {
             _regionManager = regionManager;
             _dashboardView = dashboardView;
-            _navigateDashboardCommand = new CategoryCommand<string>("Yönetim", "Genel", "Images/Tools.png", OnNavigateDashboard, CanNavigateDashboard) { Order = 90 };
-            PermissionRegistry.RegisterPermission(PermissionNames.OpenDashboard, PermissionCategories.Navigation, "Yönetim ekranı açabilir");
+            _navigateDashboardCommand = new CategoryCommand<string>(Resources.Management, Resources.Common, "Images/Tools.png", OnNavigateDashboard, CanNavigateDashboard) { Order = 90 };
+            PermissionRegistry.RegisterPermission(PermissionNames.OpenDashboard, PermissionCategories.Navigation, Resources.CanOpenDashboard);
         }
 
         private static bool CanNavigateDashboard(string arg)

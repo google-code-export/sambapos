@@ -5,6 +5,7 @@ using System.Windows;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 
 namespace Samba.Presentation.Common.ModelBase
 {
@@ -17,7 +18,7 @@ namespace Samba.Presentation.Common.ModelBase
         protected EntityViewModelBase(TModel model)
         {
             Model = model;
-            SaveCommand = new CaptionCommand<string>("Kaydet", OnSave, CanSave);
+            SaveCommand = new CaptionCommand<string>(Resources.Save, OnSave, CanSave);
             _validatorFactory = EnterpriseLibraryContainer.Current.GetInstance<ValidatorFactory>();
         }
 
@@ -36,8 +37,8 @@ namespace Samba.Presentation.Common.ModelBase
         protected override string GetHeaderInfo()
         {
             if (Model.Id > 0)
-                return GetModelTypeString() + " (" + Name + ") Düzenle";
-            return "Yeni " + GetModelTypeString() + " Ekle";
+                return string.Format(Resources.EditModel_f, GetModelTypeString(), Name);
+            return string.Format(Resources.AddModel_f, GetModelTypeString());
         }
 
         protected virtual void OnSave(string value)
@@ -56,8 +57,8 @@ namespace Samba.Presentation.Common.ModelBase
             else
             {
                 if (string.IsNullOrEmpty(Name))
-                    errorMessage = GetModelTypeString() + " adını boş bırakmayın.";
-                MessageBox.Show(errorMessage, "Kayıt Engellendi");
+                    errorMessage = string.Format(Resources.EmptyNameError, GetModelTypeString());
+                MessageBox.Show(errorMessage, Resources.CantSave);
             }
         }
 

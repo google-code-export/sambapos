@@ -33,7 +33,7 @@ namespace Samba.Modules.InventoryModule
         {
             get
             {
-                return Model.InventoryItem != null ? Model.InventoryItem.Name : "- Seçiniz -";
+                return Model.InventoryItem != null ? Model.InventoryItem.Name : string.Format("- {0} -", Localization.Properties.Resources.Select);
             }
             set
             {

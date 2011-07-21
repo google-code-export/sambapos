@@ -4,6 +4,7 @@ using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Interaction;
@@ -25,7 +26,7 @@ namespace Samba.Modules.CustomerModule
         {
             _regionManager = regionManager;
             _customerSelectorView = customerSelectorView;
-            ListCustomersCommand = new CategoryCommand<string>("Müşteri Listesi", "Müşteriler", OnCustomerListExecute) { Order = 40 };
+            ListCustomersCommand = new CategoryCommand<string>(Resources.CustomerList, Resources.Customers, OnCustomerListExecute) { Order = 40 };
         }
 
         private void OnCustomerListExecute(string obj)

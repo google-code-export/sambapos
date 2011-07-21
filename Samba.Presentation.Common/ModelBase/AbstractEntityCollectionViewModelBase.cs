@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Samba.Localization.Properties;
 using Samba.Services;
 
 namespace Samba.Presentation.Common.ModelBase
@@ -32,10 +33,10 @@ namespace Samba.Presentation.Common.ModelBase
         protected AbstractEntityCollectionViewModelBase()
         {
             ModelTitle = GetModelTitle();
-            AddItemCommand = new CaptionCommand<object>(ModelTitle + " Ekle", OnAddItem, CanAddItem);
-            EditItemCommand = new CaptionCommand<object>(ModelTitle + " Düzenle", OnEditItem, CanEditItem);
-            DeleteItemCommand = new CaptionCommand<object>(ModelTitle + " Sil", OnDeleteItem, CanEditItem);
-            DuplicateItemCommand = new CaptionCommand<object>(ModelTitle + " Kopyası Oluştur", OnDuplicateItem, CanDuplicateItem);
+            AddItemCommand = new CaptionCommand<object>(string.Format(Resources.Add_f, ModelTitle), OnAddItem, CanAddItem);
+            EditItemCommand = new CaptionCommand<object>(string.Format(Resources.Edit_f, ModelTitle), OnEditItem, CanEditItem);
+            DeleteItemCommand = new CaptionCommand<object>(string.Format(Resources.Delete_f, ModelTitle), OnDeleteItem, CanEditItem);
+            DuplicateItemCommand = new CaptionCommand<object>(string.Format(Resources.Clone_f, ModelTitle), OnDuplicateItem, CanDuplicateItem);
             CustomCommands = new List<ICaptionCommand>();
         }
 
@@ -51,7 +52,7 @@ namespace Samba.Presentation.Common.ModelBase
 
         protected override string GetHeaderInfo()
         {
-            return ModelTitle + " Listesi";
+            return string.Format(Resources.List_f, ModelTitle);
         }
 
         public override Type GetViewType()

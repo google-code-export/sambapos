@@ -3,6 +3,7 @@ using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Settings;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -34,10 +35,10 @@ namespace Samba.Modules.InventoryModule
         [ImportingConstructor]
         public InventoryModule()
         {
-            ListInventoryItemsCommand = new CategoryCommand<string>("Stoklar", "Ürünler", OnListInventoryItems) { Order = 26 };
-            ListRecipesCommand = new CategoryCommand<string>("Reçeteler", "Ürünler", OnListRecipes) { Order = 27 };
-            ListTransactionsCommand = new CategoryCommand<string>("Alım Fişleri", "Ürünler", OnListTransactions) { Order = 28 };
-            ListPeriodicConsumptionsCommand = new CategoryCommand<string>("Gün Sonu Belgeleri", "Ürünler", OnListPeriodicConsumptions) { Order = 29 };
+            ListInventoryItemsCommand = new CategoryCommand<string>(Resources.InventoryItems, Resources.Products, OnListInventoryItems) { Order = 26 };
+            ListRecipesCommand = new CategoryCommand<string>(Resources.Recipes, Resources.Products, OnListRecipes) { Order = 27 };
+            ListTransactionsCommand = new CategoryCommand<string>(Resources.Transactions, Resources.Products, OnListTransactions) { Order = 28 };
+            ListPeriodicConsumptionsCommand = new CategoryCommand<string>(Resources.EndOfDayRecords, Resources.Products, OnListPeriodicConsumptions) { Order = 29 };
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<VisibleViewModelBase>>().Subscribe(s =>
             {

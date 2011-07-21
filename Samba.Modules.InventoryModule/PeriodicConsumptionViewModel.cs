@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Samba.Domain.Models.Inventory;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -16,7 +17,7 @@ namespace Samba.Modules.InventoryModule
         public PeriodicConsumptionViewModel(PeriodicConsumption model)
             : base(model)
         {
-            UpdateCalculationCommand = new CaptionCommand<string>("Maliyet Hesapla", OnUpdateCalculation);
+            UpdateCalculationCommand = new CaptionCommand<string>(Resources.CalculateCost, OnUpdateCalculation);
         }
 
         public ICaptionCommand UpdateCalculationCommand { get; set; }
@@ -69,7 +70,7 @@ namespace Samba.Modules.InventoryModule
 
         public override string GetModelTypeString()
         {
-            return "Gün Sonu Belgesi";
+            return Resources.EndOfDayRecord;
         }
 
         protected override void OnSave(string value)

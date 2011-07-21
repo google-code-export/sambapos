@@ -1,5 +1,6 @@
 ﻿using System;
 using Samba.Domain.Models.Customers;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.CustomerModule
@@ -18,7 +19,7 @@ namespace Samba.Modules.CustomerModule
 
         public override string GetModelTypeString()
         {
-            return "Müşteri";
+            return Resources.Customer;
         }
 
         public string PhoneNumber { get { return Model.PhoneNumber; } set { Model.PhoneNumber = value; } }

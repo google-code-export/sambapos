@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -17,8 +18,8 @@ namespace Samba.Modules.InventoryModule
         public RecipeViewModel(Recipe model)
             : base(model)
         {
-            AddInventoryItemCommand = new CaptionCommand<string>("Stok Ekle", OnAddInventoryItem, CanAddInventoryItem);
-            DeleteInventoryItemCommand = new CaptionCommand<string>("Stok Sil", OnDeleteInventoryItem, CanDeleteInventoryItem);
+            AddInventoryItemCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Inventory), OnAddInventoryItem, CanAddInventoryItem);
+            DeleteInventoryItemCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Inventory), OnDeleteInventoryItem, CanDeleteInventoryItem);
         }
 
 
@@ -29,7 +30,7 @@ namespace Samba.Modules.InventoryModule
 
         public override string GetModelTypeString()
         {
-            return "Reçete";
+            return Resources.Recipe;
         }
 
         public ICaptionCommand AddInventoryItemCommand { get; set; }

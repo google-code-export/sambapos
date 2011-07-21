@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Samba.Domain.Models.Inventory;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -11,7 +12,7 @@ namespace Samba.Modules.InventoryModule
         public InventoryItem Model { get; set; }
         private readonly IWorkspace _workspace;
 
-        public MaterialViewModel(InventoryItem model,IWorkspace workspace)
+        public MaterialViewModel(InventoryItem model, IWorkspace workspace)
         {
             Model = model;
             _workspace = workspace;
@@ -27,7 +28,7 @@ namespace Samba.Modules.InventoryModule
         {
             get
             {
-                return Model != null ? Model.Name : "- Seçiniz -";
+                return Model != null ? Model.Name : string.Format("- {0} -", Resources.Select);
             }
             set
             {

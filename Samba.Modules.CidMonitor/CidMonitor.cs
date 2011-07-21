@@ -3,6 +3,7 @@ using System.Linq;
 using Axcidv5callerid;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Samba.Domain.Models.Customers;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 
@@ -21,7 +22,7 @@ namespace Samba.Modules.CidMonitor
             }
             catch (Exception)
             {
-                InteractionService.UserIntraction.DisplayPopup("Bilgi", "Caller ID Özelliğini kullanabilmek için Caller ID kutusunun sürücüsünü yüklemelisiniz.", "", "");
+                InteractionService.UserIntraction.DisplayPopup(Resources.Information, Resources.CallerIdDriverError, "", "");
             }
         }
 
@@ -39,11 +40,11 @@ namespace Samba.Modules.CidMonitor
             if (c.Count() == 1)
             {
                 var customer = c.First();
-                InteractionService.UserIntraction.DisplayPopup(customer.Name, customer.Name + " Arıyor.\r" + customer.PhoneNumber + "\r" + customer.Address + "\r" + customer.Note,
+                InteractionService.UserIntraction.DisplayPopup(customer.Name, customer.Name + " " + Resources.Calling + ".\r" + customer.PhoneNumber + "\r" + customer.Address + "\r" + customer.Note,
                                                             customer.PhoneNumber, "SelectCustomer");
             }
             else
-                InteractionService.UserIntraction.DisplayPopup(e.phoneNumber, e.phoneNumber + " Arıyor...",
+                InteractionService.UserIntraction.DisplayPopup(e.phoneNumber, e.phoneNumber + " " + Resources.Calling + "...",
                                                                e.phoneNumber, "SelectCustomer");
         }
     }

@@ -212,25 +212,312 @@ Gizlemek için pin kodunu değiştirin</value>
   <data name="StartOfDay" xml:space="preserve">
     <value>Gün Başı</value>
   </data>
-	<data name="NewIncomeTransaction" xml:space="preserve">
+  <data name="NewIncomeTransaction" xml:space="preserve">
     <value>Yeni Gelir Hareketi</value>
   </data>
-	<data name="NewExpenseTransaction" xml:space="preserve">
+  <data name="NewExpenseTransaction" xml:space="preserve">
     <value>Yeni Gider Hareketi</value>
   </data>
-	<data name="IncomeTransaction_r" xml:space="preserve">
+  <data name="IncomeTransaction_r" xml:space="preserve">
     <value>Gelir
 Hareketi</value>
   </data>
-	<data name="ExpenseTransaction_r" xml:space="preserve">
+  <data name="ExpenseTransaction_r" xml:space="preserve">
     <value>Gider
 Hareketi</value>
   </data>
-	<data name="Cancel" xml:space="preserve">
+  <data name="Cancel" xml:space="preserve">
     <value>İptal</value>
   </data>
-	<data name="CustomerAccounts">
-		<value><![CDATA[Müşteri
-Hesapları]]></value>
+  <data name="CustomerAccounts" xml:space="preserve">
+    <value>Müşteri
+Hesapları</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Müşteri Adı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="InternalAccount" xml:space="preserve">
+    <value>İç Kullanım Hesabı</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="Ticket" xml:space="preserve">
+    <value>Adisyon</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="TotalSales" xml:space="preserve">
+    <value>Toplam Satış</value>
+    <comment>TextBlock content</comment>
+  </data>
+  <data name="LastOrderDate" xml:space="preserve">
+    <value>Son Sipariş Tarihi</value>
+    <comment>TextBlock content</comment>
+  </data>
+  <data name="LastOrderStatus" xml:space="preserve">
+    <value>Son Sipariş Durumu</value>
+    <comment>TextBlock content</comment>
+  </data>
+  <data name="LastOrder" xml:space="preserve">
+    <value>Son Sipariş</value>
+    <comment>TextBlock content</comment>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Kapat</value>
+    <comment>FlexButton:FlexButton.Content</comment>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Tarih</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+  <data name="Liability" xml:space="preserve">
+    <value>Borç</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+  <data name="Receiveable" xml:space="preserve">
+    <value>Alacak</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Müşteri</value>
+  </data>
+  <data name="CustomerList" xml:space="preserve">
+    <value>Müşteri Listesi</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Müşteriler</value>
+  </data>
+  <data name="SelectCustomer_r" xml:space="preserve">
+    <value>Müşteri
+Seç</value>
+  </data>
+  <data name="NewCustomer_r" xml:space="preserve">
+    <value>Yeni
+Müşteri</value>
+  </data>
+  <data name="FindTicket_r" xml:space="preserve">
+    <value>Adisyon
+Bul</value>
+  </data>
+  <data name="ResetCustomer_r" xml:space="preserve">
+    <value>Müşteri
+İptal</value>
+  </data>
+  <data name="GetPayment_r" xml:space="preserve">
+    <value>Ödeme
+Al</value>
+  </data>
+  <data name="CustomerAccount_r" xml:space="preserve">
+    <value>Müşteri
+Hesabı</value>
+  </data>
+  <data name="MakePayment_r" xml:space="preserve">
+    <value>Ödeme
+Yap</value>
+  </data>
+  <data name="TicketNumber_f" xml:space="preserve">
+    <value>{0} numaralı adisyon</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Bilgi</value>
+  </data>
+  <data name="CallerIdDriverError" xml:space="preserve">
+    <value>Caller ID Özelliğini kullanabilmek için Caller ID kutusunun sürücüsünü yüklemelisiniz.</value>
+  </data>
+  <data name="Calling" xml:space="preserve">
+    <value>Arıyor</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Yönetim</value>
+  </data>
+  <data name="Common" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="CanOpenDashboard" xml:space="preserve">
+    <value>Yönetim ekranı açabilir</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Klavye</value>
+    <comment>Button content</comment>
+  </data>
+  <data name="Add_f" xml:space="preserve">
+    <value>{0} Ekle</value>
+  </data>
+  <data name="Edit_f" xml:space="preserve">
+    <value>{0} Düzenle</value>
+  </data>
+  <data name="Delete_f" xml:space="preserve">
+    <value>{0} Sil</value>
+  </data>
+  <data name="Clone_f" xml:space="preserve">
+    <value>{0} Kopyası Oluştur</value>
+  </data>
+  <data name="List_f" xml:space="preserve">
+    <value>{0} Listesi</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="DeleteItemConfirmation_f" xml:space="preserve">
+    <value>{0} [{1}] silinsin mi?</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Uyarı</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="EditModel_f" xml:space="preserve">
+    <value>{0} ({1}) Düzenle</value>
+  </data>
+  <data name="AddModel_f" xml:space="preserve">
+    <value>Yeni {0} Ekle</value>
+  </data>
+  <data name="EmptyNameError" xml:space="preserve">
+    <value>{0} adını boş bırakmayın.</value>
+  </data>
+  <data name="CantSave" xml:space="preserve">
+    <value>Kayıt Engellendi</value>
+  </data>
+	<data name="InventoryName" xml:space="preserve">
+    <value>Stok Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="GroupCode" xml:space="preserve">
+    <value>Grup Kodu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="BaseUnit" xml:space="preserve">
+    <value>Ana Birim</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="TransactionUnit" xml:space="preserve">
+    <value>Hareket Birimi</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="TransacitonUnitMultiplier" xml:space="preserve">
+    <value>Hareket Birimi Çarpanı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="InventoryItems" xml:space="preserve">
+    <value>Stoklar</value>
+  </data>
+	<data name="Recipes" xml:space="preserve">
+    <value>Reçeteler</value>
+  </data>
+	<data name="Transactions" xml:space="preserve">
+    <value>Alım Fişleri</value>
+  </data>
+	<data name="EndOfDayRecords" xml:space="preserve">
+    <value>Gün Sonu Belgeleri</value>
+  </data>
+	<data name="Select" xml:space="preserve">
+    <value>Seçiniz</value>
+  </data>
+	<data name="CantDeletePastEndOfDayRecords" xml:space="preserve">
+    <value>Geçmiş günsonu belgeleri silinemez.</value>
+  </data>
+	<data name="EndOfDayRecord" xml:space="preserve">
+    <value>Gün Sonu Belgesi</value>
+  </data>
+	<data name="CalculateCost" xml:space="preserve">
+    <value>Maliyet Hesapla</value>
+  </data>
+	<data name="Products" xml:space="preserve">
+    <value>Ürünler</value>
+  </data>
+	<data name="Cost" xml:space="preserve">
+    <value>Maliyet</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="CostPrediction" xml:space="preserve">
+    <value>Tahmini Maliyet</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="Costs" xml:space="preserve">
+    <value>Maliyetler</value>
+    <comment>TabItem.Header</comment>
+  </data>
+	<data name="CurrentCost" xml:space="preserve">
+    <value>Fiili Maliyet</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="CurrentInventory" xml:space="preserve">
+    <value>Fiili Seviye</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="InStock" xml:space="preserve">
+    <value>Devir</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="InventoryConsumption" xml:space="preserve">
+    <value>Stok Kullanımı</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="InventoryItemName" xml:space="preserve">
+    <value>Stok Adı</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="Portion" xml:space="preserve">
+    <value>Porsiyon</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="PredictedInventory" xml:space="preserve">
+    <value>Tahmini Seviye</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="ProductName" xml:space="preserve">
+    <value>Ürün Adı</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="Purchase" xml:space="preserve">
+    <value>Alım</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="SellAmount" xml:space="preserve">
+    <value>Satış Miktarı</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="Unit" xml:space="preserve">
+    <value>Birim</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="RecipeName" xml:space="preserve">
+    <value>Reçete Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="Product" xml:space="preserve">
+    <value>Ürün</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="FixedCost" xml:space="preserve">
+    <value>Sabit Maliyet</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="Quantity" xml:space="preserve">
+    <value>Miktar</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="Recipe" xml:space="preserve">
+    <value>Reçete</value>
+  </data>
+	<data name="Inventory" xml:space="preserve">
+    <value>Stok</value>
+  </data>
+	<data name="DocumentNo" xml:space="preserve">
+    <value>Belge No</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="UnitPrice" xml:space="preserve">
+    <value>Birim Fiyat</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+	<data name="TransactionDocument">
+		<value xml:space="preserve">Alım Fişi</value>
 	</data>
+	<data name="Line">
+		<value xml:space="preserve">Satır</value>
+	</data>
+	<data name="InventoryItem" xml:space="preserve">
+    <value>Stok</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Samba.Domain.Models.Inventory;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -35,7 +36,7 @@ namespace Samba.Modules.InventoryModule
         {
             if (model.WorkPeriodId != AppServices.MainDataContext.CurrentWorkPeriod.Id
                 || !AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
-                return "Geçmiş günsonu belgeleri silinemez.";
+                return Resources.CantDeletePastEndOfDayRecords;
             return base.CanDeleteItem(model);
         }
     }

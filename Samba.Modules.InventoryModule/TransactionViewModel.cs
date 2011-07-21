@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Samba.Domain.Models.Inventory;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -17,8 +18,8 @@ namespace Samba.Modules.InventoryModule
         public TransactionViewModel(Transaction model)
             : base(model)
         {
-            AddTransactionItemCommand = new CaptionCommand<string>("Satır Ekle", OnAddTransactionItem, CanAddTransactionItem);
-            DeleteTransactionItemCommand = new CaptionCommand<string>("Satır Sil", OnDeleteTransactionItem, CanDeleteTransactionItem);
+            AddTransactionItemCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Line), OnAddTransactionItem, CanAddTransactionItem);
+            DeleteTransactionItemCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Line), OnDeleteTransactionItem, CanDeleteTransactionItem);
         }
 
         public DateTime Date
@@ -116,7 +117,7 @@ namespace Samba.Modules.InventoryModule
 
         public override string GetModelTypeString()
         {
-            return "Alım Fişi";
+            return Resources.TransactionDocument;
         }
     }
 }

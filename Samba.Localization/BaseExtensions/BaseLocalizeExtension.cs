@@ -177,8 +177,6 @@ namespace Samba.Localization.BaseExtensions
 
         private static Assembly GetDialogAssembly(DependencyObject targetObject)
         {
-            //return System.Reflection.Assembly.LoadFrom("Samba.Localization.dll");
-         
             var w = Window.GetWindow(targetObject);
             if (w != null) return w.GetType().Assembly;
 
@@ -193,9 +191,9 @@ namespace Samba.Localization.BaseExtensions
 
                 targetObject = LogicalTreeHelper.GetParent(targetObject);
             }
-             //Design time
+            //Design time
 
-             //Try to find the main assembly
+            //Try to find the main assembly
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
