@@ -4,6 +4,7 @@ using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Users;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -22,7 +23,7 @@ namespace Samba.Modules.NavigationModule
             _regionManager = regionManager;
             _navigationView = navigationView;
 
-            PermissionRegistry.RegisterPermission(PermissionNames.OpenNavigation, PermissionCategories.Navigation, "Navigasyon'a girebilir");
+            PermissionRegistry.RegisterPermission(PermissionNames.OpenNavigation, PermissionCategories.Navigation, Resources.CanOpenNavigation);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<User>>().Subscribe(
                 x =>

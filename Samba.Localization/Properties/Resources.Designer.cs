@@ -314,7 +314,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can Navigate Cash.
+        ///   Looks up a localized string similar to Can Enter Cash Screen.
         /// </summary>
         public static string CanNavigateCash {
             get {
@@ -328,6 +328,15 @@ namespace Samba.Localization.Properties {
         public static string CanOpenDashboard {
             get {
                 return ResourceManager.GetString("CanOpenDashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can Enter Navigation Screen.
+        /// </summary>
+        public static string CanOpenNavigation {
+            get {
+                return ResourceManager.GetString("CanOpenNavigation", resourceCulture);
             }
         }
         

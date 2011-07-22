@@ -896,4 +896,7 @@ Yap</value>
 	<data name="CanNavigateCash">
 		<value xml:space="preserve">Kasa görüntülenebilir.</value>
 	</data>
+	<data name="CanOpenNavigation">
+		<value><![CDATA[Navigasyon'a girebilir]]></value>
+	</data>
 </root>

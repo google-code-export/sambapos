@@ -149,6 +149,11 @@ html
 
         public static void UpdateThreadLanguage()
         {
+            if (_cultureInfo == null)
+            {
+                CurrentLanguage = SupportedLanguages[0];
+                return;
+            }
             Thread.CurrentThread.CurrentCulture = _cultureInfo;
             Thread.CurrentThread.CurrentUICulture = _cultureInfo;
         }

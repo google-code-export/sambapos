@@ -891,6 +891,9 @@ Payment</value>
     <value>Tag</value>
   </data>
 	<data name="CanNavigateCash">
-		<value xml:space="preserve">Can Navigate Cash</value>
+		<value xml:space="preserve">Can Enter Cash Screen</value>
+	</data>
+	<data name="CanOpenNavigation">
+		<value><![CDATA[Can Enter Navigation Screen]]></value>
 	</data>
 </root>
