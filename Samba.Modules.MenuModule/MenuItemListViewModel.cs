@@ -1,5 +1,6 @@
 ﻿using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -12,7 +13,7 @@ namespace Samba.Modules.MenuModule
     {
         public MenuItemListViewModel()
         {
-            CreateBatchMenuItems = new CaptionCommand<string>("Toplu Ürün Ekle", OnCreateBatchMenuItems);
+            CreateBatchMenuItems = new CaptionCommand<string>(Resources.BatchCreteProducts, OnCreateBatchMenuItems);
             CustomCommands.Add(CreateBatchMenuItems);
         }
 
@@ -21,8 +22,8 @@ namespace Samba.Modules.MenuModule
         private void OnCreateBatchMenuItems(string value)
         {
             var values = InteractionService.UserIntraction.GetStringFromUser(
-                "Toplu Ürün Ekle",
-                "Eklemek istediğiniz ürünleri [Ürün adı] [Fiyat] formatında ekleyiniz. Kategorileri # karakteri ile başlatınız.");
+                Resources.BatchCreteProducts,
+                Resources.BatchCreateProductsDialogHint);
 
             var createdItems = new DataCreationService().BatchCreateMenuItems(values, Workspace);
             Workspace.CommitChanges();
@@ -54,9 +55,9 @@ namespace Samba.Modules.MenuModule
         {
             var count = Dao.Count<ScreenMenuItem>(x => x.MenuItemId == model.Id);
             if (count > 0)
-                return "Bu ürün bir menüde kullanılmakta olduğu için silinemez.";
+                return Resources.DeleteErrorProductUsedInMenu;
             if (count == 0) count = Dao.Count<Recipe>(x => x.Portion.MenuItemId == model.Id);
-            if (count > 0) return "Bu ürün bir reçetede kullanılmakta olduğu için silinemez.";
+            if (count > 0) return Resources.DeleteErrorProductUsedInReceipt;
             return base.CanDeleteItem(model);
         }
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 
@@ -28,13 +29,13 @@ namespace Samba.Modules.MenuModule
         public int ColumnCount { get { return Model.ColumnCount; } set { Model.ColumnCount = value; } }
         public int TerminalButtonHeight { get { return Model.TerminalButtonHeight; } set { Model.TerminalButtonHeight = value; } }
         public int TerminalColumnCount { get { return Model.TerminalColumnCount; } set { Model.TerminalColumnCount = value; } }
-        
+
         public MenuItemPropertyGroupViewModel(MenuItemPropertyGroup model)
             : base(model)
         {
             _properties = new ObservableCollection<MenuItemPropertyViewModel>(GetProperties(model));
-            AddPropertyCommand = new CaptionCommand<string>("Özellik Ekle", OnAddPropertyExecuted);
-            DeletePropertyCommand = new CaptionCommand<string>("Özellik Sil", OnDeletePropertyExecuted, CanDeleteProperty);
+            AddPropertyCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Property), OnAddPropertyExecuted);
+            DeletePropertyCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Property), OnDeletePropertyExecuted, CanDeleteProperty);
         }
 
         private void OnDeletePropertyExecuted(string obj)
@@ -63,7 +64,7 @@ namespace Samba.Modules.MenuModule
 
         public override string GetModelTypeString()
         {
-            return "Özellik Grubu";
+            return Resources.PropertyGroup;
         }
 
         public override void Initialize(IWorkspace workspace)

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Samba.Domain.Models.Menus;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;
 
@@ -20,7 +21,7 @@ namespace Samba.Modules.MenuModule
         protected override string CanDeleteItem(MenuItemPropertyGroup model)
         {
             var count = Dao.Query<MenuItem>(x => x.PropertyGroups.Select(y => y.Id).Contains(model.Id), x => x.PropertyGroups).Count();
-            if (count > 0) return "Bu özellik grubu bir üründe kullanılmakta olduğu için silinemez.";
+            if (count > 0) return Resources.DeleteErrorProductPropertyUsedInProduct;
             return base.CanDeleteItem(model);
         }
     }

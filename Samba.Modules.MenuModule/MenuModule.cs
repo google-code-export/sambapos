@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -37,14 +38,14 @@ namespace Samba.Modules.MenuModule
         [ImportingConstructor]
         public MenuModule()
         {
-            ListDepartmentsCommand = new CategoryCommand<string>("Departmanlar", "Ayarlar", OnListDepartments);
-            ListMenuItemsCommand = new CategoryCommand<string>("Ürün Listesi", "Ürünler", OnListMenuItems);
-            ListScreenMenusCommand = new CategoryCommand<string>("Menü Listesi", "Ürünler", OnListScreenMenus);
-            ListMenuItemPropertyGroupsCommand = new CategoryCommand<string>("Özellik Grupları", "Ürünler", OnListMenuItemPropertyGroupsCommand);
-            ListPricesCommand = new CategoryCommand<string>("Toplu Fiyat Listesi", "Ürünler", OnListPrices);
-            ListTicketTagGroupsCommand = new CategoryCommand<string>("Adisyon Etikletleri", "Ayarlar", OnListTicketTags){Order = 10};
+            ListDepartmentsCommand = new CategoryCommand<string>(Resources.Departments, Resources.Settings, OnListDepartments);
+            ListMenuItemsCommand = new CategoryCommand<string>(Resources.ProductList, Resources.Products, OnListMenuItems);
+            ListScreenMenusCommand = new CategoryCommand<string>(Resources.MenuList, Resources.Products, OnListScreenMenus);
+            ListMenuItemPropertyGroupsCommand = new CategoryCommand<string>(Resources.PropertyGroups, Resources.Products, OnListMenuItemPropertyGroupsCommand);
+            ListPricesCommand = new CategoryCommand<string>(Resources.BatchPriceList, Resources.Products, OnListPrices);
+            ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags){Order = 10};
 
-            PermissionRegistry.RegisterPermission(PermissionNames.ChangeDepartment, PermissionCategories.Department, "Departman değiştirebilir");
+            PermissionRegistry.RegisterPermission(PermissionNames.ChangeDepartment, PermissionCategories.Department, Resources.CanChangeDepartment);
             foreach (var department in AppServices.MainDataContext.Departments)
             {
                 PermissionRegistry.RegisterPermission(PermissionNames.UseDepartment + department.Id, PermissionCategories.Department, department.Name);

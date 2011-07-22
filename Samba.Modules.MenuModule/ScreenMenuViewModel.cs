@@ -6,6 +6,7 @@ using System.Windows;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 
@@ -18,14 +19,14 @@ namespace Samba.Modules.MenuModule
         public ScreenMenuViewModel(ScreenMenu model)
             : base(model)
         {
-            AddCategoryCommand = new CaptionCommand<string>("Kategori Ekle", OnAddCategory);
-            EditCategoryCommand = new CaptionCommand<string>("Kategori Düzenle", OnEditCategory, CanEditCategory);
-            DeleteCategoryCommand = new CaptionCommand<string>("Kategori Sil", OnDeleteCategory, CanEditCategory);
-            EditCategoryItemsCommand = new CaptionCommand<string>("Kategori Ürünlerini Düzenle", OnEditCategoryItems, CanEditCategory);
-            SortCategoryItemsCommand = new CaptionCommand<string>("Kategori Ürünlerini Sırala", OnSortCategoryItems, CanEditCategory);
-            SortCategoriesCommand = new CaptionCommand<string>("Kategorileri Sırala", OnSortCategories, CanSortCategories);
-            EditCategoryItemPropertiesCommand = new CaptionCommand<string>("Ürün özelliklerini düzenle", OnEditCategoryItemProperties, CanEditCategory);
-            EditAllCategoriesCommand = new CaptionCommand<string>("Tüm Kategorileri Düzenle", OnEditAllCategories);
+            AddCategoryCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Category), OnAddCategory);
+            EditCategoryCommand = new CaptionCommand<string>(string.Format(Resources.Edit_f, Resources.Category), OnEditCategory, CanEditCategory);
+            DeleteCategoryCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Category), OnDeleteCategory, CanEditCategory);
+            EditCategoryItemsCommand = new CaptionCommand<string>(string.Format(Resources.Edit_f, Resources.CategoryProducts), OnEditCategoryItems, CanEditCategory);
+            SortCategoryItemsCommand = new CaptionCommand<string>(string.Format(Resources.SortCategoryProducts), OnSortCategoryItems, CanEditCategory);
+            SortCategoriesCommand = new CaptionCommand<string>(string.Format(Resources.SortCategories), OnSortCategories, CanSortCategories);
+            EditCategoryItemPropertiesCommand = new CaptionCommand<string>(string.Format(Resources.Edit_f, Resources.ProductProperties), OnEditCategoryItemProperties, CanEditCategory);
+            EditAllCategoriesCommand = new CaptionCommand<string>(string.Format(Resources.Edit_f, Resources.AllCategories), OnEditAllCategories);
         }
 
         public ICaptionCommand AddCategoryCommand { get; set; }
@@ -42,7 +43,7 @@ namespace Samba.Modules.MenuModule
 
         public override string GetModelTypeString()
         {
-            return "Menü";
+            return Resources.Menu;
         }
 
         public override void Initialize(IWorkspace workspace)
@@ -63,7 +64,7 @@ namespace Samba.Modules.MenuModule
 
         private void OnAddCategory(string value)
         {
-            string[] values = InteractionService.UserIntraction.GetStringFromUser("Kategoriler", "Eklemek istediğiniz kategorileri giriniz.");
+            string[] values = InteractionService.UserIntraction.GetStringFromUser(Resources.Categories, Resources.AddCategoryHint);
             foreach (string val in values)
             {
                 Categories.Add(new ScreenMenuCategoryViewModel(Model.AddCategory(val)));
@@ -71,7 +72,7 @@ namespace Samba.Modules.MenuModule
             if (values.Count() > 0)
             {
                 bool answer = InteractionService.UserIntraction.AskQuestion(
-                        "Yeni açtığınız kategorilere uygun ürünler otomatik seçilsin mi?");
+                        Resources.AutoSelectProductsQuestion);
                 if (answer)
                 {
                     foreach (var val in values)
@@ -120,8 +121,8 @@ namespace Samba.Modules.MenuModule
 
                 IList<IOrderable> selectedValues = new List<IOrderable>(SelectedCategory.ScreenMenuItems);
 
-                var choosenValues = InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, "Ürün Listesi",
-                    SelectedCategory.Name + " kategorisine eklemek istediğiniz ürünleri seçiniz", "Ürün", "Ürünler");
+                var choosenValues = InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, Resources.ProductList,
+                    string.Format(Resources.AddProductsToCategoryHint_f, SelectedCategory.Name), Resources.Product, Resources.Products);
 
                 foreach (var screenMenuItem in SelectedCategory.ScreenMenuItems.ToList())
                 {
@@ -142,7 +143,7 @@ namespace Samba.Modules.MenuModule
 
         private void OnDeleteCategory(string value)
         {
-            if (MessageBox.Show("Seçili kategori silinsin mi?", "Onay", MessageBoxButton.YesNo) == MessageBoxResult.Yes
+            if (MessageBox.Show(Resources.DeleteSelectedCategoryQuestion, Resources.Confirmation, MessageBoxButton.YesNo) == MessageBoxResult.Yes
                 && SelectedCategory != null)
             {
                 _workspace.Delete(SelectedCategory.Model);
@@ -153,14 +154,14 @@ namespace Samba.Modules.MenuModule
 
         private void OnSortCategoryItems(string obj)
         {
-            InteractionService.UserIntraction.SortItems(SelectedCategory.ScreenMenuItems.OrderBy(x => x.Order), "Kategori Ürünlerini Sırala",
-                SelectedCategory.Name + " kategorisinde bulunan ürünleri sıralamak için mouse ile ürünleri sürükleyip bırakınız.");
+            InteractionService.UserIntraction.SortItems(SelectedCategory.ScreenMenuItems.OrderBy(x => x.Order), Resources.SortCategoryProducts,
+                string.Format(Resources.SortCategoryProductsDialogHint_f, SelectedCategory.Name));
         }
 
         private void OnSortCategories(string obj)
         {
-            InteractionService.UserIntraction.SortItems(Model.Categories, "Kategorileri Sırala",
-                Model.Name + " menüsünde bulunan kategorileri sıralamak için mouse ile kategorileri sürükleyip bırakınız.");
+            InteractionService.UserIntraction.SortItems(Model.Categories, Resources.SortCategories,
+                string.Format(Resources.SortCategoriesDialogHint_f, Model.Name));
             Categories = new ObservableCollection<ScreenMenuCategoryViewModel>(Categories.OrderBy(x => x.Model.Order));
             RaisePropertyChanged("Categories");
         }

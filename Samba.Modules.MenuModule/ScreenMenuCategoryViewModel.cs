@@ -3,7 +3,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Media;
 using Samba.Domain.Models.Menus;
+using Samba.Localization;
 using Samba.Presentation.Common;
+
 
 namespace Samba.Modules.MenuModule
 {
@@ -30,16 +32,16 @@ namespace Samba.Modules.MenuModule
         [Browsable(false)]
         public IList<ScreenMenuItem> ScreenMenuItems { get { return Model.ScreenMenuItems; } }
 
-        [DisplayName("Kategori Adı"), Category("Ana Özellikler")]
+        [LocalizedDisplayName(ResourceStrings.CategoryName), LocalizedCategory(ResourceStrings.CategoryProperties)]
         public string Name { get { return Model.Name; } set { Model.Name = value; RaisePropertyChanged("Name"); } }
 
-        [DisplayName("Hızlı Menü"), Category("Ana Özellikler")]
+        [LocalizedDisplayName(ResourceStrings.FastMenu), LocalizedCategory(ResourceStrings.CategoryProperties)]
         public bool MostUsedItemsCategory { get { return Model.MostUsedItemsCategory; } set { Model.MostUsedItemsCategory = value; } }
 
-        [DisplayName("Düğme Yüksekliği"), Category("Ana Özellikler")]
+        [LocalizedDisplayName(ResourceStrings.ButtonHeight), LocalizedCategory(ResourceStrings.CategoryProperties)]
         public int MainButtonHeight { get { return Model.MButtonHeight; } set { Model.MButtonHeight = value; } }
 
-        [DisplayName("Düğme Rengi"), Category("Ana Özellikler")]
+        [LocalizedDisplayName(ResourceStrings.ButtonColor), LocalizedCategory(ResourceStrings.CategoryProperties)]
         public SolidColorBrush MainButtonColor
         {
             get
@@ -52,22 +54,22 @@ namespace Samba.Modules.MenuModule
             }
         }
 
-        [DisplayName("Resim Yolu"), Category("Ana Özellikler")]
+        [LocalizedDisplayName(ResourceStrings.ImagePath), LocalizedCategory(ResourceStrings.CategoryProperties)]
         public string ImagePath { get { return Model.ImagePath; } set { Model.ImagePath = value; } }
-        
-        [DisplayName("Sütun Sayısı"), Category("Alt Menü Özellikleri")]
+
+        [LocalizedDisplayName(ResourceStrings.ColumnCount), LocalizedCategory(ResourceStrings.MenuProperties)]
         public int ColumnCount { get { return Model.ColumnCount; } set { Model.ColumnCount = value; } }
 
-        [DisplayName("Düğme Yüksekliği"), Category("Alt Menü Özellikleri")]
+        [LocalizedDisplayName(ResourceStrings.ButtonHeight), LocalizedCategory(ResourceStrings.MenuProperties)]
         public int ButtonHeight { get { return Model.ButtonHeight; } set { Model.ButtonHeight = value; } }
 
-        [DisplayName("Sayfa Sayısı"), Category("Alt Menü Özellikleri")]
+        [LocalizedDisplayName(ResourceStrings.PageCount), LocalizedCategory(ResourceStrings.MenuProperties)]
         public int PageCount { get { return Model.PageCount; } set { Model.PageCount= value; } }
 
-        [DisplayName("Etiket Kaydır"), Category("Alt Menü Özellikleri")]
+        [LocalizedDisplayName(ResourceStrings.WrapText), LocalizedCategory(ResourceStrings.MenuProperties)]
         public bool WrapText { get { return Model.WrapText; } set { Model.WrapText = value; } }
 
-        [DisplayName("Düğme Rengi"), Category("Alt Menü Özellikleri")]
+        [LocalizedDisplayName(ResourceStrings.ButtonColor), LocalizedCategory(ResourceStrings.MenuProperties)]
         public SolidColorBrush ButtonColor
         {
             get
@@ -80,13 +82,13 @@ namespace Samba.Modules.MenuModule
             }
         }
 
-        [DisplayName("Numeratör Tipi"), Category("Numeratör Özellikleri")]
+        [LocalizedDisplayName(ResourceStrings.NumeratorType), LocalizedCategory(ResourceStrings.NumeratorProperties)]
         public NumeratorType NumeratorType { get { return (NumeratorType)Model.NumeratorType; } set { Model.NumeratorType = (int)value; } }
 
-        [DisplayName("Numeratör Değeri"), Category("Numeratör Özellikleri")]
+        [LocalizedDisplayName(ResourceStrings.NumeratorValue), LocalizedCategory(ResourceStrings.NumeratorProperties)]
         public string NumeratorValues { get { return Model.NumeratorValues; } set { Model.NumeratorValues = value; } }
 
-        [DisplayName("Alfanümerik Düğme Değeri"), Category("Numeratör Özellikleri")]
+        [LocalizedDisplayName(ResourceStrings.AlphanumericButtonValues), LocalizedCategory(ResourceStrings.NumeratorProperties)]
         public string AlphaButtonValues { get { return Model.AlphaButtonValues; } set { Model.AlphaButtonValues = value; } }
 
         internal void UpdateDisplay()

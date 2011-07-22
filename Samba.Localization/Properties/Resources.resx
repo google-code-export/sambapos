@@ -517,4 +517,380 @@ Payment</value>
   <data name="InventoryItem" xml:space="preserve">
     <value>Inventory Item</value>
   </data>
+  <data name="DeleteErrorDepartmentUsedInRole" xml:space="preserve">
+    <value>Can't delete because this department assigned to a User Role.</value>
+  </data>
+  <data name="DepartmentName" xml:space="preserve">
+    <value>Department Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="POSMenu" xml:space="preserve">
+    <value>POS Menu</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalMenu" xml:space="preserve">
+    <value>Terminal Menu</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="POSTableView" xml:space="preserve">
+    <value>POS Table View</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalTableView" xml:space="preserve">
+    <value>Terminal Table View</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="OpenTicketView" xml:space="preserve">
+    <value>Open Tickets View</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="ColumnCount" xml:space="preserve">
+    <value>Column Count</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="POSDefaultTicketTag" xml:space="preserve">
+    <value>POS Default Ticket Tag</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalDefaultTicketTag" xml:space="preserve">
+    <value>Terminal Default Ticket Tag</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DepartmentType" xml:space="preserve">
+    <value>Department Type</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="FastFood" xml:space="preserve">
+    <value>Fast-Food</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="ALaCarte" xml:space="preserve">
+    <value>A-la Carte</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Delivery</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="Numerators" xml:space="preserve">
+    <value>Numerators</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="TicketNumerator" xml:space="preserve">
+    <value>Ticket Numerator</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="OrderNumerator" xml:space="preserve">
+    <value>Order Numerator</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TicketTags" xml:space="preserve">
+    <value>Ticket Tags</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="TagGroups" xml:space="preserve">
+    <value>Tag Groups</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="TagGroup" xml:space="preserve">
+    <value>Tag Group</value>
+  </data>
+  <data name="ChooseTagsForDepartmentHint" xml:space="preserve">
+    <value>Select tags for using at {0} department.</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="BatchCreteProducts" xml:space="preserve">
+    <value>Batch Create Products</value>
+  </data>
+  <data name="BatchCreateProductsDialogHint" xml:space="preserve">
+    <value>Create a line for each product with [Product Name] [Price] format. Start Category Names with # char.</value>
+  </data>
+  <data name="DeleteErrorProductUsedInMenu" xml:space="preserve">
+    <value>Can't delete because this Product assigned to a Menu</value>
+  </data>
+  <data name="DeleteErrorProductUsedInReceipt" xml:space="preserve">
+    <value>Can't delete because this Product assigned to a Receipt.</value>
+  </data>
+  <data name="DeleteErrorProductPropertyUsedInProduct" xml:space="preserve">
+    <value>Can't delete because this Product Property assigned to a Product</value>
+  </data>
+  <data name="PropertyGroupName" xml:space="preserve">
+    <value>Property Group Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="SingleSelection" xml:space="preserve">
+    <value>Single Selection</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+  <data name="MultipleSelection" xml:space="preserve">
+    <value>Multiple Selection</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+  <data name="AddPropertyPriceToProductPrice" xml:space="preserve">
+    <value>Add Property Price to Product Price</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+  <data name="POSView" xml:space="preserve">
+    <value>POS View</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="ButtonHeight" xml:space="preserve">
+    <value>Button Height</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalView" xml:space="preserve">
+    <value>Terminal View</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Property" xml:space="preserve">
+    <value>Property</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="PB" xml:space="preserve">
+    <value>PB</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="PropertyGroup" xml:space="preserve">
+    <value>Property Group</value>
+  </data>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barcode</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="PortionPrices" xml:space="preserve">
+    <value>Portion Prices</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Multiplier" xml:space="preserve">
+    <value>Multiplier</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="PropertyGroups" xml:space="preserve">
+    <value>Property Groups</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SelectPropertyGroupsHint_f" xml:space="preserve">
+    <value>Select Property Groups for {0} Product.</value>
+  </data>
+  <data name="Departments" xml:space="preserve">
+    <value>Departments</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>Product List</value>
+  </data>
+  <data name="MenuList" xml:space="preserve">
+    <value>Menu List</value>
+  </data>
+  <data name="BatchPriceList" xml:space="preserve">
+    <value>Price List Editor</value>
+  </data>
+  <data name="CanChangeDepartment" xml:space="preserve">
+    <value>Can Change Department</value>
+  </data>
+  <data name="AlphanumericButtonValues" xml:space="preserve">
+    <value>Alphanumeric Button Values</value>
+  </data>
+  <data name="AutoSelect" xml:space="preserve">
+    <value>Auto Select</value>
+  </data>
+  <data name="ButtonColor" xml:space="preserve">
+    <value>Button Color</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="CategoryProperties" xml:space="preserve">
+    <value>Category Properties</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="DefaultProperties" xml:space="preserve">
+    <value>Default Properties</value>
+  </data>
+  <data name="FastMenu" xml:space="preserve">
+    <value>Fast Menu</value>
+  </data>
+  <data name="Gift" xml:space="preserve">
+    <value>Gift</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Header</value>
+  </data>
+  <data name="ImagePath" xml:space="preserve">
+    <value>Image Path</value>
+  </data>
+  <data name="MenuProperties" xml:space="preserve">
+    <value>Menu Properties</value>
+  </data>
+  <data name="NumeratorProperties" xml:space="preserve">
+    <value>Numerator Properties</value>
+  </data>
+  <data name="NumeratorType" xml:space="preserve">
+    <value>Numerator Type</value>
+  </data>
+  <data name="NumeratorValue" xml:space="preserve">
+    <value>Numerator Value</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>Sort Order</value>
+  </data>
+  <data name="PageCount" xml:space="preserve">
+    <value>Page Count</value>
+  </data>
+  <data name="WrapText" xml:space="preserve">
+    <value>Wrap Text</value>
+  </data>
+  <data name="DeleteErrorMenuViewUsedInDepartment" xml:space="preserve">
+    <value>Can't delete because this Menu assigned to a Department</value>
+  </data>
+  <data name="MenuName" xml:space="preserve">
+    <value>Menu Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="MenuCategories" xml:space="preserve">
+    <value>Menu Categories</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CategoryProducts" xml:space="preserve">
+    <value>Category Products</value>
+  </data>
+  <data name="Sort_f" xml:space="preserve">
+    <value>Sort {0}</value>
+  </data>
+  <data name="ProductProperties" xml:space="preserve">
+    <value>Product Properties</value>
+  </data>
+  <data name="AllCategories" xml:space="preserve">
+    <value>All Categories</value>
+  </data>
+  <data name="AddCategoryHint" xml:space="preserve">
+    <value>Enter Categories you want to add</value>
+  </data>
+  <data name="AutoSelectProductsQuestion" xml:space="preserve">
+    <value>Auto select products for new categories?</value>
+  </data>
+  <data name="AddProductsToCategoryHint_f" xml:space="preserve">
+    <value>Select Products for {0} category</value>
+  </data>
+  <data name="DeleteSelectedCategoryQuestion" xml:space="preserve">
+    <value>Delete Selected Category?</value>
+  </data>
+  <data name="SortCategoryProducts" xml:space="preserve">
+    <value>Sort Category Products</value>
+  </data>
+  <data name="SortCategories" xml:space="preserve">
+    <value>Sort Categories</value>
+  </data>
+  <data name="SortCategoryProductsDialogHint_f" xml:space="preserve">
+    <value>Drag {0} category products to change order.</value>
+  </data>
+  <data name="SortCategoriesDialogHint_f" xml:space="preserve">
+    <value>Drag {0} menu categories to change order.</value>
+  </data>
+  <data name="DeleteErrorTagUsedInDepartment" xml:space="preserve">
+    <value>Can't delete because this Tag assigned to a Department</value>
+  </data>
+  <data name="TicketTagName" xml:space="preserve">
+    <value>Ticket Tag Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Numerator" xml:space="preserve">
+    <value>Numerator</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DoAfterTicketSelected" xml:space="preserve">
+    <value>Do it after ticket selected</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="CanUseOnPOS" xml:space="preserve">
+    <value>Use on POS</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="CanUseOnTerminal" xml:space="preserve">
+    <value>Use on Terminal</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="SelectionRequired" xml:space="preserve">
+    <value>Selection Required</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="NumericTags" xml:space="preserve">
+    <value>Numeric Tags</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="FreeTagging" xml:space="preserve">
+    <value>Free Tagging</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="ButtonColors" xml:space="preserve">
+    <value>Button Colors</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="WhenTagSelected" xml:space="preserve">
+    <value>When Tagged</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="WhenTagNotSelected" xml:space="preserve">
+    <value>When Untagged</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="SubTags" xml:space="preserve">
+    <value>Sub Tags</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="TagName" xml:space="preserve">
+    <value>Tag Name</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+  <data name="NumericTagsShouldBeNumbersErrorMessage" xml:space="preserve">
+    <value>When "Numeric Tagging" selected all tags should contain numerical values.</value>
+  </data>
+  <data name="NewTag" xml:space="preserve">
+    <value>New Tag</value>
+  </data>
+  <data name="TicketTag" xml:space="preserve">
+    <value>Ticket Tag</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="CloseTicket" xml:space="preserve">
+    <value>Close Ticket</value>
+  </data>
+  <data name="GetPayment" xml:space="preserve">
+    <value>Get Payment</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+	<data name="CanNavigateCash">
+		<value xml:space="preserve">Can Navigate Cash</value>
+	</data>
 </root>

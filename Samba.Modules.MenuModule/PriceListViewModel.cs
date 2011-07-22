@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -23,7 +24,7 @@ namespace Samba.Modules.MenuModule
 
         public PriceListViewModel()
         {
-            SaveCommand = new CaptionCommand<string>("Kaydet", OnSave);
+            SaveCommand = new CaptionCommand<string>(Resources.Save, OnSave);
         }
 
         private void OnSave(object obj)
@@ -46,7 +47,7 @@ namespace Samba.Modules.MenuModule
 
         protected override string GetHeaderInfo()
         {
-            return "Toplu Fiyat Listesi";
+            return Resources.BatchPriceList;
         }
 
         public override Type GetViewType()

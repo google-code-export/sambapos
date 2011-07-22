@@ -7,6 +7,7 @@ using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -88,8 +89,8 @@ namespace Samba.Modules.MenuModule
         public DepartmentViewModel(Department model)
             : base(model)
         {
-            AddTicketTagGroupCommand = new CaptionCommand<string>("Etiket Grubu Ekle", OnAddTicketTagGroup);
-            DeleteTicketTagGroupCommand = new CaptionCommand<string>("Etiket Grubu Sil", OnDeleteTicketTagGroup, CanDeleteTicketTagGroup);
+            AddTicketTagGroupCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.TagGroup), OnAddTicketTagGroup);
+            DeleteTicketTagGroupCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.TagGroup), OnDeleteTicketTagGroup, CanDeleteTicketTagGroup);
         }
 
         private bool CanDeleteTicketTagGroup(string arg)
@@ -107,8 +108,8 @@ namespace Samba.Modules.MenuModule
         {
             var selectedValues =
                 InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<TicketTagGroup>().ToList<IOrderable>(),
-                Model.TicketTagGroups.ToList<IOrderable>(), "Adisyon Etiketleri", Model.Name + " departmanında kullanmak istediğiniz etiketleri seçiniz.",
-                "Adisyon Etiketleri", "Adisyon Etiketleri");
+                Model.TicketTagGroups.ToList<IOrderable>(), Resources.TicketTags, string.Format(Resources.ChooseTagsForDepartmentHint, Model.Name),
+                Resources.TicketTags, Resources.TicketTags);
 
             foreach (TicketTagGroup selectedValue in selectedValues)
             {
@@ -133,7 +134,7 @@ namespace Samba.Modules.MenuModule
 
         public override string GetModelTypeString()
         {
-            return "Departman";
+            return Resources.Department;
         }
 
         public override void Initialize(IWorkspace workspace)

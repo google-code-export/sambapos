@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -50,11 +51,11 @@ namespace Samba.Modules.MenuModule
         public MenuItemViewModel(MenuItem model)
             : base(model)
         {
-            AddPortionCommand = new CaptionCommand<string>("Porsiyon Ekle", OnAddPortion);
-            DeletePortionCommand = new CaptionCommand<string>("Porsiyon Sil", OnDeletePortion, CanDeletePortion);
+            AddPortionCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Portion), OnAddPortion);
+            DeletePortionCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Portion), OnDeletePortion, CanDeletePortion);
 
-            AddPropertyGroupCommand = new CaptionCommand<string>("Özellik Grubu Ekle", OnAddPropertyGroup);
-            DeletePropertyGroupCommand = new CaptionCommand<string>("Özellik Grubu Sil", OnDeletePropertyGroup, CanDeletePropertyGroup);
+            AddPropertyGroupCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.PropertyGroup), OnAddPropertyGroup);
+            DeletePropertyGroupCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.PropertyGroup), OnDeletePropertyGroup, CanDeletePropertyGroup);
         }
 
         private bool CanDeletePropertyGroup(string arg)
@@ -72,8 +73,8 @@ namespace Samba.Modules.MenuModule
         {
             var selectedValues =
                 InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<MenuItemPropertyGroup>().ToList<IOrderable>(),
-                Model.PropertyGroups.ToList<IOrderable>(), "Özellik Grupları", Model.Name + " ürününde kullanmak istediğiniz özellik gruplarını seçiniz.",
-                "Özellik Grubu", "Özellik Grupları");
+                Model.PropertyGroups.ToList<IOrderable>(), Resources.PropertyGroups, string.Format(Resources.SelectPropertyGroupsHint_f, Model.Name),
+                Resources.PropertyGroup, Resources.PropertyGroups);
 
             foreach (MenuItemPropertyGroup selectedValue in selectedValues)
             {
@@ -113,7 +114,7 @@ namespace Samba.Modules.MenuModule
 
         public override string GetModelTypeString()
         {
-            return "Ürün";
+            return Resources.Product;
         }
 
         public override void Initialize(IWorkspace workspace)

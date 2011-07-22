@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Media;
 using Samba.Domain.Models.Menus;
+using Samba.Localization;
 
 namespace Samba.Modules.MenuModule
 {
@@ -14,27 +15,27 @@ namespace Samba.Modules.MenuModule
         [Browsable(false)]
         public ScreenMenuItem Model { get; private set; }
 
-        [DisplayName("Ürün")]
+        [LocalizedDisplayName(ResourceStrings.Product)]
         public string MenuItemDisplayString
         {
             get { return Name; }
         }
 
-        [DisplayName("Sıra")]
+        [LocalizedDisplayName(ResourceStrings.SortOrder)]
         public int Order
         {
             get { return Model.Order; }
             set { Model.Order = value; }
         }
 
-        [DisplayName("Oto Seç")]
+        [LocalizedDisplayName(ResourceStrings.AutoSelect)]
         public bool AutoSelect
         {
             get { return Model.AutoSelect; }
             set { Model.AutoSelect = value; }
         }
 
-        [DisplayName("Renk")]
+        [LocalizedDisplayName(ResourceStrings.Color)]
         public SolidColorBrush ButtonColor
         {
             get
@@ -49,19 +50,19 @@ namespace Samba.Modules.MenuModule
             }
         }
 
-        [DisplayName("Resim Yolu")]
+        [LocalizedDisplayName(ResourceStrings.ImagePath)]
         public string ImagePath { get { return Model.ImagePath; } set { Model.ImagePath = value; } }
 
-        [DisplayName("Başlık")]
+        [LocalizedDisplayName(ResourceStrings.Header)]
         public string Name { get { return Model.Name; } set { Model.Name = value; } }
 
-        [DisplayName("Miktar")]
+        [LocalizedDisplayName(ResourceStrings.Quantity)]
         public int Quantity { get { return Model.Quantity; } set { Model.Quantity = value; } }
 
-        [DisplayName("İkram")]
+        [LocalizedDisplayName(ResourceStrings.Gift)]
         public bool Gift { get { return Model.Gift; } set { Model.Gift = value; } }
 
-        [DisplayName("Varsayılan Özellikler")]
+        [LocalizedDisplayName(ResourceStrings.DefaultProperties)]
         public string DefaultProperties { get { return Model.DefaultProperties; } set { Model.DefaultProperties = value; } }
     }
 }

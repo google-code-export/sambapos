@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseExtensions\BaseLocalizeExtension.cs" />
+    <Compile Include="LocalizedCategoryAttribute.cs" />
+    <Compile Include="ResourceStrings.cs" />
+    <Compile Include="LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Engine\LocalizeDictionary.cs" />
     <Compile Include="Engine\LocalizedObjectOperation.cs" />
     <Compile Include="Engine\ObjectDependencyManager.cs" />

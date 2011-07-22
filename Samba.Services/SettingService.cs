@@ -44,8 +44,6 @@ namespace Samba.Services
             set { GetAutoRoundDiscount().DecimalValue = value; }
         }
 
-
-
         private SettingGetter _weightBarcodePrefix;
         private SettingGetter GetWeightBarcodePrefix()
         {
@@ -69,8 +67,6 @@ namespace Samba.Services
         {
             return _weightBarcodeItemLength ?? (_weightBarcodeItemLength = GetSetting("WeightBarcodeItemLength"));
         }
-
-
 
         public SettingGetter GetSetting(string valueName)
         {

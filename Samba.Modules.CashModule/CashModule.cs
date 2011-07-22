@@ -2,6 +2,7 @@
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Customers;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -19,8 +20,8 @@ namespace Samba.Modules.CashModule
         {
             _regionManager = regionManager;
             _cashView = cashView;
-            NavigateCashViewCommand = new CategoryCommand<string>("Kasa", "Genel", "images/Xls.png", OnNavigateCashView, CanNavigateCashView) { Order = 70 };
-            PermissionRegistry.RegisterPermission(PermissionNames.NavigateCashView, PermissionCategories.Navigation, "Kasa görüntülenebilir.");
+            NavigateCashViewCommand = new CategoryCommand<string>(Resources.Cash, Resources.Common, "images/Xls.png", OnNavigateCashView, CanNavigateCashView) { Order = 70 };
+            PermissionRegistry.RegisterPermission(PermissionNames.NavigateCashView, PermissionCategories.Navigation, Resources.CanNavigateCash);
         }
 
         private static bool CanNavigateCashView(string arg)

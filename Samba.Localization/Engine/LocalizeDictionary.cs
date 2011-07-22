@@ -354,17 +354,6 @@ namespace Samba.Localization.Engine
             string resourceKey,
             CultureInfo cultureToUse) where TType : class
         {
-            // Validation
-            //if (resourceAssembly == null)
-            //{
-            //    throw new ArgumentNullException("resourceAssembly");
-            //}
-
-            //if (resourceAssembly == string.Empty)
-            //{
-            //    throw new ArgumentException("resourceAssembly is empty", "resourceAssembly");
-            //}
-
             if (resourceDictionary == null)
             {
                 throw new ArgumentNullException("resourceDictionary");

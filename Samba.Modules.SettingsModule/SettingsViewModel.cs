@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Settings;
 using Samba.Persistance.Data;
@@ -66,10 +67,34 @@ namespace Samba.Modules.SettingsModule
             set { LocalSettings.StartMessagingClient = value; }
         }
 
+        public string Language
+        {
+            get { return LocalSettings.CurrentLanguage; }
+            set { LocalSettings.CurrentLanguage = value; }
+        }
+
         private IEnumerable<string> _terminalNames;
         public IEnumerable<string> TerminalNames
         {
             get { return _terminalNames ?? (_terminalNames = Dao.Distinct<Terminal>(x => x.Name)); }
+        }
+
+        private IEnumerable<CultureInfo> _supportedLanguages;
+        public IEnumerable<CultureInfo> SupportedLanguages
+        {
+            get { return _supportedLanguages ?? (_supportedLanguages = GetSupportedLanguages()); }
+        }
+
+        private static IEnumerable<CultureInfo> GetSupportedLanguages()
+        {
+            var result = new List<CultureInfo>();
+            foreach (var localSetting in LocalSettings.SupportedLanguages)
+            {
+                var ci = CultureInfo.GetCultureInfo(localSetting);
+                
+                result.Add(ci);
+            }
+            return result;
         }
 
         protected override string GetHeaderInfo()

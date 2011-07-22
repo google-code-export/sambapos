@@ -378,146 +378,522 @@ Yap</value>
   <data name="CantSave" xml:space="preserve">
     <value>Kayıt Engellendi</value>
   </data>
-	<data name="InventoryName" xml:space="preserve">
+  <data name="InventoryName" xml:space="preserve">
     <value>Stok Adı</value>
     <comment>Label content</comment>
   </data>
-	<data name="GroupCode" xml:space="preserve">
+  <data name="GroupCode" xml:space="preserve">
     <value>Grup Kodu</value>
     <comment>Label content</comment>
   </data>
-	<data name="BaseUnit" xml:space="preserve">
+  <data name="BaseUnit" xml:space="preserve">
     <value>Ana Birim</value>
     <comment>Label content</comment>
   </data>
-	<data name="TransactionUnit" xml:space="preserve">
+  <data name="TransactionUnit" xml:space="preserve">
     <value>Hareket Birimi</value>
     <comment>Label content</comment>
   </data>
-	<data name="TransacitonUnitMultiplier" xml:space="preserve">
+  <data name="TransacitonUnitMultiplier" xml:space="preserve">
     <value>Hareket Birimi Çarpanı</value>
     <comment>Label content</comment>
   </data>
-	<data name="InventoryItems" xml:space="preserve">
+  <data name="InventoryItems" xml:space="preserve">
     <value>Stoklar</value>
   </data>
-	<data name="Recipes" xml:space="preserve">
+  <data name="Recipes" xml:space="preserve">
     <value>Reçeteler</value>
   </data>
-	<data name="Transactions" xml:space="preserve">
+  <data name="Transactions" xml:space="preserve">
     <value>Alım Fişleri</value>
   </data>
-	<data name="EndOfDayRecords" xml:space="preserve">
+  <data name="EndOfDayRecords" xml:space="preserve">
     <value>Gün Sonu Belgeleri</value>
   </data>
-	<data name="Select" xml:space="preserve">
+  <data name="Select" xml:space="preserve">
     <value>Seçiniz</value>
   </data>
-	<data name="CantDeletePastEndOfDayRecords" xml:space="preserve">
+  <data name="CantDeletePastEndOfDayRecords" xml:space="preserve">
     <value>Geçmiş günsonu belgeleri silinemez.</value>
   </data>
-	<data name="EndOfDayRecord" xml:space="preserve">
+  <data name="EndOfDayRecord" xml:space="preserve">
     <value>Gün Sonu Belgesi</value>
   </data>
-	<data name="CalculateCost" xml:space="preserve">
+  <data name="CalculateCost" xml:space="preserve">
     <value>Maliyet Hesapla</value>
   </data>
-	<data name="Products" xml:space="preserve">
+  <data name="Products" xml:space="preserve">
     <value>Ürünler</value>
   </data>
-	<data name="Cost" xml:space="preserve">
+  <data name="Cost" xml:space="preserve">
     <value>Maliyet</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="CostPrediction" xml:space="preserve">
+  <data name="CostPrediction" xml:space="preserve">
     <value>Tahmini Maliyet</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="Costs" xml:space="preserve">
+  <data name="Costs" xml:space="preserve">
     <value>Maliyetler</value>
     <comment>TabItem.Header</comment>
   </data>
-	<data name="CurrentCost" xml:space="preserve">
+  <data name="CurrentCost" xml:space="preserve">
     <value>Fiili Maliyet</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="CurrentInventory" xml:space="preserve">
+  <data name="CurrentInventory" xml:space="preserve">
     <value>Fiili Seviye</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="InStock" xml:space="preserve">
+  <data name="InStock" xml:space="preserve">
     <value>Devir</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="InventoryConsumption" xml:space="preserve">
+  <data name="InventoryConsumption" xml:space="preserve">
     <value>Stok Kullanımı</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="InventoryItemName" xml:space="preserve">
+  <data name="InventoryItemName" xml:space="preserve">
     <value>Stok Adı</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="Portion" xml:space="preserve">
+  <data name="Portion" xml:space="preserve">
     <value>Porsiyon</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="PredictedInventory" xml:space="preserve">
+  <data name="PredictedInventory" xml:space="preserve">
     <value>Tahmini Seviye</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="ProductName" xml:space="preserve">
+  <data name="ProductName" xml:space="preserve">
     <value>Ürün Adı</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="Purchase" xml:space="preserve">
+  <data name="Purchase" xml:space="preserve">
     <value>Alım</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="SellAmount" xml:space="preserve">
+  <data name="SellAmount" xml:space="preserve">
     <value>Satış Miktarı</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="Unit" xml:space="preserve">
+  <data name="Unit" xml:space="preserve">
     <value>Birim</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="RecipeName" xml:space="preserve">
+  <data name="RecipeName" xml:space="preserve">
     <value>Reçete Adı</value>
     <comment>Label content</comment>
   </data>
-	<data name="Product" xml:space="preserve">
+  <data name="Product" xml:space="preserve">
     <value>Ürün</value>
     <comment>Label content</comment>
   </data>
-	<data name="FixedCost" xml:space="preserve">
+  <data name="FixedCost" xml:space="preserve">
     <value>Sabit Maliyet</value>
     <comment>Label content</comment>
   </data>
-	<data name="Quantity" xml:space="preserve">
+  <data name="Quantity" xml:space="preserve">
     <value>Miktar</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="Recipe" xml:space="preserve">
+  <data name="Recipe" xml:space="preserve">
     <value>Reçete</value>
   </data>
-	<data name="Inventory" xml:space="preserve">
+  <data name="Inventory" xml:space="preserve">
     <value>Stok</value>
   </data>
-	<data name="DocumentNo" xml:space="preserve">
+  <data name="DocumentNo" xml:space="preserve">
     <value>Belge No</value>
     <comment>Label content</comment>
   </data>
-	<data name="UnitPrice" xml:space="preserve">
+  <data name="UnitPrice" xml:space="preserve">
     <value>Birim Fiyat</value>
     <comment>DataGridTemplateColumn.Header</comment>
   </data>
-	<data name="TransactionDocument">
-		<value xml:space="preserve">Alım Fişi</value>
-	</data>
-	<data name="Line">
-		<value xml:space="preserve">Satır</value>
-	</data>
-	<data name="InventoryItem" xml:space="preserve">
+  <data name="TransactionDocument" xml:space="preserve">
+    <value>Alım Fişi</value>
+  </data>
+  <data name="Line" xml:space="preserve">
+    <value>Satır</value>
+  </data>
+  <data name="InventoryItem" xml:space="preserve">
     <value>Stok</value>
   </data>
+  <data name="DeleteErrorDepartmentUsedInRole" xml:space="preserve">
+    <value>Bu departman bir kullanıcı rolünde kullanıldığı için silinemez.</value>
+  </data>
+  <data name="DepartmentName" xml:space="preserve">
+    <value>Departman Adı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="POSMenu" xml:space="preserve">
+    <value>POS Menü</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalMenu" xml:space="preserve">
+    <value>Terminal Menü</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="POSTableView" xml:space="preserve">
+    <value>POS Masa Görünümü</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalTableView" xml:space="preserve">
+    <value>Terminal Masa Görünümü</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="OpenTicketView" xml:space="preserve">
+    <value>Açık Adisyon Görünümü</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="ColumnCount" xml:space="preserve">
+    <value>Sütun Sayısı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="POSDefaultTicketTag" xml:space="preserve">
+    <value>POS Varsayılan Adisyon Etiketi</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalDefaultTicketTag" xml:space="preserve">
+    <value>Terminal Varsayılan Adisyon Etiketi</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DepartmentType" xml:space="preserve">
+    <value>Departman Tipi</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="FastFood" xml:space="preserve">
+    <value>Fast Food</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="ALaCarte" xml:space="preserve">
+    <value>A la Carte</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Paket Servis</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="Numerators" xml:space="preserve">
+    <value>Numaratörler</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="TicketNumerator" xml:space="preserve">
+    <value>Adisyon Numaratörü</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="OrderNumerator" xml:space="preserve">
+    <value>Sipariş Numaratörü</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TicketTags" xml:space="preserve">
+    <value>Adisyon Etiketleri</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="TagGroups" xml:space="preserve">
+    <value>Etiket Grupları</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="TagGroup" xml:space="preserve">
+    <value>Etiket Grubu</value>
+  </data>
+  <data name="ChooseTagsForDepartmentHint" xml:space="preserve">
+    <value>{0} departmanında kullanmak istediğiniz etiketleri seçiniz.</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Departman</value>
+  </data>
+  <data name="BatchCreteProducts" xml:space="preserve">
+    <value>Toplu Ürün Ekle</value>
+  </data>
+  <data name="BatchCreateProductsDialogHint" xml:space="preserve">
+    <value>Eklemek istediğiniz ürünleri [Ürün adı] [Fiyat] formatında ekleyiniz. Kategorileri # karakteri ile başlatınız.</value>
+  </data>
+  <data name="DeleteErrorProductUsedInMenu" xml:space="preserve">
+    <value>Bu ürün bir menüde kullanılmakta olduğu için silinemez.</value>
+  </data>
+  <data name="DeleteErrorProductUsedInReceipt" xml:space="preserve">
+    <value>Bu ürün bir reçetede kullanılmakta olduğu için silinemez.</value>
+  </data>
+  <data name="DeleteErrorProductPropertyUsedInProduct" xml:space="preserve">
+    <value>Bu özellik grubu bir üründe kullanılmakta olduğu için silinemez.</value>
+  </data>
+  <data name="PropertyGroupName" xml:space="preserve">
+    <value>Özellik Grubu Adı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="SingleSelection" xml:space="preserve">
+    <value>Tek Seçim</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+  <data name="MultipleSelection" xml:space="preserve">
+    <value>Çok Seçim</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+  <data name="AddPropertyPriceToProductPrice" xml:space="preserve">
+    <value>Özellik fiyatlarını ana ürüne ekle</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+  <data name="POSView" xml:space="preserve">
+    <value>POS Görünümü</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="ButtonHeight" xml:space="preserve">
+    <value>Düğme Yüksekliği</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TerminalView" xml:space="preserve">
+    <value>El Terminali Görünümü</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Özellikler</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Property" xml:space="preserve">
+    <value>Özellik</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Fiyat</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="PB" xml:space="preserve">
+    <value>C</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="PropertyGroup" xml:space="preserve">
+    <value>Özellik Grubu</value>
+  </data>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barkod</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="PortionPrices" xml:space="preserve">
+    <value>Porsiyon Fiyatları</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Multiplier" xml:space="preserve">
+    <value>Çarpan</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="PropertyGroups" xml:space="preserve">
+    <value>Özellik Grupları</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SelectPropertyGroupsHint_f" xml:space="preserve">
+    <value>{0} ürününde kullanmak istediğiniz özellik gruplarını seçiniz.</value>
+  </data>
+  <data name="Departments" xml:space="preserve">
+    <value>Departmanlar</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>Ürün Listesi</value>
+  </data>
+  <data name="MenuList" xml:space="preserve">
+    <value>Menü Listesi</value>
+  </data>
+  <data name="BatchPriceList" xml:space="preserve">
+    <value>Toplu Fiyat Listesi</value>
+  </data>
+  <data name="CanChangeDepartment" xml:space="preserve">
+    <value>Departman değiştirebilir</value>
+  </data>
+  <data name="AlphanumericButtonValues" xml:space="preserve">
+    <value>Alfanümerik Düğme Değeri</value>
+  </data>
+  <data name="AutoSelect" xml:space="preserve">
+    <value>Oto Seç</value>
+  </data>
+  <data name="ButtonColor" xml:space="preserve">
+    <value>Düğme Rengi</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Kategori Adı</value>
+  </data>
+  <data name="CategoryProperties" xml:space="preserve">
+    <value>Kategori Özellikleri</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Renk</value>
+  </data>
+  <data name="DefaultProperties" xml:space="preserve">
+    <value>Varsayılan Özellikler</value>
+  </data>
+  <data name="FastMenu" xml:space="preserve">
+    <value>Hızlı Menü</value>
+  </data>
+  <data name="Gift" xml:space="preserve">
+    <value>İkram</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="ImagePath" xml:space="preserve">
+    <value>Resim Yolu</value>
+  </data>
+  <data name="MenuProperties" xml:space="preserve">
+    <value>Menü Özellikleri</value>
+  </data>
+  <data name="NumeratorProperties" xml:space="preserve">
+    <value>Numaratör Özellikleri</value>
+  </data>
+  <data name="NumeratorType" xml:space="preserve">
+    <value>Numaratör Tipi</value>
+  </data>
+  <data name="NumeratorValue" xml:space="preserve">
+    <value>Numaratör Değeri</value>
+  </data>
+  <data name="SortOrder" xml:space="preserve">
+    <value>Sıra</value>
+  </data>
+  <data name="PageCount" xml:space="preserve">
+    <value>Sayfa Sayısı</value>
+  </data>
+  <data name="WrapText" xml:space="preserve">
+    <value>Yazı Kaydır</value>
+  </data>
+  <data name="DeleteErrorMenuViewUsedInDepartment" xml:space="preserve">
+    <value>Bu menü görünümü bir departmanda kullanıldığından silinemez.</value>
+  </data>
+  <data name="MenuName" xml:space="preserve">
+    <value>Menü Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="MenuCategories" xml:space="preserve">
+    <value>Menü Kategorileri</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menü</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategoriler</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="CategoryProducts" xml:space="preserve">
+    <value>Kategori Ürünleri</value>
+  </data>
+  <data name="Sort_f" xml:space="preserve">
+    <value>{0} Sırala</value>
+  </data>
+  <data name="ProductProperties" xml:space="preserve">
+    <value>Ürün Özellikleri</value>
+  </data>
+  <data name="AllCategories" xml:space="preserve">
+    <value>Tüm Kategoriler</value>
+  </data>
+  <data name="AddCategoryHint" xml:space="preserve">
+    <value>Eklemek istediğiniz kategorileri giriniz.</value>
+  </data>
+  <data name="AutoSelectProductsQuestion" xml:space="preserve">
+    <value>Yeni açtığınız kategorilere uygun ürünler otomatik seçilsin mi?</value>
+  </data>
+  <data name="AddProductsToCategoryHint_f" xml:space="preserve">
+    <value>{0} kategorisine eklemek istediğiniz ürünleri seçiniz</value>
+  </data>
+  <data name="DeleteSelectedCategoryQuestion" xml:space="preserve">
+    <value>Seçili kategori silinsin mi?</value>
+  </data>
+  <data name="SortCategoryProducts" xml:space="preserve">
+    <value>Kategori Ürünlerini Sırala</value>
+  </data>
+  <data name="SortCategories" xml:space="preserve">
+    <value>Kategorileri Sırala</value>
+  </data>
+  <data name="SortCategoryProductsDialogHint_f" xml:space="preserve">
+    <value>{0} kategorisinde bulunan ürünleri sıralamak için mouse ile ürünleri sürükleyip bırakınız.</value>
+  </data>
+  <data name="SortCategoriesDialogHint_f" xml:space="preserve">
+    <value>{0} menüsünde bulunan kategorileri sıralamak için mouse ile kategorileri sürükleyip bırakınız.</value>
+  </data>
+  <data name="DeleteErrorTagUsedInDepartment" xml:space="preserve">
+    <value>Bu etiket bir departmanda kullanılmakta olduğu için silinemez.</value>
+  </data>
+  <data name="TicketTagName" xml:space="preserve">
+    <value>Adisyon Etiketi Adı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Numerator" xml:space="preserve">
+    <value>Numaratör</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DoAfterTicketSelected" xml:space="preserve">
+    <value>Etiket seçildikten sonra şunu yap:</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="CanUseOnPOS" xml:space="preserve">
+    <value>POS üzerinde kullanılabilir</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="CanUseOnTerminal" xml:space="preserve">
+    <value>El terminali üzerinde kullanılabilir</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="SelectionRequired" xml:space="preserve">
+    <value>Zorunlu Seçim</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="NumericTags" xml:space="preserve">
+    <value>Sayısal Etiketler</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="FreeTagging" xml:space="preserve">
+    <value>Serbest Etiketleme</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="ButtonColors" xml:space="preserve">
+    <value>Düğme Renkleri</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="WhenTagSelected" xml:space="preserve">
+    <value>Bir Değer Verildiğinde:</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="WhenTagNotSelected" xml:space="preserve">
+    <value>Bir Değer Verilmediğinde:</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="SubTags" xml:space="preserve">
+    <value>Alt Etiketler</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="TagName" xml:space="preserve">
+    <value>Etiket Adı</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Hesap</value>
+    <comment>DataGridTemplateColumn.Header</comment>
+  </data>
+  <data name="NumericTagsShouldBeNumbersErrorMessage" xml:space="preserve">
+    <value>"Sayısal etiketleme" seçildiğinde etiketlerin tümü sayısal olmalıdır.</value>
+  </data>
+  <data name="NewTag" xml:space="preserve">
+    <value>Yeni Etiket</value>
+  </data>
+  <data name="TicketTag" xml:space="preserve">
+    <value>Adisyon Etiketi</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="CloseTicket" xml:space="preserve">
+    <value>Belgeyi Kapat</value>
+  </data>
+  <data name="GetPayment" xml:space="preserve">
+    <value>Ödeme Al</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Etiket</value>
+  </data>
+	<data name="CanNavigateCash">
+		<value xml:space="preserve">Kasa görüntülenebilir.</value>
+	</data>
 </root>

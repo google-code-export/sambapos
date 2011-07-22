@@ -5,6 +5,7 @@ using System.Linq;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Presentation.ViewModels;
@@ -15,7 +16,7 @@ namespace Samba.Modules.MenuModule
     {
         private IWorkspace _workspace;
 
-        private readonly IList<string> _actions = new[] { "Yenile", "Belgeyi Kapat", "Ödeme Al" };
+        private readonly IList<string> _actions = new[] { Resources.Refresh, Resources.CloseTicket, Resources.GetPayment };
         public IList<string> Actions { get { return _actions; } }
 
         private IEnumerable<Numerator> _numerators;
@@ -45,8 +46,8 @@ namespace Samba.Modules.MenuModule
             : base(model)
         {
             _ticketTags = new ObservableCollection<TicketTagViewModel>(GetTicketTags(model));
-            AddTicketTagCommand = new CaptionCommand<string>("Etiket Ekle", OnAddTicketTagExecuted);
-            DeleteTicketTagCommand = new CaptionCommand<string>("Etiket Sil", OnDeleteTicketTagExecuted, CanDeleteTicketTag);
+            AddTicketTagCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Tag), OnAddTicketTagExecuted);
+            DeleteTicketTagCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Tag), OnDeleteTicketTagExecuted, CanDeleteTicketTag);
         }
 
         private static IEnumerable<TicketTagViewModel> GetTicketTags(TicketTagGroup ticketTagGroup)
@@ -56,7 +57,7 @@ namespace Samba.Modules.MenuModule
 
         public override string GetModelTypeString()
         {
-            return "Adisyon Etiketi";
+            return Resources.TicketTag;
         }
 
         public override void Initialize(IWorkspace workspace)
@@ -85,7 +86,7 @@ namespace Samba.Modules.MenuModule
 
         private void OnAddTicketTagExecuted(string obj)
         {
-            var ti = new TicketTag { Name = "Yeni Etiket" };
+            var ti = new TicketTag { Name = Resources.NewTag };
             _workspace.Add(ti);
             Model.TicketTags.Add(ti);
             TicketTags.Add(new TicketTagViewModel(ti));
@@ -103,7 +104,7 @@ namespace Samba.Modules.MenuModule
                     }
                     catch (Exception)
                     {
-                        return "\"Sayısal etiketleme\" seçildiğinde etiketlerin tümü sayısal olmalıdır.";
+                        return Resources.NumericTagsShouldBeNumbersErrorMessage;
                     }
                 }
             }

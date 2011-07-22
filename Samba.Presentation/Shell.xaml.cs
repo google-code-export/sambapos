@@ -33,7 +33,7 @@ namespace Samba.Presentation
                                   new FrameworkPropertyMetadata(
                                       XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
-            LocalizeDictionary.ChangeLanguage(LocalSettings.SupportedLanguages[0]);
+            LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage ?? LocalSettings.SupportedLanguages[0]);
 
             var selectedIndexChange = DependencyPropertyDescriptor.FromProperty(Selector.SelectedIndexProperty, typeof(TabControl));
 
