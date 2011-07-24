@@ -6,6 +6,7 @@ using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 
@@ -17,8 +18,8 @@ namespace Samba.Modules.SettingsModule
             : base(model)
         {
             _newPrinterMaps = new List<PrinterMap>();
-            AddPrinterMapCommand = new CaptionCommand<string>("Ekle", OnAddPrinterMap);
-            DeletePrinterMapCommand = new CaptionCommand<string>("Sil", OnDelete, CanDelete);
+            AddPrinterMapCommand = new CaptionCommand<string>(Resources.Add, OnAddPrinterMap);
+            DeletePrinterMapCommand = new CaptionCommand<string>(Resources.Delete, OnDelete, CanDelete);
         }
 
         private IWorkspace _workspace;
@@ -26,8 +27,8 @@ namespace Samba.Modules.SettingsModule
         public ICaptionCommand AddPrinterMapCommand { get; set; }
         public ICaptionCommand DeletePrinterMapCommand { get; set; }
 
-        private readonly IList<string> _whenToPrintTypes = new[] { "Manuel", "Adisyona Yeni Satır Eklendiğinde", "Adisyon Ödendiğinde" };
-        private readonly IList<string> _whatToPrintTypes = new[] { "Tüm Satırlar", "Sadece Yeni Eklenen Satırlar", "Barkoda Göre Gruplanmış Satırlar", "Grup Koduna Göre Gruplanmış Satırlar" };
+        private readonly IList<string> _whenToPrintTypes = new[] { Resources.Manual, Resources.WhenNewLinesAddedToTicket, Resources.WhenTicketPaid };
+        private readonly IList<string> _whatToPrintTypes = new[] { Resources.AllLines, Resources.OnlyNewLines, Resources.LinesGroupedByBarcode, Resources.LinesGroupedByGroupCode };
         public IList<string> WhenToPrintTypes { get { return _whenToPrintTypes; } }
         public IList<string> WhatToPrintTypes { get { return _whatToPrintTypes; } }
 
@@ -103,7 +104,7 @@ namespace Samba.Modules.SettingsModule
 
         public override string GetModelTypeString()
         {
-            return "Yazdırma Görevi";
+            return Resources.PrintJob;
         }
 
         public override void Initialize(IWorkspace workspace)
@@ -139,7 +140,7 @@ namespace Samba.Modules.SettingsModule
 
         private void OnDelete(string obj)
         {
-            if (InteractionService.UserIntraction.AskQuestion("Seçili Tanım Silinsin mi?"))
+            if (InteractionService.UserIntraction.AskQuestion(Resources.DeleteSelectedMappingQuestion))
             {
                 var map = SelectedPrinterMap.Model;
                 PrinterMaps.Remove(SelectedPrinterMap);

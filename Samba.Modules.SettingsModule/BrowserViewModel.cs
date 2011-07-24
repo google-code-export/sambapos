@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 
@@ -34,7 +35,7 @@ namespace Samba.Modules.SettingsModule
         
         protected override string GetHeaderInfo()
         {
-            return "İnternet Tarayıcı";
+            return Resources.InternetBrowser;
         }
 
         public override Type GetViewType()

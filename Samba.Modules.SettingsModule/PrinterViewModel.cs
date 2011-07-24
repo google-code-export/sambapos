@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
 
@@ -14,7 +15,7 @@ namespace Samba.Modules.SettingsModule
         {
         }
 
-        public IList<string> PrinterTypes { get { return new[] { "Adisyon Yazıcı", "Text", "HTML", "Port Yazıcı", "Demo Yazıcı (notepad)" }; } }
+        public IList<string> PrinterTypes { get { return new[] { Resources.TicketPrinter, Resources.Text, Resources.Html, Resources.PortPrinter, Resources.DemoPrinter }; } }
 
         public string ShareName { get { return Model.ShareName; } set { Model.ShareName = value; } }
         public string PrinterType
@@ -45,7 +46,7 @@ namespace Samba.Modules.SettingsModule
 
         public override string GetModelTypeString()
         {
-            return "Yazıcı";
+            return Resources.Printer;
         }
 
         public override void Initialize(IWorkspace workspace)

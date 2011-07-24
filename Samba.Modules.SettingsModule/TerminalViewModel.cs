@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 
@@ -14,7 +15,7 @@ namespace Samba.Modules.SettingsModule
         public TerminalViewModel(Terminal model)
             : base(model)
         {
-            SelectPrintJobsCommand = new CaptionCommand<string>("Görev Seç", OnAddPrintJob);
+            SelectPrintJobsCommand = new CaptionCommand<string>(Resources.SelectPrintJob, OnAddPrintJob);
         }
 
         private IWorkspace _workspace;
@@ -36,7 +37,7 @@ namespace Samba.Modules.SettingsModule
 
         public override string GetModelTypeString()
         {
-            return "Terminal";
+            return Resources.Terminal;
         }
 
         public override void Initialize(IWorkspace workspace)
@@ -55,8 +56,8 @@ namespace Samba.Modules.SettingsModule
             IList<IOrderable> selectedValues = new List<IOrderable>(PrintJobs.Select(x => x));
 
             var choosenValues =
-                InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, "Yazdırma Görevi Listesi",
-                Model.Name + " terminaline eklemek istediğiniz yazdırma görevlerini seçiniz", "Yazdırma Görevi", "Yazdırma Görevleri");
+                InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, Resources.PrintJobList,
+                string.Format(Resources.SelectPrintJobsForTerminalHint_f, Model.Name), Resources.PrintJob, Resources.PrintJobs);
 
             PrintJobs.Clear();
             Model.PrintJobs.Clear();

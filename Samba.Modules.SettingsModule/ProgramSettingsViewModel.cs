@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -19,7 +20,7 @@ namespace Samba.Modules.SettingsModule
 
         public ProgramSettingsViewModel()
         {
-            SaveCommand = new CaptionCommand<string>("Kaydet", OnSave);
+            SaveCommand = new CaptionCommand<string>(Resources.Save, OnSave);
             WeightBarcodePrefix = AppServices.SettingService.WeightBarcodePrefix;
             WeightBarcodeItemLength = AppServices.SettingService.WeightBarcodeItemLength;
             WeightBarcodeQuantityLength = AppServices.SettingService.WeightBarcodeQuantityLength;
@@ -38,7 +39,7 @@ namespace Samba.Modules.SettingsModule
 
         protected override string GetHeaderInfo()
         {
-            return "Program Ayarları";
+            return Resources.ProgramSettings;
         }
 
         public override Type GetViewType()

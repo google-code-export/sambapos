@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Services;
@@ -68,24 +69,24 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             {
                 if (AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
                 {
-                    var title1 = string.Format("Gün başlama tarihi: {0}", LastWorkPeriod.StartDate.ToShortDateString());
-                    var title2 = string.Format("Gün başlama saati: {0}", LastWorkPeriod.StartDate.ToShortTimeString());
-                    var title3 = string.Format("Toplam Çalışma Zamanı:\r{0:0} gün {1:0} saat {2:0} dakika", WorkPeriodTime.Days, WorkPeriodTime.Hours, WorkPeriodTime.Minutes);
-                    if (WorkPeriodTime.Days == 0) title3 = string.Format("Toplam Çalışma Zamanı: {0:0} saat {1:0} dakika", WorkPeriodTime.Hours, WorkPeriodTime.Minutes);
-                    if (WorkPeriodTime.Hours == 0) title3 = string.Format("Toplam Çalışma Zamanı: {0:0} dakika", WorkPeriodTime.TotalMinutes);
+                    var title1 = string.Format(Resources.WorkPeriodStartDate_f, LastWorkPeriod.StartDate.ToShortDateString());
+                    var title2 = string.Format(Resources.WorkPeriodStartTime, LastWorkPeriod.StartDate.ToShortTimeString());
+                    var title3 = string.Format(Resources.TotalWorkTimeDays_f, WorkPeriodTime.Days, WorkPeriodTime.Hours, WorkPeriodTime.Minutes);
+                    if (WorkPeriodTime.Days == 0) title3 = string.Format(Resources.TotalWorkTimeHours_f, WorkPeriodTime.Hours, WorkPeriodTime.Minutes);
+                    if (WorkPeriodTime.Hours == 0) title3 = string.Format(Resources.TotalWorkTimeMinutes_f, WorkPeriodTime.TotalMinutes);
                     return title1 + "\r\n" + title2 + "\r\n" + title3;
                 }
-                return "Çalışmaya başlamak için gün başı yapınız.";
+                return Resources.StartWorkPeriodToEnablePos;
             }
         }
 
         public WorkPeriodsViewModel()
         {
-            StartOfDayCommand = new CaptionCommand<string>("Gün Başı Yap", OnStartOfDayExecute, CanStartOfDayExecute);
-            EndOfDayCommand = new CaptionCommand<string>("Gün Sonu Yap", OnEndOfDayExecute, CanEndOfDayExecute);
-            DisplayStartOfDayScreenCommand = new CaptionCommand<string>("Gün Başı", OnDisplayStartOfDayScreenCommand, CanStartOfDayExecute);
-            DisplayEndOfDayScreenCommand = new CaptionCommand<string>("Gün Sonu", OnDisplayEndOfDayScreenCommand, CanEndOfDayExecute);
-            CancelCommand = new CaptionCommand<string>("İptal", OnCancel);
+            StartOfDayCommand = new CaptionCommand<string>(Resources.StartWorkPeriod, OnStartOfDayExecute, CanStartOfDayExecute);
+            EndOfDayCommand = new CaptionCommand<string>(Resources.EndWorkPeriod, OnEndOfDayExecute, CanEndOfDayExecute);
+            DisplayStartOfDayScreenCommand = new CaptionCommand<string>(Resources.StartWorkPeriod, OnDisplayStartOfDayScreenCommand, CanStartOfDayExecute);
+            DisplayEndOfDayScreenCommand = new CaptionCommand<string>(Resources.EndWorkPeriod, OnDisplayEndOfDayScreenCommand, CanEndOfDayExecute);
+            CancelCommand = new CaptionCommand<string>(Resources.Cancel, OnCancel);
         }
 
         private void OnCancel(string obj)
@@ -131,7 +132,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StartWorkPeriod(StartDescription, CashAmount, CreditCardAmount, TicketAmount);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
-            InteractionService.UserIntraction.GiveFeedback("Gün Başı İşlemi Tamamlandı.");
+            InteractionService.UserIntraction.GiveFeedback(Resources.Starting_Work_Period_Completed);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }
 
@@ -144,7 +145,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
 
             if (OpenTicketCount > 0)
             {
-                OpenTicketLabel = string.Format("Açık {0} adisyon bulunmaktadır.\r\nAçık adisyon varken gün sonu yapılamaz.",
+                OpenTicketLabel = string.Format(Resources.ThereAreOpenTicketsWarning_f,
                                   OpenTicketCount);
             }
             else OpenTicketLabel = "";

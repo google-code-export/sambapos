@@ -14,7 +14,7 @@ namespace Samba.Modules.SettingsModule
     {
         public PrinterMap Model { get; set; }
         private const string NullLabel = "*";
-        private const string NullPrinterLabel = "[Seçiniz]";
+        private static readonly string NullPrinterLabel = string.Format("- {0} -", Localization.Properties.Resources.Select);
         private readonly IWorkspace _workspace;
 
         public PrinterMapViewModel(PrinterMap model, IWorkspace workspace)

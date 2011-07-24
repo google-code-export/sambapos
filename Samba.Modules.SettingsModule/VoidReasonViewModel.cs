@@ -1,5 +1,6 @@
 ﻿using System;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.SettingsModule
@@ -19,7 +20,7 @@ namespace Samba.Modules.SettingsModule
 
         public override string GetModelTypeString()
         {
-            return "İade Nedeni";
+            return Resources.VoidReason;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -14,15 +15,15 @@ namespace Samba.Modules.SettingsModule
 
         public VoidReasonListViewModel()
         {
-            CreateBatchVoidReasons = new CaptionCommand<string>("Toplu İade Nedeni Ekle", OnCreateBatchVoidReasons);
+            CreateBatchVoidReasons = new CaptionCommand<string>(Resources.BatchAddVoidReasons, OnCreateBatchVoidReasons);
             CustomCommands.Add(CreateBatchVoidReasons);
         }
 
         private void OnCreateBatchVoidReasons(string obj)
         {
             var values = InteractionService.UserIntraction.GetStringFromUser(
-                "Toplu İade Nedeni Ekle",
-                "Eklemek istediğiniz İade Nedenlerini her satıra bir madde gelecek şekilde ekleyiniz.");
+                Resources.BatchAddVoidReasons,
+                Resources.BatchAddVoidReasonsDialogHint);
 
             var createdItems = new DataCreationService().BatchCreateReasons(values, 0, Workspace);
             Workspace.CommitChanges();
@@ -52,7 +53,7 @@ namespace Samba.Modules.SettingsModule
         protected override string CanDeleteItem(Reason model)
         {
             var voids = Dao.Count<TicketItem>(x => x.Voided && x.ReasonId == model.Id);
-            return voids > 0 ? "Bu iade nedeni kullanıldığı için silinemez." : "";
+            return voids > 0 ? Resources.DeleteErrorVoidReasonUsed : "";
         }
     }
 }

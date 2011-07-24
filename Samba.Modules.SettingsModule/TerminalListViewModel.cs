@@ -1,4 +1,5 @@
 ﻿using Samba.Domain.Models.Settings;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.SettingsModule
@@ -18,7 +19,7 @@ namespace Samba.Modules.SettingsModule
         protected override string CanDeleteItem(Terminal model)
         {
             var count = Workspace.Count<Terminal>();
-            if (count == 1) return "En az bir terminal tanımı bulunmalıdır.";
+            if (count == 1) return Resources.DeleteErrorShouldHaveAtLeastOneTerminal;
             return base.CanDeleteItem(model);
         }
     }

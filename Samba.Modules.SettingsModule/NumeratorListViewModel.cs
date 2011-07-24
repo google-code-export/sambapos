@@ -1,5 +1,6 @@
 ﻿using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;
 
@@ -20,11 +21,11 @@ namespace Samba.Modules.SettingsModule
         protected override string CanDeleteItem(Numerator model)
         {
             var count = Dao.Count<Department>(x => x.OrderNumerator.Id == model.Id);
-            if (count > 0) return "Bu numaratör bir departmanda sipariş numaratörü olarak kullanıldığı için silinemez.";
+            if (count > 0) return Resources.DeleteErrorNumeratorIsOrderNumerator;
             count = Dao.Count<Department>(x => x.TicketNumerator.Id == model.Id);
-            if (count > 0) return "Bu numaratör bir departmanda adisyon numaratörü olarak kullanıldığı için silinemez.";
+            if (count > 0) return Resources.DeleteErrorNumeratorIsTicketNumerator;
             count = Dao.Count<TicketTagGroup>(x => x.Numerator.Id == model.Id);
-            if (count > 0) return "Bu numaratör bir adisyon etiketinde kullanıldığı için silinemez.";
+            if (count > 0) return Resources.DeleteErrorNumeratorUsedInTicket;
             return base.CanDeleteItem(model);
         }
     }

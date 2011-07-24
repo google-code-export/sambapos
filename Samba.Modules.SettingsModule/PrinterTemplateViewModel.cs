@@ -2,6 +2,7 @@
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.SettingsModule
@@ -27,7 +28,7 @@ namespace Samba.Modules.SettingsModule
         
         public override string GetModelTypeString()
         {
-            return "Yazıcı Şablonu";
+            return Resources.PrinterTemplate;
         }
 
         public override void Initialize(IWorkspace workspace)

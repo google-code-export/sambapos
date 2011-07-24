@@ -1,5 +1,6 @@
 ﻿using System;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.SettingsModule
@@ -18,7 +19,7 @@ namespace Samba.Modules.SettingsModule
 
         public override string GetModelTypeString()
         {
-            return "İkram Nedeni";
+            return Resources.GiftReason;
         }
     }
 }

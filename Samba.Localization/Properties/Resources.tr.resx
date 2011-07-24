@@ -378,10 +378,6 @@ Yap</value>
   <data name="CantSave" xml:space="preserve">
     <value>Kayıt Engellendi</value>
   </data>
-  <data name="InventoryName" xml:space="preserve">
-    <value>Stok Adı</value>
-    <comment>Label content</comment>
-  </data>
   <data name="GroupCode" xml:space="preserve">
     <value>Grup Kodu</value>
     <comment>Label content</comment>
@@ -898,5 +894,500 @@ Yap</value>
 	</data>
 	<data name="CanOpenNavigation">
 		<value><![CDATA[Navigasyon'a girebilir]]></value>
+	</data>
+	<data name="InternetBrowser" xml:space="preserve">
+    <value>İnternet Tarayıcı</value>
+  </data>
+	<data name="BatchCreateGiftReasons" xml:space="preserve">
+    <value>Toplu İkram Nedeni Ekle</value>
+  </data>
+	<data name="BatchCreateReasonsHint" xml:space="preserve">
+    <value>Eklemek istediğiniz İkram Nedenlerini her satıra bir madde gelecek şekilde ekleyiniz.</value>
+  </data>
+	<data name="DeleteErrorGiftReasonInUse" xml:space="preserve">
+    <value>Bu ikram nedeni kullanıldığı için silinemez.</value>
+  </data>
+	<data name="GiftReasonName" xml:space="preserve">
+    <value>İkram Nedeni Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+	<data name="GiftReason" xml:space="preserve">
+    <value>İkram Nedeni</value>
+  </data>
+	<data name="DeleteErrorNumeratorIsOrderNumerator" xml:space="preserve">
+    <value>Bu numaratör bir departmanda sipariş numaratörü olarak kullanıldığı için silinemez.</value>
+  </data>
+	<data name="DeleteErrorNumeratorIsTicketNumerator" xml:space="preserve">
+    <value>Bu numaratör bir departmanda adisyon numaratörü olarak kullanıldığı için silinemez.</value>
+  </data>
+	<data name="DeleteErrorNumeratorUsedInTicket" xml:space="preserve">
+    <value>Bu numaratör bir adisyon etiketinde kullanıldığı için silinemez.</value>
+  </data>
+	<data name="NumeratorName" xml:space="preserve">
+    <value>Numeratör Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="NumeratorFormat" xml:space="preserve">
+    <value>Numara Formatı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="DeleteErrorTemplateUsedInPrintJob" xml:space="preserve">
+    <value>Bu yazıcı şablonu bir yazdırma görevinde kullanıldığından silinemez.</value>
+  </data>
+	<data name="TemplateName" xml:space="preserve">
+    <value>Şablon Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="HeaderTemplate" xml:space="preserve">
+    <value>Başlık Şablonu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="LineTemplate" xml:space="preserve">
+    <value>Hareket Şablonu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="GiftLineTemplate" xml:space="preserve">
+    <value>İkram Hareketi Şablonu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="VoidLineTemplate" xml:space="preserve">
+    <value>İptal Hareketi Şablonu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="SubLineTemplate" xml:space="preserve">
+    <value>Alt Başlık Şablonu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="MergeLines" xml:space="preserve">
+    <value>Satırları Birleştir</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="TicketDate" xml:space="preserve">
+    <value>Adisyon Tarihi</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TicketTime" xml:space="preserve">
+    <value>Adisyon Saati</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="DayDate" xml:space="preserve">
+    <value>Günün Tarihi</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="DayTime" xml:space="preserve">
+    <value>Günün Saati</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="UniqueTicketId" xml:space="preserve">
+    <value>Benzersiz Adisyon Numarası</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TicketNumber" xml:space="preserve">
+    <value>Adisyon Numarası</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="OptionalTicketTag" xml:space="preserve">
+    <value>Seçimli Adisyon Etiketi</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TableOrUserName" xml:space="preserve">
+    <value>Masa adı, yoksa garson adı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="UserName" xml:space="preserve">
+    <value>Garson adı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TableName" xml:space="preserve">
+    <value>Masa adı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TicketNote" xml:space="preserve">
+    <value>Adisyon notu</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="AccountAddress" xml:space="preserve">
+    <value>Hesap Adresi</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="AccountPhone" xml:space="preserve">
+    <value>Hesap Telefonu</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemQuantity" xml:space="preserve">
+    <value>#Satır: Ürün Miktarı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemName" xml:space="preserve">
+    <value>#Satır: Ürün Adı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemPrice" xml:space="preserve">
+    <value>#Satır: Ürün Fiyatı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemPriceCents" xml:space="preserve">
+    <value>#Satır: Kuruş bazında fiyat</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemTotal" xml:space="preserve">
+    <value>#Satır: Ürün Tutarı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemTotalAndQuantity" xml:space="preserve">
+    <value>#Satır: Ürün Tutarı x Miktar</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemTotalWithoutGifts" xml:space="preserve">
+    <value>#Satır: Ürün Tutarı (İkram hariç)</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemDetails" xml:space="preserve">
+    <value>#Satır: Ürün Detay Özellikleri</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemDetailPrice" xml:space="preserve">
+    <value>#Satır: Ürün Özellik Fiyatı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineItemDetailQuantity" xml:space="preserve">
+    <value>#Satır: Ürün Özellik Miktarı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineOrderNumber" xml:space="preserve">
+    <value>#Satır: Sipariş Numarası</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="LineGiftOrVoidReason" xml:space="preserve">
+    <value>#Satır: İade veya İkram Nedeni</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TicketTotal" xml:space="preserve">
+    <value>Belge Toplamı</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TicketPaidTotal" xml:space="preserve">
+    <value>Belge Ödenen Tutar</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="TicketRemainingAmount" xml:space="preserve">
+    <value>Belge Bakiyesi</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="RemainingAmountIfPaid" xml:space="preserve">
+    <value>Ödeme varsa ödenen ve bakiye satırları</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="DiscountTotalAndTicketTotal" xml:space="preserve">
+    <value>İskonto varsa belge toplamı ve iskonto satırları</value>
+    <comment>Paragraph content</comment>
+  </data>
+	<data name="PrinterTemplate" xml:space="preserve">
+    <value>Yazıcı Şablonu</value>
+  </data>
+	<data name="PrinterName" xml:space="preserve">
+    <value>Yazıcı Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="ShareNameAndPortName" xml:space="preserve">
+    <value>Paylaşım Adı / Port Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="PrinterType" xml:space="preserve">
+    <value>Yazıcı Tipi</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="CharacterSet" xml:space="preserve">
+    <value>Karakter Seti</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="LineCharacterCount" xml:space="preserve">
+    <value>Satır Karakter Sayısı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="TicketPrinter" xml:space="preserve">
+    <value>Adisyon Yazıcı</value>
+  </data>
+	<data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+	<data name="Html" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+	<data name="PortPrinter" xml:space="preserve">
+    <value>Port Yazıcı</value>
+  </data>
+	<data name="DemoPrinter" xml:space="preserve">
+    <value>Demo Yazıcı (notepad)</value>
+  </data>
+	<data name="Printer" xml:space="preserve">
+    <value>Yazıcı</value>
+  </data>
+	<data name="PrintJobName" xml:space="preserve">
+    <value>Yazdırma Görevi Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="ButtonHeader" xml:space="preserve">
+    <value>Düğme Başlığı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="LockTicket" xml:space="preserve">
+    <value>Adisyonu Kilitle</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="UseAtPosScreen" xml:space="preserve">
+    <value>POS Ekranında Kullanılabilir</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="UseAtPaymentScreen" xml:space="preserve">
+    <value>Ödeme Ekranında Kullanılabilir</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="UseAtTerminal" xml:space="preserve">
+    <value>El Terminaline Kullanılabilir</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="UseAtOldTickets" xml:space="preserve">
+    <value>Sadece Eski Adisyonlarda Kullanılabilir</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="PrintMapping" xml:space="preserve">
+    <value>Yazdırma Yönlendirmeleri</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="PrintContent" xml:space="preserve">
+    <value>Yazdırma İçeriği</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="AutoPrintWhen" xml:space="preserve">
+    <value>Otomatik Yazdırma Tetikleme:</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="AutoPrintPaymentType" xml:space="preserve">
+    <value>Otomatik Yazdırma İşlem Tipi Seçeneği</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+	<data name="MenuItemGroup" xml:space="preserve">
+    <value>Ürün Grubu</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+	<data name="MenuItem" xml:space="preserve">
+    <value>Ürün</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+	<data name="Template" xml:space="preserve">
+    <value>Şablon</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+	<data name="Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+	<data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+	<data name="Manual" xml:space="preserve">
+    <value>Manuel</value>
+  </data>
+	<data name="WhenNewLinesAddedToTicket" xml:space="preserve">
+    <value>Adisyona Yeni Satır Eklendiğinde</value>
+  </data>
+	<data name="WhenTicketPaid" xml:space="preserve">
+    <value>Adisyon Ödendiğinde</value>
+  </data>
+	<data name="AllLines" xml:space="preserve">
+    <value>Tüm Satırlar</value>
+  </data>
+	<data name="OnlyNewLines" xml:space="preserve">
+    <value>Sadece Yeni Eklenen Satırlar</value>
+  </data>
+	<data name="LinesGroupedByBarcode" xml:space="preserve">
+    <value>Barkoda Göre Gruplanmış Satırlar</value>
+  </data>
+	<data name="LinesGroupedByGroupCode" xml:space="preserve">
+    <value>Grup Koduna Göre Gruplanmış Satırlar</value>
+  </data>
+	<data name="PrintJob" xml:space="preserve">
+    <value>Yazdırma Görevi</value>
+  </data>
+	<data name="DeleteSelectedMappingQuestion" xml:space="preserve">
+    <value>Seçili Tanım Silinsin mi?</value>
+  </data>
+	<data name="TicketOptions" xml:space="preserve">
+    <value>Adisyon Ayarları</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+	<data name="AutoRounding" xml:space="preserve">
+    <value>Otomatik Yuvarlama</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="WeightBarcodes" xml:space="preserve">
+    <value>Gramaj Barkodları</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+	<data name="WeightBarcodePefix" xml:space="preserve">
+    <value>Gramaj Barkodu Öneki</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="WeightBarcodeItemIdLength" xml:space="preserve">
+    <value>Gramaj Barkodu Ürün ID Uzunluğu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="WeightBarcodeQuantityLength" xml:space="preserve">
+    <value>Gramaj Barkodu Miktar Uzunluğu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="ProgramSettings" xml:space="preserve">
+    <value>Program Ayarları</value>
+  </data>
+	<data name="DayOperations" xml:space="preserve">
+    <value>Gün İşlemleri</value>
+  </data>
+	<data name="LocalSettings" xml:space="preserve">
+    <value>Yerel Ayarlar</value>
+  </data>
+	<data name="Terminals" xml:space="preserve">
+    <value>Terminaller</value>
+  </data>
+	<data name="Printers" xml:space="preserve">
+    <value>Yazıcılar</value>
+  </data>
+	<data name="PrintJobs" xml:space="preserve">
+    <value>Yazdırma Görevleri</value>
+  </data>
+	<data name="PrinterTemplates" xml:space="preserve">
+    <value>Yazıcı Şablonları</value>
+  </data>
+	<data name="VoidReasons" xml:space="preserve">
+    <value>İade Nedenleri</value>
+  </data>
+	<data name="GiftReasons" xml:space="preserve">
+    <value>İkram Nedenleri</value>
+  </data>
+	<data name="SambaPosWebsite" xml:space="preserve">
+    <value>SambaPOS Websitesi</value>
+  </data>
+	<data name="Samba Network" xml:space="preserve">
+    <value>Samba Network</value>
+  </data>
+	<data name="CanStartEndOfDay" xml:space="preserve">
+    <value>Gün sonu yapabilir</value>
+  </data>
+	<data name="TerminalName" xml:space="preserve">
+    <value>Terminal Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="ProgramLanguage" xml:space="preserve">
+    <value>Program Dili</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="DataConnection" xml:space="preserve">
+    <value>Veri Bağlantısı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="MessageServerName" xml:space="preserve">
+    <value>Mesaj Sunucusu Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="MessageServerPort" xml:space="preserve">
+    <value>Mesaj Sunucusu Portu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="AutoStartMessageClient" xml:space="preserve">
+    <value>Başlangıçta İstemciyi Başlat</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+	<data name="StartClientNow" xml:space="preserve">
+    <value>İstemciyi Şimdi Başlat</value>
+  </data>
+	<data name="DeleteErrorShouldHaveAtLeastOneTerminal" xml:space="preserve">
+    <value>En az bir terminal tanımı bulunmalıdır.</value>
+  </data>
+	<data name="TerminalAdı" xml:space="preserve">
+    <value>Terminal Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="DefaultTerminal" xml:space="preserve">
+    <value>Varsayılan Terminal</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="AutoLogout" xml:space="preserve">
+    <value>Otomatik çıkış</value>
+    <comment>CheckBox content</comment>
+  </data>
+	<data name="PrinterOptions" xml:space="preserve">
+    <value>Yazıcı Tanımları</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+	<data name="SlipReportPrinter" xml:space="preserve">
+    <value>Slip Rapor Yazıcısı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="ReportPrinter" xml:space="preserve">
+    <value>Rapor Yazıcısı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="SelectPrintJob" xml:space="preserve">
+    <value>Görev Seç</value>
+  </data>
+	<data name="Terminal" xml:space="preserve">
+    <value>Terminal</value>
+  </data>
+	<data name="PrintJobList" xml:space="preserve">
+    <value>Yazdırma Görevi Listesi</value>
+  </data>
+	<data name="SelectPrintJobsForTerminalHint_f" xml:space="preserve">
+    <value>{0} terminaline eklemek istediğiniz yazdırma görevlerini seçiniz</value>
+  </data>
+	<data name="BatchAddVoidReasons" xml:space="preserve">
+    <value>Toplu İade Nedeni Ekle</value>
+  </data>
+	<data name="BatchAddVoidReasonsDialogHint" xml:space="preserve">
+    <value>Eklemek istediğiniz İade Nedenlerini her satıra bir madde gelecek şekilde ekleyiniz.</value>
+  </data>
+	<data name="DeleteErrorVoidReasonUsed" xml:space="preserve">
+    <value>Bu iade nedeni kullanıldığı için silinemez.</value>
+  </data>
+	<data name="VoidReasonName" xml:space="preserve">
+    <value>İade Nedeni Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+	<data name="VoidReason">
+		<value xml:space="preserve">İade Nedeni</value>
+	</data>
+	<data name="CashContent" xml:space="preserve">
+    <value>Kasa Durumu</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+	<data name="WorkPeriodStartDate_f">
+		<value xml:space="preserve">Gün başlama tarihi: {0}</value>
+	</data>
+	<data name="WorkPeriodStartTime">
+		<value xml:space="preserve">Gün başlama saati: {0}</value>
+	</data>
+	<data name="TotalWorkTimeDays_f">
+		<value><![CDATA[Toplam Çalışma Zamanı:
+{0:0} gün {1:0} saat {2:0} dakika]]></value>
+	</data>
+	<data name="TotalWorkTimeHours_f">
+		<value xml:space="preserve">Toplam Çalışma Zamanı: {0:0} saat {1:0} dakika</value>
+	</data>
+	<data name="TotalWorkTimeMinutes_f">
+		<value xml:space="preserve">Toplam Çalışma Zamanı: {0:0} dakika</value>
+	</data>
+	<data name="StartWorkPeriodToEnablePos">
+		<value xml:space="preserve">Çalışmaya başlamak için gün başı yapınız.</value>
+	</data>
+	<data name="StartWorkPeriod">
+		<value xml:space="preserve">Gün Başı Yap</value>
+	</data>
+	<data name="EndWorkPeriod">
+		<value xml:space="preserve">Gün Sonu Yap</value>
+	</data>
+	<data name="Starting Work Period Completed">
+		<value xml:space="preserve">Gün Başı İşlemi Tamamlandı.</value>
+	</data>
+	<data name="ThereAreOpenTicketsWarning_f">
+		<value><![CDATA[Açık {0} adisyon bulunmaktadır.
+Açık adisyon varken gün sonu yapılamaz.]]></value>
 	</data>
 </root>

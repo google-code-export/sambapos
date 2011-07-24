@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
+using Samba.Localization.Properties;
 using Samba.Modules.SettingsModule.WorkPeriods;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -67,21 +68,21 @@ namespace Samba.Modules.SettingsModule
             _regionManager = regionManager;
             _workPeriodsView = workPeriodsView;
 
-            NavigateWorkPeriodsCommand = new CategoryCommand<string>("Gün İşlemleri", "Genel", "Images/Run.png", OnNavigateWorkPeriods, CanNavigateWorkPeriods);
+            NavigateWorkPeriodsCommand = new CategoryCommand<string>(Resources.DayOperations, Resources.Common, "Images/Run.png", OnNavigateWorkPeriods, CanNavigateWorkPeriods);
 
-            ListProgramSettingsCommand = new CategoryCommand<string>("Yerel Ayarlar", "Ayarlar", OnListProgramSettings);
-            ListTerminalsCommand = new CategoryCommand<string>("Terminaller", "Ayarlar", OnListTerminals);
-            ListPrintersCommand = new CategoryCommand<string>("Yazıcılar", "Ayarlar", OnListPrinters);
-            ListPrintJobsCommand = new CategoryCommand<string>("Yazdırma Görevleri", "Ayarlar", OnListPrintJobs);
-            ListPrinterTemplatesCommand = new CategoryCommand<string>("Yazıcı Şablonları", "Ayarlar", OnListPrinterTemplates);
-            ListNumeratorsCommand = new CategoryCommand<string>("Numaratörler", "Ayarlar", OnListNumerators);
-            ListVoidReasonsCommand = new CategoryCommand<string>("İade Nedenleri", "Ürünler", OnListVoidReasons);
-            ListGiftReasonsCommand = new CategoryCommand<string>("İkram Nedenleri", "Ürünler", OnListGiftReasons);
-            ListMenuItemSettingsCommand = new CategoryCommand<string>("Program Ayarları", "Ayarlar", OnListMenuItemSettings) { Order = 10 };
+            ListProgramSettingsCommand = new CategoryCommand<string>(Resources.LocalSettings, Resources.Settings, OnListProgramSettings);
+            ListTerminalsCommand = new CategoryCommand<string>(Resources.Terminals, Resources.Settings, OnListTerminals);
+            ListPrintersCommand = new CategoryCommand<string>(Resources.Printers, Resources.Settings, OnListPrinters);
+            ListPrintJobsCommand = new CategoryCommand<string>(Resources.PrintJobs, Resources.Settings, OnListPrintJobs);
+            ListPrinterTemplatesCommand = new CategoryCommand<string>(Resources.PrinterTemplates, Resources.Settings, OnListPrinterTemplates);
+            ListNumeratorsCommand = new CategoryCommand<string>(Resources.Numerators, Resources.Settings, OnListNumerators);
+            ListVoidReasonsCommand = new CategoryCommand<string>(Resources.VoidReasons, Resources.Products, OnListVoidReasons);
+            ListGiftReasonsCommand = new CategoryCommand<string>(Resources.GiftReasons, Resources.Products, OnListGiftReasons);
+            ListMenuItemSettingsCommand = new CategoryCommand<string>(Resources.ProgramSettings, Resources.Settings, OnListMenuItemSettings) { Order = 10 };
             
-            ShowBrowser = new CategoryCommand<string>("SambaPOS Websitesi", "Samba Network", OnShowBrowser) { Order = 99 };
+            ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.Samba_Network, OnShowBrowser) { Order = 99 };
 
-            PermissionRegistry.RegisterPermission(PermissionNames.OpenWorkPeriods, PermissionCategories.Navigation, "Gün sonu yapabilir");
+            PermissionRegistry.RegisterPermission(PermissionNames.OpenWorkPeriods, PermissionCategories.Navigation, Resources.CanStartEndOfDay);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<VisibleViewModelBase>>().Subscribe(s =>
             {

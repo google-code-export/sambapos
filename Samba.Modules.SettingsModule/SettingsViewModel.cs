@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -14,8 +15,8 @@ namespace Samba.Modules.SettingsModule
     {
         public SettingsViewModel()
         {
-            SaveSettingsCommand = new CaptionCommand<string>("Kaydet", OnSaveSettings);
-            StartMessagingServerCommand = new CaptionCommand<string>("İstemciyi Şimdi Başlat", OnStartMessagingServer, CanStartMessagingServer);
+            SaveSettingsCommand = new CaptionCommand<string>(Resources.Save, OnSaveSettings);
+            StartMessagingServerCommand = new CaptionCommand<string>(Resources.StartClientNow, OnStartMessagingServer, CanStartMessagingServer);
         }
 
         private static bool CanStartMessagingServer(string arg)
@@ -99,7 +100,7 @@ namespace Samba.Modules.SettingsModule
 
         protected override string GetHeaderInfo()
         {
-            return "Program Ayarları";
+            return Resources.ProgramSettings;
         }
 
         public override Type GetViewType()

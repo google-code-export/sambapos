@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -16,15 +17,15 @@ namespace Samba.Modules.SettingsModule
 
         public GiftReasonListViewModel()
         {
-            CreateBatchGiftReasons = new CaptionCommand<string>("Toplu İkram Nedeni Ekle", OnCreateBatchGiftReasons);
+            CreateBatchGiftReasons = new CaptionCommand<string>(Resources.BatchCreateGiftReasons, OnCreateBatchGiftReasons);
             CustomCommands.Add(CreateBatchGiftReasons);
         }
 
         private void OnCreateBatchGiftReasons(string obj)
         {
             var values = InteractionService.UserIntraction.GetStringFromUser(
-                "Toplu İkram Nedeni Ekle",
-                "Eklemek istediğiniz İkram Nedenlerini her satıra bir madde gelecek şekilde ekleyiniz.");
+                Resources.BatchCreateGiftReasons,
+                Resources.BatchCreateReasonsHint);
 
             var createdItems = new DataCreationService().BatchCreateReasons(values, 1, Workspace);
             Workspace.CommitChanges();
@@ -54,7 +55,7 @@ namespace Samba.Modules.SettingsModule
         protected override string CanDeleteItem(Reason model)
         {
             var gifts = Dao.Count<TicketItem>(x => x.Gifted && x.ReasonId == model.Id);
-            return gifts > 0 ? "Bu ikram nedeni kullanıldığı için silinemez." : "";
+            return gifts > 0 ? Resources.DeleteErrorGiftReasonInUse : "";
         }
     }
 }

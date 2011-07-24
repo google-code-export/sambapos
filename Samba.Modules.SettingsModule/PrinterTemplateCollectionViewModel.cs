@@ -1,4 +1,5 @@
 ﻿using Samba.Domain.Models.Settings;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;
 
@@ -19,7 +20,7 @@ namespace Samba.Modules.SettingsModule
         protected override string CanDeleteItem(PrinterTemplate model)
         {
             var count = Dao.Count<PrinterMap>(x => x.PrinterTemplate.Id == model.Id);
-            if (count > 0) return "Bu yazıcı şablonu bir yazdırma görevinde kullanıldığından silinemez.";
+            if (count > 0) return Resources.DeleteErrorTemplateUsedInPrintJob;
             return base.CanDeleteItem(model);
         }
     }

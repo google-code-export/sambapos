@@ -890,10 +890,505 @@ Payment</value>
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>
   </data>
-	<data name="CanNavigateCash">
-		<value xml:space="preserve">Can Enter Cash Screen</value>
+  <data name="CanNavigateCash" xml:space="preserve">
+    <value>Can Enter Cash Screen</value>
+  </data>
+  <data name="CanOpenNavigation" xml:space="preserve">
+    <value>Can Enter Navigation Screen</value>
+  </data>
+  <data name="InternetBrowser" xml:space="preserve">
+    <value>Internet Browser</value>
+  </data>
+  <data name="BatchCreateGiftReasons" xml:space="preserve">
+    <value>Batch Create Gift Reasons</value>
+  </data>
+  <data name="BatchCreateReasonsHint" xml:space="preserve">
+    <value>Add one line for each reason you want to add</value>
+  </data>
+  <data name="DeleteErrorGiftReasonInUse" xml:space="preserve">
+    <value>Can't delete because this Gift Reason used in a Ticket</value>
+  </data>
+  <data name="GiftReasonName" xml:space="preserve">
+    <value>Gift Reason Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="GiftReason" xml:space="preserve">
+    <value>Gift Reason</value>
+  </data>
+  <data name="DeleteErrorNumeratorIsOrderNumerator" xml:space="preserve">
+    <value>Can't delete because this Numerator used as Order Numerator</value>
+  </data>
+  <data name="DeleteErrorNumeratorIsTicketNumerator" xml:space="preserve">
+    <value>Can't delete because this Numerator used as Ticket Numerator</value>
+  </data>
+  <data name="DeleteErrorNumeratorUsedInTicket" xml:space="preserve">
+    <value>Can't delete beacuse this Numerator assigned to a Ticket Tag</value>
+  </data>
+  <data name="NumeratorName" xml:space="preserve">
+    <value>Numerator Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="NumeratorFormat" xml:space="preserve">
+    <value>Number Format</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DeleteErrorTemplateUsedInPrintJob" xml:space="preserve">
+    <value>Can't delete because this Print Template assigned to a Print Job</value>
+  </data>
+  <data name="TemplateName" xml:space="preserve">
+    <value>Template Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="HeaderTemplate" xml:space="preserve">
+    <value>Header Template</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="LineTemplate" xml:space="preserve">
+    <value>Line Template</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="GiftLineTemplate" xml:space="preserve">
+    <value>Gift Line Template</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="VoidLineTemplate" xml:space="preserve">
+    <value>Void Line Template</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="SubLineTemplate" xml:space="preserve">
+    <value>Line Properties Template</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="MergeLines" xml:space="preserve">
+    <value>Merge Lines</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="TicketDate" xml:space="preserve">
+    <value>Ticket Date</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TicketTime" xml:space="preserve">
+    <value>Ticket Time</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="DayDate" xml:space="preserve">
+    <value>Date of Day</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="DayTime" xml:space="preserve">
+    <value>Time of Day</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="UniqueTicketId" xml:space="preserve">
+    <value>Unique Ticket Id</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TicketNumber" xml:space="preserve">
+    <value>TicketNumber</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="OptionalTicketTag" xml:space="preserve">
+    <value>Optional Ticket Tag</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TableOrUserName" xml:space="preserve">
+    <value>Table Name, If empty User Name</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Table Name</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TicketNote" xml:space="preserve">
+    <value>Ticket Note</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="AccountAddress" xml:space="preserve">
+    <value>Account Address</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="AccountPhone" xml:space="preserve">
+    <value>Account Phone</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemQuantity" xml:space="preserve">
+    <value>#Line: Item Quantity</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemName" xml:space="preserve">
+    <value>#Line: Item Name</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemPrice" xml:space="preserve">
+    <value>#Line: Item Price</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemPriceCents" xml:space="preserve">
+    <value>#Line: Item Price On Cents</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemTotal" xml:space="preserve">
+    <value>#Line: Item Total</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemTotalAndQuantity" xml:space="preserve">
+    <value>#Line: Item Total x Quantity</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemTotalWithoutGifts" xml:space="preserve">
+    <value>#Line: Item Total (Gifts Excluded)</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemDetails" xml:space="preserve">
+    <value>#Line: Item Properties</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemDetailPrice" xml:space="preserve">
+    <value>#Line: Item Property Price</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineItemDetailQuantity" xml:space="preserve">
+    <value>#Satır: Item Property Quantity</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineOrderNumber" xml:space="preserve">
+    <value>#Line: Order Number</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="LineGiftOrVoidReason" xml:space="preserve">
+    <value>#Line: Gift or Void Reason</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TicketTotal" xml:space="preserve">
+    <value>Ticket Total</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TicketPaidTotal" xml:space="preserve">
+    <value>Paid Ticket Amount</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="TicketRemainingAmount" xml:space="preserve">
+    <value>Remaining Ticket Amount</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="RemainingAmountIfPaid" xml:space="preserve">
+    <value>Payment Amount if Paid</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="DiscountTotalAndTicketTotal" xml:space="preserve">
+    <value>Discount Lines if Exists</value>
+    <comment>Paragraph content</comment>
+  </data>
+  <data name="PrinterTemplate" xml:space="preserve">
+    <value>Printer Template</value>
+  </data>
+  <data name="PrinterName" xml:space="preserve">
+    <value>Printer Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="ShareNameAndPortName" xml:space="preserve">
+    <value>Printer Share Name / Port Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="PrinterType" xml:space="preserve">
+    <value>Printer Type</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="CharacterSet" xml:space="preserve">
+    <value>Character Set</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="LineCharacterCount" xml:space="preserve">
+    <value>Line Character Count</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TicketPrinter" xml:space="preserve">
+    <value>Ticket Printer</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>HTML</value>
+  </data>
+  <data name="PortPrinter" xml:space="preserve">
+    <value>Port Printer</value>
+  </data>
+  <data name="DemoPrinter" xml:space="preserve">
+    <value>Demo Printer (notepad)</value>
+  </data>
+  <data name="Printer" xml:space="preserve">
+    <value>Printer</value>
+  </data>
+  <data name="PrintJobName" xml:space="preserve">
+    <value>Print Job Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="ButtonHeader" xml:space="preserve">
+    <value>Button Header</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="LockTicket" xml:space="preserve">
+    <value>Lock Ticket</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="UseAtPosScreen" xml:space="preserve">
+    <value>Display at POS Screen</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="UseAtPaymentScreen" xml:space="preserve">
+    <value>Display at Payment Screen</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="UseAtTerminal" xml:space="preserve">
+    <value>Display At Terminal</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="UseAtOldTickets" xml:space="preserve">
+    <value>Only for Old Tickets</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="PrintMapping" xml:space="preserve">
+    <value>Print Mapping</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="PrintContent" xml:space="preserve">
+    <value>Printing Content</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="AutoPrintWhen" xml:space="preserve">
+    <value>Auto Print After</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="AutoPrintPaymentType" xml:space="preserve">
+    <value>Auto Print for Payment Types</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="MenuItemGroup" xml:space="preserve">
+    <value>Product Group</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+  <data name="MenuItem" xml:space="preserve">
+    <value>Product</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Template</value>
+    <comment>GridViewColumn.Header</comment>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="WhenNewLinesAddedToTicket" xml:space="preserve">
+    <value>New lines added to ticket</value>
+  </data>
+  <data name="WhenTicketPaid" xml:space="preserve">
+    <value>Ticket Paid</value>
+  </data>
+  <data name="AllLines" xml:space="preserve">
+    <value>All Lines</value>
+  </data>
+  <data name="OnlyNewLines" xml:space="preserve">
+    <value>Only New Lines</value>
+  </data>
+  <data name="LinesGroupedByBarcode" xml:space="preserve">
+    <value>Lines Grouped by Barcode</value>
+  </data>
+  <data name="LinesGroupedByGroupCode" xml:space="preserve">
+    <value>Lines Grouped by Group Code</value>
+  </data>
+  <data name="PrintJob" xml:space="preserve">
+    <value>Print Job</value>
+  </data>
+  <data name="DeleteSelectedMappingQuestion" xml:space="preserve">
+    <value>Delete Selected Mapping?</value>
+  </data>
+  <data name="TicketOptions" xml:space="preserve">
+    <value>Ticket Settings</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AutoRounding" xml:space="preserve">
+    <value>Auto Rounding</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="WeightBarcodes" xml:space="preserve">
+    <value>Weight Barcodes</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="WeightBarcodePefix" xml:space="preserve">
+    <value>Weight Barcode Prefix</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="WeightBarcodeItemIdLength" xml:space="preserve">
+    <value>Weight Barcode Item Id Length</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="WeightBarcodeQuantityLength" xml:space="preserve">
+    <value>Weight Barcode Quantity Length</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="ProgramSettings" xml:space="preserve">
+    <value>Program Settings</value>
+  </data>
+  <data name="DayOperations" xml:space="preserve">
+    <value>Work Periods</value>
+  </data>
+  <data name="LocalSettings" xml:space="preserve">
+    <value>Local Settings</value>
+  </data>
+  <data name="Terminals" xml:space="preserve">
+    <value>Terminals</value>
+  </data>
+  <data name="Printers" xml:space="preserve">
+    <value>Printers</value>
+  </data>
+  <data name="PrintJobs" xml:space="preserve">
+    <value>Print Jobs</value>
+  </data>
+  <data name="PrinterTemplates" xml:space="preserve">
+    <value>Printer Templates</value>
+  </data>
+  <data name="VoidReasons" xml:space="preserve">
+    <value>Void Reasons</value>
+  </data>
+  <data name="GiftReasons" xml:space="preserve">
+    <value>Gift Reasons</value>
+  </data>
+  <data name="SambaPosWebsite" xml:space="preserve">
+    <value>SambaPOS Website</value>
+  </data>
+  <data name="Samba Network" xml:space="preserve">
+    <value>Samba Network</value>
+  </data>
+  <data name="CanStartEndOfDay" xml:space="preserve">
+    <value>Can Start End of Day</value>
+  </data>
+  <data name="TerminalName" xml:space="preserve">
+    <value>Terminal Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="ProgramLanguage" xml:space="preserve">
+    <value>Program Language</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DataConnection" xml:space="preserve">
+    <value>Data Connection String</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="MessageServerName" xml:space="preserve">
+    <value>Message Server Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="MessageServerPort" xml:space="preserve">
+    <value>Message Server Port</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="AutoStartMessageClient" xml:space="preserve">
+    <value>Auto Start Message Client</value>
+    <comment>CheckBox.Content</comment>
+  </data>
+  <data name="StartClientNow" xml:space="preserve">
+    <value>Start Client Now</value>
+  </data>
+  <data name="DeleteErrorShouldHaveAtLeastOneTerminal" xml:space="preserve">
+    <value>Can't delete because there should be at least one terminal.</value>
+  </data>
+  <data name="TerminalAdı" xml:space="preserve">
+    <value>Terminal Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DefaultTerminal" xml:space="preserve">
+    <value>Default Terminal</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="AutoLogout" xml:space="preserve">
+    <value>Auto Logout</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="PrinterOptions" xml:space="preserve">
+    <value>Printer Settings</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SlipReportPrinter" xml:space="preserve">
+    <value>Slip Report Printer</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="ReportPrinter" xml:space="preserve">
+    <value>Report Printer</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="SelectPrintJob" xml:space="preserve">
+    <value>Select Print Job</value>
+  </data>
+  <data name="Terminal" xml:space="preserve">
+    <value>Terminal</value>
+  </data>
+  <data name="PrintJobList" xml:space="preserve">
+    <value>Print Job List</value>
+  </data>
+  <data name="SelectPrintJobsForTerminalHint_f" xml:space="preserve">
+    <value>Select printing jobs that you want to add {0} terminal</value>
+  </data>
+  <data name="BatchAddVoidReasons" xml:space="preserve">
+    <value>Add multiple Void Reasons</value>
+  </data>
+  <data name="BatchAddVoidReasonsDialogHint" xml:space="preserve">
+    <value>Add one line for each reason you want to add</value>
+  </data>
+  <data name="DeleteErrorVoidReasonUsed" xml:space="preserve">
+    <value>Can't delete because this reason used in a ticket</value>
+  </data>
+  <data name="VoidReasonName" xml:space="preserve">
+    <value>Void Reason Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="VoidReason" xml:space="preserve">
+    <value>Void Reason</value>
+  </data>
+  <data name="CashContent" xml:space="preserve">
+    <value>Cash Content</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+	<data name="WorkPeriodStartDate_f">
+		<value xml:space="preserve">Date of Work Period: {0}</value>
 	</data>
-	<data name="CanOpenNavigation">
-		<value><![CDATA[Can Enter Navigation Screen]]></value>
+	<data name="WorkPeriodStartTime">
+		<value xml:space="preserve">Time of Work Period: {0}</value>
+	</data>
+	<data name="TotalWorkTimeDays_f">
+		<value><![CDATA[Total Work Time:
+{0:0} days {1:0} hours {2:0} minutes]]></value>
+	</data>
+	<data name="TotalWorkTimeHours_f">
+		<value xml:space="preserve">Total Work Time: {0:0} hours {1:0} minutes</value>
+	</data>
+	<data name="TotalWorkTimeMinutes_f">
+		<value xml:space="preserve">Total Work Time: {0:0} minutes</value>
+	</data>
+	<data name="StartWorkPeriodToEnablePos">
+		<value xml:space="preserve">Start Work Period to enable POS</value>
+	</data>
+	<data name="StartWorkPeriod">
+		<value xml:space="preserve">Start Work Period</value>
+	</data>
+	<data name="EndWorkPeriod">
+		<value xml:space="preserve">End Work Period</value>
+	</data>
+	<data name="Starting Work Period Completed">
+		<value xml:space="preserve">Work Period Started.</value>
+	</data>
+	<data name="ThereAreOpenTicketsWarning_f">
+		<value><![CDATA[There are {0} open tickets.
+Can't end Work Period while tickets open]]></value>
 	</data>
 </root>
