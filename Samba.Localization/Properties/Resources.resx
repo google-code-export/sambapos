@@ -1359,36 +1359,156 @@ Payment</value>
     <value>Cash Content</value>
     <comment>GroupBox.Header</comment>
   </data>
-	<data name="WorkPeriodStartDate_f">
-		<value xml:space="preserve">Date of Work Period: {0}</value>
+  <data name="WorkPeriodStartDate_f" xml:space="preserve">
+    <value>Date of Work Period: {0}</value>
+  </data>
+  <data name="WorkPeriodStartTime" xml:space="preserve">
+    <value>Time of Work Period: {0}</value>
+  </data>
+  <data name="TotalWorkTimeDays_f" xml:space="preserve">
+    <value>Total Work Time:
+{0:0} days {1:0} hours {2:0} minutes</value>
+  </data>
+  <data name="TotalWorkTimeHours_f" xml:space="preserve">
+    <value>Total Work Time: {0:0} hours {1:0} minutes</value>
+  </data>
+  <data name="TotalWorkTimeMinutes_f" xml:space="preserve">
+    <value>Total Work Time: {0:0} minutes</value>
+  </data>
+  <data name="StartWorkPeriodToEnablePos" xml:space="preserve">
+    <value>Start Work Period to enable POS</value>
+  </data>
+  <data name="StartWorkPeriod" xml:space="preserve">
+    <value>Start Work Period</value>
+  </data>
+  <data name="EndWorkPeriod" xml:space="preserve">
+    <value>End Work Period</value>
+  </data>
+  <data name="Starting Work Period Completed" xml:space="preserve">
+    <value>Work Period Started.</value>
+  </data>
+  <data name="ThereAreOpenTicketsWarning_f" xml:space="preserve">
+    <value>There are {0} open tickets.
+Can't end Work Period while tickets open</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="SaveErrorDuplicateTableName" xml:space="preserve">
+    <value>There is already a table with that name.</value>
+  </data>
+  <data name="AddMultipleTables" xml:space="preserve">
+    <value>Add Multiple Tables</value>
+  </data>
+  <data name="AddMultipleTableHint" xml:space="preserve">
+    <value>Add one line for each Table Name. Start Categories with # character.</value>
+  </data>
+  <data name="DeleteErrorTicketAssignedToTable" xml:space="preserve">
+    <value>Can't delete because there is a ticket assigned to that table</value>
+  </data>
+  <data name="DeleteErrorTableUsedInTableView" xml:space="preserve">
+    <value>Can't delete becasuse this Table assigned to a Table View</value>
+  </data>
+  <data name="TableViews" xml:space="preserve">
+    <value>Table Views</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="CanOpenTableList" xml:space="preserve">
+    <value>Can display Table List</value>
+  </data>
+  <data name="CanChangeTable" xml:space="preserve">
+    <value>Can change Table of a Ticket</value>
+  </data>
+  <data name="DeleteErrorTableViewUsedInDepartment" xml:space="preserve">
+    <value>Can't delete because this Table View assigned to a Department</value>
+  </data>
+  <data name="TableViewName" xml:space="preserve">
+    <value>View Name</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TableViewMode" xml:space="preserve">
+    <value>View Mode</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background Color</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>Background Image</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="EmptyTableColor" xml:space="preserve">
+    <value>Empty Table Color</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="UnavailableTableColor" xml:space="preserve">
+    <value>Full Table Color</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="LockedTableColor" xml:space="preserve">
+    <value>Locked Table Color</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="NumeratorHeight" xml:space="preserve">
+    <value>Numerator Height</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="AlphanumericButtons" xml:space="preserve">
+    <value>Alphanumeric Buttons</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Hidden</value>
+  </data>
+  <data name="SelectTable" xml:space="preserve">
+    <value>Select Table</value>
+  </data>
+  <data name="TableList" xml:space="preserve">
+    <value>Masa Listesi</value>
+  </data>
+  <data name="SelectTableDialogHint_f" xml:space="preserve">
+    <value>{0} görünümüne eklemek istediğiniz masaları seçiniz</value>
+  </data>
+  <data name="TableView" xml:space="preserve">
+    <value>Masa Görünümü</value>
+  </data>
+  <data name="EditMode" xml:space="preserve">
+    <value>Düzenleme Modu</value>
+    <comment>MenuItem.Header</comment>
+  </data>
+	<data name="NextPage">
+		<value xml:space="preserve">Sonraki Sayfa</value>
 	</data>
-	<data name="WorkPeriodStartTime">
-		<value xml:space="preserve">Time of Work Period: {0}</value>
+	<data name="PreviousPage">
+		<value xml:space="preserve">Önceki Sayfa</value>
 	</data>
-	<data name="TotalWorkTimeDays_f">
-		<value><![CDATA[Total Work Time:
-{0:0} days {1:0} hours {2:0} minutes]]></value>
+	<data name="TablesMerged_f">
+		<value><![CDATA[{0} adisyonu
+{1} masası ile birleştirildi.]]></value>
 	</data>
-	<data name="TotalWorkTimeHours_f">
-		<value xml:space="preserve">Total Work Time: {0:0} hours {1:0} minutes</value>
+	<data name="TicketMergedToTable_f">
+		<value xml:space="preserve">Adisyon {0} masası ile birleştirildi.</value>
 	</data>
-	<data name="TotalWorkTimeMinutes_f">
-		<value xml:space="preserve">Total Work Time: {0:0} minutes</value>
+	<data name="TicketMovedToTable_f">
+		<value><![CDATA[{0} adisyonu
+{1} masasına taşındı.]]></value>
 	</data>
-	<data name="StartWorkPeriodToEnablePos">
-		<value xml:space="preserve">Start Work Period to enable POS</value>
+	<data name="SelectTableThatYouWantToMoveTicket_f">
+		<value xml:space="preserve">{0} adisyonunu taşıyacağınız masayı seçiniz.</value>
 	</data>
-	<data name="StartWorkPeriod">
-		<value xml:space="preserve">Start Work Period</value>
+	<data name="SelectTableForTicket">
+		<value xml:space="preserve">Adisyon için masa seçiniz.</value>
 	</data>
-	<data name="EndWorkPeriod">
-		<value xml:space="preserve">End Work Period</value>
-	</data>
-	<data name="Starting Work Period Completed">
-		<value xml:space="preserve">Work Period Started.</value>
-	</data>
-	<data name="ThereAreOpenTicketsWarning_f">
-		<value><![CDATA[There are {0} open tickets.
-Can't end Work Period while tickets open]]></value>
+	<data name="SelectTableForOperation">
+		<value xml:space="preserve">İşlem yapmak istediğiniz masayı seçiniz.</value>
 	</data>
 </root>

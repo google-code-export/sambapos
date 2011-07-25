@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Samba.Domain.Models.Tables;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -13,15 +14,15 @@ namespace Samba.Modules.TableModule
 
         public TableListViewModel()
         {
-            BatchCreateTables = new CaptionCommand<string>("Toplu Masa Ekle", OnBatchCreateTablesExecute);
+            BatchCreateTables = new CaptionCommand<string>(Resources.AddMultipleTables, OnBatchCreateTablesExecute);
             CustomCommands.Add(BatchCreateTables);
         }
 
         private void OnBatchCreateTablesExecute(string obj)
         {
             var values = InteractionService.UserIntraction.GetStringFromUser(
-                "Toplu Masa Ekle",
-                "Eklemek istediğiniz masa adlarını ekleyiniz. Kategorileri # karakteri ile başlatınız.");
+                Resources.AddMultipleTables,
+                Resources.AddMultipleTableHint);
 
             var createdItems = new DataCreationService().BatchCreateTables(values, Workspace);
             Workspace.CommitChanges();
@@ -42,9 +43,9 @@ namespace Samba.Modules.TableModule
 
         protected override string CanDeleteItem(Table model)
         {
-            if (model.TicketId > 0) return "Masaya bağlı adisyon varken masa silinemez.";
+            if (model.TicketId > 0) return Resources.DeleteErrorTicketAssignedToTable;
             var count = Dao.Count<TableScreen>(x => x.Tables.Any(y => y.Id == model.Id));
-            if (count > 0) return "Bu masa bir masa görünümünde kullanıldığı için silinemez";
+            if (count > 0) return Resources.DeleteErrorTableUsedInTableView;
             return base.CanDeleteItem(model);
         }
     }

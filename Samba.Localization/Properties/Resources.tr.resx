@@ -1390,4 +1390,88 @@ Yap</value>
 		<value><![CDATA[Açık {0} adisyon bulunmaktadır.
 Açık adisyon varken gün sonu yapılamaz.]]></value>
 	</data>
+	<data name="Table" xml:space="preserve">
+    <value>Masa</value>
+  </data>
+	<data name="SaveErrorDuplicateTableName" xml:space="preserve">
+    <value>Bu isimde bir masa zaten var</value>
+  </data>
+	<data name="AddMultipleTables" xml:space="preserve">
+    <value>Toplu Masa Ekle</value>
+  </data>
+	<data name="AddMultipleTableHint" xml:space="preserve">
+    <value>Eklemek istediğiniz masa adlarını ekleyiniz. Kategorileri # karakteri ile başlatınız.</value>
+  </data>
+	<data name="DeleteErrorTicketAssignedToTable" xml:space="preserve">
+    <value>Masaya bağlı adisyon varken masa silinemez.</value>
+  </data>
+	<data name="DeleteErrorTableUsedInTableView" xml:space="preserve">
+    <value>Bu masa bir masa görünümünde kullanıldığı için silinemez</value>
+  </data>
+	<data name="TableList" xml:space="preserve">
+    <value>Masa Tanımları</value>
+  </data>
+	<data name="TableViews" xml:space="preserve">
+    <value>Masa Görünümleri</value>
+  </data>
+	<data name="Tables" xml:space="preserve">
+    <value>Masalar</value>
+  </data>
+	<data name="CanOpenTableList" xml:space="preserve">
+    <value>Masa listesini açabilir</value>
+  </data>
+	<data name="CanChangeTable" xml:space="preserve">
+    <value>Masa değiştirebilir</value>
+  </data>
+	<data name="DeleteErrorTableViewUsedInDepartment" xml:space="preserve">
+    <value>Bu masa görünümü bir departmanda kullanıldığından silinemez.</value>
+  </data>
+	<data name="TableViewName" xml:space="preserve">
+    <value>Görünüm Adı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="TableViewMode" xml:space="preserve">
+    <value>Görünüm Modu</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="BackgroundColor" xml:space="preserve">
+    <value>Arkaplan Rengi</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="BackgroundImage" xml:space="preserve">
+    <value>Arkaplan Resmi</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="EmptyTableColor" xml:space="preserve">
+    <value>Boş Masa Rengi</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="UnavailableTableColor" xml:space="preserve">
+    <value>Dolu Masa Rengi</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="LockedTableColor" xml:space="preserve">
+    <value>Kilitli Masa Rengi</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="NumeratorHeight" xml:space="preserve">
+    <value>Numaratör Yüksekliği:</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="AlphanumericButtons" xml:space="preserve">
+    <value>Alfanümerik Düğmeler</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="Automatic" xml:space="preserve">
+    <value>Otomatik</value>
+  </data>
+	<data name="Custom" xml:space="preserve">
+    <value>Özel</value>
+  </data>
+	<data name="Hidden" xml:space="preserve">
+    <value>Gizli</value>
+  </data>
+	<data name="SelectTable" xml:space="preserve">
+    <value>Masa Seç</value>
+  </data>
 </root>

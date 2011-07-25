@@ -3,6 +3,7 @@ using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -27,9 +28,9 @@ namespace Samba.Modules.TableModule
         {
             _regionManager = regionManager;
             _tableSelectorView = tableSelectorView;
-            ListTablesCommand = new CategoryCommand<string>("Masa Tanımları", "Masalar", OnListTablesExecute) { Order = 30 };
-            ListTableScreensCommand = new CategoryCommand<string>("Masa Görünümleri", "Masalar", OnListTableScreensExecute);
-            NavigateTablesCommand = new CategoryCommand<string>("Masalar", "Genel", "images/Png.png", OnNavigateTables, CanNavigateTables);
+            ListTablesCommand = new CategoryCommand<string>(Resources.TableList, Resources.Tables, OnListTablesExecute) { Order = 30 };
+            ListTableScreensCommand = new CategoryCommand<string>(Resources.TableViews, Resources.Tables, OnListTableScreensExecute);
+            NavigateTablesCommand = new CategoryCommand<string>(Resources.Tables, Resources.Common, "images/Png.png", OnNavigateTables, CanNavigateTables);
         }
 
         protected override void OnPostInitialization()
@@ -41,8 +42,8 @@ namespace Samba.Modules.TableModule
         protected override void OnInitialization()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(TableSelectorView));
-            PermissionRegistry.RegisterPermission(PermissionNames.OpenTables, PermissionCategories.Navigation, "Masa listesini açabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.ChangeTable, PermissionCategories.Ticket, "Masa değiştirebilir");
+            PermissionRegistry.RegisterPermission(PermissionNames.OpenTables, PermissionCategories.Navigation, Resources.CanOpenTableList);
+            PermissionRegistry.RegisterPermission(PermissionNames.ChangeTable, PermissionCategories.Ticket, Resources.CanChangeTable);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Department>>().Subscribe(x =>
             {

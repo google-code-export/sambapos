@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Samba.Domain.Models.Tables;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Presentation.ViewModels;
@@ -16,7 +17,7 @@ namespace Samba.Modules.TableModule
 
         public ICaptionCommand SelectTablesCommand { get; set; }
         public ObservableCollection<TableScreenItemViewModel> ScreenItems { get; set; }
-        public string[] DisplayModes { get { return new[] { "Otomatik", "Özel", "Gizli" }; } }
+        public string[] DisplayModes { get { return new[] { Resources.Automatic, Resources.Custom, Resources.Hidden }; } }
         public string DisplayMode { get { return DisplayModes[Model.DisplayMode]; } set { Model.DisplayMode = Array.IndexOf(DisplayModes, value); } }
         public string BackgroundImage { get { return string.IsNullOrEmpty(Model.BackgroundImage) ? "/Images/empty.png" : Model.BackgroundImage; } set { Model.BackgroundImage = value; } }
         public string BackgroundColor { get { return string.IsNullOrEmpty(Model.BackgroundColor) ? "Transparent" : Model.BackgroundColor; } set { Model.BackgroundColor = value; } }
@@ -32,7 +33,7 @@ namespace Samba.Modules.TableModule
         public TableScreenViewModel(TableScreen model)
             : base(model)
         {
-            SelectTablesCommand = new CaptionCommand<string>("Masa Seç", OnSelectTables);
+            SelectTablesCommand = new CaptionCommand<string>(Resources.SelectTable, OnSelectTables);
         }
 
         private void OnSelectTables(string obj)
@@ -43,8 +44,8 @@ namespace Samba.Modules.TableModule
             IList<IOrderable> selectedValues = new List<IOrderable>(ScreenItems.Select(x => x.Model));
 
             IList<IOrderable> choosenValues =
-                InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, "Masa Listesi",
-                Model.Name + " görünümüne eklemek istediğiniz masaları seçiniz", "Masa", "Masalar");
+                InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, Resources.TableList,
+                string.Format(Resources.SelectTableDialogHint_f, Model.Name), Resources.Table, Resources.Tables);
 
             ScreenItems.Clear();
             Model.Tables.Clear();
@@ -63,7 +64,7 @@ namespace Samba.Modules.TableModule
 
         public override string GetModelTypeString()
         {
-            return "Masa Görünümü";
+            return Resources.TableView;
         }
 
         public override void Initialize(IWorkspace workspace)

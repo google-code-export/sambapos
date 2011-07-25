@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Samba.Domain.Models.Tables;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;
 
@@ -28,7 +29,7 @@ namespace Samba.Modules.TableModule
 
         public override string GetModelTypeString()
         {
-            return "Masa";
+            return Resources.Table;
         }
 
         public override void Initialize(IWorkspace workspace)
@@ -45,8 +46,9 @@ namespace Samba.Modules.TableModule
         protected override string GetSaveErrorMessage()
         {
             if (Model.Id == 0 && Dao.Count<Table>(x => x.Name.ToLower() == Model.Name.ToLower()) > 0) 
-                return "Bu isimde bir masa zaten var";
+                return Resources.SaveErrorDuplicateTableName;
             return base.GetSaveErrorMessage();
-        } 
+        } 
+
     }
 }

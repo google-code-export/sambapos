@@ -7,6 +7,7 @@ using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
@@ -23,7 +24,7 @@ namespace Samba.Modules.TableModule
         public ICaptionCommand EditSelectedTableScreenPropertiesCommand { get; set; }
         public ICaptionCommand IncPageNumberCommand { get; set; }
         public ICaptionCommand DecPageNumberCommand { get; set; }
-        
+
         public ObservableCollection<IDiagram> Tables { get; set; }
 
         public Ticket SelectedTicket { get { return AppServices.MainDataContext.SelectedTicket; } }
@@ -68,10 +69,10 @@ namespace Samba.Modules.TableModule
         {
             SelectTableCategoryCommand = new DelegateCommand<TableScreen>(OnSelectTableCategoryExecuted);
             TableSelectionCommand = new DelegateCommand<TableScreenItemViewModel>(OnSelectTableExecuted);
-            CloseScreenCommand = new CaptionCommand<string>("Kapat", OnCloseScreenExecuted);
-            EditSelectedTableScreenPropertiesCommand = new CaptionCommand<string>("Özellikler", OnEditSelectedTableScreenProperties, CanEditSelectedTableScreenProperties);
-            IncPageNumberCommand = new CaptionCommand<string>("Sonraki Sayfa >>", OnIncPageNumber, CanIncPageNumber);
-            DecPageNumberCommand = new CaptionCommand<string>("<< Önceki Sayfa", OnDecPageNumber, CanDecPageNumber);
+            CloseScreenCommand = new CaptionCommand<string>(Resources.Close, OnCloseScreenExecuted);
+            EditSelectedTableScreenPropertiesCommand = new CaptionCommand<string>(Resources.Properties, OnEditSelectedTableScreenProperties, CanEditSelectedTableScreenProperties);
+            IncPageNumberCommand = new CaptionCommand<string>(Resources.NextPage + " >>", OnIncPageNumber, CanIncPageNumber);
+            DecPageNumberCommand = new CaptionCommand<string>("<< " + Resources.PreviousPage, OnDecPageNumber, CanDecPageNumber);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Department>>().Subscribe(
                 x =>
@@ -169,11 +170,11 @@ namespace Samba.Modules.TableModule
                 SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
                 if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
                     if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
-                        InteractionService.UserIntraction.GiveFeedback(oldLocationName + " adisyonu\r" + obj.Caption + " masası ile birleştirildi.");
+                        InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, obj.Caption));
                     else if (ticketsMerged)
-                        InteractionService.UserIntraction.GiveFeedback("Adisyon " + obj.Caption + " masası ile birleştirildi.");
+                        InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, obj.Caption));
                     else if (oldLocationName != obj.Caption)
-                        InteractionService.UserIntraction.GiveFeedback(oldLocationName + " adisyonu\r" + obj.Caption + " masasına taşındı.");
+                        InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, obj.Caption));
             }
             else if (obj.Model.TicketId == 0)
             {
@@ -210,19 +211,19 @@ namespace Samba.Modules.TableModule
             {
                 FeedbackColor = "Red";
                 FeedbackForeground = "White";
-                Feedback = SelectedTicket.LocationName + " adisyonunu taşıyacağınız masayı seçiniz.";
+                Feedback = string.Format(Resources.SelectTableThatYouWantToMoveTicket_f, SelectedTicket.LocationName);
             }
             else if (SelectedTicket != null)
             {
                 FeedbackColor = "Red";
                 FeedbackForeground = "White";
-                Feedback = "Adisyon için masa seçiniz.";
+                Feedback = Resources.SelectTableForTicket;
             }
             else
             {
                 FeedbackColor = "LightYellow";
                 FeedbackForeground = "Black";
-                Feedback = "İşlem yapmak istediğiniz masayı seçiniz.";
+                Feedback = Resources.SelectTableForOperation;
             }
 
             RaisePropertyChanged("Tables");
