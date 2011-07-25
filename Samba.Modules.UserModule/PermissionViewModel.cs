@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Samba.Domain.Models.Users;
+using Samba.Localization.Properties;
 using Samba.Services;
 
 namespace Samba.Modules.UserModule
@@ -17,7 +18,7 @@ namespace Samba.Modules.UserModule
 
         public string Title { get { return PermissionRegistry.PermissionNames[_permission.Name][1]; } }
         public string Category { get { return PermissionRegistry.PermissionNames[_permission.Name][0]; } }
-        private static readonly string[] _values = new[] { "Evet", "Hayır" };
+        private static readonly string[] _values = new[] { Resources.Yes, Resources.No };
         public static string[] Values { get { return _values; } }
         public string Value { get { return Values[_permission.Value]; } set { _permission.Value = Values.ToList().IndexOf(value); } }
         public bool IsPermitted

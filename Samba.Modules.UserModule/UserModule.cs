@@ -3,6 +3,7 @@ using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Users;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -24,9 +25,9 @@ namespace Samba.Modules.UserModule
         [ImportingConstructor]
         public UserModule(IRegionManager regionManager)
         {
-            ListUserRolesCommand = new CategoryCommand<string>("Rol Listesi", "Kullanıcılar", OnListRoles) { Order = 50 };
-            ListUsersCommand = new CategoryCommand<string>("Kullanıcı Listesi", "Kullanıcılar", OnListUsers);
-            NavigateLogoutCommand = new CategoryCommand<string>("Logout", "Genel", "images/bmp.png", OnNavigateUserLogout) { Order = 99 };
+            ListUserRolesCommand = new CategoryCommand<string>(Resources.UserRoleList, Resources.Users, OnListRoles) { Order = 50 };
+            ListUsersCommand = new CategoryCommand<string>(Resources.UserList, Resources.Users, OnListUsers);
+            NavigateLogoutCommand = new CategoryCommand<string>("Logout", Resources.Common, "images/bmp.png", OnNavigateUserLogout) { Order = 99 };
             _regionManager = regionManager;
         }
 

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Samba.Domain.Models.Tables;
+using Samba.Localization;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -71,14 +72,14 @@ namespace Samba.Presentation.ViewModels
             set { Model.YLocation = value; RaisePropertyChanged("Y"); }
         }
 
-        [DisplayName("Yükseklik")]
+        [LocalizedDisplayName(ResourceStrings.Height)]
         public int Height
         {
             get { return Model.Height; }
             set { Model.Height = value; RaisePropertyChanged("Height"); }
         }
 
-        [DisplayName("Genişlik")]
+        [LocalizedDisplayName(ResourceStrings.Width)]
         public int Width
         {
             get { return Model.Width; }
@@ -92,7 +93,7 @@ namespace Samba.Presentation.ViewModels
             set { Model.Angle = ((RotateTransform)value).Angle; }
         }
 
-        [DisplayName("Açı")]
+        [LocalizedDisplayName(ResourceStrings.Angle)]
         public double Angle
         {
             get { return Model.Angle; }
@@ -103,7 +104,7 @@ namespace Samba.Presentation.ViewModels
             }
         }
 
-        [DisplayName("Köşe Yuvarlama")]
+        [LocalizedDisplayName(ResourceStrings.CornerRadius)]
         public CornerRadius CornerRadius
         {
             get { return new CornerRadius(Model.CornerRadius); }

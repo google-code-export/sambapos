@@ -4,6 +4,7 @@ using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -19,25 +20,25 @@ namespace Samba.Modules.TicketModule
         [ImportingConstructor]
         public TicketModule(IRegionManager regionManager, TicketEditorView ticketEditorView)
         {
-            _navigateTicketCommand = new CategoryCommand<string>("POS", "Genel", "Images/Network.png", OnNavigateTicketCommand, CanNavigateTicket);
+            _navigateTicketCommand = new CategoryCommand<string>("POS", Resources.Common, "Images/Network.png", OnNavigateTicketCommand, CanNavigateTicket);
             _regionManager = regionManager;
             _ticketEditorView = ticketEditorView;
 
-            PermissionRegistry.RegisterPermission(PermissionNames.AddItemsToLockedTickets, PermissionCategories.Ticket, "Adisyon Kilidini Kaldırabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.RemoveTicketTag, PermissionCategories.Ticket, "Adisyon Etiketini Kaldırabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.GiftItems, PermissionCategories.Ticket, "İkram yapabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.VoidItems, PermissionCategories.Ticket, "İade alabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.MoveTicketItems, PermissionCategories.Ticket, "Adisyon satırlarını taşıyabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.MergeTickets, PermissionCategories.Ticket, "Adisyonları Birleştirebilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.DisplayOldTickets, PermissionCategories.Ticket, "Eski Adisyonları görüntüleyebilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.MoveUnlockedTicketItems, PermissionCategories.Ticket, "Kilitlenmemiş adisyon satırlarını taşıyabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.ChangeExtraProperty, PermissionCategories.Ticket, "Ekstra özellik girebilir");
+            PermissionRegistry.RegisterPermission(PermissionNames.AddItemsToLockedTickets, PermissionCategories.Ticket, Resources.CanReleaseTicketLock);
+            PermissionRegistry.RegisterPermission(PermissionNames.RemoveTicketTag, PermissionCategories.Ticket, Resources.CanRemoveTicketTag);
+            PermissionRegistry.RegisterPermission(PermissionNames.GiftItems, PermissionCategories.Ticket, Resources.CanGiftItems);
+            PermissionRegistry.RegisterPermission(PermissionNames.VoidItems, PermissionCategories.Ticket, Resources.CanVoidItems);
+            PermissionRegistry.RegisterPermission(PermissionNames.MoveTicketItems, PermissionCategories.Ticket, Resources.CanMoveTicketLines);
+            PermissionRegistry.RegisterPermission(PermissionNames.MergeTickets, PermissionCategories.Ticket, Resources.CanMergeTickets);
+            PermissionRegistry.RegisterPermission(PermissionNames.DisplayOldTickets, PermissionCategories.Ticket, Resources.CanDisplayOldTickets);
+            PermissionRegistry.RegisterPermission(PermissionNames.MoveUnlockedTicketItems, PermissionCategories.Ticket, Resources.CanMoveUnlockedTicketLines);
+            PermissionRegistry.RegisterPermission(PermissionNames.ChangeExtraProperty, PermissionCategories.Ticket, Resources.CanUpdateExtraModifiers);
 
-            PermissionRegistry.RegisterPermission(PermissionNames.MakePayment, PermissionCategories.Payment, "Ödeme alabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.MakeFastPayment, PermissionCategories.Payment, "Hızlı ödeme alabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.MakeDiscount, PermissionCategories.Payment, "İskonto yapabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.RoundPayment, PermissionCategories.Payment, "Yuvarlama yapabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.FixPayment, PermissionCategories.Payment, "Yukarı düzeltme yapabilir");
+            PermissionRegistry.RegisterPermission(PermissionNames.MakePayment, PermissionCategories.Payment, Resources.CanGetPayment);
+            PermissionRegistry.RegisterPermission(PermissionNames.MakeFastPayment, PermissionCategories.Payment, Resources.CanGetFastPayment);
+            PermissionRegistry.RegisterPermission(PermissionNames.MakeDiscount, PermissionCategories.Payment, Resources.CanMakeDiscount);
+            PermissionRegistry.RegisterPermission(PermissionNames.RoundPayment, PermissionCategories.Payment, Resources.CanRoundTicketTotal);
+            PermissionRegistry.RegisterPermission(PermissionNames.FixPayment, PermissionCategories.Payment, Resources.CanFlattenTicketTotal);
 
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Customer>>().Subscribe(

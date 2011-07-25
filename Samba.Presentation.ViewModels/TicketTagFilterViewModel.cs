@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Samba.Infrastructure;
+using Samba.Localization.Properties;
 
 namespace Samba.Presentation.ViewModels
 {
@@ -12,9 +13,9 @@ namespace Samba.Presentation.ViewModels
         {
             get
             {
-                var result = "Geri";
-                if (TagValue == "*") return "Tümü";
-                if (TagValue == " ") result = "Boş";
+                var result = Resources.Back;
+                if (TagValue == "*") return Resources.All;
+                if (TagValue == " ") result = Resources.Empty;
                 if (!string.IsNullOrEmpty(TagValue.Trim())) { result = TagValue; }
                 if (Count > 0)
                     result += " [" + Count + "]";

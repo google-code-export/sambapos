@@ -10,6 +10,7 @@ using Samba.Domain;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
@@ -23,23 +24,23 @@ namespace Samba.Modules.TicketModule
 
         public PaymentEditorViewModel()
         {
-            _manualPrintCommand = new CaptionCommand<PrintJob>("Yaz", OnManualPrint, CanManualPrint);
-            SubmitCashPaymentCommand = new CaptionCommand<string>("Nakit", OnSubmitCashPayment, CanSubmitCashPayment);
-            SubmitCreditCardPaymentCommand = new CaptionCommand<string>("Kredi\nKartı", OnSubmitCreditCardPayment,
+            _manualPrintCommand = new CaptionCommand<PrintJob>(Resources.Print, OnManualPrint, CanManualPrint);
+            SubmitCashPaymentCommand = new CaptionCommand<string>(Resources.Cash, OnSubmitCashPayment, CanSubmitCashPayment);
+            SubmitCreditCardPaymentCommand = new CaptionCommand<string>(Resources.CreditCard_r, OnSubmitCreditCardPayment,
                                                                         CanSubmitCashPayment);
-            SubmitTicketPaymentCommand = new CaptionCommand<string>("Yemek\nÇeki", OnSubmitTicketPayment,
+            SubmitTicketPaymentCommand = new CaptionCommand<string>(Resources.Voucher, OnSubmitTicketPayment,
                                                                     CanSubmitCashPayment);
-            SubmitAccountPaymentCommand = new CaptionCommand<string>("Açık\rHesap", OnSubmitAccountPayment, CanSubmitAccountPayment);
-            ClosePaymentScreenCommand = new CaptionCommand<string>("Kapat", OnClosePaymentScreen, CanClosePaymentScreen);
-            TenderAllCommand = new CaptionCommand<string>("Tümü", OnTenderAllCommand);
+            SubmitAccountPaymentCommand = new CaptionCommand<string>(Resources.AccountBalance_r, OnSubmitAccountPayment, CanSubmitAccountPayment);
+            ClosePaymentScreenCommand = new CaptionCommand<string>(Resources.Close, OnClosePaymentScreen, CanClosePaymentScreen);
+            TenderAllCommand = new CaptionCommand<string>(Resources.All, OnTenderAllCommand);
             TypeValueCommand = new DelegateCommand<string>(OnTypeValueExecuted);
             SetValueCommand = new DelegateCommand<string>(OnSetValue);
             DivideValueCommand = new DelegateCommand<string>(OnDivideValue);
             SelectMergedItemCommand = new DelegateCommand<MergedItem>(OnMergedItemSelected);
 
-            SetDiscountAmountCommand = new CaptionCommand<string>("Yuvarla", OnSetDiscountAmountCommand, CanSetDiscount);
-            AutoSetDiscountAmountCommand = new CaptionCommand<string>("Düz", OnAutoSetDiscount, CanAutoSetDiscount);
-            SetDiscountRateCommand = new CaptionCommand<string>("% İskonto", OnSetDiscountRateCommand, CanSetDiscountRate);
+            SetDiscountAmountCommand = new CaptionCommand<string>(Resources.Round, OnSetDiscountAmountCommand, CanSetDiscount);
+            AutoSetDiscountAmountCommand = new CaptionCommand<string>(Resources.Flat, OnAutoSetDiscount, CanAutoSetDiscount);
+            SetDiscountRateCommand = new CaptionCommand<string>(Resources.DiscountPercentSign, OnSetDiscountRateCommand, CanSetDiscountRate);
 
             MergedItems = new ObservableCollection<MergedItem>();
             ReturningAmountVisibility = Visibility.Collapsed;
@@ -338,7 +339,7 @@ namespace Samba.Modules.TicketModule
                     : AppServices.MainDataContext.SelectedTicket.GetRemainingAmount().ToString("#,#0.00");
             }
 
-            ReturningAmount = "Para Üstü: " + returningAmount.ToString(LocalSettings.DefaultCurrencyFormat);
+            ReturningAmount = string.Format(Resources.ChangeAmount_f, returningAmount.ToString(LocalSettings.DefaultCurrencyFormat));
             ReturningAmountVisibility = returningAmount > 0 ? Visibility.Visible : Visibility.Collapsed;
 
             if (returningAmount == 0 && AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() == 0)

@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Services;
@@ -23,10 +24,10 @@ namespace Samba.Modules.TicketModule
             _timer = new Timer(250);
             _timer.Elapsed += TimerElapsed;
 
-            CloseCommand = new CaptionCommand<string>("Kapat", OnCloseCommandExecuted);
+            CloseCommand = new CaptionCommand<string>(Resources.Close, OnCloseCommandExecuted);
             PreviousWorkPeriod = new CaptionCommand<string>("<<", OnExecutePreviousWorkPeriod);
             NextWorkPeriod = new CaptionCommand<string>(">>", OnExecuteNextWorkPeriod);
-            RefreshDatesCommand = new CaptionCommand<string>("Yenile", OnRefreshDates);
+            RefreshDatesCommand = new CaptionCommand<string>(Resources.Refresh, OnRefreshDates);
         }
 
         private IList<TicketExplorerFilter> _filters;
@@ -87,8 +88,11 @@ namespace Samba.Modules.TicketModule
             {
                 _total = value;
                 RaisePropertyChanged("Total");
+                RaisePropertyChanged("TotalStr");
             }
         }
+
+        public string TotalStr { get { return string.Format(Resources.Total_f, Total); } }
 
         public void Refresh()
         {

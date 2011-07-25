@@ -62,8 +62,8 @@ namespace Samba.Modules.TicketModule
             FindTableCommand = new DelegateCommand<string>(OnFindTableExecute, CanFindTable);
             FindMenuItemCommand = new DelegateCommand<string>(OnFindMenuItemCommand);
             FindTicketCommand = new DelegateCommand<string>(OnFindTicketExecute, CanFindTicket);
-            IncPageNumberCommand = new CaptionCommand<string>("Sonraki Sayfa >>", OnIncPageNumber, CanIncPageNumber);
-            DecPageNumberCommand = new CaptionCommand<string>("<< Önceki Sayfa", OnDecPageNumber, CanDecPageNumber);
+            IncPageNumberCommand = new CaptionCommand<string>(Localization.Properties.Resources.NextPage + " >>", OnIncPageNumber, CanIncPageNumber);
+            DecPageNumberCommand = new CaptionCommand<string>("<< " + Localization.Properties.Resources.PreviousPage, OnDecPageNumber, CanDecPageNumber);
 
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Department>>().Subscribe(OnDepartmentChanged);

@@ -1,5 +1,6 @@
 ﻿using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.UserModule
@@ -18,10 +19,10 @@ namespace Samba.Modules.UserModule
 
         protected override string CanDeleteItem(User model)
         {
-            if (model.UserRole.IsAdmin) return "Admin kullanıcı silinemez.";
-            if (Workspace.Count<User>() == 1) return "Son kullanıcı hesabı silinemez.";
+            if (model.UserRole.IsAdmin) return Resources.DeleteErrorAdminUser;
+            if (Workspace.Count<User>() == 1) return Resources.DeleteErrorLastUser;
             var ti = Workspace.Single<TicketItem>(x => x.CreatingUserId == model.Id || x.ModifiedUserId == model.Id);
-            if (ti != null) return "Adisyon işlemi yapmış kullanıcı silinemez.";
+            if (ti != null) return Resources.DeleteErrorUserDidTicketOperation;
             return base.CanDeleteItem(model);
         }
     }

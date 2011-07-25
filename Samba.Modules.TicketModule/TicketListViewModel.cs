@@ -15,7 +15,8 @@ using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure;
-using Samba.Persistance.Data;
+ using Samba.Localization.Properties;
+ using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ViewObjects;
 using Samba.Presentation.ViewModels;
@@ -232,33 +233,33 @@ namespace Samba.Modules.TicketModule
             _timer = new Timer(OnTimer, null, Timeout.Infinite, 1000);
             _selectedTicketItems = new ObservableCollection<TicketItemViewModel>();
 
-            PrintJobCommand = new CaptionCommand<PrintJob>("Yaz", OnPrintJobExecute, CanExecutePrintJob);
+            PrintJobCommand = new CaptionCommand<PrintJob>(Resources.Print, OnPrintJobExecute, CanExecutePrintJob);
 
             AddMenuItemCommand = new DelegateCommand<ScreenMenuItemData>(OnAddMenuItemCommandExecute);
-            CloseTicketCommand = new CaptionCommand<string>("Adisyonu\nKapat", OnCloseTicketExecute, CanCloseTicket);
+            CloseTicketCommand = new CaptionCommand<string>(Resources.CloseTicket_r, OnCloseTicketExecute, CanCloseTicket);
             OpenTicketCommand = new DelegateCommand<int?>(OnOpenTicketExecute);
-            MakePaymentCommand = new CaptionCommand<string>("Ödeme Al", OnMakePaymentExecute, CanMakePayment);
-            MakeCashPaymentCommand = new CaptionCommand<string>("Nakit\nÖdeme", OnMakeCashPaymentExecute, CanMakeFastPayment);
-            MakeCreditCardPaymentCommand = new CaptionCommand<string>("Kredi\nKartı", OnMakeCreditCardPaymentExecute, CanMakeFastPayment);
-            MakeTicketPaymentCommand = new CaptionCommand<string>("Yemek\nÇeki", OnMakeTicketPaymentExecute, CanMakeFastPayment);
-            SelectTableCommand = new CaptionCommand<string>("Masa Seç", OnSelectTableExecute, CanSelectTable);
-            SelectCustomerCommand = new CaptionCommand<string>("Müşteri Seç", OnSelectCustomerExecute, CanSelectCustomer);
-            ShowAllOpenTickets = new CaptionCommand<string>("Tüm\nBelgeler", OnShowAllOpenTickets);
+            MakePaymentCommand = new CaptionCommand<string>(Resources.GetPayment, OnMakePaymentExecute, CanMakePayment);
+            MakeCashPaymentCommand = new CaptionCommand<string>(Resources.CashPayment_r, OnMakeCashPaymentExecute, CanMakeFastPayment);
+            MakeCreditCardPaymentCommand = new CaptionCommand<string>(Resources.CreditCard_r, OnMakeCreditCardPaymentExecute, CanMakeFastPayment);
+            MakeTicketPaymentCommand = new CaptionCommand<string>(Resources.Voucher, OnMakeTicketPaymentExecute, CanMakeFastPayment);
+            SelectTableCommand = new CaptionCommand<string>(Resources.SelectTable, OnSelectTableExecute, CanSelectTable);
+            SelectCustomerCommand = new CaptionCommand<string>(Resources.SelectCustomer, OnSelectCustomerExecute, CanSelectCustomer);
+            ShowAllOpenTickets = new CaptionCommand<string>(Resources.AllTickets_r, OnShowAllOpenTickets);
             FilterOpenTicketsCommand = new DelegateCommand<TicketTagFilterViewModel>(OnFilterOpenTicketsExecute);
 
             IncQuantityCommand = new CaptionCommand<string>("+", OnIncQuantityCommand, CanIncQuantity);
             DecQuantityCommand = new CaptionCommand<string>("-", OnDecQuantityCommand, CanDecQuantity);
             IncSelectionQuantityCommand = new CaptionCommand<string>("(+)", OnIncSelectionQuantityCommand, CanIncSelectionQuantity);
             DecSelectionQuantityCommand = new CaptionCommand<string>("(-)", OnDecSelectionQuantityCommand, CanDecSelectionQuantity);
-            ShowVoidReasonsCommand = new CaptionCommand<string>("İade", OnShowVoidReasonsExecuted, CanVoidSelectedItems);
-            ShowGiftReasonsCommand = new CaptionCommand<string>("İkram", OnShowGiftReasonsExecuted, CanGiftSelectedItems);
-            ShowTicketTagsCommand = new CaptionCommand<TicketTagGroup>("Etiket", OnShowTicketsTagExecute, CanExecuteShowTicketTags);
-            CancelItemCommand = new CaptionCommand<string>("İptal", OnCancelItemCommand, CanCancelSelectedItems);
-            MoveTicketItemsCommand = new CaptionCommand<string>("Böl", OnMoveTicketItems, CanMoveTicketItems);
-            ShowExtraPropertyEditorCommand = new CaptionCommand<string>("Ekstra Özellik", OnShowExtraProperty, CanShowExtraProperty);
-            EditTicketNoteCommand = new CaptionCommand<string>("Adisyon Notu", OnEditTicketNote, CanEditTicketNote);
-            RemoveTicketLockCommand = new CaptionCommand<string>("Kilidi Kaldır", OnRemoveTicketLock, CanRemoveTicketLock);
-            ChangePriceCommand = new CaptionCommand<string>("Fiyat Değiştir", OnChangePrice, CanChangePrice);
+            ShowVoidReasonsCommand = new CaptionCommand<string>(Resources.Void, OnShowVoidReasonsExecuted, CanVoidSelectedItems);
+            ShowGiftReasonsCommand = new CaptionCommand<string>(Resources.Gift, OnShowGiftReasonsExecuted, CanGiftSelectedItems);
+            ShowTicketTagsCommand = new CaptionCommand<TicketTagGroup>(Resources.Tag, OnShowTicketsTagExecute, CanExecuteShowTicketTags);
+            CancelItemCommand = new CaptionCommand<string>(Resources.Cancel, OnCancelItemCommand, CanCancelSelectedItems);
+            MoveTicketItemsCommand = new CaptionCommand<string>(Resources.Divide, OnMoveTicketItems, CanMoveTicketItems);
+            ShowExtraPropertyEditorCommand = new CaptionCommand<string>(Resources.ExtraModifier, OnShowExtraProperty, CanShowExtraProperty);
+            EditTicketNoteCommand = new CaptionCommand<string>(Resources.TicketNote, OnEditTicketNote, CanEditTicketNote);
+            RemoveTicketLockCommand = new CaptionCommand<string>(Resources.ReleaseLock, OnRemoveTicketLock, CanRemoveTicketLock);
+            ChangePriceCommand = new CaptionCommand<string>(Resources.ChangePrice, OnChangePrice, CanChangePrice);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<WorkPeriod>>().Subscribe(
                 x =>
@@ -442,7 +443,7 @@ namespace Samba.Modules.TicketModule
             decimal.TryParse(AppServices.MainDataContext.NumeratorValue, out price);
             if (price <= 0)
             {
-                InteractionService.UserIntraction.GiveFeedback("Fiyat değiştirmek için önce numaratörden sıfırdan büyük bir fiyat yazınız.");
+                InteractionService.UserIntraction.GiveFeedback(Resources.ForChangingPriceTypeAPrice);
             }
             else
             {
@@ -657,7 +658,7 @@ namespace Samba.Modules.TicketModule
 
         public void UpdateSelectedTicketTitle()
         {
-            SelectedTicketTitle = SelectedTicket == null || SelectedTicket.Title.Trim() == "#" ? "Yeni Adisyon" : SelectedTicket.Title;
+            SelectedTicketTitle = SelectedTicket == null || SelectedTicket.Title.Trim() == "#" ? Resources.NewTicket : SelectedTicket.Title;
         }
 
         private void OnSelectCustomerExecute(string obj)
@@ -690,8 +691,8 @@ namespace Samba.Modules.TicketModule
             get
             {
                 if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.Table))
-                    return "Masa\rDeğiştir";
-                return "Masa\rSeç";
+                    return Resources.ChangeTable_r;
+                return Resources.SelectTable_r;
             }
         }
 
@@ -700,8 +701,8 @@ namespace Samba.Modules.TicketModule
             get
             {
                 if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.CustomerName))
-                    return "Müşteri\rBilgileri";
-                return "Müşteri\rSeç";
+                    return Resources.CustomerInfo_r;
+                return Resources.SelectCustomer_r;
             }
         }
 

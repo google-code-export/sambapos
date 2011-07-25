@@ -2,6 +2,7 @@
 using Samba.Domain;
 using Samba.Domain.Foundation;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 
 namespace Samba.Presentation.ViewModels
@@ -49,18 +50,18 @@ namespace Samba.Presentation.ViewModels
             {
                 switch (PaymentType)
                 {
-                    case PaymentType.Ticket: return "Yemek Çeki";
-                    case PaymentType.Cash: return "Nakit";
-                    case PaymentType.CreditCard: return "Kredi Kartı";
-                    case PaymentType.Account: return "Açık Hesap";
+                    case PaymentType.Ticket: return Resources.Voucher;
+                    case PaymentType.Cash: return Resources.Cash;
+                    case PaymentType.CreditCard: return Resources.CreditCard;
+                    case PaymentType.Account: return Resources.AccountBalance;
                 }
-                return "!!!Belirsiz İşlem Tipi";
+                return Resources.UndefinedPaymentType;
             }
         }
 
         public string AmountDisplay
         {
-            get { return Amount.ToString("#,#0.00 " + CurrencyContext.DefaultCurrency); }
+            get { return Amount.ToString("#,#0.00"); }
         }
     }
 }

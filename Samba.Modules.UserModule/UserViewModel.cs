@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -39,7 +40,7 @@ namespace Samba.Modules.UserModule
 
         public override string GetModelTypeString()
         {
-            return "Kullanıcı";
+            return Resources.User;
         }
 
         public override void Initialize(IWorkspace workspace)
@@ -51,7 +52,7 @@ namespace Samba.Modules.UserModule
         {
             var users = AppServices.Workspace.All<User>(x => x.PinCode == PinCode);
             return users.Count() > 1 || (users.Count() == 1 && users.ElementAt(0).Id != Model.Id)
-                ? "Bu pin kodunu başka bir kullanıcı kullanıyor" : "";
+                ? Resources.SaveErrorThisPinCodeInUse : "";
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace Samba.Modules.UserModule
 
         public override string GetModelTypeString()
         {
-            return "Rol";
+            return Resources.UserRole;
         }
 
         public override void Initialize(IWorkspace workspace)

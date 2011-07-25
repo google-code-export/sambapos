@@ -1,5 +1,6 @@
 ﻿using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Properties;
 
 namespace Samba.Presentation.ViewModels
 {
@@ -29,9 +30,9 @@ namespace Samba.Presentation.ViewModels
                     case (int)DiscountType.Percent:
                         return Model.Amount.ToString();
                     case (int)DiscountType.Auto:
-                        return "Oto.Düz";
+                        return Resources.AutoFlatten_ab;
                     default:
-                       return Model.Amount > 0 ? "Yuvarlama" : "Düzeltme";
+                       return Model.Amount > 0 ? Resources.Rounding : Resources.Flattening;
                 }
             }
         }

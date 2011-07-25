@@ -6,6 +6,7 @@ using System.Text;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 
@@ -26,7 +27,7 @@ namespace Samba.Modules.TicketModule
             FilterValues = new List<string>();
         }
 
-        private readonly string[] _filterTypes = { "Sadece Açık Adisyonlar", "Tüm Adisyonlar", "Hesap", "Masa" };
+        private readonly string[] _filterTypes = { Resources.OnlyOpenTickets, Resources.AllTickets, Resources.Account, Resources.Table };
         public int FilterTypeIndex
         {
             get { return (int)FilterType; }

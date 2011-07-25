@@ -5,6 +5,7 @@ using System.Windows.Media;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -31,8 +32,8 @@ namespace Samba.Presentation.ViewModels
             {
                 string desc = _model.MenuItemName + _model.GetPortionDesc();
 
-                if (IsGifted) desc = "[ikr] " + desc;
-                if (IsVoided) desc = "[iad] " + desc;
+                if (IsGifted) desc = Resources.Gift_ab + desc;
+                if (IsVoided) desc = Resources.Void_ab + desc;
 
                 if (IsSelectedQuantityModified)
                     desc = string.Format("({0:#.##}) {1}", Model.SelectedQuantity, desc);
@@ -118,8 +119,8 @@ namespace Samba.Presentation.ViewModels
         {
             get
             {
-                return Model.OrderNumber > 0 ? string.Format("Sipariş No: {0:0} - {1}",
-                    Model.OrderNumber, CreatingUserName) : "Yeni Sipariş";
+                return Model.OrderNumber > 0 ? string.Format(Resources.OrderNumber_f,
+                    Model.OrderNumber, CreatingUserName) : Resources.NewOrder;
             }
         }
 

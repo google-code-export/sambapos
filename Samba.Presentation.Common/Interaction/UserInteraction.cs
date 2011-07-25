@@ -8,6 +8,7 @@ using System.ComponentModel.Composition;
 using PropertyEditorLibrary;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
+using Samba.Localization.Properties;
 
 namespace Samba.Presentation.Common.Interaction
 {
@@ -142,8 +143,8 @@ namespace Samba.Presentation.Common.Interaction
                            {
                                Title = caption,
                                DescriptionLabel = { Content = description },
-                               ValuesLabel = { Content = singularName + " Listesi" },
-                               SelectedValuesLabel = { Content = "Seçilen " + pluralName }
+                               ValuesLabel = { Content = string.Format(Resources.List_f, singularName) },
+                               SelectedValuesLabel = { Content = string.Format(Resources.Selected_f, pluralName) }
                            };
             form.ShowDialog();
 

@@ -8,6 +8,7 @@ using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
@@ -23,13 +24,13 @@ namespace Samba.Modules.TicketModule
 
         public SelectedTicketItemsViewModel()
         {
-            CloseCommand = new CaptionCommand<string>("Kapat", OnCloseCommandExecuted);
+            CloseCommand = new CaptionCommand<string>(Resources.Close, OnCloseCommandExecuted);
             SelectReasonCommand = new DelegateCommand<int?>(OnReasonSelected);
             SelectTicketTagCommand = new DelegateCommand<TicketTag>(OnTicketTagSelected);
             PortionSelectedCommand = new DelegateCommand<MenuItemPortion>(OnPortionSelected);
             PropertySelectedCommand = new DelegateCommand<MenuItemProperty>(OnPropertySelected);
-            UpdateExtraPropertiesCommand = new CaptionCommand<string>("Güncelle", OnUpdateExtraProperties);
-            UpdateFreeTagCommand = new CaptionCommand<string>("Ekle ve Kaydet", OnUpdateFreeTag, CanUpdateFreeTag);
+            UpdateExtraPropertiesCommand = new CaptionCommand<string>(Resources.Update, OnUpdateExtraProperties);
+            UpdateFreeTagCommand = new CaptionCommand<string>(Resources.AddAndSave, OnUpdateFreeTag, CanUpdateFreeTag);
             SelectedItemPortions = new ObservableCollection<MenuItemPortion>();
             SelectedItemPropertyGroups = new ObservableCollection<MenuItemPropertyGroup>();
             Reasons = new ObservableCollection<Reason>();

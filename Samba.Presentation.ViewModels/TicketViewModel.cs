@@ -6,6 +6,7 @@ using System.Windows.Data;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Services;
@@ -156,7 +157,7 @@ namespace Samba.Presentation.ViewModels
                 var time = new TimeSpan(DateTime.Now.Ticks - Model.Date.Ticks).TotalMinutes.ToString("#");
 
                 return !string.IsNullOrEmpty(time)
-                    ? string.Format("{0} ({1} dk.)", Model.Date.ToShortTimeString(), time)
+                    ? string.Format(Resources.TicketTimeDisplay_f, Model.Date.ToShortTimeString(), time)
                     : Model.Date.ToShortTimeString();
             }
         }
@@ -168,7 +169,7 @@ namespace Samba.Presentation.ViewModels
                 if (IsPaid) return Model.LastOrderDate.ToString();
                 var time = new TimeSpan(DateTime.Now.Ticks - Model.LastOrderDate.Ticks).TotalMinutes.ToString("#");
                 return !string.IsNullOrEmpty(time)
-                    ? string.Format("{0} ({1} dk.)", Model.LastOrderDate.ToShortTimeString(), time)
+                    ? string.Format(Resources.TicketTimeDisplay_f, Model.LastOrderDate.ToShortTimeString(), time)
                     : Model.LastOrderDate.ToShortTimeString();
             }
         }
@@ -180,7 +181,7 @@ namespace Samba.Presentation.ViewModels
                 if (!IsPaid) return Model.LastPaymentDate != Model.Date ? Model.LastPaymentDate.ToShortTimeString() : "-";
                 var time = new TimeSpan(Model.LastPaymentDate.Ticks - Model.Date.Ticks).TotalMinutes.ToString("#");
                 return !string.IsNullOrEmpty(time)
-                    ? string.Format("{0} ({1} dk.)", Model.LastPaymentDate, time)
+                    ? string.Format(Resources.TicketTimeDisplay_f, Model.LastPaymentDate, time)
                     : Model.LastPaymentDate.ToString();
             }
         }
@@ -341,7 +342,7 @@ namespace Samba.Presentation.ViewModels
 
         public bool IsLocked { get { return Model.Locked; } set { Model.Locked = value; } }
         public bool IsTagged { get { return !string.IsNullOrEmpty(Model.Tag); } }
-        
+
         public void UpdatePaidItems(IEnumerable<PaidItem> paidItems)
         {
             Model.PaidItems.Clear();
@@ -372,16 +373,16 @@ namespace Samba.Presentation.ViewModels
                 string selectedTicketTitle;
 
                 if (!string.IsNullOrEmpty(Location) && Model.Id == 0)
-                    selectedTicketTitle = "Masa: " + Location;
+                    selectedTicketTitle = string.Format(Resources.Table_f, Location);
                 else if (!string.IsNullOrEmpty(CustomerName) && Model.Id == 0)
-                    selectedTicketTitle = "Hesap: " + CustomerName;
+                    selectedTicketTitle = string.Format(Resources.Account_f, CustomerName);
                 else if (string.IsNullOrEmpty(CustomerName)) selectedTicketTitle = string.IsNullOrEmpty(Location)
                      ? string.Format("# {0}", Model.TicketNumber)
-                     : string.Format("# {0} Masa: {1}", Model.TicketNumber, Location);
+                     : string.Format(Resources.TicketNumberAndTable_f, Model.TicketNumber, Location);
                 else if (string.IsNullOrEmpty(Location)) selectedTicketTitle = string.IsNullOrEmpty(CustomerName)
                      ? string.Format("# {0}", Model.TicketNumber)
-                     : string.Format("# {0} Hesap: {1}", Model.TicketNumber, CustomerName);
-                else selectedTicketTitle = string.Format("# {0} Hesap: {1}\rMasa: {2}", Model.TicketNumber, CustomerName, Location);
+                     : string.Format(Resources.TicketNumberAndAccount_f, Model.TicketNumber, CustomerName);
+                else selectedTicketTitle = string.Format(Resources.AccountNameAndTableName_f, Model.TicketNumber, CustomerName, Location);
 
                 return selectedTicketTitle;
             }
@@ -417,13 +418,13 @@ namespace Samba.Presentation.ViewModels
 
         public string GetPrintError()
         {
-            if (Items.Count(x => x.TotalPrice == 0) > 0)
-                return "Adisyonda sıfır fiyatlı ürün varken bu işlem yapılamaz.";
+            if (Items.Count(x => x.TotalPrice == 0 && !x.IsGifted && !x.IsVoided) > 0)
+                return Resources.CantCompleteOperationWhenThereIsZeroPricedProduct;
             if (!IsPaid && Items.Count > 0)
             {
                 var tg = AppServices.MainDataContext.SelectedDepartment.TicketTagGroups.FirstOrDefault(
                         x => x.ForceValue && !IsTaggedWith(x.Name));
-                if (tg != null) return tg.Name + " boş bırakılamaz";
+                if (tg != null) return string.Format(Resources.TagCantBeEmpty_f, tg.Name);
             }
             return "";
         }

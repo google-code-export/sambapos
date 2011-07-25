@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 
@@ -41,7 +42,7 @@ namespace Samba.Presentation.ViewModels
 
         public IEnumerable<TicketItemViewModel> LastTicketLines { get { return LastTicket != null ? LastTicket.TicketItems.Where(x => !x.Gifted || !x.Voided).Select(x=>new TicketItemViewModel(x)) : null; } }
         public decimal TicketTotal { get { return LastTicket != null ? LastTicket.GetSum() : 0; } }
-        public string LastTicketStateString { get { return LastTicket != null ? (LastTicket.IsPaid ? "Ödendi" : "Açık") : ""; } }
+        public string LastTicketStateString { get { return LastTicket != null ? (LastTicket.IsPaid ? Resources.Paid : Resources.Open) : ""; } }
         public decimal TotalTicketAmount { get; private set; }
 
     }

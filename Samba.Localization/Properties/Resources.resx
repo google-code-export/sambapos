@@ -211,7 +211,7 @@ Changing PIN will hide this hint</value>
     <value>Operation Income</value>
   </data>
   <data name="StartOfDay" xml:space="preserve">
-    <value>Start Of Day</value>
+    <value>Begining of Work Period</value>
   </data>
   <data name="NewIncomeTransaction" xml:space="preserve">
     <value>New Income Transaction</value>
@@ -1267,7 +1267,7 @@ Payment</value>
   <data name="SambaPosWebsite" xml:space="preserve">
     <value>SambaPOS Website</value>
   </data>
-  <data name="Samba Network" xml:space="preserve">
+  <data name="SambaNetwork" xml:space="preserve">
     <value>Samba Network</value>
   </data>
   <data name="CanStartEndOfDay" xml:space="preserve">
@@ -1384,7 +1384,7 @@ Payment</value>
   <data name="EndWorkPeriod" xml:space="preserve">
     <value>End Work Period</value>
   </data>
-  <data name="Starting Work Period Completed" xml:space="preserve">
+  <data name="StartingWorkPeriodCompleted" xml:space="preserve">
     <value>Work Period Started.</value>
   </data>
   <data name="ThereAreOpenTicketsWarning_f" xml:space="preserve">
@@ -1473,42 +1473,397 @@ Can't end Work Period while tickets open</value>
     <value>Select Table</value>
   </data>
   <data name="TableList" xml:space="preserve">
-    <value>Masa Listesi</value>
+    <value>Table List</value>
   </data>
   <data name="SelectTableDialogHint_f" xml:space="preserve">
-    <value>{0} görünümüne eklemek istediğiniz masaları seçiniz</value>
+    <value>Select tables you want to add to {0} view</value>
   </data>
   <data name="TableView" xml:space="preserve">
-    <value>Masa Görünümü</value>
+    <value>Table View</value>
   </data>
   <data name="EditMode" xml:space="preserve">
-    <value>Düzenleme Modu</value>
+    <value>Design Mode</value>
     <comment>MenuItem.Header</comment>
   </data>
-	<data name="NextPage">
-		<value xml:space="preserve">Sonraki Sayfa</value>
+  <data name="NextPage" xml:space="preserve">
+    <value>Next Page</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
+  <data name="TablesMerged_f" xml:space="preserve">
+    <value>{0} ticket
+merged with {1} table.</value>
+  </data>
+  <data name="TicketMergedToTable_f" xml:space="preserve">
+    <value>Ticket merged with {0} table.</value>
+  </data>
+  <data name="TicketMovedToTable_f" xml:space="preserve">
+    <value>{0} ticket
+moved to {1} table.</value>
+  </data>
+  <data name="SelectTableThatYouWantToMoveTicket_f" xml:space="preserve">
+    <value>Select the Table to move {0} ticket.</value>
+  </data>
+  <data name="SelectTableForTicket" xml:space="preserve">
+    <value>Select table for ticket.</value>
+  </data>
+  <data name="SelectTableForOperation" xml:space="preserve">
+    <value>Select the table you want to add orders.</value>
+  </data>
+  <data name="FindProduct" xml:space="preserve">
+    <value>Find Product</value>
+    <comment>FxButton:FlexButton content</comment>
+  </data>
+  <data name="FindTicket" xml:space="preserve">
+    <value>Find Ticket</value>
+    <comment>FxButton:FlexButton content</comment>
+  </data>
+  <data name="FindTable" xml:space="preserve">
+    <value>Find Table</value>
+    <comment>FxButton:FlexButton content</comment>
+  </data>
+  <data name="DiscountTotal" xml:space="preserve">
+    <value>Discount Total</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="PaymentTotal" xml:space="preserve">
+    <value>Payment Total</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ChargedAmount" xml:space="preserve">
+    <value>Charged Amount</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Portions" xml:space="preserve">
+    <value>Portions</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="ExtraModifiers" xml:space="preserve">
+    <value>Extra Modifiers</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="AddAndSave" xml:space="preserve">
+    <value>Add And Save</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OpenClose_ab" xml:space="preserve">
+    <value>Op-Cls</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="TicketOpeningTime" xml:space="preserve">
+    <value>Ticket Opening</value>
+    <comment>TextBlock content</comment>
+  </data>
+  <data name="LastOrderTime" xml:space="preserve">
+    <value>Last Order</value>
+    <comment>TextBlock content</comment>
+  </data>
+  <data name="LastPaymentTime" xml:space="preserve">
+    <value>Last Payment</value>
+    <comment>TextBlock content</comment>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="CloseTicket_r" xml:space="preserve">
+    <value>Close
+Ticket</value>
+  </data>
+  <data name="CashPayment_r" xml:space="preserve">
+    <value>Cash
+Payment</value>
+  </data>
+  <data name="CreditCard_r" xml:space="preserve">
+    <value>Credit
+Card</value>
+  </data>
+  <data name="SelectCustomer" xml:space="preserve">
+    <value>Select Customer</value>
+  </data>
+  <data name="AllTickets_r" xml:space="preserve">
+    <value>All
+Tickets</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>Void</value>
+  </data>
+  <data name="Divide" xml:space="preserve">
+    <value>Divide</value>
+  </data>
+  <data name="ExtraModifier" xml:space="preserve">
+    <value>Ekstra Modifier</value>
+  </data>
+  <data name="ReleaseLock" xml:space="preserve">
+    <value>Release Lock</value>
+  </data>
+  <data name="ChangePrice" xml:space="preserve">
+    <value>Change Price</value>
+  </data>
+  <data name="ForChangingPriceTypeAPrice" xml:space="preserve">
+    <value>For changing price first type a price from numerator</value>
+  </data>
+  <data name="NewTicket" xml:space="preserve">
+    <value>New Ticket</value>
+  </data>
+  <data name="ChangeTable_r" xml:space="preserve">
+    <value>Change
+Table</value>
+  </data>
+  <data name="SelectTable_r" xml:space="preserve">
+    <value>Select
+Table</value>
+  </data>
+  <data name="CustomerInfo_r" xml:space="preserve">
+    <value>Customer
+Info</value>
+  </data>
+  <data name="ChangeAmount_f" xml:space="preserve">
+    <value>Change Amount: {0}</value>
+  </data>
+  <data name="AccountBalance_r" xml:space="preserve">
+    <value>Account
+Balance</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Round</value>
+  </data>
+  <data name="Flat" xml:space="preserve">
+    <value>Flat</value>
+  </data>
+  <data name="DiscountPercentSign" xml:space="preserve">
+    <value>Discount %</value>
+  </data>
+  <data name="CanReleaseTicketLock" xml:space="preserve">
+    <value>Can Remove Ticket Lock</value>
+  </data>
+  <data name="CanRemoveTicketTag" xml:space="preserve">
+    <value>Can Remove Ticket Tag</value>
+  </data>
+  <data name="CanGiftItems" xml:space="preserve">
+    <value>Can Gift Items</value>
+  </data>
+  <data name="CanVoidItems" xml:space="preserve">
+    <value>Can Void Items</value>
+  </data>
+  <data name="CanMoveTicketLines" xml:space="preserve">
+    <value>Can Move Items</value>
+  </data>
+  <data name="CanMergeTickets" xml:space="preserve">
+    <value>Can Merge Tickets</value>
+  </data>
+  <data name="CanDisplayOldTickets" xml:space="preserve">
+    <value>Can Display Old Tickets</value>
+  </data>
+  <data name="CanMoveUnlockedTicketLines" xml:space="preserve">
+    <value>Can Move Unlocked Ticket Lines</value>
+  </data>
+  <data name="CanUpdateExtraModifiers" xml:space="preserve">
+    <value>Can Update Extra Modifiers</value>
+  </data>
+  <data name="CanGetPayment" xml:space="preserve">
+    <value>Can Get Payment</value>
+  </data>
+  <data name="CanGetFastPayment" xml:space="preserve">
+    <value>Can Get Fast Payment</value>
+  </data>
+  <data name="CanMakeDiscount" xml:space="preserve">
+    <value>Can Make Discount</value>
+  </data>
+  <data name="CanRoundTicketTotal" xml:space="preserve">
+    <value>Can Round Ticket Total</value>
+  </data>
+  <data name="CanFlattenTicketTotal" xml:space="preserve">
+    <value>Can Flatten Ticket Total</value>
+  </data>
+  <data name="OnlyOpenTickets" xml:space="preserve">
+    <value>Open Tickets Only</value>
+  </data>
+  <data name="AllTickets" xml:space="preserve">
+    <value>All Tickets</value>
+  </data>
+  <data name="Total_f" xml:space="preserve">
+    <value>Total: {0}</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Main Menu</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="DeleteErrorAdminUser" xml:space="preserve">
+    <value>Can't delete admin user.</value>
+  </data>
+  <data name="DeleteErrorLastUser" xml:space="preserve">
+    <value>Can't delete last User Account</value>
+  </data>
+  <data name="DeleteErrorUserDidTicketOperation" xml:space="preserve">
+    <value>Can't delete because this User created Tickets.</value>
+  </data>
+  <data name="UserRoleList" xml:space="preserve">
+    <value>Role List</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="UserList" xml:space="preserve">
+    <value>User List</value>
+  </data>
+  <data name="DeleteErrorThisRoleUsedInAUserAccount" xml:space="preserve">
+    <value>Can't delete because this Role assigned to a User Account</value>
+  </data>
+  <data name="UserRoleName" xml:space="preserve">
+    <value>Role Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Permissions</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>User Role</value>
+  </data>
+  <data name="PinCode" xml:space="preserve">
+    <value>Pin Code</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="SaveErrorThisPinCodeInUse" xml:space="preserve">
+    <value>This Pin Code used by another user account.</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>Button content</comment>
+  </data>
+  <data name="PropertyEditor" xml:space="preserve">
+    <value>Property Editor</value>
+    <comment>Window.Title</comment>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+    <comment>Button content</comment>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="DisplayAllValues" xml:space="preserve">
+    <value>Display All Values</value>
+    <comment>MenuItem.Header</comment>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Selected_f" xml:space="preserve">
+    <value>Selected {0}</value>
+  </data>
+  <data name="WorkPeriodEndsMessage" xml:space="preserve">
+    <value>Work Period ends.
+Visit Reports section and create Work Period Reports</value>
+  </data>
+  <data name="DontForgetEndingWorkPeriod" xml:space="preserve">
+    <value>DON'T FORGET ENDING WORK PERIOD!</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>Ödendi</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="AutoFlatten_ab" xml:space="preserve">
+    <value>Auto Flatten</value>
+  </data>
+  <data name="Rounding" xml:space="preserve">
+    <value>Rounding</value>
+  </data>
+  <data name="Flattening" xml:space="preserve">
+    <value>Flattening</value>
+  </data>
+  <data name="AccountBalance" xml:space="preserve">
+    <value>Account Balance</value>
+  </data>
+  <data name="UndefinedPaymentType" xml:space="preserve">
+    <value>Undefined Payment Type</value>
+  </data>
+  <data name="Angle" xml:space="preserve">
+    <value>Angle</value>
+  </data>
+  <data name="CornerRadius" xml:space="preserve">
+    <value>Corner Radius</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+	<data name="Gift_ab">
+		<value><![CDATA[[Gift] ]]></value>
 	</data>
-	<data name="PreviousPage">
-		<value xml:space="preserve">Önceki Sayfa</value>
+	<data name="Void_ab">
+		<value><![CDATA[[Void] ]]></value>
 	</data>
-	<data name="TablesMerged_f">
-		<value><![CDATA[{0} adisyonu
-{1} masası ile birleştirildi.]]></value>
+	<data name="OrderNumber_f">
+		<value xml:space="preserve">Order No: {0:0} - {1}</value>
 	</data>
-	<data name="TicketMergedToTable_f">
-		<value xml:space="preserve">Adisyon {0} masası ile birleştirildi.</value>
+	<data name="NewOrder">
+		<value xml:space="preserve">New Order</value>
 	</data>
-	<data name="TicketMovedToTable_f">
-		<value><![CDATA[{0} adisyonu
-{1} masasına taşındı.]]></value>
+	<data name="Back">
+		<value xml:space="preserve">Back</value>
 	</data>
-	<data name="SelectTableThatYouWantToMoveTicket_f">
-		<value xml:space="preserve">{0} adisyonunu taşıyacağınız masayı seçiniz.</value>
+	<data name="Empty">
+		<value xml:space="preserve">Empty</value>
 	</data>
-	<data name="SelectTableForTicket">
-		<value xml:space="preserve">Adisyon için masa seçiniz.</value>
+	<data name="TicketTimeDisplay_f">
+		<value xml:space="preserve">{0} ({1} min.)</value>
 	</data>
-	<data name="SelectTableForOperation">
-		<value xml:space="preserve">İşlem yapmak istediğiniz masayı seçiniz.</value>
+	<data name="Table_f">
+		<value xml:space="preserve">Table: {0}</value>
+	</data>
+	<data name="Account_f">
+		<value xml:space="preserve">Account: {0}</value>
+	</data>
+	<data name="TicketNumberAndTable_f">
+		<value xml:space="preserve"># {0} Table: {1}</value>
+	</data>
+	<data name="TicketNumberAndAccount_f">
+		<value xml:space="preserve"># {0} Table: {1}</value>
+	</data>
+	<data name="AccountNameAndTableName_f">
+		<value><![CDATA[# {0} Account: {1}
+Table: {2}]]></value>
+	</data>
+	<data name="CantCompleteOperationWhenThereIsZeroPricedProduct">
+		<value xml:space="preserve">Can't complete this operation while zero priced orders exists.</value>
+	</data>
+	<data name="TagCantBeEmpty_f">
+		<value xml:space="preserve">Can't leave {0} empty</value>
 	</data>
 </root>

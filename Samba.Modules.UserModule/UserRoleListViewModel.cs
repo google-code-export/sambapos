@@ -1,4 +1,5 @@
 ﻿using Samba.Domain.Models.Users;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;
 
@@ -19,7 +20,7 @@ namespace Samba.Modules.UserModule
         protected override string CanDeleteItem(UserRole model)
         {
             var count = Dao.Count<User>(x => x.UserRole.Id == model.Id);
-            if (count > 0) return "Bu rol bir kullanıcı hesabında kullanılmakta olduğu için silinemez.";
+            if (count > 0) return Resources.DeleteErrorThisRoleUsedInAUserAccount;
             return base.CanDeleteItem(model);
         }
     }

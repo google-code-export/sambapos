@@ -117,7 +117,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StopWorkPeriod(EndDescription);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
-            InteractionService.UserIntraction.GiveFeedback("Gün Sonu İşlemi Tamamlandı.\rRaporlar bölümünden gün sonu raporlarınızı alınız.");
+            InteractionService.UserIntraction.GiveFeedback(Resources.WorkPeriodEndsMessage);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }
 
@@ -132,7 +132,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StartWorkPeriod(StartDescription, CashAmount, CreditCardAmount, TicketAmount);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
-            InteractionService.UserIntraction.GiveFeedback(Resources.Starting_Work_Period_Completed);
+            InteractionService.UserIntraction.GiveFeedback(Resources.StartingWorkPeriodCompleted);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }
 
