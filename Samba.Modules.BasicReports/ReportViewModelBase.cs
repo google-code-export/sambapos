@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Windows.Threading;
 using Samba.Domain.Models.Settings;
+using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
@@ -109,6 +110,7 @@ namespace Samba.Modules.BasicReports
             {
                 worker.DoWork += delegate
                 {
+                    LocalSettings.UpdateThreadLanguage();
                     var doc = GetReport();
                     XamlWriter.Save(doc, memStream);
                     memStream.Position = 0;

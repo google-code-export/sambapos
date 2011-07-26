@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Documents;
+using Samba.Localization.Properties;
 
 namespace Samba.Modules.BasicReports.Reports.AccountReport
 {
@@ -10,12 +11,12 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
     {
         protected override FlowDocument GetReport()
         {
-            return CreateReport("Borçlu Hesaplar", true, false);
+            return CreateReport(Resources.AccountsReceivable, true, false);
         }
 
         protected override string GetHeader()
         {
-            return "Borçlu Hesaplar";
+            return Resources.AccountsReceivable;
         }
     }
 }

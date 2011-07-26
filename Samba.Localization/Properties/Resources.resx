@@ -204,7 +204,7 @@ Changing PIN will hide this hint</value>
     <comment>GridViewColumn.Header</comment>
   </data>
   <data name="Voucher_ab" xml:space="preserve">
-    <value>Vouchr</value>
+    <value>Vochr</value>
     <comment>GridViewColumn.Header</comment>
   </data>
   <data name="OperationIncome" xml:space="preserve">
@@ -1896,4 +1896,154 @@ Table: {2}</value>
   <data name="UndefinedWithBrackets" xml:space="preserve">
     <value>[Undefined]</value>
   </data>
+  <data name="TicketWithBrackets">
+    <value xml:space="preserve">[Ticket]</value>
+  </data>
+  <data name="As_f">
+    <value xml:space="preserve">As of {0}</value>
+  </data>
+  <data name="Accounts">
+    <value xml:space="preserve">Accounts</value>
+  </data>
+  <data name="NoTransactionsFoundFor_f">
+    <value xml:space="preserve">No transactions for {0}</value>
+  </data>
+  <data name="InternalAccounts">
+    <value xml:space="preserve">Internal Accounts</value>
+  </data>
+  <data name="AccountsLiability">
+    <value xml:space="preserve">Accounts Liability</value>
+  </data>
+  <data name="AccountsReceivable">
+    <value xml:space="preserve">Accounts Receivable</value>
+  </data>
+	<data name="CashReport">
+		<value xml:space="preserve">Cash Drawer Report</value>
+	</data>
+	<data name="DateRangeIsNotActiveWorkPeriod">
+		<value xml:space="preserve">Date range is not in active work period</value>
+	</data>
+	<data name="ReportDoesNotContainsCashState">
+		<value xml:space="preserve">Report does not contain Start Amounts</value>
+	</data>
+	<data name="Expenses">
+		<value xml:space="preserve">Expenses</value>
+	</data>
+	<data name="CashTransactions">
+		<value xml:space="preserve">Cash Transactions</value>
+	</data>
+	<data name="Totals">
+		<value xml:space="preserve">Totals</value>
+	</data>
+	<data name="TotalExpense">
+		<value xml:space="preserve">Total Expense</value>
+	</data>
+	<data name="Incomes">
+		<value xml:space="preserve">Incomes</value>
+	</data>
+	<data name="StartAmount">
+		<value xml:space="preserve">Start Amounts</value>
+	</data>
+	<data name="SalesIncome">
+		<value xml:space="preserve">Sales Income</value>
+	</data>
+	<data name="TotalIncome">
+		<value xml:space="preserve">Total Income</value>
+	</data>
+	<data name="Cash Status">
+		<value xml:space="preserve">Cash Status</value>
+	</data>
+	<data name="Drawer">
+		<value xml:space="preserve">Cash Drawer</value>
+	</data>
+	<data name="WorkPeriodReport">
+		<value xml:space="preserve">Work Period Report</value>
+	</data>
+	<data name="Sales">
+		<value xml:space="preserve">Sales</value>
+	</data>
+	<data name="GeneralInformation">
+		<value xml:space="preserve">General Information</value>
+	</data>
+	<data name="ItemProperties">
+		<value xml:space="preserve">Extra Item Properties</value>
+	</data>
+	<data name="VoidsTotal">
+		<value xml:space="preserve">Voids Total</value>
+	</data>
+	<data name="DiscountsTotal">
+		<value xml:space="preserve">Discounts Total</value>
+	</data>
+	<data name="GiftsTotal">
+		<value xml:space="preserve">Gifts Total</value>
+	</data>
+	<data name="TicketCount">
+		<value xml:space="preserve">Ticket Count</value>
+	</data>
+	<data name="SalesDivTicket">
+		<value xml:space="preserve">Sales Total / Ticket</value>
+	</data>
+	<data name="Incomes_f">
+		<value xml:space="preserve">{0} Incomes</value>
+	</data>
+	<data name="TotalAmount_f">
+		<value xml:space="preserve">{0} Total Amount:</value>
+	</data>
+	<data name="TicketTotal_f">
+		<value xml:space="preserve">Total {0}:</value>
+	</data>
+	<data name="TotalAmountDivTag_f">
+		<value xml:space="preserve">Total Amount / {0}:</value>
+	</data>
+	<data name="UserSales">
+		<value xml:space="preserve">User Sales</value>
+	</data>
+	<data name="ItemSales">
+		<value xml:space="preserve">Item Sales</value>
+	</data>
+	<data name="CostReport">
+		<value xml:space="preserve">Cost Report</value>
+	</data>
+	<data name="Average Cost">
+		<value xml:space="preserve">Average Cost</value>
+	</data>
+	<data name="ThereAreNoCostTransactionsInThisPeriod">
+		<value xml:space="preserve">There are no cost transactions in this work period.</value>
+	</data>
+	<data name="InventoryPurchaseReport">
+		<value xml:space="preserve">Inventory Purchase Report</value>
+	</data>
+	<data name="InventoryGroup">
+		<value xml:space="preserve">Inventory Group</value>
+	</data>
+	<data name="AveragePrice_ab">
+		<value xml:space="preserve">Avg.Price</value>
+	</data>
+	<data name="ItemSalesReport">
+		<value xml:space="preserve">Item Sales Report</value>
+	</data>
+	<data name="SalesByItemGroup">
+		<value xml:space="preserve">Sales by Item Group</value>
+	</data>
+	<data name="QuantitiesByItemGroup">
+		<value xml:space="preserve">Quantities by Item Group</value>
+	</data>
+	<data name="Voids">
+		<value xml:space="preserve">Voids</value>
+	</data>
+	<data name="Gifts">
+		<value xml:space="preserve">Gifts</value>
+	</data>
+	<data name="Discounts">
+		<value xml:space="preserve">Discounts</value>
+	</data>
+	<data name="Tickets">
+		<value xml:space="preserve">Tickets</value>
+	</data>
+	<data name="ByPersonnel_f">
+		<value xml:space="preserve">{0} by User</value>
+	</data>
+	<data name="NoPurchaseTransactionInCurrentDateRange">
+		<value xml:space="preserve">There are no purchase transactions in date range.</value>
+	</data>
 </root>

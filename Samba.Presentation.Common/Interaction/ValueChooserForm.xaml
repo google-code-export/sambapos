@@ -32,7 +32,10 @@
             </ListBox.ContextMenu>
         </ListBox>
         <uic:SearchTextBox Grid.Row="3" Margin="3" Name="SearchTextBox" Search="SearchTextBox_Search"
-             LabelText="Ara" KeyDown="SearchTextBox_KeyDown">
+             KeyDown="SearchTextBox_KeyDown">
+            <uic:SearchTextBox.LabelText>
+                <LocText ResourceIdentifierKey="Search"/>
+            </uic:SearchTextBox.LabelText>
         </uic:SearchTextBox>
         <Label Grid.Row="1" Grid.Column="2" Name="SelectedValuesLabel">
             <LocText ResourceIdentifierKey="Selected"/>

@@ -1897,4 +1897,154 @@ Masa: {2}]]>
   <data name="UndefinedWithBrackets" xml:space="preserve">
     <value>[Tanımsız]</value>
   </data>
+  <data name="TicketWithBrackets">
+    <value xml:space="preserve">[Adisyon]</value>
+  </data>
+  <data name="As_f">
+    <value xml:space="preserve">{0} itibariyle</value>
+  </data>
+  <data name="Accounts">
+    <value xml:space="preserve">Hesaplar</value>
+  </data>
+  <data name="NoTransactionsFoundFor_f">
+    <value xml:space="preserve">{0} bulunmamaktadır</value>
+  </data>
+  <data name="InternalAccounts">
+    <value xml:space="preserve">İç Kullanım Hesapları</value>
+  </data>
+  <data name="AccountsLiability">
+    <value xml:space="preserve">Borçlu Hesaplar</value>
+  </data>
+  <data name="AccountsReceivable">
+    <value xml:space="preserve">Alacaklı Hesaplar</value>
+  </data>
+  <data name="CashReport">
+    <value xml:space="preserve">Kasa Raporu</value>
+  </data>
+  <data name="DateRangeIsNotActiveWorkPeriod">
+    <value xml:space="preserve">Tarih aralığı aktif çalışma dönemi değil.</value>
+  </data>
+  <data name="ReportDoesNotContainsCashState">
+    <value xml:space="preserve">Değerler kasa devirlerini içermemektedir.</value>
+  </data>
+  <data name="Expenses">
+    <value xml:space="preserve">Giderler</value>
+  </data>
+  <data name="CashTransactions">
+    <value xml:space="preserve">KASA HAREKETLERİ</value>
+  </data>
+  <data name="Totals">
+    <value xml:space="preserve">TOPLAMLAR</value>
+  </data>
+  <data name="TotalExpense">
+    <value xml:space="preserve">Toplam Gider</value>
+  </data>
+  <data name="Incomes">
+    <value xml:space="preserve">Gelirler</value>
+  </data>
+  <data name="StartAmount">
+    <value xml:space="preserve">Devreden</value>
+  </data>
+  <data name="SalesIncome">
+    <value xml:space="preserve">Satış Gelirleri</value>
+  </data>
+  <data name="TotalIncome">
+    <value xml:space="preserve">Toplam Gelir</value>
+  </data>
+  <data name="Cash Status">
+    <value xml:space="preserve">Kasa Durumu</value>
+  </data>
+  <data name="Drawer">
+    <value xml:space="preserve">Kasa</value>
+  </data>
+  <data name="WorkPeriodReport">
+    <value xml:space="preserve">Gün Sonu Raporu</value>
+  </data>
+  <data name="Sales">
+    <value xml:space="preserve">Satışlar</value>
+  </data>
+  <data name="GeneralInformation">
+    <value xml:space="preserve">Genel Bilgiler</value>
+  </data>
+  <data name="ItemProperties">
+    <value xml:space="preserve">İlave Özellikler</value>
+  </data>
+  <data name="VoidsTotal">
+    <value xml:space="preserve">İptaller Toplamı</value>
+  </data>
+  <data name="DiscountsTotal">
+    <value xml:space="preserve">İskontolar Toplamı</value>
+  </data>
+  <data name="GiftsTotal">
+    <value xml:space="preserve">İkramlar Toplamı</value>
+  </data>
+  <data name="TicketCount">
+    <value xml:space="preserve">Adisyon Sayısı</value>
+  </data>
+  <data name="SalesDivTicket">
+    <value xml:space="preserve">Ciro / Adisyon</value>
+  </data>
+  <data name="Incomes_f">
+    <value xml:space="preserve">{0} Gelirleri</value>
+  </data>
+  <data name="TotalAmount_f">
+    <value xml:space="preserve">{0} Toplam Tutarı:</value>
+  </data>
+  <data name="TicketTotal_f">
+    <value xml:space="preserve">Toplam {0}:</value>
+  </data>
+  <data name="TotalAmountDivTag_f">
+    <value xml:space="preserve">Toplam Tutar / {0}:</value>
+  </data>
+  <data name="UserSales">
+    <value xml:space="preserve">Kullanıcı Bazlı Satışlar</value>
+  </data>
+  <data name="ItemSales">
+    <value xml:space="preserve">Ürün Satışları</value>
+  </data>
+  <data name="CostReport">
+    <value xml:space="preserve">Maliyet Raporu</value>
+  </data>
+  <data name="Average Cost">
+    <value xml:space="preserve">Ortalama Maliyet</value>
+  </data>
+  <data name="ThereAreNoCostTransactionsInThisPeriod">
+    <value xml:space="preserve">Seçili dönemde maliyet hesaplanabilecek bir ürün bulunmuyor.</value>
+  </data>
+  <data name="InventoryPurchaseReport">
+    <value xml:space="preserve">Stok Alım Raporu</value>
+  </data>
+  <data name="InventoryGroup">
+    <value xml:space="preserve">Stok Grubu</value>
+  </data>
+  <data name="AveragePrice_ab">
+    <value xml:space="preserve">Ort.Fiyat</value>
+  </data>
+  <data name="ItemSalesReport">
+    <value xml:space="preserve">Ürün Satış Raporu</value>
+  </data>
+  <data name="SalesByItemGroup">
+    <value xml:space="preserve">Ürün Grubu Bazında Satışlar</value>
+  </data>
+  <data name="QuantitiesByItemGroup">
+    <value xml:space="preserve">Ürün Grubu Bazında Miktarlar</value>
+  </data>
+  <data name="Voids">
+    <value xml:space="preserve">İadeler</value>
+  </data>
+  <data name="Gifts">
+    <value xml:space="preserve">İkramlar</value>
+  </data>
+  <data name="Discounts">
+    <value xml:space="preserve">İskontolar</value>
+  </data>
+  <data name="Tickets">
+    <value xml:space="preserve">Adisyonlar</value>
+  </data>
+  <data name="ByPersonnel_f">
+    <value xml:space="preserve">Personel Bazlı {0}</value>
+  </data>
+	<data name="NoPurchaseTransactionInCurrentDateRange">
+		<value xml:space="preserve">Seçili dönemde hiç alım işlemi yapılmamış.</value>
+	</data>
 </root>

@@ -12,7 +12,7 @@ namespace Samba.Modules.BasicReports.Reports
             get
             {
                 var d = ReportContext.Departments.SingleOrDefault(x => x.Id == DepartmentId);
-                return d != null ? d.Name : "[Tanımsız]";
+                return d != null ? d.Name : Localization.Properties.Resources.UndefinedWithBrackets;
             }
         }
     }

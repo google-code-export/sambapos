@@ -10,7 +10,7 @@ namespace Samba.Modules.BasicReports.Reports
             get
             {
                 var user = ReportContext.Users.SingleOrDefault(x => x.Id == UserId);
-                return user != null ? user.Name : "[Tanımsız]";
+                return user != null ? user.Name : Localization.Properties.Resources.UndefinedWithBrackets;
             }
         }
         public decimal Amount { get; set; }

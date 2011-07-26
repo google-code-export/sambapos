@@ -28,7 +28,7 @@ namespace Samba.Modules.BasicReports.Reports
                 if (sum > 0)
                     menuItemInfoGroup.Rate = (menuItemInfoGroup.Amount * 100) / sum;
                 if (string.IsNullOrEmpty(menuItemInfoGroup.GroupName))
-                    menuItemInfoGroup.GroupName = "[Tanımsız / Boş Grup]";
+                    menuItemInfoGroup.GroupName = Localization.Properties.Resources.UndefinedWithBrackets;
             }
 
             var qsum = menuItemInfoGroups.Sum(x => x.Quantity);
@@ -37,7 +37,7 @@ namespace Samba.Modules.BasicReports.Reports
                 if (qsum > 0)
                     menuItemInfoGroup.QuantityRate = (menuItemInfoGroup.Quantity * 100) / qsum;
                 if (string.IsNullOrEmpty(menuItemInfoGroup.GroupName))
-                    menuItemInfoGroup.GroupName = "[Tanımsız / Boş Grup]";
+                    menuItemInfoGroup.GroupName = Localization.Properties.Resources.UndefinedWithBrackets;
             }
             
             return result;

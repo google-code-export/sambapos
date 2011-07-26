@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 
 namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 {
@@ -20,12 +21,12 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
             var currentPeriod = ReportContext.CurrentWorkPeriod;
 
             var report = new SimpleReport("8cm");
-            AddDefaultReportHeader(report, currentPeriod, "Gün Sonu Raporu");
+            AddDefaultReportHeader(report, currentPeriod, Resources.WorkPeriodReport);
 
             //---------------
 
             report.AddColumTextAlignment("Departman", TextAlignment.Left, TextAlignment.Right);
-            report.AddTable("Departman", "Satışlar", "");
+            report.AddTable("Departman", Resources.Sales, "");
 
             var ticketGropus = ReportContext.Tickets
                 .GroupBy(x => new { x.DepartmentId })
@@ -39,20 +40,20 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                 }
             }
 
-            report.AddRow("Departman", "TOPLAM Satışlar", ticketGropus.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+            report.AddRow("Departman", Resources.TotalSales.ToUpper(), ticketGropus.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
 
             //---------------
 
             var ac = ReportContext.GetOperationalAmountCalculator();
 
-            report.AddColumnLength("Gelirler", "45*", "Auto", "35*");
-            report.AddColumTextAlignment("Gelirler", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
-            report.AddTable("Gelirler", "Gelirler", "", "");
-            report.AddRow("Gelirler", "Nakit", ac.CashPercent, ac.CashTotal.ToString(ReportContext.CurrencyFormat));
-            report.AddRow("Gelirler", "Kredi Kartı", ac.CreditCardPercent, ac.CreditCardTotal.ToString(ReportContext.CurrencyFormat));
-            report.AddRow("Gelirler", "Yemek Çeki", ac.TicketPercent, ac.TicketTotal.ToString(ReportContext.CurrencyFormat));
-            report.AddRow("Gelirler", "Açık Hesap", ac.AccountPercent, ac.AccountTotal.ToString(ReportContext.CurrencyFormat));
-            report.AddRow("Gelirler", "TOPLAM Gelir", "", ac.TotalAmount.ToString(ReportContext.CurrencyFormat));
+            report.AddColumnLength("GelirlerTablosu", "45*", "Auto", "35*");
+            report.AddColumTextAlignment("GelirlerTablosu", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
+            report.AddTable("GelirlerTablosu", Resources.Incomes, "", "");
+            report.AddRow("GelirlerTablosu", Resources.Cash, ac.CashPercent, ac.CashTotal.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("GelirlerTablosu", Resources.CreditCard, ac.CreditCardPercent, ac.CreditCardTotal.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("GelirlerTablosu", Resources.Voucher, ac.TicketPercent, ac.TicketTotal.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("GelirlerTablosu", Resources.AccountBalance, ac.AccountPercent, ac.AccountTotal.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("GelirlerTablosu", Resources.TotalIncome.ToUpper(), "", ac.TotalAmount.ToString(ReportContext.CurrencyFormat));
 
             //---------------
 
@@ -116,11 +117,11 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             report.AddColumTextAlignment("Bilgi", TextAlignment.Left, TextAlignment.Right);
             report.AddColumnLength("Bilgi", "65*", "35*");
-            report.AddTable("Bilgi", "Bilgiler", "");
-            report.AddRow("Bilgi", "İlave Özellikler", propertySum.ToString(ReportContext.CurrencyFormat));
-            report.AddRow("Bilgi", "İptaller Toplamı", voids.ToString(ReportContext.CurrencyFormat));
-            report.AddRow("Bilgi", "İskontolar Toplamı", discounts.ToString(ReportContext.CurrencyFormat));
-            report.AddRow("Bilgi", "İkramlar Toplamı", gifts.ToString(ReportContext.CurrencyFormat));
+            report.AddTable("Bilgi", Resources.GeneralInformation, "");
+            report.AddRow("Bilgi", Resources.ItemProperties, propertySum.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("Bilgi", Resources.VoidsTotal, voids.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("Bilgi", Resources.DiscountsTotal, discounts.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("Bilgi", Resources.GiftsTotal, gifts.ToString(ReportContext.CurrencyFormat));
 
             if (ticketGropus.Count() > 1)
                 foreach (var departmentInfo in ticketGropus)
@@ -130,9 +131,9 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             var ticketCount = ticketGropus.Sum(x => x.TicketCount);
 
-            report.AddRow("Bilgi", "Adisyon Sayısı", ticketCount);
+            report.AddRow("Bilgi", Resources.TicketCount, ticketCount);
 
-            report.AddRow("Bilgi", "Ciro / Adisyon", ticketCount > 0
+            report.AddRow("Bilgi", Resources.SalesDivTicket, ticketCount > 0
                 ? (ticketGropus.Sum(x => x.Amount) / ticketGropus.Sum(x => x.TicketCount)).ToString(ReportContext.CurrencyFormat)
                 : "0");
 
@@ -146,13 +147,13 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         .GroupBy(x => new { x.PaymentType })
                         .Select(x => new TenderedAmount { PaymentType = x.Key.PaymentType, Amount = x.Sum(y => y.Amount) });
 
-                    report.AddColumnLength(departmentInfo.DepartmentName + "Gelirler", "40*", "Auto", "35*");
-                    report.AddColumTextAlignment(departmentInfo.DepartmentName + "Gelirler", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
-                    report.AddTable(departmentInfo.DepartmentName + "Gelirler", departmentInfo.DepartmentName + " Gelirleri", "", "");
-                    report.AddRow(departmentInfo.DepartmentName + "Gelirler", "Nakit", GetPercent(0, dPayments), GetAmount(0, dPayments).ToString(ReportContext.CurrencyFormat));
-                    report.AddRow(departmentInfo.DepartmentName + "Gelirler", "Kredi Kartı", GetPercent(1, dPayments), GetAmount(1, dPayments).ToString(ReportContext.CurrencyFormat));
-                    report.AddRow(departmentInfo.DepartmentName + "Gelirler", "Yemek Çeki", GetPercent(2, dPayments), GetAmount(2, dPayments).ToString(ReportContext.CurrencyFormat));
-                    report.AddRow(departmentInfo.DepartmentName + "Gelirler", "TOPLAM Gelir", "", departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
+                    report.AddColumnLength(departmentInfo.DepartmentName + Resources.Incomes, "40*", "Auto", "35*");
+                    report.AddColumTextAlignment(departmentInfo.DepartmentName + Resources.Incomes, TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
+                    report.AddTable(departmentInfo.DepartmentName + Resources.Incomes, string.Format(Resources.Incomes_f, departmentInfo.DepartmentName), "", "");
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.Cash, GetPercent(0, dPayments), GetAmount(0, dPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.CreditCard, GetPercent(1, dPayments), GetAmount(1, dPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.Voucher, GetPercent(2, dPayments), GetAmount(2, dPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.TotalIncome, "", departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
 
                     var dvoids = ReportContext.Tickets
                         .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
@@ -171,9 +172,9 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         .Where(x => x.Gifted)
                         .Sum(x => x.GetItemValue());
 
-                    report.AddRow(departmentInfo.DepartmentName + "Gelirler", "İptaller Toplamı", "", dvoids.ToString(ReportContext.CurrencyFormat));
-                    report.AddRow(departmentInfo.DepartmentName + "Gelirler", "İskontolar Toplamı", "", ddiscounts.ToString(ReportContext.CurrencyFormat));
-                    report.AddRow(departmentInfo.DepartmentName + "Gelirler", "İkramlar Toplamı", "", dgifts.ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.VoidsTotal, "", dvoids.ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.DiscountsTotal, "", ddiscounts.ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.GiftsTotal, "", dgifts.ToString(ReportContext.CurrencyFormat));
                 }
             }
 
@@ -200,7 +201,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
                 report.AddColumTextAlignment("Etiket", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
                 report.AddColumnLength("Etiket", "45*", "Auto", "35*");
-                report.AddTable("Etiket", "Adisyon Etiketleri", "", "");
+                report.AddTable("Etiket", Resources.TicketTags, "", "");
 
                 foreach (var grp in tagGrp)
                 {
@@ -216,7 +217,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     if (tag != null)
                     {
                         var totalAmount = grp.Sum(x => x.Amount);
-                        report.AddRow("Etiket", string.Format("{0} Toplam Tutarı:", tag.Name), "", totalAmount.ToString(ReportContext.CurrencyFormat));
+                        report.AddRow("Etiket", string.Format(Resources.TotalAmount_f, tag.Name), "", totalAmount.ToString(ReportContext.CurrencyFormat));
 
                         var sum = 0m;
 
@@ -225,11 +226,11 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                             try
                             {
                                 sum = grp.Sum(x => Convert.ToDecimal(x.TagName.Split(':')[1]) * x.TicketCount);
-                                report.AddRow("Etiket", string.Format("Toplam {0}:", tag.Name), "", sum.ToString("#,##.##"));
+                                report.AddRow("Etiket", string.Format(Resources.TicketTotal_f, tag.Name), "", sum.ToString("#,##.##"));
                             }
                             catch (FormatException)
                             {
-                                report.AddRow("Etiket", string.Format("Toplam {0}:", tag.Name), "", "#Hata!");
+                                report.AddRow("Etiket", string.Format(Resources.TicketTotal_f, tag.Name), "", "#Hata!");
                             }
                         }
                         else
@@ -238,7 +239,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         }
 
                         var average = totalAmount / sum;
-                        report.AddRow("Etiket", string.Format("Toplam Tutar / {0}:", tag.Name), "", average.ToString(ReportContext.CurrencyFormat));
+                        report.AddRow("Etiket", string.Format(Resources.TotalAmountDivTag_f, tag.Name), "", average.ToString(ReportContext.CurrencyFormat));
                     }
                 }
             }
@@ -251,7 +252,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             report.AddColumTextAlignment("Garson", TextAlignment.Left, TextAlignment.Right);
             report.AddColumnLength("Garson", "65*", "35*");
-            report.AddTable("Garson", "Kullanıcı Bazlı Satışlar", "");
+            report.AddTable("Garson", Resources.UserSales, "");
 
             foreach (var ownerInfo in owners)
             {
@@ -262,7 +263,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             report.AddColumTextAlignment("Gıda", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
             report.AddColumnLength("Gıda", "45*", "Auto", "35*");
-            report.AddTable("Gıda", "Ürün Satışları", "", "");
+            report.AddTable("Gıda", Resources.ItemSales, "", "");
 
             foreach (var menuItemInfo in menuGroups)
             {
@@ -271,7 +272,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     menuItemInfo.Amount.ToString(ReportContext.CurrencyFormat));
             }
 
-            report.AddRow("Gıda", "Toplam", "", menuGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+            report.AddRow("Gıda", Resources.Total.ToUpper(), "", menuGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
             return report.Document;
         }
 
@@ -289,7 +290,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
         protected override string GetHeader()
         {
-            return "Gün Sonu Raporu";
+            return Resources.WorkPeriodReport;
         }
     }
 }

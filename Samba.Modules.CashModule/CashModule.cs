@@ -20,7 +20,7 @@ namespace Samba.Modules.CashModule
         {
             _regionManager = regionManager;
             _cashView = cashView;
-            NavigateCashViewCommand = new CategoryCommand<string>(Resources.Cash, Resources.Common, "images/Xls.png", OnNavigateCashView, CanNavigateCashView) { Order = 70 };
+            NavigateCashViewCommand = new CategoryCommand<string>(Resources.Drawer, Resources.Common, "images/Xls.png", OnNavigateCashView, CanNavigateCashView) { Order = 70 };
             PermissionRegistry.RegisterPermission(PermissionNames.NavigateCashView, PermissionCategories.Navigation, Resources.CanNavigateCash);
         }
 

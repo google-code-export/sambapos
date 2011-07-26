@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 
 namespace Samba.Modules.BasicReports.Reports.ProductReport
 {
@@ -12,13 +13,13 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
         {
             var report = new SimpleReport("8cm");
 
-            AddDefaultReportHeader(report, ReportContext.CurrentWorkPeriod, "Ürün Satış Raporu");
+            AddDefaultReportHeader(report, ReportContext.CurrentWorkPeriod, Resources.ItemSalesReport);
 
             var menuGroups = MenuGroupBuilder.CalculateMenuGroups(ReportContext.Tickets, ReportContext.MenuItems);
 
             report.AddColumTextAlignment("ÜrünGrubu", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
             report.AddColumnLength("ÜrünGrubu", "40*", "Auto", "35*");
-            report.AddTable("ÜrünGrubu", "Ürün Grubu Bazında Satışlar", "", "");
+            report.AddTable("ÜrünGrubu", Resources.SalesByItemGroup, "", "");
 
             foreach (var menuItemInfo in menuGroups)
             {
@@ -27,14 +28,14 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
                     menuItemInfo.Amount.ToString(ReportContext.CurrencyFormat));
             }
 
-            report.AddRow("ÜrünGrubu", "Toplam", "", menuGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+            report.AddRow("ÜrünGrubu", Resources.Total, "", menuGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
 
 
             //----------------------
 
             report.AddColumTextAlignment("ÜrünGrubuMiktar", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
             report.AddColumnLength("ÜrünGrubuMiktar", "40*", "Auto", "35*");
-            report.AddTable("ÜrünGrubuMiktar", "Ürün Grubu Bazında Miktarlar", "", "");
+            report.AddTable("ÜrünGrubuMiktar", Resources.QuantitiesByItemGroup, "", "");
 
             foreach (var menuItemInfo in menuGroups)
             {
@@ -43,7 +44,7 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
                     menuItemInfo.Quantity.ToString("#"));
             }
 
-            report.AddRow("ÜrünGrubuMiktar", "Toplam", "", menuGroups.Sum(x => x.Quantity).ToString("#"));
+            report.AddRow("ÜrünGrubuMiktar", Resources.Total, "", menuGroups.Sum(x => x.Quantity).ToString("#"));
 
 
             //----------------------
@@ -51,26 +52,26 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
             var menuItems = MenuGroupBuilder.CalculateMenuItems(ReportContext.Tickets, ReportContext.MenuItems)
                 .OrderByDescending(x => x.Quantity);
 
-            report.AddColumTextAlignment("Ürün", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
-            report.AddColumnLength("Ürün", "50*", "Auto", "25*");
-            report.AddTable("Ürün", "Ürün", "Adet", "Tutar");
+            report.AddColumTextAlignment("ÜrünTablosu", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
+            report.AddColumnLength("ÜrünTablosu", "50*", "Auto", "25*");
+            report.AddTable("ÜrünTablosu", Resources.MenuItem, Resources.Quantity, Resources.Amount);
 
             foreach (var menuItemInfo in menuItems)
             {
-                report.AddRow("Ürün",
+                report.AddRow("ÜrünTablosu",
                     menuItemInfo.Name,
                     string.Format("{0:0.##}", menuItemInfo.Quantity),
                     menuItemInfo.Amount.ToString(ReportContext.CurrencyFormat));
             }
 
-            report.AddRow("Ürün", "Toplam", "", menuItems.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+            report.AddRow("ÜrünTablosu", Resources.Total, "", menuItems.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
 
 
             //----------------------
 
 
-            PrepareModificationTable(report, x => x.Voided, "İadeler");
-            PrepareModificationTable(report, x => x.Gifted, "İkramlar");
+            PrepareModificationTable(report, x => x.Voided, Resources.Voids);
+            PrepareModificationTable(report, x => x.Gifted, Resources.Gifts);
 
             var discounts = ReportContext.Tickets
                 .SelectMany(x => x.Discounts.Select(y => new { x.TicketNumber, y.UserId, Amount = y.DiscountAmount }))
@@ -78,17 +79,17 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
 
             if (discounts.Count() > 0)
             {
-                report.AddColumTextAlignment("İskontolar", TextAlignment.Left, TextAlignment.Left, TextAlignment.Right);
-                report.AddColumnLength("İskontolar", "20*", "Auto", "35*");
-                report.AddTable("İskontolar", "İskontolar", "", "");
+                report.AddColumTextAlignment("İskontolarTablosu", TextAlignment.Left, TextAlignment.Left, TextAlignment.Right);
+                report.AddColumnLength("İskontolarTablosu", "20*", "Auto", "35*");
+                report.AddTable("İskontolarTablosu", Resources.Discounts, "", "");
 
                 foreach (var discount in discounts.OrderByDescending(x => x.Amount))
                 {
-                    report.AddRow("İskontolar", discount.TicketNumber, ReportContext.GetUserName(discount.UserId), discount.Amount.ToString(ReportContext.CurrencyFormat));
+                    report.AddRow("İskontolarTablosu", discount.TicketNumber, ReportContext.GetUserName(discount.UserId), discount.Amount.ToString(ReportContext.CurrencyFormat));
                 }
 
                 if (discounts.Count() > 1)
-                    report.AddRow("İskontolar", "Toplam", "", discounts.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow("İskontolarTablosu", Resources.Total, "", discounts.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
             }
 
             //----------------------
@@ -100,17 +101,17 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
             if (ticketGroups.Count() > 0)
             {
 
-                report.AddColumTextAlignment("Adisyonlar", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
-                report.AddColumnLength("Adisyonlar", "40*", "20*", "40*");
-                report.AddTable("Adisyonlar", "Adisyonlar", "", "");
+                report.AddColumTextAlignment("AdisyonlarTablosu", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
+                report.AddColumnLength("AdisyonlarTablosu", "40*", "20*", "40*");
+                report.AddTable("AdisyonlarTablosu", Resources.Tickets, "", "");
 
                 foreach (var ticketGroup in ticketGroups)
                 {
-                    report.AddRow("Adisyonlar", ReportContext.GetDepartmentName(ticketGroup.DepartmentId), ticketGroup.TicketCount.ToString("#.##"), ticketGroup.Amount.ToString(ReportContext.CurrencyFormat));
+                    report.AddRow("AdisyonlarTablosu", ReportContext.GetDepartmentName(ticketGroup.DepartmentId), ticketGroup.TicketCount.ToString("#.##"), ticketGroup.Amount.ToString(ReportContext.CurrencyFormat));
                 }
 
                 if (ticketGroups.Count() > 1)
-                    report.AddRow("Adisyonlar", "Toplam", ticketGroups.Sum(x => x.TicketCount).ToString("#.##"), ticketGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow("AdisyonlarTablosu", Resources.Total, ticketGroups.Sum(x => x.TicketCount).ToString("#.##"), ticketGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
             }
 
             //----------------------
@@ -124,13 +125,13 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
             if (properties.Count() > 0)
             {
 
-                report.AddColumTextAlignment("Özellikler", TextAlignment.Left, TextAlignment.Right);
-                report.AddColumnLength("Özellikler", "60*", "40*");
-                report.AddTable("Özellikler", "Özellikler", "");
+                report.AddColumTextAlignment("ÖzelliklerTablosu", TextAlignment.Left, TextAlignment.Right);
+                report.AddColumnLength("ÖzelliklerTablosu", "60*", "40*");
+                report.AddTable("ÖzelliklerTablosu", Resources.Properties, "");
 
                 foreach (var property in properties.OrderByDescending(x => x.Quantity))
                 {
-                    report.AddRow("Özellikler", property.Name, property.Quantity.ToString("#.##"));
+                    report.AddRow("ÖzelliklerTablosu", property.Name, property.Quantity.ToString("#.##"));
                 }
             }
             return report.Document;
@@ -161,7 +162,7 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
 
             report.AddColumTextAlignment("Personel" + title, TextAlignment.Left, TextAlignment.Right);
             report.AddColumnLength("Personel" + title, "60*", "40*");
-            report.AddTable("Personel" + title, "Personel Bazlı " + title, "");
+            report.AddTable("Personel" + title, string.Format(Resources.ByPersonnel_f, title), "");
 
             foreach (var voidItem in voidGroups.OrderByDescending(x => x.Amount))
             {
@@ -169,7 +170,7 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
             }
 
             if (voidGroups.Count() > 1)
-                report.AddRow("Personel" + title, "Toplam", voidGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+                report.AddRow("Personel" + title, Resources.Total, voidGroups.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
         }
 
         protected override void CreateFilterGroups()
@@ -180,7 +181,7 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
 
         protected override string GetHeader()
         {
-            return "Ürün Satış Raporu";
+            return Resources.ItemSalesReport;
         }
     }
 }

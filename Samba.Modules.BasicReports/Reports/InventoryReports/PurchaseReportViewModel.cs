@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Documents;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Modules.BasicReports.Reports.InventoryReports
@@ -20,7 +21,7 @@ namespace Samba.Modules.BasicReports.Reports.InventoryReports
         {
             var report = new SimpleReport("8cm");
 
-            AddDefaultReportHeader(report, ReportContext.CurrentWorkPeriod, "Stok Alım Raporu");
+            AddDefaultReportHeader(report, ReportContext.CurrentWorkPeriod, Resources.InventoryPurchaseReport);
 
             var transactionGroups = ReportContext.Transactions.SelectMany(x => x.TransactionItems)
                 .GroupBy(x => new { x.InventoryItem.GroupCode })
@@ -31,20 +32,20 @@ namespace Samba.Modules.BasicReports.Reports.InventoryReports
 
                 report.AddColumTextAlignment("GrupToplam", TextAlignment.Left, TextAlignment.Right);
                 report.AddColumnLength("GrupToplam", "60*", "40*");
-                report.AddTable("GrupToplam", "Stok Grubu", "Toplam");
-                
+                report.AddTable("GrupToplam", Resources.InventoryGroup, Resources.Total);
+
                 if (transactionGroups.Count() > 1)
                 {
                     foreach (var transactionItem in transactionGroups)
                     {
                         report.AddRow("GrupToplam",
-                            !string.IsNullOrEmpty(transactionItem.ItemName) ? transactionItem.ItemName : "[Tanımsız]",
+                            !string.IsNullOrEmpty(transactionItem.ItemName) ? transactionItem.ItemName : Resources.UndefinedWithBrackets,
                             transactionItem.Total.ToString(ReportContext.CurrencyFormat));
                     }
                 }
-                
+
                 report.AddRow("GrupToplam",
-                    "Toplam", transactionGroups.Sum(x => x.Total).ToString(ReportContext.CurrencyFormat));
+                    Resources.Total, transactionGroups.Sum(x => x.Total).ToString(ReportContext.CurrencyFormat));
             }
 
             var transactionItems = ReportContext.Transactions.SelectMany(x => x.TransactionItems)
@@ -55,7 +56,7 @@ namespace Samba.Modules.BasicReports.Reports.InventoryReports
             {
                 report.AddColumTextAlignment("Alımlar", TextAlignment.Left, TextAlignment.Right, TextAlignment.Left, TextAlignment.Right);
                 report.AddColumnLength("Alımlar", "40*", "20*", "15*", "25*");
-                report.AddTable("Alımlar", "Stok", "Miktar", "Birim", "Ort.Fiyat");
+                report.AddTable("Alımlar", Resources.InventoryItem, Resources.Quantity, Resources.Unit, Resources.AveragePrice_ab);
 
                 foreach (var transactionItem in transactionItems)
                 {
@@ -69,14 +70,14 @@ namespace Samba.Modules.BasicReports.Reports.InventoryReports
             else
             {
                 report.AddHeader("");
-                report.AddHeader("Seçili dönemde hiç alım işlemi yapılmamış.");
+                report.AddHeader(Resources.NoPurchaseTransactionInCurrentDateRange);
             }
             return report.Document;
         }
 
         protected override string GetHeader()
         {
-            return "Stok Alım Raporu";
+            return Resources.InventoryPurchaseReport;
         }
     }
 }

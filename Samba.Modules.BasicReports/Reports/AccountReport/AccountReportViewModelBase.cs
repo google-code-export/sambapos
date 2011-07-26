@@ -7,6 +7,7 @@ using System.Windows.Documents;
 using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Modules.BasicReports.Reports.AccountReport
@@ -67,13 +68,13 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
             var report = new SimpleReport("8cm");
             report.AddHeader("Samba POS");
             report.AddHeader(reportHeader);
-            report.AddHeader(DateTime.Now + " itibariyle");
+            report.AddHeader(string.Format(Resources.As_f, DateTime.Now));
 
             var accounts = GetBalancedAccounts(selectInternalAccounts);
             if (returnReceivables != null)
-                accounts = returnReceivables.GetValueOrDefault(true) ?
-                                accounts.Where(x => x.Amount > 0) :
-                                accounts.Where(x => x.Amount < 0);
+                accounts = returnReceivables.GetValueOrDefault(false) ?
+                                accounts.Where(x => x.Amount < 0) :
+                                accounts.Where(x => x.Amount > 0);
 
             report.AddColumTextAlignment("Tablo", TextAlignment.Left, TextAlignment.Left, TextAlignment.Right);
             report.AddColumnLength("Tablo", "35*", "35*", "30*");
@@ -81,7 +82,7 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
 
             if (accounts.Count() > 0)
             {
-                report.AddTable("Tablo", "Hesaplar", "", "");
+                report.AddTable("Tablo", Resources.Accounts, "", "");
 
                 var total = 0m;
                 foreach (var account in accounts)
@@ -89,11 +90,11 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
                     total += Math.Abs(account.Amount);
                     report.AddRow("Tablo", account.PhoneNumber, account.CustomerName, Math.Abs(account.Amount).ToString(ReportContext.CurrencyFormat));
                 }
-                report.AddRow("Tablo", "GENEL TOPLAM", "", total);
+                report.AddRow("Tablo", Resources.GrandTotal, "", total);
             }
             else
             {
-                report.AddHeader(reportHeader + " bulunmamaktadır");
+                report.AddHeader(string.Format(Resources.NoTransactionsFoundFor_f, reportHeader));
             }
 
             return report.Document;

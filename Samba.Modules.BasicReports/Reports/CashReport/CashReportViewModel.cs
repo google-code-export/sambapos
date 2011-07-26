@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Documents;
 using Samba.Domain;
 using Samba.Domain.Models.Settings;
+using Samba.Localization.Properties;
 using Samba.Services;
 
 namespace Samba.Modules.BasicReports.Reports.CashReport
@@ -20,9 +21,9 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
 
         private static string GetPaymentString(int paymentType)
         {
-            if (paymentType == (int)PaymentType.Cash) return "Nakit";
-            if (paymentType == (int)PaymentType.CreditCard) return "K.Kartı";
-            return "Y.Çeki";
+            if (paymentType == (int)PaymentType.Cash) return Resources.Cash;
+            if (paymentType == (int)PaymentType.CreditCard) return Resources.CreditCard_ab;
+            return Resources.Voucher_ab;
         }
 
         private static string Fs(decimal amount)
@@ -33,13 +34,13 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
         protected override FlowDocument GetReport()
         {
             var report = new SimpleReport("8cm");
-            AddDefaultReportHeader(report, ReportContext.CurrentWorkPeriod, "Kasa Raporu");
+            AddDefaultReportHeader(report, ReportContext.CurrentWorkPeriod, Resources.CashReport);
 
             if (ReportContext.CurrentWorkPeriod.Id == 0)
             {
                 report.AddHeader(" ");
-                report.AddHeader("Tarih aralığı aktif çalışma dönemi değil.");
-                report.AddHeader("Değerler kasa devirlerini içermemektedir.");
+                report.AddHeader(Resources.DateRangeIsNotActiveWorkPeriod);
+                report.AddHeader(Resources.ReportDoesNotContainsCashState);
             }
 
             var cashExpenseTotal = ReportContext.CashTransactions
@@ -63,49 +64,53 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
                 .Sum(x => x.Amount);
 
 
-            report.AddColumTextAlignment("Gider", TextAlignment.Left, TextAlignment.Left, TextAlignment.Right);
-            report.AddColumnLength("Gider", "15*", "Auto", "25*");
-            report.AddTable("Gider", "Giderler", "", "");
-
             var expenseTransactions =
-                ReportContext.CashTransactions.Where(x => x.TransactionType == (int)TransactionType.Expense);
+                 ReportContext.CashTransactions.Where(x => x.TransactionType == (int)TransactionType.Expense);
 
             if (expenseTransactions.Count() > 0)
             {
-                report.AddRow("Gider", "KASA HAREKETLERİ", "", "");
+                report.AddColumTextAlignment("Gider", TextAlignment.Left, TextAlignment.Left, TextAlignment.Right);
+                report.AddColumnLength("Gider", "15*", "Auto", "25*");
+                report.AddTable("Gider", Resources.Expenses, "", "");
+
+                report.AddBoldRow("Gider", Resources.CashTransactions.ToUpper(), "", "");
                 foreach (var cashTransaction in expenseTransactions)
                 {
                     report.AddRow("Gider", GetPaymentString(cashTransaction.PaymentType),
                         Fct(cashTransaction), Fs(cashTransaction.Amount));
                 }
+
+                report.AddBoldRow("Gider", Resources.Totals.ToUpper(), "", "");
+                report.AddRow("Gider", GetPaymentString(0), Resources.TotalExpense, Fs(cashExpenseTotal));
+                report.AddRow("Gider", GetPaymentString(1), Resources.TotalExpense, Fs(creditCardExpenseTotal));
+                report.AddRow("Gider", GetPaymentString(2), Resources.TotalExpense, Fs(ticketExpenseTotal));
+                report.AddRow("Gider", Resources.GrandTotal.ToUpper(), "", Fs(cashExpenseTotal + creditCardExpenseTotal + ticketExpenseTotal));
+
             }
 
-            report.AddRow("Gider", "TOPLAMLAR", "", "");
-            report.AddRow("Gider", GetPaymentString(0), "Toplam Gider", Fs(cashExpenseTotal));
-            report.AddRow("Gider", GetPaymentString(1), "Toplam Gider", Fs(creditCardExpenseTotal));
-            report.AddRow("Gider", GetPaymentString(2), "Toplam Gider", Fs(ticketExpenseTotal));
-            report.AddRow("Gider", "GENEL TOPLAM", "", Fs(cashExpenseTotal + creditCardExpenseTotal + ticketExpenseTotal));
 
             var ac = ReportContext.GetOperationalAmountCalculator();
 
             report.AddColumTextAlignment("Gelir", TextAlignment.Left, TextAlignment.Left, TextAlignment.Right);
             report.AddColumnLength("Gelir", "15*", "Auto", "25*");
-            report.AddTable("Gelir", "Gelirler", "", "");
+            report.AddTable("Gelir", Resources.Incomes, "", "");
 
             if (ReportContext.CurrentWorkPeriod.Id > 0) //devreden rakamları aktif çalışma dönemlerinden biri seçildiyse çalışır
             {
-                report.AddRow("Gelir", "DEVREDEN", "", "");
-
-                if (ReportContext.CurrentWorkPeriod.CashAmount > 0)
-                    report.AddRow("Gelir", GetPaymentString(0) + " Devreden", "", Fs(ReportContext.CurrentWorkPeriod.CashAmount));
-                if (ReportContext.CurrentWorkPeriod.CreditCardAmount > 0)
-                    report.AddRow("Gelir", GetPaymentString(1) + " Devreden", "", Fs(ReportContext.CurrentWorkPeriod.CreditCardAmount));
-                if (ReportContext.CurrentWorkPeriod.TicketAmount > 0)
-                    report.AddRow("Gelir", GetPaymentString(2) + " Devreden", "", Fs(ReportContext.CurrentWorkPeriod.TicketAmount));
-
-                report.AddRow("Gelir", "Toplam Devreden", "", Fs(ReportContext.CurrentWorkPeriod.CashAmount
-                                                                    + ReportContext.CurrentWorkPeriod.CreditCardAmount
-                                                                    + ReportContext.CurrentWorkPeriod.TicketAmount));
+                var total = ReportContext.CurrentWorkPeriod.CashAmount
+                            + ReportContext.CurrentWorkPeriod.CreditCardAmount
+                            + ReportContext.CurrentWorkPeriod.TicketAmount;
+                if (total > 0)
+                {
+                    report.AddBoldRow("Gelir", Resources.StartAmount.ToUpper(), "", "");
+                    if (ReportContext.CurrentWorkPeriod.CashAmount > 0)
+                        report.AddRow("Gelir", GetPaymentString(0) + " " + Resources.StartAmount, "", Fs(ReportContext.CurrentWorkPeriod.CashAmount));
+                    if (ReportContext.CurrentWorkPeriod.CreditCardAmount > 0)
+                        report.AddRow("Gelir", GetPaymentString(1) + " " + Resources.StartAmount, "", Fs(ReportContext.CurrentWorkPeriod.CreditCardAmount));
+                    if (ReportContext.CurrentWorkPeriod.TicketAmount > 0)
+                        report.AddRow("Gelir", GetPaymentString(2) + " " + Resources.StartAmount, "", Fs(ReportContext.CurrentWorkPeriod.TicketAmount));
+                    report.AddRow("Gelir", Resources.Total.ToUpper(), "", Fs(total));
+                }
             }
 
 
@@ -114,20 +119,20 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
 
             if (incomeTransactions.Count() > 0)
             {
-                report.AddRow("Gelir", "FAALİYET GELİRLERİ", "", "");
+                report.AddBoldRow("Gelir", Resources.SalesIncome.ToUpper(), "", "");
                 if (ac.CashTotal > 0)
-                    report.AddRow("Gelir", GetPaymentString(0) + " Satış Gelirleri", "", Fs(ac.CashTotal));
+                    report.AddRow("Gelir", GetPaymentString(0) + " " + Resources.SalesIncome, "", Fs(ac.CashTotal));
                 if (ac.CreditCardTotal > 0)
-                    report.AddRow("Gelir", GetPaymentString(1) + " Satış Gelirleri", "", Fs(ac.CreditCardTotal));
+                    report.AddRow("Gelir", GetPaymentString(1) + " " + Resources.SalesIncome, "", Fs(ac.CreditCardTotal));
                 if (ac.TicketTotal > 0)
-                    report.AddRow("Gelir", GetPaymentString(2) + " Satış Gelirleri", "", Fs(ac.TicketTotal));
+                    report.AddRow("Gelir", GetPaymentString(2) + " " + Resources.SalesIncome, "", Fs(ac.TicketTotal));
 
-                report.AddRow("Gelir", "Toplam Faaliyet Geliri", "", Fs(ac.CashTotal
+                report.AddRow("Gelir", Resources.Total.ToUpper(), "", Fs(ac.CashTotal
                                                                + ac.CreditCardTotal
                                                                + ac.TicketTotal));
 
 
-                report.AddRow("Gelir", "KASA HAREKETLERİ", "", "");
+                report.AddBoldRow("Gelir", Resources.CashTransactions.ToUpper(), "", "");
                 var it = 0m;
                 foreach (var cashTransaction in incomeTransactions)
                 {
@@ -137,28 +142,28 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
                         Fs(cashTransaction.Amount));
                 }
 
-                report.AddRow("Gelir", "Toplam Hareket Geliri", "", Fs(it));
+                report.AddRow("Gelir", Resources.Total.ToUpper(), "", Fs(it));
             }
 
             var totalCashIncome = cashIncomeTotal + ac.CashTotal + ReportContext.CurrentWorkPeriod.CashAmount;
             var totalCreditCardIncome = creditCardIncomeTotal + ac.CreditCardTotal + ReportContext.CurrentWorkPeriod.CreditCardAmount;
             var totalTicketIncome = ticketIncomeTotal + ac.TicketTotal + ReportContext.CurrentWorkPeriod.TicketAmount;
 
-            report.AddRow("Gelir", "TOPLAMLAR", "", "");
-            report.AddRow("Gelir", GetPaymentString(0), "Toplam Gelir", Fs(totalCashIncome));
-            report.AddRow("Gelir", GetPaymentString(1), "Toplam Gelir", Fs(totalCreditCardIncome));
-            report.AddRow("Gelir", GetPaymentString(2), "Toplam Gelir", Fs(totalTicketIncome));
-            report.AddRow("Gelir", "GENEL TOPLAM", "", Fs(totalCashIncome + totalCreditCardIncome + totalTicketIncome));
+            report.AddBoldRow("Gelir", Resources.Income.ToUpper() + " " + Resources.Totals.ToUpper(), "", "");
+            report.AddRow("Gelir", GetPaymentString(0), Resources.TotalIncome, Fs(totalCashIncome));
+            report.AddRow("Gelir", GetPaymentString(1), Resources.TotalIncome, Fs(totalCreditCardIncome));
+            report.AddRow("Gelir", GetPaymentString(2), Resources.TotalIncome, Fs(totalTicketIncome));
+            report.AddRow("Gelir", Resources.GrandTotal.ToUpper(), "", Fs(totalCashIncome + totalCreditCardIncome + totalTicketIncome));
 
             //--------------------
 
             report.AddColumTextAlignment("Toplam", TextAlignment.Left, TextAlignment.Right);
             report.AddColumnLength("Toplam", "Auto", "25*");
-            report.AddTable("Toplam", "Kasa Durumu", "");
-            report.AddRow("Toplam", "Kasada Bulunan Nakit", Fs(totalCashIncome - cashExpenseTotal));
-            report.AddRow("Toplam", "Kasada Bulunan Kredi Kartı", Fs(totalCreditCardIncome - creditCardExpenseTotal));
-            report.AddRow("Toplam", "Kasada Bulunan Yemek Çeki", Fs(totalTicketIncome - ticketExpenseTotal));
-            report.AddRow("Toplam", "GENEL TOPLAM",
+            report.AddTable("Toplam", Resources.Cash_Status, "");
+            report.AddRow("Toplam", Resources.Cash, Fs(totalCashIncome - cashExpenseTotal));
+            report.AddRow("Toplam", Resources.CreditCard, Fs(totalCreditCardIncome - creditCardExpenseTotal));
+            report.AddRow("Toplam", Resources.Voucher, Fs(totalTicketIncome - ticketExpenseTotal));
+            report.AddRow("Toplam", Resources.GrandTotal.ToUpper(),
                 Fs((totalCashIncome - cashExpenseTotal) +
                 (totalCreditCardIncome - creditCardExpenseTotal) +
                 (totalTicketIncome - ticketExpenseTotal)));
@@ -173,7 +178,7 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
 
         protected override string GetHeader()
         {
-            return "Kasa Raporu";
+            return Resources.CashReport;
         }
     }
 }

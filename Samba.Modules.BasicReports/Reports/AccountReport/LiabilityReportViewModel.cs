@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Documents;
 using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Modules.BasicReports.Reports.AccountReport
@@ -13,12 +14,12 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
     {
         protected override FlowDocument GetReport()
         {
-            return CreateReport("Alacaklı Hesaplar", false,false);
+            return CreateReport(Resources.AccountsLiability, false, false);
         }
 
         protected override string GetHeader()
         {
-            return "Alacaklı Hesaplar";
+            return Resources.AccountsLiability;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Samba.Localization.Properties;
 
 namespace Samba.Modules.BasicReports.Reports
 {
@@ -12,7 +13,7 @@ namespace Samba.Modules.BasicReports.Reports
         private string _tagName;
         public string TagName
         {
-            get { return !string.IsNullOrEmpty(_tagName) ? _tagName.Trim() : "[Adisyon]"; }
+            get { return !string.IsNullOrEmpty(_tagName) ? _tagName.Trim() : Resources.TicketWithBrackets; }
             set { _tagName = value; }
         }
     }
