@@ -1791,7 +1791,7 @@ Visit Reports section and create Work Period Reports</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="Paid" xml:space="preserve">
-    <value>Ödendi</value>
+    <value>Paid</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
@@ -1823,47 +1823,77 @@ Visit Reports section and create Work Period Reports</value>
   <data name="Width" xml:space="preserve">
     <value>Width</value>
   </data>
-	<data name="Gift_ab">
-		<value><![CDATA[[Gift] ]]></value>
-	</data>
-	<data name="Void_ab">
-		<value><![CDATA[[Void] ]]></value>
-	</data>
-	<data name="OrderNumber_f">
-		<value xml:space="preserve">Order No: {0:0} - {1}</value>
-	</data>
-	<data name="NewOrder">
-		<value xml:space="preserve">New Order</value>
-	</data>
-	<data name="Back">
-		<value xml:space="preserve">Back</value>
-	</data>
-	<data name="Empty">
-		<value xml:space="preserve">Empty</value>
-	</data>
-	<data name="TicketTimeDisplay_f">
-		<value xml:space="preserve">{0} ({1} min.)</value>
-	</data>
-	<data name="Table_f">
-		<value xml:space="preserve">Table: {0}</value>
-	</data>
-	<data name="Account_f">
-		<value xml:space="preserve">Account: {0}</value>
-	</data>
-	<data name="TicketNumberAndTable_f">
-		<value xml:space="preserve"># {0} Table: {1}</value>
-	</data>
-	<data name="TicketNumberAndAccount_f">
-		<value xml:space="preserve"># {0} Table: {1}</value>
-	</data>
-	<data name="AccountNameAndTableName_f">
-		<value><![CDATA[# {0} Account: {1}
-Table: {2}]]></value>
-	</data>
-	<data name="CantCompleteOperationWhenThereIsZeroPricedProduct">
-		<value xml:space="preserve">Can't complete this operation while zero priced orders exists.</value>
-	</data>
-	<data name="TagCantBeEmpty_f">
-		<value xml:space="preserve">Can't leave {0} empty</value>
-	</data>
+  <data name="Gift_ab" xml:space="preserve">
+    <value>[Gift] </value>
+  </data>
+  <data name="Void_ab" xml:space="preserve">
+    <value>[Void] </value>
+  </data>
+  <data name="OrderNumber_f" xml:space="preserve">
+    <value>Order No: {0:0} - {1}</value>
+  </data>
+  <data name="NewOrder" xml:space="preserve">
+    <value>New Order</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="TicketTimeDisplay_f" xml:space="preserve">
+    <value>{0} ({1} min.)</value>
+  </data>
+  <data name="Table_f" xml:space="preserve">
+    <value>Table: {0}</value>
+  </data>
+  <data name="Account_f" xml:space="preserve">
+    <value>Account: {0}</value>
+  </data>
+  <data name="TicketNumberAndTable_f" xml:space="preserve">
+    <value># {0} Table: {1}</value>
+  </data>
+  <data name="TicketNumberAndAccount_f" xml:space="preserve">
+    <value># {0} Table: {1}</value>
+  </data>
+  <data name="AccountNameAndTableName_f" xml:space="preserve">
+    <value># {0} Account: {1}
+Table: {2}</value>
+  </data>
+  <data name="CantCompleteOperationWhenThereIsZeroPricedProduct" xml:space="preserve">
+    <value>Can't complete this operation while zero priced orders exists.</value>
+  </data>
+  <data name="TagCantBeEmpty_f" xml:space="preserve">
+    <value>Can't leave {0} empty</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="CanDisplayReports" xml:space="preserve">
+    <value>Can Display Reports</value>
+  </data>
+  <data name="CanChangeReportFilter" xml:space="preserve">
+    <value>Can Change Report Date Filter</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="PastMonth" xml:space="preserve">
+    <value>Past Month</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>This Month</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>This Week</value>
+  </data>
+  <data name="PastWeek" xml:space="preserve">
+    <value>Past Week</value>
+  </data>
+  <data name="UndefinedWithBrackets" xml:space="preserve">
+    <value>[Undefined]</value>
+  </data>
 </root>

@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Windows.Threading;
 using Samba.Domain.Models.Settings;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -47,8 +48,8 @@ namespace Samba.Modules.BasicReports
 
         protected ReportViewModelBase()
         {
-            PrintDocumentCommand = new CaptionCommand<string>("Yazdır", OnPrintDocument);
-            RefreshFiltersCommand = new CaptionCommand<string>("Güncelle", OnRefreshFilters, CanRefreshFilters);
+            PrintDocumentCommand = new CaptionCommand<string>(Resources.Print, OnPrintDocument);
+            RefreshFiltersCommand = new CaptionCommand<string>(Resources.Refresh, OnRefreshFilters, CanRefreshFilters);
             FilterGroups = new ObservableCollection<FilterGroup>();
         }
 

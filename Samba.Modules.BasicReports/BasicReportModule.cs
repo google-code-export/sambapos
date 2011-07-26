@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -18,10 +19,10 @@ namespace Samba.Modules.BasicReports
         {
             _regionManager = regionManager;
             _basicReportView = basicReportView;
-            _navigateReportsCommand = new CategoryCommand<string>("Raporlar", "Genel", "Images/Ppt.png", OnNavigateReportModule, CanNavigateReportModule) { Order = 80 };
+            _navigateReportsCommand = new CategoryCommand<string>(Resources.Reports, Resources.Common, "Images/Ppt.png", OnNavigateReportModule, CanNavigateReportModule) { Order = 80 };
 
-            PermissionRegistry.RegisterPermission(PermissionNames.OpenReports, PermissionCategories.Navigation, "Raporları Açabilir");
-            PermissionRegistry.RegisterPermission(PermissionNames.ChangeReportDate, PermissionCategories.Report, "Rapor Tarihi Değiştirebilir");
+            PermissionRegistry.RegisterPermission(PermissionNames.OpenReports, PermissionCategories.Navigation, Resources.CanDisplayReports);
+            PermissionRegistry.RegisterPermission(PermissionNames.ChangeReportDate, PermissionCategories.Report, Resources.CanChangeReportFilter);
         }
 
         private static bool CanNavigateReportModule(string arg)

@@ -1864,4 +1864,37 @@ Masa: {2}]]>
   <data name="TagCantBeEmpty_f">
     <value xml:space="preserve">{0} boş bırakılamaz</value>
   </data>
+	<data name="Paid" xml:space="preserve">
+    <value>Ödendi</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Raporlar</value>
+  </data>
+  <data name="CanDisplayReports" xml:space="preserve">
+    <value>Raporları Açabilir</value>
+  </data>
+  <data name="CanChangeReportFilter" xml:space="preserve">
+    <value>Rapor Tarihi Değiştirebilir</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Bugün</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Dün</value>
+  </data>
+  <data name="PastMonth" xml:space="preserve">
+    <value>Geçen Ay</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Bu Ay</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>Bu Hafta</value>
+  </data>
+  <data name="PastWeek" xml:space="preserve">
+    <value>Geçen Hafta</value>
+  </data>
+  <data name="UndefinedWithBrackets" xml:space="preserve">
+    <value>[Tanımsız]</value>
+  </data>
 </root>

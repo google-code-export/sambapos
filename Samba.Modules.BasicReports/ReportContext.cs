@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Samba.Domain;
-using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
+using Samba.Localization.Properties;
 using Samba.Modules.BasicReports.Reports;
 using Samba.Modules.BasicReports.Reports.AccountReport;
 using Samba.Modules.BasicReports.Reports.CashReport;
@@ -221,14 +221,14 @@ namespace Samba.Modules.BasicReports
         private static WorkPeriod CreteTodayWorkPeriod()
         {
             var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            return CreateCustomWorkPeriod("Bugün", start, start.AddDays(1).AddSeconds(-1));
+            return CreateCustomWorkPeriod(Resources.Today, start, start.AddDays(1).AddSeconds(-1));
         }
 
         private static WorkPeriod CreateYesterdayWorkPeriod()
         {
             var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-1);
             var end = start.AddDays(1).AddSeconds(-1);
-            return CreateCustomWorkPeriod("Dün", start, end);
+            return CreateCustomWorkPeriod(Resources.Yesterday, start, end);
         }
 
         private static WorkPeriod CreateLastMonthWorkPeriod()
@@ -237,14 +237,14 @@ namespace Samba.Modules.BasicReports
             var start = new DateTime(lastmonth.Year, lastmonth.Month, 1);
             var end = new DateTime(lastmonth.Year, lastmonth.Month, DateTime.DaysInMonth(lastmonth.Year, lastmonth.Month));
             end = end.AddDays(1).AddSeconds(-1);
-            return CreateCustomWorkPeriod("Geçen Ay: " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(start.Month), start, end);
+            return CreateCustomWorkPeriod(Resources.PastMonth + ": " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(start.Month), start, end);
         }
 
         private static WorkPeriod CreateThisMonthWorkPeriod()
         {
             var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             var end = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
-            return CreateCustomWorkPeriod("Bu Ay: " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(start.Month), start, end);
+            return CreateCustomWorkPeriod(Resources.ThisMonth + ": " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(start.Month), start, end);
         }
 
         private static WorkPeriod CreateThisWeekWorkPeriod()
@@ -252,7 +252,7 @@ namespace Samba.Modules.BasicReports
             var w = (int)DateTime.Now.DayOfWeek;
             var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-w + 1);
             var end = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
-            return CreateCustomWorkPeriod("Bu Hafta", start, end);
+            return CreateCustomWorkPeriod(Resources.ThisWeek, start, end);
         }
 
         private static WorkPeriod CreateLastWeekWorkPeriod()
@@ -260,7 +260,7 @@ namespace Samba.Modules.BasicReports
             var w = (int)DateTime.Now.DayOfWeek;
             var start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-6 - w);
             var end = start.AddDays(7).AddSeconds(-1);
-            return CreateCustomWorkPeriod("Geçen Hafta", start, end);
+            return CreateCustomWorkPeriod(Resources.PastWeek, start, end);
         }
 
         public static IEnumerable<WorkPeriod> GetWorkPeriods(DateTime startDate, DateTime endDate)
@@ -291,20 +291,20 @@ namespace Samba.Modules.BasicReports
         public static string GetUserName(int userId)
         {
             var user = Users.SingleOrDefault(x => x.Id == userId);
-            return user != null ? user.Name : "[Tanımsız]";
+            return user != null ? user.Name : Resources.UndefinedWithBrackets;
         }
 
         public static string GetReasonName(int reasonId)
         {
             if (AppServices.MainDataContext.Reasons.ContainsKey(reasonId))
                 return AppServices.MainDataContext.Reasons[reasonId].Name;
-            return "[Bilinmiyor]";
+            return Resources.UndefinedWithBrackets;
         }
 
         internal static string GetDepartmentName(int departmentId)
         {
             var d = AppServices.MainDataContext.Departments.SingleOrDefault(x => x.Id == departmentId);
-            return d != null ? d.Name : "[Tanımsız]";
+            return d != null ? d.Name : Resources.UndefinedWithBrackets;
         }
 
         internal static AmountCalculator GetOperationalAmountCalculator()
