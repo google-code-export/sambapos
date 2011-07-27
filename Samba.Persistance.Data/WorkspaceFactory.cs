@@ -71,7 +71,7 @@ namespace Samba.Persistance.Data
         {
             var fileName = _connectionString.EndsWith(".txt")
                 ? _connectionString
-                : LocalSettings.DocumentPath + "\\SambaData_" + LocalSettings.CurrentLanguage + ".txt";
+                : LocalSettings.DocumentPath + "\\SambaData" + (LocalSettings.OverrideLanguage ? "_" + LocalSettings.CurrentLanguage : "") + ".txt";
             return new TextFileWorkspace(fileName, true);
         }
 
