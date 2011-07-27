@@ -656,7 +656,7 @@ Yap</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="PB" xml:space="preserve">
-    <value>C</value>
+    <value>PB</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="PropertyGroup" xml:space="preserve">
@@ -1777,15 +1777,15 @@ Hesap</value>
   <data name="Selected_f" xml:space="preserve">
     <value>Seçilen {0}</value>
   </data>
-	<data name="User" xml:space="preserve">
+  <data name="User" xml:space="preserve">
     <value>Kullanıcı</value>
     <comment>Label.Content</comment>
   </data>
-	<data name="WorkPeriodEndsMessage">
-		<value><![CDATA[Gün Sonu İşlemi Tamamlandı.
-Raporlar bölümünden gün sonu raporlarınızı alınız.]]></value>
-	</data>
-	<data name="DontForgetEndingWorkPeriod" xml:space="preserve">
+  <data name="WorkPeriodEndsMessage" xml:space="preserve">
+    <value>Gün Sonu İşlemi Tamamlandı.
+Raporlar bölümünden gün sonu raporlarınızı alınız.</value>
+  </data>
+  <data name="DontForgetEndingWorkPeriod" xml:space="preserve">
     <value>GÜN SONU YAPMAYI UNUTMAYINIZ!</value>
     <comment>TextBlock.Text</comment>
   </data>
@@ -1819,52 +1819,50 @@ Raporlar bölümünden gün sonu raporlarınızı alınız.]]></value>
   <data name="Width" xml:space="preserve">
     <value>Genişlik</value>
   </data>
-  <data name="Gift_ab">
-    <value><![CDATA[[ikr] ]]></value>
+  <data name="Gift_ab" xml:space="preserve">
+    <value>[ikr] </value>
   </data>
-  <data name="Void_ab">
-    <value><![CDATA[[iad] ]]></value>
+  <data name="Void_ab" xml:space="preserve">
+    <value>[iad] </value>
   </data>
-  <data name="OrderNumber_f">
-    <value xml:space="preserve">Sipariş No: {0:0} - {1}</value>
+  <data name="OrderNumber_f" xml:space="preserve">
+    <value>Sipariş No: {0:0} - {1}</value>
   </data>
-  <data name="NewOrder">
-    <value xml:space="preserve">Yeni Sipariş</value>
+  <data name="NewOrder" xml:space="preserve">
+    <value>Yeni Sipariş</value>
   </data>
-  <data name="Back">
-    <value xml:space="preserve">Geri</value>
+  <data name="Back" xml:space="preserve">
+    <value>Geri</value>
   </data>
-  <data name="Empty">
-    <value xml:space="preserve">Boş</value>
+  <data name="Empty" xml:space="preserve">
+    <value>Boş</value>
   </data>
-  <data name="TicketTimeDisplay_f">
-    <value xml:space="preserve">{0} ({1} dk.)</value>
+  <data name="TicketTimeDisplay_f" xml:space="preserve">
+    <value>{0} ({1} dk.)</value>
   </data>
-  <data name="Table_f">
-    <value xml:space="preserve">Masa: {0}</value>
+  <data name="Table_f" xml:space="preserve">
+    <value>Masa: {0}</value>
   </data>
-  <data name="Account_f">
-    <value xml:space="preserve">Hesap: {0}</value>
+  <data name="Account_f" xml:space="preserve">
+    <value>Hesap: {0}</value>
   </data>
-  <data name="TicketNumberAndTable_f">
-    <value xml:space="preserve"># {0} Masa: {1}</value>
+  <data name="TicketNumberAndTable_f" xml:space="preserve">
+    <value># {0} Masa: {1}</value>
   </data>
-  <data name="TicketNumberAndAccount_f">
-    <value xml:space="preserve"># {0} Hesap: {1}</value>
+  <data name="TicketNumberAndAccount_f" xml:space="preserve">
+    <value># {0} Hesap: {1}</value>
   </data>
-  <data name="AccountNameAndTableName_f">
-    <value>
-      <![CDATA[# {0} Hesap: {1}
-Masa: {2}]]>
-    </value>
+  <data name="AccountNameAndTableName_f" xml:space="preserve">
+    <value># {0} Hesap: {1}
+Masa: {2}</value>
   </data>
-  <data name="CantCompleteOperationWhenThereIsZeroPricedProduct">
-    <value xml:space="preserve">Adisyonda sıfır fiyatlı ürün varken bu işlem yapılamaz.</value>
+  <data name="CantCompleteOperationWhenThereIsZeroPricedProduct" xml:space="preserve">
+    <value>Adisyonda sıfır fiyatlı ürün varken bu işlem yapılamaz.</value>
   </data>
-  <data name="TagCantBeEmpty_f">
-    <value xml:space="preserve">{0} boş bırakılamaz</value>
+  <data name="TagCantBeEmpty_f" xml:space="preserve">
+    <value>{0} boş bırakılamaz</value>
   </data>
-	<data name="Paid" xml:space="preserve">
+  <data name="Paid" xml:space="preserve">
     <value>Ödendi</value>
   </data>
   <data name="Reports" xml:space="preserve">
@@ -1897,154 +1895,227 @@ Masa: {2}]]>
   <data name="UndefinedWithBrackets" xml:space="preserve">
     <value>[Tanımsız]</value>
   </data>
-  <data name="TicketWithBrackets">
-    <value xml:space="preserve">[Adisyon]</value>
+  <data name="TicketWithBrackets" xml:space="preserve">
+    <value>[Adisyon]</value>
   </data>
-  <data name="As_f">
-    <value xml:space="preserve">{0} itibariyle</value>
+  <data name="As_f" xml:space="preserve">
+    <value>{0} itibariyle</value>
   </data>
-  <data name="Accounts">
-    <value xml:space="preserve">Hesaplar</value>
+  <data name="Accounts" xml:space="preserve">
+    <value>Hesaplar</value>
   </data>
-  <data name="NoTransactionsFoundFor_f">
-    <value xml:space="preserve">{0} bulunmamaktadır</value>
+  <data name="NoTransactionsFoundFor_f" xml:space="preserve">
+    <value>{0} bulunmamaktadır</value>
   </data>
-  <data name="InternalAccounts">
-    <value xml:space="preserve">İç Kullanım Hesapları</value>
+  <data name="InternalAccounts" xml:space="preserve">
+    <value>İç Kullanım Hesapları</value>
   </data>
-  <data name="AccountsLiability">
-    <value xml:space="preserve">Borçlu Hesaplar</value>
+  <data name="AccountsLiability" xml:space="preserve">
+    <value>Borçlu Hesaplar</value>
   </data>
-  <data name="AccountsReceivable">
-    <value xml:space="preserve">Alacaklı Hesaplar</value>
+  <data name="AccountsReceivable" xml:space="preserve">
+    <value>Alacaklı Hesaplar</value>
   </data>
-  <data name="CashReport">
-    <value xml:space="preserve">Kasa Raporu</value>
+  <data name="CashReport" xml:space="preserve">
+    <value>Kasa Raporu</value>
   </data>
-  <data name="DateRangeIsNotActiveWorkPeriod">
-    <value xml:space="preserve">Tarih aralığı aktif çalışma dönemi değil.</value>
+  <data name="DateRangeIsNotActiveWorkPeriod" xml:space="preserve">
+    <value>Tarih aralığı aktif çalışma dönemi değil.</value>
   </data>
-  <data name="ReportDoesNotContainsCashState">
-    <value xml:space="preserve">Değerler kasa devirlerini içermemektedir.</value>
+  <data name="ReportDoesNotContainsCashState" xml:space="preserve">
+    <value>Değerler kasa devirlerini içermemektedir.</value>
   </data>
-  <data name="Expenses">
-    <value xml:space="preserve">Giderler</value>
+  <data name="Expenses" xml:space="preserve">
+    <value>Giderler</value>
   </data>
-  <data name="CashTransactions">
-    <value xml:space="preserve">KASA HAREKETLERİ</value>
+  <data name="CashTransactions" xml:space="preserve">
+    <value>KASA HAREKETLERİ</value>
   </data>
-  <data name="Totals">
-    <value xml:space="preserve">TOPLAMLAR</value>
+  <data name="Totals" xml:space="preserve">
+    <value>TOPLAMLAR</value>
   </data>
-  <data name="TotalExpense">
-    <value xml:space="preserve">Toplam Gider</value>
+  <data name="TotalExpense" xml:space="preserve">
+    <value>Toplam Gider</value>
   </data>
-  <data name="Incomes">
-    <value xml:space="preserve">Gelirler</value>
+  <data name="Incomes" xml:space="preserve">
+    <value>Gelirler</value>
   </data>
-  <data name="StartAmount">
-    <value xml:space="preserve">Devreden</value>
+  <data name="StartAmount" xml:space="preserve">
+    <value>Devreden</value>
   </data>
-  <data name="SalesIncome">
-    <value xml:space="preserve">Satış Gelirleri</value>
+  <data name="SalesIncome" xml:space="preserve">
+    <value>Satış Gelirleri</value>
   </data>
-  <data name="TotalIncome">
-    <value xml:space="preserve">Toplam Gelir</value>
+  <data name="TotalIncome" xml:space="preserve">
+    <value>Toplam Gelir</value>
   </data>
-  <data name="Cash Status">
-    <value xml:space="preserve">Kasa Durumu</value>
+  <data name="CashStatus" xml:space="preserve">
+    <value>Kasa Durumu</value>
   </data>
-  <data name="Drawer">
-    <value xml:space="preserve">Kasa</value>
+  <data name="Drawer" xml:space="preserve">
+    <value>Kasa</value>
   </data>
-  <data name="WorkPeriodReport">
-    <value xml:space="preserve">Gün Sonu Raporu</value>
+  <data name="WorkPeriodReport" xml:space="preserve">
+    <value>Gün Sonu Raporu</value>
   </data>
-  <data name="Sales">
-    <value xml:space="preserve">Satışlar</value>
+  <data name="Sales" xml:space="preserve">
+    <value>Satışlar</value>
   </data>
-  <data name="GeneralInformation">
-    <value xml:space="preserve">Genel Bilgiler</value>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>Genel Bilgiler</value>
   </data>
-  <data name="ItemProperties">
-    <value xml:space="preserve">İlave Özellikler</value>
+  <data name="ItemProperties" xml:space="preserve">
+    <value>İlave Özellikler</value>
   </data>
-  <data name="VoidsTotal">
-    <value xml:space="preserve">İptaller Toplamı</value>
+  <data name="VoidsTotal" xml:space="preserve">
+    <value>İptaller Toplamı</value>
   </data>
-  <data name="DiscountsTotal">
-    <value xml:space="preserve">İskontolar Toplamı</value>
+  <data name="DiscountsTotal" xml:space="preserve">
+    <value>İskontolar Toplamı</value>
   </data>
-  <data name="GiftsTotal">
-    <value xml:space="preserve">İkramlar Toplamı</value>
+  <data name="GiftsTotal" xml:space="preserve">
+    <value>İkramlar Toplamı</value>
   </data>
-  <data name="TicketCount">
-    <value xml:space="preserve">Adisyon Sayısı</value>
+  <data name="TicketCount" xml:space="preserve">
+    <value>Adisyon Sayısı</value>
   </data>
-  <data name="SalesDivTicket">
-    <value xml:space="preserve">Ciro / Adisyon</value>
+  <data name="SalesDivTicket" xml:space="preserve">
+    <value>Ciro / Adisyon</value>
   </data>
-  <data name="Incomes_f">
-    <value xml:space="preserve">{0} Gelirleri</value>
+  <data name="Incomes_f" xml:space="preserve">
+    <value>{0} Gelirleri</value>
   </data>
-  <data name="TotalAmount_f">
-    <value xml:space="preserve">{0} Toplam Tutarı:</value>
+  <data name="TotalAmount_f" xml:space="preserve">
+    <value>{0} Toplam Tutarı:</value>
   </data>
-  <data name="TicketTotal_f">
-    <value xml:space="preserve">Toplam {0}:</value>
+  <data name="TicketTotal_f" xml:space="preserve">
+    <value>Toplam {0}:</value>
   </data>
-  <data name="TotalAmountDivTag_f">
-    <value xml:space="preserve">Toplam Tutar / {0}:</value>
+  <data name="TotalAmountDivTag_f" xml:space="preserve">
+    <value>Toplam Tutar / {0}:</value>
   </data>
-  <data name="UserSales">
-    <value xml:space="preserve">Kullanıcı Bazlı Satışlar</value>
+  <data name="UserSales" xml:space="preserve">
+    <value>Kullanıcı Bazlı Satışlar</value>
   </data>
-  <data name="ItemSales">
-    <value xml:space="preserve">Ürün Satışları</value>
+  <data name="ItemSales" xml:space="preserve">
+    <value>Ürün Satışları</value>
   </data>
-  <data name="CostReport">
-    <value xml:space="preserve">Maliyet Raporu</value>
+  <data name="CostReport" xml:space="preserve">
+    <value>Maliyet Raporu</value>
   </data>
-  <data name="Average Cost">
-    <value xml:space="preserve">Ortalama Maliyet</value>
+  <data name="AverageCost" xml:space="preserve">
+    <value>Ortalama Maliyet</value>
   </data>
-  <data name="ThereAreNoCostTransactionsInThisPeriod">
-    <value xml:space="preserve">Seçili dönemde maliyet hesaplanabilecek bir ürün bulunmuyor.</value>
+  <data name="ThereAreNoCostTransactionsInThisPeriod" xml:space="preserve">
+    <value>Seçili dönemde maliyet hesaplanabilecek bir ürün bulunmuyor.</value>
   </data>
-  <data name="InventoryPurchaseReport">
-    <value xml:space="preserve">Stok Alım Raporu</value>
+  <data name="InventoryPurchaseReport" xml:space="preserve">
+    <value>Stok Alım Raporu</value>
   </data>
-  <data name="InventoryGroup">
-    <value xml:space="preserve">Stok Grubu</value>
+  <data name="InventoryGroup" xml:space="preserve">
+    <value>Stok Grubu</value>
   </data>
-  <data name="AveragePrice_ab">
-    <value xml:space="preserve">Ort.Fiyat</value>
+  <data name="AveragePrice_ab" xml:space="preserve">
+    <value>Ort.Fiyat</value>
   </data>
-  <data name="ItemSalesReport">
-    <value xml:space="preserve">Ürün Satış Raporu</value>
+  <data name="ItemSalesReport" xml:space="preserve">
+    <value>Ürün Satış Raporu</value>
   </data>
-  <data name="SalesByItemGroup">
-    <value xml:space="preserve">Ürün Grubu Bazında Satışlar</value>
+  <data name="SalesByItemGroup" xml:space="preserve">
+    <value>Ürün Grubu Bazında Satışlar</value>
   </data>
-  <data name="QuantitiesByItemGroup">
-    <value xml:space="preserve">Ürün Grubu Bazında Miktarlar</value>
+  <data name="QuantitiesByItemGroup" xml:space="preserve">
+    <value>Ürün Grubu Bazında Miktarlar</value>
   </data>
-  <data name="Voids">
-    <value xml:space="preserve">İadeler</value>
+  <data name="Voids" xml:space="preserve">
+    <value>İadeler</value>
   </data>
-  <data name="Gifts">
-    <value xml:space="preserve">İkramlar</value>
+  <data name="Gifts" xml:space="preserve">
+    <value>İkramlar</value>
   </data>
-  <data name="Discounts">
-    <value xml:space="preserve">İskontolar</value>
+  <data name="Discounts" xml:space="preserve">
+    <value>İskontolar</value>
   </data>
-  <data name="Tickets">
-    <value xml:space="preserve">Adisyonlar</value>
+  <data name="Tickets" xml:space="preserve">
+    <value>Adisyonlar</value>
   </data>
-  <data name="ByPersonnel_f">
-    <value xml:space="preserve">Personel Bazlı {0}</value>
+  <data name="ByPersonnel_f" xml:space="preserve">
+    <value>Personel Bazlı {0}</value>
   </data>
-	<data name="NoPurchaseTransactionInCurrentDateRange">
-		<value xml:space="preserve">Seçili dönemde hiç alım işlemi yapılmamış.</value>
-	</data>
+  <data name="NoPurchaseTransactionInCurrentDateRange" xml:space="preserve">
+    <value>Seçili dönemde hiç alım işlemi yapılmamış.</value>
+  </data>
+  <data name="TicketTemplate" xml:space="preserve">
+    <value>Adisyon Şablonu</value>
+  </data>
+  <data name="KitchenOrderTemplate" xml:space="preserve">
+    <value>Mutfak Sipariş Şablonu</value>
+  </data>
+  <data name="InvoicePrinterTemplate" xml:space="preserve">
+    <value>Fatura Yazıcı Şablonu</value>
+  </data>
+  <data name="TicketTemplateHeaderValue" xml:space="preserve">
+    <value>&lt;T&gt;ADİSYON
+&lt;L00&gt;Tarih:{ADİSYON TARİH}
+&lt;L00&gt;Saat:{SAAT}
+&lt;L00&gt;Masa No:{MASA}
+&lt;L00&gt;Adisyon No:{ADİSYON NO}
+&lt;F&gt;-</value>
+  </data>
+  <data name="TicketTemplateFooterValue" xml:space="preserve">
+    <value>&lt;F&gt;=
+&lt;EB&gt;
+&lt;J10&gt;{VARSA İSKONTO}
+&lt;J10&gt;Toplam:|{TOPLAM FİYAT}
+{VARSA ÖDENEN}
+&lt;DB&gt;
+&lt;F&gt;=
+&lt;C10&gt;Y İ N E   B E K L E R İ Z</value>
+  </data>
+  <data name="KitchenTemplateHeaderValue" xml:space="preserve">
+    <value>&lt;T&gt;{MASA GARSON}
+&lt;F&gt;-
+&lt;L00&gt;Tarih:{ADİSYON TARİH}
+&lt;L00&gt;Saat:{SAAT}
+&lt;L00&gt;Masa No:{MASA}
+&lt;L00&gt;Adisyon No:{ADİSYON NO}
+&lt;F&gt;-</value>
+  </data>
+  <data name="KitchenTemplateVoidedLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;**İPTAL**{MİKTAR} {ÜRÜN}
+        * {ÖZELLİKLER}</value>
+  </data>
+  <data name="KitchenTemplateLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;{MİKTAR} {ÜRÜN}
+        * {ÖZELLİKLER}</value>
+  </data>
+  <data name="InvoiceTemplateHeaderValue" xml:space="preserve">
+    <value>&lt;T&gt;ADİSYON
+&lt;L00&gt;Tarih:{ADİSYON TARİH}
+&lt;L00&gt;Saat:{SAAT}
+&lt;L00&gt;Masa No:{MASA}
+&lt;L00&gt;Adisyon No:{ADİSYON NO}
+&lt;F&gt;-</value>
+  </data>
+  <data name="KitchenPrinter" xml:space="preserve">
+    <value>Mutfak Yazıcısı</value>
+  </data>
+  <data name="InvoicePrinter" xml:space="preserve">
+    <value>Fatura Yazıcısı</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Sunucu</value>
+  </data>
+  <data name="PrintBill" xml:space="preserve">
+    <value>Hesap Yaz</value>
+  </data>
+  <data name="PrintOrdersToKitchenPrinter" xml:space="preserve">
+    <value>Siparişleri Mutfağa Yazdır</value>
+  </data>
+  <data name="AllTables" xml:space="preserve">
+    <value>Tümü</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Ara</value>
+  </data>
 </root>

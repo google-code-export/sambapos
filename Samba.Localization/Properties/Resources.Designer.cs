@@ -307,6 +307,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Tables.
+        /// </summary>
+        public static string AllTables {
+            get {
+                return ResourceManager.GetString("AllTables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Tickets.
         /// </summary>
         public static string AllTickets {
@@ -454,9 +463,9 @@ namespace Samba.Localization.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Average Cost.
         /// </summary>
-        public static string Average_Cost {
+        public static string AverageCost {
             get {
-                return ResourceManager.GetString("Average Cost", resourceCulture);
+                return ResourceManager.GetString("AverageCost", resourceCulture);
             }
         }
         
@@ -929,15 +938,6 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cash Status.
-        /// </summary>
-        public static string Cash_Status {
-            get {
-                return ResourceManager.GetString("Cash Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cash Content.
         /// </summary>
         public static string CashContent {
@@ -962,6 +962,15 @@ namespace Samba.Localization.Properties {
         public static string CashReport {
             get {
                 return ResourceManager.GetString("CashReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Status.
+        /// </summary>
+        public static string CashStatus {
+            get {
+                return ResourceManager.GetString("CashStatus", resourceCulture);
             }
         }
         
@@ -2371,6 +2380,38 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoice Printer.
+        /// </summary>
+        public static string InvoicePrinter {
+            get {
+                return ResourceManager.GetString("InvoicePrinter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice Template.
+        /// </summary>
+        public static string InvoicePrinterTemplate {
+            get {
+                return ResourceManager.GetString("InvoicePrinterTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;T&gt;INVOICE
+        ///&lt;L00&gt;Date:{ADİSYON TARİH}
+        ///&lt;L00&gt;Time:{SAAT}
+        ///&lt;L00&gt;Table No:{MASA}
+        ///&lt;L00&gt;Ticket No:{ADİSYON NO}
+        ///&lt;F&gt;-.
+        /// </summary>
+        public static string InvoiceTemplateHeaderValue {
+            get {
+                return ResourceManager.GetString("InvoiceTemplateHeaderValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extra Item Properties.
         /// </summary>
         public static string ItemProperties {
@@ -2403,6 +2444,59 @@ namespace Samba.Localization.Properties {
         public static string Keyboard {
             get {
                 return ResourceManager.GetString("Keyboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kitchen Orders Template.
+        /// </summary>
+        public static string KitchenOrderTemplate {
+            get {
+                return ResourceManager.GetString("KitchenOrderTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kitchen Printer.
+        /// </summary>
+        public static string KitchenPrinter {
+            get {
+                return ResourceManager.GetString("KitchenPrinter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;T&gt;{MASA GARSON}
+        ///&lt;F&gt;-
+        ///&lt;L00&gt;Date:{ADİSYON TARİH}
+        ///&lt;L00&gt;Time:{SAAT}
+        ///&lt;L00&gt;Table No:{MASA}
+        ///&lt;L00&gt;Ticket No:{ADİSYON NO}
+        ///&lt;F&gt;-.
+        /// </summary>
+        public static string KitchenTemplateHeaderValue {
+            get {
+                return ResourceManager.GetString("KitchenTemplateHeaderValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;L00&gt;{MİKTAR} {ÜRÜN}
+        ///        * {ÖZELLİKLER}.
+        /// </summary>
+        public static string KitchenTemplateLineTemplateValue {
+            get {
+                return ResourceManager.GetString("KitchenTemplateLineTemplateValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;L00&gt;**VOID**{MİKTAR} {ÜRÜN}
+        ///        * {ÖZELLİKLER}.
+        /// </summary>
+        public static string KitchenTemplateVoidedLineTemplateValue {
+            get {
+                return ResourceManager.GetString("KitchenTemplateVoidedLineTemplateValue", resourceCulture);
             }
         }
         
@@ -3147,7 +3241,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PB.
+        ///   Looks up a localized string similar to C.
         /// </summary>
         public static string PB {
             get {
@@ -3291,6 +3385,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print Bill.
+        /// </summary>
+        public static string PrintBill {
+            get {
+                return ResourceManager.GetString("PrintBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Printing Content.
         /// </summary>
         public static string PrintContent {
@@ -3404,6 +3507,15 @@ namespace Samba.Localization.Properties {
         public static string PrintMapping {
             get {
                 return ResourceManager.GetString("PrintMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Orders to Kitchen Printer.
+        /// </summary>
+        public static string PrintOrdersToKitchenPrinter {
+            get {
+                return ResourceManager.GetString("PrintOrdersToKitchenPrinter", resourceCulture);
             }
         }
         
@@ -3751,6 +3863,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
         public static string Select {
@@ -3893,6 +4014,15 @@ namespace Samba.Localization.Properties {
         public static string SellAmount {
             get {
                 return ResourceManager.GetString("SellAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server.
+        /// </summary>
+        public static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
             }
         }
         
@@ -4526,6 +4656,45 @@ namespace Samba.Localization.Properties {
         public static string TicketTags {
             get {
                 return ResourceManager.GetString("TicketTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket Template.
+        /// </summary>
+        public static string TicketTemplate {
+            get {
+                return ResourceManager.GetString("TicketTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;F&gt;=
+        ///&lt;EB&gt;
+        ///&lt;J10&gt;{VARSA İSKONTO}
+        ///&lt;J10&gt;Total:|{TOPLAM FİYAT}
+        ///{VARSA ÖDENEN}
+        ///&lt;DB&gt;
+        ///&lt;F&gt;=
+        ///&lt;C10&gt;T H A N K    Y O U.
+        /// </summary>
+        public static string TicketTemplateFooterValue {
+            get {
+                return ResourceManager.GetString("TicketTemplateFooterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;T&gt;TICKET
+        ///&lt;L00&gt;Date:{ADİSYON TARİH}
+        ///&lt;L00&gt;Time:{SAAT}
+        ///&lt;L00&gt;Table No:{MASA}
+        ///&lt;L00&gt;Ticket No:{ADİSYON NO}
+        ///&lt;F&gt;-.
+        /// </summary>
+        public static string TicketTemplateHeaderValue {
+            get {
+                return ResourceManager.GetString("TicketTemplateHeaderValue", resourceCulture);
             }
         }
         

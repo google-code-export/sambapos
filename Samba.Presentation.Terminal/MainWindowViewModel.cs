@@ -18,7 +18,7 @@ namespace Samba.Presentation.Terminal
         public MainWindowViewModel()
         {
             //TODO: Para birimi servisinden al.
-            LocalSettings.DefaultCurrencyFormat = "#,#0.00 TL";
+            LocalSettings.DefaultCurrencyFormat = "#,#0.00";
             LocalSettings.AppPath = System.IO.Path.GetDirectoryName(Application.ResourceAssembly.Location);
             AppServices.MainDispatcher = Application.Current.Dispatcher;
 

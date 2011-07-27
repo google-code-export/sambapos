@@ -159,7 +159,7 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
 
             report.AddColumTextAlignment("Toplam", TextAlignment.Left, TextAlignment.Right);
             report.AddColumnLength("Toplam", "Auto", "25*");
-            report.AddTable("Toplam", Resources.Cash_Status, "");
+            report.AddTable("Toplam", Resources.CashStatus, "");
             report.AddRow("Toplam", Resources.Cash, Fs(totalCashIncome - cashExpenseTotal));
             report.AddRow("Toplam", Resources.CreditCard, Fs(totalCreditCardIncome - creditCardExpenseTotal));
             report.AddRow("Toplam", Resources.Voucher, Fs(totalTicketIncome - ticketExpenseTotal));

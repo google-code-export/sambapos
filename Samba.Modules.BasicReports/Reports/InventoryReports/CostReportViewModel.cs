@@ -29,7 +29,7 @@ namespace Samba.Modules.BasicReports.Reports.InventoryReports
             {
                 report.AddColumTextAlignment("Maliyet", TextAlignment.Left, TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
                 report.AddColumnLength("Maliyet", "38*", "20*", "17*", "25*");
-                report.AddTable("Maliyet", Resources.MenuItem, Resources.Portion, Resources.Quantity, Resources.Average_Cost);
+                report.AddTable("Maliyet", Resources.MenuItem, Resources.Portion, Resources.Quantity, Resources.AverageCost);
 
                 foreach (var costItem in costItems)
                 {

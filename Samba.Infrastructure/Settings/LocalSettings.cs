@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -17,6 +18,7 @@ namespace Samba.Infrastructure.Settings
         public string LogoPath { get; set; }
         public string DefaultHtmlReportHeader { get; set; }
         public string CurrentLanguage { get; set; }
+        public bool OverrideLanguage { get; set; }
 
         public SettingsObject()
         {
@@ -88,9 +90,19 @@ html
             set
             {
                 _settingsObject.CurrentLanguage = value;
-                _cultureInfo = CultureInfo.GetCultureInfo(value);
-                UpdateThreadLanguage();
+                if (OverrideLanguage)
+                {
+                    _cultureInfo = CultureInfo.GetCultureInfo(value);
+                    UpdateThreadLanguage();
+                }
+                SaveSettings();
             }
+        }
+
+        public static bool OverrideLanguage
+        {
+            get { return _settingsObject.OverrideLanguage; }
+            set { _settingsObject.OverrideLanguage = value; }
         }
 
         public static string AppPath { get; set; }
@@ -101,8 +113,8 @@ html
         public static string DefaultCurrencyFormat { get; set; }
 
         public static int DbVersion { get { return 7; } }
-        public static string AppVersion { get { return "2.10"; } }
-        public static string[] SupportedLanguages { get { return new[] { "tr", "en" }; } }
+        public static string AppVersion { get { return "2.11"; } }
+        public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }
         public static void SaveSettings()
@@ -149,13 +161,11 @@ html
 
         public static void UpdateThreadLanguage()
         {
-            if (_cultureInfo == null)
+            if (OverrideLanguage && _cultureInfo != null)
             {
-                CurrentLanguage = SupportedLanguages[0];
-                return;
+                Thread.CurrentThread.CurrentCulture = _cultureInfo;
+                Thread.CurrentThread.CurrentUICulture = _cultureInfo;
             }
-            Thread.CurrentThread.CurrentCulture = _cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = _cultureInfo;
         }
     }
 }

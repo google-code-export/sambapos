@@ -657,7 +657,7 @@ Payment</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="PB" xml:space="preserve">
-    <value>PB</value>
+    <value>C</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="PropertyGroup" xml:space="preserve">
@@ -1896,154 +1896,227 @@ Table: {2}</value>
   <data name="UndefinedWithBrackets" xml:space="preserve">
     <value>[Undefined]</value>
   </data>
-  <data name="TicketWithBrackets">
-    <value xml:space="preserve">[Ticket]</value>
+  <data name="TicketWithBrackets" xml:space="preserve">
+    <value>[Ticket]</value>
   </data>
-  <data name="As_f">
-    <value xml:space="preserve">As of {0}</value>
+  <data name="As_f" xml:space="preserve">
+    <value>As of {0}</value>
   </data>
-  <data name="Accounts">
-    <value xml:space="preserve">Accounts</value>
+  <data name="Accounts" xml:space="preserve">
+    <value>Accounts</value>
   </data>
-  <data name="NoTransactionsFoundFor_f">
-    <value xml:space="preserve">No transactions for {0}</value>
+  <data name="NoTransactionsFoundFor_f" xml:space="preserve">
+    <value>No transactions for {0}</value>
   </data>
-  <data name="InternalAccounts">
-    <value xml:space="preserve">Internal Accounts</value>
+  <data name="InternalAccounts" xml:space="preserve">
+    <value>Internal Accounts</value>
   </data>
-  <data name="AccountsLiability">
-    <value xml:space="preserve">Accounts Liability</value>
+  <data name="AccountsLiability" xml:space="preserve">
+    <value>Accounts Liability</value>
   </data>
-  <data name="AccountsReceivable">
-    <value xml:space="preserve">Accounts Receivable</value>
+  <data name="AccountsReceivable" xml:space="preserve">
+    <value>Accounts Receivable</value>
   </data>
-	<data name="CashReport">
-		<value xml:space="preserve">Cash Drawer Report</value>
-	</data>
-	<data name="DateRangeIsNotActiveWorkPeriod">
-		<value xml:space="preserve">Date range is not in active work period</value>
-	</data>
-	<data name="ReportDoesNotContainsCashState">
-		<value xml:space="preserve">Report does not contain Start Amounts</value>
-	</data>
-	<data name="Expenses">
-		<value xml:space="preserve">Expenses</value>
-	</data>
-	<data name="CashTransactions">
-		<value xml:space="preserve">Cash Transactions</value>
-	</data>
-	<data name="Totals">
-		<value xml:space="preserve">Totals</value>
-	</data>
-	<data name="TotalExpense">
-		<value xml:space="preserve">Total Expense</value>
-	</data>
-	<data name="Incomes">
-		<value xml:space="preserve">Incomes</value>
-	</data>
-	<data name="StartAmount">
-		<value xml:space="preserve">Start Amounts</value>
-	</data>
-	<data name="SalesIncome">
-		<value xml:space="preserve">Sales Income</value>
-	</data>
-	<data name="TotalIncome">
-		<value xml:space="preserve">Total Income</value>
-	</data>
-	<data name="Cash Status">
-		<value xml:space="preserve">Cash Status</value>
-	</data>
-	<data name="Drawer">
-		<value xml:space="preserve">Cash Drawer</value>
-	</data>
-	<data name="WorkPeriodReport">
-		<value xml:space="preserve">Work Period Report</value>
-	</data>
-	<data name="Sales">
-		<value xml:space="preserve">Sales</value>
-	</data>
-	<data name="GeneralInformation">
-		<value xml:space="preserve">General Information</value>
-	</data>
-	<data name="ItemProperties">
-		<value xml:space="preserve">Extra Item Properties</value>
-	</data>
-	<data name="VoidsTotal">
-		<value xml:space="preserve">Voids Total</value>
-	</data>
-	<data name="DiscountsTotal">
-		<value xml:space="preserve">Discounts Total</value>
-	</data>
-	<data name="GiftsTotal">
-		<value xml:space="preserve">Gifts Total</value>
-	</data>
-	<data name="TicketCount">
-		<value xml:space="preserve">Ticket Count</value>
-	</data>
-	<data name="SalesDivTicket">
-		<value xml:space="preserve">Sales Total / Ticket</value>
-	</data>
-	<data name="Incomes_f">
-		<value xml:space="preserve">{0} Incomes</value>
-	</data>
-	<data name="TotalAmount_f">
-		<value xml:space="preserve">{0} Total Amount:</value>
-	</data>
-	<data name="TicketTotal_f">
-		<value xml:space="preserve">Total {0}:</value>
-	</data>
-	<data name="TotalAmountDivTag_f">
-		<value xml:space="preserve">Total Amount / {0}:</value>
-	</data>
-	<data name="UserSales">
-		<value xml:space="preserve">User Sales</value>
-	</data>
-	<data name="ItemSales">
-		<value xml:space="preserve">Item Sales</value>
-	</data>
-	<data name="CostReport">
-		<value xml:space="preserve">Cost Report</value>
-	</data>
-	<data name="Average Cost">
-		<value xml:space="preserve">Average Cost</value>
-	</data>
-	<data name="ThereAreNoCostTransactionsInThisPeriod">
-		<value xml:space="preserve">There are no cost transactions in this work period.</value>
-	</data>
-	<data name="InventoryPurchaseReport">
-		<value xml:space="preserve">Inventory Purchase Report</value>
-	</data>
-	<data name="InventoryGroup">
-		<value xml:space="preserve">Inventory Group</value>
-	</data>
-	<data name="AveragePrice_ab">
-		<value xml:space="preserve">Avg.Price</value>
-	</data>
-	<data name="ItemSalesReport">
-		<value xml:space="preserve">Item Sales Report</value>
-	</data>
-	<data name="SalesByItemGroup">
-		<value xml:space="preserve">Sales by Item Group</value>
-	</data>
-	<data name="QuantitiesByItemGroup">
-		<value xml:space="preserve">Quantities by Item Group</value>
-	</data>
-	<data name="Voids">
-		<value xml:space="preserve">Voids</value>
-	</data>
-	<data name="Gifts">
-		<value xml:space="preserve">Gifts</value>
-	</data>
-	<data name="Discounts">
-		<value xml:space="preserve">Discounts</value>
-	</data>
-	<data name="Tickets">
-		<value xml:space="preserve">Tickets</value>
-	</data>
-	<data name="ByPersonnel_f">
-		<value xml:space="preserve">{0} by User</value>
-	</data>
-	<data name="NoPurchaseTransactionInCurrentDateRange">
-		<value xml:space="preserve">There are no purchase transactions in date range.</value>
-	</data>
+  <data name="CashReport" xml:space="preserve">
+    <value>Cash Drawer Report</value>
+  </data>
+  <data name="DateRangeIsNotActiveWorkPeriod" xml:space="preserve">
+    <value>Date range is not in active work period</value>
+  </data>
+  <data name="ReportDoesNotContainsCashState" xml:space="preserve">
+    <value>Report does not contain Start Amounts</value>
+  </data>
+  <data name="Expenses" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
+  <data name="CashTransactions" xml:space="preserve">
+    <value>Cash Transactions</value>
+  </data>
+  <data name="Totals" xml:space="preserve">
+    <value>Totals</value>
+  </data>
+  <data name="TotalExpense" xml:space="preserve">
+    <value>Total Expense</value>
+  </data>
+  <data name="Incomes" xml:space="preserve">
+    <value>Incomes</value>
+  </data>
+  <data name="StartAmount" xml:space="preserve">
+    <value>Start Amounts</value>
+  </data>
+  <data name="SalesIncome" xml:space="preserve">
+    <value>Sales Income</value>
+  </data>
+  <data name="TotalIncome" xml:space="preserve">
+    <value>Total Income</value>
+  </data>
+  <data name="CashStatus" xml:space="preserve">
+    <value>Cash Status</value>
+  </data>
+  <data name="Drawer" xml:space="preserve">
+    <value>Cash Drawer</value>
+  </data>
+  <data name="WorkPeriodReport" xml:space="preserve">
+    <value>Work Period Report</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="GeneralInformation" xml:space="preserve">
+    <value>General Information</value>
+  </data>
+  <data name="ItemProperties" xml:space="preserve">
+    <value>Extra Item Properties</value>
+  </data>
+  <data name="VoidsTotal" xml:space="preserve">
+    <value>Voids Total</value>
+  </data>
+  <data name="DiscountsTotal" xml:space="preserve">
+    <value>Discounts Total</value>
+  </data>
+  <data name="GiftsTotal" xml:space="preserve">
+    <value>Gifts Total</value>
+  </data>
+  <data name="TicketCount" xml:space="preserve">
+    <value>Ticket Count</value>
+  </data>
+  <data name="SalesDivTicket" xml:space="preserve">
+    <value>Sales Total / Ticket</value>
+  </data>
+  <data name="Incomes_f" xml:space="preserve">
+    <value>{0} Incomes</value>
+  </data>
+  <data name="TotalAmount_f" xml:space="preserve">
+    <value>{0} Total Amount:</value>
+  </data>
+  <data name="TicketTotal_f" xml:space="preserve">
+    <value>Total {0}:</value>
+  </data>
+  <data name="TotalAmountDivTag_f" xml:space="preserve">
+    <value>Total Amount / {0}:</value>
+  </data>
+  <data name="UserSales" xml:space="preserve">
+    <value>User Sales</value>
+  </data>
+  <data name="ItemSales" xml:space="preserve">
+    <value>Item Sales</value>
+  </data>
+  <data name="CostReport" xml:space="preserve">
+    <value>Cost Report</value>
+  </data>
+  <data name="AverageCost" xml:space="preserve">
+    <value>Average Cost</value>
+  </data>
+  <data name="ThereAreNoCostTransactionsInThisPeriod" xml:space="preserve">
+    <value>There are no cost transactions in this work period.</value>
+  </data>
+  <data name="InventoryPurchaseReport" xml:space="preserve">
+    <value>Inventory Purchase Report</value>
+  </data>
+  <data name="InventoryGroup" xml:space="preserve">
+    <value>Inventory Group</value>
+  </data>
+  <data name="AveragePrice_ab" xml:space="preserve">
+    <value>Avg.Price</value>
+  </data>
+  <data name="ItemSalesReport" xml:space="preserve">
+    <value>Item Sales Report</value>
+  </data>
+  <data name="SalesByItemGroup" xml:space="preserve">
+    <value>Sales by Item Group</value>
+  </data>
+  <data name="QuantitiesByItemGroup" xml:space="preserve">
+    <value>Quantities by Item Group</value>
+  </data>
+  <data name="Voids" xml:space="preserve">
+    <value>Voids</value>
+  </data>
+  <data name="Gifts" xml:space="preserve">
+    <value>Gifts</value>
+  </data>
+  <data name="Discounts" xml:space="preserve">
+    <value>Discounts</value>
+  </data>
+  <data name="Tickets" xml:space="preserve">
+    <value>Tickets</value>
+  </data>
+  <data name="ByPersonnel_f" xml:space="preserve">
+    <value>{0} by User</value>
+  </data>
+  <data name="NoPurchaseTransactionInCurrentDateRange" xml:space="preserve">
+    <value>There are no purchase transactions in date range.</value>
+  </data>
+  <data name="TicketTemplate" xml:space="preserve">
+    <value>Ticket Template</value>
+  </data>
+  <data name="KitchenOrderTemplate" xml:space="preserve">
+    <value>Kitchen Orders Template</value>
+  </data>
+  <data name="InvoicePrinterTemplate" xml:space="preserve">
+    <value>Invoice Template</value>
+  </data>
+  <data name="TicketTemplateHeaderValue" xml:space="preserve">
+    <value>&lt;T&gt;TICKET
+&lt;L00&gt;Date:{ADİSYON TARİH}
+&lt;L00&gt;Time:{SAAT}
+&lt;L00&gt;Table No:{MASA}
+&lt;L00&gt;Ticket No:{ADİSYON NO}
+&lt;F&gt;-</value>
+  </data>
+  <data name="TicketTemplateFooterValue" xml:space="preserve">
+    <value>&lt;F&gt;=
+&lt;EB&gt;
+&lt;J10&gt;{VARSA İSKONTO}
+&lt;J10&gt;Total:|{TOPLAM FİYAT}
+{VARSA ÖDENEN}
+&lt;DB&gt;
+&lt;F&gt;=
+&lt;C10&gt;T H A N K    Y O U</value>
+  </data>
+  <data name="KitchenTemplateHeaderValue" xml:space="preserve">
+    <value>&lt;T&gt;{MASA GARSON}
+&lt;F&gt;-
+&lt;L00&gt;Date:{ADİSYON TARİH}
+&lt;L00&gt;Time:{SAAT}
+&lt;L00&gt;Table No:{MASA}
+&lt;L00&gt;Ticket No:{ADİSYON NO}
+&lt;F&gt;-</value>
+  </data>
+  <data name="KitchenTemplateVoidedLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;**VOID**{MİKTAR} {ÜRÜN}
+        * {ÖZELLİKLER}</value>
+  </data>
+  <data name="KitchenTemplateLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;{MİKTAR} {ÜRÜN}
+        * {ÖZELLİKLER}</value>
+  </data>
+  <data name="InvoiceTemplateHeaderValue" xml:space="preserve">
+    <value>&lt;T&gt;INVOICE
+&lt;L00&gt;Date:{ADİSYON TARİH}
+&lt;L00&gt;Time:{SAAT}
+&lt;L00&gt;Table No:{MASA}
+&lt;L00&gt;Ticket No:{ADİSYON NO}
+&lt;F&gt;-</value>
+  </data>
+  <data name="KitchenPrinter" xml:space="preserve">
+    <value>Kitchen Printer</value>
+  </data>
+  <data name="InvoicePrinter" xml:space="preserve">
+    <value>Invoice Printer</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="PrintBill" xml:space="preserve">
+    <value>Print Bill</value>
+  </data>
+  <data name="PrintOrdersToKitchenPrinter" xml:space="preserve">
+    <value>Print Orders to Kitchen Printer</value>
+  </data>
+  <data name="AllTables" xml:space="preserve">
+    <value>All Tables</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

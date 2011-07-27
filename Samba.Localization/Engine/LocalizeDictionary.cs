@@ -830,8 +830,17 @@ namespace Samba.Localization.Engine
 
         public static void ChangeLanguage(string twoLetterLang)
         {
-            Instance.Culture = CultureInfo.GetCultureInfo(twoLetterLang);
-            LocalSettings.CurrentLanguage = twoLetterLang;
+            var requestedLang = twoLetterLang;
+            if (string.IsNullOrEmpty(requestedLang) || !LocalSettings.OverrideLanguage)
+            {
+                var currentUiLanguage = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+                requestedLang = LocalSettings.SupportedLanguages.Contains(currentUiLanguage)
+                                   ? currentUiLanguage
+                                   : LocalSettings.SupportedLanguages[0];
+            }
+            if (LocalSettings.OverrideLanguage)
+                Instance.Culture = CultureInfo.GetCultureInfo(requestedLang);
+            LocalSettings.CurrentLanguage = requestedLang;
         }
     }
 }

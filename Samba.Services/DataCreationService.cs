@@ -12,6 +12,7 @@ using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Services.Repositories.Impl;
 
@@ -39,10 +40,10 @@ namespace Samba.Services
             var screen = new ScreenMenu();
             _workspace.Add(screen);
 
-            var ticketNumerator = new Numerator { Name = "Adisyon Numaratörü" };
+            var ticketNumerator = new Numerator { Name = Resources.TicketNumerator };
             _workspace.Add(ticketNumerator);
 
-            var orderNumerator = new Numerator { Name = "Sipariş Numaratörü" };
+            var orderNumerator = new Numerator { Name = Resources.OrderNumerator };
             _workspace.Add(orderNumerator);
 
             _workspace.CommitChanges();
@@ -65,54 +66,24 @@ namespace Samba.Services
             _workspace.Add(u);
 
             var ticketTemplate = new PrinterTemplate();
-            ticketTemplate.Name = "Adisyon Şablonu";
-            ticketTemplate.HeaderTemplate =
-@"<T>ADİSYON
-<L00>Tarih:{ADİSYON TARİH}
-<L00>Saat:{SAAT}
-<L00>Masa No:{MASA}
-<L00>Adisyon No:{ADİSYON NO}
-<F>-";
+            ticketTemplate.Name = Resources.TicketTemplate;
+            ticketTemplate.HeaderTemplate = Resources.TicketTemplateHeaderValue;
             ticketTemplate.LineTemplate = "<J00>- {MİKTAR} {ÜRÜN}|{FİYAT}";
-            ticketTemplate.FooterTemplate = @"<F>=
-<EB>
-<J10>{VARSA İSKONTO}
-<J10>Toplam:|{TOPLAM FİYAT}
-{VARSA ÖDENEN}
-<DB>
-<F>=
-<C10>Y İ N E   B E K L E R İ Z";
+            ticketTemplate.FooterTemplate = Resources.TicketTemplateFooterValue;
 
             var kitchenTemplate = new PrinterTemplate();
-            kitchenTemplate.Name = "Mutfak Sipariş Şablonu";
-            kitchenTemplate.HeaderTemplate =
-@"<T>{MASA GARSON}
-<F>-
-<L00>Tarih:{ADİSYON TARİH}
-<L00>Saat:{SAAT}
-<L00>Masa No:{MASA}
-<L00>Adisyon No:{ADİSYON NO}
-<F>-";
+            kitchenTemplate.Name = Resources.KitchenOrderTemplate;
+            kitchenTemplate.HeaderTemplate = Resources.KitchenTemplateHeaderValue;
 
-            kitchenTemplate.LineTemplate =
-@"<L00>{MİKTAR} {ÜRÜN}
-        * {ÖZELLİKLER}";
+            kitchenTemplate.LineTemplate = Resources.KitchenTemplateLineTemplateValue;
 
-            kitchenTemplate.VoidedLineTemplate =
-@"<L00>**İPTAL**{MİKTAR} {ÜRÜN}
-        * {ÖZELLİKLER}";
+            kitchenTemplate.VoidedLineTemplate = Resources.KitchenTemplateVoidedLineTemplateValue;
 
             kitchenTemplate.FooterTemplate = "<F>-";
 
             var invoiceTemplate = new PrinterTemplate();
-            invoiceTemplate.Name = "Fatura Yazıcı Şablonu";
-            invoiceTemplate.HeaderTemplate =
-@"<T>ADİSYON
-<L00>Tarih:{ADİSYON TARİH}
-<L00>Saat:{SAAT}
-<L00>Masa No:{MASA}
-<L00>Adisyon No:{ADİSYON NO}
-<F>-";
+            invoiceTemplate.Name = Resources.InvoicePrinterTemplate;
+            invoiceTemplate.HeaderTemplate = Resources.InvoiceTemplateHeaderValue;
             invoiceTemplate.LineTemplate =
 @"<L00>{MİKTAR} {ÜRÜN}
         * {ÖZELLİKLER}";
@@ -123,9 +94,9 @@ namespace Samba.Services
             _workspace.Add(kitchenTemplate);
             _workspace.Add(invoiceTemplate);
 
-            var printer1 = new Printer { Name = "Adisyon Yazıcısı" };
-            var printer2 = new Printer { Name = "Mutfak Yazıcısı" };
-            var printer3 = new Printer { Name = "Fatura Yazıcısı" };
+            var printer1 = new Printer { Name = Resources.TicketPrinter };
+            var printer2 = new Printer { Name = Resources.KitchenPrinter };
+            var printer3 = new Printer { Name = Resources.InvoicePrinter };
 
             _workspace.Add(printer1);
             _workspace.Add(printer2);
@@ -134,7 +105,7 @@ namespace Samba.Services
             var t = new Terminal
             {
                 IsDefault = true,
-                Name = "Sunucu",
+                Name = Resources.Server,
                 SlipReportPrinter = printer1,
             };
 
@@ -143,8 +114,8 @@ namespace Samba.Services
 
             var pj1 = new PrintJob
             {
-                Name = "Hesap Yazdır",
-                ButtonText = "Hesap Yaz",
+                Name = Resources.PrintBill,
+                ButtonText = Resources.PrintBill,
                 LocksTicket = true,
                 Order = 0,
                 UseFromPaymentScreen = true,
@@ -161,7 +132,7 @@ namespace Samba.Services
             var pm2 = new PrinterMap { Printer = printer2, PrinterTemplate = kitchenTemplate };
             var pj2 = new PrintJob
             {
-                Name = "Siparişleri Mutfağa Yazdır",
+                Name = Resources.PrintOrdersToKitchenPrinter,
                 ButtonText = "",
                 Order = 1,
                 WhatToPrint = (int)WhatToPrintTypes.NewLines,
@@ -189,7 +160,7 @@ namespace Samba.Services
             var items = BatchCreateTables(lines, _workspace);
             _workspace.CommitChanges();
 
-            var screen = new TableScreen { Name = "Tümü", ColumnCount = 8 };
+            var screen = new TableScreen { Name = Resources.AllTables, ColumnCount = 8 };
             _workspace.Add(screen);
 
             foreach (var table in items)
@@ -222,7 +193,7 @@ namespace Samba.Services
             IList<Table> result = new List<Table>();
             if (values.Length > 0)
             {
-                var currentCategory = "Genel";
+                var currentCategory = Resources.Common;
                 foreach (var value in values)
                 {
                     if (value.StartsWith("#"))
@@ -250,7 +221,7 @@ namespace Samba.Services
             IList<MenuItem> result = new List<MenuItem>();
             if (values.Length > 0)
             {
-                var currentCategory = "Genel";
+                var currentCategory = Resources.Common;
 
                 foreach (var item in values)
                 {
@@ -315,14 +286,17 @@ namespace Samba.Services
 
             if (c == null)
             {
-                var context = new CurrencyContext("TL");
+                var context = new CurrencyContext("");
                 currencyRepository.UpdateCurrencyContext(context);
             }
             else
             {
-                CurrencyContext.DefaultCurrency = "TL";
+                var nf = Localization.Engine.LocalizeDictionary.Instance.Culture.NumberFormat;
+                var sym = nf.CurrencySymbol;
+                CurrencyContext.DefaultCurrency = sym;
             }
-            LocalSettings.DefaultCurrencyFormat = "#,#0.00 " + CurrencyContext.DefaultCurrency;
+
+            LocalSettings.DefaultCurrencyFormat = "C";
         }
     }
 }

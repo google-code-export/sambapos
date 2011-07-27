@@ -94,6 +94,14 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT "$(ConfigurationName)"=="Release" GOTO End
+
+copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)SambaSetup\src"
+xcopy /y "$(TargetDir)tr\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\tr\"
+
+:End</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

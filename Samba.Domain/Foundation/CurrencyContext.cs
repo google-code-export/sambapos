@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Foundation
@@ -28,7 +29,7 @@ namespace Samba.Domain.Foundation
         public static string DefaultCurrency { get; set; }
 
         private static CurrencyContext _currencyContext;
-        public static CurrencyContext DefaultContext { get { return _currencyContext ?? (_currencyContext = new CurrencyContext("TL")); } }
+        public static CurrencyContext DefaultContext { get { return _currencyContext ?? (_currencyContext = new CurrencyContext("")); } }
 
         public string Currency { get; set; }
 
@@ -44,6 +45,11 @@ namespace Samba.Domain.Foundation
         public CurrencyContext(string defaultCurrency)
             : this()
         {
+            if (string.IsNullOrEmpty(defaultCurrency))
+            {
+                var nf = Thread.CurrentThread.CurrentCulture.NumberFormat;
+                defaultCurrency = nf.CurrencySymbol;
+            }
             DefaultCurrency = defaultCurrency;
             Currency = defaultCurrency;
         }

@@ -5,7 +5,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:Behaviors="clr-namespace:Samba.Presentation.Common.Behaviors;assembly=Samba.Presentation.Common" 
         xmlns:Common="clr-namespace:Samba.Presentation.Common;assembly=Samba.Presentation.Common" xmlns:Presentation="clr-namespace:Samba.Presentation" Title="Samba Pos Shell" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
-        WindowState="Normal" SnapsToDevicePixels="True" Height="600" Width="800" Closing="Window_Closing" Loaded="Window_Loaded" Icon="/Samba.Presentation;component/apple.ico">
+        WindowState="Normal" SnapsToDevicePixels="True" Height="600" Width="800" Closing="WindowClosing" Loaded="WindowLoaded" Icon="/Samba.Presentation;component/apple.ico">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF83BBF4" Offset="0"/>
@@ -25,9 +25,9 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch">
             <Image Source="/Samba.Presentation;component/Images/apple-icon.png" Stretch="UniformToFill"></Image>
-            <TextBlock Margin="10,0" FontWeight="Bold" FontSize="24" Foreground="White" MouseDown="TextBlock_MouseDown" VerticalAlignment="Center">SAMBA POS</TextBlock>
+            <TextBlock Margin="10,0" FontWeight="Bold" FontSize="24" Foreground="White" MouseDown="TextBlockMouseDown" VerticalAlignment="Center">SAMBA POS</TextBlock>
         </StackPanel>
-        <TextBlock Name="TimeLabel" Grid.Row="0" Grid.Column="1" Margin="10,5,10,0" FontSize="18" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="Lucida Console" MouseLeftButtonDown="TimeLabel_MouseLeftButtonDown">SAAT</TextBlock>
+        <TextBlock Name="TimeLabel" Grid.Row="0" Grid.Column="1" Margin="10,5,10,0" FontSize="18" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="Lucida Console">SAAT</TextBlock>
         <TabControl Background="LightGray" Grid.Row="1" Grid.ColumnSpan="2" cal:RegionManager.RegionName="MainRegion" SelectedIndex="0" Name="MainTabControl">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">

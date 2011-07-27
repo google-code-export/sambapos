@@ -10,11 +10,14 @@
                 </Label>
                 <ComboBox HorizontalAlignment="Left" Width="200" ItemsSource="{Binding TerminalNames}"
                      Text="{Binding TerminalName}" />
-                <Label>
-                    <LocText ResourceIdentifierKey="ProgramLanguage" Suffix=":"/>
-                </Label>
-                <ComboBox HorizontalAlignment="Left" Width="100" SelectedValue="{Binding Language}"
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5">
+                    <Label>
+                        <LocText ResourceIdentifierKey="ProgramLanguage" Suffix=":"/>
+                    </Label>
+                    <CheckBox Margin="0,8,3,0" IsChecked="{Binding OverrideLanguage}"/>
+                    <ComboBox IsEnabled="{Binding OverrideLanguage}" HorizontalAlignment="Left" Width="100" SelectedValue="{Binding Language}"
                      DisplayMemberPath="NativeName" SelectedValuePath="TwoLetterISOLanguageName" ItemsSource="{Binding SupportedLanguages}" />
+                </StackPanel>
                 <Label>
                     <LocText ResourceIdentifierKey="DataConnection" Suffix=":"/>
                 </Label>

@@ -74,6 +74,16 @@ namespace Samba.Modules.SettingsModule
             set { LocalSettings.CurrentLanguage = value; }
         }
 
+        public bool OverrideLanguage
+        {
+            get { return LocalSettings.OverrideLanguage; }
+            set
+            {
+                LocalSettings.OverrideLanguage = value;
+                RaisePropertyChanged("OverrideLanguage");
+            }
+        }
+
         private IEnumerable<string> _terminalNames;
         public IEnumerable<string> TerminalNames
         {
@@ -92,7 +102,7 @@ namespace Samba.Modules.SettingsModule
             foreach (var localSetting in LocalSettings.SupportedLanguages)
             {
                 var ci = CultureInfo.GetCultureInfo(localSetting);
-                
+
                 result.Add(ci);
             }
             return result;

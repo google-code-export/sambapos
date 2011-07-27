@@ -7,6 +7,7 @@ using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.ServiceLocation;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Engine;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -54,6 +55,8 @@ namespace Samba.Presentation
 
         protected override void InitializeShell()
         {
+            LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
+
             InteractionService.UserIntraction = ServiceLocator.Current.GetInstance<IUserInteraction>();
             InteractionService.UserIntraction.ToggleSplashScreen();
 

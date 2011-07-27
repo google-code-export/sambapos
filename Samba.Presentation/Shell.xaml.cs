@@ -10,9 +10,7 @@ using System.Windows.Markup;
 using System.Windows.Threading;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Settings;
-using Samba.Localization.Engine;
 using Samba.Presentation.Common;
-using Samba.Presentation.Common.Interaction;
 using Samba.Services;
 
 namespace Samba.Presentation
@@ -24,6 +22,8 @@ namespace Samba.Presentation
     [Export]
     public partial class Shell : Window
     {
+        private readonly DispatcherTimer _timer;
+
         [ImportingConstructor]
         public Shell()
         {
@@ -33,11 +33,9 @@ namespace Samba.Presentation
                                   new FrameworkPropertyMetadata(
                                       XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
-            LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage ?? LocalSettings.SupportedLanguages[0]);
-
             var selectedIndexChange = DependencyPropertyDescriptor.FromProperty(Selector.SelectedIndexProperty, typeof(TabControl));
 
-            selectedIndexChange.AddValueChanged(MainTabControl, this.MainTabControl_SelectedIndexChanged);
+            selectedIndexChange.AddValueChanged(MainTabControl, MainTabControlSelectedIndexChanged);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<User>>().Subscribe(x =>
             {
@@ -57,10 +55,9 @@ namespace Samba.Presentation
             Height = Properties.Settings.Default.ShellHeight;
             Width = Properties.Settings.Default.ShellWidth;
 
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            timer.Tick += timer_Tick;
-            timer.Start();
-            TimeLabel.Text = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
+            _timer = new DispatcherTimer();
+            _timer.Tick += TimerTick;
+            TimeLabel.Text = "..."; // DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
 
 #if !DEBUG
             WindowStyle = WindowStyle.None;
@@ -68,7 +65,7 @@ namespace Samba.Presentation
 #endif
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        void TimerTick(object sender, EventArgs e)
         {
             var time = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
             TimeLabel.Text = TimeLabel.Text.Contains(":") ? time.Replace(":", " ") : time;
@@ -76,9 +73,9 @@ namespace Samba.Presentation
                 InteractionService.UserIntraction.DisplayPopups();
         }
 
-        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void MainTabControlSelectedIndexChanged(object sender, EventArgs e)
         {
-            this.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+            MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
         }
 
         public void UserLoggedIn(User user)
@@ -95,7 +92,7 @@ namespace Samba.Presentation
             RightUserRegion.Visibility = Visibility.Collapsed;
         }
 
-        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        private void TextBlockMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
             {
@@ -112,7 +109,7 @@ namespace Samba.Presentation
             }
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e)
+        private void WindowClosing(object sender, CancelEventArgs e)
         {
             if (AppServices.MainDataContext.SelectedTicket != null)
             {
@@ -128,18 +125,13 @@ namespace Samba.Presentation
             Properties.Settings.Default.Save();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             Title = Title + " [App: " + LocalSettings.AppVersion + "]";
             if (LocalSettings.CurrentDbVersion > 0)
                 Title += " [DB: " + LocalSettings.DbVersion + "-" + LocalSettings.CurrentDbVersion + "]";
-        }
-
-        private void TimeLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (LocalizeDictionary.Instance.Culture.TwoLetterISOLanguageName == "tr")
-                LocalizeDictionary.ChangeLanguage("en");
-            else LocalizeDictionary.ChangeLanguage("tr");
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Start();
         }
     }
 }

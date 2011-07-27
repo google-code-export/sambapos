@@ -30,8 +30,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.10 "
-#define FileVersion "210"
+#define Version "2.11 "
+#define FileVersion "211"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -61,7 +61,7 @@ VersionInfoVersion={#Version}
 VersionInfoCompany=Özgü Teknoloji
 VersionInfoCopyright=Copyright © Ozgu 2010
 ShowUndisplayableLanguages=false
-LanguageDetectionMethod=locale
+LanguageDetectionMethod=uilanguage
 InternalCompressLevel=fast
 SolidCompression=true
 Compression=lzma/fast
@@ -72,7 +72,7 @@ PrivilegesRequired=admin
 ArchitecturesAllowed=
 VersionInfoProductName=Samba POS Setup
 AppID={{7FFA6CCB-2A30-4F09-A216-0CDFC031E870}
-ShowLanguageDialog=auto
+ShowLanguageDialog=yes
 
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl
@@ -141,6 +141,8 @@ Source: src\FluentMigrator.Runner.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\GongSolutions.Wpf.DragDrop.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\migrate.txt; DestDir: {commonappdata}\Ozgu Tech\SambaPOS2; Flags: ignoreversion
 Source: C:\Windows\Fonts\lucon.ttf; DestDir: {fonts}; Flags: onlyifdoesntexist uninsneveruninstall; FontInstall: Lucida Console
+Source: src\Samba.Localization.dll; DestDir: {app}; Flags: ignoreversion
+Source: src\tr\Samba.Localization.resources.dll; DestDir: {app}\tr\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -213,4 +215,5 @@ end;
 [Dirs]
 Name: {app}\Images
 Name: {app}\Imports
+Name: {app}\tr
 Name: {commonappdata}\Ozgu Tech\SambaPOS2
