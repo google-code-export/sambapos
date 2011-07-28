@@ -957,7 +957,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cash Drawer Report.
+        ///   Looks up a localized string similar to Cash Transactions Report.
         /// </summary>
         public static string CashReport {
             get {
@@ -1029,7 +1029,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Amount: {0}.
+        ///   Looks up a localized string similar to Change Due: {0}.
         /// </summary>
         public static string ChangeAmount_f {
             get {
@@ -1066,7 +1066,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Charged Amount.
+        ///   Looks up a localized string similar to Charged.
         /// </summary>
         public static string ChargedAmount {
             get {
@@ -1089,6 +1089,15 @@ namespace Samba.Localization.Properties {
         public static string ChooseTagsForDepartmentHint {
             get {
                 return ResourceManager.GetString("ChooseTagsForDepartmentHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CID Settings.
+        /// </summary>
+        public static string CIDSettings {
+            get {
+                return ResourceManager.GetString("CIDSettings", resourceCulture);
             }
         }
         
@@ -2063,7 +2072,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get Payment.
+        ///   Looks up a localized string similar to Settle.
         /// </summary>
         public static string GetPayment {
             get {
@@ -2781,7 +2790,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Management.
+        ///   Looks up a localized string similar to Manage.
         /// </summary>
         public static string Management {
             get {
@@ -3147,6 +3156,15 @@ namespace Samba.Localization.Properties {
         public static string OpenClose_ab {
             get {
                 return ResourceManager.GetString("OpenClose_ab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} min.
+        /// </summary>
+        public static string OpenTicketButtonDuration {
+            get {
+                return ResourceManager.GetString("OpenTicketButtonDuration", resourceCulture);
             }
         }
         

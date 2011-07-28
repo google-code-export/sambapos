@@ -2118,4 +2118,10 @@ Masa: {2}</value>
   <data name="Search" xml:space="preserve">
     <value>Ara</value>
   </data>
+	<data name="OpenTicketButtonDuration">
+		<value xml:space="preserve">{0} dk.</value>
+	</data>
+	<data name="CIDSettings">
+		<value xml:space="preserve">CID Ayarları</value>
+	</data>
 </root>

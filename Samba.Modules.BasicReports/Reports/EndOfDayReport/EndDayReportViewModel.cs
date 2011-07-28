@@ -237,9 +237,11 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         {
                             sum = grp.Sum(x => x.TicketCount);
                         }
-
-                        var average = totalAmount / sum;
-                        report.AddRow("Etiket", string.Format(Resources.TotalAmountDivTag_f, tag.Name), "", average.ToString(ReportContext.CurrencyFormat));
+                        if(sum > 0)
+                        {
+                            var average = totalAmount / sum;
+                            report.AddRow("Etiket", string.Format(Resources.TotalAmountDivTag_f, tag.Name), "", average.ToString(ReportContext.CurrencyFormat));
+                        }
                     }
                 }
             }

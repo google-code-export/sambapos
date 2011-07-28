@@ -1,5 +1,6 @@
 ﻿using System;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Properties;
 
 namespace Samba.Presentation.Common.ViewObjects
 {
@@ -21,7 +22,7 @@ namespace Samba.Presentation.Common.ViewObjects
             {
                 var difference = Convert.ToInt32(new TimeSpan(DateTime.Now.Ticks - LastOrderDate.Ticks).TotalMinutes);
                 if (difference == 0) return "-";
-                return string.Format("{0} dk.", difference.ToString("#"));
+                return string.Format(Resources.OpenTicketButtonDuration, difference.ToString("#"));
             }
         }
         public string Title

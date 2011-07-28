@@ -9,6 +9,7 @@ using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Interaction;
 using Samba.Presentation.Common.ModelBase;
+using Samba.Presentation.Common.ViewObjects;
 using Samba.Services;
 
 namespace Samba.Modules.CustomerModule
@@ -79,7 +80,7 @@ namespace Samba.Modules.CustomerModule
                     if (x.Topic == EventTopicNames.PopupClicked && x.Value.EventMessage == "SelectCustomer")
                     {
                         ActivateCustomerView();
-                        ((CustomerSelectorViewModel)_customerSelectorView.DataContext).SearchCustomer(x.Value.DataObject.ToString());
+                        ((CustomerSelectorViewModel)_customerSelectorView.DataContext).SearchCustomer(x.Value.DataObject as string);
                     }
                 }
                 );

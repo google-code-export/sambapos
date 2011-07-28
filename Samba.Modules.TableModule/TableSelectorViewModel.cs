@@ -35,7 +35,6 @@ namespace Samba.Modules.TableModule
         public bool CanDesignTables { get { return AppServices.CurrentLoggedInUser.UserRole.IsAdmin; } }
         public int CurrentPageNo { get; set; }
 
-        public bool IsCancelTableVisible { get { return SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.LocationName) && SelectedTicket.Id > 0; } }
         public bool IsPageNavigatorVisible { get { return SelectedTableScreen != null && SelectedTableScreen.PageCount > 1; } }
         public bool IsFeedbackVisible { get { return !string.IsNullOrEmpty(Feedback); } }
         private string _feedback;
@@ -231,7 +230,6 @@ namespace Samba.Modules.TableModule
             RaisePropertyChanged("SelectedTableScreen");
             RaisePropertyChanged("IsPageNavigatorVisible");
             RaisePropertyChanged("TablesVerticalAlignment");
-            RaisePropertyChanged("IsCancelTableVisible");
         }
 
         public void LoadTrackableTables()

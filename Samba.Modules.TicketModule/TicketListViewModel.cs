@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -15,9 +15,10 @@ using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure;
- using Samba.Localization.Properties;
- using Samba.Persistance.Data;
+using Samba.Localization.Properties;
+using Samba.Persistance.Data;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Interaction;
 using Samba.Presentation.Common.ViewObjects;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
@@ -153,10 +154,10 @@ namespace Samba.Modules.TicketModule
                     RaisePropertyChanged("SelectedTicket");
                     SelectedDepartment.PublishEvent(EventTopicNames.SelectedDepartmentChanged);
                 }
-                else
-                {
-                    DisplayTickets();
-                }
+                //else
+                //{
+                //    DisplayTickets();
+                //}
             }
         }
 
@@ -260,6 +261,7 @@ namespace Samba.Modules.TicketModule
             EditTicketNoteCommand = new CaptionCommand<string>(Resources.TicketNote, OnEditTicketNote, CanEditTicketNote);
             RemoveTicketLockCommand = new CaptionCommand<string>(Resources.ReleaseLock, OnRemoveTicketLock, CanRemoveTicketLock);
             ChangePriceCommand = new CaptionCommand<string>(Resources.ChangePrice, OnChangePrice, CanChangePrice);
+
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<WorkPeriod>>().Subscribe(
                 x =>
@@ -382,7 +384,6 @@ namespace Samba.Modules.TicketModule
                          SelectedTicketView = SelectedTicketView;
                          RefreshOpenTickets();
                          RefreshVisuals();
-
                      }
 
                      if (x.Topic == EventTopicNames.NavigateTicketView)
@@ -391,7 +392,6 @@ namespace Samba.Modules.TicketModule
                          SelectedTicketView = SelectedTicketView;
                          DisplayTickets();
                      }
-
                  });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Message>>().Subscribe(
@@ -405,6 +405,24 @@ namespace Samba.Modules.TicketModule
                         RefreshVisuals();
                     }
                 });
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<PopupData>>().Subscribe(
+                x =>
+                {
+                    if (x.Value.EventMessage == "SelectCustomer")
+                    {
+                        var dep = AppServices.MainDataContext.Departments.FirstOrDefault(y => y.IsTakeAway);
+                        if (dep != null)
+                        {
+                            UpdateSelectedDepartment(dep.Id);
+                            SelectedTicketView = OpenTicketListView;
+                        }
+                        if (SelectedDepartment == null)
+                            SelectedDepartment = AppServices.MainDataContext.Departments.FirstOrDefault();
+                        RefreshVisuals();
+                    }
+                }
+                );
         }
 
         private bool CanExecuteShowTicketTags(TicketTagGroup arg)
@@ -913,7 +931,6 @@ namespace Samba.Modules.TicketModule
                     opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "*", ButtonColor = "Blue" });
                 else
                     opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "", ButtonColor = "Green" });
-
                 if (cnt > 0)
                     opt.Insert(0, new TicketTagFilterViewModel { Count = cnt, TagGroup = tagGroup.Name, ButtonColor = "Red", TagValue = " " });
             }

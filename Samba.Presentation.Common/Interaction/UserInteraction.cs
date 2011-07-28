@@ -43,7 +43,7 @@ namespace Samba.Presentation.Common.Interaction
         {
             _popupCache = new List<PopupData>();
             _popupList = new ObservableCollection<PopupData>();
-            ClickButtonCommand = new CaptionCommand<PopupData>("Tık", OnButtonClick);
+            ClickButtonCommand = new CaptionCommand<PopupData>("Click", OnButtonClick);
         }
 
         private void OnButtonClick(PopupData obj)

@@ -328,7 +328,7 @@ Payment</value>
     <value>Calling</value>
   </data>
   <data name="Management" xml:space="preserve">
-    <value>Management</value>
+    <value>Manage</value>
   </data>
   <data name="Common" xml:space="preserve">
     <value>Common</value>
@@ -885,7 +885,7 @@ Payment</value>
     <value>Close Ticket</value>
   </data>
   <data name="GetPayment" xml:space="preserve">
-    <value>Get Payment</value>
+    <value>Settle</value>
   </data>
   <data name="Tag" xml:space="preserve">
     <value>Tag</value>
@@ -1536,7 +1536,7 @@ moved to {1} table.</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ChargedAmount" xml:space="preserve">
-    <value>Charged Amount</value>
+    <value>Charged</value>
     <comment>Label content</comment>
   </data>
   <data name="Portions" xml:space="preserve">
@@ -1629,7 +1629,7 @@ Table</value>
 Info</value>
   </data>
   <data name="ChangeAmount_f" xml:space="preserve">
-    <value>Change Amount: {0}</value>
+    <value>Change Due: {0}</value>
   </data>
   <data name="AccountBalance_r" xml:space="preserve">
     <value>Account
@@ -1918,7 +1918,7 @@ Table: {2}</value>
     <value>Accounts Receivable</value>
   </data>
   <data name="CashReport" xml:space="preserve">
-    <value>Cash Drawer Report</value>
+    <value>Cash Transactions Report</value>
   </data>
   <data name="DateRangeIsNotActiveWorkPeriod" xml:space="preserve">
     <value>Date range is not in active work period</value>
@@ -2119,4 +2119,10 @@ Table: {2}</value>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+	<data name="OpenTicketButtonDuration">
+		<value xml:space="preserve">{0} min</value>
+	</data>
+	<data name="CIDSettings">
+		<value xml:space="preserve">CID Settings</value>
+	</data>
 </root>

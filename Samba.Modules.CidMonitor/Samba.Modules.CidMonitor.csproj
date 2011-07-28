@@ -47,6 +47,7 @@
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
       <HintPath>..\Lib\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -89,6 +90,10 @@
     <ProjectReference Include="..\Samba.Presentation.Common\Samba.Presentation.Common.csproj">
       <Project>{FE1A894E-D55E-4CEA-980A-1C678A2453FC}</Project>
       <Name>Samba.Presentation.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samba.Services\Samba.Services.csproj">
+      <Project>{413B698C-0D7D-4FCD-9F16-AF51AED4E647}</Project>
+      <Name>Samba.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
