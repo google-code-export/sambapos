@@ -22,23 +22,43 @@ namespace Samba.Presentation.ViewModels
 
         public TableScreenItemViewModel(Table model, TableScreen screen, ICommand actionCommand)
         {
-            Model = model;
             _actionCommand = actionCommand;
             _screen = screen;
-            UpdateButtonColor();
+            Model = model;
         }
 
         private readonly TableScreen _screen;
 
+        private Table _model;
+
         [Browsable(false)]
-        public Table Model { get; set; }
+        public Table Model
+        {
+            get { return _model; }
+            set
+            {
+                _model = value;
+                UpdateButtonColor();
+            }
+        }
 
         [DisplayName("Masa")]
         public string Name { get { return Model.Name; } }
 
         private string _buttonColor;
         [Browsable(false)]
-        public string ButtonColor { get { return _buttonColor; } set { _buttonColor = value; RaisePropertyChanged("ButtonColor"); } }
+        public string ButtonColor
+        {
+            get { return _buttonColor; }
+            set
+            {
+                if (_buttonColor != value)
+                {
+                    _buttonColor = value;
+                    RaisePropertyChanged("ButtonColor");
+                }
+            }
+        }
 
         [Browsable(false)]
         public double ButtonHeight { get { return _screen.ButtonHeight > 0 ? _screen.ButtonHeight : double.NaN; } }

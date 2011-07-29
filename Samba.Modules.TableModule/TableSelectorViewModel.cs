@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using Microsoft.Practices.Prism.Commands;
@@ -201,10 +203,27 @@ namespace Samba.Modules.TableModule
 
         private void UpdateTables(int tableScreenId)
         {
+            UpdateMethod2(tableScreenId);
+            RaisePropertyChanged("TablesVerticalAlignment");
+        }
+
+        private void UpdateMethod2(int tableScreenId)
+        {
             Feedback = "";
-            Tables = new ObservableCollection<IDiagram>();
-            Tables.AddRange(AppServices.DataAccessService.GetCurrentTables(tableScreenId, CurrentPageNo)
-                .Select(x => new TableScreenItemViewModel(x, SelectedTableScreen, TableSelectionCommand)));
+            var tableData = AppServices.DataAccessService.GetCurrentTables(tableScreenId, CurrentPageNo);
+            if (Tables != null && (Tables.Count != tableData.Count())) Tables = null;
+            if (Tables == null)
+            {
+                Tables = new ObservableCollection<IDiagram>();
+                Tables.AddRange(tableData.Select(x => new TableScreenItemViewModel(x, SelectedTableScreen, TableSelectionCommand)));
+            }
+            else
+            {
+                for (var i = 0; i < tableData.Count(); i++)
+                {
+                    ((TableScreenItemViewModel)Tables[i]).Model = tableData.ElementAt(i);
+                }
+            }
 
             if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.LocationName))
             {
@@ -229,8 +248,39 @@ namespace Samba.Modules.TableModule
             RaisePropertyChanged("TableScreens");
             RaisePropertyChanged("SelectedTableScreen");
             RaisePropertyChanged("IsPageNavigatorVisible");
-            RaisePropertyChanged("TablesVerticalAlignment");
         }
+
+        //private void UpdateMethod1(int tableScreenId)
+        //{
+        //    Feedback = "";
+        //    Tables = new ObservableCollection<IDiagram>();
+        //    Tables.AddRange(AppServices.DataAccessService.GetCurrentTables(tableScreenId, CurrentPageNo)
+        //                        .Select(x => new TableScreenItemViewModel(x, SelectedTableScreen, TableSelectionCommand)));
+
+        //    if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.LocationName))
+        //    {
+        //        FeedbackColor = "Red";
+        //        FeedbackForeground = "White";
+        //        Feedback = string.Format(Resources.SelectTableThatYouWantToMoveTicket_f, SelectedTicket.LocationName);
+        //    }
+        //    else if (SelectedTicket != null)
+        //    {
+        //        FeedbackColor = "Red";
+        //        FeedbackForeground = "White";
+        //        Feedback = Resources.SelectTableForTicket;
+        //    }
+        //    else
+        //    {
+        //        FeedbackColor = "LightYellow";
+        //        FeedbackForeground = "Black";
+        //        Feedback = Resources.SelectTableForOperation;
+        //    }
+
+        //    RaisePropertyChanged("Tables");
+        //    RaisePropertyChanged("TableScreens");
+        //    RaisePropertyChanged("SelectedTableScreen");
+        //    RaisePropertyChanged("IsPageNavigatorVisible");
+        //}
 
         public void LoadTrackableTables()
         {
