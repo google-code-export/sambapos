@@ -168,7 +168,7 @@ namespace Samba.Modules.TableModule
                 var ticketsMerged = obj.Model.TicketId > 0 && obj.Model.TicketId != SelectedTicket.Id;
                 AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
                 obj.UpdateButtonColor();
-                SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
+                
                 if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
                     if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
                         InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, obj.Caption));
@@ -176,6 +176,7 @@ namespace Samba.Modules.TableModule
                         InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, obj.Caption));
                     else if (oldLocationName != obj.Caption)
                         InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, obj.Caption));
+                SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
             }
             else if (obj.Model.TicketId == 0)
             {

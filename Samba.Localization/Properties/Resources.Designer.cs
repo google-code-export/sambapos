@@ -4018,7 +4018,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the Table to move {0} ticket..
+        ///   Looks up a localized string similar to Select new table for {0} ticket..
         /// </summary>
         public static string SelectTableThatYouWantToMoveTicket_f {
             get {
@@ -5164,6 +5164,15 @@ namespace Samba.Localization.Properties {
         public static string Voucher_ab {
             get {
                 return ResourceManager.GetString("Voucher_ab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voucher.
+        /// </summary>
+        public static string Voucher_r {
+            get {
+                return ResourceManager.GetString("Voucher_r", resourceCulture);
             }
         }
         

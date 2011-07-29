@@ -1503,7 +1503,7 @@ merged with {1} table.</value>
 moved to {1} table.</value>
   </data>
   <data name="SelectTableThatYouWantToMoveTicket_f" xml:space="preserve">
-    <value>Select the Table to move {0} ticket.</value>
+    <value>Select new table for {0} ticket.</value>
   </data>
   <data name="SelectTableForTicket" xml:space="preserve">
     <value>Select table for ticket.</value>
@@ -2119,10 +2119,13 @@ Table: {2}</value>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-	<data name="OpenTicketButtonDuration">
-		<value xml:space="preserve">{0} min</value>
-	</data>
-	<data name="CIDSettings">
-		<value xml:space="preserve">CID Settings</value>
-	</data>
+  <data name="OpenTicketButtonDuration" xml:space="preserve">
+    <value>{0} min</value>
+  </data>
+  <data name="CIDSettings" xml:space="preserve">
+    <value>CID Settings</value>
+  </data>
+  <data name="Voucher_r" xml:space="preserve">
+    <value>Voucher</value>
+  </data>
 </root>
