@@ -242,7 +242,7 @@ namespace Samba.Modules.TicketModule
             MakePaymentCommand = new CaptionCommand<string>(Resources.GetPayment, OnMakePaymentExecute, CanMakePayment);
             MakeCashPaymentCommand = new CaptionCommand<string>(Resources.CashPayment_r, OnMakeCashPaymentExecute, CanMakeFastPayment);
             MakeCreditCardPaymentCommand = new CaptionCommand<string>(Resources.CreditCard_r, OnMakeCreditCardPaymentExecute, CanMakeFastPayment);
-            MakeTicketPaymentCommand = new CaptionCommand<string>(Resources.Voucher, OnMakeTicketPaymentExecute, CanMakeFastPayment);
+            MakeTicketPaymentCommand = new CaptionCommand<string>(Resources.Voucher_r, OnMakeTicketPaymentExecute, CanMakeFastPayment);
             SelectTableCommand = new CaptionCommand<string>(Resources.SelectTable, OnSelectTableExecute, CanSelectTable);
             SelectCustomerCommand = new CaptionCommand<string>(Resources.SelectCustomer, OnSelectCustomerExecute, CanSelectCustomer);
             ShowAllOpenTickets = new CaptionCommand<string>(Resources.AllTickets_r, OnShowAllOpenTickets);
@@ -357,6 +357,7 @@ namespace Samba.Modules.TicketModule
                     {
                         if (!string.IsNullOrEmpty(SelectedTicket.Location))
                             CloseTicket();
+                        DisplayTickets();
                     }
 
                     if (x.Topic == EventTopicNames.PaymentSubmitted)
@@ -381,16 +382,9 @@ namespace Samba.Modules.TicketModule
                  {
                      if (x.Topic == EventTopicNames.ActivateTicketView)
                      {
-                         SelectedTicketView = SelectedTicketView;
-                         RefreshOpenTickets();
-                         RefreshVisuals();
-                     }
-
-                     if (x.Topic == EventTopicNames.NavigateTicketView)
-                     {
-                         UpdateSelectedDepartment(AppServices.CurrentLoggedInUser.UserRole.DepartmentId);
-                         SelectedTicketView = SelectedTicketView;
-                         DisplayTickets();
+                         if (SelectedDepartment == null)
+                             UpdateSelectedDepartment(AppServices.CurrentLoggedInUser.UserRole.DepartmentId);
+                         UpdateSelectedTicketView();
                      }
                  });
 
@@ -425,6 +419,19 @@ namespace Samba.Modules.TicketModule
                 );
         }
 
+        private void UpdateSelectedTicketView()
+        {
+            if (SelectedTicket != null)
+                SelectedTicketView = SingleTicketView;
+            else
+            {
+                SelectedTicketView = OpenTicketListView;
+                RefreshOpenTickets();
+            }
+            DisplayTickets();
+            RefreshVisuals();
+        }
+
         private bool CanExecuteShowTicketTags(TicketTagGroup arg)
         {
             return SelectedTicket == null || (SelectedTicket.Model.CanSubmit);
@@ -441,8 +448,12 @@ namespace Samba.Modules.TicketModule
             {
                 SelectedTag = tagGroup.Name;
                 RefreshOpenTickets();
-                SelectedTicketView = OpenTicketListView;
-                RaisePropertyChanged("OpenTickets");
+                if (OpenTickets.Count() > 0 || OpenTicketTags.Count() > 0)
+                {
+                    SelectedTicketView = OpenTicketListView;
+                    RaisePropertyChanged("OpenTickets");
+                }
+                else InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.NoTicketsFoundForTag, tagGroup.Name));
             }
         }
 
@@ -776,9 +787,11 @@ namespace Samba.Modules.TicketModule
             {
                 if (SelectedDepartment.IsAlaCarte)
                 {
-                    if (SelectedTicket == null)
-                        SelectedTicketView = OpenTicketListView;
+                    //if (SelectedTicket == null && SelectedTicketView != OpenTicketListView)
+                    //    SelectedTicketView = OpenTicketListView;
+
                     SelectedDepartment.PublishEvent(EventTopicNames.SelectTable);
+
                     StopTimer();
                     return;
                 }
@@ -805,7 +818,7 @@ namespace Samba.Modules.TicketModule
                         AppServices.CurrentLoggedInUser.PublishEvent(EventTopicNames.UserLoggedOut);
                 }
 
-                EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
+                //EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
             }
             RefreshVisuals();
 
@@ -888,7 +901,7 @@ namespace Samba.Modules.TicketModule
                     if (SelectedTicket == null)
                     {
                         OpenTicketTags = GetOpenTicketTags(OpenTickets, tagGroup, tagFilter);
-                        OpenTickets = string.IsNullOrEmpty(tagFilter) ? null : openTickets;
+                        OpenTickets = string.IsNullOrEmpty(tagFilter) && OpenTicketTags.Count() > 0 ? null : openTickets;
                     }
                 }
             }
@@ -1005,7 +1018,6 @@ namespace Samba.Modules.TicketModule
             _selectedTicketItems.Clear();
             DisplayTickets();
             AppServices.MessagingService.SendMessage(Messages.TicketRefreshMessage, result.TicketId.ToString());
-            RefreshVisuals();
         }
 
         private void OnOpenTicketExecute(int? id)

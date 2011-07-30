@@ -1683,6 +1683,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department Permissions.
+        /// </summary>
+        public static string DepartmentPermissions {
+            get {
+                return ResourceManager.GetString("DepartmentPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Departments.
         /// </summary>
         public static string Departments {
@@ -1899,7 +1908,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter PIN.
+        ///   Looks up a localized string similar to ENTER PIN.
         /// </summary>
         public static string EnterPin {
             get {
@@ -2916,6 +2925,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Navigation Permissions.
+        /// </summary>
+        public static string NavigationPermissions {
+            get {
+                return ResourceManager.GetString("NavigationPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New
         ///Customer.
         /// </summary>
@@ -3003,6 +3021,15 @@ namespace Samba.Localization.Properties {
         public static string Note {
             get {
                 return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No tickets found tagged with {0} tag..
+        /// </summary>
+        public static string NoTicketsFoundForTag {
+            get {
+                return ResourceManager.GetString("NoTicketsFoundForTag", resourceCulture);
             }
         }
         
@@ -3754,6 +3781,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reporting Permissions.
+        /// </summary>
+        public static string ReportPermissions {
+            get {
+                return ResourceManager.GetString("ReportPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report Printer.
         /// </summary>
         public static string ReportPrinter {
@@ -4050,6 +4086,15 @@ namespace Samba.Localization.Properties {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Permissions.
+        /// </summary>
+        public static string SettlePermissions {
+            get {
+                return ResourceManager.GetString("SettlePermissions", resourceCulture);
             }
         }
         
@@ -4624,6 +4669,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket Permissions.
+        /// </summary>
+        public static string TicketPermissions {
+            get {
+                return ResourceManager.GetString("TicketPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Printer.
         /// </summary>
         public static string TicketPrinter {
@@ -4699,6 +4753,16 @@ namespace Samba.Localization.Properties {
         public static string TicketTemplateFooterValue {
             get {
                 return ResourceManager.GetString("TicketTemplateFooterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;L00&gt;{MİKTAR} {ÜRÜN} GIFT |{FİYAT}
+        ///        * {ÖZELLİKLER}.
+        /// </summary>
+        public static string TicketTemplateGiftedLineTemplateValue {
+            get {
+                return ResourceManager.GetString("TicketTemplateGiftedLineTemplateValue", resourceCulture);
             }
         }
         

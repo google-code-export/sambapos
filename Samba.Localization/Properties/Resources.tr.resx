@@ -2128,4 +2128,26 @@ Masa: {2}</value>
     <value>Yemek
 Çeki</value>
   </data>
+	<data name="TicketTemplateGiftedLineTemplateValue">
+		<value><![CDATA[<L00>{MİKTAR} {ÜRÜN} İKRAM |{FİYAT}
+        * {ÖZELLİKLER}]]></value>
+	</data>
+  <data name="NavigationPermissions">
+    <value xml:space="preserve">Navigasyon İzinleri</value>
+  </data>
+  <data name="DepartmentPermissions">
+    <value xml:space="preserve">Departman İzinleri</value>
+  </data>
+  <data name="TicketPermissions">
+    <value xml:space="preserve">Adisyon İzinleri</value>
+  </data>
+  <data name="SettlePermissions">
+    <value xml:space="preserve">Ödeme İzinleri</value>
+  </data>
+  <data name="ReportPermissions">
+    <value xml:space="preserve">Rapor İzinleri</value>
+  </data>
+	<data name="NoTicketsFoundForTag">
+		<value xml:space="preserve">{0} etiketi ile etikletlenmiş adisyon yok.</value>
+	</data>
 </root>

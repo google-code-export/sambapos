@@ -207,6 +207,16 @@ namespace Samba.Domain.Models.Tickets
             return TicketItems.Sum(item => item.GetTotal(currencyCode, ccontext));
         }
 
+        public decimal GetTotalGiftAmount()
+        {
+            return GetTotalGiftAmount(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
+        }
+
+        public decimal GetTotalGiftAmount(CurrencyContext ccontext, string currencyCode)
+        {
+            return TicketItems.Where(x => x.Gifted && !x.Voided).Sum(item => item.GetTotal(currencyCode, ccontext));
+        }
+
         public decimal GetPaymentAmount()
         {
             return Payments.Sum(item => item.Amount);
@@ -545,6 +555,7 @@ namespace Samba.Domain.Models.Tickets
 
             return newItems;
         }
+
 
     }
 }

@@ -80,13 +80,14 @@ namespace Samba.Modules.TableModule
                 {
                     if (x.Topic == EventTopicNames.SelectTable)
                     {
-                        if (SelectedTicket != null)
-                        {
-                            UpdateTables(SelectedTicket.DepartmentId != 0
-                                 ? Dao.Single<Department, int>(SelectedTicket.DepartmentId, y => y.TableScreenId)
-                                 : 0);
-                        }
-                        else UpdateTables(x.Value.TableScreenId);
+                        //if (SelectedTicket != null)
+                        //{
+                        //    UpdateTables(SelectedTicket.DepartmentId != 0
+                        //         ? Dao.Single<Department, int>(SelectedTicket.DepartmentId, y => y.TableScreenId)
+                        //         : 0);
+                        //}
+                        //else 
+                        RefreshTables();
                     }
                 });
 
@@ -145,11 +146,13 @@ namespace Samba.Modules.TableModule
 
         private void OnCloseScreenExecuted(string obj)
         {
-            if (SelectedTicket != null)
-            {
-                SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
-            }
-            else if (IsNavigated)
+            //if (SelectedTicket != null)
+            //{
+            //    SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
+            //}
+            //else
+
+            if (IsNavigated)
                 EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
             else
                 EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
@@ -167,8 +170,9 @@ namespace Samba.Modules.TableModule
                 var oldLocationName = SelectedTicket.LocationName;
                 var ticketsMerged = obj.Model.TicketId > 0 && obj.Model.TicketId != SelectedTicket.Id;
                 AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
-                obj.UpdateButtonColor();
-                
+                //obj.UpdateButtonColor();
+                SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
+
                 if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
                     if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
                         InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, obj.Caption));
@@ -176,7 +180,6 @@ namespace Samba.Modules.TableModule
                         InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, obj.Caption));
                     else if (oldLocationName != obj.Caption)
                         InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, obj.Caption));
-                SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
             }
             else if (obj.Model.TicketId == 0)
             {
@@ -250,38 +253,6 @@ namespace Samba.Modules.TableModule
             RaisePropertyChanged("SelectedTableScreen");
             RaisePropertyChanged("IsPageNavigatorVisible");
         }
-
-        //private void UpdateMethod1(int tableScreenId)
-        //{
-        //    Feedback = "";
-        //    Tables = new ObservableCollection<IDiagram>();
-        //    Tables.AddRange(AppServices.DataAccessService.GetCurrentTables(tableScreenId, CurrentPageNo)
-        //                        .Select(x => new TableScreenItemViewModel(x, SelectedTableScreen, TableSelectionCommand)));
-
-        //    if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.LocationName))
-        //    {
-        //        FeedbackColor = "Red";
-        //        FeedbackForeground = "White";
-        //        Feedback = string.Format(Resources.SelectTableThatYouWantToMoveTicket_f, SelectedTicket.LocationName);
-        //    }
-        //    else if (SelectedTicket != null)
-        //    {
-        //        FeedbackColor = "Red";
-        //        FeedbackForeground = "White";
-        //        Feedback = Resources.SelectTableForTicket;
-        //    }
-        //    else
-        //    {
-        //        FeedbackColor = "LightYellow";
-        //        FeedbackForeground = "Black";
-        //        Feedback = Resources.SelectTableForOperation;
-        //    }
-
-        //    RaisePropertyChanged("Tables");
-        //    RaisePropertyChanged("TableScreens");
-        //    RaisePropertyChanged("SelectedTableScreen");
-        //    RaisePropertyChanged("IsPageNavigatorVisible");
-        //}
 
         public void LoadTrackableTables()
         {

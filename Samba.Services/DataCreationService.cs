@@ -69,6 +69,7 @@ namespace Samba.Services
             ticketTemplate.Name = Resources.TicketTemplate;
             ticketTemplate.HeaderTemplate = Resources.TicketTemplateHeaderValue;
             ticketTemplate.LineTemplate = "<J00>- {MİKTAR} {ÜRÜN}|{FİYAT}";
+            ticketTemplate.GiftLineTemplate = Resources.TicketTemplateGiftedLineTemplateValue;
             ticketTemplate.FooterTemplate = Resources.TicketTemplateFooterValue;
 
             var kitchenTemplate = new PrinterTemplate();
@@ -76,7 +77,7 @@ namespace Samba.Services
             kitchenTemplate.HeaderTemplate = Resources.KitchenTemplateHeaderValue;
 
             kitchenTemplate.LineTemplate = Resources.KitchenTemplateLineTemplateValue;
-
+            kitchenTemplate.GiftLineTemplate = Resources.KitchenTemplateLineTemplateValue;
             kitchenTemplate.VoidedLineTemplate = Resources.KitchenTemplateVoidedLineTemplateValue;
 
             kitchenTemplate.FooterTemplate = "<F>-";

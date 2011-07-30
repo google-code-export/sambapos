@@ -170,7 +170,7 @@ namespace Samba.Services.Printing
             result = FormatDataIf(discount > 0, result, "{VARSA İSKONTO}",
                 "Belge TOPLAMI:|" + plainTotal.ToString("#,#0.00") + "\r\n" +
                 "<J>İskonto:|" + discount.ToString("#,#0.00"));
-
+            result = FormatData(result, "{TOPLAM İKRAM}", ticket.GetTotalGiftAmount().ToString("#,#0.00"));
             result = FormatDataIf(discount < 0, result, "{VARSA DÜZELTME}", "<J>Düzeltme:|" + discount.ToString("#,#0.00"));
             result = FormatData(result, "{TOPLAM FİYAT}", ticket.GetSum().ToString("#,#0.00"));
             result = FormatData(result, "{TOPLAM ÖDENEN}", ticket.GetPaymentAmount().ToString("#,#0.00"));

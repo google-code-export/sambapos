@@ -1,4 +1,5 @@
 ﻿using System;
+using Samba.Localization.Properties;
 
 namespace Samba.Services
 {
@@ -33,10 +34,10 @@ namespace Samba.Services
 
     public static class PermissionCategories
     {
-        public static string Navigation = "Navigasyon İzinleri";
-        public static string Department = "Departman İzinleri";
-        public static string Ticket = "Adisyon İzinleri";
-        public static string Payment = "Ödeme İzinleri";
-        public static string Report = "Rapor İzinleri";
+        public static string Navigation = Resources.NavigationPermissions;
+        public static string Department = Resources.DepartmentPermissions;
+        public static string Ticket = Resources.TicketPermissions;
+        public static string Payment = Resources.SettlePermissions;
+        public static string Report = Resources.ReportPermissions;
     }
 }

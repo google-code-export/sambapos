@@ -51,15 +51,14 @@ namespace Samba.Modules.TicketModule
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Ticket>>().Subscribe(x =>
             {
-                if (x.Topic == EventTopicNames.TableSelectedForTicket
-                    || x.Topic == EventTopicNames.TicketSelectedFromTableList)
+                if ( x.Topic == EventTopicNames.TicketSelectedFromTableList)
                     ActivateTicketEditorView();
             });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
                 x =>
                 {
-                    if (x.Topic == EventTopicNames.ActivateTicketView || x.Topic == EventTopicNames.NavigateTicketView)
+                    if (x.Topic == EventTopicNames.ActivateTicketView)
                         ActivateTicketEditorView();
                 });
         }
@@ -71,7 +70,7 @@ namespace Samba.Modules.TicketModule
 
         private static void OnNavigateTicketCommand(string obj)
         {
-            EventServiceFactory.EventService.PublishEvent(EventTopicNames.NavigateTicketView);
+            EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
         }
 
         private void ActivateTicketEditorView()

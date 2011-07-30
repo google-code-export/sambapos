@@ -122,7 +122,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="EnterPin" xml:space="preserve">
-    <value>Enter PIN</value>
+    <value>ENTER PIN</value>
     <comment>TextBox.Text</comment>
   </data>
   <data name="Exit" xml:space="preserve">
@@ -2128,4 +2128,26 @@ Table: {2}</value>
   <data name="Voucher_r" xml:space="preserve">
     <value>Voucher</value>
   </data>
+	<data name="TicketTemplateGiftedLineTemplateValue">
+		<value><![CDATA[<L00>{MİKTAR} {ÜRÜN} GIFT |{FİYAT}
+        * {ÖZELLİKLER}]]></value>
+	</data>
+	<data name="NavigationPermissions">
+		<value xml:space="preserve">Navigation Permissions</value>
+	</data>
+	<data name="DepartmentPermissions">
+		<value xml:space="preserve">Department Permissions</value>
+	</data>
+	<data name="TicketPermissions">
+		<value xml:space="preserve">Ticket Permissions</value>
+	</data>
+	<data name="SettlePermissions">
+		<value xml:space="preserve">Payment Permissions</value>
+	</data>
+	<data name="ReportPermissions">
+		<value xml:space="preserve">Reporting Permissions</value>
+	</data>
+	<data name="NoTicketsFoundForTag">
+		<value xml:space="preserve">No tickets found tagged with {0} tag.</value>
+	</data>
 </root>

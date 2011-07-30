@@ -31,7 +31,7 @@ namespace Samba.Modules.TicketModule
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
                  x =>
                  {
-                     if (x.Topic == EventTopicNames.NavigateTicketView || x.Topic == EventTopicNames.ActivateTicketView)
+                     if (x.Topic == EventTopicNames.ActivateTicketView)
                      {
                          DisplayCategoriesScreen();
                      }

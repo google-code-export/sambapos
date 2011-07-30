@@ -28,8 +28,7 @@ namespace Samba.Modules.TicketModule
             SubmitCashPaymentCommand = new CaptionCommand<string>(Resources.Cash, OnSubmitCashPayment, CanSubmitCashPayment);
             SubmitCreditCardPaymentCommand = new CaptionCommand<string>(Resources.CreditCard_r, OnSubmitCreditCardPayment,
                                                                         CanSubmitCashPayment);
-            SubmitTicketPaymentCommand = new CaptionCommand<string>(Resources.Voucher, OnSubmitTicketPayment,
-                                                                    CanSubmitCashPayment);
+            SubmitTicketPaymentCommand = new CaptionCommand<string>(Resources.Voucher_r, OnSubmitTicketPayment, CanSubmitCashPayment);
             SubmitAccountPaymentCommand = new CaptionCommand<string>(Resources.AccountBalance_r, OnSubmitAccountPayment, CanSubmitAccountPayment);
             ClosePaymentScreenCommand = new CaptionCommand<string>(Resources.Close, OnClosePaymentScreen, CanClosePaymentScreen);
             TenderAllCommand = new CaptionCommand<string>(Resources.All, OnTenderAllCommand);
@@ -571,7 +570,7 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("Label");
             RaisePropertyChanged("TotalLabel");
             RaisePropertyChanged("FontWeight");
-            
+
         }
     }
 }

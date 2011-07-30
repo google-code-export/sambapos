@@ -23,7 +23,6 @@ namespace Samba.Presentation.Common
         public const string SelectCustomer = "Select Customer";
         public const string NavigationCommandAdded = "Navigation Command Added";
         public const string DashboardCommandAdded = "Dashboard Command Added";
-        public const string NavigateTicketView = "Navigate Ticket View";
         public const string SelectedTicketChanged = "Selected Ticket Changed";
         public const string TicketItemAdded = "Ticket Item Added";
         public const string DashboardClosed = "Dashboard Closed";
