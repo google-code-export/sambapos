@@ -155,7 +155,7 @@ namespace Samba.Modules.TableModule
             if (IsNavigated)
                 EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
             else
-                EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
+                EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
         }
 
         private void OnSelectTableCategoryExecuted(TableScreen obj)

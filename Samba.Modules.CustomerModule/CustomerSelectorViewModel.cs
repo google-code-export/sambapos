@@ -390,7 +390,7 @@ namespace Samba.Modules.CustomerModule
         private void OnCloseScreen(string obj)
         {
             if (AppServices.MainDataContext.SelectedDepartment != null && AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
-                EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
+                EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
             else
                 EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
             SelectedView = 0;

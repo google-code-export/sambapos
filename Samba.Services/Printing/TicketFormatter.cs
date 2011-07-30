@@ -4,6 +4,7 @@ using System.Linq;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Services.Printing
@@ -107,17 +108,17 @@ namespace Samba.Services.Printing
             if (string.IsNullOrEmpty(document)) return "";
             int userNo = ticket.TicketItems.Count > 0 ? ticket.TicketItems[0].CreatingUserId : 0;
 
-            result = FormatData(result, "{ADİSYON TARİH}", ticket.Date.ToShortDateString());
-            result = FormatData(result, "{ADİSYON SAAT}", ticket.Date.ToShortTimeString());
-            result = FormatData(result, "{TARİH}", DateTime.Now.ToShortDateString());
-            result = FormatData(result, "{SAAT}", DateTime.Now.ToShortTimeString());
-            result = FormatData(result, "{ADİSYON ID}", ticket.Id.ToString());
-            result = FormatData(result, "{ADİSYON NO}", ticket.TicketNumber);
-            result = FormatData(result, "{SİPARİŞ NO}", orderNo.ToString());
-            result = FormatData(result, "{ADİSYON ETİKET}", ticket.GetTagData());
-            if (result.Contains("{ADİSYON ETİKET:"))
+            result = FormatData(result, Resources.TF_TicketDate, ticket.Date.ToShortDateString());
+            result = FormatData(result, Resources.TF_TicketTime, ticket.Date.ToShortTimeString());
+            result = FormatData(result, Resources.TF_DayDate, DateTime.Now.ToShortDateString());
+            result = FormatData(result, Resources.TF_DayTime, DateTime.Now.ToShortTimeString());
+            result = FormatData(result, Resources.TF_UniqueTicketId, ticket.Id.ToString());
+            result = FormatData(result, Resources.TF_TicketNumber, ticket.TicketNumber);
+            result = FormatData(result, Resources.TF_LineOrderNumber, orderNo.ToString());
+            result = FormatData(result, Resources.TF_TicketTag, ticket.GetTagData());
+            if (result.Contains(Resources.TF_OptionalTicketTag))
             {
-                var start = result.IndexOf("{ADİSYON ETİKET:");
+                var start = result.IndexOf(Resources.TF_OptionalTicketTag);
                 var end = result.IndexOf("}", start) + 1;
                 var value = result.Substring(start, end - start);
                 var tags = "";
@@ -142,39 +143,38 @@ namespace Samba.Services.Printing
             if (string.IsNullOrEmpty(ticket.LocationName))
                 title = userName;
 
-            result = FormatData(result, "{MASA GARSON}", title);
-            result = FormatData(result, "{GARSON}", userName);
-            result = FormatData(result, "{MASA}", ticket.LocationName);
-            result = FormatData(result, "{NOT}", ticket.Note);
-            result = FormatData(result, "{MÜŞTERİ ADI}", ticket.CustomerName);
+            result = FormatData(result, Resources.TF_TableOrUserName, title);
+            result = FormatData(result, Resources.TF_UserName, userName);
+            result = FormatData(result, Resources.TF_TableName, ticket.LocationName);
+            result = FormatData(result, Resources.TF_TicketNote, ticket.Note);
+            result = FormatData(result, Resources.TF_AccountName, ticket.CustomerName);
 
-            if (ticket.CustomerId > 0 && (result.Contains("{MÜŞTERİ ADRES") || result.Contains("{MÜŞTERİ TELEFON")))
+            if (ticket.CustomerId > 0 && (result.Contains(Resources.TF_AccountAddress) || result.Contains(Resources.TF_AccountPhone)))
             {
                 var customer = Dao.SingleWithCache<Customer>(x => x.Id == ticket.CustomerId);
-                result = FormatData(result, "{MÜŞTERİ ADRES}", customer.Address);
-                result = FormatData(result, "{MÜŞTERİ TELEFON}", customer.PhoneNumber);
+                result = FormatData(result, Resources.TF_AccountAddress, customer.Address);
+                result = FormatData(result, Resources.TF_AccountPhone, customer.PhoneNumber);
             }
 
-            result = RemoveTag(result, "{MÜŞTERİ ADRES}");
-            result = RemoveTag(result, "{MÜŞTERİ TELEFON}");
+            result = RemoveTag(result, Resources.TF_AccountAddress);
+            result = RemoveTag(result, Resources.TF_AccountPhone);
 
             var payment = ticket.GetPaymentAmount();
             var remaining = ticket.GetRemainingAmount();
             var discount = ticket.GetTotalDiscounts();
             var plainTotal = ticket.GetPlainSum();
 
-            result = FormatDataIf(payment > 0, result, "{VARSA ÖDENEN}",
-                "Ödenen:|" + payment.ToString("#,#0.00") + "\r\n" +
-                "<J>Genel TOPLAM:|" + remaining.ToString("#,#0.00"));
+            result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
+                string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
 
-            result = FormatDataIf(discount > 0, result, "{VARSA İSKONTO}",
-                "Belge TOPLAMI:|" + plainTotal.ToString("#,#0.00") + "\r\n" +
-                "<J>İskonto:|" + discount.ToString("#,#0.00"));
+            result = FormatDataIf(discount > 0, result, Resources.TF_DiscountTotalAndTicketTotal,
+                string.Format(Resources.DiscountTotalAndTicketTotalValue_f, plainTotal.ToString("#,#0.00"), discount.ToString("#,#0.00")));
+
             result = FormatData(result, "{TOPLAM İKRAM}", ticket.GetTotalGiftAmount().ToString("#,#0.00"));
             result = FormatDataIf(discount < 0, result, "{VARSA DÜZELTME}", "<J>Düzeltme:|" + discount.ToString("#,#0.00"));
-            result = FormatData(result, "{TOPLAM FİYAT}", ticket.GetSum().ToString("#,#0.00"));
-            result = FormatData(result, "{TOPLAM ÖDENEN}", ticket.GetPaymentAmount().ToString("#,#0.00"));
-            result = FormatData(result, "{TOPLAM BAKİYE}", ticket.GetRemainingAmount().ToString("#,#0.00"));
+            result = FormatData(result, Resources.TF_TicketTotal, ticket.GetSum().ToString("#,#0.00"));
+            result = FormatData(result, Resources.TF_TicketPaidTotal, ticket.GetPaymentAmount().ToString("#,#0.00"));
+            result = FormatData(result, Resources.TF_TicketRemainingAmount, ticket.GetRemainingAmount().ToString("#,#0.00"));
 
             return result;
         }
@@ -234,16 +234,16 @@ namespace Samba.Services.Printing
 
             if (ticketItem != null)
             {
-                result = FormatData(result, "{MİKTAR}", ticketItem.Quantity.ToString("#,##.##"));
-                result = FormatData(result, "{ÜRÜN}", ticketItem.MenuItemName + ticketItem.GetPortionDesc());
-                result = FormatData(result, "{FİYAT}", ticketItem.Price.ToString("#,#0.00"));
-                result = FormatData(result, "{TUTAR}", ticketItem.GetItemPrice().ToString("#,#0.00"));
-                result = FormatData(result, "{TOPLAM TUTAR}", ticketItem.GetItemValue().ToString("#,#0.00"));
-                result = FormatData(result, "{YKR}", (ticketItem.Price * 100).ToString());
-                result = FormatData(result, "{HAREKET TOPLAM}", ticketItem.GetTotal().ToString("#,#0.00"));
-                result = FormatData(result, "{SİPARİŞ NO}", ticketItem.OrderNumber.ToString());
-                result = FormatData(result, "{NEDEN}", AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
-                if (result.Contains("{ÖZELLİKLER"))
+                result = FormatData(result, Resources.TF_LineItemQuantity, ticketItem.Quantity.ToString("#,##.##"));
+                result = FormatData(result, Resources.TF_LineItemName, ticketItem.MenuItemName + ticketItem.GetPortionDesc());
+                result = FormatData(result, Resources.TF_LineItemPrice, ticketItem.Price.ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineItemTotal, ticketItem.GetItemPrice().ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineItemTotalAndQuantity, ticketItem.GetItemValue().ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineItemPriceCents, (ticketItem.Price * 100).ToString());
+                result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, ticketItem.GetTotal().ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineOrderNumber, ticketItem.OrderNumber.ToString());
+                result = FormatData(result, Resources.TF_LineGiftOrVoidReason, AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
+                if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
                 {
                     string lineFormat = result;
                     if (ticketItem.Properties.Count > 0)
@@ -251,9 +251,9 @@ namespace Samba.Services.Printing
                         string label = "";
                         foreach (var property in ticketItem.Properties)
                         {
-                            var lineValue = FormatData(lineFormat, "{ÖZELLİKLER}", property.Name);
-                            lineValue = FormatData(lineValue, "{ÖZELLİK MİKTAR}", property.Quantity.ToString("#.##"));
-                            lineValue = FormatData(lineValue, "{ÖZELLİK FİYAT}", property.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#.##"));
+                            var lineValue = FormatData(lineFormat, Resources.TF_LineItemDetails, property.Name);
+                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailQuantity, property.Quantity.ToString("#.##"));
+                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, property.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#.##"));
                             label += lineValue + "\r\n";
                         }
                         result = "\r\n" + label;

@@ -131,7 +131,7 @@ namespace Samba.Modules.TicketModule
 
         private void OnCloseCommandExecuted(string obj)
         {
-            EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
+            EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
         }
 
         private void OnRefreshDates(string obj)

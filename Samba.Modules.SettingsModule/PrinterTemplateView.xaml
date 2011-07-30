@@ -53,162 +53,291 @@
         <FlowDocumentScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <FlowDocument FontFamily="Segoe UI" FontSize="12">
                 <Paragraph>
-                    <Bold>{ADİSYON TARİH}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketDate"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketDate"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ADİSYON SAAT}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketTime"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketTime"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{TARİH}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_DayDate"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="DayDate"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{SAAT}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_DayTime"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="DayTime"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ADİSYON ID}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_UniqueTicketId"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="UniqueTicketId"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ADİSYON NO}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketNumber"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketNumber"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ADİSYON ETİKET}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketTag"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketTag"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ADİSYON ETİKET:x,y,z}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_OptionalTicketTag"/>
+                        </Run>
+                        <Run>x,y,z}</Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="OptionalTicketTag"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{MASA GARSON}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TableOrUserName"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TableOrUserName"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{GARSON}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_UserName"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="UserName"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{MASA}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TableName"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TableName"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{NOT}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketNote"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketNote"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{MÜŞTERİ ADI}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_AccountName"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="AccountName"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{MÜŞTERİ ADRES}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_AccountAddress"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="AccountAddress"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{MÜŞTERİ TELEFON}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_AccountPhone"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="AccountPhone"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{MİKTAR}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemQuantity"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemQuantity"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ÜRÜN}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemName"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemName"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{FİYAT}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemPrice"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemPrice"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{YKR}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemPriceCents"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemPriceCents"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{TUTAR}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemTotal"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemTotal"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{TOPLAM TUTAR}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemTotalAndQuantity"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemTotalAndQuantity"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{HAREKET TOPLAM}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemTotalWithoutGifts"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemTotalWithoutGifts"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ÖZELLİKLER}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemDetails"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemDetails"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{ÖZELLİK FİYAT}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemDetailPrice" />
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemDetailPrice" />
                     </Run>
                     <LineBreak />
-                    <Bold>{ÖZELLİK MİKTAR}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemDetailQuantity"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineItemDetailQuantity"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{SİPARİŞ NO}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineOrderNumber" />
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineOrderNumber" />
                     </Run>
                     <LineBreak />
-                    <Bold>{NEDEN}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineGiftOrVoidReason"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="LineGiftOrVoidReason"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{TOPLAM FİYAT}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketTotal"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketTotal"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{TOPLAM ÖDENEN}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketPaidTotal"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketPaidTotal"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{TOPLAM BAKİYE}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketRemainingAmount"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="TicketRemainingAmount"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{VARSA ÖDENEN}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_RemainingAmountIfPaid"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="RemainingAmountIfPaid"/>
                     </Run>
                     <LineBreak />
-                    <Bold>{VARSA İSKONTO}</Bold>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_DiscountTotalAndTicketTotal"/>
+                        </Run>
+                    </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="DiscountTotalAndTicketTotal"/>
                     </Run>

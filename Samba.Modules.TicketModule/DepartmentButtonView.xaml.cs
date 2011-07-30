@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Samba.Domain.Models.Tickets;
+using Samba.Presentation.Common;
 
 namespace Samba.Modules.TicketModule
 {
@@ -23,7 +24,7 @@ namespace Samba.Modules.TicketModule
         {
             ((TicketEditorViewModel)DataContext).TicketListViewModel.SelectedDepartment =
                 ((Button)sender).DataContext as Department;
-            ((TicketEditorViewModel)DataContext).TicketListViewModel.DisplayTickets();
+            EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
         }
     }
 }

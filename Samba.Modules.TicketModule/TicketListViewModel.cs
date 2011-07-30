@@ -357,7 +357,7 @@ namespace Samba.Modules.TicketModule
                     {
                         if (!string.IsNullOrEmpty(SelectedTicket.Location))
                             CloseTicket();
-                        DisplayTickets();
+                        EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
                     }
 
                     if (x.Topic == EventTopicNames.PaymentSubmitted)
@@ -385,6 +385,12 @@ namespace Samba.Modules.TicketModule
                          if (SelectedDepartment == null)
                              UpdateSelectedDepartment(AppServices.CurrentLoggedInUser.UserRole.DepartmentId);
                          UpdateSelectedTicketView();
+                         DisplayTickets();
+                     }
+                     if (x.Topic == EventTopicNames.DisplayTicketView)
+                     {
+                         UpdateSelectedTicketView();
+                         RefreshVisuals();
                      }
                  });
 
@@ -421,15 +427,13 @@ namespace Samba.Modules.TicketModule
 
         private void UpdateSelectedTicketView()
         {
-            if (SelectedTicket != null)
+            if (SelectedTicket != null || SelectedDepartment.IsFastFood)
                 SelectedTicketView = SingleTicketView;
             else
             {
                 SelectedTicketView = OpenTicketListView;
                 RefreshOpenTickets();
             }
-            DisplayTickets();
-            RefreshVisuals();
         }
 
         private bool CanExecuteShowTicketTags(TicketTagGroup arg)
@@ -448,7 +452,7 @@ namespace Samba.Modules.TicketModule
             {
                 SelectedTag = tagGroup.Name;
                 RefreshOpenTickets();
-                if (OpenTickets.Count() > 0 || OpenTicketTags.Count() > 0)
+                if ((OpenTickets!=null && OpenTickets.Count() > 0) || OpenTicketTags.Count() > 0)
                 {
                     SelectedTicketView = OpenTicketListView;
                     RaisePropertyChanged("OpenTickets");
@@ -787,21 +791,17 @@ namespace Samba.Modules.TicketModule
             {
                 if (SelectedDepartment.IsAlaCarte)
                 {
-                    //if (SelectedTicket == null && SelectedTicketView != OpenTicketListView)
-                    //    SelectedTicketView = OpenTicketListView;
-
                     SelectedDepartment.PublishEvent(EventTopicNames.SelectTable);
-
                     StopTimer();
+                    RefreshVisuals();
                     return;
                 }
 
                 if (SelectedDepartment.IsTakeAway)
                 {
-                    if (SelectedTicket == null)
-                        SelectedTicketView = OpenTicketListView;
                     SelectedDepartment.PublishEvent(EventTopicNames.SelectCustomer);
                     StopTimer();
+                    RefreshVisuals();
                     return;
                 }
 
@@ -817,8 +817,6 @@ namespace Samba.Modules.TicketModule
                     if (AppServices.CurrentTerminal.AutoLogout)
                         AppServices.CurrentLoggedInUser.PublishEvent(EventTopicNames.UserLoggedOut);
                 }
-
-                //EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
             }
             RefreshVisuals();
 

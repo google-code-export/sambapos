@@ -68,7 +68,7 @@ namespace Samba.Services
             var ticketTemplate = new PrinterTemplate();
             ticketTemplate.Name = Resources.TicketTemplate;
             ticketTemplate.HeaderTemplate = Resources.TicketTemplateHeaderValue;
-            ticketTemplate.LineTemplate = "<J00>- {MİKTAR} {ÜRÜN}|{FİYAT}";
+            ticketTemplate.LineTemplate = Resources.TicketTempleteLineTemplateValue;
             ticketTemplate.GiftLineTemplate = Resources.TicketTemplateGiftedLineTemplateValue;
             ticketTemplate.FooterTemplate = Resources.TicketTemplateFooterValue;
 
@@ -85,9 +85,7 @@ namespace Samba.Services
             var invoiceTemplate = new PrinterTemplate();
             invoiceTemplate.Name = Resources.InvoicePrinterTemplate;
             invoiceTemplate.HeaderTemplate = Resources.InvoiceTemplateHeaderValue;
-            invoiceTemplate.LineTemplate =
-@"<L00>{MİKTAR} {ÜRÜN}
-        * {ÖZELLİKLER}";
+            invoiceTemplate.LineTemplate = Resources.InvoiceTemplateLineTemplateValue;
             invoiceTemplate.VoidedLineTemplate = "";
             invoiceTemplate.FooterTemplate = "<F>-";
 

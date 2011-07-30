@@ -2057,45 +2057,45 @@ Table: {2}</value>
   </data>
   <data name="TicketTemplateHeaderValue" xml:space="preserve">
     <value>&lt;T&gt;TICKET
-&lt;L00&gt;Date:{ADİSYON TARİH}
-&lt;L00&gt;Time:{SAAT}
-&lt;L00&gt;Table No:{MASA}
-&lt;L00&gt;Ticket No:{ADİSYON NO}
+&lt;L00&gt;Date:{TICKET DATE}
+&lt;L00&gt;Time:{TIME}
+&lt;L00&gt;Table No:{TABLE}
+&lt;L00&gt;Ticket No:{TICKET NO}
 &lt;F&gt;-</value>
   </data>
   <data name="TicketTemplateFooterValue" xml:space="preserve">
     <value>&lt;F&gt;=
 &lt;EB&gt;
-&lt;J10&gt;{VARSA İSKONTO}
-&lt;J10&gt;Total:|{TOPLAM FİYAT}
-{VARSA ÖDENEN}
+&lt;J10&gt;{IF DISCOUNT}
+&lt;J10&gt;Total:|{TICKET TOTAL}
+{IF PAID}
 &lt;DB&gt;
 &lt;F&gt;=
 &lt;C10&gt;T H A N K    Y O U</value>
   </data>
   <data name="KitchenTemplateHeaderValue" xml:space="preserve">
-    <value>&lt;T&gt;{MASA GARSON}
+    <value>&lt;T&gt;{TABLE USER}
 &lt;F&gt;-
-&lt;L00&gt;Date:{ADİSYON TARİH}
-&lt;L00&gt;Time:{SAAT}
-&lt;L00&gt;Table No:{MASA}
-&lt;L00&gt;Ticket No:{ADİSYON NO}
+&lt;L00&gt;Date:{TICKET DATE}
+&lt;L00&gt;Time:{TIME}
+&lt;L00&gt;Table No:{TABLE}
+&lt;L00&gt;Ticket No:{TICKET NO}
 &lt;F&gt;-</value>
   </data>
   <data name="KitchenTemplateVoidedLineTemplateValue" xml:space="preserve">
-    <value>&lt;L00&gt;**VOID**{MİKTAR} {ÜRÜN}
-        * {ÖZELLİKLER}</value>
+    <value>&lt;L00&gt;**VOID**{QUANTITY} {NAME}
+        * {PROPERTIES}</value>
   </data>
   <data name="KitchenTemplateLineTemplateValue" xml:space="preserve">
-    <value>&lt;L00&gt;{MİKTAR} {ÜRÜN}
-        * {ÖZELLİKLER}</value>
+    <value>&lt;L00&gt;{QUANTITY} {NAME}
+        * {PROPERTIES}</value>
   </data>
   <data name="InvoiceTemplateHeaderValue" xml:space="preserve">
     <value>&lt;T&gt;INVOICE
-&lt;L00&gt;Date:{ADİSYON TARİH}
-&lt;L00&gt;Time:{SAAT}
-&lt;L00&gt;Table No:{MASA}
-&lt;L00&gt;Ticket No:{ADİSYON NO}
+&lt;L00&gt;Date:{TICKET DATE}
+&lt;L00&gt;Time:{TIME}
+&lt;L00&gt;Table No:{TABLE}
+&lt;L00&gt;Ticket No:{TICKET NO}
 &lt;F&gt;-</value>
   </data>
   <data name="KitchenPrinter" xml:space="preserve">
@@ -2129,8 +2129,8 @@ Table: {2}</value>
     <value>Voucher</value>
   </data>
 	<data name="TicketTemplateGiftedLineTemplateValue">
-		<value><![CDATA[<L00>{MİKTAR} {ÜRÜN} GIFT |{FİYAT}
-        * {ÖZELLİKLER}]]></value>
+		<value><![CDATA[<L00>{QUANTITY} {NAME} GIFT |{PRICE}
+        * {PROPERTIES}]]></value>
 	</data>
 	<data name="NavigationPermissions">
 		<value xml:space="preserve">Navigation Permissions</value>
@@ -2149,5 +2149,116 @@ Table: {2}</value>
 	</data>
 	<data name="NoTicketsFoundForTag">
 		<value xml:space="preserve">No tickets found tagged with {0} tag.</value>
+	</data>
+	<data name="TF_TicketDate">
+		<value xml:space="preserve">{TICKET DATE}</value>
+	</data>
+	<data name="TF_TicketTime">
+		<value xml:space="preserve">{TICKET TIME}</value>
+	</data>
+	<data name="TF_DayDate">
+		<value xml:space="preserve">{DATE}</value>
+	</data>
+	<data name="TF_DayTime">
+		<value xml:space="preserve">{TIME}</value>
+	</data>
+	<data name="TF_UniqueTicketId">
+		<value xml:space="preserve">{TICKET ID}</value>
+	</data>
+	<data name="TF_TicketNumber">
+		<value xml:space="preserve">{TICKET NO}</value>
+	</data>
+	<data name="TF_LineOrderNumber">
+		<value xml:space="preserve">{ORDER NO}</value>
+	</data>
+	<data name="TF_TicketTag">
+		<value xml:space="preserve">{TICKET TAG}</value>
+	</data>
+	<data name="TF_OptionalTicketTag">
+		<value xml:space="preserve">{TICKET TAG:</value>
+	</data>
+	<data name="TF_TableOrUserName">
+		<value xml:space="preserve">{TABLE USER}</value>
+	</data>
+	<data name="TF_UserName">
+		<value xml:space="preserve">{USER NAME}</value>
+	</data>
+	<data name="TF_TableName">
+		<value xml:space="preserve">{TABLE}</value>
+	</data>
+	<data name="TF_TicketNote">
+		<value xml:space="preserve">{NOTE}</value>
+	</data>
+	<data name="TF_AccountName">
+		<value xml:space="preserve">{ACC NAME}</value>
+	</data>
+	<data name="TF_AccountAddress">
+		<value xml:space="preserve">{ACC ADDRESS}</value>
+	</data>
+	<data name="TF_AccountPhone">
+		<value xml:space="preserve">{ACC PHONE}</value>
+	</data>
+	<data name="TF_RemainingAmountIfPaid">
+		<value xml:space="preserve">{IF PAID}</value>
+	</data>
+	<data name="TF_DiscountTotalAndTicketTotal">
+		<value xml:space="preserve">{IF DISCOUNT}</value>
+	</data>
+	<data name="TF_TicketTotal">
+		<value xml:space="preserve">{TICKET TOTAL}</value>
+	</data>
+	<data name="TF_TicketPaidTotal">
+		<value xml:space="preserve">{PAYMENT TOTAL}</value>
+	</data>
+	<data name="TF_TicketRemainingAmount">
+		<value xml:space="preserve">{BALANCE}</value>
+	</data>
+	<data name="TF_LineItemQuantity">
+		<value xml:space="preserve">{QUANTITY}</value>
+	</data>
+	<data name="TF_LineItemName">
+		<value xml:space="preserve">{NAME}</value>
+	</data>
+	<data name="TF_LineItemPrice">
+		<value xml:space="preserve">{PRICE}</value>
+	</data>
+	<data name="TF_LineItemTotal">
+		<value xml:space="preserve">{TOTAL}</value>
+	</data>
+	<data name="TF_LineItemTotalAndQuantity">
+		<value xml:space="preserve">{TOTAL AMOUNT}</value>
+	</data>
+	<data name="TF_LineItemTotalWithoutGifts">
+		<value xml:space="preserve">{LINE AMOUNT}</value>
+	</data>
+	<data name="TF_LineGiftOrVoidReason">
+		<value xml:space="preserve">{REASON}</value>
+	</data>
+	<data name="TF_LineItemPriceCents">
+		<value xml:space="preserve">{CENTS}</value>
+	</data>
+	<data name="TF_LineItemDetails">
+		<value xml:space="preserve">{PROPERTIES}</value>
+	</data>
+	<data name="TF_LineItemDetailPrice">
+		<value xml:space="preserve">{PROP PRICE}</value>
+	</data>
+	<data name="TF_LineItemDetailQuantity">
+		<value xml:space="preserve">{PROP QUANTITY}</value>
+	</data>
+	<data name="RemainingAmountIfPaidValue_f">
+		<value><![CDATA[Paid:|{0}
+<J>Grand TOTAL:|{1}]]></value>
+	</data>
+	<data name="DiscountTotalAndTicketTotalValue_f">
+		<value><![CDATA[Ticket TOTAL:|{0}
+<J>Discount:|{1}]]></value>
+	</data>
+	<data name="TicketTempleteLineTemplateValue">
+		<value><![CDATA[<J00>- {QUANTITY} {NAME}|{PRICE}]]></value>
+	</data>
+	<data name="InvoiceTemplateLineTemplateValue">
+		<value><![CDATA[<L00>{QUANTITY} {NAME}
+        * {PROPERTIES}]]></value>
 	</data>
 </root>

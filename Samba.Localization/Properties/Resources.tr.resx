@@ -821,7 +821,7 @@ Yap</value>
     <comment>Label content</comment>
   </data>
   <data name="DoAfterTicketSelected" xml:space="preserve">
-    <value>Etiket seçildikten sonra şunu yap:</value>
+    <value>Etiket seçildikten sonra şunu yap</value>
     <comment>Label content</comment>
   </data>
   <data name="CanUseOnPOS" xml:space="preserve">
@@ -849,11 +849,11 @@ Yap</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="WhenTagSelected" xml:space="preserve">
-    <value>Bir Değer Verildiğinde:</value>
+    <value>Bir Değer Verildiğinde</value>
     <comment>Label content</comment>
   </data>
   <data name="WhenTagNotSelected" xml:space="preserve">
-    <value>Bir Değer Verilmediğinde:</value>
+    <value>Bir Değer Verilmediğinde</value>
     <comment>Label content</comment>
   </data>
   <data name="SubTags" xml:space="preserve">
@@ -1160,7 +1160,7 @@ Yap</value>
     <comment>Label content</comment>
   </data>
   <data name="AutoPrintWhen" xml:space="preserve">
-    <value>Otomatik Yazdırma Tetikleme:</value>
+    <value>Otomatik Yazdırma Tetikleme</value>
     <comment>Label content</comment>
   </data>
   <data name="AutoPrintPaymentType" xml:space="preserve">
@@ -1455,7 +1455,7 @@ Açık adisyon varken gün sonu yapılamaz.</value>
     <comment>Label content</comment>
   </data>
   <data name="NumeratorHeight" xml:space="preserve">
-    <value>Numaratör Yüksekliği:</value>
+    <value>Numaratör Yüksekliği</value>
     <comment>Label content</comment>
   </data>
   <data name="AlphanumericButtons" xml:space="preserve">
@@ -2128,26 +2128,139 @@ Masa: {2}</value>
     <value>Yemek
 Çeki</value>
   </data>
-	<data name="TicketTemplateGiftedLineTemplateValue">
-		<value><![CDATA[<L00>{MİKTAR} {ÜRÜN} İKRAM |{FİYAT}
-        * {ÖZELLİKLER}]]></value>
+  <data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;{MİKTAR} {ÜRÜN} İKRAM |{FİYAT}
+        * {ÖZELLİKLER}</value>
+  </data>
+  <data name="NavigationPermissions" xml:space="preserve">
+    <value>Navigasyon İzinleri</value>
+  </data>
+  <data name="DepartmentPermissions" xml:space="preserve">
+    <value>Departman İzinleri</value>
+  </data>
+  <data name="TicketPermissions" xml:space="preserve">
+    <value>Adisyon İzinleri</value>
+  </data>
+  <data name="SettlePermissions" xml:space="preserve">
+    <value>Ödeme İzinleri</value>
+  </data>
+  <data name="ReportPermissions" xml:space="preserve">
+    <value>Rapor İzinleri</value>
+  </data>
+  <data name="NoTicketsFoundForTag" xml:space="preserve">
+    <value>{0} etiketi ile etikletlenmiş adisyon yok.</value>
+  </data>
+  <data name="TF_TicketDate">
+    <value xml:space="preserve">{ADİSYON TARİH}</value>
+  </data>
+  <data name="TF_TicketTime">
+    <value xml:space="preserve">{ADİSYON SAAT}</value>
+  </data>
+  <data name="TF_DayDate">
+    <value xml:space="preserve">{TARİH}</value>
+  </data>
+  <data name="TF_DayTime">
+    <value xml:space="preserve">{SAAT}</value>
+  </data>
+  <data name="TF_UniqueTicketId">
+    <value xml:space="preserve">{ADİSYON ID}</value>
+  </data>
+  <data name="TF_TicketNumber">
+    <value xml:space="preserve">{ADİSYON NO}</value>
+  </data>
+  <data name="TF_LineOrderNumber">
+    <value xml:space="preserve">{SİPARİŞ NO}</value>
+  </data>
+  <data name="TF_TicketTag">
+    <value xml:space="preserve">{ADİSYON ETİKET}</value>
+  </data>
+  <data name="TF_OptionalTicketTag">
+    <value xml:space="preserve">{ADİSYON ETİKET:</value>
+  </data>
+  <data name="TF_TableOrUserName">
+    <value xml:space="preserve">{MASA GARSON}</value>
+  </data>
+  <data name="TF_UserName">
+    <value xml:space="preserve">{GARSON}</value>
+  </data>
+  <data name="TF_TableName">
+    <value xml:space="preserve">{MASA}</value>
+  </data>
+  <data name="TF_TicketNote">
+    <value xml:space="preserve">{NOT}</value>
+  </data>
+  <data name="TF_AccountName">
+    <value xml:space="preserve">{MÜŞTERİ ADI}</value>
+  </data>
+  <data name="TF_AccountAddress">
+    <value xml:space="preserve">{MÜŞTERİ ADRES}</value>
+  </data>
+  <data name="TF_AccountPhone">
+    <value xml:space="preserve">{MÜŞTERİ TELEFON}</value>
+  </data>
+  <data name="TF_RemainingAmountIfPaid">
+    <value xml:space="preserve">{VARSA ÖDENEN}</value>
+  </data>
+  <data name="TF_DiscountTotalAndTicketTotal">
+    <value xml:space="preserve">{VARSA İSKONTO}</value>
+  </data>
+  <data name="TF_TicketTotal">
+    <value xml:space="preserve">{TOPLAM FİYAT}</value>
+  </data>
+  <data name="TF_TicketPaidTotal">
+    <value xml:space="preserve">{TOPLAM ÖDENEN}</value>
+  </data>
+  <data name="TF_TicketRemainingAmount">
+    <value xml:space="preserve">{TOPLAM BAKİYE}</value>
+  </data>
+  <data name="TF_LineItemQuantity">
+    <value xml:space="preserve">{MİKTAR}</value>
+  </data>
+  <data name="TF_LineItemName">
+    <value xml:space="preserve">{ÜRÜN}</value>
+  </data>
+  <data name="TF_LineItemPrice">
+    <value xml:space="preserve">{FİYAT}</value>
+  </data>
+  <data name="TF_LineItemTotal">
+    <value xml:space="preserve">{TUTAR}</value>
+  </data>
+  <data name="TF_LineItemTotalAndQuantity">
+    <value xml:space="preserve">{TOPLAM TUTAR}</value>
+  </data>
+  <data name="TF_LineItemTotalWithoutGifts">
+    <value xml:space="preserve">{HAREKET TOPLAM}</value>
+  </data>
+  <data name="TF_LineGiftOrVoidReason">
+    <value xml:space="preserve">{NEDEN}</value>
+  </data>
+  <data name="TF_LineItemPriceCents">
+    <value xml:space="preserve">{YKR}</value>
+  </data>
+  <data name="TF_LineItemDetails">
+    <value xml:space="preserve">{ÖZELLİKLER}</value>
+  </data>
+  <data name="TF_LineItemDetailPrice">
+    <value xml:space="preserve">{ÖZELLİK FİYAT}</value>
+  </data>
+  <data name="TF_LineItemDetailQuantity">
+    <value xml:space="preserve">{ÖZELLİK MİKTAR}</value>
+  </data>
+  <data name="RemainingAmountIfPaidValue_f">
+    <value>
+      <![CDATA[Ödenen:|{0}
+<J>Genel TOPLAM:|{1}]]>
+    </value>
+  </data>
+  <data name="DiscountTotalAndTicketTotalValue_f">
+		<value><![CDATA[Belge TOPLAMI:|{0}
+<J>İskonto:|{1}]]></value>
 	</data>
-  <data name="NavigationPermissions">
-    <value xml:space="preserve">Navigasyon İzinleri</value>
-  </data>
-  <data name="DepartmentPermissions">
-    <value xml:space="preserve">Departman İzinleri</value>
-  </data>
-  <data name="TicketPermissions">
-    <value xml:space="preserve">Adisyon İzinleri</value>
-  </data>
-  <data name="SettlePermissions">
-    <value xml:space="preserve">Ödeme İzinleri</value>
-  </data>
-  <data name="ReportPermissions">
-    <value xml:space="preserve">Rapor İzinleri</value>
-  </data>
-	<data name="NoTicketsFoundForTag">
-		<value xml:space="preserve">{0} etiketi ile etikletlenmiş adisyon yok.</value>
+	<data name="TicketTempleteLineTemplateValue">
+		<value><![CDATA[<J00>- {MİKTAR} {ÜRÜN}|{FİYAT}]]></value>
+	</data>
+	<data name="InvoiceTemplateLineTemplateValue">
+		<value><![CDATA[<L00>{MİKTAR} {ÜRÜN}
+        * {ÖZELLİKLER}]]></value>
 	</data>
 </root>

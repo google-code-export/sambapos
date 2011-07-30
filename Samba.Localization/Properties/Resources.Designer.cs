@@ -1773,6 +1773,16 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket TOTAL:|{0}
+        ///&lt;J&gt;Discount:|{1}.
+        /// </summary>
+        public static string DiscountTotalAndTicketTotalValue_f {
+            get {
+                return ResourceManager.GetString("DiscountTotalAndTicketTotalValue_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display All Values.
         /// </summary>
         public static string DisplayAllValues {
@@ -2417,15 +2427,25 @@ namespace Samba.Localization.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;T&gt;INVOICE
-        ///&lt;L00&gt;Date:{ADİSYON TARİH}
-        ///&lt;L00&gt;Time:{SAAT}
-        ///&lt;L00&gt;Table No:{MASA}
-        ///&lt;L00&gt;Ticket No:{ADİSYON NO}
+        ///&lt;L00&gt;Date:{TICKET DATE}
+        ///&lt;L00&gt;Time:{TIME}
+        ///&lt;L00&gt;Table No:{TABLE}
+        ///&lt;L00&gt;Ticket No:{TICKET NO}
         ///&lt;F&gt;-.
         /// </summary>
         public static string InvoiceTemplateHeaderValue {
             get {
                 return ResourceManager.GetString("InvoiceTemplateHeaderValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;L00&gt;{QUANTITY} {NAME}
+        ///        * {PROPERTIES}.
+        /// </summary>
+        public static string InvoiceTemplateLineTemplateValue {
+            get {
+                return ResourceManager.GetString("InvoiceTemplateLineTemplateValue", resourceCulture);
             }
         }
         
@@ -2484,12 +2504,12 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;T&gt;{MASA GARSON}
+        ///   Looks up a localized string similar to &lt;T&gt;{TABLE USER}
         ///&lt;F&gt;-
-        ///&lt;L00&gt;Date:{ADİSYON TARİH}
-        ///&lt;L00&gt;Time:{SAAT}
-        ///&lt;L00&gt;Table No:{MASA}
-        ///&lt;L00&gt;Ticket No:{ADİSYON NO}
+        ///&lt;L00&gt;Date:{TICKET DATE}
+        ///&lt;L00&gt;Time:{TIME}
+        ///&lt;L00&gt;Table No:{TABLE}
+        ///&lt;L00&gt;Ticket No:{TICKET NO}
         ///&lt;F&gt;-.
         /// </summary>
         public static string KitchenTemplateHeaderValue {
@@ -2499,8 +2519,8 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;L00&gt;{MİKTAR} {ÜRÜN}
-        ///        * {ÖZELLİKLER}.
+        ///   Looks up a localized string similar to &lt;L00&gt;{QUANTITY} {NAME}
+        ///        * {PROPERTIES}.
         /// </summary>
         public static string KitchenTemplateLineTemplateValue {
             get {
@@ -2509,8 +2529,8 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;L00&gt;**VOID**{MİKTAR} {ÜRÜN}
-        ///        * {ÖZELLİKLER}.
+        ///   Looks up a localized string similar to &lt;L00&gt;**VOID**{QUANTITY} {NAME}
+        ///        * {PROPERTIES}.
         /// </summary>
         public static string KitchenTemplateVoidedLineTemplateValue {
             get {
@@ -3772,6 +3792,16 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paid:|{0}
+        ///&lt;J&gt;Grand TOTAL:|{1}.
+        /// </summary>
+        public static string RemainingAmountIfPaidValue_f {
+            get {
+                return ResourceManager.GetString("RemainingAmountIfPaidValue_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report does not contain Start Amounts.
         /// </summary>
         public static string ReportDoesNotContainsCashState {
@@ -4505,6 +4535,294 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {ACC ADDRESS}.
+        /// </summary>
+        public static string TF_AccountAddress {
+            get {
+                return ResourceManager.GetString("TF_AccountAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {ACC NAME}.
+        /// </summary>
+        public static string TF_AccountName {
+            get {
+                return ResourceManager.GetString("TF_AccountName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {ACC PHONE}.
+        /// </summary>
+        public static string TF_AccountPhone {
+            get {
+                return ResourceManager.GetString("TF_AccountPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {DATE}.
+        /// </summary>
+        public static string TF_DayDate {
+            get {
+                return ResourceManager.GetString("TF_DayDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TIME}.
+        /// </summary>
+        public static string TF_DayTime {
+            get {
+                return ResourceManager.GetString("TF_DayTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {IF DISCOUNT}.
+        /// </summary>
+        public static string TF_DiscountTotalAndTicketTotal {
+            get {
+                return ResourceManager.GetString("TF_DiscountTotalAndTicketTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {REASON}.
+        /// </summary>
+        public static string TF_LineGiftOrVoidReason {
+            get {
+                return ResourceManager.GetString("TF_LineGiftOrVoidReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PROP PRICE}.
+        /// </summary>
+        public static string TF_LineItemDetailPrice {
+            get {
+                return ResourceManager.GetString("TF_LineItemDetailPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PROP QUANTITY}.
+        /// </summary>
+        public static string TF_LineItemDetailQuantity {
+            get {
+                return ResourceManager.GetString("TF_LineItemDetailQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PROPERTIES}.
+        /// </summary>
+        public static string TF_LineItemDetails {
+            get {
+                return ResourceManager.GetString("TF_LineItemDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {NAME}.
+        /// </summary>
+        public static string TF_LineItemName {
+            get {
+                return ResourceManager.GetString("TF_LineItemName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PRICE}.
+        /// </summary>
+        public static string TF_LineItemPrice {
+            get {
+                return ResourceManager.GetString("TF_LineItemPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {CENTS}.
+        /// </summary>
+        public static string TF_LineItemPriceCents {
+            get {
+                return ResourceManager.GetString("TF_LineItemPriceCents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {QUANTITY}.
+        /// </summary>
+        public static string TF_LineItemQuantity {
+            get {
+                return ResourceManager.GetString("TF_LineItemQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TOTAL}.
+        /// </summary>
+        public static string TF_LineItemTotal {
+            get {
+                return ResourceManager.GetString("TF_LineItemTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TOTAL AMOUNT}.
+        /// </summary>
+        public static string TF_LineItemTotalAndQuantity {
+            get {
+                return ResourceManager.GetString("TF_LineItemTotalAndQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {LINE AMOUNT}.
+        /// </summary>
+        public static string TF_LineItemTotalWithoutGifts {
+            get {
+                return ResourceManager.GetString("TF_LineItemTotalWithoutGifts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {ORDER NO}.
+        /// </summary>
+        public static string TF_LineOrderNumber {
+            get {
+                return ResourceManager.GetString("TF_LineOrderNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TICKET TAG:.
+        /// </summary>
+        public static string TF_OptionalTicketTag {
+            get {
+                return ResourceManager.GetString("TF_OptionalTicketTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {IF PAID}.
+        /// </summary>
+        public static string TF_RemainingAmountIfPaid {
+            get {
+                return ResourceManager.GetString("TF_RemainingAmountIfPaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TABLE}.
+        /// </summary>
+        public static string TF_TableName {
+            get {
+                return ResourceManager.GetString("TF_TableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TABLE USER}.
+        /// </summary>
+        public static string TF_TableOrUserName {
+            get {
+                return ResourceManager.GetString("TF_TableOrUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TICKET DATE}.
+        /// </summary>
+        public static string TF_TicketDate {
+            get {
+                return ResourceManager.GetString("TF_TicketDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {NOTE}.
+        /// </summary>
+        public static string TF_TicketNote {
+            get {
+                return ResourceManager.GetString("TF_TicketNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TICKET NO}.
+        /// </summary>
+        public static string TF_TicketNumber {
+            get {
+                return ResourceManager.GetString("TF_TicketNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PAYMENT TOTAL}.
+        /// </summary>
+        public static string TF_TicketPaidTotal {
+            get {
+                return ResourceManager.GetString("TF_TicketPaidTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {BALANCE}.
+        /// </summary>
+        public static string TF_TicketRemainingAmount {
+            get {
+                return ResourceManager.GetString("TF_TicketRemainingAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TICKET TAG}.
+        /// </summary>
+        public static string TF_TicketTag {
+            get {
+                return ResourceManager.GetString("TF_TicketTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TICKET TIME}.
+        /// </summary>
+        public static string TF_TicketTime {
+            get {
+                return ResourceManager.GetString("TF_TicketTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TICKET TOTAL}.
+        /// </summary>
+        public static string TF_TicketTotal {
+            get {
+                return ResourceManager.GetString("TF_TicketTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {TICKET ID}.
+        /// </summary>
+        public static string TF_UniqueTicketId {
+            get {
+                return ResourceManager.GetString("TF_UniqueTicketId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {USER NAME}.
+        /// </summary>
+        public static string TF_UserName {
+            get {
+                return ResourceManager.GetString("TF_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no cost transactions in this work period..
         /// </summary>
         public static string ThereAreNoCostTransactionsInThisPeriod {
@@ -4743,9 +5061,9 @@ namespace Samba.Localization.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;F&gt;=
         ///&lt;EB&gt;
-        ///&lt;J10&gt;{VARSA İSKONTO}
-        ///&lt;J10&gt;Total:|{TOPLAM FİYAT}
-        ///{VARSA ÖDENEN}
+        ///&lt;J10&gt;{IF DISCOUNT}
+        ///&lt;J10&gt;Total:|{TICKET TOTAL}
+        ///{IF PAID}
         ///&lt;DB&gt;
         ///&lt;F&gt;=
         ///&lt;C10&gt;T H A N K    Y O U.
@@ -4757,8 +5075,8 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;L00&gt;{MİKTAR} {ÜRÜN} GIFT |{FİYAT}
-        ///        * {ÖZELLİKLER}.
+        ///   Looks up a localized string similar to &lt;L00&gt;{QUANTITY} {NAME} GIFT |{PRICE}
+        ///        * {PROPERTIES}.
         /// </summary>
         public static string TicketTemplateGiftedLineTemplateValue {
             get {
@@ -4768,15 +5086,24 @@ namespace Samba.Localization.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;T&gt;TICKET
-        ///&lt;L00&gt;Date:{ADİSYON TARİH}
-        ///&lt;L00&gt;Time:{SAAT}
-        ///&lt;L00&gt;Table No:{MASA}
-        ///&lt;L00&gt;Ticket No:{ADİSYON NO}
+        ///&lt;L00&gt;Date:{TICKET DATE}
+        ///&lt;L00&gt;Time:{TIME}
+        ///&lt;L00&gt;Table No:{TABLE}
+        ///&lt;L00&gt;Ticket No:{TICKET NO}
         ///&lt;F&gt;-.
         /// </summary>
         public static string TicketTemplateHeaderValue {
             get {
                 return ResourceManager.GetString("TicketTemplateHeaderValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;J00&gt;- {QUANTITY} {NAME}|{PRICE}.
+        /// </summary>
+        public static string TicketTempleteLineTemplateValue {
+            get {
+                return ResourceManager.GetString("TicketTempleteLineTemplateValue", resourceCulture);
             }
         }
         

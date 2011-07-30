@@ -43,6 +43,7 @@ namespace Samba.Presentation.Common
         public const string SelectTable = "Select Table";
         public const string FindTable = "Find Table";
         public const string ActivateTicketView = "Activate Ticket View";
+        public const string DisplayTicketView = "Display Ticket View";
         public const string EditTicketNote = "Edit Ticket Note";
         public const string PaymentRequestedForTicket = "Payment Requested For Ticket";
         public const string GetPaymentFromCustomer = "Get Payment From Customer";
