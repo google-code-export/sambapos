@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Samba.Modules.BasicReports
@@ -31,6 +32,7 @@ namespace Samba.Modules.BasicReports
                                ColumnRuleBrush = Brushes.DodgerBlue,
                                ColumnRuleWidth = 2.0,
                                PageWidth = StringToLength("10cm"),
+
                                //ColumnWidth = StringToLength("6cm"),
                                FontFamily = new FontFamily("Segoe UI")
                            };
@@ -100,6 +102,13 @@ namespace Samba.Modules.BasicReports
             p.Inlines.Add(new LineBreak());
         }
 
+        public void AddLink(string text)
+        {
+            var hp = new Hyperlink(new Run(text)) { Name = text.Replace(" ", "_") };
+            Header.Inlines.Add(hp);
+            Header.Inlines.Add(new LineBreak());
+        }
+
         public TableRow CreateRow(object[] values, TextAlignment[] alignment, bool bold)
         {
             var row = new TableRow();
@@ -146,5 +155,7 @@ namespace Samba.Modules.BasicReports
         {
             return (double)_lengthConverter.ConvertFromString(value);
         }
+
+
     }
 }

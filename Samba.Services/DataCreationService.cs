@@ -50,7 +50,7 @@ namespace Samba.Services
 
             var department = new Department
             {
-                Name = "Restoran",
+                Name = Resources.Restaurant,
                 ScreenMenuId = screen.Id,
                 TicketNumerator = ticketNumerator,
                 OrderNumerator = orderNumerator,

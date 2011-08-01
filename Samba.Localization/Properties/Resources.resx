@@ -2004,6 +2004,12 @@ Table: {2}</value>
   <data name="CostReport" xml:space="preserve">
     <value>Cost Report</value>
   </data>
+  <data name="InventoryReport" xml:space="preserve">
+    <value>Inventory Report</value>
+  </data>
+  <data name="CsvBuilder" xml:space="preserve">
+    <value>CSV Builder</value>
+  </data>
   <data name="AverageCost" xml:space="preserve">
     <value>Average Cost</value>
   </data>
@@ -2260,5 +2266,17 @@ Table: {2}</value>
 	<data name="InvoiceTemplateLineTemplateValue">
 		<value><![CDATA[<L00>{QUANTITY} {NAME}
         * {PROPERTIES}]]></value>
+	</data>
+	<data name="Restaurant">
+		<value xml:space="preserve">Restaurant</value>
+	</data>
+	<data name="TF_GiftTotal">
+		<value xml:space="preserve">{GIFT TOTAL}</value>
+	</data>
+	<data name="TF_IfFlatten">
+		<value xml:space="preserve">{IF FLATTEN}</value>
+	</data>
+	<data name="IfNegativeDiscountValue_f">
+		<value><![CDATA[<J>Flatten:|{0}]]></value>
 	</data>
 </root>

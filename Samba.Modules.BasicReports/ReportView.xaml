@@ -37,7 +37,7 @@
             <Button Margin="3" FontSize="16" MinWidth="60" Command="{Binding PrintDocumentCommand}"
                  Content="{LocText Print}" />
         </StackPanel>
-        <FlowDocumentScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Document="{Binding Document}">
-        </FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Document="{Binding Document}"/>
+        
     </Grid>
 </UserControl>

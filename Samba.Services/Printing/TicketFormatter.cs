@@ -170,8 +170,8 @@ namespace Samba.Services.Printing
             result = FormatDataIf(discount > 0, result, Resources.TF_DiscountTotalAndTicketTotal,
                 string.Format(Resources.DiscountTotalAndTicketTotalValue_f, plainTotal.ToString("#,#0.00"), discount.ToString("#,#0.00")));
 
-            result = FormatData(result, "{TOPLAM İKRAM}", ticket.GetTotalGiftAmount().ToString("#,#0.00"));
-            result = FormatDataIf(discount < 0, result, "{VARSA DÜZELTME}", "<J>Düzeltme:|" + discount.ToString("#,#0.00"));
+            result = FormatData(result, Resources.TF_GiftTotal, ticket.GetTotalGiftAmount().ToString("#,#0.00"));
+            result = FormatDataIf(discount < 0, result, Resources.TF_IfFlatten, string.Format(Resources.IfNegativeDiscountValue_f, discount.ToString("#,#0.00")));
             result = FormatData(result, Resources.TF_TicketTotal, ticket.GetSum().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketPaidTotal, ticket.GetPaymentAmount().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketRemainingAmount, ticket.GetRemainingAmount().ToString("#,#0.00"));

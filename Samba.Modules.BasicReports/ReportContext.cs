@@ -12,6 +12,7 @@ using Samba.Localization.Properties;
 using Samba.Modules.BasicReports.Reports;
 using Samba.Modules.BasicReports.Reports.AccountReport;
 using Samba.Modules.BasicReports.Reports.CashReport;
+using Samba.Modules.BasicReports.Reports.CSVBuilder;
 using Samba.Modules.BasicReports.Reports.EndOfDayReport;
 using Samba.Modules.BasicReports.Reports.InventoryReports;
 using Samba.Modules.BasicReports.Reports.ProductReport;
@@ -163,7 +164,9 @@ namespace Samba.Modules.BasicReports
                               new LiabilityReportViewModel(),
                               new InternalAccountsViewModel(),
                               new PurchaseReportViewModel(),
-                              new CostReportViewModel()
+                              new InventoryReportViewModel(),
+                              new CostReportViewModel(),
+                              new CsvBuilderViewModel()
                           };
         }
 
@@ -335,6 +338,12 @@ namespace Samba.Modules.BasicReports
             return
                 CashTransactions.Where(x => x.PaymentType == (int)PaymentType.Ticket && x.TransactionType == (int)TransactionType.Income).Sum(x => x.Amount) -
                 CashTransactions.Where(x => x.PaymentType == (int)PaymentType.Ticket && x.TransactionType == (int)TransactionType.Expense).Sum(x => x.Amount);
+        }
+
+        public static PeriodicConsumption GetCurrentPeriodicConsumption()
+        {
+            var workspace = WorkspaceFactory.Create();
+            return InventoryService.GetCurrentPeriodicConsumption(workspace);
         }
     }
 }

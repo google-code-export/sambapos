@@ -6,6 +6,7 @@ using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Settings;
+using Samba.Localization.Engine;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
@@ -18,6 +19,9 @@ namespace Samba.Presentation.Terminal
         public MainWindowViewModel()
         {
             //TODO: Para birimi servisinden al.
+
+            LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
+            
             LocalSettings.DefaultCurrencyFormat = "#,#0.00";
             LocalSettings.AppPath = System.IO.Path.GetDirectoryName(Application.ResourceAssembly.Location);
             AppServices.MainDispatcher = Application.Current.Dispatcher;

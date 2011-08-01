@@ -22,9 +22,14 @@ namespace Samba.Domain.Models.Inventory
             return (InStock + Purchase) - GetPredictedConsumption();
         }
 
+        public decimal GetPhysicalInventory()
+        {
+            return (InStock + Purchase) - GetConsumption();
+        }
+
         public decimal GetPredictedConsumption()
         {
-            return  Consumption;
+            return Consumption;
         }
 
         public decimal GetConsumption()

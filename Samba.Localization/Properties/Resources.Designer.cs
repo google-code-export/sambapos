@@ -1257,6 +1257,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CSV Builder.
+        /// </summary>
+        public static string CsvBuilder {
+            get {
+                return ResourceManager.GetString("CsvBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Cost.
         /// </summary>
         public static string CurrentCost {
@@ -2245,6 +2254,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;J&gt;Flatten:|{0}.
+        /// </summary>
+        public static string IfNegativeDiscountValue_f {
+            get {
+                return ResourceManager.GetString("IfNegativeDiscountValue_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image Path.
         /// </summary>
         public static string ImagePath {
@@ -2404,6 +2422,15 @@ namespace Samba.Localization.Properties {
         public static string InventoryPurchaseReport {
             get {
                 return ResourceManager.GetString("InventoryPurchaseReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inventory Report.
+        /// </summary>
+        public static string InventoryReport {
+            get {
+                return ResourceManager.GetString("InventoryReport", resourceCulture);
             }
         }
         
@@ -3848,6 +3875,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restaurant.
+        /// </summary>
+        public static string Restaurant {
+            get {
+                return ResourceManager.GetString("Restaurant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Round.
         /// </summary>
         public static string Round {
@@ -4585,6 +4621,24 @@ namespace Samba.Localization.Properties {
         public static string TF_DiscountTotalAndTicketTotal {
             get {
                 return ResourceManager.GetString("TF_DiscountTotalAndTicketTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {GIFT TOTAL}.
+        /// </summary>
+        public static string TF_GiftTotal {
+            get {
+                return ResourceManager.GetString("TF_GiftTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {IF FLATTEN}.
+        /// </summary>
+        public static string TF_IfFlatten {
+            get {
+                return ResourceManager.GetString("TF_IfFlatten", resourceCulture);
             }
         }
         

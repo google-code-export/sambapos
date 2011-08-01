@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Timers;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;

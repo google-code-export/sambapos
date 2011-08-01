@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -34,7 +36,7 @@ namespace Samba.Presentation.Common
 
         public static void PublishEvent<TEventsubject>(this TEventsubject eventArgs, string eventTopic)
         {
-            PublishEvent(eventArgs,eventTopic,false);
+            PublishEvent(eventArgs, eventTopic, false);
         }
 
         public static void PublishEvent<TEventsubject>(this TEventsubject eventArgs, string eventTopic, bool wait)
@@ -141,6 +143,37 @@ namespace Samba.Presentation.Common
                 }
             }
             return child;
+        }
+
+        public static string AsCsv<T>(this IEnumerable<T> items) where T : class
+        {
+            var csvBuilder = new StringBuilder();
+            var properties = typeof(T).GetProperties();
+            csvBuilder.Append(string.Join(",", (from a in properties select a.Name).ToArray()));
+            foreach (T item in items)
+            {
+                var line = string.Join(",",
+                    properties.Select(p => p.GetValue(item, null).ToCsvValue()).ToArray());
+                csvBuilder.AppendLine(line);
+            }
+            return csvBuilder.ToString();
+        }
+
+        private static string ToCsvValue<T>(this T item) where T : class
+        {
+            if (item is string)
+            {
+                return string.Format("\"{0}\"", item.ToString().Replace("\"", "\\\"")); ;
+            }
+
+            double dummy;
+            if (item == null)
+                return "";
+
+            if (double.TryParse(item.ToString(), out dummy))
+                return string.Format("{0}", item);
+
+            return string.Format("\"{0}\"", item);
         }
     }
 }

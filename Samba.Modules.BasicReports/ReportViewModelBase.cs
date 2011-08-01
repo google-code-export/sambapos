@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Samba.Modules.BasicReports
 {
     public abstract class ReportViewModelBase : ObservableObject
     {
+        private readonly List<string> _links;
         public string Header { get { return GetHeader(); } }
 
         private bool _selected;
@@ -49,9 +51,15 @@ namespace Samba.Modules.BasicReports
 
         protected ReportViewModelBase()
         {
+            _links = new List<string>();
             PrintDocumentCommand = new CaptionCommand<string>(Resources.Print, OnPrintDocument);
             RefreshFiltersCommand = new CaptionCommand<string>(Resources.Refresh, OnRefreshFilters, CanRefreshFilters);
             FilterGroups = new ObservableCollection<FilterGroup>();
+        }
+
+        public void HandleLink(string text)
+        {
+            _links.Add(text);
         }
 
         protected virtual void OnRefreshFilters(string obj)
@@ -123,9 +131,17 @@ namespace Samba.Modules.BasicReports
                         delegate
                         {
                             Document = (FlowDocument)XamlReader.Load(memStream);
+
+                            foreach (var link in _links)
+                            {
+                                var hp = Document.FindName(link.Replace(" ", "_")) as Hyperlink;
+                                if (hp != null) hp.Click += HpClick;
+                            }
+
                             RaisePropertyChanged("Document");
                             RaisePropertyChanged("StartDateString");
                             RaisePropertyChanged("EndDateString");
+
                             CreateFilterGroups();
                             foreach (var filterGroup in FilterGroups)
                             {
@@ -148,8 +164,17 @@ namespace Samba.Modules.BasicReports
             }
         }
 
+        void HpClick(object sender, RoutedEventArgs e)
+        {
+            HandleClick(((Hyperlink)sender).Name.Replace("_", " "));
+        }
+
         protected abstract FlowDocument GetReport();
         protected abstract string GetHeader();
+        protected virtual void HandleClick(string text)
+        {
+
+        }
 
         public void AddDefaultReportHeader(SimpleReport report, WorkPeriod workPeriod, string caption)
         {

@@ -2263,4 +2263,19 @@ Masa: {2}</value>
 		<value><![CDATA[<L00>{MİKTAR} {ÜRÜN}
         * {ÖZELLİKLER}]]></value>
 	</data>
+	<data name="Restaurant">
+		<value xml:space="preserve">Restoran</value>
+	</data>
+	<data name="TF_GiftTotal">
+		<value xml:space="preserve">{TOPLAM İKRAM}</value>
+	</data>
+	<data name="TF_IfFlatten">
+		<value xml:space="preserve">{VARSA DÜZELTME}</value>
+	</data>
+	<data name="IfNegativeDiscountValue_f">
+		<value><![CDATA[<J>Düzeltme:|{0}]]></value>
+	</data>
+	<data name="InventoryReport" xml:space="preserve">
+    <value>Envanter Raporu</value>
+  </data>
 </root>
