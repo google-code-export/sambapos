@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using Microsoft.Practices.Prism.Commands;
@@ -10,7 +8,6 @@ using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure;
 using Samba.Localization.Properties;
-using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
@@ -80,13 +77,6 @@ namespace Samba.Modules.TableModule
                 {
                     if (x.Topic == EventTopicNames.SelectTable)
                     {
-                        //if (SelectedTicket != null)
-                        //{
-                        //    UpdateTables(SelectedTicket.DepartmentId != 0
-                        //         ? Dao.Single<Department, int>(SelectedTicket.DepartmentId, y => y.TableScreenId)
-                        //         : 0);
-                        //}
-                        //else 
                         RefreshTables();
                     }
                 });
@@ -146,16 +136,9 @@ namespace Samba.Modules.TableModule
 
         private void OnCloseScreenExecuted(string obj)
         {
-            //if (SelectedTicket != null)
-            //{
-            //    SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
-            //}
-            //else
-
-            if (IsNavigated)
-                EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
-            else
-                EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
+            EventServiceFactory.EventService.PublishEvent(IsNavigated
+                                                              ? EventTopicNames.ActivateNavigation
+                                                              : EventTopicNames.DisplayTicketView);
         }
 
         private void OnSelectTableCategoryExecuted(TableScreen obj)
@@ -170,7 +153,7 @@ namespace Samba.Modules.TableModule
                 var oldLocationName = SelectedTicket.LocationName;
                 var ticketsMerged = obj.Model.TicketId > 0 && obj.Model.TicketId != SelectedTicket.Id;
                 AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
-                //obj.UpdateButtonColor();
+
                 SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
 
                 if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)

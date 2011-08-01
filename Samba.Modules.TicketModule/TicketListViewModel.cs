@@ -818,6 +818,7 @@ namespace Samba.Modules.TicketModule
                         AppServices.CurrentLoggedInUser.PublishEvent(EventTopicNames.UserLoggedOut);
                 }
             }
+            RefreshOpenTickets();
             RefreshVisuals();
 
         }
@@ -940,7 +941,7 @@ namespace Samba.Modules.TicketModule
             {
                 if (string.IsNullOrEmpty(tagFilter))
                     opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "*", ButtonColor = "Blue" });
-                else
+                else 
                     opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "", ButtonColor = "Green" });
                 if (cnt > 0)
                     opt.Insert(0, new TicketTagFilterViewModel { Count = cnt, TagGroup = tagGroup.Name, ButtonColor = "Red", TagValue = " " });

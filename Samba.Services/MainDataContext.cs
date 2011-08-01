@@ -252,7 +252,7 @@ namespace Samba.Services
 
         public string GetReason(int reasonId)
         {
-            return Reasons.ContainsKey(reasonId) ? Reasons[reasonId].Name : "Bilinmiyor";
+            return Reasons.ContainsKey(reasonId) ? Reasons[reasonId].Name :Localization.Properties.Resources.UndefinedWithBrackets;
         }
 
         public void UpdateTicketTable(Ticket ticket)
