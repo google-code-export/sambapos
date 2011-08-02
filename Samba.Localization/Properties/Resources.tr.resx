@@ -2278,4 +2278,13 @@ Masa: {2}</value>
 	<data name="InventoryReport" xml:space="preserve">
     <value>Envanter Raporu</value>
   </data>
+	<data name="ExportSalesData">
+		<value xml:space="preserve">Satış Harketlerini Aktar</value>
+	</data>
+	<data name="CsvBuilder" xml:space="preserve">
+    <value>CSV Üretici</value>
+  </data>
+	<data name="ClickLinksToExportData">
+		<value xml:space="preserve">Veri aktarımı için bir tarih aralığı seçiniz, raporu güncelleyiniz ve ilgili linke tıklayınız.</value>
+	</data>
 </root>

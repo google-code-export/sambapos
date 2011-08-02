@@ -2279,4 +2279,10 @@ Table: {2}</value>
 	<data name="IfNegativeDiscountValue_f">
 		<value><![CDATA[<J>Flatten:|{0}]]></value>
 	</data>
+	<data name="ExportSalesData">
+		<value xml:space="preserve">Export Sales Data</value>
+	</data>
+	<data name="ClickLinksToExportData">
+		<value xml:space="preserve">Select date range, refresh report and click related link to export data.</value>
+	</data>
 </root>

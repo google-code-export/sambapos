@@ -1111,6 +1111,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select date range, refresh report and click related link to export data..
+        /// </summary>
+        public static string ClickLinksToExportData {
+            get {
+                return ResourceManager.GetString("ClickLinksToExportData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clone {0}.
         /// </summary>
         public static string Clone_f {
@@ -1969,6 +1978,15 @@ namespace Samba.Localization.Properties {
         public static string ExpenseTransactions {
             get {
                 return ResourceManager.GetString("ExpenseTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Sales Data.
+        /// </summary>
+        public static string ExportSalesData {
+            get {
+                return ResourceManager.GetString("ExportSalesData", resourceCulture);
             }
         }
         

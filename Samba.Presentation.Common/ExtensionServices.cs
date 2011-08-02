@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -149,7 +150,7 @@ namespace Samba.Presentation.Common
         {
             var csvBuilder = new StringBuilder();
             var properties = typeof(T).GetProperties();
-            csvBuilder.Append(string.Join(",", (from a in properties select a.Name).ToArray()));
+            csvBuilder.AppendLine(string.Join(",", (from a in properties select a.Name).ToArray()));
             foreach (T item in items)
             {
                 var line = string.Join(",",
@@ -161,17 +162,22 @@ namespace Samba.Presentation.Common
 
         private static string ToCsvValue<T>(this T item) where T : class
         {
+            //if (item is DateTime)
+            //{
+            //    return string.Format("{0:g}", item);
+            //}
+
             if (item is string)
             {
                 return string.Format("\"{0}\"", item.ToString().Replace("\"", "\\\"")); ;
             }
 
-            double dummy;
-            if (item == null)
-                return "";
+            //double dummy;
+            //if (item == null)
+            //    return "";
 
-            if (double.TryParse(item.ToString(), out dummy))
-                return string.Format("{0}", item);
+            //if (double.TryParse(item.ToString(), out dummy))
+            //    return string.Format("{0}", item);
 
             return string.Format("\"{0}\"", item);
         }

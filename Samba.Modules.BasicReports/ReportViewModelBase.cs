@@ -59,7 +59,8 @@ namespace Samba.Modules.BasicReports
 
         public void HandleLink(string text)
         {
-            _links.Add(text);
+            if (!_links.Contains(text))
+                _links.Add(text);
         }
 
         protected virtual void OnRefreshFilters(string obj)
@@ -135,7 +136,7 @@ namespace Samba.Modules.BasicReports
                             foreach (var link in _links)
                             {
                                 var hp = Document.FindName(link.Replace(" ", "_")) as Hyperlink;
-                                if (hp != null) hp.Click += HpClick;
+                                if (hp != null) hp.Click += (s, e) => HandleClick(((Hyperlink)s).Name.Replace("_", " "));
                             }
 
                             RaisePropertyChanged("Document");
@@ -164,16 +165,11 @@ namespace Samba.Modules.BasicReports
             }
         }
 
-        void HpClick(object sender, RoutedEventArgs e)
-        {
-            HandleClick(((Hyperlink)sender).Name.Replace("_", " "));
-        }
-
         protected abstract FlowDocument GetReport();
         protected abstract string GetHeader();
         protected virtual void HandleClick(string text)
         {
-
+            // override if needed.
         }
 
         public void AddDefaultReportHeader(SimpleReport report, WorkPeriod workPeriod, string caption)
