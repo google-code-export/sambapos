@@ -51,13 +51,11 @@
                                 <Label>
                                     <LocText ResourceIdentifierKey="POSDefaultTicketTag" Suffix=":"/>
                                 </Label>
-                                <TextBox Text="{Binding DefaultTag}" HorizontalAlignment="Left" MinWidth="80">
-                                </TextBox>
+                                <ComboBox Text="{Binding DefaultTag}" ItemsSource="{Binding TicketTagGroups}" DisplayMemberPath="Name" HorizontalAlignment="Left" MinWidth="80" IsEditable="True"/>
                                 <Label>
                                     <LocText ResourceIdentifierKey="TerminalDefaultTicketTag" Suffix=":"/>
                                 </Label>
-                                <TextBox Text="{Binding TerminalDefaultTag}" HorizontalAlignment="Left" MinWidth="80">
-                                </TextBox>
+                                <ComboBox Text="{Binding TerminalDefaultTag}" ItemsSource="{Binding TicketTagGroups}" DisplayMemberPath="Name" HorizontalAlignment="Left" MinWidth="80" IsEditable="True"/>
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>

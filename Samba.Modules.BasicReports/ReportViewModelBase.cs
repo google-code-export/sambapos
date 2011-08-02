@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.Packaging;
 using System.Linq;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Windows.Threading;
+using System.Windows.Xps;
+using System.Windows.Xps.Packaging;
+using System.Windows.Xps.Serialization;
+using Microsoft.Win32;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
@@ -44,6 +49,7 @@ namespace Samba.Modules.BasicReports
 
         public ICaptionCommand PrintDocumentCommand { get; set; }
         public ICaptionCommand RefreshFiltersCommand { get; set; }
+        public ICaptionCommand SaveDocumentCommand { get; set; }
 
         public FlowDocument Document { get; set; }
 
@@ -54,7 +60,45 @@ namespace Samba.Modules.BasicReports
             _links = new List<string>();
             PrintDocumentCommand = new CaptionCommand<string>(Resources.Print, OnPrintDocument);
             RefreshFiltersCommand = new CaptionCommand<string>(Resources.Refresh, OnRefreshFilters, CanRefreshFilters);
+            SaveDocumentCommand = new CaptionCommand<string>(Resources.Save, OnSaveDocument);
             FilterGroups = new ObservableCollection<FilterGroup>();
+        }
+
+        private void OnSaveDocument(string obj)
+        {
+            var fn = AskFileName("Report", ".xps");
+            if (!string.IsNullOrEmpty(fn))
+            {
+                SaveAsXps(fn, Document);
+            }
+        }
+
+        public static void SaveAsXps(string path, FlowDocument document)
+        {
+            using (Package package = Package.Open(path, FileMode.Create))
+            {
+                using (var xpsDoc = new XpsDocument(
+                    package, CompressionOption.Maximum))
+                {
+                    var xpsSm = new XpsSerializationManager(
+                        new XpsPackagingPolicy(xpsDoc), false);
+                    DocumentPaginator dp =
+                        ((IDocumentPaginatorSource)document).DocumentPaginator;
+                    xpsSm.SaveAsXaml(dp);
+                }
+            }
+        }
+
+        internal string AskFileName(string defaultName, string extenstion)
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                FileName = defaultName,
+                DefaultExt = extenstion
+            };
+
+            var result = saveFileDialog.ShowDialog();
+            return result.GetValueOrDefault(false) ? saveFileDialog.FileName : "";
         }
 
         public void HandleLink(string text)

@@ -36,6 +36,8 @@
                  Command="{Binding RefreshFiltersCommand}" />
             <Button Margin="3" FontSize="16" MinWidth="60" Command="{Binding PrintDocumentCommand}"
                  Content="{LocText Print}" />
+            <Button Margin="3" FontSize="16" MinWidth="60" Command="{Binding SaveDocumentCommand}"
+                 Content="{Binding SaveDocumentCommand.Caption}" />
         </StackPanel>
         <FlowDocumentScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Document="{Binding Document}"/>
         

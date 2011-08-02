@@ -41,19 +41,12 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
             }
         }
 
-        private static void ExportSalesData()
+        private void ExportSalesData()
         {
-            var saveFileDialog = new SaveFileDialog
-                                     {
-                                         FileName = Resources.ExportSalesData + "_" + DateTime.Now.ToString().Replace(":", "").Replace(" ", "_"),
-                                         DefaultExt = ".csv"
-                                     };
+            var fileName = AskFileName(
+                    Resources.ExportSalesData + "_" + DateTime.Now.ToString().Replace(":", "").Replace(" ", "_"), ".csv");
 
-            var result = saveFileDialog.ShowDialog();
-            if (!result.GetValueOrDefault(false))
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(fileName)) return;
 
             var lines = ReportContext.Tickets.SelectMany(x => x.TicketItems, (t, ti) => new { Ticket = t, TicketItem = ti });
             var data = lines.Select(x =>
@@ -62,7 +55,8 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
                         DateTime = x.TicketItem.CreatedDateTime,
                         Date = x.TicketItem.CreatedDateTime.ToShortDateString(),
                         Time = x.TicketItem.CreatedDateTime.ToShortTimeString(),
-                        TicketNumber = x.Ticket.TicketNumber,
+                        x.Ticket.TicketNumber,
+                        UserName = ReportContext.GetUserName(x.TicketItem.CreatingUserId),
                         Account = x.Ticket.CustomerName,
                         Location = x.Ticket.LocationName,
                         x.TicketItem.OrderNumber,
@@ -73,12 +67,12 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
                         x.TicketItem.Quantity,
                         Price = x.TicketItem.GetItemPrice(),
                         Value = x.TicketItem.GetItemValue(),
-                        Discount = x.Ticket.GetTotalDiscounts() / x.Ticket.GetPlainSum(),
+                        Discount = x.Ticket.GetPlainSum() > 0 ? x.Ticket.GetTotalDiscounts() / x.Ticket.GetPlainSum() : 0,
                         Total = MenuGroupBuilder.CalculateTicketItemTotal(x.Ticket, x.TicketItem),
                     }
                 );
             var csv = data.AsCsv();
-            File.WriteAllText(saveFileDialog.FileName, csv);
+            File.WriteAllText(fileName, csv);
         }
 
         protected override string GetHeader()
