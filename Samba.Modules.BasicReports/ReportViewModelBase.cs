@@ -9,7 +9,6 @@ using System.ComponentModel;
 using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Windows.Threading;
-using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
 using System.Windows.Xps.Serialization;
 using Microsoft.Win32;
@@ -156,7 +155,9 @@ namespace Samba.Modules.BasicReports
         {
             Document = null;
             RaisePropertyChanged("Document");
+
             //Program ilk yüklendiğinde aktif gün başı işlemi yoktur.
+            
             if (ReportContext.CurrentWorkPeriod == null) return;
             var memStream = new MemoryStream();
             using (var worker = new BackgroundWorker())
@@ -211,6 +212,7 @@ namespace Samba.Modules.BasicReports
 
         protected abstract FlowDocument GetReport();
         protected abstract string GetHeader();
+
         protected virtual void HandleClick(string text)
         {
             // override if needed.

@@ -8,7 +8,7 @@ namespace Samba.Domain.Models.Menus
     public class ScreenMenu : IEntity
     {
         public ScreenMenu()
-            : this("Genel Menü")
+            : this("Menu")
         {
 
         }

@@ -71,6 +71,7 @@ namespace Samba.Domain.Foundation
 
         private decimal GetCurrencyValue(DateTime date, string currencyCode)
         {
+            if (CurrencyValues.Count == 0) return 1;
             return CurrencyValues
                 .Where(x => x.CurrencyCode == currencyCode && x.CurrencyValueDate < DateTime.Now)
                 .OrderByDescending(x => x.CurrencyValueDate)

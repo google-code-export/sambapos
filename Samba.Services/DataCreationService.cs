@@ -154,8 +154,14 @@ namespace Samba.Services
 
         private void ImportTables(Department department)
         {
-            if (!File.Exists(LocalSettings.AppPath + "/Imports/table.txt")) return;
-            var lines = File.ReadAllLines(LocalSettings.AppPath + "/Imports/table.txt");
+            var fileName = string.Format("{0}/Imports/table{1}.txt", LocalSettings.AppPath, "_" + LocalSettings.CurrentLanguage);
+
+            if (!File.Exists(fileName))
+                fileName = string.Format("{0}/Imports/table.txt", LocalSettings.AppPath);
+
+            if (!File.Exists(fileName)) return;
+
+            var lines = File.ReadAllLines(fileName);
             var items = BatchCreateTables(lines, _workspace);
             _workspace.CommitChanges();
 
@@ -172,9 +178,15 @@ namespace Samba.Services
 
         private void ImportMenus(ScreenMenu screenMenu)
         {
-            if (!File.Exists(LocalSettings.AppPath + "/Imports/menu.txt")) return;
+            var fileName = string.Format("{0}/Imports/menu{1}.txt", LocalSettings.AppPath, "_" + LocalSettings.CurrentLanguage);
 
-            var lines = File.ReadAllLines(LocalSettings.AppPath + "/Imports/menu.txt", Encoding.UTF8);
+            if (!File.Exists(fileName))
+                fileName = string.Format("{0}/Imports/menu.txt", LocalSettings.AppPath);
+
+            if (!File.Exists(fileName)) return;
+
+            var lines = File.ReadAllLines(fileName, Encoding.UTF8);
+
             var items = BatchCreateMenuItems(lines, _workspace);
             _workspace.CommitChanges();
             var groupCodes = items.Select(x => x.GroupCode).Distinct().Where(x => !string.IsNullOrEmpty(x));
