@@ -1,0 +1,358 @@
+﻿<UserControl x:Class="Samba.Modules.SettingsModule.PrinterTemplateView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Common="clr-namespace:Samba.Presentation.Common;assembly=Samba.Presentation.Common"
+     mc:Ignorable="d" d:DesignWidth="575" d:DesignHeight="278">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="0" Common:KineticBehaviour.HandleKineticScrolling="True" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Label>
+                    <LocText ResourceIdentifierKey="TemplateName" Suffix=":"/>
+                </Label>
+                <TextBox Text="{Binding Name}" MinWidth="200" HorizontalAlignment="Left" />
+                <Label>
+                    <LocText ResourceIdentifierKey="HeaderTemplate" Suffix=":"/>
+                </Label>
+                <TextBox Text="{Binding HeaderTemplate}" MinWidth="200" HorizontalAlignment="Left"
+                     MinHeight="50" AcceptsReturn="True" FontFamily="Lucida Console" />
+                <Label>
+                    <LocText ResourceIdentifierKey="LineTemplate" Suffix=":"/>
+                </Label>
+                <TextBox Text="{Binding LineTemplate}" MinWidth="200" HorizontalAlignment="Left" AcceptsReturn="True"
+                     FontFamily="Lucida Console" />
+                <Label>
+                    <LocText ResourceIdentifierKey="GiftLineTemplate" Suffix=":"/>
+                </Label>
+                <TextBox Text="{Binding GiftLineTemplate}" MinWidth="200" HorizontalAlignment="Left"
+                     AcceptsReturn="True" FontFamily="Lucida Console" />
+                <Label>
+                    <LocText ResourceIdentifierKey="VoidLineTemplate" Suffix=":"/>
+                </Label>
+                <TextBox Text="{Binding VoidedLineTemplate}" MinWidth="200" HorizontalAlignment="Left"
+                     AcceptsReturn="True" FontFamily="Lucida Console" />
+                <Label>
+                    <LocText ResourceIdentifierKey="SubLineTemplate" Suffix=":"/>
+                </Label>
+                <TextBox Text="{Binding FooterTemplate}" MinWidth="200" HorizontalAlignment="Left"
+                     MinHeight="40" AcceptsReturn="True" FontFamily="Lucida Console" />
+                <CheckBox Margin="0,3,0,0" IsChecked="{Binding MergeLines}" HorizontalAlignment="Left">
+                    <LocText ResourceIdentifierKey="MergeLines"/>
+                </CheckBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <FlowDocumentScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <FlowDocument FontFamily="Segoe UI" FontSize="12">
+                <Paragraph>
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketDate"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketDate"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketTime"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketTime"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_DayDate"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="DayDate"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_DayTime"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="DayTime"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_UniqueTicketId"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="UniqueTicketId"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketNumber"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketNumber"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketTag"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketTag"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_OptionalTicketTag"/>
+                        </Run>
+                        <Run>x,y,z}</Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="OptionalTicketTag"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TableOrUserName"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TableOrUserName"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_UserName"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="UserName"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TableName"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TableName"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketNote"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketNote"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_AccountName"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="AccountName"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_AccountAddress"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="AccountAddress"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_AccountPhone"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="AccountPhone"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemQuantity"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemQuantity"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemName"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemName"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemPrice"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemPrice"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemPriceCents"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemPriceCents"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemTotal"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemTotal"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemTotalAndQuantity"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemTotalAndQuantity"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemTotalWithoutGifts"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemTotalWithoutGifts"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemDetails"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemDetails"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemDetailPrice" />
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemDetailPrice" />
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineItemDetailQuantity"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineItemDetailQuantity"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineOrderNumber" />
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineOrderNumber" />
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_LineGiftOrVoidReason"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="LineGiftOrVoidReason"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketTotal"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketTotal"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketPaidTotal"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketPaidTotal"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_TicketRemainingAmount"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="TicketRemainingAmount"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_RemainingAmountIfPaid"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="RemainingAmountIfPaid"/>
+                    </Run>
+                    <LineBreak />
+                    <Bold>
+                        <Run>
+                            <LocText ResourceIdentifierKey="TF_DiscountTotalAndTicketTotal"/>
+                        </Run>
+                    </Bold>
+                    <Run>
+                        <LocText ResourceIdentifierKey="DiscountTotalAndTicketTotal"/>
+                    </Run>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
+            <Button HorizontalAlignment="Left" Margin="0,10" Width="60" Content="{Binding SaveCommand.Caption}"
+                     Command="{Binding SaveCommand}" />
+            <Label Content="{Binding Error}" Foreground="Red" />
+        </StackPanel>
+
+
+
+    </Grid>
+
+</UserControl>
