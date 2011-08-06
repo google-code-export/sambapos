@@ -19,6 +19,7 @@ namespace Samba.Infrastructure.Settings
         public string DefaultHtmlReportHeader { get; set; }
         public string CurrentLanguage { get; set; }
         public bool OverrideLanguage { get; set; }
+        public bool OverrideWindowsRegionalSettings { get; set; }
 
         public SettingsObject()
         {
@@ -105,6 +106,12 @@ html
             set { _settingsObject.OverrideLanguage = value; }
         }
 
+        public static bool OverrideWindowsRegionalSettings
+        {
+            get { return _settingsObject.OverrideWindowsRegionalSettings; }
+            set { _settingsObject.OverrideWindowsRegionalSettings = value; }
+        }
+
         public static string AppPath { get; set; }
         public static string DocumentPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SambaPOS2"; } }
         public static string DataPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\Ozgu Tech\\SambaPOS2"; } }
@@ -163,7 +170,8 @@ html
         {
             if (OverrideLanguage && _cultureInfo != null)
             {
-                Thread.CurrentThread.CurrentCulture = _cultureInfo;
+                if (OverrideWindowsRegionalSettings)
+                    Thread.CurrentThread.CurrentCulture = _cultureInfo;
                 Thread.CurrentThread.CurrentUICulture = _cultureInfo;
             }
         }
