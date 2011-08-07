@@ -2150,143 +2150,150 @@ Masa: {2}</value>
   <data name="NoTicketsFoundForTag" xml:space="preserve">
     <value>{0} etiketi ile etikletlenmiş adisyon yok.</value>
   </data>
-  <data name="TF_TicketDate">
-    <value xml:space="preserve">{ADİSYON TARİH}</value>
+  <data name="TF_TicketDate" xml:space="preserve">
+    <value>{ADİSYON TARİH}</value>
   </data>
-  <data name="TF_TicketTime">
-    <value xml:space="preserve">{ADİSYON SAAT}</value>
+  <data name="TF_TicketTime" xml:space="preserve">
+    <value>{ADİSYON SAAT}</value>
   </data>
-  <data name="TF_DayDate">
-    <value xml:space="preserve">{TARİH}</value>
+  <data name="TF_DayDate" xml:space="preserve">
+    <value>{TARİH}</value>
   </data>
-  <data name="TF_DayTime">
-    <value xml:space="preserve">{SAAT}</value>
+  <data name="TF_DayTime" xml:space="preserve">
+    <value>{SAAT}</value>
   </data>
-  <data name="TF_UniqueTicketId">
-    <value xml:space="preserve">{ADİSYON ID}</value>
+  <data name="TF_UniqueTicketId" xml:space="preserve">
+    <value>{ADİSYON ID}</value>
   </data>
-  <data name="TF_TicketNumber">
-    <value xml:space="preserve">{ADİSYON NO}</value>
+  <data name="TF_TicketNumber" xml:space="preserve">
+    <value>{ADİSYON NO}</value>
   </data>
-  <data name="TF_LineOrderNumber">
-    <value xml:space="preserve">{SİPARİŞ NO}</value>
+  <data name="TF_LineOrderNumber" xml:space="preserve">
+    <value>{SİPARİŞ NO}</value>
   </data>
-  <data name="TF_TicketTag">
-    <value xml:space="preserve">{ADİSYON ETİKET}</value>
+  <data name="TF_TicketTag" xml:space="preserve">
+    <value>{ADİSYON ETİKET}</value>
   </data>
-  <data name="TF_OptionalTicketTag">
-    <value xml:space="preserve">{ADİSYON ETİKET:</value>
+  <data name="TF_OptionalTicketTag" xml:space="preserve">
+    <value>{ADİSYON ETİKET:</value>
   </data>
-  <data name="TF_TableOrUserName">
-    <value xml:space="preserve">{MASA GARSON}</value>
+  <data name="TF_TableOrUserName" xml:space="preserve">
+    <value>{MASA GARSON}</value>
   </data>
-  <data name="TF_UserName">
-    <value xml:space="preserve">{GARSON}</value>
+  <data name="TF_UserName" xml:space="preserve">
+    <value>{GARSON}</value>
   </data>
-  <data name="TF_TableName">
-    <value xml:space="preserve">{MASA}</value>
+  <data name="TF_TableName" xml:space="preserve">
+    <value>{MASA}</value>
   </data>
-  <data name="TF_TicketNote">
-    <value xml:space="preserve">{NOT}</value>
+  <data name="TF_TicketNote" xml:space="preserve">
+    <value>{NOT}</value>
   </data>
-  <data name="TF_AccountName">
-    <value xml:space="preserve">{MÜŞTERİ ADI}</value>
+  <data name="TF_AccountName" xml:space="preserve">
+    <value>{MÜŞTERİ ADI}</value>
   </data>
-  <data name="TF_AccountAddress">
-    <value xml:space="preserve">{MÜŞTERİ ADRES}</value>
+  <data name="TF_AccountAddress" xml:space="preserve">
+    <value>{MÜŞTERİ ADRES}</value>
   </data>
-  <data name="TF_AccountPhone">
-    <value xml:space="preserve">{MÜŞTERİ TELEFON}</value>
+  <data name="TF_AccountPhone" xml:space="preserve">
+    <value>{MÜŞTERİ TELEFON}</value>
   </data>
-  <data name="TF_RemainingAmountIfPaid">
-    <value xml:space="preserve">{VARSA ÖDENEN}</value>
+  <data name="TF_RemainingAmountIfPaid" xml:space="preserve">
+    <value>{VARSA ÖDENEN}</value>
   </data>
-  <data name="TF_DiscountTotalAndTicketTotal">
-    <value xml:space="preserve">{VARSA İSKONTO}</value>
+  <data name="TF_DiscountTotalAndTicketTotal" xml:space="preserve">
+    <value>{VARSA İSKONTO}</value>
   </data>
-  <data name="TF_TicketTotal">
-    <value xml:space="preserve">{TOPLAM FİYAT}</value>
+  <data name="TF_TicketTotal" xml:space="preserve">
+    <value>{TOPLAM FİYAT}</value>
   </data>
-  <data name="TF_TicketPaidTotal">
-    <value xml:space="preserve">{TOPLAM ÖDENEN}</value>
+  <data name="TF_TicketPaidTotal" xml:space="preserve">
+    <value>{TOPLAM ÖDENEN}</value>
   </data>
-  <data name="TF_TicketRemainingAmount">
-    <value xml:space="preserve">{TOPLAM BAKİYE}</value>
+  <data name="TF_TicketRemainingAmount" xml:space="preserve">
+    <value>{TOPLAM BAKİYE}</value>
   </data>
-  <data name="TF_LineItemQuantity">
-    <value xml:space="preserve">{MİKTAR}</value>
+  <data name="TF_LineItemQuantity" xml:space="preserve">
+    <value>{MİKTAR}</value>
   </data>
-  <data name="TF_LineItemName">
-    <value xml:space="preserve">{ÜRÜN}</value>
+  <data name="TF_LineItemName" xml:space="preserve">
+    <value>{ÜRÜN}</value>
   </data>
-  <data name="TF_LineItemPrice">
-    <value xml:space="preserve">{FİYAT}</value>
+  <data name="TF_LineItemPrice" xml:space="preserve">
+    <value>{FİYAT}</value>
   </data>
-  <data name="TF_LineItemTotal">
-    <value xml:space="preserve">{TUTAR}</value>
+  <data name="TF_LineItemTotal" xml:space="preserve">
+    <value>{TUTAR}</value>
   </data>
-  <data name="TF_LineItemTotalAndQuantity">
-    <value xml:space="preserve">{TOPLAM TUTAR}</value>
+  <data name="TF_LineItemTotalAndQuantity" xml:space="preserve">
+    <value>{TOPLAM TUTAR}</value>
   </data>
-  <data name="TF_LineItemTotalWithoutGifts">
-    <value xml:space="preserve">{HAREKET TOPLAM}</value>
+  <data name="TF_LineItemTotalWithoutGifts" xml:space="preserve">
+    <value>{HAREKET TOPLAM}</value>
   </data>
-  <data name="TF_LineGiftOrVoidReason">
-    <value xml:space="preserve">{NEDEN}</value>
+  <data name="TF_LineGiftOrVoidReason" xml:space="preserve">
+    <value>{NEDEN}</value>
   </data>
-  <data name="TF_LineItemPriceCents">
-    <value xml:space="preserve">{YKR}</value>
+  <data name="TF_LineItemPriceCents" xml:space="preserve">
+    <value>{YKR}</value>
   </data>
-  <data name="TF_LineItemDetails">
-    <value xml:space="preserve">{ÖZELLİKLER}</value>
+  <data name="TF_LineItemDetails" xml:space="preserve">
+    <value>{ÖZELLİKLER}</value>
   </data>
-  <data name="TF_LineItemDetailPrice">
-    <value xml:space="preserve">{ÖZELLİK FİYAT}</value>
+  <data name="TF_LineItemDetailPrice" xml:space="preserve">
+    <value>{ÖZELLİK FİYAT}</value>
   </data>
-  <data name="TF_LineItemDetailQuantity">
-    <value xml:space="preserve">{ÖZELLİK MİKTAR}</value>
+  <data name="TF_LineItemDetailQuantity" xml:space="preserve">
+    <value>{ÖZELLİK MİKTAR}</value>
   </data>
-  <data name="RemainingAmountIfPaidValue_f">
-    <value>
-      <![CDATA[Ödenen:|{0}
-<J>Genel TOPLAM:|{1}]]>
-    </value>
+  <data name="RemainingAmountIfPaidValue_f" xml:space="preserve">
+    <value>Ödenen:|{0}
+&lt;J&gt;Genel TOPLAM:|{1}</value>
   </data>
-  <data name="DiscountTotalAndTicketTotalValue_f">
-		<value><![CDATA[Belge TOPLAMI:|{0}
-<J>İskonto:|{1}]]></value>
-	</data>
-	<data name="TicketTempleteLineTemplateValue">
-		<value><![CDATA[<J00>- {MİKTAR} {ÜRÜN}|{FİYAT}]]></value>
-	</data>
-	<data name="InvoiceTemplateLineTemplateValue">
-		<value><![CDATA[<L00>{MİKTAR} {ÜRÜN}
-        * {ÖZELLİKLER}]]></value>
-	</data>
-	<data name="Restaurant">
-		<value xml:space="preserve">Restoran</value>
-	</data>
-	<data name="TF_GiftTotal">
-		<value xml:space="preserve">{TOPLAM İKRAM}</value>
-	</data>
-	<data name="TF_IfFlatten">
-		<value xml:space="preserve">{VARSA DÜZELTME}</value>
-	</data>
-	<data name="IfNegativeDiscountValue_f">
-		<value><![CDATA[<J>Düzeltme:|{0}]]></value>
-	</data>
-	<data name="InventoryReport" xml:space="preserve">
+  <data name="DiscountTotalAndTicketTotalValue_f" xml:space="preserve">
+    <value>Belge TOPLAMI:|{0}
+&lt;J&gt;İskonto:|{1}</value>
+  </data>
+  <data name="TicketTempleteLineTemplateValue" xml:space="preserve">
+    <value>&lt;J00&gt;- {MİKTAR} {ÜRÜN}|{FİYAT}</value>
+  </data>
+  <data name="InvoiceTemplateLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;{MİKTAR} {ÜRÜN}
+        * {ÖZELLİKLER}</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restoran</value>
+  </data>
+  <data name="TF_GiftTotal" xml:space="preserve">
+    <value>{TOPLAM İKRAM}</value>
+  </data>
+  <data name="TF_IfFlatten" xml:space="preserve">
+    <value>{VARSA DÜZELTME}</value>
+  </data>
+  <data name="IfNegativeDiscountValue_f" xml:space="preserve">
+    <value>&lt;J&gt;Düzeltme:|{0}</value>
+  </data>
+  <data name="InventoryReport" xml:space="preserve">
     <value>Envanter Raporu</value>
   </data>
-	<data name="ExportSalesData">
-		<value xml:space="preserve">Satış Harketlerini Aktar</value>
-	</data>
-	<data name="CsvBuilder" xml:space="preserve">
+  <data name="ExportSalesData" xml:space="preserve">
+    <value>Satış Harketlerini Aktar</value>
+  </data>
+  <data name="CsvBuilder" xml:space="preserve">
     <value>CSV Üretici</value>
   </data>
-	<data name="ClickLinksToExportData">
-		<value xml:space="preserve">Veri aktarımı için bir tarih aralığı seçiniz, raporu güncelleyiniz ve ilgili linke tıklayınız.</value>
-	</data>
+  <data name="ClickLinksToExportData" xml:space="preserve">
+    <value>Veri aktarımı için bir tarih aralığı seçiniz, raporu güncelleyiniz ve ilgili linke tıklayınız.</value>
+  </data>
+  <data name="FooterTemplate" xml:space="preserve">
+    <value>Alt Başlık Şablonu</value>
+  </data>
+  <data name="UiLanguage" xml:space="preserve">
+    <value>Program Arabirimi Dili</value>
+  </data>
+  <data name="OverrideWindowsRegionalSettings" xml:space="preserve">
+    <value>Windows Yerel Dil Ayarlarını Kullanma</value>
+  </data>
 	<data name="ClientServerConnectionHelpUrlString">
 		<value xml:space="preserve">http://www.sambapos.com/content/client-server-baglantisi-nasil-yapilir</value>
 	</data>

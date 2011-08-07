@@ -10,14 +10,24 @@
                 </Label>
                 <ComboBox HorizontalAlignment="Left" Width="200" ItemsSource="{Binding TerminalNames}"
                      Text="{Binding TerminalName}" />
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5">
-                    <Label>
-                        <LocText ResourceIdentifierKey="ProgramLanguage" Suffix=":"/>
-                    </Label>
-                    <CheckBox Margin="0,8,3,0" IsChecked="{Binding OverrideLanguage}"/>
-                    <ComboBox IsEnabled="{Binding OverrideLanguage}" HorizontalAlignment="Left" Width="100" SelectedValue="{Binding Language}"
+                <GroupBox HorizontalAlignment="Left" Margin="3">
+                    <GroupBox.Header>
+                        <LocText ResourceIdentifierKey="ProgramLanguage"/>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5">
+                            <Label>
+                                <LocText ResourceIdentifierKey="UiLanguage" Suffix=":"/>
+                            </Label>
+                            <CheckBox Margin="0,8,3,0" IsChecked="{Binding OverrideLanguage}"/>
+                            <ComboBox IsEnabled="{Binding OverrideLanguage}" HorizontalAlignment="Left" Width="100" SelectedValue="{Binding Language}"
                      DisplayMemberPath="NativeName" SelectedValuePath="TwoLetterISOLanguageName" ItemsSource="{Binding SupportedLanguages}" />
-                </StackPanel>
+                        </StackPanel>
+                        <CheckBox Margin="0" IsEnabled="{Binding OverrideLanguage}" IsChecked="{Binding OverrideWindowsRegionalSettings}">
+                            <LocText ResourceIdentifierKey="OverrideWindowsRegionalSettings"/>
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
                 <Label>
                     <LocText ResourceIdentifierKey="DataConnection" Suffix=":"/>
                 </Label>

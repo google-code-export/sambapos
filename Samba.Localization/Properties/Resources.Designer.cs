@@ -2100,6 +2100,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Footer Template.
+        /// </summary>
+        public static string FooterTemplate {
+            get {
+                return ResourceManager.GetString("FooterTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For changing price first type a price from numerator.
         /// </summary>
         public static string ForChangingPriceTypeAPrice {
@@ -3311,6 +3320,15 @@ namespace Samba.Localization.Properties {
         public static string OrderNumerator {
             get {
                 return ResourceManager.GetString("OrderNumerator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override Windows Regional Settings.
+        /// </summary>
+        public static string OverrideWindowsRegionalSettings {
+            get {
+                return ResourceManager.GetString("OverrideWindowsRegionalSettings", resourceCulture);
             }
         }
         
@@ -5375,6 +5393,15 @@ namespace Samba.Localization.Properties {
         public static string TransactionUnit {
             get {
                 return ResourceManager.GetString("TransactionUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UI Language.
+        /// </summary>
+        public static string UiLanguage {
+            get {
+                return ResourceManager.GetString("UiLanguage", resourceCulture);
             }
         }
         

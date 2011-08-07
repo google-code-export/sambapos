@@ -2134,157 +2134,166 @@ Table: {2}</value>
   <data name="Voucher_r" xml:space="preserve">
     <value>Voucher</value>
   </data>
-	<data name="TicketTemplateGiftedLineTemplateValue">
-		<value><![CDATA[<L00>{QUANTITY} {NAME} GIFT |{PRICE}
-        * {PROPERTIES}]]></value>
-	</data>
-	<data name="NavigationPermissions">
-		<value xml:space="preserve">Navigation Permissions</value>
-	</data>
-	<data name="DepartmentPermissions">
-		<value xml:space="preserve">Department Permissions</value>
-	</data>
-	<data name="TicketPermissions">
-		<value xml:space="preserve">Ticket Permissions</value>
-	</data>
-	<data name="SettlePermissions">
-		<value xml:space="preserve">Payment Permissions</value>
-	</data>
-	<data name="ReportPermissions">
-		<value xml:space="preserve">Reporting Permissions</value>
-	</data>
-	<data name="NoTicketsFoundForTag">
-		<value xml:space="preserve">No tickets found tagged with {0} tag.</value>
-	</data>
-	<data name="TF_TicketDate">
-		<value xml:space="preserve">{TICKET DATE}</value>
-	</data>
-	<data name="TF_TicketTime">
-		<value xml:space="preserve">{TICKET TIME}</value>
-	</data>
-	<data name="TF_DayDate">
-		<value xml:space="preserve">{DATE}</value>
-	</data>
-	<data name="TF_DayTime">
-		<value xml:space="preserve">{TIME}</value>
-	</data>
-	<data name="TF_UniqueTicketId">
-		<value xml:space="preserve">{TICKET ID}</value>
-	</data>
-	<data name="TF_TicketNumber">
-		<value xml:space="preserve">{TICKET NO}</value>
-	</data>
-	<data name="TF_LineOrderNumber">
-		<value xml:space="preserve">{ORDER NO}</value>
-	</data>
-	<data name="TF_TicketTag">
-		<value xml:space="preserve">{TICKET TAG}</value>
-	</data>
-	<data name="TF_OptionalTicketTag">
-		<value xml:space="preserve">{TICKET TAG:</value>
-	</data>
-	<data name="TF_TableOrUserName">
-		<value xml:space="preserve">{TABLE USER}</value>
-	</data>
-	<data name="TF_UserName">
-		<value xml:space="preserve">{USER NAME}</value>
-	</data>
-	<data name="TF_TableName">
-		<value xml:space="preserve">{TABLE}</value>
-	</data>
-	<data name="TF_TicketNote">
-		<value xml:space="preserve">{NOTE}</value>
-	</data>
-	<data name="TF_AccountName">
-		<value xml:space="preserve">{ACC NAME}</value>
-	</data>
-	<data name="TF_AccountAddress">
-		<value xml:space="preserve">{ACC ADDRESS}</value>
-	</data>
-	<data name="TF_AccountPhone">
-		<value xml:space="preserve">{ACC PHONE}</value>
-	</data>
-	<data name="TF_RemainingAmountIfPaid">
-		<value xml:space="preserve">{IF PAID}</value>
-	</data>
-	<data name="TF_DiscountTotalAndTicketTotal">
-		<value xml:space="preserve">{IF DISCOUNT}</value>
-	</data>
-	<data name="TF_TicketTotal">
-		<value xml:space="preserve">{TICKET TOTAL}</value>
-	</data>
-	<data name="TF_TicketPaidTotal">
-		<value xml:space="preserve">{PAYMENT TOTAL}</value>
-	</data>
-	<data name="TF_TicketRemainingAmount">
-		<value xml:space="preserve">{BALANCE}</value>
-	</data>
-	<data name="TF_LineItemQuantity">
-		<value xml:space="preserve">{QUANTITY}</value>
-	</data>
-	<data name="TF_LineItemName">
-		<value xml:space="preserve">{NAME}</value>
-	</data>
-	<data name="TF_LineItemPrice">
-		<value xml:space="preserve">{PRICE}</value>
-	</data>
-	<data name="TF_LineItemTotal">
-		<value xml:space="preserve">{TOTAL}</value>
-	</data>
-	<data name="TF_LineItemTotalAndQuantity">
-		<value xml:space="preserve">{TOTAL AMOUNT}</value>
-	</data>
-	<data name="TF_LineItemTotalWithoutGifts">
-		<value xml:space="preserve">{LINE AMOUNT}</value>
-	</data>
-	<data name="TF_LineGiftOrVoidReason">
-		<value xml:space="preserve">{REASON}</value>
-	</data>
-	<data name="TF_LineItemPriceCents">
-		<value xml:space="preserve">{CENTS}</value>
-	</data>
-	<data name="TF_LineItemDetails">
-		<value xml:space="preserve">{PROPERTIES}</value>
-	</data>
-	<data name="TF_LineItemDetailPrice">
-		<value xml:space="preserve">{PROP PRICE}</value>
-	</data>
-	<data name="TF_LineItemDetailQuantity">
-		<value xml:space="preserve">{PROP QUANTITY}</value>
-	</data>
-	<data name="RemainingAmountIfPaidValue_f">
-		<value><![CDATA[Paid:|{0}
-<J>Grand TOTAL:|{1}]]></value>
-	</data>
-	<data name="DiscountTotalAndTicketTotalValue_f">
-		<value><![CDATA[Ticket TOTAL:|{0}
-<J>Discount:|{1}]]></value>
-	</data>
-	<data name="TicketTempleteLineTemplateValue">
-		<value><![CDATA[<J00>- {QUANTITY} {NAME}|{PRICE}]]></value>
-	</data>
-	<data name="InvoiceTemplateLineTemplateValue">
-		<value><![CDATA[<L00>{QUANTITY} {NAME}
-        * {PROPERTIES}]]></value>
-	</data>
-	<data name="Restaurant">
-		<value xml:space="preserve">Restaurant</value>
-	</data>
-	<data name="TF_GiftTotal">
-		<value xml:space="preserve">{GIFT TOTAL}</value>
-	</data>
-	<data name="TF_IfFlatten">
-		<value xml:space="preserve">{IF FLATTEN}</value>
-	</data>
-	<data name="IfNegativeDiscountValue_f">
-		<value><![CDATA[<J>Flatten:|{0}]]></value>
-	</data>
-	<data name="ExportSalesData">
-		<value xml:space="preserve">Export Sales Data</value>
-	</data>
-	<data name="ClickLinksToExportData">
-		<value xml:space="preserve">Select date range, refresh report and click related link to export data.</value>
-	</data>
+  <data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;{QUANTITY} {NAME} GIFT |{PRICE}
+        * {PROPERTIES}</value>
+  </data>
+  <data name="NavigationPermissions" xml:space="preserve">
+    <value>Navigation Permissions</value>
+  </data>
+  <data name="DepartmentPermissions" xml:space="preserve">
+    <value>Department Permissions</value>
+  </data>
+  <data name="TicketPermissions" xml:space="preserve">
+    <value>Ticket Permissions</value>
+  </data>
+  <data name="SettlePermissions" xml:space="preserve">
+    <value>Payment Permissions</value>
+  </data>
+  <data name="ReportPermissions" xml:space="preserve">
+    <value>Reporting Permissions</value>
+  </data>
+  <data name="NoTicketsFoundForTag" xml:space="preserve">
+    <value>No tickets found tagged with {0} tag.</value>
+  </data>
+  <data name="TF_TicketDate" xml:space="preserve">
+    <value>{TICKET DATE}</value>
+  </data>
+  <data name="TF_TicketTime" xml:space="preserve">
+    <value>{TICKET TIME}</value>
+  </data>
+  <data name="TF_DayDate" xml:space="preserve">
+    <value>{DATE}</value>
+  </data>
+  <data name="TF_DayTime" xml:space="preserve">
+    <value>{TIME}</value>
+  </data>
+  <data name="TF_UniqueTicketId" xml:space="preserve">
+    <value>{TICKET ID}</value>
+  </data>
+  <data name="TF_TicketNumber" xml:space="preserve">
+    <value>{TICKET NO}</value>
+  </data>
+  <data name="TF_LineOrderNumber" xml:space="preserve">
+    <value>{ORDER NO}</value>
+  </data>
+  <data name="TF_TicketTag" xml:space="preserve">
+    <value>{TICKET TAG}</value>
+  </data>
+  <data name="TF_OptionalTicketTag" xml:space="preserve">
+    <value>{TICKET TAG:</value>
+  </data>
+  <data name="TF_TableOrUserName" xml:space="preserve">
+    <value>{TABLE USER}</value>
+  </data>
+  <data name="TF_UserName" xml:space="preserve">
+    <value>{USER NAME}</value>
+  </data>
+  <data name="TF_TableName" xml:space="preserve">
+    <value>{TABLE}</value>
+  </data>
+  <data name="TF_TicketNote" xml:space="preserve">
+    <value>{NOTE}</value>
+  </data>
+  <data name="TF_AccountName" xml:space="preserve">
+    <value>{ACC NAME}</value>
+  </data>
+  <data name="TF_AccountAddress" xml:space="preserve">
+    <value>{ACC ADDRESS}</value>
+  </data>
+  <data name="TF_AccountPhone" xml:space="preserve">
+    <value>{ACC PHONE}</value>
+  </data>
+  <data name="TF_RemainingAmountIfPaid" xml:space="preserve">
+    <value>{IF PAID}</value>
+  </data>
+  <data name="TF_DiscountTotalAndTicketTotal" xml:space="preserve">
+    <value>{IF DISCOUNT}</value>
+  </data>
+  <data name="TF_TicketTotal" xml:space="preserve">
+    <value>{TICKET TOTAL}</value>
+  </data>
+  <data name="TF_TicketPaidTotal" xml:space="preserve">
+    <value>{PAYMENT TOTAL}</value>
+  </data>
+  <data name="TF_TicketRemainingAmount" xml:space="preserve">
+    <value>{BALANCE}</value>
+  </data>
+  <data name="TF_LineItemQuantity" xml:space="preserve">
+    <value>{QUANTITY}</value>
+  </data>
+  <data name="TF_LineItemName" xml:space="preserve">
+    <value>{NAME}</value>
+  </data>
+  <data name="TF_LineItemPrice" xml:space="preserve">
+    <value>{PRICE}</value>
+  </data>
+  <data name="TF_LineItemTotal" xml:space="preserve">
+    <value>{TOTAL}</value>
+  </data>
+  <data name="TF_LineItemTotalAndQuantity" xml:space="preserve">
+    <value>{TOTAL AMOUNT}</value>
+  </data>
+  <data name="TF_LineItemTotalWithoutGifts" xml:space="preserve">
+    <value>{LINE AMOUNT}</value>
+  </data>
+  <data name="TF_LineGiftOrVoidReason" xml:space="preserve">
+    <value>{REASON}</value>
+  </data>
+  <data name="TF_LineItemPriceCents" xml:space="preserve">
+    <value>{CENTS}</value>
+  </data>
+  <data name="TF_LineItemDetails" xml:space="preserve">
+    <value>{PROPERTIES}</value>
+  </data>
+  <data name="TF_LineItemDetailPrice" xml:space="preserve">
+    <value>{PROP PRICE}</value>
+  </data>
+  <data name="TF_LineItemDetailQuantity" xml:space="preserve">
+    <value>{PROP QUANTITY}</value>
+  </data>
+  <data name="RemainingAmountIfPaidValue_f" xml:space="preserve">
+    <value>Paid:|{0}
+&lt;J&gt;Grand TOTAL:|{1}</value>
+  </data>
+  <data name="DiscountTotalAndTicketTotalValue_f" xml:space="preserve">
+    <value>Ticket TOTAL:|{0}
+&lt;J&gt;Discount:|{1}</value>
+  </data>
+  <data name="TicketTempleteLineTemplateValue" xml:space="preserve">
+    <value>&lt;J00&gt;- {QUANTITY} {NAME}|{PRICE}</value>
+  </data>
+  <data name="InvoiceTemplateLineTemplateValue" xml:space="preserve">
+    <value>&lt;L00&gt;{QUANTITY} {NAME}
+        * {PROPERTIES}</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="TF_GiftTotal" xml:space="preserve">
+    <value>{GIFT TOTAL}</value>
+  </data>
+  <data name="TF_IfFlatten" xml:space="preserve">
+    <value>{IF FLATTEN}</value>
+  </data>
+  <data name="IfNegativeDiscountValue_f" xml:space="preserve">
+    <value>&lt;J&gt;Flatten:|{0}</value>
+  </data>
+  <data name="ExportSalesData" xml:space="preserve">
+    <value>Export Sales Data</value>
+  </data>
+  <data name="ClickLinksToExportData" xml:space="preserve">
+    <value>Select date range, refresh report and click related link to export data.</value>
+  </data>
+  <data name="FooterTemplate" xml:space="preserve">
+    <value>Footer Template</value>
+  </data>
+  <data name="UiLanguage" xml:space="preserve">
+    <value>UI Language</value>
+  </data>
+  <data name="OverrideWindowsRegionalSettings" xml:space="preserve">
+    <value>Override Windows Regional Settings</value>
+  </data>
 	<data name="ClientServerConnectionHelpUrlString">
 		<value xml:space="preserve">http://www.sambapos.com/en/content/client-server-baglantisi-nasil-yapilir</value>
 	</data>

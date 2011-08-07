@@ -40,7 +40,7 @@
                 <TextBox Text="{Binding VoidedLineTemplate}" MinWidth="200" HorizontalAlignment="Left"
                      AcceptsReturn="True" FontFamily="Lucida Console" />
                 <Label>
-                    <LocText ResourceIdentifierKey="SubLineTemplate" Suffix=":"/>
+                    <LocText ResourceIdentifierKey="FooterTemplate" Suffix=":"/>
                 </Label>
                 <TextBox Text="{Binding FooterTemplate}" MinWidth="200" HorizontalAlignment="Left"
                      MinHeight="40" AcceptsReturn="True" FontFamily="Lucida Console" />
