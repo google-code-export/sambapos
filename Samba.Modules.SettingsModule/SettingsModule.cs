@@ -23,6 +23,7 @@ namespace Samba.Modules.SettingsModule
         public ICategoryCommand ListVoidReasonsCommand { get; set; }
         public ICategoryCommand ListGiftReasonsCommand { get; set; }
         public ICategoryCommand ListMenuItemSettingsCommand { get; set; }
+        public ICategoryCommand ListRuleActionsCommand { get; set; }
         public ICategoryCommand ShowBrowser { get; set; }
 
         private BrowserViewModel _browserViewModel;
@@ -35,7 +36,8 @@ namespace Samba.Modules.SettingsModule
         private VoidReasonListViewModel _voidReasonListViewModel;
         private GiftReasonListViewModel _giftReasonListViewModel;
         private ProgramSettingsViewModel _menuItemSettingsViewModel;
-        
+        private RuleActionListViewModel _ruleActionListViewModel;
+
         public ICategoryCommand NavigateWorkPeriodsCommand { get; set; }
 
         private readonly IRegionManager _regionManager;
@@ -58,6 +60,7 @@ namespace Samba.Modules.SettingsModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListVoidReasonsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListGiftReasonsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemSettingsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListRuleActionsCommand);
 
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateWorkPeriodsCommand);
         }
@@ -79,7 +82,8 @@ namespace Samba.Modules.SettingsModule
             ListVoidReasonsCommand = new CategoryCommand<string>(Resources.VoidReasons, Resources.Products, OnListVoidReasons);
             ListGiftReasonsCommand = new CategoryCommand<string>(Resources.GiftReasons, Resources.Products, OnListGiftReasons);
             ListMenuItemSettingsCommand = new CategoryCommand<string>(Resources.ProgramSettings, Resources.Settings, OnListMenuItemSettings) { Order = 10 };
-            
+            ListRuleActionsCommand = new CategoryCommand<string>(Resources.RuleActions, Resources.Settings, OnListRuleActions);
+
             ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.SambaNetwork, OnShowBrowser) { Order = 99 };
 
             PermissionRegistry.RegisterPermission(PermissionNames.OpenWorkPeriods, PermissionCategories.Navigation, Resources.CanStartEndOfDay);
@@ -112,8 +116,17 @@ namespace Samba.Modules.SettingsModule
                     if (s.Value == _giftReasonListViewModel)
                         _giftReasonListViewModel = null;
 
+                    if (s.Value == _ruleActionListViewModel)
+                        _ruleActionListViewModel = null;
                 }
             });
+        }
+
+        private void OnListRuleActions(string obj)
+        {
+            if (_ruleActionListViewModel == null)
+                _ruleActionListViewModel = new RuleActionListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_ruleActionListViewModel);
         }
 
         private void OnShowBrowser(string obj)

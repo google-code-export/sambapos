@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Foundation\CurrencyContext.cs" />
     <Compile Include="Foundation\DocumentDate.cs" />
+    <Compile Include="Models\RuleActions\RuleAction.cs" />
     <Compile Include="Models\Cashes\CashTransaction.cs" />
     <Compile Include="Models\Inventory\CostItem.cs" />
     <Compile Include="Models\Inventory\InventoryItem.cs" />

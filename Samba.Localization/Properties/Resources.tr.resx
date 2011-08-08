@@ -2297,4 +2297,31 @@ Masa: {2}</value>
 	<data name="ClientServerConnectionHelpUrlString">
 		<value xml:space="preserve">http://www.sambapos.com/content/client-server-baglantisi-nasil-yapilir</value>
 	</data>
+  <data name="RuleAction">
+    <value xml:space="preserve">Aksiyon</value>
+  </data>
+  <data name="RuleActions">
+    <value xml:space="preserve">Aksiyonlar</value>
+  </data>
+  <data name="NoAction">
+    <value xml:space="preserve">Yok</value>
+  </data>
+  <data name="ShowMessage">
+    <value xml:space="preserve">Mesaj Göster</value>
+  </data>
+  <data name="ActionName" xml:space="preserve">
+    <value>Aksiyon Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="ActionType" xml:space="preserve">
+    <value>Aksiyon Tipi</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="ActionParameter" xml:space="preserve">
+    <value>Aksiyon Parametreleri</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parametreler</value>
+  </data>
 </root>

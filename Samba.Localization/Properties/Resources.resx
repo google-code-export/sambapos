@@ -2294,7 +2294,34 @@ Table: {2}</value>
   <data name="OverrideWindowsRegionalSettings" xml:space="preserve">
     <value>Override Windows Regional Settings</value>
   </data>
-	<data name="ClientServerConnectionHelpUrlString">
-		<value xml:space="preserve">http://www.sambapos.com/en/content/client-server-baglantisi-nasil-yapilir</value>
-	</data>
+  <data name="ClientServerConnectionHelpUrlString" xml:space="preserve">
+    <value>http://www.sambapos.com/en/content/client-server-baglantisi-nasil-yapilir</value>
+  </data>
+  <data name="RuleAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="RuleActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="NoAction" xml:space="preserve">
+    <value>No Action</value>
+  </data>
+  <data name="ShowMessage" xml:space="preserve">
+    <value>Show Message</value>
+  </data>
+  <data name="ActionName" xml:space="preserve">
+    <value>Action Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="ActionType" xml:space="preserve">
+    <value>Action Type</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="ActionParameter" xml:space="preserve">
+    <value>Action Parameter</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
 </root>

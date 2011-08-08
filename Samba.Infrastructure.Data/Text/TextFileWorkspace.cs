@@ -26,11 +26,6 @@ namespace Samba.Infrastructure.Data.Text
 
         private static string GetDefaultDbFileName()
         {
-            //if (LocalSettings.ConnectionString.Contains(".txt"))
-            //    if (LocalSettings.ConnectionString.Contains(":\\"))
-            //        return LocalSettings.ConnectionString;
-            //    else
-            //        return LocalSettings.AppPath + "\\" + LocalSettings.ConnectionString;
             return Path.GetDirectoryName(Assembly.GetCallingAssembly().Location) + "\\SambaDB.txt";
         }
 

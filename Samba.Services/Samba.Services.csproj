@@ -116,6 +116,7 @@
     <Compile Include="Repositories\Impl\ScreenMenuRepository.cs" />
     <Compile Include="Repositories\Impl\TicketRepository.cs" />
     <Compile Include="Repositories\Impl\UserRoleRepository.cs" />
+    <Compile Include="RuleActionTypeRegistry.cs" />
     <Compile Include="SerialPortService.cs" />
     <Compile Include="SettingService.cs" />
   </ItemGroup>

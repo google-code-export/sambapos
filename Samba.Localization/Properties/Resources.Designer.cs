@@ -162,6 +162,33 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action Name.
+        /// </summary>
+        public static string ActionName {
+            get {
+                return ResourceManager.GetString("ActionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action Parameter.
+        /// </summary>
+        public static string ActionParameter {
+            get {
+                return ResourceManager.GetString("ActionParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action Type.
+        /// </summary>
+        public static string ActionType {
+            get {
+                return ResourceManager.GetString("ActionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -3090,6 +3117,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Action.
+        /// </summary>
+        public static string NoAction {
+            get {
+                return ResourceManager.GetString("NoAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no purchase transactions in date range..
         /// </summary>
         public static string NoPurchaseTransactionInCurrentDateRange {
@@ -3347,6 +3383,15 @@ namespace Samba.Localization.Properties {
         public static string Paid {
             get {
                 return ResourceManager.GetString("Paid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameters.
+        /// </summary>
+        public static string Parameters {
+            get {
+                return ResourceManager.GetString("Parameters", resourceCulture);
             }
         }
         
@@ -3947,6 +3992,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string RuleAction {
+            get {
+                return ResourceManager.GetString("RuleAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string RuleActions {
+            get {
+                return ResourceManager.GetString("RuleActions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales.
         /// </summary>
         public static string Sales {
@@ -4215,6 +4278,15 @@ namespace Samba.Localization.Properties {
         public static string ShareNameAndPortName {
             get {
                 return ResourceManager.GetString("ShareNameAndPortName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Message.
+        /// </summary>
+        public static string ShowMessage {
+            get {
+                return ResourceManager.GetString("ShowMessage", resourceCulture);
             }
         }
         

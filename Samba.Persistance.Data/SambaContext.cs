@@ -8,6 +8,7 @@ using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
+using Samba.Domain.Models.RuleActions;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
@@ -64,6 +65,7 @@ namespace Samba.Persistance.Data
         public DbSet<PeriodicConsumptionItem> PeriodicConsumptionItems { get; set; }
         public DbSet<CostItem> CostItems { get; set; }
         public DbSet<TicketTag> TicketTags { get; set; }
+        public DbSet<RuleAction> RuleActions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

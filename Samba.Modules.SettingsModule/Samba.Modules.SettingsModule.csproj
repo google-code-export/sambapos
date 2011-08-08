@@ -52,6 +52,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RuleActionListViewModel.cs" />
+    <Compile Include="RuleActionView.xaml.cs">
+      <DependentUpon>RuleActionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RuleActionViewModel.cs" />
     <Compile Include="BrowserView.xaml.cs">
       <DependentUpon>BrowserView.xaml</DependentUpon>
     </Compile>
@@ -143,6 +148,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="RuleActionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BrowserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
