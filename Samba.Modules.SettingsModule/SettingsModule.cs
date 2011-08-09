@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
-using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Localization.Properties;
 using Samba.Modules.SettingsModule.WorkPeriods;
@@ -24,6 +23,7 @@ namespace Samba.Modules.SettingsModule
         public ICategoryCommand ListGiftReasonsCommand { get; set; }
         public ICategoryCommand ListMenuItemSettingsCommand { get; set; }
         public ICategoryCommand ListRuleActionsCommand { get; set; }
+        public ICategoryCommand ListRulesCommand { get; set; }
         public ICategoryCommand ShowBrowser { get; set; }
 
         private BrowserViewModel _browserViewModel;
@@ -37,6 +37,7 @@ namespace Samba.Modules.SettingsModule
         private GiftReasonListViewModel _giftReasonListViewModel;
         private ProgramSettingsViewModel _menuItemSettingsViewModel;
         private RuleActionListViewModel _ruleActionListViewModel;
+        private RuleListViewModel _ruleListViewModel;
 
         public ICategoryCommand NavigateWorkPeriodsCommand { get; set; }
 
@@ -61,6 +62,7 @@ namespace Samba.Modules.SettingsModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListGiftReasonsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemSettingsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListRuleActionsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListRulesCommand);
 
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateWorkPeriodsCommand);
         }
@@ -83,6 +85,7 @@ namespace Samba.Modules.SettingsModule
             ListGiftReasonsCommand = new CategoryCommand<string>(Resources.GiftReasons, Resources.Products, OnListGiftReasons);
             ListMenuItemSettingsCommand = new CategoryCommand<string>(Resources.ProgramSettings, Resources.Settings, OnListMenuItemSettings) { Order = 10 };
             ListRuleActionsCommand = new CategoryCommand<string>(Resources.RuleActions, Resources.Settings, OnListRuleActions);
+            ListRulesCommand = new CategoryCommand<string>("Rules", Resources.Settings, OnListRules);
 
             ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.SambaNetwork, OnShowBrowser) { Order = 99 };
 
@@ -118,8 +121,18 @@ namespace Samba.Modules.SettingsModule
 
                     if (s.Value == _ruleActionListViewModel)
                         _ruleActionListViewModel = null;
+
+                    if (s.Value == _ruleListViewModel)
+                        _ruleListViewModel = null;
                 }
             });
+        }
+
+        private void OnListRules(string obj)
+        {
+            if (_ruleListViewModel == null)
+                _ruleListViewModel = new RuleListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_ruleListViewModel);
         }
 
         private void OnListRuleActions(string obj)
@@ -127,14 +140,6 @@ namespace Samba.Modules.SettingsModule
             if (_ruleActionListViewModel == null)
                 _ruleActionListViewModel = new RuleActionListViewModel();
             CommonEventPublisher.PublishViewAddedEvent(_ruleActionListViewModel);
-        }
-
-        private void OnShowBrowser(string obj)
-        {
-            if (_browserViewModel == null)
-                _browserViewModel = new BrowserViewModel();
-            CommonEventPublisher.PublishViewAddedEvent(_browserViewModel);
-            new Uri("http://network.sambapos.com").PublishEvent(EventTopicNames.BrowseUrl);
         }
 
         private static bool CanNavigateWorkPeriods(string arg)
@@ -210,6 +215,14 @@ namespace Samba.Modules.SettingsModule
             if (_settingsViewModel == null)
                 _settingsViewModel = new SettingsViewModel();
             CommonEventPublisher.PublishViewAddedEvent(_settingsViewModel);
+        }
+
+        private void OnShowBrowser(string obj)
+        {
+            if (_browserViewModel == null)
+                _browserViewModel = new BrowserViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_browserViewModel);
+            new Uri("http://network.sambapos.com").PublishEvent(EventTopicNames.BrowseUrl);
         }
     }
 }

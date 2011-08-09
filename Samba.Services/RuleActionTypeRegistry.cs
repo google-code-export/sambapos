@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Samba.Localization.Properties;
 
 namespace Samba.Services
 {
@@ -13,13 +14,20 @@ namespace Samba.Services
         public object[] ParamterValues { get; set; }
     }
 
-
+    public class RuleEvent
+    {
+        public string EventKey { get; set; }
+        public string EventName { get; set; }
+    }
 
     public static class RuleActionTypeRegistry
     {
-        static RuleActionTypeRegistry()
+        public static IDictionary<string, RuleEvent> RuleEvents = new Dictionary<string, RuleEvent>();
+
+        public static void RegisterEvent(string eventKey, string eventName)
         {
-            RegisterActionType("ShowMessage", "Show Message", new[] { "Message" }, new[] { "" });
+            if (!RuleEvents.ContainsKey(eventKey))
+                RuleEvents.Add(eventKey, new RuleEvent { EventKey = eventKey, EventName = eventName });
         }
 
         public static IDictionary<string, RuleActionType> ActionTypes = new Dictionary<string, RuleActionType>();

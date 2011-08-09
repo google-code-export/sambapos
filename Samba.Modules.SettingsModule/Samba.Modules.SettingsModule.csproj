@@ -70,6 +70,11 @@
       <DependentUpon>ProgramSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgramSettingsViewModel.cs" />
+    <Compile Include="RuleListViewModel.cs" />
+    <Compile Include="RuleView.xaml.cs">
+      <DependentUpon>RuleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RuleViewModel.cs" />
     <Compile Include="WorkPeriods\WorkPeriodsView.xaml.cs">
       <DependentUpon>WorkPeriodsView.xaml</DependentUpon>
     </Compile>
@@ -161,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProgramSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RuleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

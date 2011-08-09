@@ -58,6 +58,15 @@ namespace Samba.Modules.UserModule
                         _userRolesListViewModel = null;
                 }
             });
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<User>>().Subscribe(x =>
+            {
+                if (x.Topic == EventTopicNames.UserLoggedIn)
+                {
+                    RuleExecutor.NotifyEvent("UserLoggedIn");
+                }
+            }
+        );
         }
 
         protected override void OnPostInitialization()
@@ -65,8 +74,10 @@ namespace Samba.Modules.UserModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListUserRolesCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListUsersCommand);
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateLogoutCommand);
+
+            RuleActionTypeRegistry.RegisterEvent("UserLoggedIn", "User Logged In");
         }
-        
+
         public void PinEntered(string pin)
         {
             var u = AppServices.LoginUser(pin);

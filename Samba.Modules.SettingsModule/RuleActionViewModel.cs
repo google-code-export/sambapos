@@ -12,6 +12,7 @@ namespace Samba.Modules.SettingsModule
     internal class ParameterValue
     {
         public string Name { get; set; }
+        public string NameStr { get { return Name + ":"; } }
         public string Value { get; set; }
     }
 
@@ -39,12 +40,15 @@ namespace Samba.Modules.SettingsModule
             {
                 Model.ActionType = value;
                 ParameterValues = CreateParameterValues(value);
+                RaisePropertyChanged("IsParameterLabelVisible");
             }
         }
 
+        public bool IsParameterLabelVisible { get { return ParameterValues.Count > 0; } }
+
         private List<ParameterValue> CreateParameterValues(string value)
         {
-            if(string.IsNullOrEmpty(value)) return new List<ParameterValue>();
+            if (string.IsNullOrEmpty(value)) return new List<ParameterValue>();
 
             var result = CreateParemeterValues(RuleActionTypeRegistry.ActionTypes[value]).ToList();
 

@@ -66,6 +66,8 @@ namespace Samba.Persistance.Data
         public DbSet<CostItem> CostItems { get; set; }
         public DbSet<TicketTag> TicketTags { get; set; }
         public DbSet<RuleAction> RuleActions { get; set; }
+        public DbSet<ActionContainer> ActionContainers { get; set; }
+        public DbSet<CustomRule> Rules { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

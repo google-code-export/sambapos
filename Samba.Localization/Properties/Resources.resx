@@ -2324,4 +2324,22 @@ Table: {2}</value>
   <data name="Parameters" xml:space="preserve">
     <value>Parameters</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="RuleName" xml:space="preserve">
+    <value>Rule Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="EventName" xml:space="preserve">
+    <value>Event Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+    <comment>Label.Content</comment>
+  </data>
 </root>

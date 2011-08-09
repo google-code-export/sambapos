@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using Samba.Domain;
 using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.RuleActions;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
@@ -149,6 +150,12 @@ namespace Samba.Services
         private IWorkspace _tableWorkspace;
         private readonly TicketWorkspace _ticketWorkspace = new TicketWorkspace();
 
+        private IEnumerable<CustomRule> _rules;
+        public IEnumerable<CustomRule> Rules { get { return _rules ?? (_rules = Dao.Query<CustomRule>(x => x.Actions)); } }
+
+        private IEnumerable<RuleAction> _actions;
+        public IEnumerable<RuleAction> Actions { get { return _actions ?? (_actions = Dao.Query<RuleAction>()); } }
+
         private IEnumerable<TableScreen> _tableScreens;
         public IEnumerable<TableScreen> TableScreens { get { return _tableScreens ?? (_tableScreens = Dao.Query<TableScreen>(x => x.Tables)); } }
 
@@ -252,7 +259,7 @@ namespace Samba.Services
 
         public string GetReason(int reasonId)
         {
-            return Reasons.ContainsKey(reasonId) ? Reasons[reasonId].Name :Localization.Properties.Resources.UndefinedWithBrackets;
+            return Reasons.ContainsKey(reasonId) ? Reasons[reasonId].Name : Localization.Properties.Resources.UndefinedWithBrackets;
         }
 
         public void UpdateTicketTable(Ticket ticket)
@@ -511,6 +518,8 @@ namespace Samba.Services
                 _reasons = null;
                 _lastTwoWorkPeriods = null;
                 _users = null;
+                _rules = null;
+                _actions = null;
 
                 if (selectedTableScreen > 0)
                     SelectedTableScreen = TableScreens.Single(x => x.Id == selectedTableScreen);

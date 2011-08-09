@@ -180,6 +180,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string Actions {
+            get {
+                return ResourceManager.GetString("Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action Type.
         /// </summary>
         public static string ActionType {
@@ -1981,6 +1990,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event Name.
+        /// </summary>
+        public static string EventName {
+            get {
+                return ResourceManager.GetString("EventName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
@@ -2999,6 +3017,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message Server Name.
         /// </summary>
         public static string MessageServerName {
@@ -3992,6 +4019,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rule.
+        /// </summary>
+        public static string Rule {
+            get {
+                return ResourceManager.GetString("Rule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string RuleAction {
@@ -4006,6 +4042,15 @@ namespace Samba.Localization.Properties {
         public static string RuleActions {
             get {
                 return ResourceManager.GetString("RuleActions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rule Name.
+        /// </summary>
+        public static string RuleName {
+            get {
+                return ResourceManager.GetString("RuleName", resourceCulture);
             }
         }
         

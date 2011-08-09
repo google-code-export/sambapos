@@ -6,9 +6,11 @@ using System.Threading;
 using System.Windows;
 using System.ComponentModel.Composition;
 using PropertyEditorLibrary;
+using Samba.Domain.Models.RuleActions;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
+using Samba.Services;
 
 namespace Samba.Presentation.Common.Interaction
 {
@@ -83,6 +85,17 @@ namespace Samba.Presentation.Common.Interaction
         public UserInteraction()
         {
             _popupDataViewModel = new PopupDataViewModel();
+
+            RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, new[] { Resources.Message }, new[] { "" });
+            EventServiceFactory.EventService.GetEvent<GenericEvent<RuleAction>>().Subscribe(x =>
+            {
+                if (x.Value.ActionType == "ShowMessage")
+                {
+                    var param = x.Value.GetParameter(Resources.Message);
+                    if (!string.IsNullOrEmpty(param))
+                        GiveFeedback(param);
+                }
+            });
         }
 
         public PopupWindow PopupWindow

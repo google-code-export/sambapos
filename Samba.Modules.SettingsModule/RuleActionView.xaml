@@ -9,12 +9,14 @@
             <Label HorizontalAlignment="Left" Content="{LocText ActionType, Suffix=':'}" />
             <ComboBox HorizontalAlignment="Left" MinWidth="200" SelectedValue="{Binding SelectedActionType}"
                  ItemsSource="{Binding ActionTypes}" SelectedValuePath="ActionType" DisplayMemberPath="ActionName" />
-            <Label HorizontalAlignment="Left" Content="{LocText Parameters, Suffix=':'}" />
+
+            <Label Visibility="{Binding IsParameterLabelVisible,Converter={StaticResource VisibilityConverter},FallbackValue=Collapsed}"
+                   HorizontalAlignment="Left" Content="{LocText Parameters, Suffix=':'}" />
             <ItemsControl ItemsSource="{Binding ParameterValues}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
-                            <TextBlock Text="{Binding Name}" Margin="0,0,5,0"/>
+                        <StackPanel Margin="5,3,0,0" Orientation="Horizontal">
+                            <TextBlock Text="{Binding NameStr}" Margin="0,0,5,0"/>
                             <TextBox Text="{Binding Value}" HorizontalAlignment="Left" MinWidth="150"/>
                         </StackPanel>
                     </DataTemplate>
