@@ -23,7 +23,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
                                                            .OrderByDescending(x => x.Id)
                                                            .Select(x => new WorkPeriodViewModel(x)));
             }
-            
+
         }
 
         public ICaptionCommand StartOfDayCommand { get; set; }
@@ -117,7 +117,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StopWorkPeriod(EndDescription);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
-
+            RuleExecutor.NotifyEvent(RuleEventNames.WorkPeriodEnds, AppServices.MainDataContext.CurrentWorkPeriod);
             InteractionService.UserIntraction.GiveFeedback(Resources.WorkPeriodEndsMessage);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }
@@ -133,6 +133,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StartWorkPeriod(StartDescription, CashAmount, CreditCardAmount, TicketAmount);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
+            RuleExecutor.NotifyEvent(RuleEventNames.WorkPeriodStarts, AppServices.MainDataContext.CurrentWorkPeriod);
             InteractionService.UserIntraction.GiveFeedback(Resources.StartingWorkPeriodCompleted);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }
