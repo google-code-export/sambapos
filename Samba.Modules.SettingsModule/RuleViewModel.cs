@@ -12,21 +12,22 @@ using Samba.Services;
 
 namespace Samba.Modules.SettingsModule
 {
-    class RuleViewModel : EntityViewModelBase<CustomRule>
+    public class RuleViewModel : EntityViewModelBase<AppRule>
     {
         private IWorkspace _workspace;
 
-        public RuleViewModel(CustomRule model)
+        public RuleViewModel(AppRule model)
             : base(model)
         {
+            _actions = new ObservableCollection<ActionContainerViewModel>(Model.Actions.Select(x => new ActionContainerViewModel(x, this)));
             SelectActionsCommand = new CaptionCommand<string>("Select Actions", OnSelectActions);
         }
 
         private void OnSelectActions(string obj)
         {
             IList<IOrderable> selectedValues = new List<IOrderable>(Model.Actions);
-            var selectedIds = selectedValues.Select(x => ((ActionContainer)x).RuleActionId);
-            IList<IOrderable> values = new List<IOrderable>(_workspace.All<RuleAction>(x => !selectedIds.Contains(x.Id)).Select(x => new ActionContainer(x)));
+            var selectedIds = selectedValues.Select(x => ((ActionContainer)x).AppActionId);
+            IList<IOrderable> values = new List<IOrderable>(_workspace.All<AppAction>(x => !selectedIds.Contains(x.Id)).Select(x => new ActionContainer(x)));
 
             var choosenValues = InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, "Action List",
                                                                                    "Select Actions", "Action", "Actions");
@@ -34,23 +35,26 @@ namespace Samba.Modules.SettingsModule
             foreach (var action in Model.Actions.ToList())
             {
                 ActionContainer laction = action;
-                if (choosenValues.FirstOrDefault(x => ((ActionContainer)x).RuleActionId == laction.RuleActionId) == null)
+                if (choosenValues.FirstOrDefault(x => ((ActionContainer)x).AppActionId == laction.AppActionId) == null)
                 {
                     _workspace.Delete(action);
                 }
             }
 
             Model.Actions.Clear();
-            foreach (ActionContainer choosenValue in choosenValues)
-            {
-                Model.Actions.Add(choosenValue);
-            }
+            choosenValues.Cast<ActionContainer>().ToList().ForEach(x => Model.Actions.Add(x));
+            _actions = new ObservableCollection<ActionContainerViewModel>(Model.Actions.Select(x => new ActionContainerViewModel(x, this)));
 
             RaisePropertyChanged("Actions");
 
         }
 
-        public ObservableCollection<ActionContainer> Actions { get { return new ObservableCollection<ActionContainer>(Model.Actions); } }
+        private ObservableCollection<ActionContainerViewModel> _actions;
+        public ObservableCollection<ActionContainerViewModel> Actions
+        {
+            get { return _actions; }
+        }
+
         public IEnumerable<RuleEvent> Events { get { return RuleActionTypeRegistry.RuleEvents.Values; } }
 
         public ICaptionCommand SelectActionsCommand { get; set; }

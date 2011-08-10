@@ -7,6 +7,7 @@ using System.Windows;
 using System.ComponentModel.Composition;
 using PropertyEditorLibrary;
 using Samba.Domain.Models.RuleActions;
+using Samba.Domain.Models.Users;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
@@ -87,11 +88,12 @@ namespace Samba.Presentation.Common.Interaction
             _popupDataViewModel = new PopupDataViewModel();
 
             RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, new[] { Resources.Message }, new[] { "" });
-            EventServiceFactory.EventService.GetEvent<GenericEvent<RuleAction>>().Subscribe(x =>
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
-                if (x.Value.ActionType == "ShowMessage")
+                if (x.Value.Action.ActionType == "ShowMessage")
                 {
-                    var param = x.Value.GetParameter(Resources.Message);
+                    var param = x.Value.Action.GetFormattedParameter(Resources.Message, x.Value.DataObject, x.Value.ParameterValues ?? "");
                     if (!string.IsNullOrEmpty(param))
                         GiveFeedback(param);
                 }

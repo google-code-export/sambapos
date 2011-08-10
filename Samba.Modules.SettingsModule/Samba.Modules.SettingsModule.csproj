@@ -52,6 +52,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionContainerViewModel.cs" />
     <Compile Include="RuleActionListViewModel.cs" />
     <Compile Include="RuleActionView.xaml.cs">
       <DependentUpon>RuleActionView.xaml</DependentUpon>

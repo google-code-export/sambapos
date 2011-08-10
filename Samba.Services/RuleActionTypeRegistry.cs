@@ -18,16 +18,22 @@ namespace Samba.Services
     {
         public string EventKey { get; set; }
         public string EventName { get; set; }
+        public string[] ParameterNames { get; set; }
     }
 
     public static class RuleActionTypeRegistry
     {
         public static IDictionary<string, RuleEvent> RuleEvents = new Dictionary<string, RuleEvent>();
 
-        public static void RegisterEvent(string eventKey, string eventName)
+        public static string[] GetParameterNames(string eventKey)
+        {
+            return RuleEvents[eventKey].ParameterNames;
+        }
+
+        public static void RegisterEvent(string eventKey, string eventName, params string[] parameterNames)
         {
             if (!RuleEvents.ContainsKey(eventKey))
-                RuleEvents.Add(eventKey, new RuleEvent { EventKey = eventKey, EventName = eventName });
+                RuleEvents.Add(eventKey, new RuleEvent { EventKey = eventKey, EventName = eventName, ParameterNames = parameterNames });
         }
 
         public static IDictionary<string, RuleActionType> ActionTypes = new Dictionary<string, RuleActionType>();

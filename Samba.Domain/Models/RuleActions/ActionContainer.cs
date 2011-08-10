@@ -13,20 +13,24 @@ namespace Samba.Domain.Models.RuleActions
             
         }
 
-        public ActionContainer(RuleAction ruleAction)
+        public ActionContainer(AppAction ruleAction)
         {
-            RuleActionId = ruleAction.Id;
+            AppActionId = ruleAction.Id;
             Name = ruleAction.Name;
         }
 
         public int Id { get; set; }
-        public int RuleActionId { get; set; }
-        public int RuleId { get; set; }
+        public int AppActionId { get; set; }
+        public int AppRuleId { get; set; }
         public string Name { get; set; }
+        public string ParameterValues { get; set; }
         public int Order { get; set; }
+
         public string UserString
         {
             get { return Name; }
         }
+
+        
     }
 }

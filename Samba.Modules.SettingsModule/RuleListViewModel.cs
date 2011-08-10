@@ -7,16 +7,16 @@ using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.SettingsModule
 {
-    class RuleListViewModel : EntityCollectionViewModelBase<RuleViewModel, CustomRule>
+    class RuleListViewModel : EntityCollectionViewModelBase<RuleViewModel, AppRule>
     {
-        protected override RuleViewModel CreateNewViewModel(CustomRule model)
+        protected override RuleViewModel CreateNewViewModel(AppRule model)
         {
             return new RuleViewModel(model);
         }
 
-        protected override CustomRule CreateNewModel()
+        protected override AppRule CreateNewModel()
         {
-            return new CustomRule();
+            return new AppRule();
         }
     }
 }

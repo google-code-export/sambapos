@@ -16,9 +16,9 @@ namespace Samba.Modules.SettingsModule
         public string Value { get; set; }
     }
 
-    class RuleActionViewModel : EntityViewModelBase<RuleAction>
+    class RuleActionViewModel : EntityViewModelBase<AppAction>
     {
-        public RuleActionViewModel(RuleAction model)
+        public RuleActionViewModel(AppAction model)
             : base(model)
         {
 

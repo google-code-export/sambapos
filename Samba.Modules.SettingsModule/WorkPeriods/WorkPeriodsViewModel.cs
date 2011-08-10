@@ -117,6 +117,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StopWorkPeriod(EndDescription);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
+
             InteractionService.UserIntraction.GiveFeedback(Resources.WorkPeriodEndsMessage);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }

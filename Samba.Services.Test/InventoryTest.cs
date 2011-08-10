@@ -226,7 +226,6 @@ namespace Samba.Services.Test
         {
             var pth = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             pth = Path.Combine(pth, "..\\..\\..\\Samba.Presentation");
-
             LocalSettings.AppPath = pth;
             if (File.Exists(fileName)) File.Delete(fileName);
             WorkspaceFactory.SetDefaultConnectionString(fileName);

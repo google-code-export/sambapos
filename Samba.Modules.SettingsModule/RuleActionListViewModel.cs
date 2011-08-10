@@ -7,16 +7,16 @@ using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.SettingsModule
 {
-    class RuleActionListViewModel: EntityCollectionViewModelBase<RuleActionViewModel, RuleAction>
+    class RuleActionListViewModel: EntityCollectionViewModelBase<RuleActionViewModel, AppAction>
     {
-        protected override RuleActionViewModel CreateNewViewModel(RuleAction model)
+        protected override RuleActionViewModel CreateNewViewModel(AppAction model)
         {
             return new RuleActionViewModel(model);
         }
 
-        protected override RuleAction CreateNewModel()
+        protected override AppAction CreateNewModel()
         {
-            return new RuleAction();
+            return new AppAction();
         }
     }
 }

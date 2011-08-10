@@ -6,7 +6,7 @@ using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.RuleActions
 {
-    public class CustomRule : IEntity
+    public class AppRule : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -19,7 +19,7 @@ namespace Samba.Domain.Models.RuleActions
             set { _actions = value; }
         }
 
-        public CustomRule()
+        public AppRule()
         {
             _actions = new List<ActionContainer>();
         }

@@ -2,6 +2,7 @@
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
+using Samba.Domain.Models.RuleActions;
 using Samba.Domain.Models.Users;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
@@ -63,7 +64,12 @@ namespace Samba.Modules.UserModule
             {
                 if (x.Topic == EventTopicNames.UserLoggedIn)
                 {
-                    RuleExecutor.NotifyEvent("UserLoggedIn");
+                    RuleExecutor.NotifyEvent(RuleEventNames.UserLoggedIn, new { User = x.Value, UserName = x.Value.Name, RoleName = x.Value.UserRole.Name });
+                }
+
+                if (x.Topic == EventTopicNames.UserLoggedOut)
+                {
+                    RuleExecutor.NotifyEvent(RuleEventNames.UserLoggedOut, new { User = x.Value, UserName = x.Value.Name, RoleName = x.Value.UserRole.Name });
                 }
             }
         );
@@ -75,7 +81,8 @@ namespace Samba.Modules.UserModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListUsersCommand);
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateLogoutCommand);
 
-            RuleActionTypeRegistry.RegisterEvent("UserLoggedIn", "User Logged In");
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedIn, "User LoggedIn", "UserName", "RoleName");
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedOut, "User LoggedOut", "UserName", "RoleName");
         }
 
         public void PinEntered(string pin)

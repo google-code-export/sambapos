@@ -150,11 +150,11 @@ namespace Samba.Services
         private IWorkspace _tableWorkspace;
         private readonly TicketWorkspace _ticketWorkspace = new TicketWorkspace();
 
-        private IEnumerable<CustomRule> _rules;
-        public IEnumerable<CustomRule> Rules { get { return _rules ?? (_rules = Dao.Query<CustomRule>(x => x.Actions)); } }
+        private IEnumerable<AppRule> _rules;
+        public IEnumerable<AppRule> Rules { get { return _rules ?? (_rules = Dao.Query<AppRule>(x => x.Actions)); } }
 
-        private IEnumerable<RuleAction> _actions;
-        public IEnumerable<RuleAction> Actions { get { return _actions ?? (_actions = Dao.Query<RuleAction>()); } }
+        private IEnumerable<AppAction> _actions;
+        public IEnumerable<AppAction> Actions { get { return _actions ?? (_actions = Dao.Query<AppAction>()); } }
 
         private IEnumerable<TableScreen> _tableScreens;
         public IEnumerable<TableScreen> TableScreens { get { return _tableScreens ?? (_tableScreens = Dao.Query<TableScreen>(x => x.Tables)); } }

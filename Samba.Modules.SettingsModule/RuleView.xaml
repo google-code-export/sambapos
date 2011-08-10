@@ -18,8 +18,25 @@
                 </TextBlock>
             </StackPanel>
             <Grid HorizontalAlignment="Left">
-                <ListBox ItemsSource="{Binding Actions}" DisplayMemberPath="Name" HorizontalAlignment="Left"
-                     MinWidth="150" MinHeight="50" />
+                <ListBox ItemsSource="{Binding Actions}" HorizontalAlignment="Left"
+                     MinWidth="150" MinHeight="50">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Expander Header="{Binding Name}">
+                                <ItemsControl ItemsSource="{Binding ParameterValues}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="{Binding Name}" MinWidth="120"/>
+                                                <ComboBox Text="{Binding Value}" MinWidth="80" IsEditable="True" ItemsSource="{Binding ParameterValues}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
             <Button HorizontalAlignment="Left" Margin="0,10,3,0" MinWidth="70" Content="{Binding SaveCommand.Caption}"
                  Command="{Binding SaveCommand}" />

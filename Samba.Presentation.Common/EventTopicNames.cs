@@ -2,9 +2,17 @@
 
 namespace Samba.Presentation.Common
 {
+    public static class RuleEventNames
+    {
+        public const string WorkPeriodStarts = "WorkPeriodStarts";
+        public const string WorkPeriodEnds = "WorkPeriodEnds";
+        public const string UserLoggedOut = "UserLoggedOut";
+        public const string UserLoggedIn = "UserLoggedIn";
+    }
+
     public static class EventTopicNames
     {
-        public const string ExecuteEvent="ExecuteEvent";
+        public const string ExecuteEvent = "ExecuteEvent";
         public const string UpdateDepartment = "Update Department";
         public const string PopupClicked = "Popup Clicked";
         public const string DisplayTicketExplorer = "Display Ticket Explorer";
