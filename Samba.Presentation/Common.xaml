@@ -3,9 +3,13 @@
                     xmlns:loc="clr-namespace:Samba.Presentation" 
                     xmlns:properties="clr-namespace:Samba.Presentation.Properties" 
                     xmlns:ListViewEx="clr-namespace:Samba.Presentation.Common.ListViewEx;assembly=Samba.Presentation.Common" xmlns:Common="clr-namespace:Samba.Presentation.Common;assembly=Samba.Presentation.Common">
-
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Samba.Presentation;component/Themes/MainExpanderResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
     <properties:Settings x:Key="Settings" />
-
+    
     <Style x:Key="LeftAlignedGridCell" TargetType="{x:Type DataGridCell}">
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">

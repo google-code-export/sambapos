@@ -2127,7 +2127,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Flat.
+        ///   Looks up a localized string similar to Auto Round.
         /// </summary>
         public static string Flat {
             get {
@@ -2136,7 +2136,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Flattening.
+        ///   Looks up a localized string similar to Rounding.
         /// </summary>
         public static string Flattening {
             get {

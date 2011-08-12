@@ -37,7 +37,8 @@ namespace Samba.Modules.SettingsModule
                 ActionContainer laction = action;
                 if (choosenValues.FirstOrDefault(x => ((ActionContainer)x).AppActionId == laction.AppActionId) == null)
                 {
-                    _workspace.Delete(action);
+                    if (action.Id > 0)
+                        _workspace.Delete(action);
                 }
             }
 

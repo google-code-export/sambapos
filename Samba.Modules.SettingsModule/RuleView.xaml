@@ -18,11 +18,11 @@
                 </TextBlock>
             </StackPanel>
             <Grid HorizontalAlignment="Left">
-                <ListBox ItemsSource="{Binding Actions}" HorizontalAlignment="Left"
+                <ItemsControl ItemsSource="{Binding Actions}" HorizontalAlignment="Left"
                      MinWidth="150" MinHeight="50">
-                    <ListBox.ItemTemplate>
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Expander Header="{Binding Name}">
+                            <Expander Style="{StaticResource MainViewExpander}" Header="{Binding Name}" IsExpanded="True" Margin="2">
                                 <ItemsControl ItemsSource="{Binding ParameterValues}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -35,8 +35,8 @@
                                 </ItemsControl>
                             </Expander>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
             <Button HorizontalAlignment="Left" Margin="0,10,3,0" MinWidth="70" Content="{Binding SaveCommand.Caption}"
                  Command="{Binding SaveCommand}" />

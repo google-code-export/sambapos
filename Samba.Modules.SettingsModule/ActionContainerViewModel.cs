@@ -62,17 +62,21 @@ namespace Samba.Modules.SettingsModule
         private ObservableCollection<ActionParameterValue> GetParameterValues()
         {
             IEnumerable<ActionParameterValue> result;
-            if (string.IsNullOrEmpty(Model.ParameterValues))
+            if (!string.IsNullOrEmpty(_ruleViewModel.EventName))
             {
-                result = Regex.Matches(Action.Parameter, "\\[([^\\]]+)\\]")
-                    .Cast<Match>()
-                    .Select(match => new ActionParameterValue(this, match.Groups[1].Value, "", RuleActionTypeRegistry.GetParameterNames(_ruleViewModel.EventName)));
+                if (string.IsNullOrEmpty(Model.ParameterValues))
+                {
+                    result = Regex.Matches(Action.Parameter, "\\[([^\\]]+)\\]")
+                        .Cast<Match>()
+                        .Select(match => new ActionParameterValue(this, match.Groups[1].Value, "", RuleActionTypeRegistry.GetParameterNames(_ruleViewModel.EventName)));
+                }
+                else
+                {
+                    result = Model.ParameterValues.Split('#').Select(
+                    x => new ActionParameterValue(this, x.Split('=')[0], x.Split('=')[1], RuleActionTypeRegistry.GetParameterNames(_ruleViewModel.EventName)));
+                }
             }
-            else
-            {
-                result = Model.ParameterValues.Split('#').Select(
-                x => new ActionParameterValue(this, x.Split('=')[0], x.Split('=')[1], RuleActionTypeRegistry.GetParameterNames(_ruleViewModel.EventName)));
-            }
+            else result = new List<ActionParameterValue>();
 
             return new ObservableCollection<ActionParameterValue>(result);
         }

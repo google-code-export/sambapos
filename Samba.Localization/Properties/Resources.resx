@@ -1642,7 +1642,7 @@ Balance</value>
     <value>Round</value>
   </data>
   <data name="Flat" xml:space="preserve">
-    <value>Flat</value>
+    <value>Auto Round</value>
   </data>
   <data name="DiscountPercentSign" xml:space="preserve">
     <value>Discount %</value>
@@ -1803,7 +1803,7 @@ Visit Reports section and create Work Period Reports</value>
     <value>Rounding</value>
   </data>
   <data name="Flattening" xml:space="preserve">
-    <value>Flattening</value>
+    <value>Rounding</value>
   </data>
   <data name="AccountBalance" xml:space="preserve">
     <value>Account Balance</value>
