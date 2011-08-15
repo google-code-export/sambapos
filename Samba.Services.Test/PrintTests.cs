@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Samba.Domain.Foundation;
 using Samba.Domain.Models.Customers;
@@ -20,7 +22,7 @@ namespace Samba.Services.Test
         {
             WorkspaceFactory.SetDefaultConnectionString("c:\\testData.txt");
             IWorkspace workspace = WorkspaceFactory.Create();
-
+            Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
             CurrencyContext.DefaultCurrency = "TL";
 
             var user = new User("Emre", "1");
@@ -55,6 +57,7 @@ Adisyon Tarihi:{ADİSYON TARİH}
 {MÜŞTERİ ADI}]";
             template.LineTemplate = @"{MİKTAR} {ÜRÜN} {FİYAT}";
             template.FooterTemplate = @"{VARSA İSKONTO}
+[<C>İkram: {TOPLAM İKRAM}, teşekkürler]
 [Toplam: {TOPLAM BAKİYE}]";
 
             var formatResult = TicketFormatter.GetFormattedTicket(ticket, ticket.GetUnlockedLines(), template);
@@ -78,7 +81,7 @@ Toplam: 7,00";
 
             var l1 = ticket.AddTicketItem(user.Id, menuItem1, "Normal");
             l1.Quantity = 5;
-            ticket.AddTicketItem(user.Id, menuItem2, "Az");
+            var l2 = ticket.AddTicketItem(user.Id, menuItem2, "Az");
             formatResult = TicketFormatter.GetFormattedTicket(ticket, ticket.GetUnlockedLines(), template);
             result = string.Join("\r\n", formatResult);
             expectedResult = @"SAMBA
@@ -112,8 +115,36 @@ Toplam: 34,00";
 
             result = string.Join("\r\n", formatResult);
             Assert.IsTrue(result == expectedResult);
+
+            l2.Gifted = true;
+            template.GiftLineTemplate="{MİKTAR} {ÜRÜN} İKRAM";
+
+            expectedResult = @"SAMBA
+Adisyon Tarihi:01.01.2010
+Müşteri Adı:
+Emre EREN
+1 Pilav 3,00
+6 Kurufasülye 5,00
+1 Pilav.Az İKRAM
+<C>İkram: 1,00, teşekkürler
+Toplam: 33,00";
+
+            formatResult = TicketFormatter.GetFormattedTicket(ticket, ticket.GetUnlockedLines(), template);
+            result = string.Join("\r\n", formatResult);
+            Assert.IsTrue(result == expectedResult);
         }
 
+        [TestMethod]
+        public void ReplaceInBracketValues()
+        {
+            var input = "hello [hi test]";
+            var result = TagData.ReplaceInBracketValues(input, " test", "", '[', ']');
+            Assert.AreEqual("hello [hi]", result);
+
+            input = "hello [hi test] [haaa test haha]";
+            result = TagData.ReplaceInBracketValues(input, " test", "", '[', ']');
+            Assert.AreEqual("hello [hi] [haaa haha]", result);
+        }
 
         [TestMethod]
         public void CanExtractTag()
@@ -136,7 +167,7 @@ Toplam: 34,00";
             Assert.IsTrue(tagData.Length == "[Fiyat:{FİYAT}]".Length);
             Assert.IsTrue(tagData.StartPos == data.IndexOf("[Fiyat:{FİYAT}]"));
             Assert.IsTrue(tagData.DataString == "[Fiyat:{FİYAT}]");
-            Assert.IsTrue(tagData.Title == "Fiyat:");
+            Assert.IsTrue(tagData.Title == "Fiyat:<value>");
         }
     }
 }

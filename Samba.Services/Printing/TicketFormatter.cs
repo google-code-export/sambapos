@@ -13,31 +13,27 @@ namespace Samba.Services.Printing
     {
         public TagData(string data, string tag)
         {
+            data = ReplaceInBracketValues(data, "\r\n", "<newline>", '[', ']');
+
+            data = data.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Where(x => x.Contains(tag)).FirstOrDefault();
+
             Tag = tag;
             DataString = tag;
+            if (string.IsNullOrEmpty(data)) return;
+
             StartPos = data.IndexOf(tag);
-
-            if (!data.Contains(tag)) return;
-
             EndPos = StartPos + 1;
 
             while (data[EndPos] != '}') { EndPos++; }
             EndPos++;
             Length = EndPos - StartPos;
 
-            if (data.Length > (StartPos + Length) && data[StartPos + Length] == ']')
-            {
-                EndPos++;
-                while (data[StartPos] != '[')
-                {
-                    StartPos--;
-                }
-            }
-
-            Length = EndPos - StartPos;
-
-            DataString = data.Substring(StartPos, Length);
-            Title = DataString.Trim('[', ']').Replace(Tag, "");
+            DataString = BracketContains(data, '[', ']', Tag) ? GetBracketValue(data, '[', ']') : data.Substring(StartPos, Length);
+            DataString = DataString.Replace("<newline>", "\r\n");
+            Title = DataString.Trim('[', ']').Replace(Tag, "<value>");
+            Length = DataString.Length;
+            StartPos = data.IndexOf(DataString);
+            EndPos = StartPos + Length;
         }
 
         public string DataString { get; set; }
@@ -46,6 +42,48 @@ namespace Samba.Services.Printing
         public int StartPos { get; set; }
         public int EndPos { get; set; }
         public int Length { get; set; }
+
+        public static string ReplaceInBracketValues(string content, string find, string replace, char open, char close)
+        {
+            var result = content;
+            var v1 = GetBracketValue(result, open, close);
+            while (!string.IsNullOrEmpty(v1))
+            {
+                var value = v1.Replace(find, replace);
+                value = value.Replace(open.ToString(), "<op>");
+                value = value.Replace(close.ToString(), "<cl>");
+                result = result.Replace(v1, value);
+                v1 = GetBracketValue(result, open, close);
+            }
+            result = result.Replace("<op>", open.ToString());
+            result = result.Replace("<cl>", close.ToString());
+            return result;
+        }
+
+        public static bool BracketContains(string content, char open, char close, string testValue)
+        {
+            if (!content.Contains(open)) return false;
+            var br = GetBracketValue(content, open, close);
+            return (br.Contains(testValue));
+        }
+
+        public static string GetBracketValue(string content, char open, char close)
+        {
+            var closePass = 1;
+            var start = content.IndexOf(open);
+            var end = start;
+            if (start > -1)
+            {
+                while (end < content.Length - 1 && closePass > 0)
+                {
+                    end++;
+                    if (content[end] == open && close != open) closePass++;
+                    if (content[end] == close) closePass--;
+                }
+                return content.Substring(start, (end - start) + 1);
+            }
+            return string.Empty;
+        }
     }
 
     public static class TicketFormatter
@@ -163,6 +201,7 @@ namespace Samba.Services.Printing
             var remaining = ticket.GetRemainingAmount();
             var discount = ticket.GetTotalDiscounts();
             var plainTotal = ticket.GetPlainSum();
+            var giftAmount = ticket.GetTotalGiftAmount();
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
                 string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
@@ -170,7 +209,7 @@ namespace Samba.Services.Printing
             result = FormatDataIf(discount > 0, result, Resources.TF_DiscountTotalAndTicketTotal,
                 string.Format(Resources.DiscountTotalAndTicketTotalValue_f, plainTotal.ToString("#,#0.00"), discount.ToString("#,#0.00")));
 
-            result = FormatData(result, Resources.TF_GiftTotal, ticket.GetTotalGiftAmount().ToString("#,#0.00"));
+            result = FormatDataIf(giftAmount > 0, result, Resources.TF_GiftTotal, giftAmount.ToString("#,#0.00"));
             result = FormatDataIf(discount < 0, result, Resources.TF_IfFlatten, string.Format(Resources.IfNegativeDiscountValue_f, discount.ToString("#,#0.00")));
             result = FormatData(result, Resources.TF_TicketTotal, ticket.GetSum().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketPaidTotal, ticket.GetPaymentAmount().ToString("#,#0.00"));
@@ -184,7 +223,10 @@ namespace Samba.Services.Printing
         private static string FormatData(string data, string tag, string value)
         {
             var tagData = new TagData(data, tag);
-            if (!string.IsNullOrEmpty(value)) value = tagData.Title + value;
+            if (!string.IsNullOrEmpty(value)) value =
+                !string.IsNullOrEmpty(tagData.Title) && tagData.Title.Contains("<value>")
+                ? tagData.Title.Replace("<value>", value)
+                : tagData.Title + value;
             return data.Replace(tagData.DataString, value);
         }
 

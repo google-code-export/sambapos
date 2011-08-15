@@ -214,7 +214,7 @@ namespace Samba.Domain.Models.Tickets
 
         public decimal GetTotalGiftAmount(CurrencyContext ccontext, string currencyCode)
         {
-            return TicketItems.Where(x => x.Gifted && !x.Voided).Sum(item => item.GetTotal(currencyCode, ccontext));
+            return TicketItems.Where(x => x.Gifted && !x.Voided).Sum(item => item.GetItemValue(currencyCode, ccontext));
         }
 
         public decimal GetPaymentAmount()

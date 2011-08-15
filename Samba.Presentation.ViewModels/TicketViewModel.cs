@@ -412,7 +412,7 @@ namespace Samba.Presentation.ViewModels
 
         public bool CanChangeTable()
         {
-            if (IsLocked || Items.Count == 0 || !Model.CanSubmit) return false;
+            if (IsLocked || Items.Count == 0 || (Payments.Count > 0 && !string.IsNullOrEmpty(Location)) || !Model.CanSubmit) return false;
             return string.IsNullOrEmpty(Table) || AppServices.IsUserPermittedFor(PermissionNames.ChangeTable);
         }
 

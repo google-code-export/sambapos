@@ -154,10 +154,6 @@ namespace Samba.Modules.TicketModule
                     RaisePropertyChanged("SelectedTicket");
                     SelectedDepartment.PublishEvent(EventTopicNames.SelectedDepartmentChanged);
                 }
-                //else
-                //{
-                //    DisplayTickets();
-                //}
             }
         }
 

@@ -3108,6 +3108,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Property.
+        /// </summary>
+        public static string NewProperty {
+            get {
+                return ResourceManager.GetString("NewProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Tag.
         /// </summary>
         public static string NewTag {

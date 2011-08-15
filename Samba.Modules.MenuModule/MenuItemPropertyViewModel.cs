@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Samba.Domain.Models.Menus;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 
@@ -12,6 +13,8 @@ namespace Samba.Modules.MenuModule
         public MenuItemPropertyViewModel(MenuItemProperty model)
         {
             Model = model;
+            if (string.IsNullOrEmpty(model.Name))
+                model.Name = string.Format("[{0}]", Resources.NewProperty);
             UpdateMenuItem(model.MenuItemId);
         }
 

@@ -2324,4 +2324,7 @@ Masa: {2}</value>
   <data name="Parameters" xml:space="preserve">
     <value>Parametreler</value>
   </data>
+	<data name="NewProperty">
+		<value xml:space="preserve">Yeni Özellik</value>
+	</data>
 </root>

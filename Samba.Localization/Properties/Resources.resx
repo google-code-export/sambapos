@@ -2342,4 +2342,7 @@ Table: {2}</value>
     <value>Actions</value>
     <comment>Label.Content</comment>
   </data>
+	<data name="NewProperty">
+		<value xml:space="preserve">New Property</value>
+	</data>
 </root>
