@@ -2066,6 +2066,7 @@ Masa: {2}</value>
     <value>&lt;F&gt;=
 &lt;EB&gt;
 &lt;J10&gt;{VARSA İSKONTO}
+&lt;J10&gt;[Toplam İkram:|{TOPLAM İKRAM}]
 &lt;J10&gt;Toplam:|{TOPLAM FİYAT}
 {VARSA ÖDENEN}
 &lt;DB&gt;
@@ -2129,8 +2130,7 @@ Masa: {2}</value>
 Çeki</value>
   </data>
   <data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-    <value>&lt;L00&gt;{MİKTAR} {ÜRÜN} İKRAM |{FİYAT}
-        * {ÖZELLİKLER}</value>
+    <value>&lt;L00&gt;{MİKTAR} {ÜRÜN} |İKRAM</value>
   </data>
   <data name="NavigationPermissions" xml:space="preserve">
     <value>Navigasyon İzinleri</value>
@@ -2255,7 +2255,8 @@ Masa: {2}</value>
 &lt;J&gt;İskonto:|{1}</value>
   </data>
   <data name="TicketTempleteLineTemplateValue" xml:space="preserve">
-    <value>&lt;J00&gt;- {MİKTAR} {ÜRÜN}|{FİYAT}</value>
+    <value>&lt;J00&gt;- {MİKTAR} {ÜRÜN}|{FİYAT}
+        * {ÖZELLİKLER}</value>
   </data>
   <data name="InvoiceTemplateLineTemplateValue" xml:space="preserve">
     <value>&lt;L00&gt;{MİKTAR} {ÜRÜN}
@@ -2294,20 +2295,20 @@ Masa: {2}</value>
   <data name="OverrideWindowsRegionalSettings" xml:space="preserve">
     <value>Windows Yerel Dil Ayarlarını Kullanma</value>
   </data>
-	<data name="ClientServerConnectionHelpUrlString">
-		<value xml:space="preserve">http://www.sambapos.com/content/client-server-baglantisi-nasil-yapilir</value>
-	</data>
-  <data name="RuleAction">
-    <value xml:space="preserve">Aksiyon</value>
+  <data name="ClientServerConnectionHelpUrlString" xml:space="preserve">
+    <value>http://www.sambapos.com/content/client-server-baglantisi-nasil-yapilir</value>
   </data>
-  <data name="RuleActions">
-    <value xml:space="preserve">Aksiyonlar</value>
+  <data name="RuleAction" xml:space="preserve">
+    <value>Aksiyon</value>
   </data>
-  <data name="NoAction">
-    <value xml:space="preserve">Yok</value>
+  <data name="RuleActions" xml:space="preserve">
+    <value>Aksiyonlar</value>
   </data>
-  <data name="ShowMessage">
-    <value xml:space="preserve">Mesaj Göster</value>
+  <data name="NoAction" xml:space="preserve">
+    <value>Yok</value>
+  </data>
+  <data name="ShowMessage" xml:space="preserve">
+    <value>Mesaj Göster</value>
   </data>
   <data name="ActionName" xml:space="preserve">
     <value>Aksiyon Adı</value>
@@ -2324,7 +2325,13 @@ Masa: {2}</value>
   <data name="Parameters" xml:space="preserve">
     <value>Parametreler</value>
   </data>
-	<data name="NewProperty">
-		<value xml:space="preserve">Yeni Özellik</value>
-	</data>
+  <data name="NewProperty" xml:space="preserve">
+    <value>Yeni Özellik</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Taşı</value>
+  </data>
+  <data name="MoveTicketLine" xml:space="preserve">
+    <value>Böl</value>
+  </data>
 </root>

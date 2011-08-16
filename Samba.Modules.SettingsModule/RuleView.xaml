@@ -11,15 +11,14 @@
                  DisplayMemberPath="EventName" SelectedValuePath="EventKey" SelectedValue="{Binding EventName}" />
             <StackPanel Orientation="Horizontal">
                 <Label HorizontalAlignment="Left" Content="{LocText Actions}" />
-                <TextBlock Margin="2,6,0,0">
+                <TextBlock Margin="2,5,0,0">
                     <Hyperlink Command="{Binding SelectActionsCommand}">
                         <TextBlock Text="{Binding Path=SelectActionsCommand.Caption}" />
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>
             <Grid HorizontalAlignment="Left">
-                <ItemsControl ItemsSource="{Binding Actions}" HorizontalAlignment="Left"
-                     MinWidth="150" MinHeight="50">
+                <ItemsControl ItemsSource="{Binding Actions}" HorizontalAlignment="Left">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Expander Style="{StaticResource MainViewExpander}" Header="{Binding Name}" IsExpanded="True" Margin="2">

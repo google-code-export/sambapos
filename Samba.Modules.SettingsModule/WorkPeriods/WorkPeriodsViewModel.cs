@@ -117,7 +117,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StopWorkPeriod(EndDescription);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
-            RuleExecutor.NotifyEvent(RuleEventNames.WorkPeriodEnds, AppServices.MainDataContext.CurrentWorkPeriod);
+            RuleExecutor.NotifyEvent(RuleEventNames.WorkPeriodEnds, new { WorkPeriod = AppServices.MainDataContext.CurrentWorkPeriod, UserName = AppServices.CurrentLoggedInUser.Name });
             InteractionService.UserIntraction.GiveFeedback(Resources.WorkPeriodEndsMessage);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }
@@ -133,7 +133,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             AppServices.MainDataContext.StartWorkPeriod(StartDescription, CashAmount, CreditCardAmount, TicketAmount);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
-            RuleExecutor.NotifyEvent(RuleEventNames.WorkPeriodStarts, AppServices.MainDataContext.CurrentWorkPeriod);
+            RuleExecutor.NotifyEvent(RuleEventNames.WorkPeriodStarts, new { WorkPeriod = AppServices.MainDataContext.CurrentWorkPeriod, UserName = AppServices.CurrentLoggedInUser.Name });
             InteractionService.UserIntraction.GiveFeedback(Resources.StartingWorkPeriodCompleted);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
         }

@@ -3044,6 +3044,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string Move {
+            get {
+                return ResourceManager.GetString("Move", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string MoveTicketLine {
+            get {
+                return ResourceManager.GetString("MoveTicketLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple Selection.
         /// </summary>
         public static string MultipleSelection {
@@ -5287,6 +5305,7 @@ namespace Samba.Localization.Properties {
         ///   Looks up a localized string similar to &lt;F&gt;=
         ///&lt;EB&gt;
         ///&lt;J10&gt;{IF DISCOUNT}
+        ///&lt;J10&gt;[Total Gift:|{GIFT TOTAL}]
         ///&lt;J10&gt;Total:|{TICKET TOTAL}
         ///{IF PAID}
         ///&lt;DB&gt;
@@ -5300,8 +5319,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;L00&gt;{QUANTITY} {NAME} GIFT |{PRICE}
-        ///        * {PROPERTIES}.
+        ///   Looks up a localized string similar to &lt;L00&gt;{QUANTITY} {NAME} |GIFT.
         /// </summary>
         public static string TicketTemplateGiftedLineTemplateValue {
             get {
@@ -5324,7 +5342,8 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;J00&gt;- {QUANTITY} {NAME}|{PRICE}.
+        ///   Looks up a localized string similar to &lt;J00&gt;- {QUANTITY} {NAME}|{PRICE}
+        ///        * {PROPERTIES}.
         /// </summary>
         public static string TicketTempleteLineTemplateValue {
             get {

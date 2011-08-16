@@ -66,8 +66,8 @@ namespace Samba.Modules.SettingsModule
 
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateWorkPeriodsCommand);
 
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodStarts, "Work Period Starts");
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, "Work Period Ends");
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodStarts, "Work Period Starts", "UserName");
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, "Work Period Ends", "UserName");
         }
 
         [ImportingConstructor]

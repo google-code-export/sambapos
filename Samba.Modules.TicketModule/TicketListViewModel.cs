@@ -252,7 +252,7 @@ namespace Samba.Modules.TicketModule
             ShowGiftReasonsCommand = new CaptionCommand<string>(Resources.Gift, OnShowGiftReasonsExecuted, CanGiftSelectedItems);
             ShowTicketTagsCommand = new CaptionCommand<TicketTagGroup>(Resources.Tag, OnShowTicketsTagExecute, CanExecuteShowTicketTags);
             CancelItemCommand = new CaptionCommand<string>(Resources.Cancel, OnCancelItemCommand, CanCancelSelectedItems);
-            MoveTicketItemsCommand = new CaptionCommand<string>(Resources.Divide, OnMoveTicketItems, CanMoveTicketItems);
+            MoveTicketItemsCommand = new CaptionCommand<string>(Resources.MoveTicketLine, OnMoveTicketItems, CanMoveTicketItems);
             ShowExtraPropertyEditorCommand = new CaptionCommand<string>(Resources.ExtraModifier, OnShowExtraProperty, CanShowExtraProperty);
             EditTicketNoteCommand = new CaptionCommand<string>(Resources.TicketNote, OnEditTicketNote, CanEditTicketNote);
             RemoveTicketLockCommand = new CaptionCommand<string>(Resources.ReleaseLock, OnRemoveTicketLock, CanRemoveTicketLock);

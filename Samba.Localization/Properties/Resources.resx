@@ -2073,6 +2073,7 @@ Table: {2}</value>
     <value>&lt;F&gt;=
 &lt;EB&gt;
 &lt;J10&gt;{IF DISCOUNT}
+&lt;J10&gt;[Total Gift:|{GIFT TOTAL}]
 &lt;J10&gt;Total:|{TICKET TOTAL}
 {IF PAID}
 &lt;DB&gt;
@@ -2135,8 +2136,7 @@ Table: {2}</value>
     <value>Voucher</value>
   </data>
   <data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-    <value>&lt;L00&gt;{QUANTITY} {NAME} GIFT |{PRICE}
-        * {PROPERTIES}</value>
+    <value>&lt;L00&gt;{QUANTITY} {NAME} |GIFT</value>
   </data>
   <data name="NavigationPermissions" xml:space="preserve">
     <value>Navigation Permissions</value>
@@ -2261,7 +2261,8 @@ Table: {2}</value>
 &lt;J&gt;Discount:|{1}</value>
   </data>
   <data name="TicketTempleteLineTemplateValue" xml:space="preserve">
-    <value>&lt;J00&gt;- {QUANTITY} {NAME}|{PRICE}</value>
+    <value>&lt;J00&gt;- {QUANTITY} {NAME}|{PRICE}
+        * {PROPERTIES}</value>
   </data>
   <data name="InvoiceTemplateLineTemplateValue" xml:space="preserve">
     <value>&lt;L00&gt;{QUANTITY} {NAME}
@@ -2342,7 +2343,13 @@ Table: {2}</value>
     <value>Actions</value>
     <comment>Label.Content</comment>
   </data>
-	<data name="NewProperty">
-		<value xml:space="preserve">New Property</value>
-	</data>
+  <data name="NewProperty" xml:space="preserve">
+    <value>New Property</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="MoveTicketLine" xml:space="preserve">
+    <value>Move</value>
+  </data>
 </root>
