@@ -177,13 +177,10 @@ namespace Samba.Modules.TableModule
                 {
                     SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
                 }
-                else
+                else if (SelectedTicket != null)
                 {
-                    if (SelectedTicket != null)
-                    {
-                        AppServices.MainDataContext.ResetTableDataForSelectedTicket();
-                        SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-                    }
+                    AppServices.MainDataContext.ResetTableDataForSelectedTicket();
+                    SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
                 }
             }
         }

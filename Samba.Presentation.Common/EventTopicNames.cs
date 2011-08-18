@@ -4,6 +4,7 @@ namespace Samba.Presentation.Common
 {
     public static class RuleEventNames
     {
+        public const string TicketCreated = "TicketCreated";
         public const string WorkPeriodStarts = "WorkPeriodStarts";
         public const string WorkPeriodEnds = "WorkPeriodEnds";
         public const string UserLoggedOut = "UserLoggedOut";

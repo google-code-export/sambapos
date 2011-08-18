@@ -88,7 +88,7 @@ namespace Samba.Modules.SettingsModule
             ListGiftReasonsCommand = new CategoryCommand<string>(Resources.GiftReasons, Resources.Products, OnListGiftReasons);
             ListMenuItemSettingsCommand = new CategoryCommand<string>(Resources.ProgramSettings, Resources.Settings, OnListMenuItemSettings) { Order = 10 };
             ListRuleActionsCommand = new CategoryCommand<string>(Resources.RuleActions, Resources.Settings, OnListRuleActions);
-            ListRulesCommand = new CategoryCommand<string>("Rules", Resources.Settings, OnListRules);
+            ListRulesCommand = new CategoryCommand<string>(Resources.Rules, Resources.Settings, OnListRules);
 
             ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.SambaNetwork, OnShowBrowser) { Order = 99 };
 

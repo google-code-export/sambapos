@@ -451,5 +451,11 @@ namespace Samba.Presentation.ViewModels
         {
             return !string.IsNullOrEmpty(Model.GetTagValue(tagGroup));
         }
+
+        public static void CreateNewTicket()
+        {
+            AppServices.MainDataContext.CreateNewTicket();
+            RuleExecutor.NotifyEvent(RuleEventNames.TicketCreated, new { Ticket = AppServices.MainDataContext.SelectedTicket });
+        }
     }
 }

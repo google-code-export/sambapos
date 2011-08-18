@@ -40,7 +40,6 @@ namespace Samba.Modules.TicketModule
             PermissionRegistry.RegisterPermission(PermissionNames.RoundPayment, PermissionCategories.Payment, Resources.CanRoundTicketTotal);
             PermissionRegistry.RegisterPermission(PermissionNames.FixPayment, PermissionCategories.Payment, Resources.CanFlattenTicketTotal);
 
-
             EventServiceFactory.EventService.GetEvent<GenericEvent<Customer>>().Subscribe(
                 x =>
                 {
@@ -51,7 +50,7 @@ namespace Samba.Modules.TicketModule
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Ticket>>().Subscribe(x =>
             {
-                if ( x.Topic == EventTopicNames.TicketSelectedFromTableList)
+                if (x.Topic == EventTopicNames.TicketSelectedFromTableList)
                     ActivateTicketEditorView();
             });
 
@@ -61,6 +60,22 @@ namespace Samba.Modules.TicketModule
                     if (x.Topic == EventTopicNames.ActivateTicketView || x.Topic == EventTopicNames.DisplayTicketView)
                         ActivateTicketEditorView();
                 });
+
+
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, "Ticket Created");
+            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", new[] { "Discount Percentage" }, new[] { "" });
+            EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
+            {
+                if (x.Value.Action.ActionType == "AddTicketDiscount")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var percent = x.Value.GetAsDecimal("Discount Percentage");
+                        ticket.AddTicketDiscount(DiscountType.Percent, percent, AppServices.CurrentLoggedInUser.Id);
+                    }
+                }
+            });
         }
 
         private static bool CanNavigateTicket(string arg)

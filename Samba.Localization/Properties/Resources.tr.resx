@@ -2299,10 +2299,10 @@ Masa: {2}</value>
     <value>http://www.sambapos.com/content/client-server-baglantisi-nasil-yapilir</value>
   </data>
   <data name="RuleAction" xml:space="preserve">
-    <value>Aksiyon</value>
+    <value>Eylem</value>
   </data>
   <data name="RuleActions" xml:space="preserve">
-    <value>Aksiyonlar</value>
+    <value>Eylemler</value>
   </data>
   <data name="NoAction" xml:space="preserve">
     <value>Yok</value>
@@ -2311,15 +2311,15 @@ Masa: {2}</value>
     <value>Mesaj Göster</value>
   </data>
   <data name="ActionName" xml:space="preserve">
-    <value>Aksiyon Adı</value>
+    <value>Eylem Adı</value>
     <comment>Label.Content</comment>
   </data>
   <data name="ActionType" xml:space="preserve">
-    <value>Aksiyon Tipi</value>
+    <value>Eylem Tipi</value>
     <comment>Label.Content</comment>
   </data>
   <data name="ActionParameter" xml:space="preserve">
-    <value>Aksiyon Parametreleri</value>
+    <value>Eylem Parametreleri</value>
     <comment>Label.Content</comment>
   </data>
   <data name="Parameters" xml:space="preserve">
@@ -2334,4 +2334,34 @@ Masa: {2}</value>
   <data name="MoveTicketLine" xml:space="preserve">
     <value>Böl</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Kural</value>
+  </data>
+  <data name="RuleName" xml:space="preserve">
+    <value>Kural Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="EventName" xml:space="preserve">
+    <value>Olay Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Eylemler</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Title">
+    <value xml:space="preserve">Başlık</value>
+  </data>
+  <data name="DisplayPopup">
+    <value xml:space="preserve">Popup Görüntüle</value>
+  </data>
+  <data name="DeleteErrorInventoryItemUsedInEndOfDayRecord">
+    <value><![CDATA[Bu Stok Kartını bir gün sonu dökümanında kullanıldığı için silemezsiniz.]]></value>
+  </data>
+	<data name="Rules">
+		<value xml:space="preserve">Kurallar</value>
+	</data>
 </root>

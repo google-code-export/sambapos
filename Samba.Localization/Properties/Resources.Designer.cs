@@ -1530,6 +1530,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t delete because an end of day Cost document contains this Inventory Item..
+        /// </summary>
+        public static string DeleteErrorInventoryItemUsedInEndOfDayRecord {
+            get {
+                return ResourceManager.GetString("DeleteErrorInventoryItemUsedInEndOfDayRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t delete last User Account.
         /// </summary>
         public static string DeleteErrorLastUser {
@@ -1851,6 +1860,15 @@ namespace Samba.Localization.Properties {
         public static string DisplayAllValues {
             get {
                 return ResourceManager.GetString("DisplayAllValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Popup.
+        /// </summary>
+        public static string DisplayPopup {
+            get {
+                return ResourceManager.GetString("DisplayPopup", resourceCulture);
             }
         }
         
@@ -4082,6 +4100,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rules.
+        /// </summary>
+        public static string Rules {
+            get {
+                return ResourceManager.GetString("Rules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sales.
         /// </summary>
         public static string Sales {
@@ -5393,6 +5420,15 @@ namespace Samba.Localization.Properties {
         public static string TicketWithBrackets {
             get {
                 return ResourceManager.GetString("TicketWithBrackets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

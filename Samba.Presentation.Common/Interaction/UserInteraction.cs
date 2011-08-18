@@ -88,6 +88,7 @@ namespace Samba.Presentation.Common.Interaction
             _popupDataViewModel = new PopupDataViewModel();
 
             RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, new[] { Resources.Message }, new[] { "" });
+            RuleActionTypeRegistry.RegisterActionType("DisplayPopup", Resources.DisplayPopup, new[] { Resources.Title, Resources.Message }, new[] { "", "" });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
@@ -96,6 +97,14 @@ namespace Samba.Presentation.Common.Interaction
                     var param = x.Value.Action.GetFormattedParameter(Resources.Message, x.Value.DataObject, x.Value.ParameterValues ?? "");
                     if (!string.IsNullOrEmpty(param))
                         GiveFeedback(param);
+                }
+
+                if (x.Value.Action.ActionType == "DisplayPopup")
+                {
+                    var title = x.Value.Action.GetFormattedParameter(Resources.Title, x.Value.DataObject, x.Value.ParameterValues ?? "");
+                    var message = x.Value.Action.GetFormattedParameter(Resources.Message, x.Value.DataObject, x.Value.ParameterValues ?? "");
+                    if (!string.IsNullOrEmpty(message))
+                        DisplayPopup(title, message, null, "");
                 }
             });
         }

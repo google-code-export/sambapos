@@ -2352,4 +2352,16 @@ Table: {2}</value>
   <data name="MoveTicketLine" xml:space="preserve">
     <value>Move</value>
   </data>
+  <data name="Title">
+    <value xml:space="preserve">Title</value>
+  </data>
+  <data name="DisplayPopup">
+    <value xml:space="preserve">Display Popup</value>
+  </data>
+  <data name="DeleteErrorInventoryItemUsedInEndOfDayRecord">
+    <value><![CDATA[Can't delete because an end of day Cost document contains this Inventory Item.]]></value>
+  </data>
+	<data name="Rules">
+		<value xml:space="preserve">Rules</value>
+	</data>
 </root>

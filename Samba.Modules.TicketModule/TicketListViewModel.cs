@@ -886,7 +886,7 @@ namespace Samba.Modules.TicketModule
                         }
                         if (openTickets.Count() == 0)
                         {
-                            AppServices.MainDataContext.CreateNewTicket();
+                            TicketViewModel.CreateNewTicket();
                             AppServices.MainDataContext.SelectedTicket.SetTagValue(selectedTag, tagFilter);
                             RefreshSelectedTicket();
                             RefreshVisuals();
@@ -1058,7 +1058,7 @@ namespace Samba.Modules.TicketModule
         {
             if (SelectedTicket == null)
             {
-                AppServices.MainDataContext.CreateNewTicket();
+                TicketViewModel.CreateNewTicket();
                 RefreshVisuals();
             }
 

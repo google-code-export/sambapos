@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Samba.Domain.Models.RuleActions;
 using Samba.Services;
 
@@ -9,7 +10,23 @@ namespace Samba.Presentation.Common
         public AppAction Action { get; set; }
         public string ParameterValues { get; set; }
         public object DataObject { get; set; }
-        
+
+        public T GetDataValue<T>(string parameterName) where T : class
+        {
+            return DataObject.GetType().GetProperty(parameterName).GetValue(DataObject, null) as T;
+        }
+
+        public string GetAsString(string parameterName)
+        {
+            return Action.GetParameter(parameterName);
+        }
+
+        public decimal GetAsDecimal(string parameterName)
+        {
+            decimal result;
+            decimal.TryParse(Action.GetParameter(parameterName), out result);
+            return result;
+        }
     }
 
     public static class RuleExecutor
