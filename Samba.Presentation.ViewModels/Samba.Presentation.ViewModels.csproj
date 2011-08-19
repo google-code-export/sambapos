@@ -50,6 +50,7 @@
     <Compile Include="CommandButtonViewModel.cs" />
     <Compile Include="CustomerViewModel.cs" />
     <Compile Include="DiscountViewModel.cs" />
+    <Compile Include="LocationData.cs" />
     <Compile Include="MenuItemPortionViewModel.cs" />
     <Compile Include="MenuItemPropertyGroupViewModel.cs" />
     <Compile Include="MenuItemPropertyViewModel.cs" />

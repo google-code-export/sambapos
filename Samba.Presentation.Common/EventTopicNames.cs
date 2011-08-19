@@ -13,6 +13,7 @@ namespace Samba.Presentation.Common
 
     public static class EventTopicNames
     {
+        public const string LocationSelectedForTicket="LocationSelectedForTicket";
         public const string ExecuteEvent = "ExecuteEvent";
         public const string UpdateDepartment = "Update Department";
         public const string PopupClicked = "Popup Clicked";
@@ -49,7 +50,6 @@ namespace Samba.Presentation.Common
         public const string PaymentSubmitted = "Payment Submitted";
         public const string SelectedItemsChanged = "Selected Items Changed";
         public const string SelectedDepartmentChanged = "Selected Department Changed";
-        public const string TableSelectedForTicket = "Table Selected For Ticket";
         public const string SelectTable = "Select Table";
         public const string FindTable = "Find Table";
         public const string ActivateTicketView = "Activate Ticket View";

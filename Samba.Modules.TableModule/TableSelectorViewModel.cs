@@ -146,43 +146,52 @@ namespace Samba.Modules.TableModule
             UpdateTables(obj.Id);
         }
 
-        private void OnSelectTableExecuted(TableScreenItemViewModel obj)
+        private static void OnSelectTableExecuted(TableScreenItemViewModel obj)
         {
-            if (SelectedTicket != null)
-            {
-                var oldLocationName = SelectedTicket.LocationName;
-                var ticketsMerged = obj.Model.TicketId > 0 && obj.Model.TicketId != SelectedTicket.Id;
-                AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
+            var location = new LocationData()
+                               {
+                                   LocationId = obj.Model.Id,
+                                   LocationName = obj.Model.Name,
+                                   TicketId = obj.Model.TicketId,
+                                   Caption = obj.Caption
+                               };
+            location.PublishEvent(EventTopicNames.LocationSelectedForTicket);
 
-                SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
+            //if (SelectedTicket != null)
+            //{
+            //    var oldLocationName = SelectedTicket.LocationName;
+            //    var ticketsMerged = obj.Model.TicketId > 0 && obj.Model.TicketId != SelectedTicket.Id;
+            //    AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
 
-                if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
-                    if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
-                        InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, obj.Caption));
-                    else if (ticketsMerged)
-                        InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, obj.Caption));
-                    else if (oldLocationName != obj.Caption)
-                        InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, obj.Caption));
-            }
-            else if (obj.Model.TicketId == 0)
-            {
-                AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
-                obj.UpdateButtonColor();
-                SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-            }
-            else
-            {
-                AppServices.MainDataContext.OpenTicket(obj.Model.TicketId);
-                if (SelectedTicket != null && SelectedTicket.LocationName == obj.Model.Name)
-                {
-                    SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-                }
-                else if (SelectedTicket != null)
-                {
-                    AppServices.MainDataContext.ResetTableDataForSelectedTicket();
-                    SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-                }
-            }
+            //    SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
+
+            //    if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
+            //        if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
+            //            InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, obj.Caption));
+            //        else if (ticketsMerged)
+            //            InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, obj.Caption));
+            //        else if (oldLocationName != obj.Caption)
+            //            InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, obj.Caption));
+            //}
+            //else if (obj.Model.TicketId == 0)
+            //{
+            //    AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
+            //    obj.UpdateButtonColor();
+            //    SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+            //}
+            //else
+            //{
+            //    AppServices.MainDataContext.OpenTicket(obj.Model.TicketId);
+            //    if (SelectedTicket != null && SelectedTicket.LocationName == obj.Model.Name)
+            //    {
+            //        SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+            //    }
+            //    else if (SelectedTicket != null)
+            //    {
+            //        AppServices.MainDataContext.ResetTableDataForSelectedTicket();
+            //        SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+            //    }
+            //}
         }
 
         private void UpdateTables(int tableScreenId)

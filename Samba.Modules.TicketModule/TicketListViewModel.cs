@@ -258,6 +258,53 @@ namespace Samba.Modules.TicketModule
             RemoveTicketLockCommand = new CaptionCommand<string>(Resources.ReleaseLock, OnRemoveTicketLock, CanRemoveTicketLock);
             ChangePriceCommand = new CaptionCommand<string>(Resources.ChangePrice, OnChangePrice, CanChangePrice);
 
+            EventServiceFactory.EventService.GetEvent<GenericEvent<LocationData>>().Subscribe(
+                x =>
+                {
+                    if (x.Topic == EventTopicNames.LocationSelectedForTicket)
+                    {
+                        if (SelectedTicket != null)
+                        {
+                            var oldLocationName = SelectedTicket.Location;
+                            var ticketsMerged = x.Value.TicketId > 0 && x.Value.TicketId != SelectedTicket.Id;
+                            AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
+
+                            if (!string.IsNullOrEmpty(SelectedTicket.Location))
+                                CloseTicket();
+
+                            EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
+
+                            DisplayTicketFeedback(x, oldLocationName, ticketsMerged);
+
+                        }
+                        else
+                        {
+                            if (x.Value.TicketId == 0)
+                            {
+                                AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
+                            }
+                            else
+                            {
+                                AppServices.MainDataContext.OpenTicket(x.Value.TicketId);
+                                if (SelectedTicket != null)
+                                {
+                                    if (SelectedTicket.Location != x.Value.LocationName)
+                                        AppServices.MainDataContext.ResetTableDataForSelectedTicket();
+                                }
+                            }
+
+                            //if (AppServices.MainDataContext.SelectedTicket == null)
+                            //    OnOpenTicketExecute(x.Value.Id);
+                            //else
+                            //{
+                            //    RefreshVisuals();
+                            //}
+                            //SelectedTicketView = SingleTicketView;
+                            SelectedTicket.Model.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+                        }
+                    }
+                }
+                );
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<WorkPeriod>>().Subscribe(
                 x =>
@@ -349,12 +396,6 @@ namespace Samba.Modules.TicketModule
                 x =>
                 {
                     _selectedTicket = null;
-                    if (x.Topic == EventTopicNames.TableSelectedForTicket)
-                    {
-                        if (!string.IsNullOrEmpty(SelectedTicket.Location))
-                            CloseTicket();
-                        EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
-                    }
 
                     if (x.Topic == EventTopicNames.PaymentSubmitted)
                     {
@@ -421,6 +462,17 @@ namespace Samba.Modules.TicketModule
                 );
         }
 
+        private void DisplayTicketFeedback(EventParameters<LocationData> x, string oldLocationName, bool ticketsMerged)
+        {
+            if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
+                if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
+                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, x.Value.Caption));
+                else if (ticketsMerged)
+                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, x.Value.Caption));
+                else if (oldLocationName != x.Value.LocationName)
+                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, x.Value.Caption));
+        }
+
         private void UpdateSelectedTicketView()
         {
             if (SelectedTicket != null || SelectedDepartment.IsFastFood)
@@ -448,7 +500,7 @@ namespace Samba.Modules.TicketModule
             {
                 SelectedTag = tagGroup.Name;
                 RefreshOpenTickets();
-                if ((OpenTickets!=null && OpenTickets.Count() > 0) || OpenTicketTags.Count() > 0)
+                if ((OpenTickets != null && OpenTickets.Count() > 0) || OpenTicketTags.Count() > 0)
                 {
                     SelectedTicketView = OpenTicketListView;
                     RaisePropertyChanged("OpenTickets");
@@ -937,7 +989,7 @@ namespace Samba.Modules.TicketModule
             {
                 if (string.IsNullOrEmpty(tagFilter))
                     opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "*", ButtonColor = "Blue" });
-                else 
+                else
                     opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "", ButtonColor = "Green" });
                 if (cnt > 0)
                     opt.Insert(0, new TicketTagFilterViewModel { Count = cnt, TagGroup = tagGroup.Name, ButtonColor = "Red", TagValue = " " });
