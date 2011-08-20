@@ -4,6 +4,7 @@ namespace Samba.Presentation.Common
 {
     public static class RuleEventNames
     {
+        public const string CustomerSelectedForTicket = "CustomerSelectedForTicket";
         public const string TicketCreated = "TicketCreated";
         public const string WorkPeriodStarts = "WorkPeriodStarts";
         public const string WorkPeriodEnds = "WorkPeriodEnds";
@@ -38,7 +39,6 @@ namespace Samba.Presentation.Common
         public const string TicketItemAdded = "Ticket Item Added";
         public const string DashboardClosed = "Dashboard Closed";
         public const string MessageReceivedEvent = "Message Received";
-        public const string TicketSelectedFromTableList = "Ticket SelectedFromTableList";
         public const string ViewAdded = "View Added";
         public const string ViewClosed = "View Closed";
         public const string PinSubmitted = "Pin Submitted";
@@ -54,6 +54,7 @@ namespace Samba.Presentation.Common
         public const string FindTable = "Find Table";
         public const string ActivateTicketView = "Activate Ticket View";
         public const string DisplayTicketView = "Display Ticket View";
+        public const string RefreshSelectedTicket = "Refresh Selected Ticket";
         public const string EditTicketNote = "Edit Ticket Note";
         public const string PaymentRequestedForTicket = "Payment Requested For Ticket";
         public const string GetPaymentFromCustomer = "Get Payment From Customer";

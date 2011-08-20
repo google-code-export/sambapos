@@ -162,6 +162,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action List.
+        /// </summary>
+        public static string ActionList {
+            get {
+                return ResourceManager.GetString("ActionList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action Name.
         /// </summary>
         public static string ActionName {
@@ -4204,6 +4222,15 @@ namespace Samba.Localization.Properties {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Actions.
+        /// </summary>
+        public static string SelectActions {
+            get {
+                return ResourceManager.GetString("SelectActions", resourceCulture);
             }
         }
         

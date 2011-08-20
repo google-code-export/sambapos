@@ -265,7 +265,7 @@ namespace Samba.Modules.CustomerModule
         {
             AppServices.MainDataContext.OpenTicketFromTicketNumber(TicketSearchText);
             if (AppServices.MainDataContext.SelectedTicket != null)
-                AppServices.MainDataContext.SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+                EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
             TicketSearchText = "";
         }
 

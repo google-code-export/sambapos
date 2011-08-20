@@ -12,6 +12,12 @@ using Samba.Services;
 
 namespace Samba.Modules.SettingsModule
 {
+    public class RuleConstraintViewModel
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+    }
+
     public class RuleViewModel : EntityViewModelBase<AppRule>
     {
         private IWorkspace _workspace;
@@ -20,7 +26,15 @@ namespace Samba.Modules.SettingsModule
             : base(model)
         {
             _actions = new ObservableCollection<ActionContainerViewModel>(Model.Actions.Select(x => new ActionContainerViewModel(x, this)));
-            SelectActionsCommand = new CaptionCommand<string>("Select Actions", OnSelectActions);
+
+            SelectActionsCommand = new CaptionCommand<string>(Resources.SelectActions, OnSelectActions);
+            if (!string.IsNullOrEmpty(model.EventConstraints))
+            {
+                Constraints = new ObservableCollection<RuleConstraintViewModel>(
+                    model.EventConstraints.Split('#')
+                    .Select(x => x.Split(';'))
+                    .Select(x => new RuleConstraintViewModel { Name = x[0], Value = x[1] }));
+            }
         }
 
         private void OnSelectActions(string obj)
@@ -29,12 +43,12 @@ namespace Samba.Modules.SettingsModule
             var selectedIds = selectedValues.Select(x => ((ActionContainer)x).AppActionId);
             IList<IOrderable> values = new List<IOrderable>(_workspace.All<AppAction>(x => !selectedIds.Contains(x.Id)).Select(x => new ActionContainer(x)));
 
-            var choosenValues = InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, "Action List",
-                                                                                   "Select Actions", "Action", "Actions");
+            var choosenValues = InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, Resources.ActionList,
+                                                                                   Resources.SelectActions, Resources.Action, Resources.Actions);
 
             foreach (var action in Model.Actions.ToList())
             {
-                ActionContainer laction = action;
+                var laction = action;
                 if (choosenValues.FirstOrDefault(x => ((ActionContainer)x).AppActionId == laction.AppActionId) == null)
                 {
                     if (action.Id > 0)
@@ -56,13 +70,33 @@ namespace Samba.Modules.SettingsModule
             get { return _actions; }
         }
 
+        private ObservableCollection<RuleConstraintViewModel> _constraints;
+        public ObservableCollection<RuleConstraintViewModel> Constraints
+        {
+            get { return _constraints; }
+            set
+            {
+                _constraints = value;
+                RaisePropertyChanged("Constraints");
+            }
+        }
+
         public IEnumerable<RuleEvent> Events { get { return RuleActionTypeRegistry.RuleEvents.Values; } }
 
         public ICaptionCommand SelectActionsCommand { get; set; }
+
         public string EventName
         {
             get { return Model.EventName; }
-            set { Model.EventName = value; }
+            set
+            {
+                Model.EventName = value;
+
+                Constraints = new ObservableCollection<RuleConstraintViewModel>(
+                    RuleActionTypeRegistry.GetEventConstraints(Model.EventName)
+                        .Select(x => new RuleConstraintViewModel { Name = x })
+                );
+            }
         }
 
         public override void Initialize(IWorkspace workspace)
@@ -79,6 +113,12 @@ namespace Samba.Modules.SettingsModule
         public override string GetModelTypeString()
         {
             return Resources.Rule;
+        }
+
+        protected override void OnSave(string value)
+        {
+            Model.EventConstraints = string.Join("#", Constraints.Select(x => x.Name + ";" + x.Value));
+            base.OnSave(value);
         }
     }
 }

@@ -2364,4 +2364,13 @@ Table: {2}</value>
 	<data name="Rules">
 		<value xml:space="preserve">Rules</value>
 	</data>
+	<data name="Action">
+		<value xml:space="preserve">Action</value>
+	</data>
+	<data name="ActionList">
+		<value xml:space="preserve">Action List</value>
+	</data>
+	<data name="SelectActions">
+		<value xml:space="preserve">Select Actions</value>
+	</data>
 </root>

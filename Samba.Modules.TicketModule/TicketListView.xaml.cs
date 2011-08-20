@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Data;
+using Microsoft.Practices.Prism.Events;
 using Samba.Domain.Models.Tickets;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
@@ -28,10 +29,10 @@ namespace Samba.Modules.TicketModule
                         Scroller.ScrollToEnd();
                 });
 
-            EventServiceFactory.EventService.GetEvent<GenericEvent<Ticket>>().Subscribe(
+            EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
                 x =>
                 {
-                    if (x.Topic == EventTopicNames.TicketSelectedFromTableList)
+                    if (x.Topic == EventTopicNames.DisplayTicketView || x.Topic == EventTopicNames.RefreshSelectedTicket)
                         Scroller.ScrollToEnd();
                 });
         }

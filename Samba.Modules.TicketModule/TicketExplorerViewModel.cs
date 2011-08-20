@@ -123,7 +123,7 @@ namespace Samba.Modules.TicketModule
                     AppServices.MainDataContext.CloseTicket();
                 AppServices.MainDataContext.OpenTicketFromTicketNumber(SelectedRow.TicketNumber);
                 if (AppServices.MainDataContext.SelectedTicket != null)
-                    AppServices.MainDataContext.SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+                    EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                 CommandManager.InvalidateRequerySuggested();
             }
         }

@@ -48,12 +48,6 @@ namespace Samba.Modules.TicketModule
                 }
                 );
 
-            EventServiceFactory.EventService.GetEvent<GenericEvent<Ticket>>().Subscribe(x =>
-            {
-                if (x.Topic == EventTopicNames.TicketSelectedFromTableList)
-                    ActivateTicketEditorView();
-            });
-
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
                 x =>
                 {
@@ -63,7 +57,10 @@ namespace Samba.Modules.TicketModule
 
 
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, "Ticket Created");
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, "Customer Selected for Ticket", new[] { "CustomerName" }, new[] { "CustomerName Contains" });
+
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", new[] { "Discount Percentage" }, new[] { "" });
+
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
                 if (x.Value.Action.ActionType == "AddTicketDiscount")
@@ -71,8 +68,11 @@ namespace Samba.Modules.TicketModule
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
                     if (ticket != null)
                     {
-                        var percent = x.Value.GetAsDecimal("Discount Percentage");
-                        ticket.AddTicketDiscount(DiscountType.Percent, percent, AppServices.CurrentLoggedInUser.Id);
+                        //var percent = x.Value.Action.GetFormattedParameter("Discount Percentage",x.Value.DataObject,x.Value.ParameterValues);
+                        //decimal percentValue;
+                        //decimal.TryParse(percent, out percentValue);
+                        var percentValue = x.Value.GetAsDecimal("Discount Percentage");
+                        ticket.AddTicketDiscount(DiscountType.Percent, percentValue, AppServices.CurrentLoggedInUser.Id);
                     }
                 }
             });

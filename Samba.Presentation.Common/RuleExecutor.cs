@@ -13,18 +13,21 @@ namespace Samba.Presentation.Common
 
         public T GetDataValue<T>(string parameterName) where T : class
         {
-            return DataObject.GetType().GetProperty(parameterName).GetValue(DataObject, null) as T;
+            var property = DataObject.GetType().GetProperty(parameterName);
+            if (property != null)
+                return property.GetValue(DataObject, null) as T;
+            return null;
         }
 
         public string GetAsString(string parameterName)
         {
-            return Action.GetParameter(parameterName);
+            return Action.GetFormattedParameter(parameterName, DataObject, ParameterValues);
         }
 
         public decimal GetAsDecimal(string parameterName)
         {
             decimal result;
-            decimal.TryParse(Action.GetParameter(parameterName), out result);
+            decimal.TryParse(GetAsString(parameterName), out result);
             return result;
         }
     }
@@ -34,7 +37,7 @@ namespace Samba.Presentation.Common
         public static void NotifyEvent(string eventName, object dataObject)
         {
             var rules = AppServices.MainDataContext.Rules.Where(x => x.EventName == eventName);
-            foreach (var rule in rules)
+            foreach (var rule in rules.Where(x => SatisfiesConditions(x, dataObject)))
             {
                 foreach (var actionContainer in rule.Actions)
                 {
@@ -47,6 +50,31 @@ namespace Samba.Presentation.Common
                     }
                 }
             }
+        }
+
+        private static bool SatisfiesConditions(AppRule appRule, object dataObject)
+        {
+            var conditions = appRule.EventConstraints.Split('#')
+                .Select(x => x.Split(';'))
+                .ToDictionary(x => x[0], x => x[1]);
+
+            foreach (var conditionName in conditions.Keys)
+            {
+                var cName = conditionName;
+                var parameterNames = dataObject.GetType().GetProperties().Select(x => x.Name);
+                var parameterName = parameterNames.FirstOrDefault(cName.StartsWith);
+
+                if (!string.IsNullOrEmpty(parameterName))
+                {
+                    var parameterValue = dataObject.GetType().GetProperty(parameterName).GetValue(dataObject, null);
+                    if (conditionName.Contains("Contains"))
+                    {
+                        if (!parameterValue.ToString().Contains(conditions[cName])) return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }

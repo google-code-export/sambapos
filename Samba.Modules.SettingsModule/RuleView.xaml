@@ -21,7 +21,7 @@
                 <ItemsControl ItemsSource="{Binding Actions}" HorizontalAlignment="Left">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Expander Style="{StaticResource MainViewExpander}" Header="{Binding Name}" IsExpanded="True" Margin="2">
+                            <Expander Style="{StaticResource MainViewExpander}" Header="{Binding Name}" IsExpanded="False" Margin="2">
                                 <ItemsControl ItemsSource="{Binding ParameterValues}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -37,6 +37,18 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Grid>
+
+            <ItemsControl ItemsSource="{Binding Constraints}" HorizontalAlignment="Left">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Name}"/>
+                            <TextBox Text="{Binding Value}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
             <Button HorizontalAlignment="Left" Margin="0,10,3,0" MinWidth="70" Content="{Binding SaveCommand.Caption}"
                  Command="{Binding SaveCommand}" />
             <Label Content="{Binding Error}" Foreground="Red" />

@@ -81,8 +81,8 @@ namespace Samba.Modules.UserModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListUsersCommand);
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateLogoutCommand);
 
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedIn, "User LoggedIn", "UserName", "RoleName");
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedOut, "User LoggedOut", "UserName", "RoleName");
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedIn, "User LoggedIn", new[] { "UserName", "RoleName" }, null);
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedOut, "User LoggedOut", new[] { "UserName", "RoleName" }, null);
         }
 
         public void PinEntered(string pin)

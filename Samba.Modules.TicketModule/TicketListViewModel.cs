@@ -274,13 +274,20 @@ namespace Samba.Modules.TicketModule
 
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
 
-                            DisplayTicketFeedback(x, oldLocationName, ticketsMerged);
+                            if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
+                                if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
+                                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, x.Value.Caption));
+                                else if (ticketsMerged)
+                                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, x.Value.Caption));
+                                else if (oldLocationName != x.Value.LocationName)
+                                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, x.Value.Caption));
 
                         }
                         else
                         {
                             if (x.Value.TicketId == 0)
                             {
+                                TicketViewModel.CreateNewTicket();
                                 AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
                             }
                             else
@@ -292,15 +299,7 @@ namespace Samba.Modules.TicketModule
                                         AppServices.MainDataContext.ResetTableDataForSelectedTicket();
                                 }
                             }
-
-                            //if (AppServices.MainDataContext.SelectedTicket == null)
-                            //    OnOpenTicketExecute(x.Value.Id);
-                            //else
-                            //{
-                            //    RefreshVisuals();
-                            //}
-                            //SelectedTicketView = SingleTicketView;
-                            SelectedTicket.Model.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+                            EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
                         }
                     }
                 }
@@ -369,6 +368,14 @@ namespace Samba.Modules.TicketModule
                     if (x.Topic == EventTopicNames.CustomerSelectedForTicket)
                     {
                         AppServices.MainDataContext.AssignCustomerToSelectedTicket(x.Value);
+                        
+                        RuleExecutor.NotifyEvent(RuleEventNames.CustomerSelectedForTicket,
+                            new
+                            {
+                                Ticket = AppServices.MainDataContext.SelectedTicket,
+                                AppServices.MainDataContext.SelectedTicket.CustomerName
+                            });
+
                         if (!string.IsNullOrEmpty(SelectedTicket.CustomerName) && SelectedTicket.Items.Count > 0)
                             CloseTicket();
                         else
@@ -401,17 +408,6 @@ namespace Samba.Modules.TicketModule
                     {
                         CloseTicket();
                     }
-
-                    if (x.Topic == EventTopicNames.TicketSelectedFromTableList)
-                    {
-                        if (AppServices.MainDataContext.SelectedTicket == null)
-                            OnOpenTicketExecute(x.Value.Id);
-                        else
-                        {
-                            RefreshVisuals();
-                        }
-                        SelectedTicketView = SingleTicketView;
-                    }
                 });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
@@ -424,10 +420,18 @@ namespace Samba.Modules.TicketModule
                          UpdateSelectedTicketView();
                          DisplayTickets();
                      }
+
                      if (x.Topic == EventTopicNames.DisplayTicketView)
                      {
                          UpdateSelectedTicketView();
                          RefreshVisuals();
+                     }
+
+                     if (x.Topic == EventTopicNames.RefreshSelectedTicket)
+                     {
+                         _selectedTicket = null;
+                         RefreshVisuals();
+                         SelectedTicketView = SingleTicketView;
                      }
                  });
 
@@ -460,17 +464,6 @@ namespace Samba.Modules.TicketModule
                     }
                 }
                 );
-        }
-
-        private void DisplayTicketFeedback(EventParameters<LocationData> x, string oldLocationName, bool ticketsMerged)
-        {
-            if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
-                if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
-                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, x.Value.Caption));
-                else if (ticketsMerged)
-                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, x.Value.Caption));
-                else if (oldLocationName != x.Value.LocationName)
-                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, x.Value.Caption));
         }
 
         private void UpdateSelectedTicketView()

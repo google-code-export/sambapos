@@ -113,13 +113,9 @@ namespace Samba.Modules.TicketModule
                 if (AppServices.MainDataContext.SelectedTicket != null)
                 {
                     if (!AppServices.IsUserPermittedFor(PermissionNames.DisplayOldTickets) && AppServices.MainDataContext.SelectedTicket.Date < AppServices.MainDataContext.CurrentWorkPeriod.StartDate)
-                    {
                         AppServices.MainDataContext.CloseTicket();
-                    }
                     else
-                    {
-                        AppServices.MainDataContext.SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-                    }
+                        EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                 }
                 NumeratorValue = "";
             }
@@ -181,7 +177,7 @@ namespace Samba.Modules.TicketModule
             {
                 AppServices.MainDataContext.OpenTicketFromTableName(NumeratorValue);
                 if (AppServices.MainDataContext.SelectedTicket != null)
-                    AppServices.MainDataContext.SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
+                    EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
             }
             NumeratorValue = "";
         }

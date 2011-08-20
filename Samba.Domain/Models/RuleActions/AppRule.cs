@@ -11,6 +11,7 @@ namespace Samba.Domain.Models.RuleActions
         public int Id { get; set; }
         public string Name { get; set; }
         public string EventName { get; set; }
+        public string EventConstraints { get; set; }
 
         private IList<ActionContainer> _actions;
         public virtual IList<ActionContainer> Actions
@@ -18,7 +19,7 @@ namespace Samba.Domain.Models.RuleActions
             get { return _actions; }
             set { _actions = value; }
         }
-
+        
         public AppRule()
         {
             _actions = new List<ActionContainer>();

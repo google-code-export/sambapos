@@ -19,6 +19,7 @@ namespace Samba.Services
         public string EventKey { get; set; }
         public string EventName { get; set; }
         public string[] ParameterNames { get; set; }
+        public string[] ConstraintNames { get; set; }
     }
 
     public static class RuleActionTypeRegistry
@@ -30,10 +31,21 @@ namespace Samba.Services
             return RuleEvents[eventKey].ParameterNames;
         }
 
-        public static void RegisterEvent(string eventKey, string eventName, params string[] parameterNames)
+        public static void RegisterEvent(string eventKey, string eventName)
+        {
+            RegisterEvent(eventKey, eventName, null, null);
+        }
+
+        public static void RegisterEvent(string eventKey, string eventName, string[] parameterNames, string[] constraintNames)
         {
             if (!RuleEvents.ContainsKey(eventKey))
-                RuleEvents.Add(eventKey, new RuleEvent { EventKey = eventKey, EventName = eventName, ParameterNames = parameterNames });
+                RuleEvents.Add(eventKey, new RuleEvent
+                {
+                    EventKey = eventKey,
+                    EventName = eventName,
+                    ParameterNames = parameterNames ?? new string[] { },
+                    ConstraintNames = constraintNames ?? new string[] { }
+                });
         }
 
         public static IDictionary<string, RuleActionType> ActionTypes = new Dictionary<string, RuleActionType>();
@@ -47,6 +59,11 @@ namespace Samba.Services
                                                     ParameterNames = paramterNames,
                                                     ParamterValues = parameterValues
                                                 });
+        }
+
+        public static IEnumerable<string> GetEventConstraints(string eventName)
+        {
+            return RuleEvents[eventName].ConstraintNames;
         }
     }
 }
