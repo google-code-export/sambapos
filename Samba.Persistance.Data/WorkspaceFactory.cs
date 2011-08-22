@@ -72,7 +72,7 @@ namespace Samba.Persistance.Data
             var fileName = _connectionString.EndsWith(".txt")
                 ? _connectionString
                 : LocalSettings.DocumentPath + "\\SambaData" + (LocalSettings.OverrideLanguage ? "_" + LocalSettings.CurrentLanguage : "") + ".txt";
-            return new TextFileWorkspace(fileName, true);
+            return new TextFileWorkspace(fileName, false);
         }
 
         private static MongoWorkspace GetMongoWorkspace()

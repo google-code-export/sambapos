@@ -73,6 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySerializer\Entry.cs" />
+    <Compile Include="BinarySerializer\GetSet.cs" />
+    <Compile Include="BinarySerializer\GetSetGeneric.cs" />
+    <Compile Include="BinarySerializer\GetWritableAttributes.cs" />
+    <Compile Include="BinarySerializer\IStorage.cs" />
+    <Compile Include="BinarySerializer\SerializationUnits.cs" />
+    <Compile Include="BinarySerializer\SilverlightSerializer.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IOrderable.cs" />
     <Compile Include="IReadOnlyWorkspace.cs" />

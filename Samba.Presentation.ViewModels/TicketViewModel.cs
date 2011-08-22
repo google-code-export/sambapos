@@ -444,7 +444,8 @@ namespace Samba.Presentation.ViewModels
 
             ClearSelectedItems();
 
-            tagGroup.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
+            var tagData = new TicketTagData() { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name };
+            tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
         }
 
         public bool IsTaggedWith(string tagGroup)

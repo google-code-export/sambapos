@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using Samba.Infrastructure.Data.Serializer;
 using Samba.Infrastructure.Settings;
+using Serialization;
 
 namespace Samba.Infrastructure.Data.Text
 {
@@ -43,8 +44,10 @@ namespace Samba.Infrastructure.Data.Text
         {
             LocalSettings.UpdateThreadLanguage();
             if (!string.IsNullOrEmpty(o.ToString()) && (int)o != _tNumber) return;
-            var serializerHelper = new XmlSerializerHelper { IgnoreSerializableAttribute = true, IgnoreSerialisationErrors = true };
-            serializerHelper.Serialize(_storage, _fileName);
+            //var serializerHelper = new XmlSerializerHelper { IgnoreSerializableAttribute = true, IgnoreSerialisationErrors = true };
+            //serializerHelper.Serialize(_storage, _fileName);
+            var data = SilverlightSerializer.Serialize(_storage);
+            File.WriteAllBytes(_fileName, data);
         }
 
         public void CommitChanges()
@@ -133,8 +136,17 @@ namespace Samba.Infrastructure.Data.Text
         {
             if (File.Exists(_fileName))
             {
-                var helper = new XmlDeserializerHelper();
-                _storage = helper.Deserialize(_fileName) as DataStorage;
+                //var helper = new XmlDeserializerHelper();
+                //_storage = helper.Deserialize(_fileName) as DataStorage;
+                try
+                {
+                    var data = File.ReadAllBytes(_fileName);
+                    _storage = SilverlightSerializer.Deserialize(data) as DataStorage;
+                }
+                catch (Exception)
+                {
+                    _storage = new DataStorage();
+                }
             }
         }
 

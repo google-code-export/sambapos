@@ -2364,4 +2364,13 @@ Masa: {2}</value>
 	<data name="Rules">
 		<value xml:space="preserve">Kurallar</value>
 	</data>
+  <data name="Action">
+    <value xml:space="preserve">Eylem</value>
+  </data>
+  <data name="ActionList">
+    <value xml:space="preserve">Eylem Listesi</value>
+  </data>
+  <data name="SelectActions">
+    <value xml:space="preserve">Eylem Seç</value>
+  </data>
 </root>

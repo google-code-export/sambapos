@@ -117,7 +117,9 @@ namespace Samba.Modules.SettingsModule
 
         protected override void OnSave(string value)
         {
-            Model.EventConstraints = string.Join("#", Constraints.Select(x => x.Name + ";" + x.Value));
+            Model.EventConstraints = string.Join("#", Constraints
+                .Where(x => !string.IsNullOrEmpty(x.Value))
+                .Select(x => x.Name + ";" + x.Value));
             base.OnSave(value);
         }
     }

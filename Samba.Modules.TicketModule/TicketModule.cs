@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -6,6 +7,7 @@ using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
+using Samba.Presentation.ViewModels;
 using Samba.Services;
 
 namespace Samba.Modules.TicketModule
@@ -57,9 +59,11 @@ namespace Samba.Modules.TicketModule
 
 
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, "Ticket Created");
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, "Customer Selected for Ticket", new[] { "CustomerName" }, new[] { "CustomerName Contains" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, "Ticket Tag Seleced", new[] { "TagName", "TagValue" }, new[] { "TagName Equals", "TagValue Equals" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, "Customer Selected for Ticket", new[] { "CustomerName", "PhoneNumber", "CustomerNote" }, new[] { "CustomerName Contains", "PhoneNumber Contains", "CustomerNote Contains" });
 
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", new[] { "Discount Percentage" }, new[] { "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", new[] { "TagName", "TagValue" }, new[] { "", "" });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
@@ -68,11 +72,21 @@ namespace Samba.Modules.TicketModule
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
                     if (ticket != null)
                     {
-                        //var percent = x.Value.Action.GetFormattedParameter("Discount Percentage",x.Value.DataObject,x.Value.ParameterValues);
-                        //decimal percentValue;
-                        //decimal.TryParse(percent, out percentValue);
                         var percentValue = x.Value.GetAsDecimal("Discount Percentage");
                         ticket.AddTicketDiscount(DiscountType.Percent, percentValue, AppServices.CurrentLoggedInUser.Id);
+                    }
+                }
+
+                if (x.Value.Action.ActionType == "UpdateTicketTag")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var tagName = x.Value.GetAsString("TagName");
+                        var tagValue = x.Value.GetAsString("TagValue");
+                        ticket.SetTagValue(tagName, tagValue);
+                        var tagData = new TicketTagData() { TagName = tagName, TagValue = tagValue };
+                        tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
                     }
                 }
             });

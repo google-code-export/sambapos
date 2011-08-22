@@ -327,11 +327,17 @@ namespace Samba.Modules.TicketModule
                     }
                 });
 
-            EventServiceFactory.EventService.GetEvent<GenericEvent<TicketTagGroup>>().Subscribe(
+            EventServiceFactory.EventService.GetEvent<GenericEvent<TicketTagData>>().Subscribe(
                 x =>
                 {
                     if (x.Topic == EventTopicNames.TagSelectedForSelectedTicket)
                     {
+                        RuleExecutor.NotifyEvent(RuleEventNames.TicketTagSelected,
+                        new
+                        {
+                            Ticket = AppServices.MainDataContext.SelectedTicket, x.Value.TagName, x.Value.TagValue
+                        });
+
                         if (x.Value.Action == 1 && CanCloseTicket(""))
                             CloseTicketCommand.Execute("");
                         if (x.Value.Action == 2 && CanMakePayment(""))
@@ -368,12 +374,14 @@ namespace Samba.Modules.TicketModule
                     if (x.Topic == EventTopicNames.CustomerSelectedForTicket)
                     {
                         AppServices.MainDataContext.AssignCustomerToSelectedTicket(x.Value);
-                        
+
                         RuleExecutor.NotifyEvent(RuleEventNames.CustomerSelectedForTicket,
                             new
                             {
                                 Ticket = AppServices.MainDataContext.SelectedTicket,
-                                AppServices.MainDataContext.SelectedTicket.CustomerName
+                                CustomerName = x.Value.Name,
+                                PhoneNumber = x.Value.PhoneNumber,
+                                CustomerNote = x.Value.Note
                             });
 
                         if (!string.IsNullOrEmpty(SelectedTicket.CustomerName) && SelectedTicket.Items.Count > 0)

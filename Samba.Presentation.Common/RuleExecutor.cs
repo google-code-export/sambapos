@@ -37,7 +37,7 @@ namespace Samba.Presentation.Common
         public static void NotifyEvent(string eventName, object dataObject)
         {
             var rules = AppServices.MainDataContext.Rules.Where(x => x.EventName == eventName);
-            foreach (var rule in rules.Where(x => SatisfiesConditions(x, dataObject)))
+            foreach (var rule in rules.Where(x => string.IsNullOrEmpty(x.EventConstraints) || SatisfiesConditions(x, dataObject)))
             {
                 foreach (var actionContainer in rule.Actions)
                 {
@@ -58,18 +58,24 @@ namespace Samba.Presentation.Common
                 .Select(x => x.Split(';'))
                 .ToDictionary(x => x[0], x => x[1]);
 
+            var parameterNames = dataObject.GetType().GetProperties().Select(x => x.Name);
+
             foreach (var conditionName in conditions.Keys)
             {
                 var cName = conditionName;
-                var parameterNames = dataObject.GetType().GetProperties().Select(x => x.Name);
                 var parameterName = parameterNames.FirstOrDefault(cName.StartsWith);
 
                 if (!string.IsNullOrEmpty(parameterName))
                 {
-                    var parameterValue = dataObject.GetType().GetProperty(parameterName).GetValue(dataObject, null);
+                    var parameterValue = dataObject.GetType().GetProperty(parameterName).GetValue(dataObject, null) ?? "";
+
                     if (conditionName.Contains("Contains"))
                     {
-                        if (!parameterValue.ToString().Contains(conditions[cName])) return false;
+                        if (!parameterValue.ToString().ToLower().Contains(conditions[cName].ToLower())) return false;
+                    }
+                    else if (conditionName.Contains("Equals"))
+                    {
+                        if (!parameterValue.ToString().ToLower().Trim().Equals(conditions[cName].ToLower().Trim())) return false;
                     }
                 }
             }
