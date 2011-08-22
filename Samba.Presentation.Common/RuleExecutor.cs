@@ -55,32 +55,96 @@ namespace Samba.Presentation.Common
         private static bool SatisfiesConditions(AppRule appRule, object dataObject)
         {
             var conditions = appRule.EventConstraints.Split('#')
-                .Select(x => x.Split(';'))
-                .ToDictionary(x => x[0], x => x[1]);
-
+                .Select(x => new RuleConstraintViewModel(x));
+            
             var parameterNames = dataObject.GetType().GetProperties().Select(x => x.Name);
 
-            foreach (var conditionName in conditions.Keys)
+            foreach (var condition in conditions)
             {
-                var cName = conditionName;
-                var parameterName = parameterNames.FirstOrDefault(cName.StartsWith);
+                var parameterName = parameterNames.FirstOrDefault(condition.Name.Equals);
 
                 if (!string.IsNullOrEmpty(parameterName))
                 {
-                    var parameterValue = dataObject.GetType().GetProperty(parameterName).GetValue(dataObject, null) ?? "";
+                    var property = dataObject.GetType().GetProperty(parameterName);
 
-                    if (conditionName.Contains("Contains"))
+                    var parameterValue = property.GetValue(dataObject, null) ?? "";
+
+                    if (IsNumericType(property.PropertyType))
                     {
-                        if (!parameterValue.ToString().ToLower().Contains(conditions[cName].ToLower())) return false;
+                        var propertyValue = Convert.ToDecimal(parameterValue);
+                        var objectValue = Convert.ToDecimal(condition.Value);
+
+                        if (condition.Operation.Contains("Equals"))
+                        {
+                            if (!propertyValue.Equals(objectValue)) return false;
+                        }
+                        else if (condition.Operation.Contains("NotEquals"))
+                        {
+                            if (propertyValue.Equals(objectValue)) return false;
+                        }
+                        else if (condition.Operation.Contains("Greater"))
+                        {
+                            if (propertyValue < objectValue) return false;
+                        }
+                        else if (condition.Operation.Contains("Less"))
+                        {
+                            if (propertyValue > objectValue) return false;
+                        }
                     }
-                    else if (conditionName.Contains("Equals"))
+                    else
                     {
-                        if (!parameterValue.ToString().ToLower().Trim().Equals(conditions[cName].ToLower().Trim())) return false;
+                        var propertyValue = parameterValue.ToString().ToLower();
+                        var objectValue = condition.Value.ToString().ToLower();
+
+                        if (condition.Operation.Contains("Contains"))
+                        {
+                            if (!propertyValue.Contains(objectValue)) return false;
+                        }
+                        else if (condition.Operation.Contains("Equals"))
+                        {
+                            if (!propertyValue.Equals(objectValue)) return false;
+                        }
+                        else if (condition.Operation.Contains("NotEquals"))
+                        {
+                            if (propertyValue.Equals(objectValue)) return false;
+                        }
                     }
                 }
             }
 
             return true;
+        }
+
+        public static bool IsNumericType(Type type)
+        {
+            if (type == null)
+            {
+                return false;
+            }
+
+            switch (Type.GetTypeCode(type))
+            {
+                case TypeCode.Byte:
+                case TypeCode.Decimal:
+                case TypeCode.Double:
+                case TypeCode.Int16:
+                case TypeCode.Int32:
+                case TypeCode.Int64:
+                case TypeCode.SByte:
+                case TypeCode.Single:
+                case TypeCode.UInt16:
+                case TypeCode.UInt32:
+                case TypeCode.UInt64:
+                    return true;
+                case TypeCode.Object:
+                    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                    {
+                        return IsNumericType(Nullable.GetUnderlyingType(type));
+                    }
+                    return false;
+            }
+            return false;
+
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using Samba.Domain.Models.RuleActions;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
@@ -12,12 +11,6 @@ using Samba.Services;
 
 namespace Samba.Modules.SettingsModule
 {
-    public class RuleConstraintViewModel
-    {
-        public string Name { get; set; }
-        public string Value { get; set; }
-    }
-
     public class RuleViewModel : EntityViewModelBase<AppRule>
     {
         private IWorkspace _workspace;
@@ -32,8 +25,7 @@ namespace Samba.Modules.SettingsModule
             {
                 Constraints = new ObservableCollection<RuleConstraintViewModel>(
                     model.EventConstraints.Split('#')
-                    .Select(x => x.Split(';'))
-                    .Select(x => new RuleConstraintViewModel { Name = x[0], Value = x[1] }));
+                    .Select(x => new RuleConstraintViewModel(x)));
             }
         }
 
@@ -91,11 +83,8 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.EventName = value;
-
                 Constraints = new ObservableCollection<RuleConstraintViewModel>(
-                    RuleActionTypeRegistry.GetEventConstraints(Model.EventName)
-                        .Select(x => new RuleConstraintViewModel { Name = x })
-                );
+                    RuleActionTypeRegistry.GetEventConstraints(Model.EventName));
             }
         }
 
@@ -118,8 +107,8 @@ namespace Samba.Modules.SettingsModule
         protected override void OnSave(string value)
         {
             Model.EventConstraints = string.Join("#", Constraints
-                .Where(x => !string.IsNullOrEmpty(x.Value))
-                .Select(x => x.Name + ";" + x.Value));
+                .Where(x => x.Value != null)
+                .Select(x => x.GetConstraintData()));
             base.OnSave(value);
         }
     }

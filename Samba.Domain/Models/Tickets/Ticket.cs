@@ -103,7 +103,7 @@ namespace Samba.Domain.Models.Tickets
             var tif = new TicketItem();
             tif.UpdateMenuItem(userId, menuItem, portionName, 1, defaultProperties);
             TicketItems.Add(tif);
-            TotalAmount = GetSum();
+            //TotalAmount = GetSum();
             return tif;
         }
 

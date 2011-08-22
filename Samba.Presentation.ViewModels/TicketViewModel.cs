@@ -222,7 +222,7 @@ namespace Samba.Presentation.ViewModels
             ti.Gifted = gift;
             var ticketItemViewModel = new TicketItemViewModel(ti);
             _items.Add(ticketItemViewModel);
-            AppServices.MainDataContext.Recalculate(Model);
+            TicketService.RecalculateTicket(Model);
             ticketItemViewModel.PublishEvent(EventTopicNames.TicketItemAdded);
             return ticketItemViewModel;
         }
@@ -231,7 +231,7 @@ namespace Samba.Presentation.ViewModels
         {
             _items.Clear();
             _items.AddRange(Model.TicketItems.Select(x => new TicketItemViewModel(x)));
-            AppServices.MainDataContext.Recalculate(Model);
+            TicketService.RecalculateTicket(Model);
             ClearSelectedItems();
         }
 

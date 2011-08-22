@@ -16,6 +16,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0,3">
                             <Label Content="{Binding Name}" MinWidth="120"/>
+                            <ComboBox IsEditable="True" Text="{Binding Operation}" ItemsSource="{Binding Operations}"/>
                             <TextBox MinWidth="80" Text="{Binding Value}"/>
                         </StackPanel>
                     </DataTemplate>

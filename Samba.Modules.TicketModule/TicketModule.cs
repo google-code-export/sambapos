@@ -58,9 +58,10 @@ namespace Samba.Modules.TicketModule
                 });
 
 
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, "Ticket Created");
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, "Ticket Tag Seleced", new[] { "TagName", "TagValue" }, new[] { "TagName Equals", "TagValue Equals" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, "Customer Selected for Ticket", new[] { "CustomerName", "PhoneNumber", "CustomerNote" }, new[] { "CustomerName Contains", "PhoneNumber Contains", "CustomerNote Contains" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, "Ticket created");
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, "Ticket tag seleced", new { TagName = "", TagValue = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, "Customer selected for ticket", new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, "Ticket total changed", new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m });
 
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", new[] { "Discount Percentage" }, new[] { "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", new[] { "TagName", "TagValue" }, new[] { "", "" });
@@ -74,6 +75,7 @@ namespace Samba.Modules.TicketModule
                     {
                         var percentValue = x.Value.GetAsDecimal("Discount Percentage");
                         ticket.AddTicketDiscount(DiscountType.Percent, percentValue, AppServices.CurrentLoggedInUser.Id);
+                        TicketService.RecalculateTicket(ticket);
                     }
                 }
 

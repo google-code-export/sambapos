@@ -63,6 +63,7 @@
     <Compile Include="TerminalOpenTicketView.cs" />
     <Compile Include="TicketItemPropertyViewModel.cs" />
     <Compile Include="TicketItemViewModel.cs" />
+    <Compile Include="TicketService.cs" />
     <Compile Include="TicketTagButton.cs" />
     <Compile Include="TicketTagData.cs" />
     <Compile Include="TicketTagFilterViewModel.cs" />
