@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -63,8 +62,8 @@ namespace Samba.Modules.TicketModule
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, "Customer selected for ticket", new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, "Ticket total changed", new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m });
 
-            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", new[] { "Discount Percentage" }, new[] { "" });
-            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", new[] { "TagName", "TagValue" }, new[] { "", "" });
+            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", "DiscountPercentage");
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", "TagName", "TagValue");
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
@@ -73,7 +72,7 @@ namespace Samba.Modules.TicketModule
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
                     if (ticket != null)
                     {
-                        var percentValue = x.Value.GetAsDecimal("Discount Percentage");
+                        var percentValue = x.Value.GetAsDecimal("DiscountPercentage");
                         ticket.AddTicketDiscount(DiscountType.Percent, percentValue, AppServices.CurrentLoggedInUser.Id);
                         TicketService.RecalculateTicket(ticket);
                     }
@@ -87,7 +86,7 @@ namespace Samba.Modules.TicketModule
                         var tagName = x.Value.GetAsString("TagName");
                         var tagValue = x.Value.GetAsString("TagValue");
                         ticket.SetTagValue(tagName, tagValue);
-                        var tagData = new TicketTagData() { TagName = tagName, TagValue = tagValue };
+                        var tagData = new TicketTagData { TagName = tagName, TagValue = tagValue };
                         tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
                     }
                 }

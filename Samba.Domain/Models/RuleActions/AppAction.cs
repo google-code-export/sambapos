@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Samba.Infrastructure.Data;
@@ -10,6 +11,7 @@ namespace Samba.Domain.Models.RuleActions
         public int Id { get; set; }
         public string Name { get; set; }
         public string ActionType { get; set; }
+        [StringLength(500)]
         public string Parameter { get; set; }
 
         public string GetParameter(string parameterName)

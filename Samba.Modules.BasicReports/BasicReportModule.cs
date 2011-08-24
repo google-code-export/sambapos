@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.Linq;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Localization.Properties;
@@ -23,6 +24,27 @@ namespace Samba.Modules.BasicReports
 
             PermissionRegistry.RegisterPermission(PermissionNames.OpenReports, PermissionCategories.Navigation, Resources.CanDisplayReports);
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeReportDate, PermissionCategories.Report, Resources.CanChangeReportFilter);
+
+            RuleActionTypeRegistry.RegisterActionType("SaveReportToFile", "Save Report to File", "ReportName", "FileName");
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
+            {
+                if (x.Value.Action.ActionType == "SaveReportToFile")
+                {
+                    var reportName = x.Value.GetAsString("ReportName");
+                    var fileName = x.Value.GetAsString("FileName");
+                    if (!string.IsNullOrEmpty(reportName))
+                    {
+                        var report = ReportContext.Reports.Where(y => y.Header == reportName).FirstOrDefault();
+                        if (report != null)
+                        {
+                            ReportContext.CurrentWorkPeriod = AppServices.MainDataContext.CurrentWorkPeriod;
+                            var document = report.GetReportDocument();
+                            ReportViewModelBase.SaveAsXps(fileName, document);
+                        }
+                    }
+                }
+            });
         }
 
         private static bool CanNavigateReportModule(string arg)

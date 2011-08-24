@@ -218,6 +218,11 @@ namespace Samba.Modules.BasicReports
             // override if needed.
         }
 
+        public FlowDocument GetReportDocument()
+        {
+            return GetReport();
+        }
+
         public void AddDefaultReportHeader(SimpleReport report, WorkPeriod workPeriod, string caption)
         {
             report.AddHeader("Samba POS");

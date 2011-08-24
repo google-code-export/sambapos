@@ -39,7 +39,6 @@ namespace Samba.Services
         public string ActionType { get; set; }
         public string ActionName { get; set; }
         public string[] ParameterNames { get; set; }
-        public object[] ParamterValues { get; set; }
     }
 
     public class RuleEvent
@@ -75,15 +74,14 @@ namespace Samba.Services
         }
 
         public static IDictionary<string, RuleActionType> ActionTypes = new Dictionary<string, RuleActionType>();
-        public static void RegisterActionType(string actionType, string actionName, string[] paramterNames, object[] parameterValues)
+        public static void RegisterActionType(string actionType, string actionName, params string[] paramterNames)
         {
             if (!ActionTypes.ContainsKey(actionType))
                 ActionTypes.Add(actionType, new RuleActionType
                                                 {
                                                     ActionName = actionName,
                                                     ActionType = actionType,
-                                                    ParameterNames = paramterNames,
-                                                    ParamterValues = parameterValues
+                                                    ParameterNames = paramterNames
                                                 });
         }
 

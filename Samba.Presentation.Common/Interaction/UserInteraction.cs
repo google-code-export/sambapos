@@ -87,8 +87,8 @@ namespace Samba.Presentation.Common.Interaction
         {
             _popupDataViewModel = new PopupDataViewModel();
 
-            RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, new[] { Resources.Message }, new[] { "" });
-            RuleActionTypeRegistry.RegisterActionType("DisplayPopup", Resources.DisplayPopup, new[] { Resources.Title, Resources.Message }, new[] { "", "" });
+            RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, Resources.Message);
+            RuleActionTypeRegistry.RegisterActionType("DisplayPopup", Resources.DisplayPopup, Resources.Title, Resources.Message);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
