@@ -335,7 +335,9 @@ namespace Samba.Modules.TicketModule
                         RuleExecutor.NotifyEvent(RuleEventNames.TicketTagSelected,
                         new
                         {
-                            Ticket = AppServices.MainDataContext.SelectedTicket, x.Value.TagName, x.Value.TagValue
+                            Ticket = AppServices.MainDataContext.SelectedTicket,
+                            x.Value.TagName,
+                            x.Value.TagValue
                         });
 
                         if (x.Value.Action == 1 && CanCloseTicket(""))
@@ -562,7 +564,7 @@ namespace Samba.Modules.TicketModule
 
         private void SaveTicketIfNew()
         {
-            if (SelectedTicket.Id == 0 && SelectedTicket.Items.Count > 0)
+            if ((SelectedTicket.Id == 0 || SelectedTicket.Items.Any(x => x.Model.Id == 0)) && SelectedTicket.Items.Count > 0)
             {
                 var result = AppServices.MainDataContext.CloseTicket();
                 AppServices.MainDataContext.OpenTicket(result.TicketId);
