@@ -51,6 +51,7 @@ namespace Samba.Services
     public static class RuleActionTypeRegistry
     {
         public static IDictionary<string, RuleEvent> RuleEvents = new Dictionary<string, RuleEvent>();
+        public static IDictionary<string, Func<IEnumerable<string>>> ParameterSource = new Dictionary<string, Func<IEnumerable<string>>>();
 
         public static IEnumerable<string> GetParameterNames(string eventKey)
         {
@@ -104,6 +105,16 @@ namespace Samba.Services
                 return new[] { "Equals", "NotEquals", "Greater", "Less" };
             }
             return new[] { "Equals", "NotEquals", "Contains" };
+        }
+
+        public static void RegisterParameterSoruce(string reportname, Func<IEnumerable<string>> action)
+        {
+            ParameterSource.Add(reportname, action);
+        }
+
+        public static IEnumerable<string> GetParameterSource(string paramterName)
+        {
+            return ParameterSource.ContainsKey(paramterName) ? ParameterSource[paramterName].Invoke() : new List<string>();
         }
     }
 }

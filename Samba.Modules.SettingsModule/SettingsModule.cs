@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Net.Mail;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Localization.Properties;
@@ -68,6 +69,25 @@ namespace Samba.Modules.SettingsModule
 
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodStarts, "Work Period Starts", new { UserName = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, "Work Period Ends", new { UserName = "" });
+
+            RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName");
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
+            {
+                if (x.Value.Action.ActionType == "SendEmail")
+                {
+                    EMailService.SendEMailAsync(x.Value.GetAsString("SMTPServer"),
+                        x.Value.GetAsString("SMTPUser"),
+                        x.Value.GetAsString("SMTPPassword"),
+                        x.Value.GetAsInteger("SMTPPort"),
+                        x.Value.GetAsString("ToEMailAddress"),
+                        x.Value.GetAsString("FromEMailAddress"),
+                        x.Value.GetAsString("Subject"),
+                        x.Value.GetAsString("EMailMessage"),
+                        x.Value.GetAsString("FileName"));
+                }
+            });
+
         }
 
         [ImportingConstructor]

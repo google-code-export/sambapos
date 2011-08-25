@@ -24,7 +24,7 @@ namespace Samba.Domain.Models.RuleActions
         public string GetFormattedParameter(string parameterName, object dataObject, string parameterValues)
         {
             var format = GetParameter(parameterName);
-            return !string.IsNullOrEmpty(format) ? Format(format, dataObject, parameterValues) : format;
+            return !string.IsNullOrEmpty(format) && format.Contains("[") ? Format(format, dataObject, parameterValues) : format;
         }
 
         public string Format(string s, object dataObject, string parameterValues)

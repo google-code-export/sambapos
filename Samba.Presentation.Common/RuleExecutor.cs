@@ -30,6 +30,13 @@ namespace Samba.Presentation.Common
             decimal.TryParse(GetAsString(parameterName), out result);
             return result;
         }
+
+        public int GetAsInteger(string parameterName)
+        {
+            int result;
+            int.TryParse(GetAsString(parameterName), out result);
+            return result;
+        }
     }
 
     public static class RuleExecutor

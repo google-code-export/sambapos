@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="CashService.cs" />
     <Compile Include="DataAccessService.cs" />
+    <Compile Include="EMailService.cs" />
     <Compile Include="HtmlConverter\HtmlCssParser.cs" />
     <Compile Include="HtmlConverter\HtmlFromXamlConverter.cs" />
     <Compile Include="HtmlConverter\HtmlLexicalAnalyzer.cs" />

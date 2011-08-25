@@ -21,9 +21,10 @@ namespace Samba.Modules.SettingsModule
             _actions = new ObservableCollection<ActionContainerViewModel>(Model.Actions.Select(x => new ActionContainerViewModel(x, this)));
 
             SelectActionsCommand = new CaptionCommand<string>(Resources.SelectActions, OnSelectActions);
+            Constraints = new ObservableCollection<RuleConstraintViewModel>();
             if (!string.IsNullOrEmpty(model.EventConstraints))
             {
-                Constraints = new ObservableCollection<RuleConstraintViewModel>(
+                Constraints.AddRange(
                     model.EventConstraints.Split('#')
                     .Select(x => new RuleConstraintViewModel(x)));
             }

@@ -14,6 +14,12 @@ namespace Samba.Modules.SettingsModule
         public string Name { get; set; }
         public string NameStr { get { return Name + ":"; } }
         public string Value { get; set; }
+
+        private IEnumerable<string> _values;
+        public IEnumerable<string> Values
+        {
+            get { return _values ?? (_values = RuleActionTypeRegistry.GetParameterSource(Name)); }
+        }
     }
 
     class RuleActionViewModel : EntityViewModelBase<AppAction>
