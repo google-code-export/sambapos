@@ -276,7 +276,7 @@ namespace Samba.Services.Printing
 
             if (ticketItem != null)
             {
-                result = FormatData(result, Resources.TF_LineItemQuantity, ticketItem.Quantity.ToString("#,##.##"));
+                result = FormatData(result, Resources.TF_LineItemQuantity, ticketItem.Quantity.ToString("#,#0.##"));
                 result = FormatData(result, Resources.TF_LineItemName, ticketItem.MenuItemName + ticketItem.GetPortionDesc());
                 result = FormatData(result, Resources.TF_LineItemPrice, ticketItem.Price.ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineItemTotal, ticketItem.GetItemPrice().ToString("#,#0.00"));

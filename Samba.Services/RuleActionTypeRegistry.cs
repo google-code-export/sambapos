@@ -24,13 +24,106 @@ namespace Samba.Services
         }
 
         public string Name { get; set; }
-        public object Value { get; set; }
+        public string NameDisplay
+        {
+            get
+            {
+                var result = Resources.ResourceManager.GetString(Name);
+                return !string.IsNullOrEmpty(result) ? result + ":" : Name;
+            }
+        }
+
+        public string Value { get; set; }
+
+        private IEnumerable<string> _values;
+        public IEnumerable<string> Values
+        {
+            get { return _values ?? (_values = RuleActionTypeRegistry.GetParameterSource(Name)); }
+        }
+
         public string Operation { get; set; }
         public string[] Operations { get; set; }
 
         public string GetConstraintData()
         {
             return Name + ";" + Operation + ";" + Value;
+        }
+
+        public static bool IsNumericType(Type type)
+        {
+            if (type == null)
+            {
+                return false;
+            }
+
+            switch (Type.GetTypeCode(type))
+            {
+                case TypeCode.Byte:
+                case TypeCode.Decimal:
+                case TypeCode.Double:
+                case TypeCode.Int16:
+                case TypeCode.Int32:
+                case TypeCode.Int64:
+                case TypeCode.SByte:
+                case TypeCode.Single:
+                case TypeCode.UInt16:
+                case TypeCode.UInt32:
+                case TypeCode.UInt64:
+                    return true;
+                case TypeCode.Object:
+                    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                    {
+                        return IsNumericType(Nullable.GetUnderlyingType(type));
+                    }
+                    return false;
+            }
+            return false;
+
+        }
+
+        public bool ValueEquals(object parameterValue)
+        {
+            if (IsNumericType(parameterValue.GetType()))
+            {
+                var propertyValue = Convert.ToDecimal(parameterValue);
+                var objectValue = Convert.ToDecimal(Value);
+
+                if (Operation.Contains("Equals"))
+                {
+                    if (!propertyValue.Equals(objectValue)) return false;
+                }
+                else if (Operation.Contains("NotEquals"))
+                {
+                    if (propertyValue.Equals(objectValue)) return false;
+                }
+                else if (Operation.Contains("Greater"))
+                {
+                    if (propertyValue < objectValue) return false;
+                }
+                else if (Operation.Contains("Less"))
+                {
+                    if (propertyValue > objectValue) return false;
+                }
+            }
+            else
+            {
+                var propertyValue = parameterValue.ToString().ToLower();
+                var objectValue = Value.ToLower();
+
+                if (Operation.Contains("Contains"))
+                {
+                    if (!propertyValue.Contains(objectValue)) return false;
+                }
+                else if (Operation.Contains("Equals"))
+                {
+                    if (!propertyValue.Equals(objectValue)) return false;
+                }
+                else if (Operation.Contains("NotEquals"))
+                {
+                    if (propertyValue.Equals(objectValue)) return false;
+                }
+            }
+            return true;
         }
     }
 
@@ -88,14 +181,20 @@ namespace Samba.Services
 
         public static IEnumerable<RuleConstraintViewModel> GetEventConstraints(string eventName)
         {
+            var result = new List<RuleConstraintViewModel>();
             var obj = RuleEvents[eventName].ParameterObject;
             if (obj != null)
             {
-                var result = obj.GetType().GetProperties().Select(
-                    x => new RuleConstraintViewModel { Name = x.Name, Operation = "Equals", Operations = GetOperations(x, obj) });
-                return result;
+                result.AddRange(obj.GetType().GetProperties().Select(
+                    x => new RuleConstraintViewModel { Name = x.Name, Operation = "Equals", Operations = GetOperations(x, obj) }));
             }
-            return new List<RuleConstraintViewModel>();
+
+            if (!result.Any(x => x.Name == "UserName"))
+                result.Insert(0, new RuleConstraintViewModel { Name = "UserName", Operation = "Equals" });
+            if (!result.Any(x => x.Name == "DepartmentName"))
+                result.Insert(0, new RuleConstraintViewModel { Name = "DepartmentName", Operation = "Equals" });
+
+            return result;
         }
 
         private static string[] GetOperations(PropertyInfo propertyInfo, object o)

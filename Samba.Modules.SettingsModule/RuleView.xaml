@@ -9,20 +9,22 @@
             <Label HorizontalAlignment="Left" Content="{LocText EventName,Suffix=':'}" />
             <ComboBox HorizontalAlignment="Left" MinWidth="150" ItemsSource="{Binding Events}"
                  DisplayMemberPath="EventName" SelectedValuePath="EventKey" SelectedValue="{Binding EventName}" />
-
-            <Label Margin="0,3,0,0">Execute Actions If:</Label>
+            <GroupBox HorizontalAlignment="Left" Margin="0,3" Padding="1">
+                <GroupBox.Header>
+                    <LocText ResourceIdentifierKey="ExecuteActionsIf" Suffix=":"/>
+                </GroupBox.Header>
             <ItemsControl ItemsSource="{Binding Constraints}" HorizontalAlignment="Left">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="0,3">
-                            <Label Content="{Binding Name}" MinWidth="120"/>
-                            <ComboBox IsEditable="True" Text="{Binding Operation}" ItemsSource="{Binding Operations}"/>
-                            <TextBox MinWidth="80" Text="{Binding Value}"/>
+                            <Label Content="{Binding NameDisplay}" MinWidth="120" />
+                            <ComboBox Margin="3,0" IsEditable="True" Text="{Binding Operation}" ItemsSource="{Binding Operations}" />
+                            <ComboBox MinWidth="80" IsEditable="True" ItemsSource="{Binding Values}" Text="{Binding Value}" />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-
+            </GroupBox>
             <StackPanel Orientation="Horizontal">
                 <Label HorizontalAlignment="Left" Content="{LocText Actions,Suffix=':'}" />
                 <TextBlock Margin="2,5,0,0">
@@ -35,13 +37,14 @@
                 <ItemsControl ItemsSource="{Binding Actions}" HorizontalAlignment="Left">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Expander Style="{StaticResource MainViewExpander}" Header="{Binding Name}" IsExpanded="False" Margin="2">
+                            <Expander Style="{StaticResource MainViewExpander}" Header="{Binding Name}" IsExpanded="False"
+                                 Margin="2">
                                 <ItemsControl ItemsSource="{Binding ParameterValues}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal" Margin="0,3">
-                                                <Label Content="{Binding Name}" MinWidth="120"/>
-                                                <ComboBox Text="{Binding Value}" MinWidth="80" IsEditable="True" ItemsSource="{Binding ParameterValues}"/>
+                                                <Label Content="{Binding Name}" MinWidth="120" />
+                                                <ComboBox Text="{Binding Value}" MinWidth="80" IsEditable="True" ItemsSource="{Binding ParameterValues}" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -51,9 +54,6 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </Grid>
-
-
-
             <Button HorizontalAlignment="Left" Margin="0,10,3,0" MinWidth="70" Content="{Binding SaveCommand.Caption}"
                  Command="{Binding SaveCommand}" />
             <Label Content="{Binding Error}" Foreground="Red" />

@@ -995,7 +995,7 @@ Yap</value>
     <comment>Paragraph content</comment>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>Garson adı</value>
+    <value>Kullanıcı Adı</value>
     <comment>Paragraph content</comment>
   </data>
   <data name="TableName" xml:space="preserve">
@@ -2352,25 +2352,62 @@ Masa: {2}</value>
     <value>Eylemler</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="Title">
-    <value xml:space="preserve">Başlık</value>
+  <data name="Title" xml:space="preserve">
+    <value>Başlık</value>
   </data>
-  <data name="DisplayPopup">
-    <value xml:space="preserve">Popup Görüntüle</value>
+  <data name="DisplayPopup" xml:space="preserve">
+    <value>Popup Görüntüle</value>
   </data>
-  <data name="DeleteErrorInventoryItemUsedInEndOfDayRecord">
-    <value><![CDATA[Bu Stok Kartını bir gün sonu dökümanında kullanıldığı için silemezsiniz.]]></value>
+  <data name="DeleteErrorInventoryItemUsedInEndOfDayRecord" xml:space="preserve">
+    <value>Bu Stok Kartını bir gün sonu dökümanında kullanıldığı için silemezsiniz.</value>
   </data>
-	<data name="Rules">
-		<value xml:space="preserve">Kurallar</value>
-	</data>
-  <data name="Action">
-    <value xml:space="preserve">Eylem</value>
+  <data name="Rules" xml:space="preserve">
+    <value>Kurallar</value>
   </data>
-  <data name="ActionList">
-    <value xml:space="preserve">Eylem Listesi</value>
+  <data name="Action" xml:space="preserve">
+    <value>Eylem</value>
   </data>
-  <data name="SelectActions">
-    <value xml:space="preserve">Eylem Seç</value>
+  <data name="ActionList" xml:space="preserve">
+    <value>Eylem Listesi</value>
+  </data>
+  <data name="SelectActions" xml:space="preserve">
+    <value>Eylem Seç</value>
+  </data>
+  <data name="TagValue" xml:space="preserve">
+    <value>Etiket Değeri</value>
+  </data>
+	<data name="CustomerNote" xml:space="preserve">
+    <value>Müşteri Notu</value>
+  </data>
+	<data name="GiftTotal" xml:space="preserve">
+    <value>İkram Toplamı</value>
+  </data>
+  <data name="UserLogin">
+    <value xml:space="preserve">Kullanıcı Girdi</value>
+  </data>
+  <data name="UserLogout">
+    <value xml:space="preserve">Kullanıcı Çıktı</value>
+  </data>
+  <data name="TicketCreated">
+    <value xml:space="preserve">Adisyon Açıldı</value>
+  </data>
+  <data name="TicketTagSelected">
+    <value xml:space="preserve">Adisyon Etiketi Seçildi</value>
+  </data>
+  <data name="CustomerSelectedForTicket">
+    <value xml:space="preserve">Adisyona Müşteri Seçildi</value>
+  </data>
+  <data name="TicketTotalChanged">
+    <value xml:space="preserve">Adisyon Tutarı Değişti</value>
+  </data>
+  <data name="WorkPeriodStarted">
+    <value xml:space="preserve">Gün Başı Yapıldı</value>
+  </data>
+  <data name="WorkPeriodEnded">
+    <value xml:space="preserve">Gün Sonu Yapıldı</value>
+  </data>
+	<data name="ExecuteActionsIf" xml:space="preserve">
+    <value>Koşullar</value>
+    <comment>Label content</comment>
   </data>
 </root>

@@ -2352,25 +2352,62 @@ Table: {2}</value>
   <data name="MoveTicketLine" xml:space="preserve">
     <value>Move</value>
   </data>
-  <data name="Title">
-    <value xml:space="preserve">Title</value>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
   </data>
-  <data name="DisplayPopup">
-    <value xml:space="preserve">Display Popup</value>
+  <data name="DisplayPopup" xml:space="preserve">
+    <value>Display Popup</value>
   </data>
-  <data name="DeleteErrorInventoryItemUsedInEndOfDayRecord">
-    <value><![CDATA[Can't delete because an end of day Cost document contains this Inventory Item.]]></value>
+  <data name="DeleteErrorInventoryItemUsedInEndOfDayRecord" xml:space="preserve">
+    <value>Can't delete because an end of day Cost document contains this Inventory Item.</value>
   </data>
-	<data name="Rules">
-		<value xml:space="preserve">Rules</value>
-	</data>
-	<data name="Action">
-		<value xml:space="preserve">Action</value>
-	</data>
-	<data name="ActionList">
-		<value xml:space="preserve">Action List</value>
-	</data>
-	<data name="SelectActions">
-		<value xml:space="preserve">Select Actions</value>
-	</data>
+  <data name="Rules" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ActionList" xml:space="preserve">
+    <value>Action List</value>
+  </data>
+  <data name="SelectActions" xml:space="preserve">
+    <value>Select Actions</value>
+  </data>
+  <data name="TagValue" xml:space="preserve">
+    <value>Tag Value</value>
+  </data>
+  <data name="CustomerNote" xml:space="preserve">
+    <value>Customer Note</value>
+  </data>
+  <data name="GiftTotal" xml:space="preserve">
+    <value>Gift Total</value>
+  </data>
+  <data name="UserLogin" xml:space="preserve">
+    <value>User Login</value>
+  </data>
+  <data name="UserLogout" xml:space="preserve">
+    <value>User Logout</value>
+  </data>
+  <data name="TicketCreated" xml:space="preserve">
+    <value>Ticket Created</value>
+  </data>
+  <data name="TicketTagSelected" xml:space="preserve">
+    <value>Ticket Tag Selected</value>
+  </data>
+  <data name="CustomerSelectedForTicket" xml:space="preserve">
+    <value>Customer Selected for Ticket</value>
+  </data>
+  <data name="TicketTotalChanged" xml:space="preserve">
+    <value>Ticket Total Changed</value>
+  </data>
+  <data name="WorkPeriodStarted" xml:space="preserve">
+    <value>Work Period Started</value>
+  </data>
+  <data name="WorkPeriodEnded" xml:space="preserve">
+    <value>Work Period Ended</value>
+  </data>
+  <data name="ExecuteActionsIf" xml:space="preserve">
+    <value>Conditions</value>
+    <comment>Label content</comment>
+  </data>
 </root>

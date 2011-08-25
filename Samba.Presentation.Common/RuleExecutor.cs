@@ -63,7 +63,7 @@ namespace Samba.Presentation.Common
         {
             var conditions = appRule.EventConstraints.Split('#')
                 .Select(x => new RuleConstraintViewModel(x));
-            
+
             var parameterNames = dataObject.GetType().GetProperties().Select(x => x.Name);
 
             foreach (var condition in conditions)
@@ -73,47 +73,26 @@ namespace Samba.Presentation.Common
                 if (!string.IsNullOrEmpty(parameterName))
                 {
                     var property = dataObject.GetType().GetProperty(parameterName);
-
                     var parameterValue = property.GetValue(dataObject, null) ?? "";
-
-                    if (IsNumericType(property.PropertyType))
+                    if (!condition.ValueEquals(parameterValue)) return false;
+                }
+                else
+                {
+                    if (condition.Name == "DepartmentName" && !string.IsNullOrEmpty(condition.Value))
                     {
-                        var propertyValue = Convert.ToDecimal(parameterValue);
-                        var objectValue = Convert.ToDecimal(condition.Value);
-
-                        if (condition.Operation.Contains("Equals"))
+                        if (AppServices.MainDataContext.SelectedDepartment == null ||
+                            !condition.Value.Equals(AppServices.MainDataContext.SelectedDepartment.Name))
                         {
-                            if (!propertyValue.Equals(objectValue)) return false;
-                        }
-                        else if (condition.Operation.Contains("NotEquals"))
-                        {
-                            if (propertyValue.Equals(objectValue)) return false;
-                        }
-                        else if (condition.Operation.Contains("Greater"))
-                        {
-                            if (propertyValue < objectValue) return false;
-                        }
-                        else if (condition.Operation.Contains("Less"))
-                        {
-                            if (propertyValue > objectValue) return false;
+                            return false;
                         }
                     }
-                    else
-                    {
-                        var propertyValue = parameterValue.ToString().ToLower();
-                        var objectValue = condition.Value.ToString().ToLower();
 
-                        if (condition.Operation.Contains("Contains"))
+                    if (condition.Name == "UserName" && !string.IsNullOrEmpty(condition.Value))
+                    {
+                        if (AppServices.CurrentLoggedInUser == null ||
+                            !condition.Value.Equals(AppServices.CurrentLoggedInUser.Name))
                         {
-                            if (!propertyValue.Contains(objectValue)) return false;
-                        }
-                        else if (condition.Operation.Contains("Equals"))
-                        {
-                            if (!propertyValue.Equals(objectValue)) return false;
-                        }
-                        else if (condition.Operation.Contains("NotEquals"))
-                        {
-                            if (propertyValue.Equals(objectValue)) return false;
+                            return false;
                         }
                     }
                 }
@@ -122,36 +101,5 @@ namespace Samba.Presentation.Common
             return true;
         }
 
-        public static bool IsNumericType(Type type)
-        {
-            if (type == null)
-            {
-                return false;
-            }
-
-            switch (Type.GetTypeCode(type))
-            {
-                case TypeCode.Byte:
-                case TypeCode.Decimal:
-                case TypeCode.Double:
-                case TypeCode.Int16:
-                case TypeCode.Int32:
-                case TypeCode.Int64:
-                case TypeCode.SByte:
-                case TypeCode.Single:
-                case TypeCode.UInt16:
-                case TypeCode.UInt32:
-                case TypeCode.UInt64:
-                    return true;
-                case TypeCode.Object:
-                    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
-                    {
-                        return IsNumericType(Nullable.GetUnderlyingType(type));
-                    }
-                    return false;
-            }
-            return false;
-
-        }
     }
 }

@@ -1422,11 +1422,29 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Note.
+        /// </summary>
+        public static string CustomerNote {
+            get {
+                return ResourceManager.GetString("CustomerNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customers.
         /// </summary>
         public static string Customers {
             get {
                 return ResourceManager.GetString("Customers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Selected for Ticket.
+        /// </summary>
+        public static string CustomerSelectedForTicket {
+            get {
+                return ResourceManager.GetString("CustomerSelectedForTicket", resourceCulture);
             }
         }
         
@@ -2035,6 +2053,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conditions.
+        /// </summary>
+        public static string ExecuteActionsIf {
+            get {
+                return ResourceManager.GetString("ExecuteActionsIf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
@@ -2304,6 +2331,15 @@ namespace Samba.Localization.Properties {
         public static string GiftsTotal {
             get {
                 return ResourceManager.GetString("GiftsTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gift Total.
+        /// </summary>
+        public static string GiftTotal {
+            get {
+                return ResourceManager.GetString("GiftTotal", resourceCulture);
             }
         }
         
@@ -4715,6 +4751,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag Value.
+        /// </summary>
+        public static string TagValue {
+            get {
+                return ResourceManager.GetString("TagValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template.
         /// </summary>
         public static string Template {
@@ -5175,6 +5220,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket Created.
+        /// </summary>
+        public static string TicketCreated {
+            get {
+                return ResourceManager.GetString("TicketCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Date.
         /// </summary>
         public static string TicketDate {
@@ -5347,6 +5401,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket Tag Selected.
+        /// </summary>
+        public static string TicketTagSelected {
+            get {
+                return ResourceManager.GetString("TicketTagSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Template.
         /// </summary>
         public static string TicketTemplate {
@@ -5438,6 +5501,15 @@ namespace Samba.Localization.Properties {
         public static string TicketTotal_f {
             get {
                 return ResourceManager.GetString("TicketTotal_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket Total Changed.
+        /// </summary>
+        public static string TicketTotalChanged {
+            get {
+                return ResourceManager.GetString("TicketTotalChanged", resourceCulture);
             }
         }
         
@@ -5731,6 +5803,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Login.
+        /// </summary>
+        public static string UserLogin {
+            get {
+                return ResourceManager.GetString("UserLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Logout.
+        /// </summary>
+        public static string UserLogout {
+            get {
+                return ResourceManager.GetString("UserLogout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string UserName {
@@ -5974,6 +6064,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Work Period Ended.
+        /// </summary>
+        public static string WorkPeriodEnded {
+            get {
+                return ResourceManager.GetString("WorkPeriodEnded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Work Period ends.
         ///Visit Reports section and create Work Period Reports.
         /// </summary>
@@ -5998,6 +6097,15 @@ namespace Samba.Localization.Properties {
         public static string WorkPeriodStartDate_f {
             get {
                 return ResourceManager.GetString("WorkPeriodStartDate_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Period Started.
+        /// </summary>
+        public static string WorkPeriodStarted {
+            get {
+                return ResourceManager.GetString("WorkPeriodStarted", resourceCulture);
             }
         }
         

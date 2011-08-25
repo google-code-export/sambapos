@@ -57,10 +57,10 @@ namespace Samba.Modules.TicketModule
                 });
 
 
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, "Ticket created");
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, "Ticket tag seleced", new { TagName = "", TagValue = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, "Customer selected for ticket", new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, "Ticket total changed", new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m });
 
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", "DiscountPercentage");
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", "TagName", "TagValue");

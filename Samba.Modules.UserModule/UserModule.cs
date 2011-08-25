@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.Composition;
+using System.Linq;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
-using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
-using Samba.Domain.Models.RuleActions;
 using Samba.Domain.Models.Users;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
@@ -81,8 +80,10 @@ namespace Samba.Modules.UserModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListUsersCommand);
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateLogoutCommand);
 
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedIn, "User LoggedIn", new { UserName = "", RoleName = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedOut, "User LoggedOut", new { UserName = "", RoleName = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedIn, Resources.UserLogin, new { UserName = "", RoleName = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedOut, Resources.UserLogout, new { UserName = "", RoleName = "" });
+
+            RuleActionTypeRegistry.RegisterParameterSoruce("UserName", () => AppServices.MainDataContext.Users.Select(x => x.Name));
         }
 
         public void PinEntered(string pin)
