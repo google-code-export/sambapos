@@ -206,14 +206,14 @@ namespace Samba.Services
             return new[] { "Equals", "NotEquals", "Contains" };
         }
 
-        public static void RegisterParameterSoruce(string reportname, Func<IEnumerable<string>> action)
+        public static void RegisterParameterSoruce(string parameterName, Func<IEnumerable<string>> action)
         {
-            ParameterSource.Add(reportname, action);
+            ParameterSource.Add(parameterName, action);
         }
 
-        public static IEnumerable<string> GetParameterSource(string paramterName)
+        public static IEnumerable<string> GetParameterSource(string parameterName)
         {
-            return ParameterSource.ContainsKey(paramterName) ? ParameterSource[paramterName].Invoke() : new List<string>();
+            return ParameterSource.ContainsKey(parameterName) ? ParameterSource[parameterName].Invoke() : new List<string>();
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Samba.Modules.SettingsModule
         public ICategoryCommand ListMenuItemSettingsCommand { get; set; }
         public ICategoryCommand ListRuleActionsCommand { get; set; }
         public ICategoryCommand ListRulesCommand { get; set; }
+        public ICategoryCommand ListTriggersCommand { get; set; }
         public ICategoryCommand ShowBrowser { get; set; }
 
         private BrowserViewModel _browserViewModel;
@@ -39,6 +40,7 @@ namespace Samba.Modules.SettingsModule
         private GiftReasonListViewModel _giftReasonListViewModel;
         private ProgramSettingsViewModel _menuItemSettingsViewModel;
         private RuleActionListViewModel _ruleActionListViewModel;
+        private TriggerListViewModel _triggerListViewModel;
         private RuleListViewModel _ruleListViewModel;
 
         public ICategoryCommand NavigateWorkPeriodsCommand { get; set; }
@@ -65,6 +67,7 @@ namespace Samba.Modules.SettingsModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemSettingsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListRuleActionsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListRulesCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListTriggersCommand);
 
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateWorkPeriodsCommand);
 
@@ -72,8 +75,8 @@ namespace Samba.Modules.SettingsModule
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, Resources.WorkPeriodEnded, new { UserName = "" });
 
             RuleActionTypeRegistry.RegisterParameterSoruce("DepartmentName", () => AppServices.MainDataContext.Departments.Select(x => x.Name));
-            
-            RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName");
+
+            RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
@@ -87,7 +90,8 @@ namespace Samba.Modules.SettingsModule
                         x.Value.GetAsString("FromEMailAddress"),
                         x.Value.GetAsString("Subject"),
                         x.Value.GetAsString("EMailMessage"),
-                        x.Value.GetAsString("FileName"));
+                        x.Value.GetAsString("FileName"),
+                        x.Value.GetAsBoolean("DeleteFile"));
                 }
             });
 
@@ -112,6 +116,7 @@ namespace Samba.Modules.SettingsModule
             ListMenuItemSettingsCommand = new CategoryCommand<string>(Resources.ProgramSettings, Resources.Settings, OnListMenuItemSettings) { Order = 10 };
             ListRuleActionsCommand = new CategoryCommand<string>(Resources.RuleActions, Resources.Settings, OnListRuleActions);
             ListRulesCommand = new CategoryCommand<string>(Resources.Rules, Resources.Settings, OnListRules);
+            ListTriggersCommand = new CategoryCommand<string>("Triggers", Resources.Settings, OnListTriggers);
 
             ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.SambaNetwork, OnShowBrowser) { Order = 99 };
 
@@ -150,8 +155,18 @@ namespace Samba.Modules.SettingsModule
 
                     if (s.Value == _ruleListViewModel)
                         _ruleListViewModel = null;
+
+                    if (s.Value == _triggerListViewModel)
+                        _triggerListViewModel = null;
                 }
             });
+        }
+
+        private void OnListTriggers(string obj)
+        {
+            if (_triggerListViewModel == null)
+                _triggerListViewModel = new TriggerListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_triggerListViewModel);
         }
 
         private void OnListRules(string obj)

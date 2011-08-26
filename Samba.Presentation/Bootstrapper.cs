@@ -72,6 +72,8 @@ namespace Samba.Presentation
 
             base.InitializeShell();
 
+            TriggerService.UpdateCronObjects();
+
             try
             {
                 creationService.CreateData();

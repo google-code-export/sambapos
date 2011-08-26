@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Samba.Domain.Models.RuleActions;
 using Samba.Services;
 
@@ -17,6 +16,13 @@ namespace Samba.Presentation.Common
             if (property != null)
                 return property.GetValue(DataObject, null) as T;
             return null;
+        }
+
+        public bool GetAsBoolean(string parameterName)
+        {
+            bool result;
+            bool.TryParse(GetAsString(parameterName), out result);
+            return result;
         }
 
         public string GetAsString(string parameterName)

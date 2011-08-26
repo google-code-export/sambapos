@@ -87,22 +87,22 @@ namespace Samba.Presentation.Common.Interaction
         {
             _popupDataViewModel = new PopupDataViewModel();
 
-            RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, Resources.Message);
-            RuleActionTypeRegistry.RegisterActionType("DisplayPopup", Resources.DisplayPopup, Resources.Title, Resources.Message);
+            RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, "Message");
+            RuleActionTypeRegistry.RegisterActionType("DisplayPopup", Resources.DisplayPopup, "Title", "Message");
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
                 if (x.Value.Action.ActionType == "ShowMessage")
                 {
-                    var param = x.Value.Action.GetFormattedParameter(Resources.Message, x.Value.DataObject, x.Value.ParameterValues ?? "");
+                    var param = x.Value.Action.GetFormattedParameter("Message", x.Value.DataObject, x.Value.ParameterValues ?? "");
                     if (!string.IsNullOrEmpty(param))
                         GiveFeedback(param);
                 }
 
                 if (x.Value.Action.ActionType == "DisplayPopup")
                 {
-                    var title = x.Value.Action.GetFormattedParameter(Resources.Title, x.Value.DataObject, x.Value.ParameterValues ?? "");
-                    var message = x.Value.Action.GetFormattedParameter(Resources.Message, x.Value.DataObject, x.Value.ParameterValues ?? "");
+                    var title = x.Value.Action.GetFormattedParameter("Title", x.Value.DataObject, x.Value.ParameterValues ?? "");
+                    var message = x.Value.Action.GetFormattedParameter("Message", x.Value.DataObject, x.Value.ParameterValues ?? "");
                     if (!string.IsNullOrEmpty(message))
                         DisplayPopup(title, message, null, "");
                 }

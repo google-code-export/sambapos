@@ -2410,4 +2410,13 @@ Masa: {2}</value>
     <value>Koşullar</value>
     <comment>Label content</comment>
   </data>
+	<data name="ReportName" xml:space="preserve">
+    <value>Rapor Adı</value>
+  </data>
+	<data name="FileName" xml:space="preserve">
+    <value>Dosya Adı</value>
+  </data>
+	<data name="DiscountPercentage" xml:space="preserve">
+    <value>İskonto Oranı</value>
+  </data>
 </root>

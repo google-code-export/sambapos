@@ -4,6 +4,7 @@ namespace Samba.Presentation.Common
 {
     public static class RuleEventNames
     {
+        public static string TriggerExecuted="TriggerExecuted";
         public const string TicketTotalChanged = "TicketTotalChanged";
         public const string TicketTagSelected = "TicketTagSelected";
         public const string CustomerSelectedForTicket = "CustomerSelectedForTicket";

@@ -68,6 +68,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlphanumComparator.cs" />
+    <Compile Include="Cron\CronBuilder.cs" />
+    <Compile Include="Cron\CronEntryBase.cs" />
+    <Compile Include="Cron\CronEntryException.cs" />
+    <Compile Include="Cron\CronExpression.cs" />
+    <Compile Include="Cron\CronObject.cs" />
+    <Compile Include="Cron\CronObjectDataContext.cs" />
+    <Compile Include="Cron\CronSchedule.cs" />
+    <Compile Include="Cron\DaysCronEntry.cs" />
+    <Compile Include="Cron\DaysOfWeekCronEntry.cs" />
+    <Compile Include="Cron\HoursCronEntry.cs" />
+    <Compile Include="Cron\ICronEntry.cs" />
+    <Compile Include="Cron\MinutesCronEntry.cs" />
+    <Compile Include="Cron\MonthsCronEntry.cs" />
     <Compile Include="IMessageListener.cs" />
     <Compile Include="IStringCompareable.cs" />
     <Compile Include="Messages.cs" />

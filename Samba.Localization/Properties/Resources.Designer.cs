@@ -1836,6 +1836,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discount Percentage.
+        /// </summary>
+        public static string DiscountPercentage {
+            get {
+                return ResourceManager.GetString("DiscountPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discount %.
         /// </summary>
         public static string DiscountPercentSign {
@@ -2140,6 +2149,15 @@ namespace Samba.Localization.Properties {
         public static string FastMenu {
             get {
                 return ResourceManager.GetString("FastMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        public static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
             }
         }
         
@@ -4050,6 +4068,15 @@ namespace Samba.Localization.Properties {
         public static string ReportDoesNotContainsCashState {
             get {
                 return ResourceManager.GetString("ReportDoesNotContainsCashState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Name.
+        /// </summary>
+        public static string ReportName {
+            get {
+                return ResourceManager.GetString("ReportName", resourceCulture);
             }
         }
         

@@ -2408,6 +2408,14 @@ Table: {2}</value>
   </data>
   <data name="ExecuteActionsIf" xml:space="preserve">
     <value>Conditions</value>
-    <comment>Label content</comment>
+  </data>
+  <data name="ReportName" xml:space="preserve">
+    <value>Report Name</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="DiscountPercentage" xml:space="preserve">
+    <value>Discount Percentage</value>
   </data>
 </root>

@@ -10,6 +10,7 @@ using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
+using Samba.Infrastructure.Cron;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Data.Serializer;
 using Samba.Persistance.Data;
@@ -206,7 +207,7 @@ namespace Samba.Services
         {
             _ticketWorkspace = new TicketWorkspace();
         }
-
+        
         private static IEnumerable<WorkPeriod> GetLastTwoWorkPeriods()
         {
             return Dao.Last<WorkPeriod>(2);

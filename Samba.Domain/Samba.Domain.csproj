@@ -80,6 +80,7 @@
     <Compile Include="Models\Inventory\Transaction.cs" />
     <Compile Include="Models\Inventory\TransactionItem.cs" />
     <Compile Include="Models\Settings\PrintJob.cs" />
+    <Compile Include="Models\Settings\Trigger.cs" />
     <Compile Include="Models\Tickets\TicketTag.cs" />
     <Compile Include="Models\Tickets\TicketTagGroup.cs" />
     <Compile Include="TransactionType.cs" />

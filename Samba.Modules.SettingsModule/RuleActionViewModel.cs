@@ -12,7 +12,14 @@ namespace Samba.Modules.SettingsModule
     internal class ParameterValue
     {
         public string Name { get; set; }
-        public string NameStr { get { return Name + ":"; } }
+        public string NameDisplay
+        {
+            get
+            {
+                var result = Resources.ResourceManager.GetString(Name);
+                return !string.IsNullOrEmpty(result) ? result + ":" : Name;
+            }
+        }
         public string Value { get; set; }
 
         private IEnumerable<string> _values;

@@ -68,6 +68,7 @@ namespace Samba.Persistance.Data
         public DbSet<AppAction> RuleActions { get; set; }
         public DbSet<ActionContainer> ActionContainers { get; set; }
         public DbSet<AppRule> Rules { get; set; }
+        public DbSet<Trigger> Triggers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -79,7 +80,7 @@ namespace Samba.Persistance.Data
             modelBuilder.Entity<Department>().HasMany(p => p.TicketTagGroups).WithMany();
             modelBuilder.Entity<TableScreen>().HasMany(p => p.Tables).WithMany();
             modelBuilder.Entity<Terminal>().HasMany(p => p.PrintJobs).WithMany();
-            
+
             const int scale = 2;
             const int precision = 16;
 
@@ -122,7 +123,7 @@ namespace Samba.Persistance.Data
 
             //TicketItemProperty
             modelBuilder.Entity<TicketItemProperty>().Property(x => x.Quantity).HasPrecision(precision, scale);
-            
+
             //TicketItem
             modelBuilder.Entity<TicketItem>().Property(x => x.Quantity).HasPrecision(precision, scale);
             modelBuilder.Entity<TicketItem>().Property(x => x.Price).HasPrecision(precision, scale);

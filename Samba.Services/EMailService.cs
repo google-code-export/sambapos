@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Samba.Services
 {
     public static class EMailService
     {
-        public static void SendEmail(string smtpServerAddress, string smtpUser, string smtpPassword, int smtpPort, string toEmailAddress, string fromEmailAddress, string subject, string body, string fileName)
+        public static void SendEmail(string smtpServerAddress, string smtpUser, string smtpPassword, int smtpPort, string toEmailAddress, string fromEmailAddress, string subject, string body, string fileName, bool deleteFile)
         {
             var mail = new MailMessage();
             var smtpServer = new SmtpClient(smtpServerAddress);
@@ -25,11 +26,13 @@ namespace Samba.Services
             smtpServer.Credentials = new System.Net.NetworkCredential(smtpUser, smtpPassword);
             smtpServer.EnableSsl = true;
             smtpServer.Send(mail);
+            if (deleteFile && !string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                File.Delete(fileName);
         }
 
-        public static void SendEMailAsync(string smtpServerAddress, string smtpUser, string smtpPassword, int smtpPort, string toEmailAddress, string fromEmailAddress, string subject, string body, string fileName)
+        public static void SendEMailAsync(string smtpServerAddress, string smtpUser, string smtpPassword, int smtpPort, string toEmailAddress, string fromEmailAddress, string subject, string body, string fileName, bool deleteFile)
         {
-            var thread = new Thread(() => SendEmail(smtpServerAddress, smtpUser, smtpPassword, smtpPort, toEmailAddress, fromEmailAddress, subject, body, fileName));
+            var thread = new Thread(() => SendEmail(smtpServerAddress, smtpUser, smtpPassword, smtpPort, toEmailAddress, fromEmailAddress, subject, body, fileName, deleteFile));
             thread.Start();
         }
     }

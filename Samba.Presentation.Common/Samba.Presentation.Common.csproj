@@ -190,6 +190,7 @@
     <Compile Include="RegionNames.cs" />
     <Compile Include="RuleExecutor.cs" />
     <Compile Include="TextBoxInputMaskBehavior.cs" />
+    <Compile Include="TriggerService.cs" />
     <Compile Include="ViewObjects\OpenTicketView.cs" />
     <Compile Include="VirtualKeyboard\KeyboardView2.xaml.cs">
       <DependentUpon>KeyboardView2.xaml</DependentUpon>
