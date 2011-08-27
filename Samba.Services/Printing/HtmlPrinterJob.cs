@@ -53,7 +53,7 @@ namespace Samba.Services.Printing
                 if (line.StartsWith("<C") && line.Length > 3 && (line[2] == '>' || char.IsDigit(line[2])))
                     list.Add(string.Format("<Center>{0}</Center>", RemoveTag(line)));
                 if (line.StartsWith("<L") && line.Length > 3 && (line[2] == '>' || char.IsDigit(line[2])))
-                    list.Add(string.Format("<span>{0}</span>",RemoveTag(line)));
+                    list.Add(string.Format("<span>{0}</span>", RemoveTag(line)));
                 if (line.StartsWith("<EB>"))
                     list.Add("<B>");
                 if (line.StartsWith("<DB>"))
@@ -72,6 +72,9 @@ namespace Samba.Services.Printing
                         tables.Add(tableName, new List<string>());
                     tables[tableName].Add(RemoveTag(line));
                 }
+
+                if (!line.Contains("<"))
+                    list.Add(line);
 
                 lastLine = line;
             }
@@ -92,7 +95,7 @@ namespace Samba.Services.Printing
 
             return list;
         }
-        
+
         private static IEnumerable<string> GetTableLines(IList<string> lines, int maxWidth)
         {
             int colCount = GetColumnCount(lines) + 1;
@@ -105,7 +108,7 @@ namespace Samba.Services.Printing
 
             colWidths[colCount - 1] = (maxWidth - colWidths.Sum()) + colWidths[colCount - 1];
             if (colWidths[colCount - 1] < 1) colWidths[colCount - 1] = 1;
-            
+
             for (int i = 0; i < lines.Count; i++)
             {
                 lines[i] = string.Format("<span>{0}</span>", GetFormattedLine(lines[i], colWidths));

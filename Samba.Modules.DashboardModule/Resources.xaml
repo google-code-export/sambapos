@@ -175,17 +175,19 @@
                         <ContentPresenter Content="{TemplateBinding SelectedContent}">
                             <ContentPresenter.ContentTemplate>
                                 <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Commands}" BorderThickness="0">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Margin="2,6" FontSize="14">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ItemsControl ItemsSource="{Binding Commands}" BorderThickness="0">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Margin="2,6" FontSize="14">
                                                     <Hyperlink Command="{Binding}">
                                                         <TextBlock Text="{Binding Path=Caption}" />
                                                     </Hyperlink>
                                                 </TextBlock>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
                                 </DataTemplate>
                             </ContentPresenter.ContentTemplate>
                         </ContentPresenter>

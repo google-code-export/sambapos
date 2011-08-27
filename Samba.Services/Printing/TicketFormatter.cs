@@ -94,7 +94,7 @@ namespace Samba.Services.Printing
             var orderNo = lines.Count() > 0 ? lines.ElementAt(0).OrderNumber : 0;
             var header = ReplaceDocumentVars(template.HeaderTemplate, ticket, orderNo);
             var footer = ReplaceDocumentVars(template.FooterTemplate, ticket, orderNo);
-            var lns = lines.Select(x => FormatLines(template, x)).ToArray();
+            var lns = lines.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
 
             var result = header.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             result.AddRange(lns);
@@ -295,7 +295,7 @@ namespace Samba.Services.Printing
                         {
                             var lineValue = FormatData(lineFormat, Resources.TF_LineItemDetails, property.Name);
                             lineValue = FormatData(lineValue, Resources.TF_LineItemDetailQuantity, property.Quantity.ToString("#.##"));
-                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, property.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#.##"));
+                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, property.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#,#0.00"));
                             label += lineValue + "\r\n";
                         }
                         result = "\r\n" + label;
