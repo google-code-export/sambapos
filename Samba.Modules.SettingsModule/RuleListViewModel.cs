@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Samba.Domain.Models.RuleActions;
+using Samba.Domain.Models.Actions;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.SettingsModule

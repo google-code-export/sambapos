@@ -62,30 +62,41 @@ var
 	rebootRequired : boolean;
 	rebootMessage : string;
 
+procedure RemoveProducts();
+begin
+   installMemo:='';
+   downloadMemo:='';
+   downloadMessage:='';
+   SetArrayLength(products, 0);
+   isxdl_ClearFiles();
+end;
+
 procedure AddProduct(FileName, Parameters, Title, Size, URL: string; InstallClean : Boolean; MustRebootAfter : Boolean);
 var
 	path: string;
 	i: Integer;
+  x: Integer;
+  canInstall: Boolean;
 begin
-	installMemo := installMemo + '%1' + Title + #13;
-	
-	path := ExpandConstant('{src}{\}') + CustomMessage('DependenciesDir') + '\' + FileName;
-	if not FileExists(path) then begin
-	  path := ExpandConstant('{tmp}{\}') + FileName;
-		
-		isxdl_AddFile(URL, path);
-		
-		downloadMemo := downloadMemo + '%1' + Title + #13;
-		downloadMessage := downloadMessage + '    ' + Title + ' (' + Size + ')' + #13;
-	end;
-	
-	i := GetArrayLength(products);
-	SetArrayLength(products, i + 1);
-	products[i].File := path;
-	products[i].Title := Title;
-	products[i].Parameters := Parameters;
-	products[i].InstallClean := InstallClean;
-	products[i].MustRebootAfter := MustRebootAfter;
+  installMemo := installMemo + '%1' + Title + #13;
+  
+  path := ExpandConstant('{src}{\}') + CustomMessage('DependenciesDir') + '\' + FileName;
+  if not FileExists(path) then begin
+    path := ExpandConstant('{tmp}{\}') + FileName;
+    
+    isxdl_AddFile(URL, path);
+    
+    downloadMemo := downloadMemo + '%1' + Title + #13;
+    downloadMessage := downloadMessage + '    ' + Title + ' (' + Size + ')' + #13;
+  end;
+
+  i := GetArrayLength(products);
+  SetArrayLength(products, i + 1);
+  products[i].File := path;
+  products[i].Title := Title;
+  products[i].Parameters := Parameters;
+  products[i].InstallClean := InstallClean;
+  products[i].MustRebootAfter := MustRebootAfter;
 end;
 
 function SmartExec(fileName, parameters : string; var ResultCode : Integer) : Boolean;

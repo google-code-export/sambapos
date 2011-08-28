@@ -10,3 +10,6 @@ external 'isxdl_DownloadFiles@files:isxdl.dll stdcall';
 
 function isxdl_SetOption(Option, Value: PChar): Integer;
 external 'isxdl_SetOption@files:isxdl.dll stdcall';
+
+procedure isxdl_ClearFiles;
+external 'isxdl_ClearFiles@files:isxdl.dll stdcall';

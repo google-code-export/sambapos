@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows;
 using System.ComponentModel.Composition;
 using PropertyEditorLibrary;
-using Samba.Domain.Models.RuleActions;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;

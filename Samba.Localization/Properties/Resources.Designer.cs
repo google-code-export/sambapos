@@ -407,6 +407,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to a.m..
+        /// </summary>
+        public static string AM {
+            get {
+                return ResourceManager.GetString("AM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
@@ -1247,6 +1256,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Common Settings.
+        /// </summary>
+        public static string CommonSettings {
+            get {
+                return ResourceManager.GetString("CommonSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirmation.
         /// </summary>
         public static string Confirmation {
@@ -1472,6 +1490,15 @@ namespace Samba.Localization.Properties {
         public static string DateRangeIsNotActiveWorkPeriod {
             get {
                 return ResourceManager.GetString("DateRangeIsNotActiveWorkPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        public static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
             }
         }
         
@@ -2053,11 +2080,191 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error in Expression.
+        /// </summary>
+        public static string ErrorInExpression {
+            get {
+                return ResourceManager.GetString("ErrorInExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event Name.
         /// </summary>
         public static string EventName {
             get {
                 return ResourceManager.GetString("EventName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 10 Minutes.
+        /// </summary>
+        public static string Every10Minutes {
+            get {
+                return ResourceManager.GetString("Every10Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 12 hours.
+        /// </summary>
+        public static string Every12Hours {
+            get {
+                return ResourceManager.GetString("Every12Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 15 Minutes.
+        /// </summary>
+        public static string Every15Minutes {
+            get {
+                return ResourceManager.GetString("Every15Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 30 Minutes.
+        /// </summary>
+        public static string Every30Minutes {
+            get {
+                return ResourceManager.GetString("Every30Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 3 hours.
+        /// </summary>
+        public static string Every3Hours {
+            get {
+                return ResourceManager.GetString("Every3Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 3 months.
+        /// </summary>
+        public static string Every3Months {
+            get {
+                return ResourceManager.GetString("Every3Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 4 hours.
+        /// </summary>
+        public static string Every4Hours {
+            get {
+                return ResourceManager.GetString("Every4Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 5 minutes.
+        /// </summary>
+        public static string Every5Minutes {
+            get {
+                return ResourceManager.GetString("Every5Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 6 hours.
+        /// </summary>
+        public static string Every6Hours {
+            get {
+                return ResourceManager.GetString("Every6Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every 6 months.
+        /// </summary>
+        public static string Every6Months {
+            get {
+                return ResourceManager.GetString("Every6Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every day.
+        /// </summary>
+        public static string EveryDay {
+            get {
+                return ResourceManager.GetString("EveryDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every hour.
+        /// </summary>
+        public static string EveryHour {
+            get {
+                return ResourceManager.GetString("EveryHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every minute.
+        /// </summary>
+        public static string EveryMinute {
+            get {
+                return ResourceManager.GetString("EveryMinute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every month.
+        /// </summary>
+        public static string EveryMonth {
+            get {
+                return ResourceManager.GetString("EveryMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every other day.
+        /// </summary>
+        public static string EveryOtherDay {
+            get {
+                return ResourceManager.GetString("EveryOtherDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every other hour.
+        /// </summary>
+        public static string EveryOtherHour {
+            get {
+                return ResourceManager.GetString("EveryOtherHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every Other Minute.
+        /// </summary>
+        public static string EveryOtherMinute {
+            get {
+                return ResourceManager.GetString("EveryOtherMinute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every other month.
+        /// </summary>
+        public static string EveryOtherMonth {
+            get {
+                return ResourceManager.GetString("EveryOtherMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every weekday.
+        /// </summary>
+        public static string EveryWeekday {
+            get {
+                return ResourceManager.GetString("EveryWeekday", resourceCulture);
             }
         }
         
@@ -2113,6 +2320,33 @@ namespace Samba.Localization.Properties {
         public static string ExportSalesData {
             get {
                 return ResourceManager.GetString("ExportSalesData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expression.
+        /// </summary>
+        public static string Expression {
+            get {
+                return ResourceManager.GetString("Expression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expression Builder.
+        /// </summary>
+        public static string ExpressionBuilder {
+            get {
+                return ResourceManager.GetString("ExpressionBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expression Valid.
+        /// </summary>
+        public static string ExpressionValid {
+            get {
+                return ResourceManager.GetString("ExpressionValid", resourceCulture);
             }
         }
         
@@ -2195,6 +2429,15 @@ namespace Samba.Localization.Properties {
         public static string FindTicket_r {
             get {
                 return ResourceManager.GetString("FindTicket_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st and 15th.
+        /// </summary>
+        public static string FirstAndFifteenth {
+            get {
+                return ResourceManager.GetString("FirstAndFifteenth", resourceCulture);
             }
         }
         
@@ -2380,6 +2623,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Half past.
+        /// </summary>
+        public static string HalfPast {
+            get {
+                return ResourceManager.GetString("HalfPast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Header.
         /// </summary>
         public static string Header {
@@ -2412,6 +2664,15 @@ namespace Samba.Localization.Properties {
         public static string Hidden {
             get {
                 return ResourceManager.GetString("Hidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hour.
+        /// </summary>
+        public static string Hour {
+            get {
+                return ResourceManager.GetString("Hour", resourceCulture);
             }
         }
         
@@ -3134,6 +3395,42 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minute.
+        /// </summary>
+        public static string Minute {
+            get {
+                return ResourceManager.GetString("Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mon, Wed, Fri.
+        /// </summary>
+        public static string Mon_Wed_Fri {
+            get {
+                return ResourceManager.GetString("Mon,Wed,Fri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        public static string Month {
+            get {
+                return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mon thru Fri.
+        /// </summary>
+        public static string MonThruFri {
+            get {
+                return ResourceManager.GetString("MonThruFri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move.
         /// </summary>
         public static string Move {
@@ -3266,6 +3563,15 @@ namespace Samba.Localization.Properties {
         public static string NoAction {
             get {
                 return ResourceManager.GetString("NoAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to noon.
+        /// </summary>
+        public static string Noon {
+            get {
+                return ResourceManager.GetString("Noon", resourceCulture);
             }
         }
         
@@ -3410,6 +3716,51 @@ namespace Samba.Localization.Properties {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a day.
+        /// </summary>
+        public static string OnceADay {
+            get {
+                return ResourceManager.GetString("OnceADay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a month.
+        /// </summary>
+        public static string OnceAMonth {
+            get {
+                return ResourceManager.GetString("OnceAMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once an hour.
+        /// </summary>
+        public static string OnceAnHour {
+            get {
+                return ResourceManager.GetString("OnceAnHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a week.
+        /// </summary>
+        public static string OnceAWeek {
+            get {
+                return ResourceManager.GetString("OnceAWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once a year.
+        /// </summary>
+        public static string OnceAYear {
+            get {
+                return ResourceManager.GetString("OnceAYear", resourceCulture);
             }
         }
         
@@ -3599,6 +3950,15 @@ namespace Samba.Localization.Properties {
         public static string PinCode {
             get {
                 return ResourceManager.GetString("PinCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.m..
+        /// </summary>
+        public static string PM {
+            get {
+                return ResourceManager.GetString("PM", resourceCulture);
             }
         }
         
@@ -3990,6 +4350,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quarter past.
+        /// </summary>
+        public static string QuarterPast {
+            get {
+                return ResourceManager.GetString("QuarterPast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quarter til.
+        /// </summary>
+        public static string QuarterTil {
+            get {
+                return ResourceManager.GetString("QuarterTil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Receiveable.
         /// </summary>
         public static string Receiveable {
@@ -4240,6 +4618,15 @@ namespace Samba.Localization.Properties {
         public static string SambaPosWebsite {
             get {
                 return ResourceManager.GetString("SambaPosWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sat and Sun.
+        /// </summary>
+        public static string SatAndSun {
+            get {
+                return ResourceManager.GetString("SatAndSun", resourceCulture);
             }
         }
         
@@ -5568,6 +5955,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Top of the hour.
+        /// </summary>
+        public static string TopOfTheHour {
+            get {
+                return ResourceManager.GetString("TopOfTheHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         public static string Total {
@@ -5700,6 +6096,79 @@ namespace Samba.Localization.Properties {
         public static string TransactionUnit {
             get {
                 return ResourceManager.GetString("TransactionUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trigger.
+        /// </summary>
+        public static string Trigger {
+            get {
+                return ResourceManager.GetString("Trigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trigger Name.
+        /// </summary>
+        public static string TriggerName {
+            get {
+                return ResourceManager.GetString("TriggerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Triggers.
+        /// </summary>
+        public static string Triggers {
+            get {
+                return ResourceManager.GetString("Triggers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next Trigger:{0}
+        ///Will Trigger after {1} days, {2} hours, {3} minutes.
+        /// </summary>
+        public static string TriggerTestResultMessage_f {
+            get {
+                return ResourceManager.GetString("TriggerTestResultMessage_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tues, Thurs.
+        /// </summary>
+        public static string TuesAndThurs {
+            get {
+                return ResourceManager.GetString("TuesAndThurs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12 a.m. midnight.
+        /// </summary>
+        public static string TwelveAmMidnight {
+            get {
+                return ResourceManager.GetString("TwelveAmMidnight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twice a day.
+        /// </summary>
+        public static string TwiceADay {
+            get {
+                return ResourceManager.GetString("TwiceADay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twice an hour.
+        /// </summary>
+        public static string TwiceAnHour {
+            get {
+                return ResourceManager.GetString("TwiceAnHour", resourceCulture);
             }
         }
         
@@ -6006,6 +6475,15 @@ namespace Samba.Localization.Properties {
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weekday.
+        /// </summary>
+        public static string Weekday {
+            get {
+                return ResourceManager.GetString("Weekday", resourceCulture);
             }
         }
         

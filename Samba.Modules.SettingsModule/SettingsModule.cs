@@ -116,7 +116,7 @@ namespace Samba.Modules.SettingsModule
             ListMenuItemSettingsCommand = new CategoryCommand<string>(Resources.ProgramSettings, Resources.Settings, OnListMenuItemSettings) { Order = 10 };
             ListRuleActionsCommand = new CategoryCommand<string>(Resources.RuleActions, Resources.Settings, OnListRuleActions);
             ListRulesCommand = new CategoryCommand<string>(Resources.Rules, Resources.Settings, OnListRules);
-            ListTriggersCommand = new CategoryCommand<string>("Triggers", Resources.Settings, OnListTriggers);
+            ListTriggersCommand = new CategoryCommand<string>(Resources.Triggers, Resources.Settings, OnListTriggers);
 
             ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.SambaNetwork, OnShowBrowser) { Order = 99 };
 

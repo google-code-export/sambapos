@@ -2418,4 +2418,173 @@ Table: {2}</value>
   <data name="DiscountPercentage" xml:space="preserve">
     <value>Discount Percentage</value>
   </data>
+  <data name="TriggerName" xml:space="preserve">
+    <value>Trigger Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Expression" xml:space="preserve">
+    <value>Expression</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="ExpressionBuilder" xml:space="preserve">
+    <value>Expression Builder</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="CommonSettings" xml:space="preserve">
+    <value>Common Settings</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minute</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Hour</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="Weekday" xml:space="preserve">
+    <value>Weekday</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="EveryMinute">
+		<value xml:space="preserve">Every minute</value>
+	</data>
+	<data name="Every5Minutes">
+		<value xml:space="preserve">Every 5 minutes</value>
+	</data>
+	<data name="TwiceAnHour">
+		<value xml:space="preserve">Twice an hour</value>
+	</data>
+	<data name="OnceAnHour">
+		<value xml:space="preserve">Once an hour</value>
+	</data>
+	<data name="TwiceADay">
+		<value xml:space="preserve">Twice a day</value>
+	</data>
+	<data name="OnceADay">
+		<value xml:space="preserve">Once a day</value>
+	</data>
+	<data name="OnceAWeek">
+		<value xml:space="preserve">Once a week</value>
+	</data>
+	<data name="FirstAndFifteenth">
+		<value xml:space="preserve">1st and 15th</value>
+	</data>
+	<data name="OnceAMonth">
+		<value xml:space="preserve">Once a month</value>
+	</data>
+	<data name="OnceAYear">
+		<value xml:space="preserve">Once a year</value>
+	</data>
+	<data name="EveryOtherMinute">
+		<value xml:space="preserve">Every Other Minute</value>
+	</data>
+	<data name="Every10Minutes">
+		<value xml:space="preserve">Every 10 Minutes</value>
+	</data>
+	<data name="Every15Minutes">
+		<value xml:space="preserve">Every 15 Minutes</value>
+	</data>
+	<data name="Every30Minutes">
+		<value xml:space="preserve">Every 30 Minutes</value>
+	</data>
+	<data name="TopOfTheHour">
+		<value xml:space="preserve">Top of the hour</value>
+	</data>
+	<data name="QuarterPast">
+		<value xml:space="preserve">Quarter past</value>
+	</data>
+	<data name="HalfPast">
+		<value xml:space="preserve">Half past</value>
+	</data>
+	<data name="QuarterTil">
+		<value xml:space="preserve">Quarter til</value>
+	</data>
+	<data name="EveryHour">
+		<value xml:space="preserve">Every hour</value>
+	</data>
+	<data name="EveryOtherHour">
+		<value xml:space="preserve">Every other hour</value>
+	</data>
+	<data name="Every3Hours">
+		<value xml:space="preserve">Every 3 hours</value>
+	</data>
+	<data name="Every4Hours">
+		<value xml:space="preserve">Every 4 hours</value>
+	</data>
+	<data name="Every6Hours">
+		<value xml:space="preserve">Every 6 hours</value>
+	</data>
+	<data name="Every12Hours">
+		<value xml:space="preserve">Every 12 hours</value>
+	</data>
+	<data name="TwelveAmMidnight">
+		<value xml:space="preserve">12 a.m. midnight</value>
+	</data>
+	<data name="Noon">
+		<value xml:space="preserve">noon</value>
+	</data>
+	<data name="PM">
+		<value xml:space="preserve">p.m.</value>
+	</data>
+	<data name="AM">
+		<value xml:space="preserve">a.m.</value>
+	</data>
+	<data name="EveryDay">
+		<value xml:space="preserve">Every day</value>
+	</data>
+	<data name="EveryOtherDay">
+		<value xml:space="preserve">Every other day</value>
+	</data>
+	<data name="EveryMonth">
+		<value xml:space="preserve">Every month</value>
+	</data>
+	<data name="EveryOtherMonth">
+		<value xml:space="preserve">Every other month</value>
+	</data>
+	<data name="Every3Months">
+		<value xml:space="preserve">Every 3 months</value>
+	</data>
+	<data name="Every6Months">
+		<value xml:space="preserve">Every 6 months</value>
+	</data>
+	<data name="EveryWeekday">
+		<value xml:space="preserve">Every weekday</value>
+	</data>
+	<data name="MonThruFri">
+		<value xml:space="preserve">Mon thru Fri</value>
+	</data>
+	<data name="SatAndSun">
+		<value xml:space="preserve">Sat and Sun</value>
+	</data>
+	<data name="Mon,Wed,Fri">
+		<value xml:space="preserve">Mon, Wed, Fri</value>
+	</data>
+	<data name="TuesAndThurs">
+		<value xml:space="preserve">Tues, Thurs</value>
+	</data>
+	<data name="Trigger">
+		<value xml:space="preserve">Trigger</value>
+	</data>
+	<data name="Triggers">
+		<value xml:space="preserve">Triggers</value>
+	</data>
+	<data name="ExpressionValid">
+		<value xml:space="preserve">Expression Valid</value>
+	</data>
+	<data name="ErrorInExpression">
+		<value xml:space="preserve">Error in Expression</value>
+	</data>
+	<data name="TriggerTestResultMessage_f">
+		<value><![CDATA[Next Trigger:{0}
+Will Trigger after {1} days, {2} hours, {3} minutes]]></value>
+	</data>
 </root>

@@ -24,18 +24,31 @@
 //#include "scripts\products\dotnetfx35sp1lp.iss"
 
 //#include "scripts\products\dotnetfx40.iss"
+#include "scripts\lgpl.iss"
+#include "scripts\products\ssce40.iss"
 #include "scripts\products\dotnetfx40client.iss"
 #include "scripts\products\wic.iss"
 
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.11 "
-#define FileVersion "211"
+#define Version "2.12 "
+#define FileVersion "212"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
 winxpsp2_title=Windows XP Service Pack 2
+en.full_setup=Full Setup
+en.compact_setup=Compact Setup
+en.custom_setup=Custom Setup
+en.sample_data=Sample Data
+en.handheld_terminal_app=Handheld terminal app
+
+tr.full_setup=Tam Kurulum
+tr.compact_setup=Normal Kurulum
+tr.custom_setup=Özel Kurulum
+tr.sample_data=Örnek Veri
+tr.handheld_terminal_app=El terminali uygulamasý
 
 [Setup]
 AppName=Samba POS
@@ -148,14 +161,15 @@ Source: src\tr\Samba.Localization.resources.dll; DestDir: {app}\tr\; Flags: igno
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
-Name: terminal; Description: Samba El Terminali; Languages: ; Types: full
-Name: veri; Description: Örnek Veri; Languages: ; Types: full compact custom
+Name: terminal; Description: {cm:handheld_terminal_app}; Languages: ; Types: full
+Name: sqlce; Description: Compact SQL 4.0; Languages: ; Types: full compact custom
+Name: veri; Description: {cm:sample_data}; Languages: ; Types: full compact custom
 Name: cid; Description: Caller Id; Languages: ; Types: full custom
 
 [Types]
-Name: compact; Description: Normal Kurulum
-Name: full; Description: Tam Kurulum
-Name: custom; Description: Özel Kurulum; Flags: iscustom
+Name: compact; Description: {cm:compact_setup}
+Name: full; Description: {cm:full_setup}
+Name: custom; Description: {cm:custom_setup}; Flags: iscustom
 
 [Icons]
 Name: {group}\Samba POS 2; Filename: {app}\Samba.Presentation.exe
@@ -168,7 +182,26 @@ Name: {group}\Samba Data; Filename: {commonappdata}\Ozgu Tech\SambaPOS2\
 [Run]
 Filename: {app}\Samba.Presentation.exe; Description: {cm:LaunchProgram,Samba POS}; Flags: nowait postinstall skipifsilent unchecked
 
-[Code]
+[Code]                
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+if (CurPageId = wpSelectProgramGroup) then
+  begin
+    RemoveProducts();
+    msi31('3.0');
+    wic();
+    dotnetfx40client();
+    if IsComponentSelected('sqlce') then 
+      ssce40();
+  end;
+end;
+
+procedure InitializeWizard();
+begin
+  LGPL_InitializeWizard();
+end;                 
+
 function InitializeSetup(): Boolean;
 begin
 	initwinversion();
@@ -180,12 +213,12 @@ begin
 	if not minwinspversion(5, 1, 2) then begin
 		MsgBox(FmtMessage(CustomMessage('depinstall_missing'), [CustomMessage('winxpsp2_title')]), mbError, MB_OK);
 		exit;
-	end;
+	end;                           
 
 	//if (not iis()) then exit;
 
 	//msi20('2.0');
-	msi31('3.0');
+	
 	//ie6('5.0.2919');
 
 	//dotnetfx11();
@@ -209,9 +242,8 @@ begin
 
 	//mdac28('2.7');
 	//jet4sp8('4.0.8015');
-  wic();
-  dotnetfx40client();
-	Result := true;
+
+  Result := true;
 end;
 
 [Dirs]

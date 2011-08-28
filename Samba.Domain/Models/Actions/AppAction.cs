@@ -1,10 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Samba.Infrastructure.Data;
 
-namespace Samba.Domain.Models.RuleActions
+namespace Samba.Domain.Models.Actions
 {
     public class AppAction : IEntity
     {

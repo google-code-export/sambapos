@@ -48,9 +48,13 @@ namespace Samba.Presentation.Common
             using (var workspace = WorkspaceFactory.Create())
             {
                 var trigger = workspace.Single<Trigger>(x => x.Id == ((Trigger)cronobject.Object).Id);
-                trigger.LastTrigger = DateTime.Now;
-                workspace.CommitChanges();
-                RuleExecutor.NotifyEvent(RuleEventNames.TriggerExecuted, new { TriggerName = trigger.Name });
+                if (trigger != null)
+                {
+                    trigger.LastTrigger = DateTime.Now;
+                    workspace.CommitChanges();
+                    RuleExecutor.NotifyEvent(RuleEventNames.TriggerExecuted, new { TriggerName = trigger.Name });
+                }
+                else cronobject.Stop();
             }
         }
     }

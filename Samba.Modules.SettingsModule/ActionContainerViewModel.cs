@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Samba.Domain.Models.RuleActions;
+using Samba.Domain.Models.Actions;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Services;
@@ -47,7 +46,7 @@ namespace Samba.Modules.SettingsModule
             _ruleViewModel = ruleViewModel;
         }
 
-        private RuleViewModel _ruleViewModel;
+        private readonly RuleViewModel _ruleViewModel;
         private AppAction _action;
         public AppAction Action { get { return _action ?? (_action = Dao.Single<AppAction>(x => x.Id == Model.AppActionId)); } set { _action = value; } }
 

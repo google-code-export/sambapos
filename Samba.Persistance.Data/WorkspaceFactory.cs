@@ -7,6 +7,7 @@ using System.Linq;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Announcers;
 using FluentMigrator.Runner.Initialization;
+using Microsoft.Win32;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Data.MongoDB;
 using Samba.Infrastructure.Data.SQL;
@@ -18,22 +19,34 @@ namespace Samba.Persistance.Data
     public static class WorkspaceFactory
     {
         private static TextFileWorkspace _textFileWorkspace;
-        private static MongoWorkspace _mongoWorkspace;
+        private static readonly MongoWorkspace MongoWorkspace;
         private static string _connectionString = LocalSettings.ConnectionString;
 
         static WorkspaceFactory()
         {
             Database.SetInitializer(new Initializer());
 
-            if (!string.IsNullOrEmpty(LocalSettings.ConnectionString))
+            if (string.IsNullOrEmpty(LocalSettings.ConnectionString))
             {
-                if (LocalSettings.ConnectionString.EndsWith(".sdf"))
-                {
-                    Database.DefaultConnectionFactory =
-                        new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", "", LocalSettings.ConnectionString);
-                    return;
-                }
-
+                if (IsSqlce40Installed())
+                    LocalSettings.ConnectionString = "data source=" + LocalSettings.DocumentPath + "\\SambaData2.sdf";
+                else LocalSettings.ConnectionString = GetTextFileName();
+            }
+            if (LocalSettings.ConnectionString.EndsWith(".sdf"))
+            {
+                Database.DefaultConnectionFactory =
+                    new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", "", LocalSettings.ConnectionString);
+            }
+            else if (LocalSettings.ConnectionString.EndsWith(".txt"))
+            {
+                _textFileWorkspace = GetTextFileWorkspace();
+            }
+            else if (_connectionString.StartsWith("mongodb://"))
+            {
+                MongoWorkspace = GetMongoWorkspace();
+            }
+            else if (!string.IsNullOrEmpty(LocalSettings.ConnectionString))
+            {
                 var cs = LocalSettings.ConnectionString;
                 if (!cs.Trim().EndsWith(";"))
                     cs += ";";
@@ -46,33 +59,39 @@ namespace Samba.Persistance.Data
                 Database.DefaultConnectionFactory =
                     new SqlConnectionFactory(cs);
             }
+        }
 
-            if (string.IsNullOrEmpty(_connectionString) || _connectionString.EndsWith(".txt"))
-                _textFileWorkspace = GetTextFileWorkspace();
-            if (_connectionString.StartsWith("mongodb://"))
-                _mongoWorkspace = GetMongoWorkspace();
+        private static bool IsSqlce40Installed()
+        {
+            var rk = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Microsoft SQL Server Compact Edition\\v4.0");
+            return rk != null;
         }
 
         public static IWorkspace Create()
         {
-            if (_mongoWorkspace != null) return _mongoWorkspace;
+            if (MongoWorkspace != null) return MongoWorkspace;
             if (_textFileWorkspace != null) return _textFileWorkspace;
             return new EFWorkspace(new SambaContext(false));
         }
 
         public static IReadOnlyWorkspace CreateReadOnly()
         {
-            if (_mongoWorkspace != null) return _mongoWorkspace;
+            if (MongoWorkspace != null) return MongoWorkspace;
             if (_textFileWorkspace != null) return _textFileWorkspace;
             return new ReadOnlyEFWorkspace(new SambaContext(true));
         }
 
         private static TextFileWorkspace GetTextFileWorkspace()
         {
-            var fileName = _connectionString.EndsWith(".txt")
+            var fileName = GetTextFileName();
+            return new TextFileWorkspace(fileName, false);
+        }
+
+        private static string GetTextFileName()
+        {
+            return _connectionString.EndsWith(".txt")
                 ? _connectionString
                 : LocalSettings.DocumentPath + "\\SambaData" + (LocalSettings.OverrideLanguage ? "_" + LocalSettings.CurrentLanguage : "") + ".txt";
-            return new TextFileWorkspace(fileName, false);
         }
 
         private static MongoWorkspace GetMongoWorkspace()

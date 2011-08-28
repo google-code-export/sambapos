@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Samba.Domain.Models.RuleActions;
+using Samba.Domain.Models.Actions;
 using Samba.Services;
 
 namespace Samba.Presentation.Common
