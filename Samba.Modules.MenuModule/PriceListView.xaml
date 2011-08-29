@@ -11,18 +11,18 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <DataGrid Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Items}"
+        <DataGrid Name="DataGrid" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Items}"
              AutoGenerateColumns="False" RowHeaderWidth="0" HorizontalAlignment="Left" HorizontalGridLinesBrush="{StaticResource {x:Static SystemColors.ActiveBorderBrushKey}}"
              VerticalGridLinesBrush="{StaticResource {x:Static SystemColors.ActiveBorderBrushKey}}"
              Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}">
-            <DataGrid.Columns>
+            <!--<DataGrid.Columns>
                 <DataGridTextColumn Header="{LocText Product}"
                      IsReadOnly="True" MinWidth="100" Binding="{Binding ItemName}" />
                 <DataGridTextColumn Header="{LocText Portion}"
                      IsReadOnly="True" Binding="{Binding Path=PortionName}" />
                 <DataGridTextColumn Header="{LocText Price}"
                      MinWidth="60" Binding="{Binding Path=Price,StringFormat='#,#0.00'}" CellStyle="{StaticResource RightAlignedCellStyle}" />
-            </DataGrid.Columns>
+            </DataGrid.Columns>-->
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>

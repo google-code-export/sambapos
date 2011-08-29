@@ -55,6 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuItemListViewModel.cs" />
+    <Compile Include="MenuItemPriceDefinitionListViewModel.cs" />
+    <Compile Include="MenuItemPriceDefinitionView.xaml.cs">
+      <DependentUpon>MenuItemPriceDefinitionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuItemPriceDefinitionViewModel.cs" />
     <Compile Include="MenuItemPropertyGroupListViewModel.cs" />
     <Compile Include="MenuItemPropertyGroupView.xaml.cs">
       <DependentUpon>MenuItemPropertyGroupView.xaml</DependentUpon>
@@ -130,6 +135,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="MenuItemPriceDefinitionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MenuItemPropertyGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

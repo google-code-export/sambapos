@@ -24,6 +24,11 @@ namespace Samba.Infrastructure.Data.SQL
             return result;
         }
 
+        public IQueryable<T> Trackable<T>() where T : class
+        {
+            return ObjContext().CreateObjectSet<T>();
+        }
+
         public void Refresh(IEnumerable collection)
         {
             ObjContext().Refresh(RefreshMode.StoreWins, collection);

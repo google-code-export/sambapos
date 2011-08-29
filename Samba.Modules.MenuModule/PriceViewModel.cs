@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Samba.Domain.Models.Menus;
 using Samba.Presentation.Common;
 
@@ -21,6 +23,17 @@ namespace Samba.Modules.MenuModule
                     IsChanged = true;
                 }
                 RaisePropertyChanged("Price");
+            }
+        }
+
+        public IList<MenuItemPrice> AdditionalPrices { get { return Model.Prices; } }
+        public decimal this[int index]
+        {
+            get { return AdditionalPrices[index].Price; }
+            set
+            {
+                AdditionalPrices[index].Price = value;
+                IsChanged = true;
             }
         }
 

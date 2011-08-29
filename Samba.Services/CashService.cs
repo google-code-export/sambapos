@@ -75,7 +75,7 @@ namespace Samba.Services
             {
                 var lines = from ct in workspace.Queryable<CashTransaction>()
                             join customer in workspace.Queryable<Customer>() on ct.CustomerId equals customer.Id into ctC
-                            from customer in ctC.DefaultIfEmpty(Customer.Null)
+                            from customer in ctC.DefaultIfEmpty()
                             where ct.Date >= wp.StartDate && ct.Date < wp.EndDate
                             select new CashTransactionData
                                        {

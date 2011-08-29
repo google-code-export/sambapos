@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Samba.Localization.Properties;
@@ -17,6 +18,7 @@ namespace Samba.Modules.MenuModule
         private MenuItemPropertyGroupListViewModel _menuItemPropertyGroupListViewModel;
         private PriceListViewModel _priceListViewModel;
         private TicketTagGroupListViewModel _ticketTagGroupListViewModel;
+        private MenuItemPriceDefinitionListViewModel _menuItemPriceDefinitionListViewModel;
 
         public ICategoryCommand ListMenuItemsCommand { get; set; }
         public ICategoryCommand ListScreenMenusCommand { get; set; }
@@ -24,6 +26,7 @@ namespace Samba.Modules.MenuModule
         public ICategoryCommand ListMenuItemPropertyGroupsCommand { get; set; }
         public ICategoryCommand ListPricesCommand { get; set; }
         public ICategoryCommand ListTicketTagGroupsCommand { get; set; }
+        public ICategoryCommand ListMenuItemPriceDefinitionsCommand { get; set; }
 
         protected override void OnPostInitialization()
         {
@@ -33,6 +36,7 @@ namespace Samba.Modules.MenuModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemPropertyGroupsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListPricesCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListTicketTagGroupsCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemPriceDefinitionsCommand);
         }
 
         [ImportingConstructor]
@@ -44,6 +48,7 @@ namespace Samba.Modules.MenuModule
             ListMenuItemPropertyGroupsCommand = new CategoryCommand<string>(Resources.PropertyGroups, Resources.Products, OnListMenuItemPropertyGroupsCommand);
             ListPricesCommand = new CategoryCommand<string>(Resources.BatchPriceList, Resources.Products, OnListPrices);
             ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags){Order = 10};
+            ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>("Price Definitions",Resources.Products,OnListMenuItemPriceDefinitions);
 
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeDepartment, PermissionCategories.Department, Resources.CanChangeDepartment);
             foreach (var department in AppServices.MainDataContext.Departments)
@@ -72,8 +77,18 @@ namespace Samba.Modules.MenuModule
 
                     if (s.Value == _ticketTagGroupListViewModel)
                         _ticketTagGroupListViewModel = null;
+
+                    if (s.Value == _menuItemPriceDefinitionListViewModel)
+                        _menuItemPriceDefinitionListViewModel = null;
                 }
             });
+        }
+
+        private void OnListMenuItemPriceDefinitions(string obj)
+        {
+            if(_menuItemPriceDefinitionListViewModel == null)
+                _menuItemPriceDefinitionListViewModel = new MenuItemPriceDefinitionListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_menuItemPriceDefinitionListViewModel);
         }
 
         private void OnListTicketTags(string obj)

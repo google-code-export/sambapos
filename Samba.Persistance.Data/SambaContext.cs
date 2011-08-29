@@ -69,6 +69,8 @@ namespace Samba.Persistance.Data
         public DbSet<ActionContainer> ActionContainers { get; set; }
         public DbSet<AppRule> Rules { get; set; }
         public DbSet<Trigger> Triggers { get; set; }
+        public DbSet<MenuItemPriceDefinition> MenuItemPriceDefinitions { get; set; }
+        public DbSet<MenuItemPrice> MenuItemPrices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -85,6 +87,9 @@ namespace Samba.Persistance.Data
             const int precision = 16;
 
             modelBuilder.ComplexType<Price>().Property(x => x.Amount).HasPrecision(precision, scale);
+
+            //MenuItemPrice
+            modelBuilder.Entity<MenuItemPrice>().Property(x => x.Price).HasPrecision(precision, scale);
 
             //Recipe
             modelBuilder.Entity<Recipe>().Property(x => x.FixedCost).HasPrecision(precision, scale);

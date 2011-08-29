@@ -22,6 +22,54 @@ namespace Samba.Modules.MenuModule
         public PriceListView()
         {
             InitializeComponent();
+            DataContextChanged += new DependencyPropertyChangedEventHandler(PriceListView_DataContextChanged);
         }
+
+        void PriceListView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var d = DataContext as PriceListViewModel;
+
+            if (d != null)
+            {
+                DataGrid.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = Localization.Properties.Resources.Product,
+                    Binding = new Binding("ItemName"),
+                    IsReadOnly = true,
+                    MinWidth = 100
+                });
+
+                DataGrid.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = Localization.Properties.Resources.Portion,
+                    Binding = new Binding("PortionName"),
+                    IsReadOnly = true,
+                    MinWidth = 100
+                });
+
+                DataGrid.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = Localization.Properties.Resources.Price,
+                    Binding = new Binding("Price") { StringFormat = "#,#0.00;-#,#0.00;-" },
+                    MinWidth = 60,
+                    CellStyle = (Style)FindResource("RightAlignedCellStyle")
+                });
+
+
+                var i = 0;
+                foreach (var priceTag in d.PriceTags)
+                {
+                    DataGrid.Columns.Add(new DataGridTextColumn()
+                                             {
+                                                 Header = priceTag,
+                                                 Binding = new Binding("[" + i + "]") { StringFormat = "#,#0.00;-#,#0.00;-" },
+                                                 MinWidth = 60,
+                                                 CellStyle = (Style)FindResource("RightAlignedCellStyle")
+                                             });
+                    i++;
+                }
+            }
+        }
+
     }
 }

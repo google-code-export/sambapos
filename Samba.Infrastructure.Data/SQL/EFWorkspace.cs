@@ -14,6 +14,8 @@ namespace Samba.Infrastructure.Data.SQL
         public EFWorkspace(CommonDbContext context)
         {
             _context = context;
+            if (context.Database.Connection.ConnectionString.EndsWith(".sdf"))
+            context.ObjContext().Connection.Open();
         }
 
         public void CommitChanges()
@@ -72,20 +74,15 @@ namespace Samba.Infrastructure.Data.SQL
         {
             return _context.Set<T>().ToList();
         }
-        
+
         public IEnumerable<T> All<T>(params Expression<Func<T, object>>[] includes) where T : class
         {
-            return includes.Aggregate(_context.ReadOnly<T>(), (current, include) => current.Include(include));
+            return includes.Aggregate(_context.Trackable<T>(), (current, include) => current.Include(include));
         }
-        
+
         public IEnumerable<T> All<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return _context.Set<T>().Where(expression);
-        }
-
-        public IEnumerable<TResult> Distinct<TSource, TResult>(Expression<Func<TSource, TResult>> expression) where TSource : class
-        {
-            return _context.ReadOnly<TSource>().Select(expression).Distinct();
         }
 
         public void Add<T>(T item) where T : class
