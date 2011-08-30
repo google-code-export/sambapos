@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataGridFilterLibrary;
 
 namespace Samba.Modules.MenuModule
 {
@@ -36,7 +37,7 @@ namespace Samba.Modules.MenuModule
                     Header = Localization.Properties.Resources.Product,
                     Binding = new Binding("ItemName"),
                     IsReadOnly = true,
-                    MinWidth = 100
+                    MinWidth = 170
                 });
 
                 DataGrid.Columns.Add(new DataGridTextColumn()
@@ -44,7 +45,7 @@ namespace Samba.Modules.MenuModule
                     Header = Localization.Properties.Resources.Portion,
                     Binding = new Binding("PortionName"),
                     IsReadOnly = true,
-                    MinWidth = 100
+                    MinWidth = 70
                 });
 
                 DataGrid.Columns.Add(new DataGridTextColumn()
@@ -59,13 +60,15 @@ namespace Samba.Modules.MenuModule
                 var i = 0;
                 foreach (var priceTag in d.PriceTags)
                 {
-                    DataGrid.Columns.Add(new DataGridTextColumn()
-                                             {
-                                                 Header = priceTag,
-                                                 Binding = new Binding("[" + i + "]") { StringFormat = "#,#0.00;-#,#0.00;-" },
-                                                 MinWidth = 60,
-                                                 CellStyle = (Style)FindResource("RightAlignedCellStyle")
-                                             });
+                    DataGridColumn dgtc = new DataGridTextColumn()
+                                   {
+                                       Header = priceTag,
+                                       Binding = new Binding("[" + i + "]") { StringFormat = "#,#0.00;-#,#0.00;-" },
+                                       MinWidth = 60,
+                                       CellStyle = (Style)FindResource("RightAlignedCellStyle")
+                                   };
+                    DataGridColumnExtensions.SetDoNotGenerateFilterControl(dgtc, true);
+                    DataGrid.Columns.Add(dgtc);
                     i++;
                 }
             }

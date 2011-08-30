@@ -4062,6 +4062,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Price Definition.
+        /// </summary>
+        public static string PriceDefinition {
+            get {
+                return ResourceManager.GetString("PriceDefinition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price Definitions.
+        /// </summary>
+        public static string PriceDefinitions {
+            get {
+                return ResourceManager.GetString("PriceDefinitions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print.
         /// </summary>
         public static string Print {
@@ -5594,6 +5612,15 @@ namespace Samba.Localization.Properties {
         public static string ThereAreOpenTicketsWarning_f {
             get {
                 return ResourceManager.GetString("ThereAreOpenTicketsWarning_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is another Price Definition with {0} tag.
+        /// </summary>
+        public static string ThereIsAnotherPriceDefinition_f {
+            get {
+                return ResourceManager.GetString("ThereIsAnotherPriceDefinition_f", resourceCulture);
             }
         }
         

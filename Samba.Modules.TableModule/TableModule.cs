@@ -47,7 +47,10 @@ namespace Samba.Modules.TableModule
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Department>>().Subscribe(x =>
             {
-                if (x.Topic == EventTopicNames.SelectTable) ActivateTableView();
+                if (x.Topic == EventTopicNames.SelectTable)
+                {
+                    ActivateTableView();
+                }
             });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<VisibleViewModelBase>>().Subscribe(
@@ -64,7 +67,7 @@ namespace Samba.Modules.TableModule
                 );
         }
 
-       private void OnNavigateTables(string obj)
+        private void OnNavigateTables(string obj)
         {
             ActivateTableView();
             ((TableSelectorViewModel)_tableSelectorView.DataContext).IsNavigated = true;

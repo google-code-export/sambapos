@@ -2587,4 +2587,13 @@ Table: {2}</value>
 		<value><![CDATA[Next Trigger:{0}
 Will Trigger after {1} days, {2} hours, {3} minutes]]></value>
 	</data>
+	<data name="ThereIsAnotherPriceDefinition_f">
+		<value xml:space="preserve">There is another Price Definition with {0} tag</value>
+	</data>
+	<data name="PriceDefinition">
+		<value xml:space="preserve">Price Definition</value>
+	</data>
+	<data name="PriceDefinitions">
+		<value xml:space="preserve">Price Definitions</value>
+	</data>
 </root>

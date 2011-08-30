@@ -61,7 +61,7 @@ namespace Samba.Modules.TableModule
             }
         }
 
-        public VerticalAlignment TablesVerticalAlignment { get { return SelectedTableScreen.ButtonHeight > 0 ? VerticalAlignment.Top : VerticalAlignment.Stretch; } }
+        public VerticalAlignment TablesVerticalAlignment { get { return SelectedTableScreen != null && SelectedTableScreen.ButtonHeight > 0 ? VerticalAlignment.Top : VerticalAlignment.Stretch; } }
 
         public TableSelectorViewModel()
         {

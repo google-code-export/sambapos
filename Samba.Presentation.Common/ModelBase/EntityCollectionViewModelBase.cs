@@ -31,8 +31,14 @@ namespace Samba.Presentation.Common.ModelBase
             return _workspace.All<TModel>();
         }
 
+        protected virtual void BeforeDeleteItem(TModel item)
+        {
+            // override if needed.
+        }
+
         private void DoDeleteItem(TModel item)
         {
+            BeforeDeleteItem(item);
             _workspace.Delete(item);
             _workspace.CommitChanges();
         }

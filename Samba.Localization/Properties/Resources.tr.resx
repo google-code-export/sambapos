@@ -2590,4 +2590,13 @@ Masa: {2}</value>
 {1} gün, {2} saat, {3} dakika sonra]]>
     </value>
   </data>
+	<data name="ThereIsAnotherPriceDefinition_f">
+		<value xml:space="preserve">{0} etiketini kullanan başka bir fiyat tanımı var.</value>
+	</data>
+	<data name="PriceDefinition">
+		<value xml:space="preserve">Fiyat Tanımı</value>
+	</data>
+	<data name="PriceDefinitions">
+		<value xml:space="preserve">Fiyat Tanımları</value>
+	</data>
 </root>

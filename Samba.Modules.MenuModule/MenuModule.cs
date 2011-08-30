@@ -48,7 +48,7 @@ namespace Samba.Modules.MenuModule
             ListMenuItemPropertyGroupsCommand = new CategoryCommand<string>(Resources.PropertyGroups, Resources.Products, OnListMenuItemPropertyGroupsCommand);
             ListPricesCommand = new CategoryCommand<string>(Resources.BatchPriceList, Resources.Products, OnListPrices);
             ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags){Order = 10};
-            ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>("Price Definitions",Resources.Products,OnListMenuItemPriceDefinitions);
+            ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>(Resources.PriceDefinitions,Resources.Products,OnListMenuItemPriceDefinitions);
 
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeDepartment, PermissionCategories.Department, Resources.CanChangeDepartment);
             foreach (var department in AppServices.MainDataContext.Departments)
