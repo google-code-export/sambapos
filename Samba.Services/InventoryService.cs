@@ -44,7 +44,8 @@ namespace Samba.Services
             var salesData = ticketItems.GroupBy(x => new { x.MenuItemName, x.MenuItemId, x.PortionName })
                     .Select(x => new SalesData { MenuItemName = x.Key.MenuItemName, MenuItemId = x.Key.MenuItemId, PortionName = x.Key.PortionName, Total = x.Sum(y => y.Quantity) }).ToList();
 
-            var properties = ticketItems.SelectMany(x => x.Properties).GroupBy(x => new { x.MenuItemId, x.PortionName });
+            var properties = ticketItems.SelectMany(x => x.Properties, (ti, pr) => new { Properties = pr, ti.Quantity })
+                    .GroupBy(x => new { x.Properties.MenuItemId, x.Properties.PortionName });
 
             foreach (var ticketItemProperty in properties)
             {
@@ -55,7 +56,7 @@ namespace Samba.Services
                 sd.MenuItemId = mi.Id;
                 sd.MenuItemName = mi.Name;
                 sd.PortionName = port.Name;
-                sd.Total = tip.Sum(x => x.Quantity);
+                sd.Total = tip.Sum(x => x.Properties.Quantity * x.Quantity);
                 salesData.Add(sd);
             }
 
