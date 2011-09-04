@@ -45,10 +45,10 @@ namespace Samba.Modules.TableModule
 
         protected override string GetSaveErrorMessage()
         {
-            if (Model.Id == 0 && Dao.Count<Table>(x => x.Name.ToLower() == Model.Name.ToLower()) > 0) 
+            if (Dao.Single<Table>(x => x.Name.ToLower() == Model.Name.ToLower() && x.Id != Model.Id) != null)
                 return Resources.SaveErrorDuplicateTableName;
             return base.GetSaveErrorMessage();
-        } 
+        }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Linq;
@@ -10,7 +11,7 @@ using Samba.Persistance.Data;
 
 namespace Samba.Presentation.Common.ModelBase
 {
-    public abstract class EntityCollectionViewModelBase<TViewModel, TModel> : AbstractEntityCollectionViewModelBase
+    public abstract class EntityCollectionViewModelBase<TViewModel, TModel> : AbstractEntityCollectionViewModelBase, ICountable
         where TViewModel : EntityViewModelBase<TModel>
         where TModel : class, IEntity, new()
     {
@@ -161,6 +162,11 @@ namespace Samba.Presentation.Common.ModelBase
             EventServiceFactory.EventService.GetEvent<GenericEvent<EntityViewModelBase<TModel>>>().Unsubscribe(_token);
             base.OnDispose();
             _workspace.Dispose();
+        }
+
+        public int GetCount()
+        {
+            return Items.Count;
         }
     }
 }

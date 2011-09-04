@@ -151,11 +151,11 @@ namespace Samba.Services
             return CurrentLoggedInUser;
         }
 
-        public static void LogoutUser()
+        public static void LogoutUser(bool resetCache = true)
         {
             Debug.Assert(CurrentLoggedInUser != User.Nobody);
             CurrentLoggedInUser = User.Nobody;
-            ResetCache();
+            if (resetCache) ResetCache();
         }
 
         public static bool IsUserPermittedFor(string p)

@@ -1174,6 +1174,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear filter.
+        /// </summary>
+        public static string ClearFilter {
+            get {
+                return ResourceManager.GetString("ClearFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select date range, refresh report and click related link to export data..
         /// </summary>
         public static string ClickLinksToExportData {
@@ -2492,6 +2501,15 @@ namespace Samba.Localization.Properties {
         public static string FreeTagging {
             get {
                 return ResourceManager.GetString("FreeTagging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From:.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
             }
         }
         
@@ -5969,6 +5987,15 @@ namespace Samba.Localization.Properties {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To:.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
             }
         }
         

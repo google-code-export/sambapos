@@ -203,7 +203,7 @@ namespace Samba.Modules.TableModule
         private void UpdateMethod2(int tableScreenId)
         {
             Feedback = "";
-            var tableData = AppServices.DataAccessService.GetCurrentTables(tableScreenId, CurrentPageNo);
+            var tableData = AppServices.DataAccessService.GetCurrentTables(tableScreenId, CurrentPageNo).OrderBy(x => x.Order);
             if (Tables != null && (Tables.Count != tableData.Count())) Tables = null;
             if (Tables == null)
             {

@@ -50,7 +50,7 @@ namespace Samba.Modules.TicketModule
         public bool IsNumeratorVisible { get { return SelectedCategory != null && SelectedCategory.IsNumeratorVisible; } }
         public bool IsPageNumberNavigatorVisible { get { return SelectedCategory != null && SelectedCategory.PageCount > 1; } }
         public VerticalAlignment MenuItemsVerticalAlignment { get { return SelectedCategory != null && SelectedCategory.ButtonHeight > 0 ? VerticalAlignment.Top : VerticalAlignment.Stretch; } }
-        public VerticalAlignment CategoriesVerticalAlignment { get { return Categories.Count > 0 && double.IsNaN(Categories[0].MButtonHeight) ? VerticalAlignment.Stretch : VerticalAlignment.Top; } }
+        public VerticalAlignment CategoriesVerticalAlignment { get { return Categories != null && Categories.Count > 0 && double.IsNaN(Categories[0].MButtonHeight) ? VerticalAlignment.Stretch : VerticalAlignment.Top; } }
         public int CurrentPageNo { get; set; }
 
         public MenuItemSelectorViewModel(DelegateCommand<ScreenMenuItemData> addMenuItemCommand)

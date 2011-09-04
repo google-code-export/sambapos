@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,7 @@ namespace Samba.Presentation.Common.ModelBase
             InitializeComponent();
         }
 
-        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void MainGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var bm = (DataContext as AbstractEntityCollectionViewModelBase);
             if (bm != null && bm.EditItemCommand.CanExecute(null))
@@ -29,22 +30,28 @@ namespace Samba.Presentation.Common.ModelBase
             var baseModelView = DataContext as AbstractEntityCollectionViewModelBase;
             if (baseModelView != null && baseModelView.CustomCommands.Count > 0)
             {
-                MainListBox.ContextMenu.Items.Add(new Separator());
-                foreach (var item in (DataContext as AbstractEntityCollectionViewModelBase).CustomCommands)
+                MainGrid.ContextMenu.Items.Add(new Separator());
+                foreach (var item in ((AbstractEntityCollectionViewModelBase)DataContext).CustomCommands)
                 {
-                    MainListBox.ContextMenu.Items.Add(
+                    MainGrid.ContextMenu.Items.Add(
                         new MenuItem { Command = item, Header = item.Caption });
                 }
             }
         }
 
-        private void MainListBox_KeyDown(object sender, KeyEventArgs e)
+        private void MainGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                if ((DataContext as AbstractEntityCollectionViewModelBase).EditItemCommand.CanExecute(null))
-                    (DataContext as AbstractEntityCollectionViewModelBase).EditItemCommand.Execute(null);
+                if (((AbstractEntityCollectionViewModelBase)DataContext).EditItemCommand.CanExecute(null))
+                    ((AbstractEntityCollectionViewModelBase)DataContext).EditItemCommand.Execute(null);
             }
+        }
+
+        private void MainGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (((ICountable)MainGrid.DataContext).GetCount() < 10)
+                MainGrid.ColumnHeaderHeight = 0;
         }
     }
 }

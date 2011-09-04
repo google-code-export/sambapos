@@ -128,18 +128,16 @@ namespace DataGridFilterLibrary.Querying
             if ((force && query.FilterString != String.Empty) || (query.FilterString != String.Empty && filterChanged))
             {
                 IEnumerable collection = ItemsSource as IEnumerable;
-
-                if (ItemsSource is ListCollectionView)
+                if (ItemsSource is ICollectionView)
                 {
-                    collection = (ItemsSource as ListCollectionView).SourceCollection as IEnumerable;
+                    collection = (ItemsSource as ICollectionView).SourceCollection as IEnumerable;
                 }
 
-                var observable = ItemsSource as System.Collections.Specialized.INotifyCollectionChanged;
+                var observable = collection as System.Collections.Specialized.INotifyCollectionChanged;
                 if (observable != null)
                 {
-                    observable.CollectionChanged -= new System.Collections.Specialized.NotifyCollectionChangedEventHandler(observable_CollectionChanged);
-                    observable.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(observable_CollectionChanged);
-
+                    observable.CollectionChanged -= observable_CollectionChanged;
+                    observable.CollectionChanged += observable_CollectionChanged;
                 }
 
                 #region Debug

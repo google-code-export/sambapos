@@ -73,8 +73,7 @@ namespace Samba.Modules.TicketModule
 
                 if (_selectedTicket == null && AppServices.MainDataContext.SelectedTicket != null)
                     _selectedTicket = new TicketViewModel(AppServices.MainDataContext.SelectedTicket,
-                        AppServices.MainDataContext.SelectedDepartment.IsFastFood);
-
+                      AppServices.MainDataContext.SelectedDepartment != null && AppServices.MainDataContext.SelectedDepartment.IsFastFood);
                 return _selectedTicket;
             }
         }
@@ -272,7 +271,8 @@ namespace Samba.Modules.TicketModule
                             if (!string.IsNullOrEmpty(SelectedTicket.Location))
                                 CloseTicket();
 
-                            EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
+                            if (!AppServices.CurrentTerminal.AutoLogout)
+                                EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
 
                             if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
                                 if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
@@ -281,7 +281,6 @@ namespace Samba.Modules.TicketModule
                                     InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, x.Value.Caption));
                                 else if (oldLocationName != x.Value.LocationName)
                                     InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, x.Value.Caption));
-
                         }
                         else
                         {
@@ -423,10 +422,11 @@ namespace Samba.Modules.TicketModule
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
                  x =>
                  {
+                     if (SelectedDepartment == null)
+                         UpdateSelectedDepartment(AppServices.CurrentLoggedInUser.UserRole.DepartmentId);
+
                      if (x.Topic == EventTopicNames.ActivateTicketView)
                      {
-                         if (SelectedDepartment == null)
-                             UpdateSelectedDepartment(AppServices.CurrentLoggedInUser.UserRole.DepartmentId);
                          UpdateSelectedTicketView();
                          DisplayTickets();
                      }
@@ -864,9 +864,6 @@ namespace Samba.Modules.TicketModule
                     {
                         SelectedTicket.ClearSelectedItems();
                     }
-
-                    if (AppServices.CurrentTerminal.AutoLogout)
-                        AppServices.CurrentLoggedInUser.PublishEvent(EventTopicNames.UserLoggedOut);
                 }
             }
             RefreshOpenTickets();
@@ -1066,7 +1063,16 @@ namespace Samba.Modules.TicketModule
             }
             _selectedTicket = null;
             _selectedTicketItems.Clear();
-            DisplayTickets();
+
+            if (AppServices.CurrentTerminal.AutoLogout)
+            {
+                AppServices.LogoutUser(false);
+                AppServices.CurrentLoggedInUser.PublishEvent(EventTopicNames.UserLoggedOut);
+            }
+            else
+            {
+                DisplayTickets();
+            }
             AppServices.MessagingService.SendMessage(Messages.TicketRefreshMessage, result.TicketId.ToString());
         }
 

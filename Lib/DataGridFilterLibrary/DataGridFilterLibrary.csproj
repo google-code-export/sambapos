@@ -172,6 +172,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Samba.Localization\Samba.Localization.csproj">
+      <Project>{406B96A6-C886-4149-AD88-A2402EDB2B90}</Project>
+      <Name>Samba.Localization</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
