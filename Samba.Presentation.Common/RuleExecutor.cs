@@ -84,6 +84,13 @@ namespace Samba.Presentation.Common
                 }
                 else
                 {
+                    if (condition.Name == "TerminalName" && !string.IsNullOrEmpty(condition.Value))
+                    {
+                        if (!condition.Value.Equals(AppServices.CurrentTerminal.Name))
+                        {
+                            return false;
+                        }
+                    }
                     if (condition.Name == "DepartmentName" && !string.IsNullOrEmpty(condition.Value))
                     {
                         if (AppServices.MainDataContext.SelectedDepartment == null ||

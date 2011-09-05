@@ -70,8 +70,7 @@ namespace Samba.Presentation
         {
             var time = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
             TimeLabel.Text = TimeLabel.Text.Contains(":") ? time.Replace(":", " ") : time;
-            if (AppServices.CurrentLoggedInUser != User.Nobody && AppServices.MainDataContext.SelectedTicket == null)
-                InteractionService.UserIntraction.DisplayPopups();
+            MethodQueue.RunQueue();
         }
 
         private void MainTabControlSelectedIndexChanged(object sender, EventArgs e)

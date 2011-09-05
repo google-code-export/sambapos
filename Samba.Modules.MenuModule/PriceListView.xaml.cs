@@ -32,31 +32,30 @@ namespace Samba.Modules.MenuModule
 
             if (d != null)
             {
-                DataGrid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = Localization.Properties.Resources.Product,
-                    Binding = new Binding("ItemName"),
-                    IsReadOnly = true,
-                    MinWidth = 170
-                });
+                //DataGrid.Columns.Add(new DataGridTextColumn()
+                //{
+                //    Header = Localization.Properties.Resources.Product,
+                //    Binding = new Binding("ItemName"),
+                //    IsReadOnly = true,
+                //    MinWidth = 170
+                //});
 
-                DataGrid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = Localization.Properties.Resources.Portion,
-                    Binding = new Binding("PortionName"),
-                    IsReadOnly = true,
-                    MinWidth = 70
-                });
+                //DataGrid.Columns.Add(new DataGridTextColumn()
+                //{
+                //    Header = Localization.Properties.Resources.Portion,
+                //    Binding = new Binding("PortionName"),
+                //    IsReadOnly = true,
+                //    MinWidth = 70
+                //});
 
-                DataGrid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = Localization.Properties.Resources.Price,
-                    Binding = new Binding("Price") { StringFormat = "#,#0.00;-#,#0.00;-" },
-                    MinWidth = 60,
-                    CellStyle = (Style)FindResource("RightAlignedCellStyle")
-                });
-
-
+                //DataGrid.Columns.Add(new DataGridTextColumn()
+                //{
+                //    Header = Localization.Properties.Resources.Price,
+                //    Binding = new Binding("Price") { StringFormat = "#,#0.00;-#,#0.00;-" },
+                //    MinWidth = 60,
+                //    CellStyle = (Style)FindResource("RightAlignedCellStyle")
+                //});
+                
                 var i = 0;
                 foreach (var priceTag in d.PriceTags)
                 {

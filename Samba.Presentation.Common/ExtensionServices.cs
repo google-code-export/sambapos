@@ -161,23 +161,10 @@ namespace Samba.Presentation.Common
 
         private static string ToCsvValue<T>(this T item) where T : class
         {
-            //if (item is DateTime)
-            //{
-            //    return string.Format("{0:g}", item);
-            //}
-
             if (item is string)
             {
                 return string.Format("\"{0}\"", item.ToString().Replace("\"", "\\\"")); ;
             }
-
-            //double dummy;
-            //if (item == null)
-            //    return "";
-
-            //if (double.TryParse(item.ToString(), out dummy))
-            //    return string.Format("{0}", item);
-
             return string.Format("\"{0}\"", item);
         }
     }

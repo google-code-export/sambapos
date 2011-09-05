@@ -193,7 +193,9 @@ namespace Samba.Services
                 result.Insert(0, new RuleConstraintViewModel { Name = "UserName", Operation = "Equals" });
             if (!result.Any(x => x.Name == "DepartmentName"))
                 result.Insert(0, new RuleConstraintViewModel { Name = "DepartmentName", Operation = "Equals" });
-
+            if (!result.Any(x => x.Name == "TerminalName"))
+                result.Insert(0, new RuleConstraintViewModel { Name = "TerminalName", Operation = "Equals" });
+            
             return result;
         }
 

@@ -75,6 +75,7 @@ namespace Samba.Modules.SettingsModule
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, Resources.WorkPeriodEnded, new { UserName = "" });
 
             RuleActionTypeRegistry.RegisterParameterSoruce("DepartmentName", () => AppServices.MainDataContext.Departments.Select(x => x.Name));
+            RuleActionTypeRegistry.RegisterParameterSoruce("TerminalName", () => AppServices.Terminals.Select(x => x.Name));
 
             RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
 

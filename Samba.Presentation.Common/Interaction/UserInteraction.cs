@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.ComponentModel.Composition;
 using PropertyEditorLibrary;
-using Samba.Domain.Models.Users;
-using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Services;
@@ -257,6 +253,7 @@ namespace Samba.Presentation.Common.Interaction
         {
             _popupDataViewModel.Add(title, content, dataObject, eventMessage);
             PopupWindow.Show();
+            MethodQueue.Queue("DisplayPopups", DisplayPopups);
         }
 
         public void DisplayPopups()

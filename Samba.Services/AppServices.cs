@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -70,8 +71,12 @@ namespace Samba.Services
             MainDataContext = new MainDataContext();
         }
 
+        private static IEnumerable<Terminal> _terminals;
+        public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals = Dao.Query<Terminal>()); } }
+
         private static Terminal _terminal;
         public static Terminal CurrentTerminal { get { return _terminal ?? (_terminal = GetCurrentTerminal()); } set { _terminal = value; } }
+
         public static User CurrentLoggedInUser { get; private set; }
 
         public static bool CanNavigate()
@@ -104,10 +109,10 @@ namespace Samba.Services
         {
             if (!string.IsNullOrEmpty(LocalSettings.TerminalName))
             {
-                var terminal = Workspace.Single<Terminal>(x => x.Name == LocalSettings.TerminalName);
+                var terminal = Terminals.Single(x => x.Name == LocalSettings.TerminalName);
                 if (terminal != null) return terminal;
             }
-            var dterminal = Workspace.Single<Terminal>(x => x.IsDefault);
+            var dterminal = Terminals.Single(x => x.IsDefault);
             return dterminal ?? Terminal.DefaultTerminal;
         }
 
@@ -136,6 +141,7 @@ namespace Samba.Services
         public static void ResetCache()
         {
             _terminal = null;
+            _terminals = null;
             MainDataContext.ResetCache();
             PrintService.ResetCache();
             SerialPortService.ResetCache();
