@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
-namespace Samba.Presentation.Common
+namespace Samba.Presentation.Common.Services
 {
     public static class PresentationServices
     {

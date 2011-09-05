@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Samba.Presentation.Common
+﻿namespace Samba.Presentation.Common.Services
 {
     public static class InteractionService
     {

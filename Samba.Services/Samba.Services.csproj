@@ -95,6 +95,7 @@
     <Compile Include="NumberGenerator.cs" />
     <Compile Include="PermissionNames.cs" />
     <Compile Include="PermissionRegistry.cs" />
+    <Compile Include="PriceService.cs" />
     <Compile Include="Printing\AbstractPrintJob.cs" />
     <Compile Include="AppServices.cs" />
     <Compile Include="PrinterService.cs" />

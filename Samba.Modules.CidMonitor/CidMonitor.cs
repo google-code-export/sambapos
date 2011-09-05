@@ -6,6 +6,7 @@ using Samba.Domain.Models.Customers;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 
 namespace Samba.Modules.CidMonitor
 {

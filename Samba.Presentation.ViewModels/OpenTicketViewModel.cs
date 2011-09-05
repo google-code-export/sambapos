@@ -1,10 +1,11 @@
 ﻿using System;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
+using Samba.Presentation.Common;
 
-namespace Samba.Presentation.Common.ViewObjects
+namespace Samba.Presentation.ViewModels
 {
-    public class OpenTicketView : ObservableObject
+    public class OpenTicketViewModel : ObservableObject
     {
         public int Id { get; set; }
         public string LocationName { get; set; }

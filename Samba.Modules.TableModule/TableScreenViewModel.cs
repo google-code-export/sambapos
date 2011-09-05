@@ -7,6 +7,7 @@ using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
+using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
 
 namespace Samba.Modules.TableModule

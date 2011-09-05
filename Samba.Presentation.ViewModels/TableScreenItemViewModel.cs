@@ -6,6 +6,7 @@ using System.Windows.Media;
 using Samba.Domain.Models.Tables;
 using Samba.Localization;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Services;
 
 namespace Samba.Presentation.ViewModels

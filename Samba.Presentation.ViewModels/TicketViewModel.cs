@@ -9,6 +9,7 @@ using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Services;
 
 namespace Samba.Presentation.ViewModels
@@ -217,8 +218,9 @@ namespace Samba.Presentation.ViewModels
             ClearSelectedItems();
             var menuItem = AppServices.DataAccessService.GetMenuItem(menuItemId);
             if (menuItem.Portions.Count == 0) return null;
-            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, menuItem.Portions[0].Name, defaultProperties);
-            ti.Quantity = quantity > 9 ? decimal.Round(quantity / menuItem.Portions[0].Multiplier, LocalSettings.Decimals) : quantity;
+            var portion = menuItem.Portions[0];
+            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portion.Name, defaultProperties);
+            ti.Quantity = quantity > 9 ? decimal.Round(quantity / portion.Multiplier, LocalSettings.Decimals) : quantity;
             ti.Gifted = gift;
             var ticketItemViewModel = new TicketItemViewModel(ti);
             _items.Add(ticketItemViewModel);

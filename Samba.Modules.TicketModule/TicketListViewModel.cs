@@ -19,7 +19,7 @@ using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Interaction;
-using Samba.Presentation.Common.ViewObjects;
+using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
 
@@ -100,7 +100,7 @@ namespace Samba.Modules.TicketModule
         public IEnumerable<Department> Departments { get { return AppServices.MainDataContext.Departments; } }
         public IEnumerable<Department> PermittedDepartments { get { return AppServices.MainDataContext.PermittedDepartments; } }
 
-        public IEnumerable<OpenTicketView> OpenTickets { get; set; }
+        public IEnumerable<OpenTicketViewModel> OpenTickets { get; set; }
 
         private IEnumerable<TicketTagFilterViewModel> _openTicketTags;
         public IEnumerable<TicketTagFilterViewModel> OpenTicketTags
@@ -908,7 +908,7 @@ namespace Samba.Modules.TicketModule
 
             var shouldWrap = !SelectedDepartment.IsTakeAway;
 
-            OpenTickets = Dao.Select(x => new OpenTicketView
+            OpenTickets = Dao.Select(x => new OpenTicketViewModel
             {
                 Id = x.Id,
                 LastOrderDate = x.LastOrderDate,
@@ -963,7 +963,7 @@ namespace Samba.Modules.TicketModule
             StartTimer();
         }
 
-        private static IEnumerable<TicketTagFilterViewModel> GetOpenTicketTags(IEnumerable<OpenTicketView> openTickets, TicketTagGroup tagGroup, string tagFilter)
+        private static IEnumerable<TicketTagFilterViewModel> GetOpenTicketTags(IEnumerable<OpenTicketViewModel> openTickets, TicketTagGroup tagGroup, string tagFilter)
         {
             var tag = tagGroup.Name.ToLower() + ":";
             var cnt = openTickets.Count(x => string.IsNullOrEmpty(x.TicketTag) || !x.TicketTag.ToLower().Contains(tag));
@@ -998,10 +998,10 @@ namespace Samba.Modules.TicketModule
             return opt;
         }
 
-        private static IEnumerable<OpenTicketView> GetOpenTickets(IEnumerable<OpenTicketView> openTickets, TicketTagGroup tagGroup, string tagFilter)
+        private static IEnumerable<OpenTicketViewModel> GetOpenTickets(IEnumerable<OpenTicketViewModel> openTickets, TicketTagGroup tagGroup, string tagFilter)
         {
             var tag = tagGroup.Name.ToLower() + ":";
-            IEnumerable<OpenTicketView> result = openTickets.ToList();
+            IEnumerable<OpenTicketViewModel> result = openTickets.ToList();
             if (tagFilter == " ")
             {
                 result = result.Where(x =>

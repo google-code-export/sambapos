@@ -96,6 +96,7 @@ namespace Samba.Domain.Models.Tickets
 
         public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName)
         {
+            // Only for tests
             return AddTicketItem(userId, menuItem, portionName, "");
         }
 
@@ -105,7 +106,6 @@ namespace Samba.Domain.Models.Tickets
             var tif = new TicketItem();
             tif.UpdateMenuItem(userId, menuItem, portionName, 1, defaultProperties);
             TicketItems.Add(tif);
-            //TotalAmount = GetSum();
             return tif;
         }
 

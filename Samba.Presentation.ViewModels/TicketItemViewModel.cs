@@ -148,7 +148,7 @@ namespace Samba.Presentation.ViewModels
 
         public decimal CustomPropertyQuantity
         {
-            get { return Model.GetCustomProperty() != null ? Model.GetCustomProperty().Quantity :1; }
+            get { return Model.GetCustomProperty() != null ? Model.GetCustomProperty().Quantity : 1; }
             set
             {
                 Model.UpdateCustomProperty(CustomPropertyName, CustomPropertyPrice, value);

@@ -49,7 +49,7 @@
             </DataGrid.BorderBrush>
             <DataGrid.Columns>
                 <DataGridTextColumn Header=""
-                     IsReadOnly="True" Width="*" Binding="{Binding Name}" />
+                     IsReadOnly="True" Width="*" Binding="{Binding Name}" MinWidth="300"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu Name="CM">

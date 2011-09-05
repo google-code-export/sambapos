@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Samba.Presentation.Common.Services;
 
 namespace Samba.Presentation.Common.Interaction
 {

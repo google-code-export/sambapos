@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Cron;
 using Samba.Persistance.Data;
 using Samba.Services;
 
-namespace Samba.Presentation.Common
+namespace Samba.Presentation.Common.Services
 {
     public static class TriggerService
     {

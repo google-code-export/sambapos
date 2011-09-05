@@ -9,6 +9,7 @@ using Microsoft.Practices.ServiceLocation;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Engine;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Services;
 
 namespace Samba.Presentation

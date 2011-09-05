@@ -124,7 +124,7 @@
     <Compile Include="Helpers.cs" />
     <Compile Include="IDiagram.cs" />
     <Compile Include="IModuleInitializationService.cs" />
-    <Compile Include="InteractionService.cs" />
+    <Compile Include="Services\InteractionService.cs" />
     <Compile Include="ICaptionCommand.cs" />
     <Compile Include="ICategoryCommand.cs" />
     <Compile Include="Interaction\FeedbackWindow.xaml.cs">
@@ -152,7 +152,6 @@
     <Compile Include="Interaction\ValueChooserForm.xaml.cs">
       <DependentUpon>ValueChooserForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemsControlExtensions.cs" />
     <Compile Include="IUserInteraction.cs" />
     <Compile Include="KineticBehaviour.cs" />
     <Compile Include="ListViewEx\BackgroundConverter.cs" />
@@ -181,7 +180,7 @@
     <Compile Include="ModuleBase.cs" />
     <Compile Include="NativeWin32.cs" />
     <Compile Include="ObservableObject.cs" />
-    <Compile Include="PresentationServices.cs" />
+    <Compile Include="Services\PresentationServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -190,9 +189,9 @@
     </Compile>
     <Compile Include="RegionNames.cs" />
     <Compile Include="RuleExecutor.cs" />
+    <Compile Include="Services\TicketService.cs" />
     <Compile Include="TextBoxInputMaskBehavior.cs" />
-    <Compile Include="TriggerService.cs" />
-    <Compile Include="ViewObjects\OpenTicketView.cs" />
+    <Compile Include="Services\TriggerService.cs" />
     <Compile Include="VirtualKeyboard\KeyboardView2.xaml.cs">
       <DependentUpon>KeyboardView2.xaml</DependentUpon>
     </Compile>

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Samba.Domain.Models.Tickets;
-using Samba.Presentation.Common;
+﻿using Samba.Domain.Models.Tickets;
 using Samba.Services;
 
-namespace Samba.Presentation.ViewModels
+namespace Samba.Presentation.Common.Services
 {
     public class TicketService
     {

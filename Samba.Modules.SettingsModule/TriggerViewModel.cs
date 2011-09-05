@@ -8,6 +8,7 @@ using Samba.Infrastructure.Cron;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
+using Samba.Presentation.Common.Services;
 using Trigger = Samba.Domain.Models.Settings.Trigger;
 
 namespace Samba.Modules.SettingsModule

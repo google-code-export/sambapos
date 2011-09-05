@@ -9,7 +9,6 @@ using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Interaction;
 using Samba.Presentation.Common.ModelBase;
-using Samba.Presentation.Common.ViewObjects;
 using Samba.Services;
 
 namespace Samba.Modules.CustomerModule
