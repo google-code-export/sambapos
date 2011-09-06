@@ -44,6 +44,18 @@ namespace Samba.Services
             set { GetAutoRoundDiscount().DecimalValue = value; }
         }
 
+        public DateTime LastPriceListRebuild
+        {
+            get { return GetSetting("LastPriceListRebuild").DateTimeValue; }
+            set { GetSetting("LastPriceListRebuild").DateTimeValue = value; }
+        }
+
+        public string CurrentPriceTag
+        {
+            get { return GetSetting("CurrentPriceTag").StringValue; }
+            set { GetSetting("CurrentPriceTag").StringValue = value; }
+        }
+
         private SettingGetter _weightBarcodePrefix;
         private SettingGetter GetWeightBarcodePrefix()
         {

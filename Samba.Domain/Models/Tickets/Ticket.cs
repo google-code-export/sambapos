@@ -97,14 +97,14 @@ namespace Samba.Domain.Models.Tickets
         public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName)
         {
             // Only for tests
-            return AddTicketItem(userId, menuItem, portionName, "");
+            return AddTicketItem(userId, menuItem, portionName, 0, "", "");
         }
 
-        public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName, string defaultProperties)
+        public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName, decimal price, string priceTag, string defaultProperties)
         {
             Locked = false;
             var tif = new TicketItem();
-            tif.UpdateMenuItem(userId, menuItem, portionName, 1, defaultProperties);
+            tif.UpdateMenuItem(userId, menuItem, portionName, price, priceTag, 1, defaultProperties);
             TicketItems.Add(tif);
             return tif;
         }
@@ -348,7 +348,7 @@ namespace Samba.Domain.Models.Tickets
 
         public IEnumerable<TicketItem> GetUnlockedLines()
         {
-            return TicketItems.Where(x => !x.Locked).ToList();
+            return TicketItems.Where(x => !x.Locked).OrderBy(x => x.Id).ToList();
         }
 
         public void MergeLinesAndUpdateOrderNumbers(int orderNumber)

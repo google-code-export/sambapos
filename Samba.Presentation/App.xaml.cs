@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Samba.Infrastructure;
+using Samba.Presentation.Common.Services;
 
 namespace Samba.Presentation
 {
@@ -26,6 +27,7 @@ namespace Samba.Presentation
         {
             if (MessagingClient.IsConnected)
                 MessagingClient.Disconnect();
+            TriggerService.CloseTriggers();
         }
 
         private static void RunInDebugMode()

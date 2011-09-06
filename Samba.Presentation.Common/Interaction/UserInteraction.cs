@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.ComponentModel.Composition;
+using System.Windows.Media;
 using PropertyEditorLibrary;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Services;
+using FlexButton;
 
 namespace Samba.Presentation.Common.Interaction
 {
@@ -27,6 +31,26 @@ namespace Samba.Presentation.Common.Interaction
         public string Content { get; set; }
         public object DataObject { get; set; }
         public string EventMessage { get; set; }
+
+        private string _headerColor;
+        public string HeaderColor
+        {
+            get { return _headerColor; }
+            set
+            {
+                _headerColor = value;
+                ContentColor = UpdateContentColor();
+            }
+        }
+
+        private string UpdateContentColor()
+        {
+            var color = ((TypeConverter)new ColorConverter()).ConvertFromString(HeaderColor);
+            var result = color is Color ? (Color)color : new Color();
+            return result.Lerp(Colors.White, 0.80f).ToString();
+        }
+
+        public string ContentColor { get; set; }
     }
 
     public class PopupDataViewModel
@@ -51,9 +75,9 @@ namespace Samba.Presentation.Common.Interaction
             _popupList.Remove(obj);
         }
 
-        public void Add(string title, string content, object dataObject, string eventMessage)
+        public void Add(string title, string content, object dataObject, string eventMessage, string headerColor)
         {
-            _popupCache.Add(new PopupData { Title = title, Content = content, DataObject = dataObject, EventMessage = eventMessage });
+            _popupCache.Add(new PopupData { Title = title, Content = content, DataObject = dataObject, EventMessage = eventMessage, HeaderColor = headerColor });
         }
 
         public void DisplayPopups()
@@ -83,23 +107,25 @@ namespace Samba.Presentation.Common.Interaction
             _popupDataViewModel = new PopupDataViewModel();
 
             RuleActionTypeRegistry.RegisterActionType("ShowMessage", Resources.ShowMessage, "Message");
-            RuleActionTypeRegistry.RegisterActionType("DisplayPopup", Resources.DisplayPopup, "Title", "Message");
+            RuleActionTypeRegistry.RegisterActionType("DisplayPopup", Resources.DisplayPopup, "Title", "Message", "Color");
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
                 if (x.Value.Action.ActionType == "ShowMessage")
                 {
-                    var param = x.Value.Action.GetFormattedParameter("Message", x.Value.DataObject, x.Value.ParameterValues ?? "");
+                    var param = x.Value.GetAsString("Message");
                     if (!string.IsNullOrEmpty(param))
                         GiveFeedback(param);
                 }
 
                 if (x.Value.Action.ActionType == "DisplayPopup")
                 {
-                    var title = x.Value.Action.GetFormattedParameter("Title", x.Value.DataObject, x.Value.ParameterValues ?? "");
-                    var message = x.Value.Action.GetFormattedParameter("Message", x.Value.DataObject, x.Value.ParameterValues ?? "");
-                    if (!string.IsNullOrEmpty(message))
-                        DisplayPopup(title, message, null, "");
+                    var title = x.Value.GetAsString("Title");
+                    var message = x.Value.GetAsString("Message");
+                    var color = x.Value.GetAsString("Color");
+                    color = string.IsNullOrEmpty(color.Trim()) ? "DarkRed" : color;
+                    if (!string.IsNullOrEmpty(message.Trim()))
+                        DisplayPopup(title, message, null, "", color);
                 }
             });
         }
@@ -249,9 +275,9 @@ namespace Samba.Presentation.Common.Interaction
             }
         }
 
-        public void DisplayPopup(string title, string content, object dataObject, string eventMessage)
+        public void DisplayPopup(string title, string content, object dataObject, string eventMessage, string headerColor)
         {
-            _popupDataViewModel.Add(title, content, dataObject, eventMessage);
+            _popupDataViewModel.Add(title, content, dataObject, eventMessage, headerColor);
             PopupWindow.Show();
             MethodQueue.Queue("DisplayPopups", DisplayPopups);
         }

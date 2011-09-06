@@ -281,7 +281,7 @@ namespace Samba.Services.Printing
                 result = FormatData(result, Resources.TF_LineItemPrice, ticketItem.Price.ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineItemTotal, ticketItem.GetItemPrice().ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineItemTotalAndQuantity, ticketItem.GetItemValue().ToString("#,#0.00"));
-                result = FormatData(result, Resources.TF_LineItemPriceCents, (ticketItem.Price * 100).ToString());
+                result = FormatData(result, Resources.TF_LineItemPriceCents, (ticketItem.Price * 100).ToString("#,##"));
                 result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, ticketItem.GetTotal().ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineOrderNumber, ticketItem.OrderNumber.ToString());
                 result = FormatData(result, Resources.TF_LineGiftOrVoidReason, AppServices.MainDataContext.GetReason(ticketItem.ReasonId));

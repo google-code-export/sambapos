@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using Samba.Infrastructure.Cron;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Presentation.Common.Services;
+using Samba.Services;
 using Trigger = Samba.Domain.Models.Settings.Trigger;
 
 namespace Samba.Modules.SettingsModule
@@ -315,7 +317,7 @@ namespace Samba.Modules.SettingsModule
         {
             LastTrigger = DateTime.Now;
             base.OnSave(value);
-            TriggerService.UpdateCronObjects();
+            MethodQueue.Queue("UpdateCronObjects", TriggerService.UpdateCronObjects);
         }
     }
 }

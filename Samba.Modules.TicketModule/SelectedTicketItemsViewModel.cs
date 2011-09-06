@@ -225,7 +225,8 @@ namespace Samba.Modules.TicketModule
 
         private void OnPortionSelected(MenuItemPortion obj)
         {
-            SelectedItem.UpdatePortion(obj);
+            var price = PriceService.GetCurrentPrice(obj.Id);
+            SelectedItem.UpdatePortion(obj.Name, price.Price, price.PriceTag);
             if (SelectedItemPropertyGroups.Count == 0)
                 SelectedTicket.ClearSelectedItems();
         }

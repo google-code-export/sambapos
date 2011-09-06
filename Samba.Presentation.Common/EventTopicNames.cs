@@ -13,6 +13,7 @@ namespace Samba.Presentation.Common
         public const string WorkPeriodEnds = "WorkPeriodEnds";
         public const string UserLoggedOut = "UserLoggedOut";
         public const string UserLoggedIn = "UserLoggedIn";
+        public const string ActionMessageReceived = "ActionMessageReceived";
     }
 
     public static class EventTopicNames

@@ -206,7 +206,7 @@ namespace Samba.Services
         {
             _ticketWorkspace = new TicketWorkspace();
         }
-        
+
         private static IEnumerable<WorkPeriod> GetLastTwoWorkPeriods()
         {
             return Dao.Last<WorkPeriod>(2);
@@ -433,6 +433,7 @@ namespace Samba.Services
                     if (SelectedTicket.TicketItems.Where(x => !x.Locked).FirstOrDefault() != null)
                     {
                         SelectedTicket.MergeLinesAndUpdateOrderNumbers(NumberGenerator.GetNextNumber(SelectedDepartment.OrderNumerator.Id));
+                        SelectedTicket.TicketItems.Where(x=>!x.Locked).ToList().ForEach(x => x.CreatedDateTime = DateTime.Now);
                     }
 
                     if (SelectedTicket.Id == 0)

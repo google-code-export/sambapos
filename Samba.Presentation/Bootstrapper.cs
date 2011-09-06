@@ -10,6 +10,7 @@ using Samba.Infrastructure.Settings;
 using Samba.Localization.Engine;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Services;
+using Samba.Presentation.ViewModels;
 using Samba.Services;
 
 namespace Samba.Presentation
@@ -69,12 +70,14 @@ namespace Samba.Presentation
             if (LocalSettings.StartMessagingClient)
                 AppServices.MessagingService.StartMessagingClient();
 
+            GenericRuleRegistator.RunOnce();
+
             PresentationServices.Initialize();
 
             base.InitializeShell();
 
             TriggerService.UpdateCronObjects();
-
+            
             try
             {
                 creationService.CreateData();

@@ -1826,7 +1826,7 @@ Raporlar bölümünden gün sonu raporlarınızı alınız.</value>
     <value>[iad] </value>
   </data>
   <data name="OrderNumber_f" xml:space="preserve">
-    <value>Sipariş No: {0:0} - {1}</value>
+    <value>Sip.No: {0:0} - {1}</value>
   </data>
   <data name="NewOrder" xml:space="preserve">
     <value>Yeni Sipariş</value>

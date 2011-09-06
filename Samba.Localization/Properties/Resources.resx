@@ -1830,7 +1830,7 @@ Visit Reports section and create Work Period Reports</value>
     <value>[Void] </value>
   </data>
   <data name="OrderNumber_f" xml:space="preserve">
-    <value>Order No: {0:0} - {1}</value>
+    <value>Ord.No: {0:0} - {1}</value>
   </data>
   <data name="NewOrder" xml:space="preserve">
     <value>New Order</value>

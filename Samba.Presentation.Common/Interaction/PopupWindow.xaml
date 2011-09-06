@@ -20,11 +20,11 @@
                     <Button Style="{StaticResource ItemsControlButtonStyle}" 
                             Command="{Binding DataContext.ClickButtonCommand,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
                             CommandParameter="{Binding}" Name="btn">
-                        <Border Height="150" BorderBrush="DarkRed" Visibility="Hidden" BorderThickness="2" Name="Brd" CornerRadius="3" Margin="1">
+                        <Border Height="150" BorderBrush="{Binding HeaderColor}" Visibility="Hidden" BorderThickness="2" Name="Brd" CornerRadius="3" Margin="1">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
-                                    <GradientStop Color="MistyRose" Offset="0"/>
-                                    <GradientStop Color="#FFFFFFFF" Offset="0.8"/>
+                                    <GradientStop Color="{Binding ContentColor}" Offset="0"/>
+                                    <GradientStop Color="#FFFFFFFF" Offset="0.9"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Border.Triggers>
@@ -51,7 +51,7 @@
                                 </EventTrigger>
                             </Border.Triggers>
                             <StackPanel>
-                                <TextBlock Padding="2,0,0,2" Name="TitleBox" Background="DarkRed" Foreground="White" Text="{Binding Title}" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock Padding="2,0,0,2" Name="TitleBox" Background="{Binding HeaderColor}" Foreground="White" Text="{Binding Title}" FontSize="18" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Content}" FontSize="12" FontWeight="Bold" Margin="2" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Border>

@@ -70,32 +70,6 @@ namespace Samba.Modules.SettingsModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListTriggersCommand);
 
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateWorkPeriodsCommand);
-
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodStarts, Resources.WorkPeriodStarted, new { UserName = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, Resources.WorkPeriodEnded, new { UserName = "" });
-
-            RuleActionTypeRegistry.RegisterParameterSoruce("DepartmentName", () => AppServices.MainDataContext.Departments.Select(x => x.Name));
-            RuleActionTypeRegistry.RegisterParameterSoruce("TerminalName", () => AppServices.Terminals.Select(x => x.Name));
-
-            RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
-
-            EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
-            {
-                if (x.Value.Action.ActionType == "SendEmail")
-                {
-                    EMailService.SendEMailAsync(x.Value.GetAsString("SMTPServer"),
-                        x.Value.GetAsString("SMTPUser"),
-                        x.Value.GetAsString("SMTPPassword"),
-                        x.Value.GetAsInteger("SMTPPort"),
-                        x.Value.GetAsString("ToEMailAddress"),
-                        x.Value.GetAsString("FromEMailAddress"),
-                        x.Value.GetAsString("Subject"),
-                        x.Value.GetAsString("EMailMessage"),
-                        x.Value.GetAsString("FileName"),
-                        x.Value.GetAsBoolean("DeleteFile"));
-                }
-            });
-
         }
 
         [ImportingConstructor]

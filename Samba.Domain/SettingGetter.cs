@@ -1,4 +1,5 @@
-﻿using Samba.Domain.Models.Settings;
+﻿using System;
+using Samba.Domain.Models.Settings;
 
 namespace Samba.Domain
 {
@@ -12,6 +13,17 @@ namespace Samba.Domain
         }
 
         public string StringValue { get { return _programSetting.Value; } set { _programSetting.Value = value; } }
+
+        public DateTime DateTimeValue
+        {
+            get
+            {
+                DateTime result;
+                DateTime.TryParse(_programSetting.Value, out result);
+                return result;
+            }
+            set { _programSetting.Value = value.ToString(); }
+        }
 
         public int IntegerValue
         {

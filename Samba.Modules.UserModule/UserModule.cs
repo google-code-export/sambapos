@@ -58,20 +58,6 @@ namespace Samba.Modules.UserModule
                         _userRolesListViewModel = null;
                 }
             });
-
-            EventServiceFactory.EventService.GetEvent<GenericEvent<User>>().Subscribe(x =>
-            {
-                if (x.Topic == EventTopicNames.UserLoggedIn)
-                {
-                    RuleExecutor.NotifyEvent(RuleEventNames.UserLoggedIn, new { User = x.Value, UserName = x.Value.Name, RoleName = x.Value.UserRole.Name });
-                }
-
-                if (x.Topic == EventTopicNames.UserLoggedOut)
-                {
-                    RuleExecutor.NotifyEvent(RuleEventNames.UserLoggedOut, new { User = x.Value, UserName = x.Value.Name, RoleName = x.Value.UserRole.Name });
-                }
-            }
-        );
         }
 
         protected override void OnPostInitialization()
@@ -79,12 +65,7 @@ namespace Samba.Modules.UserModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListUserRolesCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListUsersCommand);
             CommonEventPublisher.PublishNavigationCommandEvent(NavigateLogoutCommand);
-
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedIn, Resources.UserLogin, new { UserName = "", RoleName = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedOut, Resources.UserLogout, new { UserName = "", RoleName = "" });
-
-            RuleActionTypeRegistry.RegisterParameterSoruce("UserName", () => AppServices.MainDataContext.Users.Select(x => x.Name));
-        }
+       }
 
         public void PinEntered(string pin)
         {

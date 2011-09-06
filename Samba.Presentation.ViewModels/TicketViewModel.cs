@@ -23,12 +23,12 @@ namespace Samba.Presentation.ViewModels
         {
             _forcePayment = forcePayment;
             _model = model;
-            _items = new ObservableCollection<TicketItemViewModel>(model.TicketItems.Select(x => new TicketItemViewModel(x)));
+            _items = new ObservableCollection<TicketItemViewModel>(model.TicketItems.Select(x => new TicketItemViewModel(x)).OrderBy(x => x.Model.Id));
             _payments = new ObservableCollection<PaymentViewModel>(model.Payments.Select(x => new PaymentViewModel(x)));
             _discounts = new ObservableCollection<DiscountViewModel>(model.Discounts.Select(x => new DiscountViewModel(x)));
 
             _itemsViewSource = new CollectionViewSource { Source = _items };
-            _itemsViewSource.GroupDescriptions.Add(new PropertyGroupDescription("OrderNumber"));
+            _itemsViewSource.GroupDescriptions.Add(new PropertyGroupDescription("GroupObject"));
 
             PrintJobButtons = AppServices.CurrentTerminal.PrintJobs
                 .Where(x => (!string.IsNullOrEmpty(x.ButtonText))
@@ -219,7 +219,8 @@ namespace Samba.Presentation.ViewModels
             var menuItem = AppServices.DataAccessService.GetMenuItem(menuItemId);
             if (menuItem.Portions.Count == 0) return null;
             var portion = menuItem.Portions[0];
-            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portion.Name, defaultProperties);
+            var price = PriceService.GetCurrentPrice(portion.Id);
+            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portion.Name, price.Price, price.PriceTag, defaultProperties);
             ti.Quantity = quantity > 9 ? decimal.Round(quantity / portion.Multiplier, LocalSettings.Decimals) : quantity;
             ti.Gifted = gift;
             var ticketItemViewModel = new TicketItemViewModel(ti);

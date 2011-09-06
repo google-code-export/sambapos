@@ -57,41 +57,6 @@ namespace Samba.Modules.TicketModule
                         ActivateTicketEditorView();
                 });
 
-
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m });
-
-            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", "DiscountPercentage");
-            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", "TagName", "TagValue");
-
-            EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
-            {
-                if (x.Value.Action.ActionType == "AddTicketDiscount")
-                {
-                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
-                    if (ticket != null)
-                    {
-                        var percentValue = x.Value.GetAsDecimal("DiscountPercentage");
-                        ticket.AddTicketDiscount(DiscountType.Percent, percentValue, AppServices.CurrentLoggedInUser.Id);
-                        TicketService.RecalculateTicket(ticket);
-                    }
-                }
-
-                if (x.Value.Action.ActionType == "UpdateTicketTag")
-                {
-                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
-                    if (ticket != null)
-                    {
-                        var tagName = x.Value.GetAsString("TagName");
-                        var tagValue = x.Value.GetAsString("TagValue");
-                        ticket.SetTagValue(tagName, tagValue);
-                        var tagData = new TicketTagData { TagName = tagName, TagValue = tagValue };
-                        tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
-                    }
-                }
-            });
         }
 
         private static bool CanNavigateTicket(string arg)

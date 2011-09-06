@@ -24,6 +24,6 @@ namespace Samba.Presentation.Common
         void HideKeyboard();
         void ToggleKeyboard();
         void ToggleSplashScreen();
-        void DisplayPopup(string title, string content, object dataObject, string eventMessage);
+        void DisplayPopup(string title, string content, object dataObject, string eventMessage, string headerColor = "DarkRed");
     }
 }

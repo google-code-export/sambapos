@@ -3,28 +3,17 @@ using System.Collections.Generic;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Cron;
 using Samba.Persistance.Data;
-using Samba.Services;
 
 namespace Samba.Presentation.Common.Services
 {
     public static class TriggerService
     {
-        static TriggerService()
-        {
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TriggerExecuted, "Trigger Executed", new { TriggerName = "" });
-            RuleActionTypeRegistry.RegisterParameterSoruce("TriggerName", () => Dao.Select<Trigger, string>(yz => yz.Name, y => !string.IsNullOrEmpty(y.Expression)));
-        }
-
         private static readonly List<CronObject> CronObjects = new List<CronObject>();
 
         public static void UpdateCronObjects()
         {
-            foreach (var cronObject in CronObjects)
-            {
-                cronObject.Stop();
-                cronObject.OnCronTrigger -= OnCronTrigger;
-            }
-            CronObjects.Clear();
+            CloseTriggers();
+
             var triggers = Dao.Query<Trigger>();
             foreach (var trigger in triggers)
             {
@@ -39,6 +28,16 @@ namespace Samba.Presentation.Common.Services
                 CronObjects.Add(cronObject);
             }
             CronObjects.ForEach(x => x.Start());
+        }
+
+        public static void CloseTriggers()
+        {
+            foreach (var cronObject in CronObjects)
+            {
+                cronObject.Stop();
+                cronObject.OnCronTrigger -= OnCronTrigger;
+            }
+            CronObjects.Clear();
         }
 
         private static void OnCronTrigger(CronObject cronobject)

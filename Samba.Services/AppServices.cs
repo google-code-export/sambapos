@@ -72,7 +72,8 @@ namespace Samba.Services
         }
 
         private static IEnumerable<Terminal> _terminals;
-        public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals = Dao.Query<Terminal>()); } }
+        //public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals =  Dao.Query<Terminal>(x => x.PrintJobs, x => x.PrintJobs.Select(y => y.PrinterMaps))); } }
+        public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals = Workspace.All<Terminal>()); } }
 
         private static Terminal _terminal;
         public static Terminal CurrentTerminal { get { return _terminal ?? (_terminal = GetCurrentTerminal()); } set { _terminal = value; } }

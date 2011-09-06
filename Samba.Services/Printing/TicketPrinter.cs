@@ -97,13 +97,13 @@ namespace Samba.Services.Printing
                     ti = ticket.GetUnlockedLines();
                     break;
                 case (int)WhatToPrintTypes.GroupedByBarcode:
-                    ti = GroupLinesByValue(ticket, x => x.Barcode, "1");
+                    ti = GroupLinesByValue(ticket, x => x.Barcode ?? "", "1");
                     break;
                 case (int)WhatToPrintTypes.GroupedByGroupCode:
                     ti = GroupLinesByValue(ticket, x => x.GroupCode, "[Tanımsız]");
                     break;
                 default:
-                    ti = ticket.TicketItems.ToList();
+                    ti = ticket.TicketItems.OrderBy(x => x.Id).ToList();
                     break;
             }
 
@@ -127,7 +127,7 @@ namespace Samba.Services.Printing
             var discounts = ticket.GetTotalDiscounts();
             var di = discounts > 0 ? discounts / ticket.GetPlainSum() : 0;
             var cache = new Dictionary<string, decimal>();
-            foreach (var ticketItem in ticket.TicketItems)
+            foreach (var ticketItem in ticket.TicketItems.OrderBy(x => x.Id).ToList())
             {
                 var item = ticketItem;
                 var value = selector(AppServices.DataAccessService.GetMenuItem(item.MenuItemId)).ToString();

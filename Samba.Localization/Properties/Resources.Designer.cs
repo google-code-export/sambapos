@@ -3855,7 +3855,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Order No: {0:0} - {1}.
+        ///   Looks up a localized string similar to Ord.No: {0:0} - {1}.
         /// </summary>
         public static string OrderNumber_f {
             get {

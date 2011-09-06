@@ -55,8 +55,17 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
                                                     <Border BorderThickness="0,0,0,1" BorderBrush="Silver">
-                                                        <TextBlock Margin="2,0,0,0" Grid.Row="0" Text="{Binding Name}" FontSize="10" 
-                                                                       Foreground="Gray" Style="{StaticResource GroupLabelStyle}"/>
+                                                        <Grid Grid.Row="0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Margin="15,0,0,0" Grid.Column="0" Text="{Binding Name.OrderNumber}" FontWeight="Bold"
+                                                                        Foreground="Gray" Style="{StaticResource GroupLabelStyle}" FontSize="10"/>
+                                                            <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="{Binding Name.Time}" FontWeight="Bold"
+                                                                        Foreground="Gray" Style="{StaticResource GroupLabelStyle}" FontSize="10"/>
+                                                        </Grid>
                                                     </Border>
                                                     <ItemsPresenter Grid.Row="1"/>
                                                 </Grid>

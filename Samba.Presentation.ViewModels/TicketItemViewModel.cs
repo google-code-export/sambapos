@@ -124,6 +124,8 @@ namespace Samba.Presentation.ViewModels
             }
         }
 
+        public object GroupObject { get { return new { OrderNumber, Time = Model.Id > 0 ? Model.CreatedDateTime.ToShortTimeString() : "" }; } }
+
         public string CreatingUserName { get { return AppServices.MainDataContext.GetUserName(Model.CreatingUserId); } }
 
         public string CustomPropertyName
@@ -173,6 +175,8 @@ namespace Samba.Presentation.ViewModels
         }
 
         public string Reason { get { return Model.ReasonId > 0 ? AppServices.MainDataContext.GetReason(Model.ReasonId) : ""; } }
+
+        public string PriceTag { get { return Model.PriceTag; } }
 
         public ObservableCollection<TicketItemPropertyViewModel> Properties { get; private set; }
 
@@ -228,9 +232,9 @@ namespace Samba.Presentation.ViewModels
             }
         }
 
-        public void UpdatePortion(MenuItemPortion menuItemPortion)
+        public void UpdatePortion(string portionName, decimal price, string priceTag)
         {
-            _model.UpdatePortion(menuItemPortion);
+            _model.UpdatePortion(portionName, price, priceTag);
             RaisePropertyChanged("Description");
             RaisePropertyChanged("TotalPrice");
         }
