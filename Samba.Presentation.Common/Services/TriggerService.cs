@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Cron;
 using Samba.Persistance.Data;
+using Samba.Services;
 
 namespace Samba.Presentation.Common.Services
 {
@@ -49,7 +50,8 @@ namespace Samba.Presentation.Common.Services
                 {
                     trigger.LastTrigger = DateTime.Now;
                     workspace.CommitChanges();
-                    RuleExecutor.NotifyEvent(RuleEventNames.TriggerExecuted, new { TriggerName = trigger.Name });
+                    if (AppServices.ActiveAppScreen != AppScreens.Dashboard)
+                        RuleExecutor.NotifyEvent(RuleEventNames.TriggerExecuted, new { TriggerName = trigger.Name });
                 }
                 else cronobject.Stop();
             }

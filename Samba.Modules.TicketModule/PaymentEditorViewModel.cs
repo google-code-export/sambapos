@@ -407,7 +407,8 @@ namespace Samba.Modules.TicketModule
                     ? AppServices.MainDataContext.SelectedTicket.GetRemainingAmount().ToString("#,#0.00")
                     : "";
             SelectedTicket.Discounts.Clear();
-            SelectedTicket.Discounts.AddRange(SelectedTicket.Model.Discounts.Select(x => new DiscountViewModel(x)));
+            SelectedTicket.Discounts.AddRange(SelectedTicket.Model.Discounts.Where(x => x.DiscountType != (int)DiscountType.Tip).Select(x => new DiscountViewModel(x)));
+            
             RaisePropertyChanged("SelectedTicket");
             RaisePropertyChanged("ReturningAmountVisibility");
             RaisePropertyChanged("PaymentsVisibility");

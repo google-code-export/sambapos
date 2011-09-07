@@ -199,7 +199,8 @@ namespace Samba.Services.Printing
 
             var payment = ticket.GetPaymentAmount();
             var remaining = ticket.GetRemainingAmount();
-            var discount = ticket.GetTotalDiscounts();
+            var discount = ticket.GetDiscountAmount();
+            var tip = ticket.GetTipAmount();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
 
@@ -207,9 +208,10 @@ namespace Samba.Services.Printing
                 string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
 
             result = FormatDataIf(discount > 0, result, Resources.TF_DiscountTotalAndTicketTotal,
-                string.Format(Resources.DiscountTotalAndTicketTotalValue_f, plainTotal.ToString("#,#0.00"), discount.ToString("#,#0.00")));
+                string.Format(Resources.DiscountTotalAndTicketTotalValue_f, (plainTotal+tip).ToString("#,#0.00"), discount.ToString("#,#0.00")));
 
             result = FormatDataIf(giftAmount > 0, result, Resources.TF_GiftTotal, giftAmount.ToString("#,#0.00"));
+            result = FormatDataIf(tip > 0, result, "{TIP TOTAL}", tip.ToString("#,#0.00"));
             result = FormatDataIf(discount < 0, result, Resources.TF_IfFlatten, string.Format(Resources.IfNegativeDiscountValue_f, discount.ToString("#,#0.00")));
             result = FormatData(result, Resources.TF_TicketTotal, ticket.GetSum().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketPaidTotal, ticket.GetPaymentAmount().ToString("#,#0.00"));
@@ -285,6 +287,7 @@ namespace Samba.Services.Printing
                 result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, ticketItem.GetTotal().ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineOrderNumber, ticketItem.OrderNumber.ToString());
                 result = FormatData(result, Resources.TF_LineGiftOrVoidReason, AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
+                result = FormatData(result, "{PRICE TAG}", ticketItem.PriceTag);
                 if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
                 {
                     string lineFormat = result;

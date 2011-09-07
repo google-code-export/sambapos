@@ -6,6 +6,7 @@ using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
+using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
@@ -33,8 +34,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", "DiscountPercentage");
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", "TagName", "TagValue");
-            RuleActionTypeRegistry.RegisterActionType("UpdatePriceList", "Update Price List", "PriceTag");
-            RuleActionTypeRegistry.RegisterActionType("RefreshPriceList", "Refresh Price List");
+            RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", "Update Price Tag", "DepartmentName", "PriceTag");
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", "Refresh Cache");
             RuleActionTypeRegistry.RegisterActionType("SendActionMessage", "Send Action Message", "Command");
         }
@@ -49,7 +49,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ActionMessageReceived, "Action Message Received", new { Command = "" });
         }
 
@@ -76,23 +76,12 @@ namespace Samba.Presentation.ViewModels
             {
                 if (x.Value.Action.ActionType == "RefreshCache")
                 {
-
                     MethodQueue.Queue("ResetCache", ResetCache);
                 }
 
                 if (x.Value.Action.ActionType == "SendActionMessage")
                 {
                     AppServices.MessagingService.SendMessage("ActionMessage", x.Value.GetAsString("Command"));
-                }
-
-                if (x.Value.Action.ActionType == "RefreshPriceList")
-                {
-                    PriceService.RebuildPricesIfNeeded();
-                }
-
-                if (x.Value.Action.ActionType == "UpdatePriceList")
-                {
-                    PriceService.ApplyPriceList(x.Value.GetAsString("PriceTag"));
                 }
 
                 if (x.Value.Action.ActionType == "SendEmail")
@@ -130,6 +119,22 @@ namespace Samba.Presentation.ViewModels
                         ticket.SetTagValue(tagName, tagValue);
                         var tagData = new TicketTagData { TagName = tagName, TagValue = tagValue };
                         tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
+                    }
+                }
+
+                if (x.Value.Action.ActionType == "UpdatePriceTag")
+                {
+                    using (var workspace = WorkspaceFactory.Create())
+                    {
+                        var priceTag = x.Value.GetAsString("PriceTag");
+                        var departmentName = x.Value.GetAsString("DepartmentName");
+                        var department = workspace.Single<Department>(y => y.Name == departmentName);
+                        if (department != null)
+                        {
+                            department.PriceTag = priceTag;
+                            workspace.CommitChanges();
+                            MethodQueue.Queue("ResetCache", ResetCache);
+                        }
                     }
                 }
             });

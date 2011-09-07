@@ -1052,7 +1052,7 @@ Payment</value>
     <comment>Paragraph content</comment>
   </data>
   <data name="LineItemDetailQuantity" xml:space="preserve">
-    <value>#Satır: Item Property Quantity</value>
+    <value>#Line: Item Property Quantity</value>
     <comment>Paragraph content</comment>
   </data>
   <data name="LineOrderNumber" xml:space="preserve">
@@ -1687,7 +1687,7 @@ Balance</value>
     <value>Can Round Ticket Total</value>
   </data>
   <data name="CanFlattenTicketTotal" xml:space="preserve">
-    <value>Can Flatten Ticket Total</value>
+    <value>Can Auto Round Ticket Total</value>
   </data>
   <data name="OnlyOpenTickets" xml:space="preserve">
     <value>Open Tickets Only</value>
@@ -1797,7 +1797,7 @@ Visit Reports section and create Work Period Reports</value>
     <value>Open</value>
   </data>
   <data name="AutoFlatten_ab" xml:space="preserve">
-    <value>Auto Flatten</value>
+    <value>Auto Rounding</value>
   </data>
   <data name="Rounding" xml:space="preserve">
     <value>Rounding</value>
@@ -2278,7 +2278,7 @@ Table: {2}</value>
     <value>{IF FLATTEN}</value>
   </data>
   <data name="IfNegativeDiscountValue_f" xml:space="preserve">
-    <value>&lt;J&gt;Flatten:|{0}</value>
+    <value>&lt;J&gt;Rounding:|{0}</value>
   </data>
   <data name="ExportSalesData" xml:space="preserve">
     <value>Export Sales Data</value>
@@ -2608,4 +2608,22 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>To:</value>
     <comment>TextBlock content</comment>
   </data>
+  <data name="TipsTotal" xml:space="preserve">
+    <value>Tips Total</value>
+  </data>
+  <data name="TicketTipTotal" xml:space="preserve">
+    <value>Tip Total</value>
+  </data>
+  <data name="LinePriceTag" xml:space="preserve">
+    <value>#Line: Price Tag</value>
+  </data>
+  <data name="TicketTipTotalAmount" xml:space="preserve">
+    <value>Total ticket tip amount</value>
+  </data>
+  <data name="PriceTag" xml:space="preserve">
+    <value>Price Tag</value>
+  </data>
+	<data name="SaveErrorZeroOrNullInventoryLines">
+		<value xml:space="preserve">Can't save because there are lines with empty inventory items or zero quantity</value>
+	</data>
 </root>

@@ -2611,4 +2611,22 @@ Masa: {2}</value>
     <value>Son</value>
     <comment>TextBlock content</comment>
   </data>
+	<data name="TipsTotal">
+		<value xml:space="preserve">Garsoniye Toplamı</value>
+	</data>
+	<data name="TicketTipTotal" xml:space="preserve">
+    <value>Garsoniye Toplamı</value>
+  </data>
+	<data name="LinePriceTag" xml:space="preserve">
+    <value>#Satır: Fiyat Etiketi</value>
+  </data>
+	<data name="TicketTipTotalAmount" xml:space="preserve">
+    <value>Belge Garsoniye Toplamı</value>
+  </data>
+	<data name="PriceTag" xml:space="preserve">
+    <value>Fiyat Etiketi</value>
+  </data>
+	<data name="SaveErrorZeroOrNullInventoryLines">
+		<value xml:space="preserve">Reçetede stok seçilmemiş veya sıfır miktarlı satırlar varken kaydedilemez.</value>
+	</data>
 </root>

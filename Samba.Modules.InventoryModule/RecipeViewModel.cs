@@ -153,5 +153,12 @@ namespace Samba.Modules.InventoryModule
         {
             return SelectedRecipeItem != null;
         }
+
+        protected override string GetSaveErrorMessage()
+        {
+            if (Model.RecipeItems.Any(x => x.InventoryItem == null || x.Quantity == 0))
+                return Resources.SaveErrorZeroOrNullInventoryLines;
+            return base.GetSaveErrorMessage();
+        }
     }
 }

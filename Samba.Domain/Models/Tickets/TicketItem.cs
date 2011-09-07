@@ -49,13 +49,13 @@ namespace Samba.Domain.Models.Tickets
         decimal _selectedQuantity;
         public decimal SelectedQuantity { get { return _selectedQuantity; } }
 
-        public void UpdateMenuItem(int userId, MenuItem menuItem, string portionName, decimal price, string priceTag, int quantity, string defaultProperties)
+        public void UpdateMenuItem(int userId, MenuItem menuItem, string portionName, string priceTag, int quantity, string defaultProperties)
         {
             MenuItemId = menuItem.Id;
             MenuItemName = menuItem.Name;
             var portion = menuItem.GetPortion(portionName);
             Debug.Assert(portion != null);
-            UpdatePortion(portion.Name, price > 0 ? price : portion.Price.Amount, priceTag);
+            UpdatePortion(portion, priceTag);
             Quantity = quantity;
             _selectedQuantity = quantity;
             PortionCount = menuItem.Portions.Count;
@@ -78,16 +78,32 @@ namespace Samba.Domain.Models.Tickets
             }
         }
 
-        public void UpdatePortion(string portionName, decimal price, string priceTag)
+        public void UpdatePortion(MenuItemPortion portion, string priceTag)
         {
-            PortionName = portionName;
-            Price = price;
-            PriceTag = priceTag;
-            CurrencyCode = CurrencyContext.DefaultCurrency;
+            PortionName = portion.Name;
 
+            if (!string.IsNullOrEmpty(priceTag))
+            {
+                string tag = priceTag;
+                var price = portion.Prices.SingleOrDefault(x => x.PriceTag == tag);
+                if (price != null && price.Price > 0)
+                {
+                    Price = price.Price;
+                    PriceTag = price.PriceTag;
+                }
+                else priceTag = "";
+            }
+
+            if (string.IsNullOrEmpty(priceTag))
+            {
+                Price = portion.Price.Amount;
+                PriceTag = "";
+            }
+
+            CurrencyCode = CurrencyContext.DefaultCurrency;
             foreach (var ticketItemProperty in Properties)
             {
-                ticketItemProperty.PortionName = portionName;
+                ticketItemProperty.PortionName = portion.Name;
             }
         }
 

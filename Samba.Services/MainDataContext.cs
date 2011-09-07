@@ -433,7 +433,7 @@ namespace Samba.Services
                     if (SelectedTicket.TicketItems.Where(x => !x.Locked).FirstOrDefault() != null)
                     {
                         SelectedTicket.MergeLinesAndUpdateOrderNumbers(NumberGenerator.GetNextNumber(SelectedDepartment.OrderNumerator.Id));
-                        SelectedTicket.TicketItems.Where(x=>!x.Locked).ToList().ForEach(x => x.CreatedDateTime = DateTime.Now);
+                        SelectedTicket.TicketItems.Where(x => x.Id == 0).ToList().ForEach(x => x.CreatedDateTime = DateTime.Now);
                     }
 
                     if (SelectedTicket.Id == 0)

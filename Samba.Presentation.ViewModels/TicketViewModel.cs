@@ -120,6 +120,16 @@ namespace Samba.Presentation.ViewModels
             get { return Model.GetTotalDiscounts(); }
         }
 
+        public decimal TicketDiscountAmount
+        {
+            get { return Model.GetDiscountAmount(); }
+        }
+
+        public decimal TicketTipAmount
+        {
+            get { return Model.GetTipAmount(); }
+        }
+
         public decimal TicketPlainTotalValue
         {
             get { return Model.GetPlainSum(); }
@@ -137,7 +147,12 @@ namespace Samba.Presentation.ViewModels
 
         public string TicketDiscountLabel
         {
-            get { return TicketDiscountValue.ToString(LocalSettings.DefaultCurrencyFormat); }
+            get { return TicketDiscountAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
+        }
+
+        public string TicketTipLabel
+        {
+            get { return TicketTipAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
         public string TicketPaymentLabel
@@ -219,8 +234,7 @@ namespace Samba.Presentation.ViewModels
             var menuItem = AppServices.DataAccessService.GetMenuItem(menuItemId);
             if (menuItem.Portions.Count == 0) return null;
             var portion = menuItem.Portions[0];
-            var price = PriceService.GetCurrentPrice(portion.Id);
-            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portion.Name, price.Price, price.PriceTag, defaultProperties);
+            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portion.Name, AppServices.MainDataContext.SelectedDepartment.PriceTag, defaultProperties);
             ti.Quantity = quantity > 9 ? decimal.Round(quantity / portion.Multiplier, LocalSettings.Decimals) : quantity;
             ti.Gifted = gift;
             var ticketItemViewModel = new TicketItemViewModel(ti);
@@ -320,9 +334,19 @@ namespace Samba.Presentation.ViewModels
             get { return TicketRemainingValue > 0; }
         }
 
+        public bool IsPlainTotalVisible
+        {
+            get { return IsTicketDiscountVisible || IsTicketTipVisible; }
+        }
+
         public bool IsTicketDiscountVisible
         {
-            get { return TicketDiscountValue != 0; }
+            get { return TicketDiscountAmount != 0; }
+        }
+
+        public bool IsTicketTipVisible
+        {
+            get { return TicketTipAmount != 0; }
         }
 
         public string Location

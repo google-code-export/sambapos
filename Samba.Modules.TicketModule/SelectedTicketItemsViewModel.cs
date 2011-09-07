@@ -35,7 +35,6 @@ namespace Samba.Modules.TicketModule
             SelectedItemPropertyGroups = new ObservableCollection<MenuItemPropertyGroup>();
             Reasons = new ObservableCollection<Reason>();
             TicketTags = new ObservableCollection<TicketTag>();
-
             EventServiceFactory.EventService.GetEvent<GenericEvent<TicketViewModel>>().Subscribe(OnTicketViewModelEvent);
         }
 
@@ -225,8 +224,7 @@ namespace Samba.Modules.TicketModule
 
         private void OnPortionSelected(MenuItemPortion obj)
         {
-            var price = PriceService.GetCurrentPrice(obj.Id);
-            SelectedItem.UpdatePortion(obj.Name, price.Price, price.PriceTag);
+            SelectedItem.UpdatePortion(obj, AppServices.MainDataContext.SelectedDepartment.PriceTag);
             if (SelectedItemPropertyGroups.Count == 0)
                 SelectedTicket.ClearSelectedItems();
         }

@@ -45,6 +45,7 @@ namespace Samba.Services
                     .Select(x => new SalesData { MenuItemName = x.Key.MenuItemName, MenuItemId = x.Key.MenuItemId, PortionName = x.Key.PortionName, Total = x.Sum(y => y.Quantity) }).ToList();
 
             var properties = ticketItems.SelectMany(x => x.Properties, (ti, pr) => new { Properties = pr, ti.Quantity })
+                    .Where(x => x.Properties.MenuItemId > 0)
                     .GroupBy(x => new { x.Properties.MenuItemId, x.Properties.PortionName });
 
             foreach (var ticketItemProperty in properties)
@@ -103,7 +104,7 @@ namespace Samba.Services
                 if (recipe != null)
                 {
                     var cost = 0m;
-                    foreach (var recipeItem in recipe.RecipeItems)
+                    foreach (var recipeItem in recipe.RecipeItems.Where(x => x.InventoryItem != null && x.Quantity > 0))
                     {
                         var item = recipeItem;
                         var pci = pc.PeriodicConsumptionItems.Single(x => x.InventoryItem.Id == item.InventoryItem.Id);
@@ -157,7 +158,7 @@ namespace Samba.Services
                 if (recipe != null)
                 {
                     var totalcost = recipe.FixedCost;
-                    foreach (var recipeItem in recipe.RecipeItems)
+                    foreach (var recipeItem in recipe.RecipeItems.Where(x => x.InventoryItem != null && x.Quantity > 0))
                     {
                         var item = recipeItem;
                         var pci = pc.PeriodicConsumptionItems.Single(x => x.InventoryItem.Id == item.InventoryItem.Id);

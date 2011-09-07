@@ -39,9 +39,16 @@ namespace Samba.Services.Printing
             if (notepads[0] != null)
             {
                 IntPtr child = FindWindowEx(notepads[0].MainWindowHandle, new IntPtr(0), wname, null);
-                var text = lines.Aggregate("", (current, s) => current + RemoveTag(s.Replace("|", " ")) + "\r\n");
+                var text = lines.Aggregate("", (current, s) => current + RemoveTagFmt(s));
                 SendMessage(child, 0x000C, 0, text);
             }
+        }
+
+        private static string RemoveTagFmt(string s)
+        {
+            var result = RemoveTag(s.Replace("|", " "));
+            if (!string.IsNullOrEmpty(result)) return result + "\r\n";
+            return "";
         }
 
         public override void DoPrint(FlowDocument document)

@@ -232,9 +232,9 @@ namespace Samba.Presentation.ViewModels
             }
         }
 
-        public void UpdatePortion(string portionName, decimal price, string priceTag)
+        public void UpdatePortion(MenuItemPortion portion, string priceTag)
         {
-            _model.UpdatePortion(portionName, price, priceTag);
+            _model.UpdatePortion(portion, priceTag);
             RaisePropertyChanged("Description");
             RaisePropertyChanged("TotalPrice");
         }

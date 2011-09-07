@@ -50,14 +50,14 @@ namespace Samba.Services
 
         public MenuItem GetMenuItem(int menuItemId)
         {
-            return Dao.SingleWithCache<MenuItem>(x => x.Id == menuItemId, x => x.PropertyGroups.Select(z => z.Properties), x => x.Portions);
+            return Dao.SingleWithCache<MenuItem>(x => x.Id == menuItemId, x => x.PropertyGroups.Select(z => z.Properties), x => x.Portions.Select(y => y.Prices));
         }
 
         public MenuItem GetMenuItem(string barcode)
         {
-            return Dao.SingleWithCache<MenuItem>(x => x.Barcode == barcode, x => x.PropertyGroups.Select(z => z.Properties), x => x.Portions);
+            return Dao.SingleWithCache<MenuItem>(x => x.Barcode == barcode, x => x.PropertyGroups.Select(z => z.Properties), x => x.Portions.Select(y => y.Prices));
         }
-        
+
         public IEnumerable<string> GetInventoryItemNames()
         {
             return Dao.Select<InventoryItem, string>(x => x.Name, x => !string.IsNullOrEmpty(x.Name));

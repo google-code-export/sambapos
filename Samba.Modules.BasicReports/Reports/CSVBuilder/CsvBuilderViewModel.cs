@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
-using Microsoft.Win32;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 
@@ -15,7 +14,6 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
         {
             FilterGroups.Clear();
             FilterGroups.Add(CreateWorkPeriodFilterGroup());
-
         }
 
         protected override FlowDocument GetReport()
@@ -67,7 +65,8 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
                         x.TicketItem.Quantity,
                         Price = x.TicketItem.GetItemPrice(),
                         Value = x.TicketItem.GetItemValue(),
-                        Discount = x.Ticket.GetPlainSum() > 0 ? x.Ticket.GetTotalDiscounts() / x.Ticket.GetPlainSum() : 0,
+                        Discount = x.Ticket.GetPlainSum() > 0 ? x.Ticket.GetDiscountAmount() / x.Ticket.GetPlainSum() : 0,
+                        Tip = x.Ticket.GetPlainSum() > 0 ? x.Ticket.GetTipAmount() / x.Ticket.GetPlainSum() : 0,
                         Total = MenuGroupBuilder.CalculateTicketItemTotal(x.Ticket, x.TicketItem),
                     }
                 );

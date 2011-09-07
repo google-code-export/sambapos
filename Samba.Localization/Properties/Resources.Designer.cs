@@ -443,7 +443,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Flatten.
+        ///   Looks up a localized string similar to Auto Rounding.
         /// </summary>
         public static string AutoFlatten_ab {
             get {
@@ -785,7 +785,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can Flatten Ticket Total.
+        ///   Looks up a localized string similar to Can Auto Round Ticket Total.
         /// </summary>
         public static string CanFlattenTicketTotal {
             get {
@@ -2704,7 +2704,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;J&gt;Flatten:|{0}.
+        ///   Looks up a localized string similar to &lt;J&gt;Rounding:|{0}.
         /// </summary>
         public static string IfNegativeDiscountValue_f {
             get {
@@ -3106,7 +3106,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to #Satır: Item Property Quantity.
+        ///   Looks up a localized string similar to #Line: Item Property Quantity.
         /// </summary>
         public static string LineItemDetailQuantity {
             get {
@@ -3192,6 +3192,15 @@ namespace Samba.Localization.Properties {
         public static string LineOrderNumber {
             get {
                 return ResourceManager.GetString("LineOrderNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #Line: Price Tag.
+        /// </summary>
+        public static string LinePriceTag {
+            get {
+                return ResourceManager.GetString("LinePriceTag", resourceCulture);
             }
         }
         
@@ -4098,6 +4107,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Price Tag.
+        /// </summary>
+        public static string PriceTag {
+            get {
+                return ResourceManager.GetString("PriceTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print.
         /// </summary>
         public static string Print {
@@ -4690,6 +4708,15 @@ namespace Samba.Localization.Properties {
         public static string SaveErrorThisPinCodeInUse {
             get {
                 return ResourceManager.GetString("SaveErrorThisPinCodeInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t save because there are lines with empty inventory items or zero quantity.
+        /// </summary>
+        public static string SaveErrorZeroOrNullInventoryLines {
+            get {
+                return ResourceManager.GetString("SaveErrorZeroOrNullInventoryLines", resourceCulture);
             }
         }
         
@@ -5946,6 +5973,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tip Total.
+        /// </summary>
+        public static string TicketTipTotal {
+            get {
+                return ResourceManager.GetString("TicketTipTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total ticket tip amount.
+        /// </summary>
+        public static string TicketTipTotalAmount {
+            get {
+                return ResourceManager.GetString("TicketTipTotalAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Total.
         /// </summary>
         public static string TicketTotal {
@@ -5978,6 +6023,15 @@ namespace Samba.Localization.Properties {
         public static string TicketWithBrackets {
             get {
                 return ResourceManager.GetString("TicketWithBrackets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tips Total.
+        /// </summary>
+        public static string TipsTotal {
+            get {
+                return ResourceManager.GetString("TipsTotal", resourceCulture);
             }
         }
         

@@ -97,14 +97,14 @@ namespace Samba.Domain.Models.Tickets
         public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName)
         {
             // Only for tests
-            return AddTicketItem(userId, menuItem, portionName, 0, "", "");
+            return AddTicketItem(userId, menuItem, portionName, "", "");
         }
 
-        public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName, decimal price, string priceTag, string defaultProperties)
+        public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName, string priceTag, string defaultProperties)
         {
             Locked = false;
             var tif = new TicketItem();
-            tif.UpdateMenuItem(userId, menuItem, portionName, price, priceTag, 1, defaultProperties);
+            tif.UpdateMenuItem(userId, menuItem, portionName, priceTag, 1, defaultProperties);
             TicketItems.Add(tif);
             return tif;
         }
@@ -163,12 +163,25 @@ namespace Samba.Domain.Models.Tickets
             return CalculateDiscounts(sum);
         }
 
-        private decimal CalculateDiscounts(decimal sum)
+        public decimal GetDiscountAmount()
+        {
+            decimal sum = GetPlainSum(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
+            return CalculateDiscounts(Discounts.Where(x => x.DiscountType != (int)DiscountType.Tip), sum);
+        }
+
+        public decimal GetTipAmount()
+        {
+            decimal sum = GetPlainSum(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
+            return 0 - CalculateDiscounts(Discounts.Where(x => x.DiscountType == (int)DiscountType.Tip), sum);
+        }
+
+        private decimal CalculateDiscounts(IEnumerable<Discount> discounts, decimal sum)
         {
             decimal totalDiscount = 0;
-            foreach (var discount in Discounts)
+            foreach (var discount in discounts)
             {
-                if (discount.DiscountType == (int)DiscountType.Percent)
+                if (discount.DiscountType == (int)DiscountType.Percent || discount.DiscountType == (int)DiscountType.Tip)
+                {
                     if (discount.TicketItemId == 0)
                         discount.DiscountAmount = discount.Amount > 0
                             ? (sum * discount.Amount) / 100 : 0;
@@ -178,12 +191,20 @@ namespace Samba.Domain.Models.Tickets
                         discount.DiscountAmount = discount.Amount > 0
                             ? (TicketItems.Single(x => x.Id == d.TicketItemId).GetTotal() * discount.Amount) / 100 : 0;
                     }
+                    if (discount.DiscountType == (int)DiscountType.Tip)
+                        discount.DiscountAmount = 0 - discount.DiscountAmount;
+                }
                 else discount.DiscountAmount = discount.Amount;
 
                 discount.DiscountAmount = Decimal.Round(discount.DiscountAmount, LocalSettings.Decimals);
                 totalDiscount += discount.DiscountAmount;
             }
             return decimal.Round(totalDiscount, LocalSettings.Decimals);
+        }
+
+        private decimal CalculateDiscounts(decimal sum)
+        {
+            return CalculateDiscounts(Discounts, sum);
         }
 
         public void AddTicketDiscount(DiscountType type, decimal amount, int userId)

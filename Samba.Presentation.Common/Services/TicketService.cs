@@ -17,6 +17,8 @@ namespace Samba.Presentation.Common.Services
                         Ticket = ticket,
                         TicketTotal = ticket.GetSum(),
                         DiscountTotal = ticket.GetTotalDiscounts(),
+                        DiscountAmount = ticket.GetDiscountAmount(),
+                        TipAmount = ticket.GetTipAmount(),
                         GiftTotal = ticket.GetTotalGiftAmount(),
                         PaymentTotal = ticket.GetPaymentAmount()
                     });

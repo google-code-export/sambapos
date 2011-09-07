@@ -107,7 +107,11 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                 .Sum(x => x.GetItemValue());
 
             var discounts = ReportContext.Tickets
-                .SelectMany(x => x.Discounts)
+                .SelectMany(x => x.Discounts.Where(y => y.DiscountType != (int)DiscountType.Tip))
+                .Sum(x => x.DiscountAmount);
+
+            var tips = 0 - ReportContext.Tickets
+                .SelectMany(x => x.Discounts.Where(y => y.DiscountType == (int)DiscountType.Tip))
                 .Sum(x => x.DiscountAmount);
 
             var gifts = ReportContext.Tickets
@@ -121,6 +125,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
             report.AddRow("Bilgi", Resources.ItemProperties, propertySum.ToString(ReportContext.CurrencyFormat));
             report.AddRow("Bilgi", Resources.VoidsTotal, voids.ToString(ReportContext.CurrencyFormat));
             report.AddRow("Bilgi", Resources.DiscountsTotal, discounts.ToString(ReportContext.CurrencyFormat));
+            report.AddRow("Bilgi", Resources.TipsTotal, tips.ToString(ReportContext.CurrencyFormat));
             report.AddRow("Bilgi", Resources.GiftsTotal, gifts.ToString(ReportContext.CurrencyFormat));
 
             if (ticketGropus.Count() > 1)
@@ -237,7 +242,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         {
                             sum = grp.Sum(x => x.TicketCount);
                         }
-                        if(sum > 0)
+                        if (sum > 0)
                         {
                             var average = totalAmount / sum;
                             report.AddRow("Etiket", string.Format(Resources.TotalAmountDivTag_f, tag.Name), "", average.ToString(ReportContext.CurrencyFormat));

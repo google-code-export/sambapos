@@ -199,8 +199,7 @@ namespace Samba.Presentation.Terminal
 
         private void OnPortionSelected(MenuItemPortionViewModel obj)
         {
-            var price = PriceService.GetCurrentPrice(obj.Model.Id);
-            SelectedItem.UpdatePortion(obj.Name, price.Price, price.PriceTag);
+            SelectedItem.UpdatePortion(obj.Model, AppServices.MainDataContext.SelectedDepartment.PriceTag);
             foreach (var model in SelectedItemPortions)
             {
                 model.Refresh();

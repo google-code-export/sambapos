@@ -23,6 +23,7 @@ namespace Samba.Domain.Models.Tickets
         public int OpenTicketViewColumnCount { get; set; }
         public string DefaultTag { get; set; }
         public string TerminalDefaultTag { get; set; }
+        public string PriceTag { get; set; }
 
         private IList<TicketTagGroup> _ticketTagGroups;
         public virtual IList<TicketTagGroup> TicketTagGroups
