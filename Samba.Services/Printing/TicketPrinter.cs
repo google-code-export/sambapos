@@ -10,6 +10,7 @@ using Samba.Domain.Foundation;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Services.Printing
@@ -100,7 +101,10 @@ namespace Samba.Services.Printing
                     ti = GroupLinesByValue(ticket, x => x.Barcode ?? "", "1");
                     break;
                 case (int)WhatToPrintTypes.GroupedByGroupCode:
-                    ti = GroupLinesByValue(ticket, x => x.GroupCode, "[Tanımsız]");
+                    ti = GroupLinesByValue(ticket, x => x.GroupCode ?? "", Resources.UndefinedWithBrackets);
+                    break;
+                case (int)WhatToPrintTypes.GroupedByTag:
+                    ti = GroupLinesByValue(ticket, x => x.Tag ?? "", Resources.UndefinedWithBrackets);
                     break;
                 default:
                     ti = ticket.TicketItems.OrderBy(x => x.Id).ToList();

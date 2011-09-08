@@ -19,6 +19,9 @@ namespace Samba.Modules.MenuModule
         private IEnumerable<string> _groupCodes;
         public IEnumerable<string> GroupCodes { get { return _groupCodes ?? (_groupCodes = Dao.Distinct<MenuItem>(x => x.GroupCode)); } }
 
+        private IEnumerable<string> _tags;
+        public IEnumerable<string> Tags { get { return _tags ?? (_tags = Dao.Distinct<MenuItem>(x => x.Tag)); } }
+
         private ObservableCollection<PortionViewModel> _portions;
         public ObservableCollection<PortionViewModel> Portions
         {
@@ -47,7 +50,17 @@ namespace Samba.Modules.MenuModule
             set { Model.GroupCode = value; }
         }
 
-        public string Barcode { get { return Model.Barcode; } set { Model.Barcode = value; } }
+        public string Tag
+        {
+            get { return Model.Tag ?? ""; }
+            set { Model.Tag = value; }
+        }
+
+        public string Barcode
+        {
+            get { return Model.Barcode ?? ""; }
+            set { Model.Barcode = value; }
+        }
 
         public MenuItemViewModel(MenuItem model)
             : base(model)

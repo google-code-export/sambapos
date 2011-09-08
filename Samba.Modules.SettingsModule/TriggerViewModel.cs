@@ -64,23 +64,36 @@ namespace Samba.Modules.SettingsModule
             TestExpressionCommand = new CaptionCommand<string>("Test", OnTestExpression);
         }
 
-        private void OnTestExpression(string obj)
+        private DateTime? GetNextDateTime()
         {
-            string message = Resources.ExpressionValid;
             try
             {
                 DateTime nextTime;
                 var cs = CronSchedule.Parse(Expression);
                 cs.GetNext(DateTime.Now, out nextTime);
-                TimeSpan ts = nextTime - DateTime.Now;
-                message += "\r\n" + string.Format(Resources.TriggerTestResultMessage_f,
-                    nextTime, ts.Days, ts.Hours, ts.Minutes);
+                return nextTime;
             }
             catch (Exception)
             {
-                message = Resources.ErrorInExpression + "!";
+                return null;
             }
-            MessageBox.Show(message);
+        }
+
+        private string GetTestMessage()
+        {
+            var nextTime = GetNextDateTime();
+            if (nextTime != null)
+            {
+                var ts = nextTime.GetValueOrDefault() - DateTime.Now;
+                return Resources.ExpressionValid + "\r\n" + string.Format(Resources.TriggerTestResultMessage_f,
+                     nextTime, ts.Days, ts.Hours, ts.Minutes);
+            }
+            return Resources.ErrorInExpression + "!";
+        }
+
+        private void OnTestExpression(string obj)
+        {
+            MessageBox.Show(GetTestMessage());
         }
 
         private void GenerateCommonSettings()
@@ -316,6 +329,14 @@ namespace Samba.Modules.SettingsModule
             LastTrigger = DateTime.Now;
             base.OnSave(value);
             MethodQueue.Queue("UpdateCronObjects", TriggerService.UpdateCronObjects);
+        }
+
+        protected override string GetSaveErrorMessage()
+        {
+            var nextTime = GetNextDateTime();
+            if (nextTime == null)
+                return Resources.ErrorInExpression + "!";
+            return base.GetSaveErrorMessage();
         }
     }
 }

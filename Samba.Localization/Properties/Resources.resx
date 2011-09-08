@@ -2638,4 +2638,7 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="PortionName" xml:space="preserve">
     <value>Portion Name</value>
   </data>
+	<data name="LinesGroupedByTag">
+		<value xml:space="preserve">Lines Grouped by Tag</value>
+	</data>
 </root>

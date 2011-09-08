@@ -3223,6 +3223,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lines Grouped by Tag.
+        /// </summary>
+        public static string LinesGroupedByTag {
+            get {
+                return ResourceManager.GetString("LinesGroupedByTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Line Template.
         /// </summary>
         public static string LineTemplate {

@@ -19,7 +19,8 @@ namespace Samba.Domain.Models.Settings
         Everything,
         NewLines,
         GroupedByBarcode,
-        GroupedByGroupCode
+        GroupedByGroupCode,
+        GroupedByTag
     }
 
     public class PrintJob : IEntity, IOrderable

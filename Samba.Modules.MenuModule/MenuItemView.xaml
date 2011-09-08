@@ -16,6 +16,12 @@
                      ItemsSource="{Binding GroupCodes}" IsEditable="True">
                 </ComboBox>
                 <Label>
+                    <LocText ResourceIdentifierKey="Tag" Suffix=":"/>
+                </Label>
+                <ComboBox HorizontalAlignment="Left" MinWidth="150" Text="{Binding Tag,Mode=TwoWay}"
+                     ItemsSource="{Binding Tags}" IsEditable="True">
+                </ComboBox>
+                <Label>
                     <LocText ResourceIdentifierKey="Barcode" Suffix=":"/>
                 </Label>
                 <TextBox HorizontalAlignment="Left" MinWidth="200" Text="{Binding Barcode,Mode=TwoWay}" />

@@ -14,8 +14,9 @@ namespace Samba.Infrastructure.Cron
 		private readonly MonthsCronEntry _months;
 		private readonly DaysOfWeekCronEntry _daysOfWeek;
 
+        //Bol Acýlý SambaPos
 		public static CronSchedule Parse(string cronExpression)
-		{
+		{  
 			if (string.IsNullOrEmpty(cronExpression))
 			{
 				throw new ArgumentException("cronExpression");

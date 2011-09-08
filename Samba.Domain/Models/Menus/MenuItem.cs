@@ -25,6 +25,7 @@ namespace Samba.Domain.Models.Menus
         public byte[] LastUpdateTime { get; set; }
         public string GroupCode { get; set; }
         public string Barcode { get; set; }
+        public string Tag { get; set; }
 
         private IList<MenuItemPortion> _portions;
         public virtual IList<MenuItemPortion> Portions

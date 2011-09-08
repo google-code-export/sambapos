@@ -95,9 +95,12 @@ namespace Samba.Services
         {
             if (IsNumericType(parameterValue.GetType()))
             {
-                var propertyValue = Convert.ToDecimal(parameterValue);
-                var objectValue = Convert.ToDecimal(Value);
+                decimal propertyValue;
+                decimal.TryParse(parameterValue.ToString(), out propertyValue);
 
+                decimal objectValue;
+                decimal.TryParse(Value, out objectValue);
+                
                 if (Operation.Contains(OpConst.NotEqual))
                 {
                     if (propertyValue.Equals(objectValue)) return false;

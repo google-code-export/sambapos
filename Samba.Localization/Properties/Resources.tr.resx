@@ -2639,4 +2639,7 @@ Masa: {2}</value>
 	<data name="PortionName" xml:space="preserve">
     <value>Porsiyon Adı</value>
   </data>
+	<data name="LinesGroupedByTag">
+		<value xml:space="preserve">Etikete Göre Gruplanmış Satırlar</value>
+	</data>
 </root>
