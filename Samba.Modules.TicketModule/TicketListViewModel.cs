@@ -338,7 +338,9 @@ namespace Samba.Modules.TicketModule
                         {
                             Ticket = AppServices.MainDataContext.SelectedTicket,
                             x.Value.TagName,
-                            x.Value.TagValue
+                            x.Value.TagValue,
+                            x.Value.NumericValue,
+                            TicketTag = AppServices.MainDataContext.SelectedTicket.Tag
                         });
 
                         if (x.Value.Action == 1 && CanCloseTicket(""))

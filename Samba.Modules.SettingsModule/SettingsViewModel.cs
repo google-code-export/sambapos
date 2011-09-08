@@ -18,6 +18,20 @@ namespace Samba.Modules.SettingsModule
         {
             SaveSettingsCommand = new CaptionCommand<string>(Resources.Save, OnSaveSettings);
             StartMessagingServerCommand = new CaptionCommand<string>(Resources.StartClientNow, OnStartMessagingServer, CanStartMessagingServer);
+            DisplayCommonAppPathCommand = new CaptionCommand<string>("Display App Path", OnDisplayAppPath);
+            DisplayUserAppPathCommand = new CaptionCommand<string>("Display User Path", OnDisplayUserPath);
+        }
+
+        public void OnDisplayUserPath(string obj)
+        {
+            var prc = new System.Diagnostics.Process { StartInfo = { FileName = LocalSettings.UserPath } };
+            prc.Start();
+        }
+
+        public void OnDisplayAppPath(string obj)
+        {
+            var prc = new System.Diagnostics.Process { StartInfo = { FileName = LocalSettings.DataPath } };
+            prc.Start();
         }
 
         private static bool CanStartMessagingServer(string arg)
@@ -38,6 +52,8 @@ namespace Samba.Modules.SettingsModule
 
         public ICaptionCommand SaveSettingsCommand { get; set; }
         public ICaptionCommand StartMessagingServerCommand { get; set; }
+        public ICaptionCommand DisplayCommonAppPathCommand { get; set; }
+        public ICaptionCommand DisplayUserAppPathCommand { get; set; }
 
         public string TerminalName
         {

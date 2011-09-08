@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using Samba.Infrastructure.Cron;
 using Samba.Localization.Properties;
@@ -169,7 +167,7 @@ namespace Samba.Modules.SettingsModule
                                                 new CommonCronSetting(Resources.EveryWeekday, "", "", "", "", "*"),
                                                 new CommonCronSetting(Resources.MonThruFri, "", "", "", "", "1-5"),
                                                 new CommonCronSetting(Resources.SatAndSun, "", "", "", "", "6,0"),
-                                                new CommonCronSetting(Resources.Mon_Wed_Fri, "", "", "", "", "1,3,5"),
+                                                new CommonCronSetting(Resources.MonWedFri, "", "", "", "", "1,3,5"),
                                                 new CommonCronSetting(Resources.TuesAndThurs, "", "", "", "", "2,4")
                                             };
 

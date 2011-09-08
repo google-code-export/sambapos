@@ -3359,6 +3359,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu Item Name.
+        /// </summary>
+        public static string MenuItemName {
+            get {
+                return ResourceManager.GetString("MenuItemName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu List.
         /// </summary>
         public static string MenuList {
@@ -3404,6 +3413,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message Received.
+        /// </summary>
+        public static string MessageReceived {
+            get {
+                return ResourceManager.GetString("MessageReceived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message Server Name.
         /// </summary>
         public static string MessageServerName {
@@ -3431,15 +3449,6 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mon, Wed, Fri.
-        /// </summary>
-        public static string Mon_Wed_Fri {
-            get {
-                return ResourceManager.GetString("Mon,Wed,Fri", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Month.
         /// </summary>
         public static string Month {
@@ -3454,6 +3463,15 @@ namespace Samba.Localization.Properties {
         public static string MonThruFri {
             get {
                 return ResourceManager.GetString("MonThruFri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mon, Wed, Fri.
+        /// </summary>
+        public static string MonWedFri {
+            get {
+                return ResourceManager.GetString("MonWedFri", resourceCulture);
             }
         }
         
@@ -3995,6 +4013,15 @@ namespace Samba.Localization.Properties {
         public static string Portion {
             get {
                 return ResourceManager.GetString("Portion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portion Name.
+        /// </summary>
+        public static string PortionName {
+            get {
+                return ResourceManager.GetString("PortionName", resourceCulture);
             }
         }
         
@@ -6213,6 +6240,15 @@ namespace Samba.Localization.Properties {
         public static string Trigger {
             get {
                 return ResourceManager.GetString("Trigger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trigger Executed.
+        /// </summary>
+        public static string TriggerExecuted {
+            get {
+                return ResourceManager.GetString("TriggerExecuted", resourceCulture);
             }
         }
         

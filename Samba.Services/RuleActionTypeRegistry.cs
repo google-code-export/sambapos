@@ -7,6 +7,16 @@ using Samba.Localization.Properties;
 
 namespace Samba.Services
 {
+    public static class OpConst
+    {
+        public const string Equal = "=";
+        public const string NotEqual = "!=";
+        public const string Contain = "?";
+        public const string NotContain = "!?";
+        public const string Greater = ">";
+        public const string Less = "<";
+    }
+
     public class RuleConstraintViewModel
     {
         public RuleConstraintViewModel()
@@ -88,19 +98,19 @@ namespace Samba.Services
                 var propertyValue = Convert.ToDecimal(parameterValue);
                 var objectValue = Convert.ToDecimal(Value);
 
-                if (Operation.Contains("Equals"))
-                {
-                    if (!propertyValue.Equals(objectValue)) return false;
-                }
-                else if (Operation.Contains("NotEquals"))
+                if (Operation.Contains(OpConst.NotEqual))
                 {
                     if (propertyValue.Equals(objectValue)) return false;
                 }
-                else if (Operation.Contains("Greater"))
+                else if (Operation.Contains(OpConst.Equal))
+                {
+                    if (!propertyValue.Equals(objectValue)) return false;
+                }
+                else if (Operation.Contains(OpConst.Greater))
                 {
                     if (propertyValue < objectValue) return false;
                 }
-                else if (Operation.Contains("Less"))
+                else if (Operation.Contains(OpConst.Less))
                 {
                     if (propertyValue > objectValue) return false;
                 }
@@ -110,17 +120,21 @@ namespace Samba.Services
                 var propertyValue = parameterValue.ToString().ToLower();
                 var objectValue = Value.ToLower();
 
-                if (Operation.Contains("Contains"))
+                if (Operation.Contains(OpConst.NotContain))
+                {
+                    if (propertyValue.Contains(objectValue)) return false;
+                }
+                else if (Operation.Contains(OpConst.Contain))
                 {
                     if (!propertyValue.Contains(objectValue)) return false;
                 }
-                else if (Operation.Contains("Equals"))
-                {
-                    if (!propertyValue.Equals(objectValue)) return false;
-                }
-                else if (Operation.Contains("NotEquals"))
+                else if (Operation.Contains(OpConst.NotEqual))
                 {
                     if (propertyValue.Equals(objectValue)) return false;
+                }
+                else if (Operation.Contains(OpConst.Equal))
+                {
+                    if (!propertyValue.Equals(objectValue)) return false;
                 }
             }
             return true;
@@ -186,26 +200,26 @@ namespace Samba.Services
             if (obj != null)
             {
                 result.AddRange(obj.GetType().GetProperties().Select(
-                    x => new RuleConstraintViewModel { Name = x.Name, Operation = "Equals", Operations = GetOperations(x, obj) }));
+                    x => new RuleConstraintViewModel { Name = x.Name, Operation = OpConst.Equal, Operations = GetOperations(x.PropertyType) }));
             }
 
             if (!result.Any(x => x.Name == "UserName"))
-                result.Insert(0, new RuleConstraintViewModel { Name = "UserName", Operation = "Equals" });
+                result.Insert(0, new RuleConstraintViewModel { Name = "UserName", Operation = OpConst.Equal, Operations = GetOperations(typeof(string)) });
             if (!result.Any(x => x.Name == "DepartmentName"))
-                result.Insert(0, new RuleConstraintViewModel { Name = "DepartmentName", Operation = "Equals" });
+                result.Insert(0, new RuleConstraintViewModel { Name = "DepartmentName", Operation = OpConst.Equal, Operations = GetOperations(typeof(string)) });
             if (!result.Any(x => x.Name == "TerminalName"))
-                result.Insert(0, new RuleConstraintViewModel { Name = "TerminalName", Operation = "Equals" });
-            
+                result.Insert(0, new RuleConstraintViewModel { Name = "TerminalName", Operation = OpConst.Equal, Operations = GetOperations(typeof(string)) });
+
             return result;
         }
 
-        private static string[] GetOperations(PropertyInfo propertyInfo, object o)
+        private static string[] GetOperations(Type type)
         {
-            if (propertyInfo.GetValue(o, null) is decimal)
+            if (RuleConstraintViewModel.IsNumericType(type))
             {
-                return new[] { "Equals", "NotEquals", "Greater", "Less" };
+                return new[] { OpConst.Equal, OpConst.NotEqual, OpConst.Greater, OpConst.Less };
             }
-            return new[] { "Equals", "NotEquals", "Contains" };
+            return new[] { OpConst.Equal, OpConst.NotEqual, OpConst.Contain, OpConst.NotContain };
         }
 
         public static void RegisterParameterSoruce(string parameterName, Func<IEnumerable<string>> action)

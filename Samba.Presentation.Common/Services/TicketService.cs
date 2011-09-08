@@ -15,6 +15,7 @@ namespace Samba.Presentation.Common.Services
                     new
                     {
                         Ticket = ticket,
+                        PreviousTotal = total,
                         TicketTotal = ticket.GetSum(),
                         DiscountTotal = ticket.GetTotalDiscounts(),
                         DiscountAmount = ticket.GetDiscountAmount(),

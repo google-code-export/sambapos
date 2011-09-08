@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tables;
@@ -50,12 +51,22 @@ namespace Samba.Services
 
         public MenuItem GetMenuItem(int menuItemId)
         {
-            return Dao.SingleWithCache<MenuItem>(x => x.Id == menuItemId, x => x.PropertyGroups.Select(z => z.Properties), x => x.Portions.Select(y => y.Prices));
+            return GetMenuItem(x => x.Id == menuItemId);
         }
 
         public MenuItem GetMenuItem(string barcode)
         {
-            return Dao.SingleWithCache<MenuItem>(x => x.Barcode == barcode, x => x.PropertyGroups.Select(z => z.Properties), x => x.Portions.Select(y => y.Prices));
+            return GetMenuItem(x => x.Barcode == barcode);
+        }
+
+        public MenuItem GetMenuItemByName(string menuItemName)
+        {
+            return GetMenuItem(x => x.Name == menuItemName);
+        }
+
+        public MenuItem GetMenuItem(Expression<Func<MenuItem, bool>> expression)
+        {
+            return Dao.SingleWithCache(expression, x => x.PropertyGroups.Select(z => z.Properties), x => x.Portions.Select(y => y.Prices));
         }
 
         public IEnumerable<string> GetInventoryItemNames()
@@ -67,5 +78,7 @@ namespace Samba.Services
         {
             return Dao.Single<Table>(x => x.Name == tableName);
         }
+
+
     }
 }

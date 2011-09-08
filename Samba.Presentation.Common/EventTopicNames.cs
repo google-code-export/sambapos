@@ -4,7 +4,7 @@ namespace Samba.Presentation.Common
 {
     public static class RuleEventNames
     {
-        public static string TriggerExecuted="TriggerExecuted";
+        public const string TriggerExecuted="TriggerExecuted";
         public const string TicketTotalChanged = "TicketTotalChanged";
         public const string TicketTagSelected = "TicketTagSelected";
         public const string CustomerSelectedForTicket = "CustomerSelectedForTicket";
@@ -13,7 +13,7 @@ namespace Samba.Presentation.Common
         public const string WorkPeriodEnds = "WorkPeriodEnds";
         public const string UserLoggedOut = "UserLoggedOut";
         public const string UserLoggedIn = "UserLoggedIn";
-        public const string ActionMessageReceived = "ActionMessageReceived";
+        public const string MessageReceived = "MessageReceived";
     }
 
     public static class EventTopicNames

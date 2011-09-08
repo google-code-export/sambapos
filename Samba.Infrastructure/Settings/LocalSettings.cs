@@ -114,8 +114,14 @@ html
 
         public static string AppPath { get; set; }
         public static string DocumentPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SambaPOS2"; } }
+
         public static string DataPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\Ozgu Tech\\SambaPOS2"; } }
-        public static string SettingsFileName { get { return DataPath + "\\SambaSettings.txt"; } }
+        public static string UserPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ozgu Tech\\SambaPOS2"; } }
+
+        public static string CommonSettingsFileName { get { return DataPath + "\\SambaSettings.txt"; } }
+        public static string UserSettingsFileName { get { return UserPath + "\\SambaSettings.txt"; } }
+
+        public static string SettingsFileName { get { return File.Exists(UserSettingsFileName) ? UserSettingsFileName : CommonSettingsFileName; } }
 
         public static string DefaultCurrencyFormat { get; set; }
 
@@ -124,6 +130,7 @@ html
         public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }
+
         public static void SaveSettings()
         {
             var serializer = new XmlSerializer(_settingsObject.GetType());
@@ -163,6 +170,8 @@ html
                 Directory.CreateDirectory(DocumentPath);
             if (!Directory.Exists(DataPath))
                 Directory.CreateDirectory(DataPath);
+            if (!Directory.Exists(UserPath))
+                Directory.CreateDirectory(UserPath);
             LoadSettings();
         }
 

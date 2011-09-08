@@ -38,6 +38,7 @@
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
 winxpsp2_title=Windows XP Service Pack 2
+winxpsp3_title=Windows XP Service Pack 3
 en.full_setup=Full Setup
 en.compact_setup=Compact Setup
 en.custom_setup=Custom Setup
@@ -182,7 +183,7 @@ Name: {group}\Samba Data; Filename: {commonappdata}\Ozgu Tech\SambaPOS2\
 [Run]
 Filename: {app}\Samba.Presentation.exe; Description: {cm:LaunchProgram,Samba POS}; Flags: nowait postinstall skipifsilent unchecked
 
-[Code]                
+[Code]
 
 procedure CurPageChanged(CurPageID: Integer);
 begin
@@ -192,15 +193,19 @@ if (CurPageId = wpSelectProgramGroup) then
     msi31('3.0');
     wic();
     dotnetfx40client();
-    if IsComponentSelected('sqlce') then 
-      ssce40();
+    if IsComponentSelected('sqlce') then
+    if not minwinspversion(5, 1, 3) then begin
+		MsgBox(FmtMessage(CustomMessage('depinstall_missing'), [CustomMessage('winxpsp3_title')]), mbError, MB_OK);
+    end else begin
+		ssce40();
+    end;
   end;
 end;
 
 procedure InitializeWizard();
 begin
   LGPL_InitializeWizard();
-end;                 
+end;
 
 function InitializeSetup(): Boolean;
 begin
@@ -213,12 +218,12 @@ begin
 	if not minwinspversion(5, 1, 2) then begin
 		MsgBox(FmtMessage(CustomMessage('depinstall_missing'), [CustomMessage('winxpsp2_title')]), mbError, MB_OK);
 		exit;
-	end;                           
+	end;
 
 	//if (not iis()) then exit;
 
 	//msi20('2.0');
-	
+
 	//ie6('5.0.2919');
 
 	//dotnetfx11();

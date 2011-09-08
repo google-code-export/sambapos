@@ -471,7 +471,7 @@ namespace Samba.Presentation.ViewModels
 
             ClearSelectedItems();
 
-            var tagData = new TicketTagData() { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name };
+            var tagData = new TicketTagData() { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name, NumericValue = tagGroup.NumericTags ? Convert.ToInt32(ticketTag.Name) : 0 };
             tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
         }
 

@@ -2565,7 +2565,7 @@ Table: {2}</value>
   <data name="SatAndSun" xml:space="preserve">
     <value>Sat and Sun</value>
   </data>
-  <data name="Mon,Wed,Fri" xml:space="preserve">
+  <data name="MonWedFri" xml:space="preserve">
     <value>Mon, Wed, Fri</value>
   </data>
   <data name="TuesAndThurs" xml:space="preserve">
@@ -2623,7 +2623,19 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="PriceTag" xml:space="preserve">
     <value>Price Tag</value>
   </data>
-	<data name="SaveErrorZeroOrNullInventoryLines">
-		<value xml:space="preserve">Can't save because there are lines with empty inventory items or zero quantity</value>
-	</data>
+  <data name="SaveErrorZeroOrNullInventoryLines" xml:space="preserve">
+    <value>Can't save because there are lines with empty inventory items or zero quantity</value>
+  </data>
+  <data name="TriggerExecuted" xml:space="preserve">
+    <value>Trigger Executed</value>
+  </data>
+  <data name="MessageReceived" xml:space="preserve">
+    <value>Message Received</value>
+  </data>
+  <data name="MenuItemName" xml:space="preserve">
+    <value>Menu Item Name</value>
+  </data>
+  <data name="PortionName" xml:space="preserve">
+    <value>Portion Name</value>
+  </data>
 </root>

@@ -2382,29 +2382,29 @@ Masa: {2}</value>
   <data name="GiftTotal" xml:space="preserve">
     <value>İkram Toplamı</value>
   </data>
-  <data name="UserLogin">
-    <value xml:space="preserve">Kullanıcı Girdi</value>
+  <data name="UserLogin" xml:space="preserve">
+    <value>Kullanıcı Girdi</value>
   </data>
-  <data name="UserLogout">
-    <value xml:space="preserve">Kullanıcı Çıktı</value>
+  <data name="UserLogout" xml:space="preserve">
+    <value>Kullanıcı Çıktı</value>
   </data>
-  <data name="TicketCreated">
-    <value xml:space="preserve">Adisyon Açıldı</value>
+  <data name="TicketCreated" xml:space="preserve">
+    <value>Adisyon Açıldı</value>
   </data>
-  <data name="TicketTagSelected">
-    <value xml:space="preserve">Adisyon Etiketi Seçildi</value>
+  <data name="TicketTagSelected" xml:space="preserve">
+    <value>Adisyon Etiketi Seçildi</value>
   </data>
-  <data name="CustomerSelectedForTicket">
-    <value xml:space="preserve">Adisyona Müşteri Seçildi</value>
+  <data name="CustomerSelectedForTicket" xml:space="preserve">
+    <value>Adisyona Müşteri Seçildi</value>
   </data>
-  <data name="TicketTotalChanged">
-    <value xml:space="preserve">Adisyon Tutarı Değişti</value>
+  <data name="TicketTotalChanged" xml:space="preserve">
+    <value>Adisyon Tutarı Değişti</value>
   </data>
-  <data name="WorkPeriodStarted">
-    <value xml:space="preserve">Gün Başı Yapıldı</value>
+  <data name="WorkPeriodStarted" xml:space="preserve">
+    <value>Gün Başı Yapıldı</value>
   </data>
-  <data name="WorkPeriodEnded">
-    <value xml:space="preserve">Gün Sonu Yapıldı</value>
+  <data name="WorkPeriodEnded" xml:space="preserve">
+    <value>Gün Sonu Yapıldı</value>
   </data>
   <data name="ExecuteActionsIf" xml:space="preserve">
     <value>Koşullar</value>
@@ -2455,149 +2455,147 @@ Masa: {2}</value>
     <value>Hafta</value>
     <comment>Label content</comment>
   </data>
-  <data name="EveryMinute">
-    <value xml:space="preserve">Her dakika</value>
+  <data name="EveryMinute" xml:space="preserve">
+    <value>Her dakika</value>
   </data>
-  <data name="Every5Minutes">
-    <value xml:space="preserve">5 dakikada bir</value>
+  <data name="Every5Minutes" xml:space="preserve">
+    <value>5 dakikada bir</value>
   </data>
-  <data name="TwiceAnHour">
-    <value xml:space="preserve">Saatte iki defa</value>
+  <data name="TwiceAnHour" xml:space="preserve">
+    <value>Saatte iki defa</value>
   </data>
-  <data name="OnceAnHour">
-    <value xml:space="preserve">Saatte bir defa</value>
+  <data name="OnceAnHour" xml:space="preserve">
+    <value>Saatte bir defa</value>
   </data>
-  <data name="TwiceADay">
-    <value xml:space="preserve">Günde iki defa</value>
+  <data name="TwiceADay" xml:space="preserve">
+    <value>Günde iki defa</value>
   </data>
-  <data name="OnceADay">
-    <value xml:space="preserve">Günde bir defa</value>
+  <data name="OnceADay" xml:space="preserve">
+    <value>Günde bir defa</value>
   </data>
-  <data name="OnceAWeek">
-    <value xml:space="preserve">Haftada bir defa</value>
+  <data name="OnceAWeek" xml:space="preserve">
+    <value>Haftada bir defa</value>
   </data>
-  <data name="FirstAndFifteenth">
-    <value xml:space="preserve">1'i ve 15'i</value>
+  <data name="FirstAndFifteenth" xml:space="preserve">
+    <value>1'i ve 15'i</value>
   </data>
-  <data name="OnceAMonth">
-    <value xml:space="preserve">Ayda bir defa</value>
+  <data name="OnceAMonth" xml:space="preserve">
+    <value>Ayda bir defa</value>
   </data>
-  <data name="OnceAYear">
-    <value xml:space="preserve">Yılda bir defa</value>
+  <data name="OnceAYear" xml:space="preserve">
+    <value>Yılda bir defa</value>
   </data>
-  <data name="EveryOtherMinute">
-    <value xml:space="preserve">2 dakikada bir</value>
+  <data name="EveryOtherMinute" xml:space="preserve">
+    <value>2 dakikada bir</value>
   </data>
-  <data name="Every10Minutes">
-    <value xml:space="preserve">Her 10 dakikada bir</value>
+  <data name="Every10Minutes" xml:space="preserve">
+    <value>Her 10 dakikada bir</value>
   </data>
-  <data name="Every15Minutes">
-    <value xml:space="preserve">Her 15 dakikada bir</value>
+  <data name="Every15Minutes" xml:space="preserve">
+    <value>Her 15 dakikada bir</value>
   </data>
-  <data name="Every30Minutes">
-    <value xml:space="preserve">Her 30 dakikada bir</value>
+  <data name="Every30Minutes" xml:space="preserve">
+    <value>Her 30 dakikada bir</value>
   </data>
-  <data name="TopOfTheHour">
-    <value xml:space="preserve">Saat başı</value>
+  <data name="TopOfTheHour" xml:space="preserve">
+    <value>Saat başı</value>
   </data>
-  <data name="QuarterPast">
-    <value xml:space="preserve">Çeyrek geçe</value>
+  <data name="QuarterPast" xml:space="preserve">
+    <value>Çeyrek geçe</value>
   </data>
-  <data name="HalfPast">
-    <value xml:space="preserve">Buçukta</value>
+  <data name="HalfPast" xml:space="preserve">
+    <value>Buçukta</value>
   </data>
-  <data name="QuarterTil">
-    <value xml:space="preserve">Çeyrek kala</value>
+  <data name="QuarterTil" xml:space="preserve">
+    <value>Çeyrek kala</value>
   </data>
-  <data name="EveryHour">
-    <value xml:space="preserve">Her saat</value>
+  <data name="EveryHour" xml:space="preserve">
+    <value>Her saat</value>
   </data>
-  <data name="EveryOtherHour">
-    <value xml:space="preserve">Her iki saatte bir</value>
+  <data name="EveryOtherHour" xml:space="preserve">
+    <value>Her iki saatte bir</value>
   </data>
-  <data name="Every3Hours">
-    <value xml:space="preserve">3 saatte bir</value>
+  <data name="Every3Hours" xml:space="preserve">
+    <value>3 saatte bir</value>
   </data>
-  <data name="Every4Hours">
-    <value xml:space="preserve">4 saatte bir</value>
+  <data name="Every4Hours" xml:space="preserve">
+    <value>4 saatte bir</value>
   </data>
-  <data name="Every6Hours">
-    <value xml:space="preserve">6 saatte bir</value>
+  <data name="Every6Hours" xml:space="preserve">
+    <value>6 saatte bir</value>
   </data>
-  <data name="Every12Hours">
-    <value xml:space="preserve">12 saatte bir</value>
+  <data name="Every12Hours" xml:space="preserve">
+    <value>12 saatte bir</value>
   </data>
-  <data name="TwelveAmMidnight">
-    <value xml:space="preserve">12 gece yarısı</value>
+  <data name="TwelveAmMidnight" xml:space="preserve">
+    <value>12 gece yarısı</value>
   </data>
-  <data name="Noon">
-    <value xml:space="preserve">öğlen</value>
+  <data name="Noon" xml:space="preserve">
+    <value>öğlen</value>
   </data>
-  <data name="PM">
-    <value xml:space="preserve">ös</value>
+  <data name="PM" xml:space="preserve">
+    <value>ös</value>
   </data>
-  <data name="AM">
-    <value xml:space="preserve">öö</value>
+  <data name="AM" xml:space="preserve">
+    <value>öö</value>
   </data>
-  <data name="EveryDay">
-    <value xml:space="preserve">Her gün</value>
+  <data name="EveryDay" xml:space="preserve">
+    <value>Her gün</value>
   </data>
-  <data name="EveryOtherDay">
-    <value xml:space="preserve">Her iki günde bir</value>
+  <data name="EveryOtherDay" xml:space="preserve">
+    <value>Her iki günde bir</value>
   </data>
-  <data name="EveryMonth">
-    <value xml:space="preserve">Her ay</value>
+  <data name="EveryMonth" xml:space="preserve">
+    <value>Her ay</value>
   </data>
-  <data name="EveryOtherMonth">
-    <value xml:space="preserve">Her iki ayda bir</value>
+  <data name="EveryOtherMonth" xml:space="preserve">
+    <value>Her iki ayda bir</value>
   </data>
-  <data name="Every3Months">
-    <value xml:space="preserve">3 ayda bir</value>
+  <data name="Every3Months" xml:space="preserve">
+    <value>3 ayda bir</value>
   </data>
-  <data name="Every6Months">
-    <value xml:space="preserve">6 ayda bir</value>
+  <data name="Every6Months" xml:space="preserve">
+    <value>6 ayda bir</value>
   </data>
-  <data name="EveryWeekday">
-    <value xml:space="preserve">Haftanın her günü</value>
+  <data name="EveryWeekday" xml:space="preserve">
+    <value>Haftanın her günü</value>
   </data>
-  <data name="MonThruFri">
-    <value xml:space="preserve">Pzts'den Cumaya</value>
+  <data name="MonThruFri" xml:space="preserve">
+    <value>Pzts'den Cumaya</value>
   </data>
-  <data name="SatAndSun">
-    <value xml:space="preserve">Cumartesi ve Pazar</value>
+  <data name="SatAndSun" xml:space="preserve">
+    <value>Cumartesi ve Pazar</value>
   </data>
-  <data name="Mon,Wed,Fri">
-    <value xml:space="preserve">Pzts, Çarş ve Cuma</value>
+  <data name="MonWedFri" xml:space="preserve">
+    <value>Pzts, Çarş ve Cuma</value>
   </data>
-  <data name="TuesAndThurs">
-    <value xml:space="preserve">Salı ve Perşembe</value>
+  <data name="TuesAndThurs" xml:space="preserve">
+    <value>Salı ve Perşembe</value>
   </data>
-  <data name="Trigger">
-    <value xml:space="preserve">Tetikleyici</value>
+  <data name="Trigger" xml:space="preserve">
+    <value>Tetikleyici</value>
   </data>
-  <data name="Triggers">
-    <value xml:space="preserve">Tetikleyiciler</value>
+  <data name="Triggers" xml:space="preserve">
+    <value>Tetikleyiciler</value>
   </data>
-  <data name="ExpressionValid">
-    <value xml:space="preserve">Deyim Geçerli</value>
+  <data name="ExpressionValid" xml:space="preserve">
+    <value>Deyim Geçerli</value>
   </data>
-  <data name="ErrorInExpression">
-    <value xml:space="preserve">Deyim Hatalı</value>
+  <data name="ErrorInExpression" xml:space="preserve">
+    <value>Deyim Hatalı</value>
   </data>
-  <data name="TriggerTestResultMessage_f">
-    <value>
-      <![CDATA[Tetiklenme Saati: {0}
-{1} gün, {2} saat, {3} dakika sonra]]>
-    </value>
+  <data name="TriggerTestResultMessage_f" xml:space="preserve">
+    <value>Tetiklenme Saati: {0}
+{1} gün, {2} saat, {3} dakika sonra</value>
   </data>
-  <data name="ThereIsAnotherPriceDefinition_f">
-    <value xml:space="preserve">{0} etiketini kullanan başka bir fiyat tanımı var.</value>
+  <data name="ThereIsAnotherPriceDefinition_f" xml:space="preserve">
+    <value>{0} etiketini kullanan başka bir fiyat tanımı var.</value>
   </data>
-  <data name="PriceDefinition">
-    <value xml:space="preserve">Fiyat Tanımı</value>
+  <data name="PriceDefinition" xml:space="preserve">
+    <value>Fiyat Tanımı</value>
   </data>
-  <data name="PriceDefinitions">
-    <value xml:space="preserve">Fiyat Tanımları</value>
+  <data name="PriceDefinitions" xml:space="preserve">
+    <value>Fiyat Tanımları</value>
   </data>
   <data name="ClearFilter" xml:space="preserve">
     <value>Temizle</value>
@@ -2611,22 +2609,34 @@ Masa: {2}</value>
     <value>Son</value>
     <comment>TextBlock content</comment>
   </data>
-	<data name="TipsTotal">
-		<value xml:space="preserve">Garsoniye Toplamı</value>
-	</data>
-	<data name="TicketTipTotal" xml:space="preserve">
+  <data name="TipsTotal" xml:space="preserve">
     <value>Garsoniye Toplamı</value>
   </data>
-	<data name="LinePriceTag" xml:space="preserve">
+  <data name="TicketTipTotal" xml:space="preserve">
+    <value>Garsoniye Toplamı</value>
+  </data>
+  <data name="LinePriceTag" xml:space="preserve">
     <value>#Satır: Fiyat Etiketi</value>
   </data>
-	<data name="TicketTipTotalAmount" xml:space="preserve">
+  <data name="TicketTipTotalAmount" xml:space="preserve">
     <value>Belge Garsoniye Toplamı</value>
   </data>
-	<data name="PriceTag" xml:space="preserve">
+  <data name="PriceTag" xml:space="preserve">
     <value>Fiyat Etiketi</value>
   </data>
-	<data name="SaveErrorZeroOrNullInventoryLines">
-		<value xml:space="preserve">Reçetede stok seçilmemiş veya sıfır miktarlı satırlar varken kaydedilemez.</value>
-	</data>
+  <data name="SaveErrorZeroOrNullInventoryLines" xml:space="preserve">
+    <value>Reçetede stok seçilmemiş veya sıfır miktarlı satırlar varken kaydedilemez.</value>
+  </data>
+  <data name="TriggerExecuted" xml:space="preserve">
+    <value>Tetikleyici Çalıştı</value>
+  </data>
+  <data name="MessageReceived" xml:space="preserve">
+    <value>Mesaj Alındı</value>
+  </data>
+	<data name="MenuItemName" xml:space="preserve">
+    <value>Ürün Adı</value>
+  </data>
+	<data name="PortionName" xml:space="preserve">
+    <value>Porsiyon Adı</value>
+  </data>
 </root>

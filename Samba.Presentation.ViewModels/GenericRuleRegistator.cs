@@ -33,10 +33,11 @@ namespace Samba.Presentation.ViewModels
         {
             RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", "DiscountPercentage");
+            RuleActionTypeRegistry.RegisterActionType("AddTicketItem", "Add Ticket Item", "MenuItemName", "PortionName", "Quantity", "Gift");
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", "TagName", "TagValue");
             RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", "Update Price Tag", "DepartmentName", "PriceTag");
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", "Refresh Cache");
-            RuleActionTypeRegistry.RegisterActionType("SendActionMessage", "Send Action Message", "Command");
+            RuleActionTypeRegistry.RegisterActionType("SendMessage", "Send Message", "Command");
         }
 
         private static void RegisterRules()
@@ -45,12 +46,12 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.UserLoggedOut, Resources.UserLogout, new { UserName = "", RoleName = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodStarts, Resources.WorkPeriodStarted, new { UserName = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, Resources.WorkPeriodEnded, new { UserName = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TriggerExecuted, "Trigger Executed", new { TriggerName = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TriggerExecuted, Resources.TriggerExecuted, new { TriggerName = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "", NumericValue = 0, TicketTag = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ActionMessageReceived, "Action Message Received", new { Command = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
         }
 
         private static void RegisterParameterSources()
@@ -59,6 +60,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("DepartmentName", () => AppServices.MainDataContext.Departments.Select(x => x.Name));
             RuleActionTypeRegistry.RegisterParameterSoruce("TerminalName", () => AppServices.Terminals.Select(x => x.Name));
             RuleActionTypeRegistry.RegisterParameterSoruce("TriggerName", () => Dao.Select<Trigger, string>(yz => yz.Name, y => !string.IsNullOrEmpty(y.Expression)));
+            RuleActionTypeRegistry.RegisterParameterSoruce("MenuItemName", () => Dao.Select<MenuItem, string>(yz => yz.Name, y => y.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("PriceTag", () => Dao.Select<MenuItemPriceDefinition, string>(x => x.PriceTag, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("Color", () => typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static).Select(x => x.Name));
         }
@@ -79,7 +81,7 @@ namespace Samba.Presentation.ViewModels
                     MethodQueue.Queue("ResetCache", ResetCache);
                 }
 
-                if (x.Value.Action.ActionType == "SendActionMessage")
+                if (x.Value.Action.ActionType == "SendMessage")
                 {
                     AppServices.MessagingService.SendMessage("ActionMessage", x.Value.GetAsString("Command"));
                 }
@@ -106,6 +108,24 @@ namespace Samba.Presentation.ViewModels
                         var percentValue = x.Value.GetAsDecimal("DiscountPercentage");
                         ticket.AddTicketDiscount(DiscountType.Percent, percentValue, AppServices.CurrentLoggedInUser.Id);
                         TicketService.RecalculateTicket(ticket);
+                    }
+                }
+
+                if (x.Value.Action.ActionType == "AddTicketItem")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var menuItemName = x.Value.GetAsString("MenuItemName");
+                        var menuItem = AppServices.DataAccessService.GetMenuItemByName(menuItemName);
+                        var portionName = x.Value.GetAsString("PortionName");
+                        var gift = x.Value.GetAsBoolean("Gift");
+                        var quantity = x.Value.GetAsDecimal("Quantity");
+                        var ti = ticket.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portionName,
+                                             AppServices.MainDataContext.SelectedDepartment.PriceTag, "");
+                        ti.Quantity = quantity;
+                        ti.Gifted = gift;
+                        EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                     }
                 }
 
@@ -146,7 +166,7 @@ namespace Samba.Presentation.ViewModels
             {
                 if (x.Topic == EventTopicNames.MessageReceivedEvent && x.Value.Command == "ActionMessage")
                 {
-                    RuleExecutor.NotifyEvent(RuleEventNames.ActionMessageReceived, new { Command = x.Value.Data });
+                    RuleExecutor.NotifyEvent(RuleEventNames.MessageReceived, new { Command = x.Value.Data });
                 }
             });
 
