@@ -6,7 +6,6 @@ using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
@@ -17,27 +16,27 @@ namespace Samba.Presentation.ViewModels
 {
     public static class GenericRuleRegistator
     {
-        private static bool _ran;
-        public static void RunOnce()
+        private static bool _registered;
+        public static void RegisterOnce()
         {
-            Debug.Assert(_ran == false);
+            Debug.Assert(_registered == false);
             RegisterActions();
             RegisterRules();
             RegisterParameterSources();
             HandleEvents();
             RegisterNotifiers();
-            _ran = true;
+            _registered = true;
         }
 
         private static void RegisterActions()
         {
-            RuleActionTypeRegistry.RegisterActionType("SendEmail", "Send Email", "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
-            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", "Add Ticket Discount", "DiscountPercentage");
-            RuleActionTypeRegistry.RegisterActionType("AddTicketItem", "Add Ticket Item", "MenuItemName", "PortionName", "Quantity", "Gift");
-            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", "Update Ticket Tag", "TagName", "TagValue");
-            RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", "Update Price Tag", "DepartmentName", "PriceTag");
-            RuleActionTypeRegistry.RegisterActionType("RefreshCache", "Refresh Cache");
-            RuleActionTypeRegistry.RegisterActionType("SendMessage", "Send Message", "Command");
+            RuleActionTypeRegistry.RegisterActionType("SendEmail", Resources.SendEmail, "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
+            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", Resources.AddTicketDiscount, "DiscountPercentage");
+            RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, "MenuItemName", "PortionName", "Quantity", "Gift");
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, "TagName", "TagValue");
+            RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, "DepartmentName", "PriceTag");
+            RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
+            RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, "Command");
         }
 
         private static void RegisterRules()
@@ -107,7 +106,7 @@ namespace Samba.Presentation.ViewModels
                     {
                         var percentValue = x.Value.GetAsDecimal("DiscountPercentage");
                         ticket.AddTicketDiscount(DiscountType.Percent, percentValue, AppServices.CurrentLoggedInUser.Id);
-                        TicketService.RecalculateTicket(ticket);
+                        TicketViewModel.RecalculateTicket(ticket);
                     }
                 }
 

@@ -401,7 +401,8 @@ namespace Samba.Modules.TicketModule
 
         public void RefreshValues()
         {
-            TicketService.RecalculateTicket(AppServices.MainDataContext.SelectedTicket);
+            SelectedTicket.RecalculateTicket();
+            //TicketViewModel.RecalculateTicket(AppServices.MainDataContext.SelectedTicket);
             if (GetPaymentValue() <= 0)
                 PaymentAmount = AppServices.MainDataContext.SelectedTicket != null
                     ? AppServices.MainDataContext.SelectedTicket.GetRemainingAmount().ToString("#,#0.00")

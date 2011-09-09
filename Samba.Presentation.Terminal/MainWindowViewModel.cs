@@ -8,6 +8,7 @@ using Samba.Infrastructure;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Engine;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace Samba.Presentation.Terminal
             LocalSettings.DefaultCurrencyFormat = "#,#0.00";
             LocalSettings.AppPath = System.IO.Path.GetDirectoryName(Application.ResourceAssembly.Location);
             AppServices.MainDispatcher = Application.Current.Dispatcher;
+            GenericRuleRegistator.RegisterOnce();
+            TriggerService.UpdateCronObjects();
 
             LoggedInUserViewModel = new LoggedInUserViewModel();
             LoggedInUserViewModel.CloseButtonClickedEvent += LoggedInUserViewModelCloseButtonClickedEvent;

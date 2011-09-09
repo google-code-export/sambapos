@@ -70,20 +70,19 @@ namespace Samba.Presentation
             if (LocalSettings.StartMessagingClient)
                 AppServices.MessagingService.StartMessagingClient();
 
-            GenericRuleRegistator.RunOnce();
+            GenericRuleRegistator.RegisterOnce();
 
             PresentationServices.Initialize();
 
             base.InitializeShell();
 
-            TriggerService.UpdateCronObjects();
-            
             try
             {
                 creationService.CreateData();
                 Application.Current.MainWindow = (Shell)Shell;
                 Application.Current.MainWindow.Show();
                 InteractionService.UserIntraction.ToggleSplashScreen();
+                TriggerService.UpdateCronObjects();
             }
             catch (Exception e)
             {

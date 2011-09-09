@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Practices.Prism.Events;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Presentation.Common;
@@ -169,6 +170,16 @@ namespace Samba.Presentation.Terminal
                         { item.IsLastSelected = item == LastSelectedTicketItem; }
                     }
                 });
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(
+             x =>
+             {
+                 if (x.Topic == EventTopicNames.RefreshSelectedTicket)
+                 {
+                     DataContext.RefreshSelectedTicket();
+                     Refresh();
+                 }
+             });
         }
 
         private bool CanExecutePrintJob(PrintJob arg)

@@ -306,6 +306,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Ticket Discount.
+        /// </summary>
+        public static string AddTicketDiscount {
+            get {
+                return ResourceManager.GetString("AddTicketDiscount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Ticket Item.
+        /// </summary>
+        public static string AddTicketItem {
+            get {
+                return ResourceManager.GetString("AddTicketItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin.
         /// </summary>
         public static string Admin {
@@ -655,6 +673,15 @@ namespace Samba.Localization.Properties {
         public static string BatchPriceList {
             get {
                 return ResourceManager.GetString("BatchPriceList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broadcast Message.
+        /// </summary>
+        public static string BroadcastMessage {
+            get {
+                return ResourceManager.GetString("BroadcastMessage", resourceCulture);
             }
         }
         
@@ -1945,11 +1972,29 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display App Path.
+        /// </summary>
+        public static string DisplayAppPath {
+            get {
+                return ResourceManager.GetString("DisplayAppPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display Popup.
         /// </summary>
         public static string DisplayPopup {
             get {
                 return ResourceManager.GetString("DisplayPopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display User Path.
+        /// </summary>
+        public static string DisplayUserPath {
+            get {
+                return ResourceManager.GetString("DisplayUserPath", resourceCulture);
             }
         }
         
@@ -4503,6 +4548,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh Cache.
+        /// </summary>
+        public static string RefreshCache {
+            get {
+                return ResourceManager.GetString("RefreshCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Release Lock.
         /// </summary>
         public static string ReleaseLock {
@@ -4757,6 +4811,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Report to File.
+        /// </summary>
+        public static string SaveReportToFile {
+            get {
+                return ResourceManager.GetString("SaveReportToFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -4917,6 +4980,15 @@ namespace Samba.Localization.Properties {
         public static string SellAmount {
             get {
                 return ResourceManager.GetString("SellAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Email.
+        /// </summary>
+        public static string SendEmail {
+            get {
+                return ResourceManager.GetString("SendEmail", resourceCulture);
             }
         }
         
@@ -6394,6 +6466,24 @@ namespace Samba.Localization.Properties {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Price List.
+        /// </summary>
+        public static string UpdatePriceTag {
+            get {
+                return ResourceManager.GetString("UpdatePriceTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Ticket Tag.
+        /// </summary>
+        public static string UpdateTicketTag {
+            get {
+                return ResourceManager.GetString("UpdateTicketTag", resourceCulture);
             }
         }
         

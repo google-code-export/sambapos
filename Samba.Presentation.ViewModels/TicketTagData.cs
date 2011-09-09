@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Samba.Presentation.ViewModels
+﻿namespace Samba.Presentation.ViewModels
 {
     public class TicketTagData
     {

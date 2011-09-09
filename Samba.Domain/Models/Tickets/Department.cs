@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Data;
 
@@ -23,6 +24,7 @@ namespace Samba.Domain.Models.Tickets
         public int OpenTicketViewColumnCount { get; set; }
         public string DefaultTag { get; set; }
         public string TerminalDefaultTag { get; set; }
+        [StringLength(10)]
         public string PriceTag { get; set; }
 
         private IList<TicketTagGroup> _ticketTagGroups;
@@ -34,7 +36,7 @@ namespace Samba.Domain.Models.Tickets
 
         private static readonly Department _all = new Department { Name = "*" };
         public static Department All { get { return _all; } }
-        
+
         public Department()
         {
             OpenTicketViewColumnCount = 5;

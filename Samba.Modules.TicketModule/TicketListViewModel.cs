@@ -333,16 +333,6 @@ namespace Samba.Modules.TicketModule
                 {
                     if (x.Topic == EventTopicNames.TagSelectedForSelectedTicket)
                     {
-                        RuleExecutor.NotifyEvent(RuleEventNames.TicketTagSelected,
-                        new
-                        {
-                            Ticket = AppServices.MainDataContext.SelectedTicket,
-                            x.Value.TagName,
-                            x.Value.TagValue,
-                            x.Value.NumericValue,
-                            TicketTag = AppServices.MainDataContext.SelectedTicket.Tag
-                        });
-
                         if (x.Value.Action == 1 && CanCloseTicket(""))
                             CloseTicketCommand.Execute("");
                         if (x.Value.Action == 2 && CanMakePayment(""))

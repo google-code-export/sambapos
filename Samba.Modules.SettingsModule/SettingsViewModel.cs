@@ -18,8 +18,8 @@ namespace Samba.Modules.SettingsModule
         {
             SaveSettingsCommand = new CaptionCommand<string>(Resources.Save, OnSaveSettings);
             StartMessagingServerCommand = new CaptionCommand<string>(Resources.StartClientNow, OnStartMessagingServer, CanStartMessagingServer);
-            DisplayCommonAppPathCommand = new CaptionCommand<string>("Display App Path", OnDisplayAppPath);
-            DisplayUserAppPathCommand = new CaptionCommand<string>("Display User Path", OnDisplayUserPath);
+            DisplayCommonAppPathCommand = new CaptionCommand<string>(Resources.DisplayAppPath, OnDisplayAppPath);
+            DisplayUserAppPathCommand = new CaptionCommand<string>(Resources.DisplayUserPath, OnDisplayUserPath);
         }
 
         public void OnDisplayUserPath(string obj)

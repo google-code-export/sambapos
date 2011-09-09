@@ -28,7 +28,7 @@ namespace Samba.Presentation.Terminal
             if (table.TicketId == 0)
                 AppServices.MainDataContext.AssignTableToSelectedTicket(table.Id);
             else AppServices.MainDataContext.OpenTicket(table.TicketId);
-            SelectedTicket = CreateSelectedTicket();
+            RefreshSelectedTicket();
         }
 
         public static void OpenTicket(int ticketId)
@@ -36,7 +36,7 @@ namespace Samba.Presentation.Terminal
             Debug.Assert(SelectedTicket == null);
             if (ticketId == 0) AppServices.MainDataContext.CreateNewTicket();
             else AppServices.MainDataContext.OpenTicket(ticketId);
-            SelectedTicket = CreateSelectedTicket();
+            RefreshSelectedTicket();
         }
 
         public static TicketCommitResult CloseSelectedTicket()
@@ -53,6 +53,11 @@ namespace Samba.Presentation.Terminal
             var result= AppServices.MainDataContext.MoveTicketItems(SelectedTicket.SelectedItems.Select(x => x.Model), 0).TicketId;
             SelectedTicket = null;
             return result;
+        }
+
+        public static void RefreshSelectedTicket()
+        {
+            SelectedTicket = CreateSelectedTicket();
         }
     }
 }

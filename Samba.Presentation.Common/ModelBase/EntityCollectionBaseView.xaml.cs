@@ -39,19 +39,19 @@ namespace Samba.Presentation.Common.ModelBase
             }
         }
 
-        private void MainGrid_KeyDown(object sender, KeyEventArgs e)
+        private void MainGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (((ICountable)MainGrid.DataContext).GetCount() < 10)
+                MainGrid.ColumnHeaderHeight = 0;
+        }
+
+        private void MainGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
                 if (((AbstractEntityCollectionViewModelBase)DataContext).EditItemCommand.CanExecute(null))
                     ((AbstractEntityCollectionViewModelBase)DataContext).EditItemCommand.Execute(null);
             }
-        }
-
-        private void MainGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (((ICountable)MainGrid.DataContext).GetCount() < 10)
-                MainGrid.ColumnHeaderHeight = 0;
         }
     }
 }

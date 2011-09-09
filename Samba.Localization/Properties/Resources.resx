@@ -2641,4 +2641,34 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
 	<data name="LinesGroupedByTag">
 		<value xml:space="preserve">Lines Grouped by Tag</value>
 	</data>
+	<data name="SendEmail">
+		<value xml:space="preserve">Send Email</value>
+	</data>
+	<data name="AddTicketDiscount">
+		<value xml:space="preserve">Add Ticket Discount</value>
+	</data>
+	<data name="AddTicketItem">
+		<value xml:space="preserve">Add Ticket Item</value>
+	</data>
+	<data name="UpdateTicketTag">
+		<value xml:space="preserve">Update Ticket Tag</value>
+	</data>
+	<data name="UpdatePriceTag">
+		<value xml:space="preserve">Change Price List</value>
+	</data>
+	<data name="RefreshCache">
+		<value xml:space="preserve">Refresh Cache</value>
+	</data>
+	<data name="BroadcastMessage">
+		<value xml:space="preserve">Broadcast Message</value>
+	</data>
+	<data name="DisplayAppPath">
+		<value xml:space="preserve">Display App Path</value>
+	</data>
+	<data name="DisplayUserPath">
+		<value xml:space="preserve">Display User Path</value>
+	</data>
+	<data name="SaveReportToFile">
+		<value xml:space="preserve">Save Report to File</value>
+	</data>
 </root>

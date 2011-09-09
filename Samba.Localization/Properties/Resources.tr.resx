@@ -2642,4 +2642,34 @@ Masa: {2}</value>
 	<data name="LinesGroupedByTag">
 		<value xml:space="preserve">Etikete Göre Gruplanmış Satırlar</value>
 	</data>
+  <data name="SendEmail">
+    <value xml:space="preserve">E-Posta gönder</value>
+  </data>
+  <data name="AddTicketDiscount">
+    <value xml:space="preserve">Adisyona iskonto ekle</value>
+  </data>
+  <data name="AddTicketItem">
+    <value xml:space="preserve">Adisyona ürün ekle</value>
+  </data>
+  <data name="UpdateTicketTag">
+    <value xml:space="preserve">Adisyon etiketini güncelle</value>
+  </data>
+  <data name="UpdatePriceTag">
+    <value xml:space="preserve">Fiyat listesini değiştir</value>
+  </data>
+  <data name="RefreshCache">
+    <value xml:space="preserve">Hafızayı yenile</value>
+  </data>
+  <data name="BroadcastMessage">
+    <value xml:space="preserve">Mesaj yayınla</value>
+  </data>
+  <data name="DisplayAppPath">
+    <value xml:space="preserve">Uygulama Klasörü</value>
+  </data>
+  <data name="DisplayUserPath">
+    <value xml:space="preserve">Kullanıcı Klasörü</value>
+  </data>
+	<data name="SaveReportToFile">
+		<value xml:space="preserve">Raporu dosyaya kaydet</value>
+	</data>
 </root>

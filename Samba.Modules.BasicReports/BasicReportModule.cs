@@ -25,7 +25,7 @@ namespace Samba.Modules.BasicReports
             PermissionRegistry.RegisterPermission(PermissionNames.OpenReports, PermissionCategories.Navigation, Resources.CanDisplayReports);
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeReportDate, PermissionCategories.Report, Resources.CanChangeReportFilter);
 
-            RuleActionTypeRegistry.RegisterActionType("SaveReportToFile", "Save Report to File", "ReportName", "FileName");
+            RuleActionTypeRegistry.RegisterActionType("SaveReportToFile", Resources.SaveReportToFile, "ReportName", "FileName");
             RuleActionTypeRegistry.RegisterParameterSoruce("ReportName", () => ReportContext.Reports.Select(x => x.Header));
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>

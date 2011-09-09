@@ -189,7 +189,6 @@
     </Compile>
     <Compile Include="RegionNames.cs" />
     <Compile Include="RuleExecutor.cs" />
-    <Compile Include="Services\TicketService.cs" />
     <Compile Include="TextBoxInputMaskBehavior.cs" />
     <Compile Include="Services\TriggerService.cs" />
     <Compile Include="VirtualKeyboard\KeyboardView2.xaml.cs">

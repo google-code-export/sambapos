@@ -239,7 +239,7 @@ namespace Samba.Presentation.ViewModels
             ti.Gifted = gift;
             var ticketItemViewModel = new TicketItemViewModel(ti);
             _items.Add(ticketItemViewModel);
-            TicketService.RecalculateTicket(Model);
+            RecalculateTicket();
             ticketItemViewModel.PublishEvent(EventTopicNames.TicketItemAdded);
             return ticketItemViewModel;
         }
@@ -248,7 +248,7 @@ namespace Samba.Presentation.ViewModels
         {
             _items.Clear();
             _items.AddRange(Model.TicketItems.Select(x => new TicketItemViewModel(x)));
-            TicketService.RecalculateTicket(Model);
+            RecalculateTicket();
             ClearSelectedItems();
         }
 
@@ -471,13 +471,50 @@ namespace Samba.Presentation.ViewModels
 
             ClearSelectedItems();
 
-            var tagData = new TicketTagData() { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name, NumericValue = tagGroup.NumericTags ? Convert.ToInt32(ticketTag.Name) : 0 };
+            var tagData = new TicketTagData { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name, NumericValue = tagGroup.NumericTags ? Convert.ToInt32(ticketTag.Name) : 0 };
+
+            RuleExecutor.NotifyEvent(RuleEventNames.TicketTagSelected,
+                        new
+                        {
+                            Ticket = Model,
+                            tagData.TagName,
+                            tagData.TagValue,
+                            tagData.NumericValue,
+                            TicketTag = Model.Tag
+                        });
+
             tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
         }
 
         public bool IsTaggedWith(string tagGroup)
         {
             return !string.IsNullOrEmpty(Model.GetTagValue(tagGroup));
+        }
+
+        public void RecalculateTicket()
+        {
+            RecalculateTicket(Model);
+        }
+
+        public static void RecalculateTicket(Ticket ticket)
+        {
+            var total = ticket.TotalAmount;
+            AppServices.MainDataContext.Recalculate(ticket);
+            if (total != ticket.TotalAmount)
+            {
+                RuleExecutor.NotifyEvent(RuleEventNames.TicketTotalChanged,
+                    new
+                    {
+                        Ticket = ticket,
+                        PreviousTotal = total,
+                        TicketTotal = ticket.GetSum(),
+                        DiscountTotal = ticket.GetTotalDiscounts(),
+                        DiscountAmount = ticket.GetDiscountAmount(),
+                        TipAmount = ticket.GetTipAmount(),
+                        GiftTotal = ticket.GetTotalGiftAmount(),
+                        PaymentTotal = ticket.GetPaymentAmount()
+                    });
+            }
         }
 
         public static void CreateNewTicket()
