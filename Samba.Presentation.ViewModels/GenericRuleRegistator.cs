@@ -6,6 +6,7 @@ using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
+using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
@@ -37,6 +38,8 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, "DepartmentName", "PriceTag");
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, "Command");
+            RuleActionTypeRegistry.RegisterActionType("UpdateLocalSetting", "Update Local Setting", "SettingName", "SettingValue");
+            RuleActionTypeRegistry.RegisterActionType("UpdateGlobalSetting", "Update Global Setting", "SettingName", "SettingValue");
         }
 
         private static void RegisterRules()
@@ -75,6 +78,16 @@ namespace Samba.Presentation.ViewModels
         {
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
+                if (x.Value.Action.ActionType == "UpdateLocalSetting")
+                {
+                    LocalSettings.UpdateSetting(x.Value.GetAsString("SettingName"), x.Value.GetAsString("SettingValue"));
+                }
+                if (x.Value.Action.ActionType == "UpdateGlobalSetting")
+                {
+                    var setting = AppServices.SettingService.GetSetting(x.Value.GetAsString("SettingName"));
+                    setting.StringValue = x.Value.GetAsString("SettingValue");
+                    AppServices.SettingService.SaveChanges();
+                }
                 if (x.Value.Action.ActionType == "RefreshCache")
                 {
                     MethodQueue.Queue("ResetCache", ResetCache);

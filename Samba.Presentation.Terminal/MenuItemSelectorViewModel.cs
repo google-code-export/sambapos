@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Menus;
+using Samba.Localization.Properties;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
 using Samba.Presentation.Common;
@@ -69,9 +70,9 @@ namespace Samba.Presentation.Terminal
             CategorySelectionCommand = new DelegateCommand<ScreenMenuCategory>(OnCategorySelected);
             MenuItemSelectionCommand = new DelegateCommand<ScreenMenuItem>(OnMenuItemSelected);
             ItemSelectedCommand = new DelegateCommand<TicketItemViewModel>(OnItemSelected);
-
-            IncPageNumberCommand = new CaptionCommand<string>("Sonraki >>", OnIncPageNumber, CanIncPageNumber);
-            DecPageNumberCommand = new CaptionCommand<string>("<< Önceki", OnDecPageNumber, CanDecPageNumber);
+            var b = "b";
+            IncPageNumberCommand = new CaptionCommand<string>(Resources.Next + " >>", OnIncPageNumber, CanIncPageNumber);
+            DecPageNumberCommand = new CaptionCommand<string>("<< " + Resources.Previous, OnDecPageNumber, CanDecPageNumber);
         }
 
         private void OnDecPageNumber(string obj)

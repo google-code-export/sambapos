@@ -20,9 +20,11 @@ namespace Samba.Infrastructure.Settings
         public string CurrentLanguage { get; set; }
         public bool OverrideLanguage { get; set; }
         public bool OverrideWindowsRegionalSettings { get; set; }
+        public SerializableDictionary<string, string> CustomSettings { get; set; }
 
         public SettingsObject()
         {
+            CustomSettings = new SerializableDictionary<string, string>();
             MessagingServerPort = 8080;
             ConnectionString = "";
             DefaultHtmlReportHeader =
@@ -33,6 +35,21 @@ html
   font-family: 'Courier New', monospace;
 } 
 </style>";
+        }
+
+        public void SetCustomValue(string settingName, string settingValue)
+        {
+            if (!CustomSettings.ContainsKey(settingName))
+                CustomSettings.Add(settingName, settingValue);
+            else
+                CustomSettings[settingName] = settingValue;
+            if (string.IsNullOrEmpty(settingValue))
+                CustomSettings.Remove(settingName);
+        }
+
+        public string GetCustomValue(string settingName)
+        {
+            return CustomSettings.ContainsKey(settingName) ? CustomSettings[settingName] : "";
         }
     }
 
@@ -183,6 +200,17 @@ html
                     Thread.CurrentThread.CurrentCulture = _cultureInfo;
                 Thread.CurrentThread.CurrentUICulture = _cultureInfo;
             }
+        }
+
+        public static void UpdateSetting(string settingName, string settingValue)
+        {
+            _settingsObject.SetCustomValue(settingName, settingValue);
+            SaveSettings();
+        }
+
+        public static string ReadSetting(string settingName)
+        {
+            return _settingsObject.GetCustomValue(settingName);
         }
     }
 }

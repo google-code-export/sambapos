@@ -2638,37 +2638,74 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="PortionName" xml:space="preserve">
     <value>Portion Name</value>
   </data>
-	<data name="LinesGroupedByTag">
-		<value xml:space="preserve">Lines Grouped by Tag</value>
+  <data name="LinesGroupedByTag" xml:space="preserve">
+    <value>Lines Grouped by Tag</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="AddTicketDiscount" xml:space="preserve">
+    <value>Add Ticket Discount</value>
+  </data>
+  <data name="AddTicketItem" xml:space="preserve">
+    <value>Add Ticket Item</value>
+  </data>
+  <data name="UpdateTicketTag" xml:space="preserve">
+    <value>Update Ticket Tag</value>
+  </data>
+  <data name="UpdatePriceTag" xml:space="preserve">
+    <value>Change Price List</value>
+  </data>
+  <data name="RefreshCache" xml:space="preserve">
+    <value>Refresh Cache</value>
+  </data>
+  <data name="BroadcastMessage" xml:space="preserve">
+    <value>Broadcast Message</value>
+  </data>
+  <data name="DisplayAppPath" xml:space="preserve">
+    <value>Display App Path</value>
+  </data>
+  <data name="DisplayUserPath" xml:space="preserve">
+    <value>Display User Path</value>
+  </data>
+  <data name="SaveReportToFile" xml:space="preserve">
+    <value>Save Report to File</value>
+  </data>
+  <data name="PriceDefinitonName" xml:space="preserve">
+    <value>Price Definiton Name</value>
+    <comment>Label.Content</comment>
+  </data>
+	<data name="Previous">
+		<value xml:space="preserve">Previous</value>
 	</data>
-	<data name="SendEmail">
-		<value xml:space="preserve">Send Email</value>
+	<data name="Next">
+		<value xml:space="preserve">Next</value>
 	</data>
-	<data name="AddTicketDiscount">
-		<value xml:space="preserve">Add Ticket Discount</value>
+	<data name="AddTag">
+		<value xml:space="preserve">Add Tag</value>
 	</data>
-	<data name="AddTicketItem">
-		<value xml:space="preserve">Add Ticket Item</value>
+	<data name="Delete_ab">
+		<value xml:space="preserve">Del</value>
 	</data>
-	<data name="UpdateTicketTag">
-		<value xml:space="preserve">Update Ticket Tag</value>
+	<data name="Divide_ab">
+		<value xml:space="preserve">Div</value>
 	</data>
-	<data name="UpdatePriceTag">
-		<value xml:space="preserve">Change Price List</value>
+	<data name="Print_ab">
+		<value xml:space="preserve">Prn</value>
 	</data>
-	<data name="RefreshCache">
-		<value xml:space="preserve">Refresh Cache</value>
+	<data name="TicketMovedRetryLastOperation_f">
+		<value><![CDATA[Ticket moved to {0}. Your latest changes not saved.]]></value>
 	</data>
-	<data name="BroadcastMessage">
-		<value xml:space="preserve">Broadcast Message</value>
+	<data name="TicketPaidChangesNotSaved">
+		<value xml:space="preserve">Ticket Paid. Your latest changes not saved.</value>
 	</data>
-	<data name="DisplayAppPath">
-		<value xml:space="preserve">Display App Path</value>
+	<data name="TicketChangedRetryLastOperation">
+		<value xml:space="preserve">Ticket changed. Your latest changes not saved.</value>
 	</data>
-	<data name="DisplayUserPath">
-		<value xml:space="preserve">Display User Path</value>
+	<data name="TicketPaidLastChangesNotSaved">
+		<value xml:space="preserve">Ticket paid. Your latest changes not saved.</value>
 	</data>
-	<data name="SaveReportToFile">
-		<value xml:space="preserve">Save Report to File</value>
+	<data name="TableChangedRetryLastOperation_f">
+		<value xml:space="preserve">{0} table changed. Your latest changes not saved.</value>
 	</data>
 </root>

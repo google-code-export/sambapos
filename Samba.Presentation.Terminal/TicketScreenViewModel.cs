@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
@@ -37,7 +38,7 @@ namespace Samba.Presentation.Terminal
         public TicketScreenViewModel()
         {
             SelectTicketCommand = new DelegateCommand<TerminalOpenTicketView>(OnSelectTicket);
-            CreateNewTicketCommand = new CaptionCommand<string>("Yeni Adisyon", OnCreateNewTicket);
+            CreateNewTicketCommand = new CaptionCommand<string>(Resources.NewTicket, OnCreateNewTicket);
         }
 
         private void OnCreateNewTicket(string obj)

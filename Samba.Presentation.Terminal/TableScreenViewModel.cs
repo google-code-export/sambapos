@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Tables;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
@@ -87,8 +88,8 @@ namespace Samba.Presentation.Terminal
         public TableScreenViewModel()
         {
             Tables = new ObservableCollection<TableScreenItemViewModel>();
-            IncPageNumberCommand = new CaptionCommand<string>("Sonraki Sayfa", OnIncPageNumber, CanIncPageNumber);
-            DecPageNumberCommand = new CaptionCommand<string>("Önceki Sayfa", OnDecPageNumber, CanDecPageNumber);
+            IncPageNumberCommand = new CaptionCommand<string>(Resources.NextPage, OnIncPageNumber, CanIncPageNumber);
+            DecPageNumberCommand = new CaptionCommand<string>(Resources.PreviousPage, OnDecPageNumber, CanDecPageNumber);
             SelectTableCommand = new DelegateCommand<Table>(OnSelectTable);
             TypeValueCommand = new DelegateCommand<string>(OnTypeValueExecute);
             FindTableCommand = new DelegateCommand<string>(OnFindTableExecute);

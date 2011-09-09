@@ -2672,4 +2672,41 @@ Masa: {2}</value>
 	<data name="SaveReportToFile">
 		<value xml:space="preserve">Raporu dosyaya kaydet</value>
 	</data>
+	<data name="PriceDefinitonName" xml:space="preserve">
+    <value>Fiyat Tanımı Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+	<data name="Previous">
+		<value xml:space="preserve">Önceki</value>
+	</data>
+	<data name="Next">
+		<value xml:space="preserve">Sonraki</value>
+	</data>
+	<data name="AddTag">
+		<value xml:space="preserve">Etiket Ekle</value>
+	</data>
+  <data name="Delete_ab">
+    <value xml:space="preserve">Sil</value>
+  </data>
+  <data name="Divide_ab">
+    <value xml:space="preserve">Böl</value>
+  </data>
+  <data name="Print_ab">
+    <value xml:space="preserve">Yaz</value>
+  </data>
+  <data name="TicketMovedRetryLastOperation_f">
+    <value><![CDATA[Adisyon {0}' a taşınmış. Son işlemi tekrar yapınız.]]></value>
+  </data>
+  <data name="TicketPaidChangesNotSaved">
+    <value xml:space="preserve">Adisyon ödenmiş. Yaptığınız değişiklikler kayıt edilmeyecek.</value>
+  </data>
+  <data name="TicketChangedRetryLastOperation">
+    <value xml:space="preserve">Adisyonda bir değişiklik yapılmış. Son işlemi tekrar yapınız.</value>
+  </data>
+  <data name="TicketPaidLastChangesNotSaved">
+    <value xml:space="preserve">Adisyona ödeme alınmış. Yaptığınız değişiklikler kayıt edilmeyecek.</value>
+  </data>
+  <data name="TableChangedRetryLastOperation_f">
+    <value xml:space="preserve">{0} masasında değişiklik var. Son işlemi tekrar yapın.</value>
+  </data>
 </root>

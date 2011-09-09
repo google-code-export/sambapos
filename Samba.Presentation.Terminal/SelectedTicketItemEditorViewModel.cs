@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
@@ -53,7 +54,7 @@ namespace Samba.Presentation.Terminal
             PortionSelectedCommand = new DelegateCommand<MenuItemPortionViewModel>(OnPortionSelected);
             PropertySelectedCommand = new DelegateCommand<MenuItemPropertyViewModel>(OnPropertySelected);
             TicketTagSelectedCommand = new DelegateCommand<TicketTagViewModel>(OnTicketTagSelected);
-            AddTicketTagCommand = new CaptionCommand<string>("Etiket Ekle", OnTicketTagAdded, CanAddTicketTag);
+            AddTicketTagCommand = new CaptionCommand<string>(Resources.AddTag, OnTicketTagAdded, CanAddTicketTag);
         }
 
         public void InvokeTagUpdated(TicketTagGroup item)

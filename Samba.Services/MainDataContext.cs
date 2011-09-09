@@ -12,6 +12,7 @@ using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Data.Serializer;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Services
@@ -378,8 +379,7 @@ namespace Samba.Services
                     var currentTicket = Dao.Single<Ticket>(x => x.Id == SelectedTicket.Id, x => x.TicketItems, x => x.Payments);
                     if (currentTicket.LocationName != SelectedTicket.LocationName)
                     {
-                        result.ErrorMessage = "Adisyon " + currentTicket.LocationName +
-                                        "' a taşınmış. Son işlemi tekrar yapınız.";
+                        result.ErrorMessage = string.Format(Resources.TicketMovedRetryLastOperation_f, currentTicket.LocationName);
                         changed = true;
                     }
 
@@ -387,11 +387,11 @@ namespace Samba.Services
                     {
                         if (currentTicket.IsPaid)
                         {
-                            result.ErrorMessage = "Adisyon ödenmiş. Yaptığınız değişiklikler kayıt edilmeyecek.";
+                            result.ErrorMessage = Resources.TicketPaidChangesNotSaved;
                         }
                         if (SelectedTicket.IsPaid)
                         {
-                            result.ErrorMessage = "Adisyonda bir değişiklik yapılmış. Son işlemi tekrar yapınız.";
+                            result.ErrorMessage = Resources.TicketChangedRetryLastOperation;
                         }
                         changed = true;
                     }
@@ -401,7 +401,7 @@ namespace Samba.Services
                         var unknownPayments = currentTicket.Payments.Where(x => !currentPaymentIds.Contains(x.Id)).FirstOrDefault();
                         if (unknownPayments != null)
                         {
-                            result.ErrorMessage = "Adisyona ödeme alınmış. Yaptığınız değişiklikler kayıt edilmeyecek.";
+                            result.ErrorMessage = Resources.TicketPaidLastChangesNotSaved;
                             changed = true;
                         }
                     }
@@ -414,7 +414,7 @@ namespace Samba.Services
                 {
                     if (ticketId > 0)
                     {
-                        result.ErrorMessage = SelectedTicket.LocationName + " masasında değişiklik var. Son işlemi tekrar yapın.";
+                        result.ErrorMessage = string.Format(Resources.TableChangedRetryLastOperation_f, SelectedTicket.LocationName);
                         changed = true;
                     }
                 }

@@ -306,6 +306,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Tag.
+        /// </summary>
+        public static string AddTag {
+            get {
+                return ResourceManager.GetString("AddTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Ticket Discount.
         /// </summary>
         public static string AddTicketDiscount {
@@ -1593,6 +1602,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Del.
+        /// </summary>
+        public static string Delete_ab {
+            get {
+                return ResourceManager.GetString("Delete_ab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete {0}.
         /// </summary>
         public static string Delete_f {
@@ -2004,6 +2022,15 @@ namespace Samba.Localization.Properties {
         public static string Divide {
             get {
                 return ResourceManager.GetString("Divide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Div.
+        /// </summary>
+        public static string Divide_ab {
+            get {
+                return ResourceManager.GetString("Divide_ab", resourceCulture);
             }
         }
         
@@ -3639,6 +3666,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next Page.
         /// </summary>
         public static string NextPage {
@@ -4152,6 +4188,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous.
+        /// </summary>
+        public static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Previous Page.
         /// </summary>
         public static string PreviousPage {
@@ -4188,6 +4233,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Price Definiton Name.
+        /// </summary>
+        public static string PriceDefinitonName {
+            get {
+                return ResourceManager.GetString("PriceDefinitonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Price Tag.
         /// </summary>
         public static string PriceTag {
@@ -4202,6 +4256,15 @@ namespace Samba.Localization.Properties {
         public static string Print {
             get {
                 return ResourceManager.GetString("Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prn.
+        /// </summary>
+        public static string Print_ab {
+            get {
+                return ResourceManager.GetString("Print_ab", resourceCulture);
             }
         }
         
@@ -5209,6 +5272,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} table changed. Your latest changes not saved..
+        /// </summary>
+        public static string TableChangedRetryLastOperation_f {
+            get {
+                return ResourceManager.GetString("TableChangedRetryLastOperation_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Table List.
         /// </summary>
         public static string TableList {
@@ -5805,6 +5877,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket changed. Your latest changes not saved..
+        /// </summary>
+        public static string TicketChangedRetryLastOperation {
+            get {
+                return ResourceManager.GetString("TicketChangedRetryLastOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Count.
         /// </summary>
         public static string TicketCount {
@@ -5837,6 +5918,15 @@ namespace Samba.Localization.Properties {
         public static string TicketMergedToTable_f {
             get {
                 return ResourceManager.GetString("TicketMergedToTable_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket moved to {0}. Your latest changes not saved..
+        /// </summary>
+        public static string TicketMovedRetryLastOperation_f {
+            get {
+                return ResourceManager.GetString("TicketMovedRetryLastOperation_f", resourceCulture);
             }
         }
         
@@ -5919,6 +6009,24 @@ namespace Samba.Localization.Properties {
         public static string TicketOptions {
             get {
                 return ResourceManager.GetString("TicketOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket Paid. Your latest changes not saved..
+        /// </summary>
+        public static string TicketPaidChangesNotSaved {
+            get {
+                return ResourceManager.GetString("TicketPaidChangesNotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket paid. Your latest changes not saved..
+        /// </summary>
+        public static string TicketPaidLastChangesNotSaved {
+            get {
+                return ResourceManager.GetString("TicketPaidLastChangesNotSaved", resourceCulture);
             }
         }
         

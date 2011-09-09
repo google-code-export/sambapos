@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 
 namespace Samba.Presentation.Terminal
@@ -22,7 +23,7 @@ namespace Samba.Presentation.Terminal
 
         public string PinDisplay
         {
-            get { return !string.IsNullOrEmpty(_pin) ? "*".PadLeft(_pin.Length, '*') : "Pin Giriniz"; }
+            get { return !string.IsNullOrEmpty(_pin) ? "*".PadLeft(_pin.Length, '*') : Resources.EnterPin; }
             set { _pin = value; }
         }
 

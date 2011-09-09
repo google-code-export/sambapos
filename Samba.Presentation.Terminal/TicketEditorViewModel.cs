@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Practices.Prism.Events;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
@@ -150,14 +151,14 @@ namespace Samba.Presentation.Terminal
 
         public TicketEditorViewModel()
         {
-            AddMenuItemsCommand = new CaptionCommand<string>("Ekle", OnAddMenuItems, CanAddMenuItems);
-            DeleteSelectedItemsCommand = new CaptionCommand<string>("Sil", OnDeleteSelectedItems, CanDeleteSelectedItems);
-            ChangeTableCommand = new CaptionCommand<string>("Masa", OnChangeTable, CanChangeTable);
+            AddMenuItemsCommand = new CaptionCommand<string>(Resources.Add, OnAddMenuItems, CanAddMenuItems);
+            DeleteSelectedItemsCommand = new CaptionCommand<string>(Resources.Delete_ab, OnDeleteSelectedItems, CanDeleteSelectedItems);
+            ChangeTableCommand = new CaptionCommand<string>(Resources.Table, OnChangeTable, CanChangeTable);
             IncSelectedQuantityCommand = new CaptionCommand<string>("+", OnIncSelectedQuantity, CanIncSelectedQuantity);
             DecSelectedQuantityCommand = new CaptionCommand<string>("-", OnDecSelectedQuantity, CanDecSelectedQuantity);
-            MoveSelectedItemsCommand = new CaptionCommand<string>("Böl", OnMoveSelectedItems, CanMoveSelectedItems);
+            MoveSelectedItemsCommand = new CaptionCommand<string>(Resources.Divide_ab, OnMoveSelectedItems, CanMoveSelectedItems);
             EditTicketNoteCommand = new CaptionCommand<string>("Not", OnEditTicketNote);
-            PrintJobCommand = new CaptionCommand<PrintJob>("Yaz", OnPrintJobExecute, CanExecutePrintJob);
+            PrintJobCommand = new CaptionCommand<PrintJob>(Resources.Print_ab, OnPrintJobExecute, CanExecutePrintJob);
             TicketTagCommand = new CaptionCommand<TicketTagGroup>("Tag", OnTicketTagExecute, CanTicketTagExecute);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<TicketItemViewModel>>().Subscribe(
@@ -284,7 +285,7 @@ namespace Samba.Presentation.Terminal
 
         public void UpdateSelectedTicketTitle()
         {
-            SelectedTicketTitle = SelectedTicket == null ? "Yeni Adisyon" : SelectedTicket.Title;
+            SelectedTicketTitle = SelectedTicket == null ? Resources.NewTicket : SelectedTicket.Title;
         }
 
         public void Refresh()
