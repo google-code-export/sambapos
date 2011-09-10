@@ -9,7 +9,6 @@ using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
-using Samba.Presentation.Common.Services;
 using Samba.Services;
 
 namespace Samba.Presentation.ViewModels
@@ -23,7 +22,7 @@ namespace Samba.Presentation.ViewModels
         {
             _forcePayment = forcePayment;
             _model = model;
-            _items = new ObservableCollection<TicketItemViewModel>(model.TicketItems.Select(x => new TicketItemViewModel(x)).OrderBy(x => x.Model.Id));
+            _items = new ObservableCollection<TicketItemViewModel>(model.TicketItems.Select(x => new TicketItemViewModel(x)).OrderBy(x => x.Model.CreatedDateTime));
             _payments = new ObservableCollection<PaymentViewModel>(model.Payments.Select(x => new PaymentViewModel(x)));
             _discounts = new ObservableCollection<DiscountViewModel>(model.Discounts.Select(x => new DiscountViewModel(x)));
 

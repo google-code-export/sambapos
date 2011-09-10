@@ -65,6 +65,18 @@ namespace Samba.Modules.CashModule
                         ActivateModuleScreen();
                         ((CashViewModel)_cashView.DataContext).GetPaymentFromCustomer(x.Value);
                     }
+
+                    if (x.Topic == EventTopicNames.AddLiabilityAmount)
+                    {
+                        ActivateModuleScreen();
+                        ((CashViewModel)_cashView.DataContext).AddLiabilityAmount(x.Value);
+                    }
+
+                    if (x.Topic == EventTopicNames.AddReceivableAmount)
+                    {
+                        ActivateModuleScreen();
+                        ((CashViewModel)_cashView.DataContext).AddReceivableAmount(x.Value);
+                    }
                 });
         }
 

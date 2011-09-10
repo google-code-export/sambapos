@@ -70,7 +70,8 @@
     <Compile Include="Models\Actions\ActionContainer.cs" />
     <Compile Include="Models\Actions\AppRule.cs" />
     <Compile Include="Models\Actions\AppAction.cs" />
-    <Compile Include="Models\Cashes\CashTransaction.cs" />
+    <Compile Include="Models\Transactions\AccountTransaction.cs" />
+    <Compile Include="Models\Transactions\CashTransaction.cs" />
     <Compile Include="Models\Inventory\CostItem.cs" />
     <Compile Include="Models\Inventory\InventoryItem.cs" />
     <Compile Include="Models\Inventory\Recipe.cs" />

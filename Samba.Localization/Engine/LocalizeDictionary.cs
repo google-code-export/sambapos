@@ -831,15 +831,14 @@ namespace Samba.Localization.Engine
         public static void ChangeLanguage(string twoLetterLang)
         {
             var requestedLang = twoLetterLang;
-            if (string.IsNullOrEmpty(requestedLang) || !LocalSettings.OverrideLanguage)
+            if (string.IsNullOrEmpty(requestedLang))
             {
-                var currentUiLanguage = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+                var currentUiLanguage = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
                 requestedLang = LocalSettings.SupportedLanguages.Contains(currentUiLanguage)
                                    ? currentUiLanguage
                                    : LocalSettings.SupportedLanguages[0];
             }
-            if (LocalSettings.OverrideLanguage)
-                Instance.Culture = CultureInfo.GetCultureInfo(requestedLang);
+            Instance.Culture = CultureInfo.GetCultureInfo(requestedLang);
             LocalSettings.CurrentLanguage = requestedLang;
         }
     }

@@ -2708,4 +2708,19 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
 	<data name="TableChangedRetryLastOperation_f">
 		<value xml:space="preserve">{0} table changed. Your latest changes not saved.</value>
 	</data>
+	<data name="NewLiabilityTransaction">
+		<value xml:space="preserve">New Credit Transaction</value>
+	</data>
+	<data name="NewReceivableTransaction">
+		<value xml:space="preserve">New Debit Transaction</value>
+	</data>
+	<data name="AddLiability_r">
+		<value>Credit</value>
+	</data>
+	<data name="AddReceivable_r">
+		<value>Debit</value>
+	</data>
+	<data name="VoidTicketItems">
+		<value xml:space="preserve">Void Ticket Items</value>
+	</data>
 </root>

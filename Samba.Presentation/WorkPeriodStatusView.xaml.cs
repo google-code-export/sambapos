@@ -14,12 +14,11 @@ namespace Samba.Presentation
     /// </summary>
     public partial class WorkPeriodStatusView : UserControl
     {
-        private readonly Timer _timer;
+        private Timer _timer;
         public WorkPeriodStatusView()
         {
             InitializeComponent();
             EventServiceFactory.EventService.GetEvent<GenericEvent<WorkPeriod>>().Subscribe(OnWorkperiodStatusChanged);
-            _timer = new Timer(OnTimerTick, null, 1, 60000);
         }
 
         private void OnWorkperiodStatusChanged(EventParameters<WorkPeriod> obj)
@@ -28,6 +27,12 @@ namespace Samba.Presentation
             {
                 _timer.Change(1, 60000);
             }
+        }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            _timer = new Timer(OnTimerTick, null, 1, 60000);
+            base.OnInitialized(e);
         }
 
         private void OnTimerTick(object state)

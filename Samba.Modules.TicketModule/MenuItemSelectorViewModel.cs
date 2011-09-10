@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using Microsoft.Practices.Prism.Commands;
@@ -156,13 +157,17 @@ namespace Samba.Modules.TicketModule
                         }
                     }
                 }
-                var mi = AppServices.DataAccessService.GetMenuItem(insertedData);
-                if (mi != null)
+                try
                 {
-                    var si = new ScreenMenuItem { MenuItemId = mi.Id, Name = mi.Name };
-                    var data = new ScreenMenuItemData { ScreenMenuItem = si, Quantity = quantity };
-                    _addMenuItemCommand.Execute(data);
+                    var mi = AppServices.DataAccessService.GetMenuItem(insertedData);
+                    if (mi != null)
+                    {
+                        var si = new ScreenMenuItem { MenuItemId = mi.Id, Name = mi.Name };
+                        var data = new ScreenMenuItemData { ScreenMenuItem = si, Quantity = quantity };
+                        _addMenuItemCommand.Execute(data);
+                    }
                 }
+                catch (Exception) { }
             }
         }
 

@@ -19,8 +19,7 @@
                             <Label>
                                 <LocText ResourceIdentifierKey="UiLanguage" Suffix=":"/>
                             </Label>
-                            <CheckBox Margin="0,8,3,0" IsChecked="{Binding OverrideLanguage}"/>
-                            <ComboBox IsEnabled="{Binding OverrideLanguage}" HorizontalAlignment="Left" Width="100" SelectedValue="{Binding Language}"
+                            <ComboBox HorizontalAlignment="Left" Width="100" SelectedValue="{Binding Language}"
                      DisplayMemberPath="NativeName" SelectedValuePath="TwoLetterISOLanguageName" ItemsSource="{Binding SupportedLanguages}" />
                         </StackPanel>
                         <CheckBox Margin="0" IsEnabled="{Binding OverrideLanguage}" IsChecked="{Binding OverrideWindowsRegionalSettings}">

@@ -5,7 +5,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -16,10 +16,12 @@
             VerticalGridLinesBrush="{StaticResource {x:Static SystemColors.ActiveBorderBrushKey}}"
             CanUserDeleteRows="False"
             CanUserAddRows="False"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto"
             Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}"
             ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
             TypeInTargetAssembly={x:Type DataGridFilterLibrary:DataGridHeaderFilterControl}, 
-            ResourceId=DataGridHeaderFilterControlStyle}}">
+            ResourceId=DataGridHeaderFilterControlStyle}}" FrozenColumnCount="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{LocText Product}"
                      IsReadOnly="True" MinWidth="170" Binding="{Binding ItemName}" />

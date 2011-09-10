@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Documents;
-using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
+using Samba.Domain.Models.Transactions;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
@@ -34,19 +34,30 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
             var transactionSum = transactions.GroupBy(x => x.CustomerId).Select(
                 x =>
                 new
-                    {
-                        CustomerId = x.Key,
-                        Amount = x.Sum(y => y.Amount)
-                    }
-                );
+                {
+                    CustomerId = x.Key,
+                    Amount = x.Sum(y => y.TransactionType == 1 ? y.Amount : 0 - y.Amount)
+                });
+
+            var accountTransactions = Dao.Query<AccountTransaction>().Where(x => x.CustomerId > 0);
+            var accountTransactionSum = accountTransactions.GroupBy(x => x.CustomerId).Select(
+                x =>
+                new
+                {
+                    CustomerId = x.Key,
+                    Amount = x.Sum(y => y.TransactionType == 3 ? y.Amount : 0 - y.Amount)
+                });
+
 
             var customerIds = paymentSum.Select(x => x.CustomerId).Distinct();
             customerIds = customerIds.Union(transactionSum.Select(x => x.CustomerId).Distinct());
+            customerIds = customerIds.Union(accountTransactionSum.Select(x => x.CustomerId).Distinct());
 
             var list = (from customerId in customerIds
-                        let amount = paymentSum.Where(x => x.CustomerId == customerId).Sum(x => x.Amount)
-                        let payment = transactionSum.Where(x => x.CustomerId == customerId).Sum(x => x.Amount)
-                        select new { CustomerId = customerId, Amount = amount - payment })
+                        let amount = transactionSum.Where(x => x.CustomerId == customerId).Sum(x => x.Amount)
+                        let account = accountTransactionSum.Where(x => x.CustomerId == customerId).Sum(x => x.Amount)
+                        let payment = paymentSum.Where(x => x.CustomerId == customerId).Sum(x => x.Amount)
+                        select new { CustomerId = customerId, Amount = (amount + account + payment) })
                             .Where(x => x.Amount != 0).ToList();
 
             var cids = list.Select(x => x.CustomerId).ToList();

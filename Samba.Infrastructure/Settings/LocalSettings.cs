@@ -108,19 +108,10 @@ html
             set
             {
                 _settingsObject.CurrentLanguage = value;
-                if (OverrideLanguage)
-                {
-                    _cultureInfo = CultureInfo.GetCultureInfo(value);
-                    UpdateThreadLanguage();
-                }
+                _cultureInfo = CultureInfo.GetCultureInfo(value);
+                UpdateThreadLanguage();
                 SaveSettings();
             }
-        }
-
-        public static bool OverrideLanguage
-        {
-            get { return _settingsObject.OverrideLanguage; }
-            set { _settingsObject.OverrideLanguage = value; }
         }
 
         public static bool OverrideWindowsRegionalSettings
@@ -194,7 +185,7 @@ html
 
         public static void UpdateThreadLanguage()
         {
-            if (OverrideLanguage && _cultureInfo != null)
+            if (_cultureInfo != null)
             {
                 if (OverrideWindowsRegionalSettings)
                     Thread.CurrentThread.CurrentCulture = _cultureInfo;

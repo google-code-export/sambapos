@@ -110,10 +110,10 @@ namespace Samba.Services
         {
             if (!string.IsNullOrEmpty(LocalSettings.TerminalName))
             {
-                var terminal = Terminals.Single(x => x.Name == LocalSettings.TerminalName);
+                var terminal = Terminals.SingleOrDefault(x => x.Name == LocalSettings.TerminalName);
                 if (terminal != null) return terminal;
             }
-            var dterminal = Terminals.Single(x => x.IsDefault);
+            var dterminal = Terminals.SingleOrDefault(x => x.IsDefault);
             return dterminal ?? Terminal.DefaultTerminal;
         }
 

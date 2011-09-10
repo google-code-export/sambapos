@@ -70,7 +70,6 @@ namespace Samba.Presentation.Terminal
             CategorySelectionCommand = new DelegateCommand<ScreenMenuCategory>(OnCategorySelected);
             MenuItemSelectionCommand = new DelegateCommand<ScreenMenuItem>(OnMenuItemSelected);
             ItemSelectedCommand = new DelegateCommand<TicketItemViewModel>(OnItemSelected);
-            var b = "b";
             IncPageNumberCommand = new CaptionCommand<string>(Resources.Next + " >>", OnIncPageNumber, CanIncPageNumber);
             DecPageNumberCommand = new CaptionCommand<string>("<< " + Resources.Previous, OnDecPageNumber, CanDecPageNumber);
         }

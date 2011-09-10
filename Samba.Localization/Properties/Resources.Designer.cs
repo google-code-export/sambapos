@@ -252,6 +252,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credit.
+        /// </summary>
+        public static string AddLiability_r {
+            get {
+                return ResourceManager.GetString("AddLiability_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adding New {0}.
         /// </summary>
         public static string AddModel_f {
@@ -293,6 +302,15 @@ namespace Samba.Localization.Properties {
         public static string AddPropertyPriceToProductPrice {
             get {
                 return ResourceManager.GetString("AddPropertyPriceToProductPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debit.
+        /// </summary>
+        public static string AddReceivable_r {
+            get {
+                return ResourceManager.GetString("AddReceivable_r", resourceCulture);
             }
         }
         
@@ -3630,6 +3648,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Credit Transaction.
+        /// </summary>
+        public static string NewLiabilityTransaction {
+            get {
+                return ResourceManager.GetString("NewLiabilityTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Order.
         /// </summary>
         public static string NewOrder {
@@ -3644,6 +3671,15 @@ namespace Samba.Localization.Properties {
         public static string NewProperty {
             get {
                 return ResourceManager.GetString("NewProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Debit Transaction.
+        /// </summary>
+        public static string NewReceivableTransaction {
+            get {
+                return ResourceManager.GetString("NewReceivableTransaction", resourceCulture);
             }
         }
         
@@ -6790,6 +6826,15 @@ namespace Samba.Localization.Properties {
         public static string VoidsTotal {
             get {
                 return ResourceManager.GetString("VoidsTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Void Ticket Items.
+        /// </summary>
+        public static string VoidTicketItems {
+            get {
+                return ResourceManager.GetString("VoidTicketItems", resourceCulture);
             }
         }
         

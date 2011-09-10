@@ -38,6 +38,7 @@ namespace Samba.Domain.Models.Tickets
         public DateTime ModifiedDateTime { get; set; }
         [StringLength(10)]
         public string PriceTag { get; set; }
+        public string Tag { get; set; }
 
         private IList<TicketItemProperty> _properties;
         public virtual IList<TicketItemProperty> Properties

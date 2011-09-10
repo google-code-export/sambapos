@@ -8,9 +8,9 @@ using System.Timers;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Samba.Domain;
-using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
+using Samba.Domain.Models.Transactions;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
@@ -33,6 +33,8 @@ namespace Samba.Modules.CustomerModule
         public ICaptionCommand DisplayCustomerAccountCommand { get; set; }
         public ICaptionCommand GetPaymentFromCustomerCommand { get; set; }
         public ICaptionCommand MakePaymentToCustomerCommand { get; set; }
+        public ICaptionCommand AddReceivableCommand { get; set; }
+        public ICaptionCommand AddLiabilityCommand { get; set; }
         public ICaptionCommand CloseAccountScreenCommand { get; set; }
 
         public Ticket SelectedTicket { get { return AppServices.MainDataContext.SelectedTicket; } }
@@ -160,9 +162,23 @@ namespace Samba.Modules.CustomerModule
             DisplayCustomerAccountCommand = new CaptionCommand<string>(Resources.CustomerAccount_r, OnDisplayCustomerAccount, CanSelectCustomer);
             MakePaymentToCustomerCommand = new CaptionCommand<string>(Resources.MakePayment_r, OnMakePaymentToCustomerCommand, CanSelectCustomer);
             GetPaymentFromCustomerCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnGetPaymentFromCustomerCommand, CanSelectCustomer);
+            AddLiabilityCommand = new CaptionCommand<string>(Resources.AddLiability_r, OnAddLiability, CanSelectCustomer);
+            AddReceivableCommand = new CaptionCommand<string>(Resources.AddReceivable_r, OnAddReceivable, CanSelectCustomer);
             CloseAccountScreenCommand = new CaptionCommand<string>(Resources.Close, OnCloseAccountScreen);
 
             SelectedCustomerTransactions = new ObservableCollection<CustomerTransactionViewModel>();
+        }
+
+        private void OnAddReceivable(string obj)
+        {
+            SelectedCustomer.Model.PublishEvent(EventTopicNames.AddReceivableAmount);
+            FoundCustomers.Clear();
+        }
+
+        private void OnAddLiability(string obj)
+        {
+            SelectedCustomer.Model.PublishEvent(EventTopicNames.AddLiabilityAmount);
+            FoundCustomers.Clear();
         }
 
         private void OnCloseAccountScreen(string obj)
@@ -199,6 +215,8 @@ namespace Samba.Modules.CustomerModule
             {
                 var tickets = Dao.Query<Ticket>(x => x.CustomerId == SelectedCustomer.Id && x.LastPaymentDate > SelectedCustomer.AccountOpeningDate, x => x.Payments);
                 var cashTransactions = Dao.Query<CashTransaction>(x => x.Date > SelectedCustomer.AccountOpeningDate && x.CustomerId == SelectedCustomer.Id);
+                var accountTransactions = Dao.Query<AccountTransaction>(x => x.Date > SelectedCustomer.AccountOpeningDate && x.CustomerId == SelectedCustomer.Id);
+
                 var transactions = new List<CustomerTransactionViewModel>();
                 transactions.AddRange(tickets.Select(x => new CustomerTransactionViewModel
                                                        {
@@ -210,20 +228,35 @@ namespace Samba.Modules.CustomerModule
 
                 transactions.AddRange(cashTransactions.Where(x => x.TransactionType == (int)TransactionType.Income)
                     .Select(x => new CustomerTransactionViewModel
-                            {
-                                Description = x.Name,
-                                Date = x.Date,
-                                Liability = x.Amount
-                            }));
+                    {
+                        Description = x.Name,
+                        Date = x.Date,
+                        Liability = x.Amount
+                    }));
 
-                transactions.AddRange(
-                    cashTransactions.Where(x => x.TransactionType == (int)TransactionType.Expense)
+                transactions.AddRange(cashTransactions.Where(x => x.TransactionType == (int)TransactionType.Expense)
                     .Select(x => new CustomerTransactionViewModel
-                            {
-                                Description = x.Name,
-                                Date = x.Date,
-                                Receivable = x.Amount
-                            }));
+                    {
+                        Description = x.Name,
+                        Date = x.Date,
+                        Receivable = x.Amount
+                    }));
+
+                transactions.AddRange(accountTransactions.Where(x => x.TransactionType == (int)TransactionType.Liability)
+                    .Select(x => new CustomerTransactionViewModel
+                    {
+                        Description = x.Name,
+                        Date = x.Date,
+                        Liability = x.Amount
+                    }));
+
+                transactions.AddRange(accountTransactions.Where(x => x.TransactionType == (int)TransactionType.Receivable)
+                    .Select(x => new CustomerTransactionViewModel
+                    {
+                        Description = x.Name,
+                        Date = x.Date,
+                        Receivable = x.Amount
+                    }));
 
                 transactions = transactions.OrderBy(x => x.Date).ToList();
 

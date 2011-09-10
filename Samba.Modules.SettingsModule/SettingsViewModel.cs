@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Windows;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
@@ -89,17 +88,6 @@ namespace Samba.Modules.SettingsModule
         {
             get { return LocalSettings.CurrentLanguage; }
             set { LocalSettings.CurrentLanguage = value; }
-        }
-
-        public bool OverrideLanguage
-        {
-            get { return LocalSettings.OverrideLanguage; }
-            set
-            {
-                LocalSettings.OverrideLanguage = value;
-                if (!value) OverrideWindowsRegionalSettings = false;
-                RaisePropertyChanged("OverrideLanguage");
-            }
         }
 
         public bool OverrideWindowsRegionalSettings

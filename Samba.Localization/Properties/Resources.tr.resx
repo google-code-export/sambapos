@@ -2633,15 +2633,15 @@ Masa: {2}</value>
   <data name="MessageReceived" xml:space="preserve">
     <value>Mesaj Alındı</value>
   </data>
-	<data name="MenuItemName" xml:space="preserve">
+  <data name="MenuItemName" xml:space="preserve">
     <value>Ürün Adı</value>
   </data>
-	<data name="PortionName" xml:space="preserve">
+  <data name="PortionName" xml:space="preserve">
     <value>Porsiyon Adı</value>
   </data>
-	<data name="LinesGroupedByTag">
-		<value xml:space="preserve">Etikete Göre Gruplanmış Satırlar</value>
-	</data>
+  <data name="LinesGroupedByTag">
+    <value xml:space="preserve">Etikete Göre Gruplanmış Satırlar</value>
+  </data>
   <data name="SendEmail">
     <value xml:space="preserve">E-Posta gönder</value>
   </data>
@@ -2669,22 +2669,22 @@ Masa: {2}</value>
   <data name="DisplayUserPath">
     <value xml:space="preserve">Kullanıcı Klasörü</value>
   </data>
-	<data name="SaveReportToFile">
-		<value xml:space="preserve">Raporu dosyaya kaydet</value>
-	</data>
-	<data name="PriceDefinitonName" xml:space="preserve">
+  <data name="SaveReportToFile">
+    <value xml:space="preserve">Raporu dosyaya kaydet</value>
+  </data>
+  <data name="PriceDefinitonName" xml:space="preserve">
     <value>Fiyat Tanımı Adı</value>
     <comment>Label.Content</comment>
   </data>
-	<data name="Previous">
-		<value xml:space="preserve">Önceki</value>
-	</data>
-	<data name="Next">
-		<value xml:space="preserve">Sonraki</value>
-	</data>
-	<data name="AddTag">
-		<value xml:space="preserve">Etiket Ekle</value>
-	</data>
+  <data name="Previous">
+    <value xml:space="preserve">Önceki</value>
+  </data>
+  <data name="Next">
+    <value xml:space="preserve">Sonraki</value>
+  </data>
+  <data name="AddTag">
+    <value xml:space="preserve">Etiket Ekle</value>
+  </data>
   <data name="Delete_ab">
     <value xml:space="preserve">Sil</value>
   </data>
@@ -2709,4 +2709,21 @@ Masa: {2}</value>
   <data name="TableChangedRetryLastOperation_f">
     <value xml:space="preserve">{0} masasında değişiklik var. Son işlemi tekrar yapın.</value>
   </data>
+  <data name="NewLiabilityTransaction">
+    <value xml:space="preserve">Yeni Alacaklandırma Hareketi</value>
+  </data>
+  <data name="NewReceivableTransaction">
+    <value xml:space="preserve">Yeni Borçlandırma Hareketi</value>
+  </data>
+  <data name="AddLiability_r">
+    <value><![CDATA[Hesabı
+Alacaklandır]]></value>
+  </data>
+  <data name="AddReceivable_r">
+    <value><![CDATA[Hesabı
+Borçlandır]]></value>
+  </data>
+	<data name="VoidTicketItems">
+		<value xml:space="preserve">Adisyon satırlarını iptal et</value>
+	</data>
 </root>

@@ -199,7 +199,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackPanel Margin="10">
-                    <TextBlock FontWeight="Bold" Text="{Binding TransactionDescription}" />
+                    <TextBlock Foreground="Gray" FontWeight="Bold" Text="{Binding TransactionDescription}" />
                     <Grid Visibility="{Binding IsCustomerDetailsVisible,Converter={StaticResource VisibilityConverter}}">
                         <Grid.Resources>
                             <Style TargetType="TextBlock">
@@ -236,13 +236,16 @@
                     <Common:FilteredTextBox Name="AmountEditor" Type="Number" HorizontalAlignment="Left"
                          MinWidth="100" Text="{Binding Amount,StringFormat='{}{0:#,##.##}',UpdateSourceTrigger=PropertyChanged}"
                          Loaded="FilteredTextBox_Loaded" />
+
                     <StackPanel Orientation="Horizontal" Height="70">
                         <FlexButton:FlexButton MinWidth="200" Margin="0,5,5,5" Command="{Binding ApplyCashTransactionCommand}"
-                             Content="{Binding ApplyCashTransactionCommand.Caption}" />
+                             Content="{Binding ApplyCashTransactionCommand.Caption}" Visibility="{Binding IsPaymentButtonsVisible,Converter={StaticResource VisibilityConverter}}" />
                         <FlexButton:FlexButton MinWidth="100" Margin="5" Command="{Binding ApplyCreditCardTransactionCommand}"
-                             Content="{Binding ApplyCreditCardTransactionCommand.Caption}" />
+                             Content="{Binding ApplyCreditCardTransactionCommand.Caption}" Visibility="{Binding IsPaymentButtonsVisible,Converter={StaticResource VisibilityConverter}}"/>
                         <FlexButton:FlexButton MinWidth="100" Margin="5" Command="{Binding ApplyTicketTransactionCommand}"
-                             Content="{Binding ApplyTicketTransactionCommand.Caption}" />
+                             Content="{Binding ApplyTicketTransactionCommand.Caption}" Visibility="{Binding IsPaymentButtonsVisible,Converter={StaticResource VisibilityConverter}}"/>
+                        <FlexButton:FlexButton HorizontalAlignment="Left" MinWidth="100" Margin="0,5,5,5" Command="{Binding ApplyTransactionCommand}"
+                             Content="{Binding ApplyTransactionCommand.Caption}" Visibility="{Binding IsTransactionButtonVisible,Converter={StaticResource VisibilityConverter}}"/>
                         <FlexButton:FlexButton MinWidth="100" Margin="10,5" Command="{Binding CancelTransactionCommand}"
                              Content="{Binding CancelTransactionCommand.Caption}" />
                     </StackPanel>

@@ -20,7 +20,7 @@ namespace Samba.Presentation.ViewModels
 
         public int Id { get { return Model.Id; } }
         public string Name { get { return Model.Name; } set { Model.Name = value.Trim(); RaisePropertyChanged("Name"); } }
-        public string PhoneNumber { get { return Model.PhoneNumber; } set { Model.PhoneNumber = value.Trim(); RaisePropertyChanged("PhoneNumber"); } }
+        public string PhoneNumber { get { return Model.PhoneNumber; } set { Model.PhoneNumber = !string.IsNullOrEmpty(value) ? value.Trim() : ""; RaisePropertyChanged("PhoneNumber"); } }
         public string Address { get { return Model.Address; } set { Model.Address = value; RaisePropertyChanged("Address"); } }
         public string Note { get { return Model.Note; } set { Model.Note = value; RaisePropertyChanged("Note"); } }
         public string PhoneNumberText { get { return PhoneNumber != null && PhoneNumber.Length == 10 ? FormatAsPhoneNumber(PhoneNumber) : PhoneNumber; } }
@@ -40,7 +40,7 @@ namespace Samba.Presentation.ViewModels
             TotalTicketAmount = Dao.Sum<Ticket>(x => x.TotalAmount, x => x.CustomerId == Model.Id);
         }
 
-        public IEnumerable<TicketItemViewModel> LastTicketLines { get { return LastTicket != null ? LastTicket.TicketItems.Where(x => !x.Gifted || !x.Voided).Select(x=>new TicketItemViewModel(x)) : null; } }
+        public IEnumerable<TicketItemViewModel> LastTicketLines { get { return LastTicket != null ? LastTicket.TicketItems.Where(x => !x.Gifted || !x.Voided).Select(x => new TicketItemViewModel(x)) : null; } }
         public decimal TicketTotal { get { return LastTicket != null ? LastTicket.GetSum() : 0; } }
         public string LastTicketStateString { get { return LastTicket != null ? (LastTicket.IsPaid ? Resources.Paid : Resources.Open) : ""; } }
         public decimal TotalTicketAmount { get; private set; }

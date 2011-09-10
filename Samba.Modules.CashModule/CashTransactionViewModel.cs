@@ -1,6 +1,6 @@
 ﻿using System;
 using Samba.Domain;
-using Samba.Domain.Models.Cashes;
+using Samba.Domain.Models.Transactions;
 using Samba.Presentation.Common;
 
 namespace Samba.Modules.CashModule

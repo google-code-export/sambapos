@@ -15,6 +15,7 @@ namespace Samba.Persistance.DBMigration
             Create.Column("PriceTag").OnTable("Departments").AsString(10).Nullable();
             Create.Column("Tag").OnTable("MenuItems").AsString(128).Nullable();
             Create.Column("PriceTag").OnTable("TicketItems").AsString(10).Nullable();
+            Create.Column("Tag").OnTable("TicketItems").AsString(128).Nullable();
 
             Create.Table("ActionContainers")
                 .WithColumn("Id").AsInt32().Identity().PrimaryKey()
@@ -45,7 +46,7 @@ namespace Samba.Persistance.DBMigration
                 .WithColumn("Id").AsInt32().Identity().PrimaryKey()
                 .WithColumn("MenuItemPortionId").AsInt32().WithDefaultValue(0)
                 .WithColumn("PriceTag").AsString(10).Nullable()
-                .WithColumn("Price").AsDecimal(16, 2);
+                .WithColumn("Price").AsDecimal(16, 2).WithDefaultValue(0);
 
             Create.Table("Triggers")
                 .WithColumn("Id").AsInt32().Identity().PrimaryKey()
@@ -53,6 +54,15 @@ namespace Samba.Persistance.DBMigration
                 .WithColumn("Expression").AsString(128).Nullable()
                 .WithColumn("LastTrigger").AsDateTime().WithDefaultValue(new DateTime(2000, 1, 1));
 
+            Create.Table("AccountTransactions")
+                .WithColumn("Id").AsInt32().Identity().PrimaryKey()
+                .WithColumn("Name").AsString(128).Nullable()
+                .WithColumn("Date").AsDateTime().WithDefaultValue(new DateTime(2000, 1, 1))
+                .WithColumn("TransactionType").AsInt32().WithDefaultValue(0)
+                .WithColumn("Amount").AsDecimal(16, 2).WithDefaultValue(0)
+                .WithColumn("UserId").AsInt32().WithDefaultValue(0)
+                .WithColumn("CustomerId").AsInt32().WithDefaultValue(0);
+            
             Create.ForeignKey("AppRule_Actions")
                 .FromTable("ActionContainers").ForeignColumn("AppRuleId")
                 .ToTable("AppRules").PrimaryColumn("Id");

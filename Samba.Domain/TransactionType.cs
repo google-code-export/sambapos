@@ -3,6 +3,8 @@
     public enum TransactionType
     {
         Income,
-        Expense
+        Expense,
+        Liability,
+        Receivable
     }
 }

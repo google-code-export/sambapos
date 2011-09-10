@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using Samba.Domain;
-using Samba.Domain.Models.Cashes;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Domain.Models.Transactions;
 using Samba.Persistance.Data;
 
 namespace Samba.Services
@@ -59,6 +59,16 @@ namespace Samba.Services
             AddTransaction(customerId, amount, description, paymentType, TransactionType.Expense);
         }
 
+        public void AddLiability(int customerId, decimal amount, string description)
+        {
+            AddTransaction(customerId, amount, description, 0, TransactionType.Liability);
+        }
+
+        public void AddReceivable(int customerId, decimal amount, string description)
+        {
+            AddTransaction(customerId, amount, description, 0, TransactionType.Receivable);
+        }
+
         public IEnumerable<CashTransaction> GetTransactions(WorkPeriod workPeriod)
         {
             Debug.Assert(workPeriod != null);
@@ -94,17 +104,34 @@ namespace Samba.Services
         {
             using (var workspace = WorkspaceFactory.Create())
             {
-                var c = new CashTransaction
-                            {
-                                Amount = amount,
-                                Date = DateTime.Now,
-                                Name = description,
-                                PaymentType = (int)paymentType,
-                                TransactionType = (int)transactionType,
-                                UserId = AppServices.CurrentLoggedInUser.Id,
-                                CustomerId = customerId
-                            };
-                workspace.Add(c);
+                if (transactionType == TransactionType.Income || transactionType == TransactionType.Expense)
+                {
+                    var c = new CashTransaction
+                    {
+                        Amount = amount,
+                        Date = DateTime.Now,
+                        Name = description,
+                        PaymentType = (int)paymentType,
+                        TransactionType = (int)transactionType,
+                        UserId = AppServices.CurrentLoggedInUser.Id,
+                        CustomerId = customerId
+                    };
+                    workspace.Add(c);
+                }
+                else
+                {
+                    var c = new AccountTransaction
+                    {
+                        Amount = amount,
+                        Date = DateTime.Now,
+                        Name = description,
+                        TransactionType = (int)transactionType,
+                        UserId = AppServices.CurrentLoggedInUser.Id,
+                        CustomerId = customerId
+                    };
+                    workspace.Add(c);
+                }
+
                 workspace.CommitChanges();
             }
         }
