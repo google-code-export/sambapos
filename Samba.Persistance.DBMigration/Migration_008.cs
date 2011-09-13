@@ -71,6 +71,8 @@ namespace Samba.Persistance.DBMigration
                 .FromTable("MenuItemPrices").ForeignColumn("MenuItemPortionId")
                 .ToTable("MenuItemPortions").PrimaryColumn("Id").OnDelete(Rule.Cascade);
 
+            Create.Index("IX_Tickets_LastPaymentDate").OnTable("Tickets").OnColumn("LastPaymentDate").Ascending()
+                .WithOptions().NonClustered();
         }
 
         public override void Down()

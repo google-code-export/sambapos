@@ -205,7 +205,7 @@ namespace Samba.Modules.TableModule
         {
             Feedback = "";
             var tableData = AppServices.DataAccessService.GetCurrentTables(tableScreenId, CurrentPageNo).OrderBy(x => x.Order);
-            if (Tables != null && (Tables.Count != tableData.Count())) Tables = null;
+            if (Tables != null && (Tables.Count() == 0 || Tables.Count != tableData.Count() || Tables.First().Caption != tableData.First().Name)) Tables = null;
             if (Tables == null)
             {
                 Tables = new ObservableCollection<IDiagram>();

@@ -25,6 +25,10 @@
                     </Label>
                     <Common:FilteredTextBox Type="Digits" HorizontalAlignment="Left" Width="50" Text="{Binding WeightBarcodeItemLength}" />
                     <Label>
+                        Weight Barcode Item Id Format
+                    </Label>
+                    <TextBox HorizontalAlignment="Left" Width="50" Text="{Binding WeightBarcodeItemFormat}" />
+                    <Label>
                         <LocText ResourceIdentifierKey="WeightBarcodeQuantityLength" Suffix=":"/>
                     </Label>
                     <Common:FilteredTextBox Type="Digits" HorizontalAlignment="Left" Width="50" Text="{Binding WeightBarcodeQuantityLength}" />

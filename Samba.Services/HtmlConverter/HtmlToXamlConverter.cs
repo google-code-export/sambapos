@@ -606,7 +606,7 @@ namespace Samba.Services.HtmlConverter
             }
 
             // Replace No-Breaks by spaces (160 is a code of &nbsp; entity in html)
-            //  This is a work around the bug in Avalon which does not render nbsp.
+            //  This is a work around the bugg in Avalon which does not render nbsp.
             textData = textData.Replace((char)160, ' ');
 
             if (textData.Length > 0)

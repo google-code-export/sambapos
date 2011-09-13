@@ -34,7 +34,7 @@ namespace Samba.Presentation.Terminal
         public static void OpenTicket(int ticketId)
         {
             Debug.Assert(SelectedTicket == null);
-            if (ticketId == 0) AppServices.MainDataContext.CreateNewTicket();
+            if (ticketId == 0) TicketViewModel.CreateNewTicket(); //AppServices.MainDataContext.CreateNewTicket();
             else AppServices.MainDataContext.OpenTicket(ticketId);
             RefreshSelectedTicket();
         }

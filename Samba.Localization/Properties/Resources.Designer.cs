@@ -4892,6 +4892,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t create more than one default terminal.
+        /// </summary>
+        public static string SaveErrorMultipleDefaultTerminals {
+            get {
+                return ResourceManager.GetString("SaveErrorMultipleDefaultTerminals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This Pin Code used by another user account..
         /// </summary>
         public static string SaveErrorThisPinCodeInUse {

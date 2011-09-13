@@ -142,7 +142,7 @@ namespace Samba.Modules.BasicReports
                 Dao.Query<Ticket>(
                     x =>
                     x.LastPaymentDate >= CurrentWorkPeriod.StartDate && x.LastPaymentDate < CurrentWorkPeriod.EndDate,
-                    x => x.Payments, x => x.Discounts, x => x.TicketItems, x => x.TicketItems.Select(y => y.Properties));
+                    x => x.Payments, x => x.Discounts, x => x.TicketItems.Select(y => y.Properties));
 
         }
 

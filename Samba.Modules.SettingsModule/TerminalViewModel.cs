@@ -5,6 +5,7 @@ using System.Linq;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
+using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Presentation.Common.Services;
@@ -68,6 +69,17 @@ namespace Samba.Modules.SettingsModule
                 Model.PrintJobs.Add(choosenValue);
                 PrintJobs.Add(choosenValue);
             }
+        }
+
+        protected override string GetSaveErrorMessage()
+        {
+            if (Model.IsDefault)
+            {
+                var terminal = Dao.Query<Terminal>(x => x.IsDefault).SingleOrDefault();
+                if (terminal != null && terminal.Id != Model.Id)
+                    return Resources.SaveErrorMultipleDefaultTerminals;
+            }
+            return base.GetSaveErrorMessage();
         }
     }
 }

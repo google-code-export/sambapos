@@ -146,9 +146,16 @@ namespace Samba.Modules.TicketModule
                 {
                     var itemLength = AppServices.SettingService.WeightBarcodeItemLength;
                     var quantityLength = AppServices.SettingService.WeightBarcodeQuantityLength;
-                    if (itemLength > 0 && quantityLength > 0)
+                    if (itemLength > 0 && quantityLength > 0 && insertedData.Length >= itemLength + quantityLength + weightBarcodePrefix.Length)
                     {
                         var bc = insertedData.Substring(weightBarcodePrefix.Length, itemLength);
+                        if (!string.IsNullOrEmpty(AppServices.SettingService.WeightBarcodeItemFormat))
+                        {
+                            int integerValue;
+                            int.TryParse(bc, out integerValue);
+                            if (integerValue > 0)
+                                bc = integerValue.ToString(AppServices.SettingService.WeightBarcodeItemFormat);
+                        }
                         var qty = insertedData.Substring(weightBarcodePrefix.Length + itemLength, quantityLength);
                         if (bc.Length > 0 && qty.Length > 0)
                         {

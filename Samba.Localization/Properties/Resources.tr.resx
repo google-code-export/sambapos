@@ -2726,4 +2726,7 @@ Borçlandır]]></value>
 	<data name="VoidTicketItems">
 		<value xml:space="preserve">Adisyon satırlarını iptal et</value>
 	</data>
+	<data name="SaveErrorMultipleDefaultTerminals">
+		<value><![CDATA[Birden fazla varsayılan terminal tanımlamayınız.]]></value>
+	</data>
 </root>

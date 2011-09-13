@@ -2723,4 +2723,7 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
 	<data name="VoidTicketItems">
 		<value xml:space="preserve">Void Ticket Items</value>
 	</data>
+	<data name="SaveErrorMultipleDefaultTerminals">
+		<value><![CDATA[Don't create more than one default terminal]]></value>
+	</data>
 </root>

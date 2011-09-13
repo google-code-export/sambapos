@@ -293,6 +293,8 @@ namespace Samba.Domain.Models.Tickets
             {
                 item.ReasonId = 0;
                 item.Gifted = false;
+                if (!item.Locked)
+                    RemoveTicketItem(item);
             }
             else if (!item.Locked)
                 RemoveTicketItem(item);

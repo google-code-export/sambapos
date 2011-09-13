@@ -32,6 +32,12 @@ namespace Samba.Services
             set { GetWeightBarcodeItemLength().IntegerValue = value; }
         }
 
+        public string WeightBarcodeItemFormat
+        {
+            get { return GetWeightBarcodeItemFormat().StringValue; }
+            set { GetWeightBarcodeItemFormat().StringValue = value; }
+        }
+
         public int WeightBarcodeQuantityLength
         {
             get { return GetWeightBarcodeQuantityLength().IntegerValue; }
@@ -66,6 +72,13 @@ namespace Samba.Services
         private SettingGetter GetWeightBarcodeItemLength()
         {
             return _weightBarcodeItemLength ?? (_weightBarcodeItemLength = GetSetting("WeightBarcodeItemLength"));
+        }
+
+
+        private SettingGetter _weightBarcodeItemFormat;
+        public SettingGetter GetWeightBarcodeItemFormat()
+        {
+            return _weightBarcodeItemFormat ?? (_weightBarcodeItemFormat = GetSetting("WeightBarcodeItemFormat"));
         }
 
         public SettingGetter GetSetting(string valueName)

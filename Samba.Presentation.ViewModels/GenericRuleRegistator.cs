@@ -149,8 +149,6 @@ namespace Samba.Presentation.ViewModels
                                 (y.Tag.Contains(tag) || string.IsNullOrEmpty(tag))).ToList();
                             lines.ForEach(y =>
                                               {
-                                                  if (y.Gifted)
-                                                      ticket.VoidItem(y, 0, AppServices.CurrentLoggedInUser.Id);
                                                   ticket.VoidItem(y, 0, AppServices.CurrentLoggedInUser.Id);
                                               });
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
