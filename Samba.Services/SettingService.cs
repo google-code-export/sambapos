@@ -12,13 +12,13 @@ namespace Samba.Services
     public class SettingService
     {
         private readonly IDictionary<string, ProgramSetting> _settingCache = new Dictionary<string, ProgramSetting>();
+        private readonly IDictionary<string, SettingGetter> _customSettingCache = new Dictionary<string, SettingGetter>();
         private readonly IWorkspace _workspace;
 
         public SettingService()
         {
             _workspace = WorkspaceFactory.Create();
         }
-
 
         public string WeightBarcodePrefix
         {
@@ -74,11 +74,17 @@ namespace Samba.Services
             return _weightBarcodeItemLength ?? (_weightBarcodeItemLength = GetSetting("WeightBarcodeItemLength"));
         }
 
-
         private SettingGetter _weightBarcodeItemFormat;
         public SettingGetter GetWeightBarcodeItemFormat()
         {
             return _weightBarcodeItemFormat ?? (_weightBarcodeItemFormat = GetSetting("WeightBarcodeItemFormat"));
+        }
+
+        public SettingGetter GetCustomSetting(string settingName)
+        {
+            if (!_customSettingCache.ContainsKey(settingName))
+                _customSettingCache.Add(settingName, GetSetting(settingName));
+            return _customSettingCache[settingName];
         }
 
         public SettingGetter GetSetting(string valueName)

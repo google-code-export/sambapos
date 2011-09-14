@@ -2729,4 +2729,15 @@ Borçlandır]]></value>
 	<data name="SaveErrorMultipleDefaultTerminals">
 		<value><![CDATA[Birden fazla varsayılan terminal tanımlamayınız.]]></value>
 	</data>
+	<data name="AllDiscountsRemoved">
+		<value xml:space="preserve">İskonto toplamı adisyon toplamını geçtiği için tüm iskontolar sıfırlandı.</value>
+	</data>
+	<data name="WeightBarcodeItemIdFormat" xml:space="preserve">
+    <value>Gramaj Barkodu Ürün ID Formatı</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="SettingCheck" xml:space="preserve">
+    <value>Ayar Kontrolü</value>
+    <comment>Label.Content</comment>
+  </data>
 </root>

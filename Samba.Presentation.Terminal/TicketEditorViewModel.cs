@@ -236,28 +236,30 @@ namespace Samba.Presentation.Terminal
         {
             return LastSelectedTicketItem != null &&
                 LastSelectedTicketItem.Quantity > 1 &&
-                LastSelectedTicketItem.IsLocked &&
                 !LastSelectedTicketItem.IsGifted &&
                 !LastSelectedTicketItem.IsVoided;
         }
 
         private void OnDecSelectedQuantity(string obj)
         {
-            LastSelectedTicketItem.DecSelectedQuantity();
+            if (LastSelectedTicketItem.IsLocked)
+                LastSelectedTicketItem.DecSelectedQuantity();
+            else LastSelectedTicketItem.Quantity--;
         }
 
         private bool CanIncSelectedQuantity(string arg)
         {
             return LastSelectedTicketItem != null &&
-               LastSelectedTicketItem.Quantity > 1 &&
-               LastSelectedTicketItem.IsLocked &&
+               (LastSelectedTicketItem.Quantity > 1 || !LastSelectedTicketItem.IsLocked) &&
                !LastSelectedTicketItem.IsGifted &&
                !LastSelectedTicketItem.IsVoided;
         }
 
         private void OnIncSelectedQuantity(string obj)
         {
-            LastSelectedTicketItem.IncSelectedQuantity();
+            if (LastSelectedTicketItem.IsLocked)
+                LastSelectedTicketItem.IncSelectedQuantity();
+            else LastSelectedTicketItem.Quantity++;
         }
 
         private bool CanChangeTable(string arg)

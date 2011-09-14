@@ -402,6 +402,12 @@ namespace Samba.Modules.TicketModule
         public void RefreshValues()
         {
             SelectedTicket.RecalculateTicket();
+            if (SelectedTicket.Model.GetRemainingAmount() < 0)
+            {
+                SelectedTicket.Model.Discounts.Clear();
+                SelectedTicket.RecalculateTicket();
+                InteractionService.UserIntraction.GiveFeedback(Resources.AllDiscountsRemoved);
+            }
             //TicketViewModel.RecalculateTicket(AppServices.MainDataContext.SelectedTicket);
             if (GetPaymentValue() <= 0)
                 PaymentAmount = AppServices.MainDataContext.SelectedTicket != null
@@ -409,7 +415,7 @@ namespace Samba.Modules.TicketModule
                     : "";
             SelectedTicket.Discounts.Clear();
             SelectedTicket.Discounts.AddRange(SelectedTicket.Model.Discounts.Where(x => x.DiscountType != (int)DiscountType.Tip).Select(x => new DiscountViewModel(x)));
-            
+
             RaisePropertyChanged("SelectedTicket");
             RaisePropertyChanged("ReturningAmountVisibility");
             RaisePropertyChanged("PaymentsVisibility");

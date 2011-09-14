@@ -63,6 +63,7 @@ namespace Samba.Domain.Models.Menus
                 if (portion.Name == portionName)
                     return portion;
             }
+            if (string.IsNullOrEmpty(portionName) && Portions.Count > 0) return Portions[0];
             throw new Exception("Porsiyon Tanımlı Değil.");
         }
 

@@ -32,7 +32,7 @@ namespace Samba.Login
 
         private static string GetSqlHint()
         {
-            return !string.IsNullOrEmpty(GetAdminPasswordHint()) 
+            return !string.IsNullOrEmpty(GetAdminPasswordHint())
                 ? Resources.SqlHint : "";
         }
 
@@ -46,13 +46,13 @@ namespace Samba.Login
 
         public static string GetAdminPasswordHint()
         {
-            if (GetDatabaseLabel() == "TX"
+            if ((GetDatabaseLabel() == "TX" || GetDatabaseLabel() == "CE")
                 && AppServices.MainDataContext.Users.Count() == 1
                 && AppServices.MainDataContext.Users.ElementAt(0).PinCode == "1234")
             {
                 return Resources.AdminPasswordHint;
             }
-                
+
             return "";
         }
     }

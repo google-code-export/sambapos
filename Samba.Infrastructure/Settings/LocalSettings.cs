@@ -134,7 +134,7 @@ html
         public static string DefaultCurrencyFormat { get; set; }
 
         public static int DbVersion { get { return 8; } }
-        public static string AppVersion { get { return "2.50"; } }
+        public static string AppVersion { get { return "2.51"; } }
         public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }

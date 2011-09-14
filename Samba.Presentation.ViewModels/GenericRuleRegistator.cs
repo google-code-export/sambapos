@@ -30,14 +30,15 @@ namespace Samba.Presentation.ViewModels
 
         private static void RegisterActions()
         {
-            RuleActionTypeRegistry.RegisterActionType("SendEmail", Resources.SendEmail, "SMTPServer", "SMTPUser", "SMTPPassword", "SMTPPort", "ToEMailAddress", "Subject", "FromEMailAddress", "EMailMessage", "FileName", "DeleteFile");
-            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", Resources.AddTicketDiscount, "DiscountPercentage");
-            RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, "MenuItemName", "PortionName", "Quantity", "Gift", "Tag");
-            RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, "MenuItemName", "Tag");
-            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, "TagName", "TagValue");
-            RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, "DepartmentName", "PriceTag");
+            RuleActionTypeRegistry.RegisterActionType("SendEmail", Resources.SendEmail, new { SMTPServer = "", SMTPUser = "", SMTPPassword = "", SMTPPort = 0, ToEMailAddress = "", Subject = "", FromEMailAddress = "", EMailMessage = "", FileName = "", DeleteFile = false });
+            RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", Resources.AddTicketDiscount, new { DiscountPercentage = 0m });
+            RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, new { MenuItemName = "", PortionName = "", Quantity = 0, Gift = false, Tag = "" });
+            RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, new { MenuItemName = "", Tag = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, new { TagName = "", TagValue = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, new { DepartmentName = "", PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
-            RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, "Command");
+            RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", "Update Program Setting", new { SettingName = "", SettingValue = "" });
         }
 
         private static void RegisterRules()
@@ -76,6 +77,14 @@ namespace Samba.Presentation.ViewModels
         {
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
+                if (x.Value.Action.ActionType == "UpdateProgramSetting")
+                {
+                    var settingName = x.Value.GetAsString("SettingName");
+                    var settingValue = x.Value.GetAsString("SettingValue");
+                    if (!string.IsNullOrEmpty(settingName))
+                        AppServices.SettingService.GetCustomSetting(settingName).StringValue = settingValue;
+                }
+
                 if (x.Value.Action.ActionType == "RefreshCache")
                 {
                     MethodQueue.Queue("ResetCache", ResetCache);

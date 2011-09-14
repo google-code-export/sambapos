@@ -100,7 +100,7 @@ namespace Samba.Services
 
                 decimal objectValue;
                 decimal.TryParse(Value, out objectValue);
-                
+
                 if (Operation.Contains(OpConst.NotEqual))
                 {
                     if (propertyValue.Equals(objectValue)) return false;
@@ -148,7 +148,7 @@ namespace Samba.Services
     {
         public string ActionType { get; set; }
         public string ActionName { get; set; }
-        public string[] ParameterNames { get; set; }
+        public object ParameterObject { get; set; }
     }
 
     public class RuleEvent
@@ -185,14 +185,14 @@ namespace Samba.Services
         }
 
         public static IDictionary<string, RuleActionType> ActionTypes = new Dictionary<string, RuleActionType>();
-        public static void RegisterActionType(string actionType, string actionName, params string[] paramterNames)
+        public static void RegisterActionType(string actionType, string actionName, object parameterObject = null)
         {
             if (!ActionTypes.ContainsKey(actionType))
                 ActionTypes.Add(actionType, new RuleActionType
                                                 {
                                                     ActionName = actionName,
                                                     ActionType = actionType,
-                                                    ParameterNames = paramterNames
+                                                    ParameterObject = parameterObject
                                                 });
         }
 

@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.50 "
-#define FileVersion "250"
+#define Version "2.51 "
+#define FileVersion "251"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -44,12 +44,14 @@ en.compact_setup=Compact Setup
 en.custom_setup=Custom Setup
 en.sample_data=Sample Data
 en.handheld_terminal_app=Handheld terminal app
+en.ce_install_sp3_required=Compact SQL 4.0 removed from packages list because Service Pack 3 required for Compact SQL 4.0 installation. Program will run with TXT database.
 
 tr.full_setup=Tam Kurulum
 tr.compact_setup=Normal Kurulum
 tr.custom_setup=Özel Kurulum
 tr.sample_data=Örnek Veri
 tr.handheld_terminal_app=El terminali uygulamasý
+tr.ce_install_sp3_required=Compact SQL 4.0 çalýþtýrmak için Service Pack 3 gerektiðinden kurulum listesinden kaldýrýldý. Program TXT dosya veritabaný üzerinden çalýþacak.
 
 [Setup]
 AppName=Samba POS
@@ -196,7 +198,7 @@ if (CurPageId = wpSelectProgramGroup) then
     dotnetfx40client();
     if IsComponentSelected('sqlce') then
     if not minwinspversion(5, 1, 3) then begin
-		MsgBox(FmtMessage(CustomMessage('depinstall_missing'), [CustomMessage('winxpsp3_title')]), mbError, MB_OK);
+		MsgBox(FmtMessage(CustomMessage('ce_install_sp3_required'), [CustomMessage('winxpsp3_title')]), mbError, MB_OK);
     end else begin
 		ssce40();
     end;

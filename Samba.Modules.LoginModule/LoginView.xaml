@@ -31,12 +31,6 @@ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             </Border>
             <TextBlock FontSize="14" HorizontalAlignment="Center" Text="{Binding AdminPasswordHint}"
                  TextAlignment="Center" />
-            <TextBlock FontSize="12" HorizontalAlignment="Center" TextAlignment="Center">
-                <Hyperlink NavigateUri="http://www.sambapos.com/content/client-server-baglantisi-nasil-yapilir"
-                     RequestNavigate="Hyperlink_RequestNavigate">
-                    <Label Content="{Binding SqlHint}" Margin="0" Padding="0" Foreground="Blue" />
-                </Hyperlink>
-            </TextBlock>
             <Button HorizontalAlignment="Center" Width="110" Height="50" FontWeight="Bold" FontSize="18"
                  Margin="5" Click="Button_Click">
                 <Button.Background>

@@ -2675,55 +2675,66 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>Price Definiton Name</value>
     <comment>Label.Content</comment>
   </data>
-	<data name="Previous">
-		<value xml:space="preserve">Previous</value>
-	</data>
-	<data name="Next">
-		<value xml:space="preserve">Next</value>
-	</data>
-	<data name="AddTag">
-		<value xml:space="preserve">Add Tag</value>
-	</data>
-	<data name="Delete_ab">
-		<value xml:space="preserve">Del</value>
-	</data>
-	<data name="Divide_ab">
-		<value xml:space="preserve">Div</value>
-	</data>
-	<data name="Print_ab">
-		<value xml:space="preserve">Prn</value>
-	</data>
-	<data name="TicketMovedRetryLastOperation_f">
-		<value><![CDATA[Ticket moved to {0}. Your latest changes not saved.]]></value>
-	</data>
-	<data name="TicketPaidChangesNotSaved">
-		<value xml:space="preserve">Ticket Paid. Your latest changes not saved.</value>
-	</data>
-	<data name="TicketChangedRetryLastOperation">
-		<value xml:space="preserve">Ticket changed. Your latest changes not saved.</value>
-	</data>
-	<data name="TicketPaidLastChangesNotSaved">
-		<value xml:space="preserve">Ticket paid. Your latest changes not saved.</value>
-	</data>
-	<data name="TableChangedRetryLastOperation_f">
-		<value xml:space="preserve">{0} table changed. Your latest changes not saved.</value>
-	</data>
-	<data name="NewLiabilityTransaction">
-		<value xml:space="preserve">New Credit Transaction</value>
-	</data>
-	<data name="NewReceivableTransaction">
-		<value xml:space="preserve">New Debit Transaction</value>
-	</data>
-	<data name="AddLiability_r">
-		<value>Credit</value>
-	</data>
-	<data name="AddReceivable_r">
-		<value>Debit</value>
-	</data>
-	<data name="VoidTicketItems">
-		<value xml:space="preserve">Void Ticket Items</value>
-	</data>
-	<data name="SaveErrorMultipleDefaultTerminals">
-		<value><![CDATA[Don't create more than one default terminal]]></value>
-	</data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Add Tag</value>
+  </data>
+  <data name="Delete_ab" xml:space="preserve">
+    <value>Del</value>
+  </data>
+  <data name="Divide_ab" xml:space="preserve">
+    <value>Div</value>
+  </data>
+  <data name="Print_ab" xml:space="preserve">
+    <value>Prn</value>
+  </data>
+  <data name="TicketMovedRetryLastOperation_f" xml:space="preserve">
+    <value>Ticket moved to {0}. Your latest changes not saved.</value>
+  </data>
+  <data name="TicketPaidChangesNotSaved" xml:space="preserve">
+    <value>Ticket Paid. Your latest changes not saved.</value>
+  </data>
+  <data name="TicketChangedRetryLastOperation" xml:space="preserve">
+    <value>Ticket changed. Your latest changes not saved.</value>
+  </data>
+  <data name="TicketPaidLastChangesNotSaved" xml:space="preserve">
+    <value>Ticket paid. Your latest changes not saved.</value>
+  </data>
+  <data name="TableChangedRetryLastOperation_f" xml:space="preserve">
+    <value>{0} table changed. Your latest changes not saved.</value>
+  </data>
+  <data name="NewLiabilityTransaction" xml:space="preserve">
+    <value>New Credit Transaction</value>
+  </data>
+  <data name="NewReceivableTransaction" xml:space="preserve">
+    <value>New Debit Transaction</value>
+  </data>
+  <data name="AddLiability_r" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="AddReceivable_r" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="VoidTicketItems" xml:space="preserve">
+    <value>Void Ticket Items</value>
+  </data>
+  <data name="SaveErrorMultipleDefaultTerminals" xml:space="preserve">
+    <value>Don't create more than one default terminal</value>
+  </data>
+  <data name="AllDiscountsRemoved" xml:space="preserve">
+    <value>All discounts removed because calculated total discount amount is greater than ticket amount.</value>
+  </data>
+  <data name="WeightBarcodeItemIdFormat" xml:space="preserve">
+    <value>Weight Barcode Item Id Format</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="SettingCheck" xml:space="preserve">
+    <value>Setting Check</value>
+    <comment>Label.Content</comment>
+  </data>
 </root>

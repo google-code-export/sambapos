@@ -397,6 +397,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All discounts removed because calculated total discount amount is greater than ticket amount..
+        /// </summary>
+        public static string AllDiscountsRemoved {
+            get {
+                return ResourceManager.GetString("AllDiscountsRemoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Lines.
         /// </summary>
         public static string AllLines {
@@ -5110,6 +5119,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setting Check.
+        /// </summary>
+        public static string SettingCheck {
+            get {
+                return ResourceManager.GetString("SettingCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
@@ -6889,6 +6907,15 @@ namespace Samba.Localization.Properties {
         public static string Weekday {
             get {
                 return ResourceManager.GetString("Weekday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight Barcode Item Id Format.
+        /// </summary>
+        public static string WeightBarcodeItemIdFormat {
+            get {
+                return ResourceManager.GetString("WeightBarcodeItemIdFormat", resourceCulture);
             }
         }
         
