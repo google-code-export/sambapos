@@ -145,6 +145,7 @@ namespace Samba.Services
             _terminals = null;
             MainDataContext.ResetCache();
             PrintService.ResetCache();
+            SettingService.ResetCache();
             SerialPortService.ResetCache();
             Dao.ResetCache();
             Workspace = WorkspaceFactory.Create();

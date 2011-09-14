@@ -6650,6 +6650,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Program Setting.
+        /// </summary>
+        public static string UpdateProgramSetting {
+            get {
+                return ResourceManager.GetString("UpdateProgramSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Ticket Tag.
         /// </summary>
         public static string UpdateTicketTag {

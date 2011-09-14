@@ -84,6 +84,13 @@ namespace Samba.Presentation.Common
                 }
                 else
                 {
+                    if (condition.Name.StartsWith("SN$"))
+                    {
+                        var settingName = condition.Name.Replace("SN$", "");
+                        var settingValue = condition.Value;
+                        if (AppServices.SettingService.GetCustomSetting(settingName).StringValue != settingValue)
+                            return false;
+                    }
                     if (condition.Name == "TerminalName" && !string.IsNullOrEmpty(condition.Value))
                     {
                         if (!condition.Value.Equals(AppServices.CurrentTerminal.Name))

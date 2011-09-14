@@ -2737,4 +2737,7 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>Setting Check</value>
     <comment>Label.Content</comment>
   </data>
+	<data name="UpdateProgramSetting">
+		<value xml:space="preserve">Update Program Setting</value>
+	</data>
 </root>

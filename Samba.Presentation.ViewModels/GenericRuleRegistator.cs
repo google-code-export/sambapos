@@ -38,7 +38,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, new { DepartmentName = "", PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
-            RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", "Update Program Setting", new { SettingName = "", SettingValue = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "" });
         }
 
         private static void RegisterRules()
@@ -82,7 +82,10 @@ namespace Samba.Presentation.ViewModels
                     var settingName = x.Value.GetAsString("SettingName");
                     var settingValue = x.Value.GetAsString("SettingValue");
                     if (!string.IsNullOrEmpty(settingName))
+                    {
                         AppServices.SettingService.GetCustomSetting(settingName).StringValue = settingValue;
+                        AppServices.SettingService.SaveChanges();
+                    }
                 }
 
                 if (x.Value.Action.ActionType == "RefreshCache")
@@ -156,10 +159,7 @@ namespace Samba.Presentation.ViewModels
                             var lines = ticket.TicketItems.Where(y => !y.Voided &&
                                 (string.IsNullOrEmpty(menuItemName) || y.MenuItemName.Contains(menuItemName)) &&
                                 (y.Tag.Contains(tag) || string.IsNullOrEmpty(tag))).ToList();
-                            lines.ForEach(y =>
-                                              {
-                                                  ticket.VoidItem(y, 0, AppServices.CurrentLoggedInUser.Id);
-                                              });
+                            lines.ForEach(y => ticket.VoidItem(y, 0, AppServices.CurrentLoggedInUser.Id));
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                         }
                     }

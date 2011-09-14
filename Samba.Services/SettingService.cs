@@ -13,7 +13,7 @@ namespace Samba.Services
     {
         private readonly IDictionary<string, ProgramSetting> _settingCache = new Dictionary<string, ProgramSetting>();
         private readonly IDictionary<string, SettingGetter> _customSettingCache = new Dictionary<string, SettingGetter>();
-        private readonly IWorkspace _workspace;
+        private IWorkspace _workspace;
 
         public SettingService()
         {
@@ -108,6 +108,12 @@ namespace Samba.Services
         public void SaveChanges()
         {
             _workspace.CommitChanges();
+        }
+
+        public void ResetCache()
+        {
+            _workspace = WorkspaceFactory.Create();
+            _customSettingCache.Clear();
         }
     }
 }

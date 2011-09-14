@@ -31,7 +31,7 @@ namespace Samba.Presentation
 
         protected override void OnInitialized(EventArgs e)
         {
-            _timer = new Timer(OnTimerTick, null, 1, 60000);
+            _timer = new Timer(OnTimerTick, null, 30000, 60000);
             base.OnInitialized(e);
         }
 
@@ -41,6 +41,7 @@ namespace Samba.Presentation
             {
                 try
                 {
+                    if (AppServices.ActiveAppScreen == AppScreens.LoginScreen) return;
                     if (AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
                     {
                         var ts = new TimeSpan(DateTime.Now.Ticks - AppServices.MainDataContext.CurrentWorkPeriod.StartDate.Ticks);

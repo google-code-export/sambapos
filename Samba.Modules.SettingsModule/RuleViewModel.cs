@@ -27,15 +27,18 @@ namespace Samba.Modules.SettingsModule
             {
                 Constraints.AddRange(
                     model.EventConstraints.Split('#')
-                    .Where(x => !x.StartsWith("SN="))
+                    .Where(x => !x.StartsWith("SN$"))
                     .Select(x => new RuleConstraintViewModel(x)));
                 var settingData =
-                model.EventConstraints.Split('#').Where(x => x.StartsWith("SN=")).FirstOrDefault();
+                model.EventConstraints.Split('#').Where(x => x.StartsWith("SN$")).FirstOrDefault();
                 if (!string.IsNullOrEmpty(settingData))
                 {
                     var settingParts = settingData.Split(';');
-                    SettingConstraintName = settingParts[0];
-                    SettingConstraintValue = settingParts[1];
+                    if (settingParts.Length == 3)
+                    {
+                        SettingConstraintName = settingParts[0].Replace("SN$", "");
+                        SettingConstraintValue = settingParts[2];
+                    }
                 }
             }
         }
@@ -124,7 +127,7 @@ namespace Samba.Modules.SettingsModule
                 .Where(x => x.Value != null)
                 .Select(x => x.GetConstraintData()));
             if (!string.IsNullOrEmpty(SettingConstraintName))
-                Model.EventConstraints += "SN=" + SettingConstraintName + ";" + SettingConstraintValue;
+                Model.EventConstraints += "SN$" + SettingConstraintName + ";=;" + SettingConstraintValue;
             base.OnSave(value);
         }
     }

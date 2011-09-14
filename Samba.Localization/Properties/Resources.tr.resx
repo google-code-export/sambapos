@@ -2740,4 +2740,7 @@ Borçlandır]]></value>
     <value>Ayar Kontrolü</value>
     <comment>Label.Content</comment>
   </data>
+	<data name="UpdateProgramSetting">
+		<value xml:space="preserve">Program ayarı değiştir</value>
+	</data>
 </root>
