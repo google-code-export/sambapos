@@ -70,7 +70,10 @@ namespace Samba.Services.Printing
                     printer.PrintBitmap(RemoveTag(line));
                 else if (line.StartsWith("<CUT"))
                     printer.Cut();
-
+                else if (line.StartsWith("<BEEP"))
+                    printer.Beep();
+                else if (line.StartsWith("<B"))
+                    printer.Beep((char)_lastHeight, (char)_lastWidth);
                 else printer.WriteLine(line);
             }
         }

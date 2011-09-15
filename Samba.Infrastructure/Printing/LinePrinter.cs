@@ -50,6 +50,11 @@ namespace Samba.Infrastructure.Printing
             _printerName = printerName;
         }
 
+        public void Beep(char times = '\x2', char duration = '\x5')
+        {
+            WriteData((char)0x1B + "B" + times + duration);
+        }
+
         public void EnableBold()
         {
             WriteData((char)0x1B + "G" + (char)1);
