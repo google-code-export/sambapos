@@ -7,9 +7,10 @@ namespace Samba.Localization
 {
     public static class ResourceStrings
     {
-        public const string CornerRadius="CornerRadius";
-        public const string Angle="Angle";
-        public const string Width="Width";
+        public const string Tag = "Tag";
+        public const string CornerRadius = "CornerRadius";
+        public const string Angle = "Angle";
+        public const string Width = "Width";
         public const string Height = "Height";
         public const string DefaultProperties = "DefaultProperties";
         public const string Gift = "Gift";

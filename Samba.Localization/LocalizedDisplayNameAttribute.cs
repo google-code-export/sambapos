@@ -11,7 +11,6 @@ namespace Samba.Localization
     {
         private readonly string _resourceName;
         public LocalizedDisplayNameAttribute(string resourceName)
-            : base()
         {
             _resourceName = resourceName;
         }

@@ -64,5 +64,8 @@ namespace Samba.Modules.MenuModule
 
         [LocalizedDisplayName(ResourceStrings.DefaultProperties)]
         public string DefaultProperties { get { return Model.DefaultProperties; } set { Model.DefaultProperties = value; } }
+
+        [LocalizedDisplayName(ResourceStrings.Tag)]
+        public string Tag { get { return Model.Tag; } set { Model.Tag = value; } }
     }
 }

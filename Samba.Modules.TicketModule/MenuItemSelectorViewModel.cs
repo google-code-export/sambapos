@@ -20,6 +20,7 @@ namespace Samba.Modules.TicketModule
         public ObservableCollection<ScreenMenuItemButton> MostUsedMenuItems { get; set; }
         public ObservableCollection<ScreenCategoryButton> Categories { get; set; }
         public ObservableCollection<ScreenMenuItemButton> MenuItems { get; set; }
+        public ObservableCollection<ScreenMenuItemButton> SubCategories { get; set; }
         public DelegateCommand<ScreenMenuCategory> CategoryCommand { get; set; }
         public DelegateCommand<ScreenMenuItem> MenuItemCommand { get; set; }
         public DelegateCommand<string> TypeValueCommand { get; set; }
