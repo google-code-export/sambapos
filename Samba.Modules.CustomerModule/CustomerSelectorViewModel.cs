@@ -160,13 +160,23 @@ namespace Samba.Modules.CustomerModule
             ResetCustomerCommand = new CaptionCommand<string>(Resources.ResetCustomer_r, OnResetCustomer, CanResetCustomer);
             MakePaymentCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnMakePayment, CanMakePayment);
             DisplayCustomerAccountCommand = new CaptionCommand<string>(Resources.CustomerAccount_r, OnDisplayCustomerAccount, CanSelectCustomer);
-            MakePaymentToCustomerCommand = new CaptionCommand<string>(Resources.MakePayment_r, OnMakePaymentToCustomerCommand, CanSelectCustomer);
-            GetPaymentFromCustomerCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnGetPaymentFromCustomerCommand, CanSelectCustomer);
-            AddLiabilityCommand = new CaptionCommand<string>(Resources.AddLiability_r, OnAddLiability, CanSelectCustomer);
-            AddReceivableCommand = new CaptionCommand<string>(Resources.AddReceivable_r, OnAddReceivable, CanSelectCustomer);
+            MakePaymentToCustomerCommand = new CaptionCommand<string>(Resources.MakePayment_r, OnMakePaymentToCustomerCommand, CanMakePaymentToCustomer);
+            GetPaymentFromCustomerCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnGetPaymentFromCustomerCommand, CanMakePaymentToCustomer);
+            AddLiabilityCommand = new CaptionCommand<string>(Resources.AddLiability_r, OnAddLiability, CanAddLiability);
+            AddReceivableCommand = new CaptionCommand<string>(Resources.AddReceivable_r, OnAddReceivable, CanAddLiability);
             CloseAccountScreenCommand = new CaptionCommand<string>(Resources.Close, OnCloseAccountScreen);
 
             SelectedCustomerTransactions = new ObservableCollection<CustomerTransactionViewModel>();
+        }
+
+        private bool CanAddLiability(string arg)
+        {
+            return CanSelectCustomer(arg) && AppServices.IsUserPermittedFor(PermissionNames.CreditOrDeptAccount);
+        }
+
+        private bool CanMakePaymentToCustomer(string arg)
+        {
+            return CanSelectCustomer(arg) && AppServices.IsUserPermittedFor(PermissionNames.MakeAccountTransaction);
         }
 
         private void OnAddReceivable(string obj)

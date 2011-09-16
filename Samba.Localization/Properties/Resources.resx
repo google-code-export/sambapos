@@ -2740,4 +2740,16 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
 	<data name="UpdateProgramSetting">
 		<value xml:space="preserve">Update Program Setting</value>
 	</data>
+	<data name="CashPermissions">
+		<value xml:space="preserve">Cash Permissions</value>
+	</data>
+	<data name="CanMakeCashTransaction">
+		<value xml:space="preserve">Can make cash transaction</value>
+	</data>
+	<data name="CanMakeCreditOrDeptTransaction">
+		<value xml:space="preserve">Can make credit or debit transaction</value>
+	</data>
+	<data name="CanMakeAccountTransaction">
+		<value xml:space="preserve">Can make account transaction</value>
+	</data>
 </root>

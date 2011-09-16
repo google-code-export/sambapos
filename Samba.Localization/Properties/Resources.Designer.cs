@@ -884,6 +884,33 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can make account transaction.
+        /// </summary>
+        public static string CanMakeAccountTransaction {
+            get {
+                return ResourceManager.GetString("CanMakeAccountTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can make cash transaction.
+        /// </summary>
+        public static string CanMakeCashTransaction {
+            get {
+                return ResourceManager.GetString("CanMakeCashTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can make credit or debit transaction.
+        /// </summary>
+        public static string CanMakeCreditOrDeptTransaction {
+            get {
+                return ResourceManager.GetString("CanMakeCreditOrDeptTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can Make Discount.
         /// </summary>
         public static string CanMakeDiscount {
@@ -1079,6 +1106,15 @@ namespace Samba.Localization.Properties {
         public static string CashPayment_r {
             get {
                 return ResourceManager.GetString("CashPayment_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Permissions.
+        /// </summary>
+        public static string CashPermissions {
+            get {
+                return ResourceManager.GetString("CashPermissions", resourceCulture);
             }
         }
         

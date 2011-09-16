@@ -2716,31 +2716,47 @@ Masa: {2}</value>
     <value xml:space="preserve">Yeni Borçlandırma Hareketi</value>
   </data>
   <data name="AddLiability_r">
-    <value><![CDATA[Hesabı
-Alacaklandır]]></value>
+    <value>
+      <![CDATA[Hesabı
+Alacaklandır]]>
+    </value>
   </data>
   <data name="AddReceivable_r">
-    <value><![CDATA[Hesabı
-Borçlandır]]></value>
+    <value>
+      <![CDATA[Hesabı
+Borçlandır]]>
+    </value>
   </data>
-	<data name="VoidTicketItems">
-		<value xml:space="preserve">Adisyon satırlarını iptal et</value>
-	</data>
-	<data name="SaveErrorMultipleDefaultTerminals">
-		<value><![CDATA[Birden fazla varsayılan terminal tanımlamayınız.]]></value>
-	</data>
-	<data name="AllDiscountsRemoved">
-		<value xml:space="preserve">İskonto toplamı adisyon toplamını geçtiği için tüm iskontolar sıfırlandı.</value>
-	</data>
-	<data name="WeightBarcodeItemIdFormat" xml:space="preserve">
+  <data name="VoidTicketItems">
+    <value xml:space="preserve">Adisyon satırlarını iptal et</value>
+  </data>
+  <data name="SaveErrorMultipleDefaultTerminals">
+    <value><![CDATA[Birden fazla varsayılan terminal tanımlamayınız.]]></value>
+  </data>
+  <data name="AllDiscountsRemoved">
+    <value xml:space="preserve">İskonto toplamı adisyon toplamını geçtiği için tüm iskontolar sıfırlandı.</value>
+  </data>
+  <data name="WeightBarcodeItemIdFormat" xml:space="preserve">
     <value>Gramaj Barkodu Ürün ID Formatı</value>
     <comment>Label content</comment>
   </data>
-	<data name="SettingCheck" xml:space="preserve">
+  <data name="SettingCheck" xml:space="preserve">
     <value>Ayar Kontrolü</value>
     <comment>Label.Content</comment>
   </data>
-	<data name="UpdateProgramSetting">
-		<value xml:space="preserve">Program ayarı değiştir</value>
+  <data name="UpdateProgramSetting">
+    <value xml:space="preserve">Program ayarı değiştir</value>
+  </data>
+  <data name="CashPermissions">
+    <value xml:space="preserve">Kasa İzinleri</value>
+  </data>
+  <data name="CanMakeCashTransaction">
+    <value xml:space="preserve">Kasa hareketi yapabilir</value>
+  </data>
+	<data name="CanMakeCreditOrDeptTransaction">
+		<value xml:space="preserve">Hesap alacaklandırabilir veya borçlandırabilir</value>
+	</data>
+	<data name="CanMakeAccountTransaction">
+		<value xml:space="preserve">Ödeme alabilir veya tahsilat yapabilir</value>
 	</data>
 </root>

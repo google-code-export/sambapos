@@ -22,6 +22,7 @@ namespace Samba.Modules.CashModule
             _cashView = cashView;
             NavigateCashViewCommand = new CategoryCommand<string>(Resources.Drawer, Resources.Common, "images/Xls.png", OnNavigateCashView, CanNavigateCashView) { Order = 70 };
             PermissionRegistry.RegisterPermission(PermissionNames.NavigateCashView, PermissionCategories.Navigation, Resources.CanNavigateCash);
+            PermissionRegistry.RegisterPermission(PermissionNames.MakeCashTransaction, PermissionCategories.Cash, Resources.CanMakeCashTransaction);
         }
 
         private static bool CanNavigateCashView(string arg)

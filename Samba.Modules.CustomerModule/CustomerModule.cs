@@ -27,6 +27,8 @@ namespace Samba.Modules.CustomerModule
             _regionManager = regionManager;
             _customerSelectorView = customerSelectorView;
             ListCustomersCommand = new CategoryCommand<string>(Resources.CustomerList, Resources.Customers, OnCustomerListExecute) { Order = 40 };
+            PermissionRegistry.RegisterPermission(PermissionNames.MakeAccountTransaction, PermissionCategories.Cash, Resources.CanMakeAccountTransaction);
+            PermissionRegistry.RegisterPermission(PermissionNames.CreditOrDeptAccount, PermissionCategories.Cash, Resources.CanMakeCreditOrDeptTransaction);
         }
 
         private void OnCustomerListExecute(string obj)

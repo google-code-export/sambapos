@@ -28,8 +28,11 @@ namespace Samba.Services
         public static string ChangeItemPrice = "ChangeItemPrice";
         public static string RemoveTicketTag = "RemoveTicketTag";
         public static string MergeTickets = "MergeTickets";
-        public static string ChangeReportDate="ChangeReportDate";
-        public static string DisplayOldTickets="DisplayOldTickets";
+        public static string ChangeReportDate = "ChangeReportDate";
+        public static string DisplayOldTickets = "DisplayOldTickets";
+        public static string MakeCashTransaction = "MakeCashTransaction";
+        public static string CreditOrDeptAccount = "CreditOrDeptAccount";
+        public static string MakeAccountTransaction = "MakeAccountTransaction";
     }
 
     public static class PermissionCategories
@@ -39,5 +42,6 @@ namespace Samba.Services
         public static string Ticket = Resources.TicketPermissions;
         public static string Payment = Resources.SettlePermissions;
         public static string Report = Resources.ReportPermissions;
+        public static string Cash = Resources.CashPermissions;
     }
 }

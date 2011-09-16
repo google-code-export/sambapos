@@ -206,7 +206,7 @@ namespace Samba.Modules.CashModule
 
         private static bool CanActivateIncomeTransactionRecord(string arg)
         {
-            return AppServices.MainDataContext.IsCurrentWorkPeriodOpen;
+            return AppServices.MainDataContext.IsCurrentWorkPeriodOpen && AppServices.IsUserPermittedFor(PermissionNames.MakeCashTransaction);
         }
 
         private int GetSelectedCustomerId()

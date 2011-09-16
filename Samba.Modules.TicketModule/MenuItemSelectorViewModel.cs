@@ -40,7 +40,26 @@ namespace Samba.Modules.TicketModule
             set
             {
                 AppServices.MainDataContext.NumeratorValue = value;
+                FilterMenuItems(AppServices.MainDataContext.NumeratorValue);
                 RaisePropertyChanged("NumeratorValue");
+            }
+        }
+
+        private bool _filtered;
+        private void FilterMenuItems(string numeratorValue)
+        {
+            if (!string.IsNullOrEmpty(numeratorValue) && Char.IsLower(numeratorValue[0]))
+            {
+                _filtered = true;
+                MenuItems.Clear();
+                var items = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems).Where(
+                        x => x.Name.ToLower().Contains(numeratorValue.ToLower())).Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
+                MenuItems.AddRange(items.OrderBy(x => x.FindOrder(numeratorValue)));
+            }
+            else if (_filtered)
+            {
+                _filtered = false;
+                UpdateMenuButtons(SelectedCategory);
             }
         }
 
@@ -197,7 +216,7 @@ namespace Samba.Modules.TicketModule
         private void OnMenuItemCommandExecute(ScreenMenuItem screenMenuItem)
         {
             decimal selectedMultiplier = 1;
-            if (!string.IsNullOrEmpty(NumeratorValue))
+            if (!string.IsNullOrEmpty(NumeratorValue) && !_filtered)
                 decimal.TryParse(NumeratorValue, out selectedMultiplier);
 
             if (IsQuickNumeratorVisible)
@@ -335,8 +354,8 @@ namespace Samba.Modules.TicketModule
                 FindMenuItemCommand.Execute("");
             else if (obj == "\b" && !string.IsNullOrEmpty(NumeratorValue))
                 NumeratorValue = NumeratorValue.Substring(0, NumeratorValue.Length - 1);
-            else
-                NumeratorValue = obj == "c" ? "" : Helpers.AddTypedValue(NumeratorValue, obj, "#0.");
+            else if (!string.IsNullOrEmpty(obj) && !Char.IsControl(obj[0]))
+                NumeratorValue = obj == "C" ? "" : Helpers.AddTypedValue(NumeratorValue, obj, "#0.");
         }
 
         public bool HandleTextInput(string text)
