@@ -21,7 +21,8 @@
             Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}"
             ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
             TypeInTargetAssembly={x:Type DataGridFilterLibrary:DataGridHeaderFilterControl}, 
-            ResourceId=DataGridHeaderFilterControlStyle}}" FrozenColumnCount="3">
+            ResourceId=DataGridHeaderFilterControlStyle}}" FrozenColumnCount="3"
+            CellEditEnding="DataGrid_CellEditEnding">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{LocText Product}"
                      IsReadOnly="True" MinWidth="170" Binding="{Binding ItemName}" />

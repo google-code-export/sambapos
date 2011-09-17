@@ -9,7 +9,7 @@
                  AutoGeneratingColumn="PropertyGrid_AutoGeneratingColumn" VerticalGridLinesBrush="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}"
                  HorizontalGridLinesBrush="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}"
                  CanUserAddRows="False" CanUserDeleteRows="False" RowHeaderWidth="0" MouseDoubleClick="PropertyGrid_MouseDoubleClick"
-                 PreviewKeyDown="PropertyGrid_PreviewKeyDown">
+                 PreviewKeyDown="PropertyGrid_PreviewKeyDown" CellEditEnding="PropertyGrid_CellEditEnding">
             </DataGrid>
         </DataTemplate>
     </Window.Resources>

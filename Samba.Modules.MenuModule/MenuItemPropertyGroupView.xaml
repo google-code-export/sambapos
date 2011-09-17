@@ -72,9 +72,11 @@
             </Label>
 
             <DataGrid Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Properties}" SelectedItem="{Binding SelectedProperty, Mode=TwoWay}"
-                     HorizontalAlignment="Left" GridLinesVisibility="None" RowHeaderWidth="0" Margin="0,3"
+                      HorizontalAlignment="Left" GridLinesVisibility="None" RowHeaderWidth="0" Margin="0,3"
                       VerticalAlignment="Top" MinHeight="100"
-                     AutoGenerateColumns="False" CanUserSortColumns="False" Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}">
+                      AutoGenerateColumns="False" CanUserSortColumns="False" 
+                      Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}"
+                      CellEditEnding="DataGrid_CellEditEnding">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{LocText Property}"
                              MinWidth="100" Binding="{Binding Name}" />

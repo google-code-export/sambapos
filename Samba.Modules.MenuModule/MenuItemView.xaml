@@ -31,7 +31,9 @@
                         <StackPanel Orientation="Horizontal">
                             <DataGrid ItemsSource="{Binding Portions}" SelectedItem="{Binding SelectedPortion, Mode=TwoWay}"
                                  HorizontalAlignment="Left" GridLinesVisibility="None" RowHeaderWidth="0" Margin="0,3"
-                                 AutoGenerateColumns="False" CanUserSortColumns="False" Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}">
+                                 AutoGenerateColumns="False" CanUserSortColumns="False" 
+                                 Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}"
+                                 CellEditEnding="DataGrid_CellEditEnding">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="{LocText Portion}"
                                          MinWidth="100" Binding="{Binding Name}" />

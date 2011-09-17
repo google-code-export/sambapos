@@ -75,5 +75,13 @@ namespace Samba.Presentation.Common.Interaction
             if (_dataGrid != null && _dataGrid.SelectedItem != null)
                 InteractionService.UserIntraction.EditProperties(_dataGrid.SelectedItem);
         }
+
+        private void PropertyGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditingElement is TextBox)
+            {
+                ((TextBox)e.EditingElement).Text = ((TextBox)e.EditingElement).Text.Replace("\b", "");
+            }
+        }
     }
 }

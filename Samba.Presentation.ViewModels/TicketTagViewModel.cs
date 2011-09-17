@@ -16,7 +16,11 @@ namespace Samba.Presentation.ViewModels
 
         public TicketTag Model { get; set; }
 
-        public string Name { get { return Model.Name; } set { Model.Name = value; } }
+        public string Name
+        {
+            get { return Model.Name; }
+            set { Model.Name = value; }
+        }
 
         public int AccountId
         {

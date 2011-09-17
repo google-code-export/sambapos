@@ -92,8 +92,9 @@ namespace Samba.Services.Printing
         {
             if (template.MergeLines) lines = MergeLines(lines);
             var orderNo = lines.Count() > 0 ? lines.ElementAt(0).OrderNumber : 0;
-            var header = ReplaceDocumentVars(template.HeaderTemplate, ticket, orderNo);
-            var footer = ReplaceDocumentVars(template.FooterTemplate, ticket, orderNo);
+            var userNo = lines.Count() > 0 ? lines.ElementAt(0).CreatingUserId : 0;
+            var header = ReplaceDocumentVars(template.HeaderTemplate, ticket, orderNo, userNo);
+            var footer = ReplaceDocumentVars(template.FooterTemplate, ticket, orderNo, userNo);
             var lns = lines.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
 
             var result = header.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -140,11 +141,11 @@ namespace Samba.Services.Printing
             return result;
         }
 
-        private static string ReplaceDocumentVars(string document, Ticket ticket, int orderNo)
+        private static string ReplaceDocumentVars(string document, Ticket ticket, int orderNo, int userNo)
         {
             string result = document;
             if (string.IsNullOrEmpty(document)) return "";
-            int userNo = ticket.TicketItems.Count > 0 ? ticket.TicketItems[0].CreatingUserId : 0;
+            //int userNo = ticket.TicketItems.Count > 0 ? ticket.TicketItems[0].CreatingUserId : 0;
 
             result = FormatData(result, Resources.TF_TicketDate, ticket.Date.ToShortDateString());
             result = FormatData(result, Resources.TF_TicketTime, ticket.Date.ToShortTimeString());
@@ -208,7 +209,7 @@ namespace Samba.Services.Printing
                 string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
 
             result = FormatDataIf(discount > 0, result, Resources.TF_DiscountTotalAndTicketTotal,
-                string.Format(Resources.DiscountTotalAndTicketTotalValue_f, (plainTotal+tip).ToString("#,#0.00"), discount.ToString("#,#0.00")));
+                string.Format(Resources.DiscountTotalAndTicketTotalValue_f, (plainTotal + tip).ToString("#,#0.00"), discount.ToString("#,#0.00")));
 
             result = FormatDataIf(giftAmount > 0, result, Resources.TF_GiftTotal, giftAmount.ToString("#,#0.00"));
             result = FormatDataIf(tip > 0, result, "{TIP TOTAL}", tip.ToString("#,#0.00"));
