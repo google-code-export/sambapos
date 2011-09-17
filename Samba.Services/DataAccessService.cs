@@ -31,16 +31,28 @@ namespace Samba.Services
             return new List<Table>();
         }
 
-        public IEnumerable<ScreenMenuItem> GetMenuItems(ScreenMenuCategory category, int currentPageNo)
+        public IEnumerable<ScreenMenuItem> GetMenuItems(ScreenMenuCategory category, int currentPageNo, string tag)
         {
+            var items = category.ScreenMenuItems
+                .Where(x => (!string.IsNullOrEmpty(x.Tag) && x.Tag.StartsWith(tag + ",")) || x.Tag == tag || (string.IsNullOrEmpty(tag) && string.IsNullOrEmpty(x.Tag)));
+
             if (category.PageCount > 1)
             {
-                return category.ScreenMenuItems
-                    .OrderBy(x => x.Order)
+                items = items
                     .Skip(category.ItemCountPerPage * currentPageNo)
                     .Take(category.ItemCountPerPage);
             }
-            return category.ScreenMenuItems.OrderBy(x => x.Order);
+
+            return items.OrderBy(x => x.Order);
+        }
+
+        public IEnumerable<string> GetSubCategories(ScreenMenuCategory category, string parentTag)
+        {
+            return category.ScreenMenuItems
+                .Select(x => x.Tag)
+                .Distinct()
+                .Where(x => !string.IsNullOrEmpty(x))
+                .Where(x => string.IsNullOrEmpty(parentTag) || (x.StartsWith(parentTag) && x != parentTag));
         }
 
         public ScreenMenu GetScreenMenu(int screenMenuId)

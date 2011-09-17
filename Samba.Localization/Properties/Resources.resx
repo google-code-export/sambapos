@@ -2737,19 +2737,22 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>Setting Check</value>
     <comment>Label.Content</comment>
   </data>
-	<data name="UpdateProgramSetting">
-		<value xml:space="preserve">Update Program Setting</value>
-	</data>
-	<data name="CashPermissions">
-		<value xml:space="preserve">Cash Permissions</value>
-	</data>
-	<data name="CanMakeCashTransaction">
-		<value xml:space="preserve">Can make cash transaction</value>
-	</data>
-	<data name="CanMakeCreditOrDeptTransaction">
-		<value xml:space="preserve">Can make credit or debit transaction</value>
-	</data>
-	<data name="CanMakeAccountTransaction">
-		<value xml:space="preserve">Can make account transaction</value>
-	</data>
+  <data name="UpdateProgramSetting" xml:space="preserve">
+    <value>Update Program Setting</value>
+  </data>
+  <data name="CashPermissions" xml:space="preserve">
+    <value>Cash Permissions</value>
+  </data>
+  <data name="CanMakeCashTransaction" xml:space="preserve">
+    <value>Can make cash transaction</value>
+  </data>
+  <data name="CanMakeCreditOrDeptTransaction" xml:space="preserve">
+    <value>Can make credit or debit transaction</value>
+  </data>
+  <data name="CanMakeAccountTransaction" xml:space="preserve">
+    <value>Can make account transaction</value>
+  </data>
+  <data name="SubButtonHeight" xml:space="preserve">
+    <value>Sub Button Height</value>
+  </data>
 </root>

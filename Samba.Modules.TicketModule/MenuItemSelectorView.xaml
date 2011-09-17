@@ -92,36 +92,57 @@
                     </Style>
                 </ListBox.Resources>
             </ListBox>
-            <ScrollViewer Grid.Row="1" Grid.Column="1" Common:KineticBehaviour.HandleKineticScrolling="True"
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ItemsControl Grid.Row="0"  ItemsSource="{Binding SubCategories,NotifyOnTargetUpdated=True}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <FxButton:FlexButton Content="{Binding Name}" Focusable="False" Command="{Binding Command}"
+                                 CommandParameter="{Binding }" Height="{Binding Height}" Margin="0,0,0,5"
+                                 />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ScrollViewer Grid.Row="1" Common:KineticBehaviour.HandleKineticScrolling="True"
                  VerticalScrollBarVisibility="Auto">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <ItemsControl ItemsSource="{Binding MenuItems,NotifyOnTargetUpdated=True}" HorizontalAlignment="Stretch"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <ItemsControl ItemsSource="{Binding MenuItems,NotifyOnTargetUpdated=True}" HorizontalAlignment="Stretch"
                          TargetUpdated="ItemsControl_TargetUpdated_1">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="{Binding SelectedCategory.ColumnCount}" VerticalAlignment="{Binding MenuItemsVerticalAlignment}" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <FxButton:FlexButton Focusable="False" ButtonColor="{Binding ButtonColor}" Content="{Binding Caption}"
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="{Binding SelectedCategory.ColumnCount}" VerticalAlignment="{Binding MenuItemsVerticalAlignment}" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <FxButton:FlexButton Focusable="False" ButtonColor="{Binding ButtonColor}" Content="{Binding Caption}"
                                      Command="{Binding Command}" CommandParameter="{Binding ScreenMenuItem}" Height="{Binding ButtonHeight}"
-                                     ButtonImage="{Binding ImagePath}" Margin="0,0,0,0" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <UniformGrid Grid.Row="1" Columns="2" Rows="1" Visibility="{Binding IsPageNumberNavigatorVisible,Converter={StaticResource VisibilityConverter}}">
-                        <FxButton:FlexButton Margin="0,3,3,3" Height="45" Command="{Binding DecPageNumberCommand}"
+                                      Margin="0,0,0,0" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <UniformGrid Grid.Row="1" Columns="2" Rows="1" Visibility="{Binding IsPageNumberNavigatorVisible,Converter={StaticResource VisibilityConverter}}">
+                            <FxButton:FlexButton Margin="0,3,3,3" Height="45" Command="{Binding DecPageNumberCommand}"
                              Content="{Binding DecPageNumberCommand.Caption}" />
-                        <FxButton:FlexButton Margin="0,3,0,3" Height="45" Command="{Binding IncPageNumberCommand}"
+                            <FxButton:FlexButton Margin="0,3,0,3" Height="45" Command="{Binding IncPageNumberCommand}"
                              Content="{Binding IncPageNumberCommand.Caption}" />
-                    </UniformGrid>
-                </Grid>
-            </ScrollViewer>
+                        </UniformGrid>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+
             <Grid Grid.Column="1" Grid.Row="2" Visibility="{Binding IsNumeratorVisible,Converter={StaticResource VisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />

@@ -59,6 +59,7 @@ namespace Samba.Presentation.Terminal
         public ICaptionCommand DecPageNumberCommand { get; set; }
 
         public int CurrentPageNo { get; set; }
+        public string CurrentTag { get; set; }
 
         public MenuItemSelectorViewModel()
         {
@@ -118,7 +119,7 @@ namespace Samba.Presentation.Terminal
                     selectedMultiplier = obj.Quantity;
             }
 
-            var item = DataContext.SelectedTicket.AddNewItem(obj.MenuItemId, selectedMultiplier, obj.Gift, obj.DefaultProperties);
+            var item = DataContext.SelectedTicket.AddNewItem(obj.MenuItemId, selectedMultiplier, obj.Gift, obj.DefaultProperties, obj.Portion);
             if (item != null)
                 AddedMenuItems.Add(item);
             if (obj.AutoSelect)
@@ -133,7 +134,7 @@ namespace Samba.Presentation.Terminal
         private void UpdateMenuButtons(ScreenMenuCategory category)
         {
             SelectedCategory = category;
-            CreateMenuItemButtons(MenuItems, category, CurrentPageNo);
+            CreateMenuItemButtons(MenuItems, category, CurrentPageNo, CurrentTag);
         }
 
         public void Refresh()
@@ -154,7 +155,7 @@ namespace Samba.Presentation.Terminal
                     MostUsedItemsCategory = CurrentScreenMenu.Categories.FirstOrDefault(x => x.MostUsedItemsCategory);
 
                     if (MostUsedItemsCategory != null)
-                        CreateMenuItemButtons(MostUsedMenuItems, MostUsedItemsCategory, CurrentPageNo);
+                        CreateMenuItemButtons(MostUsedMenuItems, MostUsedItemsCategory, CurrentPageNo, CurrentTag);
 
                     if (Categories.Count > 0)
                     {
@@ -166,11 +167,11 @@ namespace Samba.Presentation.Terminal
         }
 
         private void CreateMenuItemButtons(ObservableCollection<ScreenMenuItemButton> itemButtons,
-            ScreenMenuCategory category, int pageNo)
+            ScreenMenuCategory category, int pageNo, string tag)
         {
             itemButtons.Clear();
             if (category == null) return;
-            itemButtons.AddRange(AppServices.DataAccessService.GetMenuItems(category, pageNo)
+            itemButtons.AddRange(AppServices.DataAccessService.GetMenuItems(category, pageNo, tag)
                 .Select(x => new ScreenMenuItemButton(x, MenuItemSelectionCommand, category)));
         }
 

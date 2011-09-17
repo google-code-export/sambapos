@@ -54,6 +54,9 @@ namespace Samba.Modules.MenuModule
             }
         }
 
+        [LocalizedDisplayName(ResourceStrings.SubButtonHeight), LocalizedCategory(ResourceStrings.CategoryProperties)]
+        public int SubButtonHeight { get { return Model.SubButtonHeight; } set { Model.SubButtonHeight = value; } }
+
         [LocalizedDisplayName(ResourceStrings.ImagePath), LocalizedCategory(ResourceStrings.CategoryProperties)]
         public string ImagePath { get { return Model.ImagePath; } set { Model.ImagePath = value; } }
 
@@ -64,7 +67,7 @@ namespace Samba.Modules.MenuModule
         public int ButtonHeight { get { return Model.ButtonHeight; } set { Model.ButtonHeight = value; } }
 
         [LocalizedDisplayName(ResourceStrings.PageCount), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public int PageCount { get { return Model.PageCount; } set { Model.PageCount= value; } }
+        public int PageCount { get { return Model.PageCount; } set { Model.PageCount = value; } }
 
         [LocalizedDisplayName(ResourceStrings.WrapText), LocalizedCategory(ResourceStrings.MenuProperties)]
         public bool WrapText { get { return Model.WrapText; } set { Model.WrapText = value; } }

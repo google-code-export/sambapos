@@ -13,6 +13,8 @@ namespace Samba.Persistance.DBMigration
         public override void Up()
         {
             Create.Column("Tag").OnTable("ScreenMenuItems").AsString(128).Nullable();
+            //Create.Column("Portion").OnTable("ScreenMenuItems").AsString(128).Nullable();
+            Create.Column("SubButtonHeight").OnTable("ScreenMenuCategories").AsInt32().WithDefaultValue(0);
         }
 
         public override void Down()

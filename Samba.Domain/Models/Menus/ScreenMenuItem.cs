@@ -7,6 +7,7 @@ namespace Samba.Domain.Models.Menus
         public ScreenMenuItem()
         {
             Quantity = 1;
+            Tag = "";
         }
 
         public int Id { get; set; }
@@ -27,6 +28,7 @@ namespace Samba.Domain.Models.Menus
         public string ImagePath { get; set; }
         public string DefaultProperties{ get; set; }
         public string Tag { get; set; }
+        public string Portion { get; set; }
 
         public MenuItem MenuItem;
     }

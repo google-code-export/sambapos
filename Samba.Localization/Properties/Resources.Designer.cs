@@ -5335,6 +5335,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sub Button Height.
+        /// </summary>
+        public static string SubButtonHeight {
+            get {
+                return ResourceManager.GetString("SubButtonHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Line Properties Template.
         /// </summary>
         public static string SubLineTemplate {

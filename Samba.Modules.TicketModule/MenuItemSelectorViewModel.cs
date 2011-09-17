@@ -20,7 +20,7 @@ namespace Samba.Modules.TicketModule
         public ObservableCollection<ScreenMenuItemButton> MostUsedMenuItems { get; set; }
         public ObservableCollection<ScreenCategoryButton> Categories { get; set; }
         public ObservableCollection<ScreenMenuItemButton> MenuItems { get; set; }
-        public ObservableCollection<ScreenMenuItemButton> SubCategories { get; set; }
+        public ObservableCollection<ScreenSubCategoryButton> SubCategories { get; set; }
         public DelegateCommand<ScreenMenuCategory> CategoryCommand { get; set; }
         public DelegateCommand<ScreenMenuItem> MenuItemCommand { get; set; }
         public DelegateCommand<string> TypeValueCommand { get; set; }
@@ -29,6 +29,7 @@ namespace Samba.Modules.TicketModule
         public DelegateCommand<string> FindTicketCommand { get; set; }
         public ICaptionCommand IncPageNumberCommand { get; set; }
         public ICaptionCommand DecPageNumberCommand { get; set; }
+        public ICaptionCommand SubCategoryCommand { get; set; }
 
         public ScreenMenuCategory MostUsedItemsCategory { get; set; }
 
@@ -52,10 +53,12 @@ namespace Samba.Modules.TicketModule
             if (!string.IsNullOrEmpty(numeratorValue) && Char.IsLower(numeratorValue[0]))
             {
                 _filtered = true;
+                SubCategories.Clear();
                 MenuItems.Clear();
                 var items = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems).Where(
-                        x => x.Name.ToLower().Contains(numeratorValue.ToLower())).Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
-                MenuItems.AddRange(items.OrderBy(x => x.FindOrder(numeratorValue)));
+                    x => numeratorValue.ToLower().Split(' ').All(y => x.Name.ToLower().Contains(y)))
+                    .Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
+                MenuItems.AddRange(items.OrderBy(x => x.FindOrder(numeratorValue)).Take(50));
             }
             else if (_filtered)
             {
@@ -73,6 +76,7 @@ namespace Samba.Modules.TicketModule
         public VerticalAlignment MenuItemsVerticalAlignment { get { return SelectedCategory != null && SelectedCategory.ButtonHeight > 0 ? VerticalAlignment.Top : VerticalAlignment.Stretch; } }
         public VerticalAlignment CategoriesVerticalAlignment { get { return Categories != null && Categories.Count > 0 && double.IsNaN(Categories[0].MButtonHeight) ? VerticalAlignment.Stretch : VerticalAlignment.Top; } }
         public int CurrentPageNo { get; set; }
+        public string CurrentTag { get; set; }
 
         public MenuItemSelectorViewModel(DelegateCommand<ScreenMenuItemData> addMenuItemCommand)
         {
@@ -85,12 +89,13 @@ namespace Samba.Modules.TicketModule
             FindTicketCommand = new DelegateCommand<string>(OnFindTicketExecute, CanFindTicket);
             IncPageNumberCommand = new CaptionCommand<string>(Localization.Properties.Resources.NextPage + " >>", OnIncPageNumber, CanIncPageNumber);
             DecPageNumberCommand = new CaptionCommand<string>("<< " + Localization.Properties.Resources.PreviousPage, OnDecPageNumber, CanDecPageNumber);
-
+            SubCategoryCommand = new CaptionCommand<ScreenSubCategoryButton>(".", OnSubCategoryCommand);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Department>>().Subscribe(OnDepartmentChanged);
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(OnNumeratorReset);
             NumeratorValue = "";
 
+            SubCategories = new ObservableCollection<ScreenSubCategoryButton>();
         }
 
         private void OnNumeratorReset(EventParameters<EventAggregator> obj)
@@ -149,7 +154,7 @@ namespace Samba.Modules.TicketModule
 
         private void OnFindMenuItemCommand(string obj)
         {
-            string insertedData = NumeratorValue;
+            var insertedData = NumeratorValue;
             decimal quantity = 1;
             if (NumeratorValue.ToLower().Contains("x"))
             {
@@ -274,15 +279,27 @@ namespace Samba.Modules.TicketModule
 
         private void UpdateMenuButtons(ScreenMenuCategory category)
         {
-            MenuItems = CreateMenuButtons(category, CurrentPageNo);
+            MenuItems = CreateMenuButtons(category, CurrentPageNo, CurrentTag ?? "");
+            SubCategories.Clear();
+            SubCategories.AddRange(
+                AppServices.DataAccessService.GetSubCategories(category, CurrentTag)
+                .Select(x => new ScreenSubCategoryButton(x, SubCategoryCommand, category.SubButtonHeight)));
+
             RaisePropertyChanged("MenuItems");
             RaisePropertyChanged("IsPageNumberNavigatorVisible");
             RaisePropertyChanged("MenuItemsVerticalAlignment");
         }
 
+        private void OnSubCategoryCommand(ScreenSubCategoryButton obj)
+        {
+            CurrentTag = obj.Name;
+            UpdateMenuButtons(SelectedCategory);
+        }
+
         private void OnCategoryCommandExecute(ScreenMenuCategory category)
         {
             CurrentPageNo = 0;
+            CurrentTag = "";
             UpdateMenuButtons(category);
             if (IsQuickNumeratorVisible)
             {
@@ -300,18 +317,14 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("MenuItemsVerticalAlignment");
         }
 
-        private ObservableCollection<ScreenMenuItemButton> CreateMenuButtons(ScreenMenuCategory category, int pageNo)
+        private ObservableCollection<ScreenMenuItemButton> CreateMenuButtons(ScreenMenuCategory category, int pageNo, string tag)
         {
-            var result = new ObservableCollection<ScreenMenuItemButton>();
             SelectedCategory = category;
 
-            var screenMenuItems = AppServices.DataAccessService.GetMenuItems(category, pageNo);
+            var screenMenuItems = AppServices.DataAccessService.GetMenuItems(category, pageNo, tag);
+            var result = new ObservableCollection<ScreenMenuItemButton>();
 
-            foreach (var item in screenMenuItems)
-            {
-                var sButton = new ScreenMenuItemButton(item, MenuItemCommand, category);
-                result.Add(sButton);
-            }
+            result.AddRange(screenMenuItems.Select(x => new ScreenMenuItemButton(x, MenuItemCommand, category)));
             return result;
         }
 
@@ -352,7 +365,11 @@ namespace Samba.Modules.TicketModule
         private void OnTypeValueExecute(string obj)
         {
             if (obj == "\r")
+            {
+                if (_filtered && MenuItems.Count == 1)
+                    MenuItemCommand.Execute(MenuItems[0].ScreenMenuItem);
                 FindMenuItemCommand.Execute("");
+            }
             else if (obj == "\b" && !string.IsNullOrEmpty(NumeratorValue))
                 NumeratorValue = NumeratorValue.Substring(0, NumeratorValue.Length - 1);
             else if (!string.IsNullOrEmpty(obj) && !Char.IsControl(obj[0]))

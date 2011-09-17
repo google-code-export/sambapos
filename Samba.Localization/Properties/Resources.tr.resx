@@ -2639,102 +2639,98 @@ Masa: {2}</value>
   <data name="PortionName" xml:space="preserve">
     <value>Porsiyon Adı</value>
   </data>
-  <data name="LinesGroupedByTag">
-    <value xml:space="preserve">Etikete Göre Gruplanmış Satırlar</value>
+  <data name="LinesGroupedByTag" xml:space="preserve">
+    <value>Etikete Göre Gruplanmış Satırlar</value>
   </data>
-  <data name="SendEmail">
-    <value xml:space="preserve">E-Posta gönder</value>
+  <data name="SendEmail" xml:space="preserve">
+    <value>E-Posta gönder</value>
   </data>
-  <data name="AddTicketDiscount">
-    <value xml:space="preserve">Adisyona iskonto ekle</value>
+  <data name="AddTicketDiscount" xml:space="preserve">
+    <value>Adisyona iskonto ekle</value>
   </data>
-  <data name="AddTicketItem">
-    <value xml:space="preserve">Adisyona ürün ekle</value>
+  <data name="AddTicketItem" xml:space="preserve">
+    <value>Adisyona ürün ekle</value>
   </data>
-  <data name="UpdateTicketTag">
-    <value xml:space="preserve">Adisyon etiketini güncelle</value>
+  <data name="UpdateTicketTag" xml:space="preserve">
+    <value>Adisyon etiketini güncelle</value>
   </data>
-  <data name="UpdatePriceTag">
-    <value xml:space="preserve">Fiyat listesini değiştir</value>
+  <data name="UpdatePriceTag" xml:space="preserve">
+    <value>Fiyat listesini değiştir</value>
   </data>
-  <data name="RefreshCache">
-    <value xml:space="preserve">Hafızayı yenile</value>
+  <data name="RefreshCache" xml:space="preserve">
+    <value>Hafızayı yenile</value>
   </data>
-  <data name="BroadcastMessage">
-    <value xml:space="preserve">Mesaj yayınla</value>
+  <data name="BroadcastMessage" xml:space="preserve">
+    <value>Mesaj yayınla</value>
   </data>
-  <data name="DisplayAppPath">
-    <value xml:space="preserve">Uygulama Klasörü</value>
+  <data name="DisplayAppPath" xml:space="preserve">
+    <value>Uygulama Klasörü</value>
   </data>
-  <data name="DisplayUserPath">
-    <value xml:space="preserve">Kullanıcı Klasörü</value>
+  <data name="DisplayUserPath" xml:space="preserve">
+    <value>Kullanıcı Klasörü</value>
   </data>
-  <data name="SaveReportToFile">
-    <value xml:space="preserve">Raporu dosyaya kaydet</value>
+  <data name="SaveReportToFile" xml:space="preserve">
+    <value>Raporu dosyaya kaydet</value>
   </data>
   <data name="PriceDefinitonName" xml:space="preserve">
     <value>Fiyat Tanımı Adı</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="Previous">
-    <value xml:space="preserve">Önceki</value>
+  <data name="Previous" xml:space="preserve">
+    <value>Önceki</value>
   </data>
-  <data name="Next">
-    <value xml:space="preserve">Sonraki</value>
+  <data name="Next" xml:space="preserve">
+    <value>Sonraki</value>
   </data>
-  <data name="AddTag">
-    <value xml:space="preserve">Etiket Ekle</value>
+  <data name="AddTag" xml:space="preserve">
+    <value>Etiket Ekle</value>
   </data>
-  <data name="Delete_ab">
-    <value xml:space="preserve">Sil</value>
+  <data name="Delete_ab" xml:space="preserve">
+    <value>Sil</value>
   </data>
-  <data name="Divide_ab">
-    <value xml:space="preserve">Böl</value>
+  <data name="Divide_ab" xml:space="preserve">
+    <value>Böl</value>
   </data>
-  <data name="Print_ab">
-    <value xml:space="preserve">Yaz</value>
+  <data name="Print_ab" xml:space="preserve">
+    <value>Yaz</value>
   </data>
-  <data name="TicketMovedRetryLastOperation_f">
-    <value><![CDATA[Adisyon {0}' a taşınmış. Son işlemi tekrar yapınız.]]></value>
+  <data name="TicketMovedRetryLastOperation_f" xml:space="preserve">
+    <value>Adisyon {0}' a taşınmış. Son işlemi tekrar yapınız.</value>
   </data>
-  <data name="TicketPaidChangesNotSaved">
-    <value xml:space="preserve">Adisyon ödenmiş. Yaptığınız değişiklikler kayıt edilmeyecek.</value>
+  <data name="TicketPaidChangesNotSaved" xml:space="preserve">
+    <value>Adisyon ödenmiş. Yaptığınız değişiklikler kayıt edilmeyecek.</value>
   </data>
-  <data name="TicketChangedRetryLastOperation">
-    <value xml:space="preserve">Adisyonda bir değişiklik yapılmış. Son işlemi tekrar yapınız.</value>
+  <data name="TicketChangedRetryLastOperation" xml:space="preserve">
+    <value>Adisyonda bir değişiklik yapılmış. Son işlemi tekrar yapınız.</value>
   </data>
-  <data name="TicketPaidLastChangesNotSaved">
-    <value xml:space="preserve">Adisyona ödeme alınmış. Yaptığınız değişiklikler kayıt edilmeyecek.</value>
+  <data name="TicketPaidLastChangesNotSaved" xml:space="preserve">
+    <value>Adisyona ödeme alınmış. Yaptığınız değişiklikler kayıt edilmeyecek.</value>
   </data>
-  <data name="TableChangedRetryLastOperation_f">
-    <value xml:space="preserve">{0} masasında değişiklik var. Son işlemi tekrar yapın.</value>
+  <data name="TableChangedRetryLastOperation_f" xml:space="preserve">
+    <value>{0} masasında değişiklik var. Son işlemi tekrar yapın.</value>
   </data>
-  <data name="NewLiabilityTransaction">
-    <value xml:space="preserve">Yeni Alacaklandırma Hareketi</value>
+  <data name="NewLiabilityTransaction" xml:space="preserve">
+    <value>Yeni Alacaklandırma Hareketi</value>
   </data>
-  <data name="NewReceivableTransaction">
-    <value xml:space="preserve">Yeni Borçlandırma Hareketi</value>
+  <data name="NewReceivableTransaction" xml:space="preserve">
+    <value>Yeni Borçlandırma Hareketi</value>
   </data>
-  <data name="AddLiability_r">
-    <value>
-      <![CDATA[Hesabı
-Alacaklandır]]>
-    </value>
+  <data name="AddLiability_r" xml:space="preserve">
+    <value>Hesabı
+Alacaklandır</value>
   </data>
-  <data name="AddReceivable_r">
-    <value>
-      <![CDATA[Hesabı
-Borçlandır]]>
-    </value>
+  <data name="AddReceivable_r" xml:space="preserve">
+    <value>Hesabı
+Borçlandır</value>
   </data>
-  <data name="VoidTicketItems">
-    <value xml:space="preserve">Adisyon satırlarını iptal et</value>
+  <data name="VoidTicketItems" xml:space="preserve">
+    <value>Adisyon satırlarını iptal et</value>
   </data>
-  <data name="SaveErrorMultipleDefaultTerminals">
-    <value><![CDATA[Birden fazla varsayılan terminal tanımlamayınız.]]></value>
+  <data name="SaveErrorMultipleDefaultTerminals" xml:space="preserve">
+    <value>Birden fazla varsayılan terminal tanımlamayınız.</value>
   </data>
-  <data name="AllDiscountsRemoved">
-    <value xml:space="preserve">İskonto toplamı adisyon toplamını geçtiği için tüm iskontolar sıfırlandı.</value>
+  <data name="AllDiscountsRemoved" xml:space="preserve">
+    <value>İskonto toplamı adisyon toplamını geçtiği için tüm iskontolar sıfırlandı.</value>
   </data>
   <data name="WeightBarcodeItemIdFormat" xml:space="preserve">
     <value>Gramaj Barkodu Ürün ID Formatı</value>
@@ -2744,19 +2740,22 @@ Borçlandır]]>
     <value>Ayar Kontrolü</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="UpdateProgramSetting">
-    <value xml:space="preserve">Program ayarı değiştir</value>
+  <data name="UpdateProgramSetting" xml:space="preserve">
+    <value>Program ayarı değiştir</value>
   </data>
-  <data name="CashPermissions">
-    <value xml:space="preserve">Kasa İzinleri</value>
+  <data name="CashPermissions" xml:space="preserve">
+    <value>Kasa İzinleri</value>
   </data>
-  <data name="CanMakeCashTransaction">
-    <value xml:space="preserve">Kasa hareketi yapabilir</value>
+  <data name="CanMakeCashTransaction" xml:space="preserve">
+    <value>Kasa hareketi yapabilir</value>
   </data>
-	<data name="CanMakeCreditOrDeptTransaction">
-		<value xml:space="preserve">Hesap alacaklandırabilir veya borçlandırabilir</value>
-	</data>
-	<data name="CanMakeAccountTransaction">
-		<value xml:space="preserve">Ödeme alabilir veya tahsilat yapabilir</value>
-	</data>
+  <data name="CanMakeCreditOrDeptTransaction" xml:space="preserve">
+    <value>Hesap alacaklandırabilir veya borçlandırabilir</value>
+  </data>
+  <data name="CanMakeAccountTransaction" xml:space="preserve">
+    <value>Ödeme alabilir veya tahsilat yapabilir</value>
+  </data>
+  <data name="SubButtonHeight" xml:space="preserve">
+    <value>Alt Düğme Yüksekliği</value>
+  </data>
 </root>

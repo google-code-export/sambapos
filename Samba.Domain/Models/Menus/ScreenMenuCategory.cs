@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Menus
@@ -10,6 +11,7 @@ namespace Samba.Domain.Models.Menus
             _screenMenuItems = new List<ScreenMenuItem>();
             MButtonHeight = 65;
             ButtonHeight = 65;
+            SubButtonHeight = 65;
             ColumnCount = 0;
             WrapText = false;
             ButtonColor = "Green";
@@ -31,7 +33,7 @@ namespace Samba.Domain.Models.Menus
         public string UserString { get { return Name; } }
 
         public int ScreenMenuId { get; set; }
-        
+
         public bool MostUsedItemsCategory { get; set; }
 
         private IList<ScreenMenuItem> _screenMenuItems;
@@ -51,6 +53,8 @@ namespace Samba.Domain.Models.Menus
 
         public int MButtonHeight { get; set; }
         public string MButtonColor { get; set; }
+
+        public int SubButtonHeight { get; set; }
 
         public int NumeratorType { get; set; }
         public string NumeratorValues { get; set; }
@@ -76,5 +80,6 @@ namespace Samba.Domain.Models.Menus
                 return itemCount;
             }
         }
+
     }
 }

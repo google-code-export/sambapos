@@ -226,13 +226,20 @@ namespace Samba.Presentation.ViewModels
             this.PublishEvent(EventTopicNames.SelectedItemsChanged);
         }
 
-        public TicketItemViewModel AddNewItem(int menuItemId, decimal quantity, bool gift, string defaultProperties)
+        public TicketItemViewModel AddNewItem(int menuItemId, decimal quantity, bool gift, string defaultProperties, string portionName)
         {
             if (!Model.CanSubmit) return null;
             ClearSelectedItems();
             var menuItem = AppServices.DataAccessService.GetMenuItem(menuItemId);
             if (menuItem.Portions.Count == 0) return null;
+
             var portion = menuItem.Portions[0];
+
+            if (!string.IsNullOrEmpty(portionName) && menuItem.Portions.Count(x => x.Name == portionName) > 0)
+            {
+                portion = menuItem.Portions.First(x => x.Name == portionName);
+            }
+
             var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portion.Name, AppServices.MainDataContext.SelectedDepartment.PriceTag, defaultProperties);
             ti.Quantity = quantity > 9 ? decimal.Round(quantity / portion.Multiplier, LocalSettings.Decimals) : quantity;
             ti.Gifted = gift;
