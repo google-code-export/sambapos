@@ -190,7 +190,7 @@ namespace Samba.Infrastructure.Data.MongoDB
             return coll;
         }
 
-        public IQueryable<T> Queryable<T>() where T : class, IEntity
+        public IQueryable<T> Queryable<T>() where T : class
         {
             return _provider.GetCollection<T>().AsQueryable();
         }

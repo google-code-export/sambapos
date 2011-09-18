@@ -48,6 +48,8 @@ namespace Samba.Presentation.ViewModels
         public string ButtonColor { get; private set; }
         public string ImagePath { get { return !string.IsNullOrEmpty(ScreenMenuItem.ImagePath) ? ScreenMenuItem.ImagePath : LocalSettings.AppPath + "\\images\\empty.png"; } }
 
+        public int UsageCount { get { return ScreenMenuItem.UsageCount; } set { ScreenMenuItem.UsageCount = value; } }
+
         public int FindOrder(string t)
         {
             if (Caption.ToLower().StartsWith(t.ToLower())) return -99 + Caption.Length;

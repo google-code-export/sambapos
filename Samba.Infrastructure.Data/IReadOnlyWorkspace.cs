@@ -17,6 +17,6 @@ namespace Samba.Infrastructure.Data
         decimal Sum<T>(Expression<Func<T, decimal>> selector, Expression<Func<T, bool>> predictate) where T : class;
         T Last<T>(Expression<Func<T, bool>> predictate, Expression<Func<T, object>>[] includes) where T : class,IEntity;
         IEnumerable<T> Last<T>(int recordCount) where T : class,IEntity;
-        IQueryable<T> Queryable<T>() where T : class, IEntity;
+        IQueryable<T> Queryable<T>() where T : class;
     }
 }

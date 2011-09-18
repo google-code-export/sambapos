@@ -229,6 +229,14 @@ namespace Samba.Services
         {
             using (var workspace = WorkspaceFactory.Create())
             {
+                _lastTwoWorkPeriods = null;
+
+                var latestWorkPeriod = workspace.Last<WorkPeriod>();
+                if (latestWorkPeriod.StartDate == latestWorkPeriod.EndDate)
+                {
+                    return;
+                }
+
                 var now = DateTime.Now;
                 var newPeriod = new WorkPeriod
                                     {
@@ -239,6 +247,7 @@ namespace Samba.Services
                                         CreditCardAmount = creditCardAmount,
                                         TicketAmount = ticketAmount
                                     };
+
                 workspace.Add(newPeriod);
                 workspace.CommitChanges();
                 _lastTwoWorkPeriods = null;
@@ -250,17 +259,19 @@ namespace Samba.Services
             using (var workspace = WorkspaceFactory.Create())
             {
                 var period = workspace.Last<WorkPeriod>();
-                Debug.Assert(period.EndDate == period.StartDate);
-                period.EndDate = DateTime.Now;
-                period.EndDescription = description;
-                workspace.CommitChanges();
+                if (period.EndDate == period.StartDate)
+                {
+                    period.EndDate = DateTime.Now;
+                    period.EndDescription = description;
+                    workspace.CommitChanges();
+                }
                 _lastTwoWorkPeriods = null;
             }
         }
 
         public string GetReason(int reasonId)
         {
-            return Reasons.ContainsKey(reasonId) ? Reasons[reasonId].Name : Localization.Properties.Resources.UndefinedWithBrackets;
+            return Reasons.ContainsKey(reasonId) ? Reasons[reasonId].Name : Resources.UndefinedWithBrackets;
         }
 
         public void UpdateTicketTable(Ticket ticket)

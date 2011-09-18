@@ -1121,7 +1121,7 @@ namespace Samba.Modules.TicketModule
 
             if (SelectedTicket.IsLocked && !AppServices.IsUserPermittedFor(PermissionNames.AddItemsToLockedTickets)) return;
 
-            var ti = SelectedTicket.AddNewItem(obj.ScreenMenuItem.MenuItemId, obj.Quantity, obj.ScreenMenuItem.Gift, obj.ScreenMenuItem.DefaultProperties, obj.ScreenMenuItem.Portion);
+            var ti = SelectedTicket.AddNewItem(obj.ScreenMenuItem.MenuItemId, obj.Quantity, obj.ScreenMenuItem.Gift, obj.ScreenMenuItem.DefaultProperties, obj.ScreenMenuItem.ItemPortion);
 
             if (obj.ScreenMenuItem.AutoSelect && ti != null)
             {

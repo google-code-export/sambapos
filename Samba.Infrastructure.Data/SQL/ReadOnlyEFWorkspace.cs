@@ -95,7 +95,7 @@ namespace Samba.Infrastructure.Data.SQL
             return _context.ReadOnly<TSource>().Where(x => x.Id == id).Select(expression).SingleOrDefault();
         }
 
-        public IQueryable<T> Queryable<T>() where T : class ,IEntity
+        public IQueryable<T> Queryable<T>() where T : class
         {
             return _context.ReadOnly<T>();
         }

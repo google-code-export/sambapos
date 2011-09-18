@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -7,6 +9,7 @@ using Microsoft.Practices.Prism.Events;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tickets;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
 
@@ -47,26 +50,6 @@ namespace Samba.Modules.TicketModule
             }
         }
 
-        private bool _filtered;
-        private void FilterMenuItems(string numeratorValue)
-        {
-            if (!string.IsNullOrEmpty(numeratorValue) && Char.IsLower(numeratorValue[0]))
-            {
-                _filtered = true;
-                SubCategories.Clear();
-                MenuItems.Clear();
-                var items = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems).Where(
-                    x => numeratorValue.ToLower().Split(' ').All(y => x.Name.ToLower().Contains(y)))
-                    .Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
-                MenuItems.AddRange(items.OrderBy(x => x.FindOrder(numeratorValue)).Take(50));
-            }
-            else if (_filtered)
-            {
-                _filtered = false;
-                UpdateMenuButtons(SelectedCategory);
-            }
-        }
-
         public string[] QuickNumeratorValues { get; set; }
         public string[] AlphaButtonValues { get; set; }
 
@@ -96,6 +79,26 @@ namespace Samba.Modules.TicketModule
             NumeratorValue = "";
 
             SubCategories = new ObservableCollection<ScreenSubCategoryButton>();
+        }
+
+        private bool _filtered;
+        private void FilterMenuItems(string numeratorValue)
+        {
+            if (!string.IsNullOrEmpty(numeratorValue) && Char.IsLower(numeratorValue[0]))
+            {
+                _filtered = true;
+                SubCategories.Clear();
+                MenuItems.Clear();
+                var items = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems).Where(
+                    x => numeratorValue.ToLower().Split(' ').All(y => x.Name.ToLower().Contains(y)))
+                    .Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
+                MenuItems.AddRange(items.OrderBy(x => x.FindOrder(numeratorValue)).Take(30));
+            }
+            else if (_filtered)
+            {
+                _filtered = false;
+                UpdateMenuButtons(SelectedCategory);
+            }
         }
 
         private void OnNumeratorReset(EventParameters<EventAggregator> obj)
@@ -280,10 +283,31 @@ namespace Samba.Modules.TicketModule
         private void UpdateMenuButtons(ScreenMenuCategory category)
         {
             MenuItems = CreateMenuButtons(category, CurrentPageNo, CurrentTag ?? "");
+
             SubCategories.Clear();
             SubCategories.AddRange(
                 AppServices.DataAccessService.GetSubCategories(category, CurrentTag)
-                .Select(x => new ScreenSubCategoryButton(x, SubCategoryCommand, category.SubButtonHeight)));
+                .Select(x => new ScreenSubCategoryButton(x, SubCategoryCommand, category.MButtonColor, category.SubButtonHeight)));
+            if (!string.IsNullOrEmpty(CurrentTag))
+            {
+                var backButton = new ScreenSubCategoryButton(CurrentTag.Replace(CurrentTag.Split(',').Last(), "").Trim(new[] { ',', ' ' }), SubCategoryCommand, "Gainsboro", category.SubButtonHeight, true);
+                SubCategories.Add(backButton);
+            }
+
+            if (Categories != null && MenuItems.Count == 0)
+            {
+                if (category.NumeratorType == 2)
+                    InteractionService.ShowKeyboard();
+
+                MenuItems.Clear();
+
+                if (SubCategories.Count == 0)
+                {
+                    var sitems = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems);
+                    var items = sitems.Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
+                    MenuItems.AddRange(items.OrderByDescending(x => x.UsageCount).Take(30));
+                }
+            }
 
             RaisePropertyChanged("MenuItems");
             RaisePropertyChanged("IsPageNumberNavigatorVisible");
@@ -292,7 +316,7 @@ namespace Samba.Modules.TicketModule
 
         private void OnSubCategoryCommand(ScreenSubCategoryButton obj)
         {
-            CurrentTag = obj.Name;
+            CurrentTag = obj.Name.Trim();
             UpdateMenuButtons(SelectedCategory);
         }
 

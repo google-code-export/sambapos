@@ -69,6 +69,6 @@ namespace Samba.Modules.MenuModule
         public string Tag { get { return Model.Tag; } set { Model.Tag = value; } }
 
         [LocalizedDisplayName(ResourceStrings.Portion)]
-        public string Portion { get { return Model.Portion; } set { Model.Portion = value; } }
+        public string Portion { get { return Model.ItemPortion; } set { Model.ItemPortion = value; } }
     }
 }

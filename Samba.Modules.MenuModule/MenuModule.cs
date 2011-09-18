@@ -45,8 +45,8 @@ namespace Samba.Modules.MenuModule
             ListScreenMenusCommand = new CategoryCommand<string>(Resources.MenuList, Resources.Products, OnListScreenMenus);
             ListMenuItemPropertyGroupsCommand = new CategoryCommand<string>(Resources.PropertyGroups, Resources.Products, OnListMenuItemPropertyGroupsCommand);
             ListPricesCommand = new CategoryCommand<string>(Resources.BatchPriceList, Resources.Products, OnListPrices);
-            ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags){Order = 10};
-            ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>(Resources.PriceDefinitions,Resources.Products,OnListMenuItemPriceDefinitions);
+            ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags) { Order = 10 };
+            ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>(Resources.PriceDefinitions, Resources.Products, OnListMenuItemPriceDefinitions);
 
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeDepartment, PermissionCategories.Department, Resources.CanChangeDepartment);
             foreach (var department in AppServices.MainDataContext.Departments)
@@ -80,11 +80,13 @@ namespace Samba.Modules.MenuModule
                         _menuItemPriceDefinitionListViewModel = null;
                 }
             });
+
+
         }
 
         private void OnListMenuItemPriceDefinitions(string obj)
         {
-            if(_menuItemPriceDefinitionListViewModel == null)
+            if (_menuItemPriceDefinitionListViewModel == null)
                 _menuItemPriceDefinitionListViewModel = new MenuItemPriceDefinitionListViewModel();
             CommonEventPublisher.PublishViewAddedEvent(_menuItemPriceDefinitionListViewModel);
         }

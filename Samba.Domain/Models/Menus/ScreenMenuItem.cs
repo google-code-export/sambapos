@@ -1,4 +1,5 @@
-﻿using Samba.Infrastructure.Data;
+﻿using System;
+using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Menus
 {
@@ -28,7 +29,8 @@ namespace Samba.Domain.Models.Menus
         public string ImagePath { get; set; }
         public string DefaultProperties{ get; set; }
         public string Tag { get; set; }
-        public string Portion { get; set; }
+        public string ItemPortion { get; set; }
+        public int UsageCount { get; set; }
 
         public MenuItem MenuItem;
     }

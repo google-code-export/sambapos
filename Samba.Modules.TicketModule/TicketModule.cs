@@ -1,10 +1,14 @@
 ﻿using System.ComponentModel.Composition;
+using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Menus;
+using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
+using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
@@ -56,6 +60,29 @@ namespace Samba.Modules.TicketModule
                     if (x.Topic == EventTopicNames.ActivateTicketView || x.Topic == EventTopicNames.DisplayTicketView)
                         ActivateTicketEditorView();
                 });
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<WorkPeriod>>().Subscribe(
+            x =>
+            {
+                if (x.Topic == EventTopicNames.WorkPeriodStatusChanged)
+                {
+                    if (x.Value.StartDate < x.Value.EndDate)
+                    {
+                        using (var v = WorkspaceFactory.Create())
+                        {
+                            var items = v.All<ScreenMenuItem>().ToList();
+                            using (var vr = WorkspaceFactory.CreateReadOnly())
+                            {
+                                vr.Queryable<TicketItem>()
+                                  .GroupBy(y => y.MenuItemId)
+                                  .ToList().ForEach(
+                                        y => items.Single(z => z.MenuItemId == y.Key).UsageCount = y.Count());
+                            }
+                            v.CommitChanges();
+                        }
+                    }
+                }
+            });
 
         }
 

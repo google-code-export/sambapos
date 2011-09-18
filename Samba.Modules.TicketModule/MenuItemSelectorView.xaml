@@ -105,9 +105,8 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <FxButton:FlexButton Content="{Binding Name}" Focusable="False" Command="{Binding Command}"
-                                 CommandParameter="{Binding }" Height="{Binding Height}" Margin="0,0,0,5"
-                                 />
+                            <FxButton:FlexButton Content="{Binding Caption}" Focusable="False" Command="{Binding Command}"
+                                 CommandParameter="{Binding }" Height="{Binding Height}" Margin="0,0,0,5" ButtonColor="{Binding ButtonColor}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

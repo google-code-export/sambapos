@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tables;
@@ -34,7 +35,7 @@ namespace Samba.Services
         public IEnumerable<ScreenMenuItem> GetMenuItems(ScreenMenuCategory category, int currentPageNo, string tag)
         {
             var items = category.ScreenMenuItems
-                .Where(x => (!string.IsNullOrEmpty(x.Tag) && x.Tag.StartsWith(tag + ",")) || x.Tag == tag || (string.IsNullOrEmpty(tag) && string.IsNullOrEmpty(x.Tag)));
+                .Where(x => x.Tag == tag || (string.IsNullOrEmpty(tag) && string.IsNullOrEmpty(x.Tag)));
 
             if (category.PageCount > 1)
             {
@@ -48,11 +49,13 @@ namespace Samba.Services
 
         public IEnumerable<string> GetSubCategories(ScreenMenuCategory category, string parentTag)
         {
-            return category.ScreenMenuItems
+            return category.ScreenMenuItems.Where(x => !string.IsNullOrEmpty(x.Tag))
                 .Select(x => x.Tag)
                 .Distinct()
-                .Where(x => !string.IsNullOrEmpty(x))
-                .Where(x => string.IsNullOrEmpty(parentTag) || (x.StartsWith(parentTag) && x != parentTag));
+                .Where(x => string.IsNullOrEmpty(parentTag) || (x.StartsWith(parentTag) && x != parentTag))
+                .Select(x => Regex.Replace(x, "^" + parentTag + ",", ""))
+                .Where(x => !x.Contains(","))
+                .Select(x => !string.IsNullOrEmpty(parentTag) ? parentTag + "," + x : x);
         }
 
         public ScreenMenu GetScreenMenu(int screenMenuId)

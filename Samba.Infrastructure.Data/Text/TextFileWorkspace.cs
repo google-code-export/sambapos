@@ -246,7 +246,7 @@ namespace Samba.Infrastructure.Data.Text
             return count > recordCount ? coll.Skip(count - recordCount).Take(recordCount) : coll;
         }
 
-        public IQueryable<T> Queryable<T>() where T : class, IEntity
+        public IQueryable<T> Queryable<T>() where T : class
         {
             return _storage.GetItems<T>().AsQueryable();
         }
