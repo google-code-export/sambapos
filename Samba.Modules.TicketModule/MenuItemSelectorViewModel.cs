@@ -288,6 +288,7 @@ namespace Samba.Modules.TicketModule
             SubCategories.AddRange(
                 AppServices.DataAccessService.GetSubCategories(category, CurrentTag)
                 .Select(x => new ScreenSubCategoryButton(x, SubCategoryCommand, category.MButtonColor, category.SubButtonHeight)));
+
             if (!string.IsNullOrEmpty(CurrentTag))
             {
                 var backButton = new ScreenSubCategoryButton(CurrentTag.Replace(CurrentTag.Split(',').Last(), "").Trim(new[] { ',', ' ' }), SubCategoryCommand, "Gainsboro", category.SubButtonHeight, true);
@@ -296,16 +297,21 @@ namespace Samba.Modules.TicketModule
 
             if (Categories != null && MenuItems.Count == 0)
             {
-                if (category.NumeratorType == 2)
+                if (category.NumeratorType == 2 && SubCategories.Count == 0)
                     InteractionService.ShowKeyboard();
 
                 MenuItems.Clear();
 
-                if (SubCategories.Count == 0)
+                if (category.MaxItems > 0)
                 {
-                    var sitems = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems);
+                    IEnumerable<ScreenMenuItem> sitems = category.ScreenMenuItems.OrderBy(x => x.Order);
+                    if (SubCategories.Count == 0)
+                    {
+                        sitems = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems);
+                    }
                     var items = sitems.Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
-                    MenuItems.AddRange(items.OrderByDescending(x => x.UsageCount).Take(30));
+                    if (category.SortType == 1) items = items.OrderByDescending(x => x.UsageCount);
+                    MenuItems.AddRange(items.Take(category.MaxItems));
                 }
             }
 
@@ -347,8 +353,9 @@ namespace Samba.Modules.TicketModule
 
             var screenMenuItems = AppServices.DataAccessService.GetMenuItems(category, pageNo, tag);
             var result = new ObservableCollection<ScreenMenuItemButton>();
-
-            result.AddRange(screenMenuItems.Select(x => new ScreenMenuItemButton(x, MenuItemCommand, category)));
+            var items = screenMenuItems.Select(x => new ScreenMenuItemButton(x, MenuItemCommand, category));
+            if (category.SortType == 1) items = items.OrderByDescending(x => x.UsageCount);
+            result.AddRange(items);
             return result;
         }
 

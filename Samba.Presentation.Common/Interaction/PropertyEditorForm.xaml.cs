@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using PropertyTools.Wpf;
 using Samba.Presentation.Common.Services;
 
 namespace Samba.Presentation.Common.Interaction
@@ -81,6 +83,20 @@ namespace Samba.Presentation.Common.Interaction
             if (e.EditingElement is TextBox)
             {
                 ((TextBox)e.EditingElement).Text = ((TextBox)e.EditingElement).Text.Replace("\b", "");
+            }
+        }
+
+        private void SimpleGrid_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            btnDetails.Visibility = Visibility.Visible;
+        }
+
+        private void SimpleGrid_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            foreach (var selectedItem in (sender as SimpleGrid).SelectedItems)
+            {
+                InteractionService.UserIntraction.EditProperties(selectedItem);
+                e.Handled = true;
             }
         }
     }

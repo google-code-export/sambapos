@@ -2758,4 +2758,10 @@ Borçlandır</value>
   <data name="SubButtonHeight" xml:space="preserve">
     <value>Alt Düğme Yüksekliği</value>
   </data>
+  <data name="MaxItems" xml:space="preserve">
+    <value>Max Ürün</value>
+  </data>
+  <data name="SortType" xml:space="preserve">
+    <value>Sıralama Tipi</value>
+  </data>
 </root>

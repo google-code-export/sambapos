@@ -113,7 +113,7 @@ Source: src\Microsoft.Practices.EnterpriseLibrary.Validation.dll; DestDir: {app}
 Source: src\Microsoft.Practices.ServiceLocation.dll; DestDir: {app}
 Source: src\Microsoft.Practices.Unity.dll; DestDir: {app}
 Source: src\Microsoft.Practices.Unity.Interception.dll; DestDir: {app}
-Source: src\PropertyEditor.dll; DestDir: {app}; Flags: ignoreversion
+Source: src\PropertyTools.Wpf.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Domain.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Infrastructure.Data.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Infrastructure.dll; DestDir: {app}; Flags: ignoreversion

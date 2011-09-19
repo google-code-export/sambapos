@@ -104,11 +104,6 @@
                 <TextBlock Grid.Column="1" Grid.Row="0" TextAlignment="Right" Text="{Binding SelectedTicket.TicketPlainTotalLabel}"
                      Visibility="{Binding SelectedTicket.IsPlainTotalVisible,Converter={StaticResource VisibilityConverter}}" />
 
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="{LocText TicketTipTotal,Suffix=':'}"
-                     Visibility="{Binding SelectedTicket.IsTicketTipVisible,Converter={StaticResource VisibilityConverter}}" />
-                <TextBlock Grid.Column="1" Grid.Row="1" TextAlignment="Right" Text="{Binding SelectedTicket.TicketTipLabel}"
-                     Visibility="{Binding SelectedTicket.IsTicketTipVisible,Converter={StaticResource VisibilityConverter}}" />
-                
                 <TextBlock Grid.Column="0" Grid.Row="2" Text="{LocText DiscountTotal,Suffix=':'}"
                      Visibility="{Binding SelectedTicket.IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}" />
                 <TextBlock Grid.Column="1" Grid.Row="2" TextAlignment="Right" Text="{Binding SelectedTicket.TicketDiscountLabel}"

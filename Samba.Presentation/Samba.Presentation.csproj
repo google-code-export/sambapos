@@ -211,10 +211,6 @@
       <Project>{512FD53F-9AD1-46A1-A961-9FABDFAD50C5}</Project>
       <Name>DataGridFilterLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lib\PropertyEditor\PropertyEditor.csproj">
-      <Project>{7168F82F-288A-42C4-9EB1-FBBE5112F211}</Project>
-      <Name>PropertyEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lib\UIControls\UIControls.csproj">
       <Project>{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}</Project>
       <Name>UIControls</Name>

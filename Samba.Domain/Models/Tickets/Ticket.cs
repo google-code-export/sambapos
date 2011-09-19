@@ -166,13 +166,7 @@ namespace Samba.Domain.Models.Tickets
         public decimal GetDiscountAmount()
         {
             decimal sum = GetPlainSum(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
-            return CalculateDiscounts(Discounts.Where(x => x.DiscountType != (int)DiscountType.Tip), sum);
-        }
-
-        public decimal GetTipAmount()
-        {
-            decimal sum = GetPlainSum(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
-            return 0 - CalculateDiscounts(Discounts.Where(x => x.DiscountType == (int)DiscountType.Tip), sum);
+            return CalculateDiscounts(Discounts, sum);
         }
 
         private decimal CalculateDiscounts(IEnumerable<Discount> discounts, decimal sum)
@@ -180,7 +174,7 @@ namespace Samba.Domain.Models.Tickets
             decimal totalDiscount = 0;
             foreach (var discount in discounts)
             {
-                if (discount.DiscountType == (int)DiscountType.Percent || discount.DiscountType == (int)DiscountType.Tip)
+                if (discount.DiscountType == (int)DiscountType.Percent)
                 {
                     if (discount.TicketItemId == 0)
                         discount.DiscountAmount = discount.Amount > 0
@@ -191,8 +185,6 @@ namespace Samba.Domain.Models.Tickets
                         discount.DiscountAmount = discount.Amount > 0
                             ? (TicketItems.Single(x => x.Id == d.TicketItemId).GetTotal() * discount.Amount) / 100 : 0;
                     }
-                    if (discount.DiscountType == (int)DiscountType.Tip)
-                        discount.DiscountAmount = 0 - discount.DiscountAmount;
                 }
                 else discount.DiscountAmount = discount.Amount;
 
@@ -580,6 +572,7 @@ namespace Samba.Domain.Models.Tickets
 
             return newItems;
         }
+
 
 
     }

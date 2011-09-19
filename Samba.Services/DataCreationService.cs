@@ -14,7 +14,6 @@ using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
-using Samba.Services.Repositories.Impl;
 
 namespace Samba.Services
 {
@@ -292,21 +291,9 @@ namespace Samba.Services
 
         private void CreateDefaultCurrenciesIfNeeded()
         {
-            var currencyRepository = new CurrencyRepository(_workspace);
-            var c = currencyRepository.GetCurrencyContext();
-
-            if (c == null)
-            {
-                var context = new CurrencyContext("");
-                currencyRepository.UpdateCurrencyContext(context);
-            }
-            else
-            {
-                var nf = Localization.Engine.LocalizeDictionary.Instance.Culture.NumberFormat;
-                var sym = nf.CurrencySymbol;
-                CurrencyContext.DefaultCurrency = sym;
-            }
-
+            var nf = Localization.Engine.LocalizeDictionary.Instance.Culture.NumberFormat;
+            var sym = nf.CurrencySymbol;
+            CurrencyContext.DefaultCurrency = sym;
             LocalSettings.DefaultCurrencyFormat = "C";
         }
     }

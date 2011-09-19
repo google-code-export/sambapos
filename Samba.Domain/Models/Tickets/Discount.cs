@@ -4,8 +4,7 @@
     {
         Percent,
         Amount,
-        Auto,
-        Tip
+        Auto
     }
 
     public class Discount

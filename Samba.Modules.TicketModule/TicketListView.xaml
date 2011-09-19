@@ -263,11 +263,6 @@
                          Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}" />
                     <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketDiscountLabel}"
                          Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}" />
-
-                    <TextBlock Text="Garsoniye Toplamı:"
-                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketTipVisible,Converter={StaticResource VisibilityConverter}}" />
-                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketTipLabel}"
-                         Visibility="{Binding IsTicketTipVisible,Converter={StaticResource VisibilityConverter}}" />
                     
                     <TextBlock Text="{LocText GrandTotal,Suffix=':'}" Visibility="{Binding IsTicketTotalVisible,Converter={StaticResource VisibilityConverter}}" />
                     <TextBlock TextAlignment="Right" Text="{Binding SelectedTicket.TicketTotalLabel}"

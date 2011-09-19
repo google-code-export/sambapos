@@ -124,11 +124,6 @@ namespace Samba.Presentation.ViewModels
             get { return Model.GetDiscountAmount(); }
         }
 
-        public decimal TicketTipAmount
-        {
-            get { return Model.GetTipAmount(); }
-        }
-
         public decimal TicketPlainTotalValue
         {
             get { return Model.GetPlainSum(); }
@@ -147,11 +142,6 @@ namespace Samba.Presentation.ViewModels
         public string TicketDiscountLabel
         {
             get { return TicketDiscountAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
-        }
-
-        public string TicketTipLabel
-        {
-            get { return TicketTipAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
         public string TicketPaymentLabel
@@ -342,17 +332,13 @@ namespace Samba.Presentation.ViewModels
 
         public bool IsPlainTotalVisible
         {
-            get { return IsTicketDiscountVisible || IsTicketTipVisible; }
+            //will display when taxes available
+            get { return IsTicketDiscountVisible; }
         }
 
         public bool IsTicketDiscountVisible
         {
             get { return TicketDiscountAmount != 0; }
-        }
-
-        public bool IsTicketTipVisible
-        {
-            get { return TicketTipAmount != 0; }
         }
 
         public string Location
@@ -516,7 +502,6 @@ namespace Samba.Presentation.ViewModels
                         TicketTotal = ticket.GetSum(),
                         DiscountTotal = ticket.GetTotalDiscounts(),
                         DiscountAmount = ticket.GetDiscountAmount(),
-                        TipAmount = ticket.GetTipAmount(),
                         GiftTotal = ticket.GetTotalGiftAmount(),
                         PaymentTotal = ticket.GetPaymentAmount()
                     });

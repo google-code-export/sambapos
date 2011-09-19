@@ -232,7 +232,7 @@ namespace Samba.Services
                 _lastTwoWorkPeriods = null;
 
                 var latestWorkPeriod = workspace.Last<WorkPeriod>();
-                if (latestWorkPeriod.StartDate == latestWorkPeriod.EndDate)
+                if (latestWorkPeriod != null && latestWorkPeriod.StartDate == latestWorkPeriod.EndDate)
                 {
                     return;
                 }

@@ -66,7 +66,6 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
                         Price = x.TicketItem.GetItemPrice(),
                         Value = x.TicketItem.GetItemValue(),
                         Discount = x.Ticket.GetPlainSum() > 0 ? x.Ticket.GetDiscountAmount() / x.Ticket.GetPlainSum() : 0,
-                        Tip = x.Ticket.GetPlainSum() > 0 ? x.Ticket.GetTipAmount() / x.Ticket.GetPlainSum() : 0,
                         Total = MenuGroupBuilder.CalculateTicketItemTotal(x.Ticket, x.TicketItem),
                     }
                 );

@@ -16,6 +16,8 @@ namespace Samba.Persistance.DBMigration
             Create.Column("UsageCount").OnTable("ScreenMenuItems").AsInt32().WithDefaultValue(0);
             Create.Column("ItemPortion").OnTable("ScreenMenuItems").AsString(128).Nullable();
             Create.Column("SubButtonHeight").OnTable("ScreenMenuCategories").AsInt32().WithDefaultValue(65);
+            Create.Column("MaxItems").OnTable("ScreenMenuCategories").AsInt32().WithDefaultValue(0);
+            Create.Column("SortType").OnTable("ScreenMenuCategories").AsInt32().WithDefaultValue(0);
         }
 
         public override void Down()

@@ -74,7 +74,7 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
             PrepareModificationTable(report, x => x.Gifted, Resources.Gifts);
 
             var discounts = ReportContext.Tickets
-                .SelectMany(x => x.Discounts.Where(y => y.DiscountType != (int)DiscountType.Tip).Select(y => new { x.TicketNumber, y.UserId, Amount = y.DiscountAmount }))
+                .SelectMany(x => x.Discounts.Select(y => new { x.TicketNumber, y.UserId, Amount = y.DiscountAmount }))
                 .GroupBy(x => new { x.TicketNumber, x.UserId }).Select(x => new { x.Key.TicketNumber, x.Key.UserId, Amount = x.Sum(y => y.Amount) });
 
             if (discounts.Count() > 0)

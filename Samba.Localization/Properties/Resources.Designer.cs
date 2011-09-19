@@ -3467,6 +3467,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Items.
+        /// </summary>
+        public static string MaxItems {
+            get {
+                return ResourceManager.GetString("MaxItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
         public static string Menu {
@@ -5268,6 +5277,15 @@ namespace Samba.Localization.Properties {
         public static string SortOrder {
             get {
                 return ResourceManager.GetString("SortOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort Type.
+        /// </summary>
+        public static string SortType {
+            get {
+                return ResourceManager.GetString("SortType", resourceCulture);
             }
         }
         

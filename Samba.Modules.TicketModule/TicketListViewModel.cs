@@ -176,8 +176,7 @@ namespace Samba.Modules.TicketModule
         public bool IsTicketPaymentVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketPaymentVisible; } }
         public bool IsTicketRemainingVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketRemainingVisible; } }
         public bool IsTicketDiscountVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketDiscountVisible; } }
-        public bool IsTicketTipVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketTipVisible; } }
-        public bool IsPlainTotalVisible { get { return IsTicketDiscountVisible || IsTicketTipVisible; } }
+        public bool IsPlainTotalVisible { get { return IsTicketDiscountVisible; } }
 
         public bool IsTableButtonVisible
         {

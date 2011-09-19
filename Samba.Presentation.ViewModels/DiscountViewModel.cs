@@ -17,9 +17,7 @@ namespace Samba.Presentation.ViewModels
         {
             get
             {
-                return Model.DiscountType == (int)DiscountType.Percent || Model.DiscountType == (int)DiscountType.Tip
-                          ? "%"
-                          : "";
+                return Model.DiscountType == (int)DiscountType.Percent ? "%" : "";
             }
         }
 
@@ -31,8 +29,6 @@ namespace Samba.Presentation.ViewModels
                 {
                     case (int)DiscountType.Percent:
                         return Model.Amount.ToString();
-                    case (int)DiscountType.Tip:
-                        return Model.Amount.ToString("#.##") + " Garsoniye";
                     case (int)DiscountType.Auto:
                         return Resources.AutoFlatten_ab;
                     default:
@@ -45,9 +41,7 @@ namespace Samba.Presentation.ViewModels
         {
             get
             {
-                return Model.DiscountType == (int)DiscountType.Tip ?
-                   (0 - Model.DiscountAmount).ToString(LocalSettings.DefaultCurrencyFormat) :
-                    Model.DiscountAmount.ToString(LocalSettings.DefaultCurrencyFormat);
+                return Model.DiscountAmount.ToString(LocalSettings.DefaultCurrencyFormat);
             }
         }
     }

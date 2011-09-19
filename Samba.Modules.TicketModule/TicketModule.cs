@@ -10,8 +10,6 @@ using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
-using Samba.Presentation.Common.Services;
-using Samba.Presentation.ViewModels;
 using Samba.Services;
 
 namespace Samba.Modules.TicketModule
@@ -73,9 +71,13 @@ namespace Samba.Modules.TicketModule
                             var items = v.All<ScreenMenuItem>().ToList();
                             using (var vr = WorkspaceFactory.CreateReadOnly())
                             {
+                                AppServices.ResetCache();
+                                var startDate = AppServices.MainDataContext.LastTwoWorkPeriods.First().StartDate;
+                                var endDate = AppServices.MainDataContext.LastTwoWorkPeriods.Last().EndDate;
                                 vr.Queryable<TicketItem>()
-                                  .GroupBy(y => y.MenuItemId)
-                                  .ToList().ForEach(
+                                    .Where(y=>y.CreatedDateTime >=startDate && y.CreatedDateTime< endDate)
+                                    .GroupBy(y => y.MenuItemId)
+                                    .ToList().ForEach(
                                         y => items.Single(z => z.MenuItemId == y.Key).UsageCount = y.Count());
                             }
                             v.CommitChanges();

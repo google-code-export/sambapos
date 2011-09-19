@@ -2755,4 +2755,10 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="SubButtonHeight" xml:space="preserve">
     <value>Sub Button Height</value>
   </data>
+  <data name="MaxItems" xml:space="preserve">
+    <value>Max Items</value>
+  </data>
+  <data name="SortType" xml:space="preserve">
+    <value>Sort Type</value>
+  </data>
 </root>

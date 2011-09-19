@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.ComponentModel.Composition;
 using System.Windows.Media;
-using PropertyEditorLibrary;
+using PropertyTools.Wpf;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Services;

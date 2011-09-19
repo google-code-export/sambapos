@@ -2,10 +2,11 @@
 using System.Windows.Media;
 using Samba.Domain.Models.Menus;
 using Samba.Localization;
+using Samba.Presentation.Common;
 
 namespace Samba.Modules.MenuModule
 {
-    public class ScreenMenuItemViewModel
+    public class ScreenMenuItemViewModel : ObservableObject
     {
         public ScreenMenuItemViewModel(ScreenMenuItem model)
         {
@@ -25,14 +26,22 @@ namespace Samba.Modules.MenuModule
         public int Order
         {
             get { return Model.Order; }
-            set { Model.Order = value; }
+            set
+            {
+                Model.Order = value;
+                RaisePropertyChanged("Order");
+            }
         }
 
         [LocalizedDisplayName(ResourceStrings.AutoSelect)]
         public bool AutoSelect
         {
             get { return Model.AutoSelect; }
-            set { Model.AutoSelect = value; }
+            set
+            {
+                Model.AutoSelect = value;
+                RaisePropertyChanged("AutoSelect");
+            }
         }
 
         [LocalizedDisplayName(ResourceStrings.Color)]
@@ -47,28 +56,33 @@ namespace Samba.Modules.MenuModule
             set
             {
                 Model.ButtonColor = value != Brushes.Transparent ? value.ToString() : string.Empty;
+                RaisePropertyChanged("ButtonColor");
             }
         }
 
         [LocalizedDisplayName(ResourceStrings.ImagePath)]
-        public string ImagePath { get { return Model.ImagePath; } set { Model.ImagePath = value; } }
+        public string ImagePath
+        {
+            get { return Model.ImagePath; }
+            set { Model.ImagePath = value; RaisePropertyChanged("ImagePath"); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.Header)]
-        public string Name { get { return Model.Name; } set { Model.Name = value; } }
+        public string Name { get { return Model.Name; } set { Model.Name = value; RaisePropertyChanged("Name"); } }
 
         [LocalizedDisplayName(ResourceStrings.Quantity)]
-        public int Quantity { get { return Model.Quantity; } set { Model.Quantity = value; } }
+        public int Quantity { get { return Model.Quantity; } set { Model.Quantity = value; RaisePropertyChanged("Quantity"); } }
 
         [LocalizedDisplayName(ResourceStrings.Gift)]
-        public bool Gift { get { return Model.Gift; } set { Model.Gift = value; } }
+        public bool Gift { get { return Model.Gift; } set { Model.Gift = value; RaisePropertyChanged("Gift"); } }
 
         [LocalizedDisplayName(ResourceStrings.DefaultProperties)]
-        public string DefaultProperties { get { return Model.DefaultProperties; } set { Model.DefaultProperties = value; } }
+        public string DefaultProperties { get { return Model.DefaultProperties; } set { Model.DefaultProperties = value; RaisePropertyChanged("DefaultProperties"); } }
 
         [LocalizedDisplayName(ResourceStrings.Tag)]
-        public string Tag { get { return Model.Tag; } set { Model.Tag = value; } }
+        public string Tag { get { return Model.Tag; } set { Model.Tag = value; RaisePropertyChanged("Tag"); } }
 
         [LocalizedDisplayName(ResourceStrings.Portion)]
-        public string Portion { get { return Model.ItemPortion; } set { Model.ItemPortion = value; } }
+        public string Portion { get { return Model.ItemPortion; } set { Model.ItemPortion = value; RaisePropertyChanged("Portion"); } }
     }
 }

@@ -408,13 +408,12 @@ namespace Samba.Modules.TicketModule
                 SelectedTicket.RecalculateTicket();
                 InteractionService.UserIntraction.GiveFeedback(Resources.AllDiscountsRemoved);
             }
-            //TicketViewModel.RecalculateTicket(AppServices.MainDataContext.SelectedTicket);
             if (GetPaymentValue() <= 0)
                 PaymentAmount = AppServices.MainDataContext.SelectedTicket != null
                     ? AppServices.MainDataContext.SelectedTicket.GetRemainingAmount().ToString("#,#0.00")
                     : "";
             SelectedTicket.Discounts.Clear();
-            SelectedTicket.Discounts.AddRange(SelectedTicket.Model.Discounts.Where(x => x.DiscountType != (int)DiscountType.Tip).Select(x => new DiscountViewModel(x)));
+            SelectedTicket.Discounts.AddRange(SelectedTicket.Model.Discounts.Select(x => new DiscountViewModel(x)));
 
             RaisePropertyChanged("SelectedTicket");
             RaisePropertyChanged("ReturningAmountVisibility");
