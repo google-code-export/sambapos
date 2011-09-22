@@ -90,6 +90,11 @@
       <DependentUpon>DepartmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmentViewModel.cs" />
+    <Compile Include="TaxTemplateListViewModel.cs" />
+    <Compile Include="TaxTemplateView.xaml.cs">
+      <DependentUpon>TaxTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TaxTemplateViewModel.cs" />
     <Compile Include="TicketTagGroupListViewModel.cs" />
     <Compile Include="TicketTagGroupView.xaml.cs">
       <DependentUpon>TicketTagGroupView.xaml</DependentUpon>
@@ -162,6 +167,10 @@
     <Page Include="DepartmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaxTemplateView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TicketTagGroupView.xaml">
       <Generator>MSBuild:Compile</Generator>

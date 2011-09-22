@@ -2761,4 +2761,28 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="SortType" xml:space="preserve">
     <value>Sort Type</value>
   </data>
+  <data name="DeleteErrorProductUsedInMenuItemProperty" xml:space="preserve">
+    <value>Can't delete because this product assigned to a menu item property</value>
+  </data>
+  <data name="TaxTemplates" xml:space="preserve">
+    <value>Tax Templates</value>
+  </data>
+  <data name="TaxTemplate" xml:space="preserve">
+    <value>Tax Template</value>
+  </data>
+  <data name="TaxTemplateName" xml:space="preserve">
+    <value>Tax Template Name</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="TaxIncludedToPrice" xml:space="preserve">
+    <value>Tax Included to Price</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>Tax</value>
+  </data>
 </root>

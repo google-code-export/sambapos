@@ -27,6 +27,8 @@ namespace Samba.Domain.Models.Menus
         public string Barcode { get; set; }
         public string Tag { get; set; }
 
+        public virtual TaxTemplate TaxTemplate { get; set; }
+
         private IList<MenuItemPortion> _portions;
         public virtual IList<MenuItemPortion> Portions
         {

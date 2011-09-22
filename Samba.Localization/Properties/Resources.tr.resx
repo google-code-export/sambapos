@@ -2764,4 +2764,28 @@ Borçlandır</value>
   <data name="SortType" xml:space="preserve">
     <value>Sıralama Tipi</value>
   </data>
+	<data name="DeleteErrorProductUsedInMenuItemProperty">
+		<value><![CDATA[Bu ürün bir ürün özelliğinde kullanıldığı için silinemez.]]></value>
+	</data>
+	<data name="TaxTemplates">
+		<value xml:space="preserve">Vergi Şablonları</value>
+	</data>
+	<data name="TaxTemplate">
+		<value xml:space="preserve">Vergi Şablonu</value>
+	</data>
+  <data name="TaxTemplateName" xml:space="preserve">
+    <value>Vergi Şablonu Adı</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Oran</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="TaxIncludedToPrice" xml:space="preserve">
+    <value>Vergi Fiyata Dahil</value>
+    <comment>CheckBox content</comment>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>Vergi</value>
+  </data>
 </root>

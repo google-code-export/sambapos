@@ -55,10 +55,11 @@ namespace Samba.Modules.MenuModule
         protected override string CanDeleteItem(MenuItem model)
         {
             var count = Dao.Count<ScreenMenuItem>(x => x.MenuItemId == model.Id);
-            if (count > 0)
-                return Resources.DeleteErrorProductUsedInMenu;
+            if (count > 0) return Resources.DeleteErrorProductUsedInMenu;
             if (count == 0) count = Dao.Count<Recipe>(x => x.Portion.MenuItemId == model.Id);
             if (count > 0) return Resources.DeleteErrorProductUsedInReceipt;
+            count = Dao.Count<MenuItemProperty>(x => x.MenuItemId == model.Id);
+            if (count > 0) return Resources.DeleteErrorProductUsedInMenuItemProperty;
             return base.CanDeleteItem(model);
         }
     }

@@ -1782,6 +1782,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t delete because this product assigned to a menu item property.
+        /// </summary>
+        public static string DeleteErrorProductUsedInMenuItemProperty {
+            get {
+                return ResourceManager.GetString("DeleteErrorProductUsedInMenuItemProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t delete because this Product assigned to a Receipt..
         /// </summary>
         public static string DeleteErrorProductUsedInReceipt {
@@ -4656,6 +4665,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rate.
+        /// </summary>
+        public static string Rate {
+            get {
+                return ResourceManager.GetString("Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Receiveable.
         /// </summary>
         public static string Receiveable {
@@ -5539,6 +5557,51 @@ namespace Samba.Localization.Properties {
         public static string TagValue {
             get {
                 return ResourceManager.GetString("TagValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax.
+        /// </summary>
+        public static string Tax {
+            get {
+                return ResourceManager.GetString("Tax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Included to Price.
+        /// </summary>
+        public static string TaxIncludedToPrice {
+            get {
+                return ResourceManager.GetString("TaxIncludedToPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Template.
+        /// </summary>
+        public static string TaxTemplate {
+            get {
+                return ResourceManager.GetString("TaxTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Template Name.
+        /// </summary>
+        public static string TaxTemplateName {
+            get {
+                return ResourceManager.GetString("TaxTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Templates.
+        /// </summary>
+        public static string TaxTemplates {
+            get {
+                return ResourceManager.GetString("TaxTemplates", resourceCulture);
             }
         }
         
