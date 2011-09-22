@@ -367,9 +367,11 @@ namespace Samba.Modules.TicketModule
         {
             if (GetTenderedValue() > 0 && SelectedTicket.Model.GetPlainSum() > 0)
             {
-                var discountAmount = Convert.ToDecimal(PaymentAmount) + SelectedTicket.Model.GetTotalDiscounts();
+                var plainSum = SelectedTicket.Model.GetPlainSum();
+                var discounts = SelectedTicket.Model.GetTotalDiscounts();
+                var discountAmount = SelectedTicket.Model.GetRemainingAmount() - SelectedTicket.Model.CalculateTax(plainSum, discounts) + discounts;
                 discountAmount = discountAmount * (GetTenderedValue() / 100);
-                var discountRate = SelectedTicket.Model.GetPlainSum();
+                var discountRate = SelectedTicket.Model.GetSumWithoutTax();
                 discountRate = (discountAmount * 100) / discountRate;
                 discountRate = decimal.Round(discountRate, LocalSettings.Decimals);
                 SelectedTicket.Model.AddTicketDiscount(DiscountType.Percent, discountRate, AppServices.CurrentLoggedInUser.Id);
@@ -432,10 +434,12 @@ namespace Samba.Modules.TicketModule
                 if (!item.Voided && !item.Gifted)
                 {
                     var ticketItem = item;
-                    var mitem = MergedItems.SingleOrDefault(x => x.MenuItemId == ticketItem.MenuItemId && x.Price == ticketItem.GetItemPrice());
+                    var price = ticketItem.GetItemPrice();
+                    if (!ticketItem.TaxIncluded) price += ticketItem.TaxAmount;
+                    var mitem = MergedItems.SingleOrDefault(x => x.MenuItemId == ticketItem.MenuItemId && x.Price == price);
                     if (mitem == null)
                     {
-                        mitem = new MergedItem { Description = item.MenuItemName + item.GetPortionDesc(), Price = ticketItem.GetItemPrice(), MenuItemId = item.MenuItemId };
+                        mitem = new MergedItem { Description = item.MenuItemName + item.GetPortionDesc(), Price = price, MenuItemId = item.MenuItemId };
                         MergedItems.Add(mitem);
                     }
                     mitem.Quantity += item.Quantity;

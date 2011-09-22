@@ -176,7 +176,8 @@ namespace Samba.Modules.TicketModule
         public bool IsTicketPaymentVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketPaymentVisible; } }
         public bool IsTicketRemainingVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketRemainingVisible; } }
         public bool IsTicketDiscountVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketDiscountVisible; } }
-        public bool IsPlainTotalVisible { get { return IsTicketDiscountVisible; } }
+        public bool IsTicketTaxTotalVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketTaxTotalVisible; } }
+        public bool IsPlainTotalVisible { get { return IsTicketDiscountVisible || IsTicketTaxTotalVisible; } }
 
         public bool IsTableButtonVisible
         {
@@ -524,7 +525,7 @@ namespace Samba.Modules.TicketModule
             }
             else
             {
-                _selectedTicketItems[0].Price = price;
+                _selectedTicketItems[0].UpdatePrice(price);
             }
             _selectedTicket.ClearSelectedItems();
             _selectedTicket.RefreshVisuals();
@@ -1089,6 +1090,8 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("IsTicketPaymentVisible");
             RaisePropertyChanged("IsTicketTotalVisible");
             RaisePropertyChanged("IsTicketDiscountVisible");
+            RaisePropertyChanged("IsTicketTaxTotalVisible");
+            RaisePropertyChanged("IsPlainTotalVisible");
             RaisePropertyChanged("IsFastPaymentButtonsVisible");
             RaisePropertyChanged("IsCloseButtonVisible");
             RaisePropertyChanged("SelectTableButtonCaption");
@@ -1139,6 +1142,8 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("IsTicketPaymentVisible");
             RaisePropertyChanged("IsTicketTotalVisible");
             RaisePropertyChanged("IsTicketDiscountVisible");
+            RaisePropertyChanged("IsTicketTaxTotalVisible");
+            RaisePropertyChanged("IsPlainTotalVisible");
             RaisePropertyChanged("CanChangeDepartment");
             RaisePropertyChanged("TicketBackground");
             RaisePropertyChanged("IsTicketSelected");

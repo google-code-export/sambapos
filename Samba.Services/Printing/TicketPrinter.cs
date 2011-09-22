@@ -10,6 +10,7 @@ using Samba.Domain.Foundation;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
@@ -142,13 +143,13 @@ namespace Samba.Services.Printing
                 cache[value] += Decimal.Round(total - (total * di), 2);
             }
             return cache.Select(x => new TicketItem
-            {
-                MenuItemName = x.Key,
-                Price = x.Value,
-                Quantity = 1,
-                PortionCount = 1,
-                CurrencyCode = CurrencyContext.DefaultCurrency
-            });
+                                         {
+                                             MenuItemName = x.Key,
+                                             Price = x.Value,
+                                             Quantity = 1,
+                                             PortionCount = 1,
+                                             CurrencyCode = LocalSettings.CurrencySymbol
+                                         });
         }
 
         private static void InternalPrintOrders(PrintJob printJob, Ticket ticket, IEnumerable<TicketItem> ticketItems)

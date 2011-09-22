@@ -23,7 +23,6 @@ namespace Samba.Services.Test
             WorkspaceFactory.SetDefaultConnectionString("c:\\testData.txt");
             IWorkspace workspace = WorkspaceFactory.Create();
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
-            CurrencyContext.DefaultCurrency = "TL";
 
             var user = new User("Emre", "1");
             workspace.Add(user);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Diagnostics;
 using Samba.Domain.Foundation;
 using Samba.Domain.Models.Menus;
+using Samba.Infrastructure.Settings;
 
 namespace Samba.Domain.Models.Tickets
 {
@@ -40,6 +41,11 @@ namespace Samba.Domain.Models.Tickets
         public string PriceTag { get; set; }
         public string Tag { get; set; }
 
+        public decimal TaxRate { get; set; }
+        public decimal TaxAmount { get; set; }
+        public int TaxTemplateId { get; set; }
+        public bool TaxIncluded { get; set; }
+
         private IList<TicketItemProperty> _properties;
         public virtual IList<TicketItemProperty> Properties
         {
@@ -56,7 +62,7 @@ namespace Samba.Domain.Models.Tickets
             MenuItemName = menuItem.Name;
             var portion = menuItem.GetPortion(portionName);
             Debug.Assert(portion != null);
-            UpdatePortion(portion, priceTag);
+            UpdatePortion(portion, priceTag, menuItem.TaxTemplate);
             Quantity = quantity;
             _selectedQuantity = quantity;
             PortionCount = menuItem.Portions.Count;
@@ -79,9 +85,16 @@ namespace Samba.Domain.Models.Tickets
             }
         }
 
-        public void UpdatePortion(MenuItemPortion portion, string priceTag)
+        public void UpdatePortion(MenuItemPortion portion, string priceTag, TaxTemplate taxTemplate)
         {
             PortionName = portion.Name;
+
+            if (taxTemplate != null)
+            {
+                TaxRate = taxTemplate.Rate;
+                TaxIncluded = taxTemplate.TaxIncluded;
+                TaxTemplateId = taxTemplate.Id;
+            }
 
             if (!string.IsNullOrEmpty(priceTag))
             {
@@ -89,19 +102,17 @@ namespace Samba.Domain.Models.Tickets
                 var price = portion.Prices.SingleOrDefault(x => x.PriceTag == tag);
                 if (price != null && price.Price > 0)
                 {
-                    Price = price.Price;
-                    PriceTag = price.PriceTag;
+                    UpdatePrice(price.Price, price.PriceTag);
                 }
                 else priceTag = "";
             }
 
             if (string.IsNullOrEmpty(priceTag))
             {
-                Price = portion.Price.Amount;
-                PriceTag = "";
+                UpdatePrice(portion.Price.Amount, "");
             }
 
-            CurrencyCode = CurrencyContext.DefaultCurrency;
+            CurrencyCode = LocalSettings.CurrencySymbol;
             foreach (var ticketItemProperty in Properties)
             {
                 ticketItemProperty.PortionName = portion.Name;
@@ -164,7 +175,7 @@ namespace Samba.Domain.Models.Tickets
                 tip = new TicketItemProperty
                           {
                               Name = "",
-                              PropertyPrice = new Price(0, CurrencyContext.DefaultCurrency),
+                              PropertyPrice = new Price(0, LocalSettings.CurrencySymbol),
                               PropertyGroupId = 0,
                               MenuItemId = 0,
                               Quantity = 0
@@ -184,7 +195,16 @@ namespace Samba.Domain.Models.Tickets
             else
             {
                 tip.Name = text;
-                tip.PropertyPrice = new Price(price, CurrencyContext.DefaultCurrency);
+                tip.PropertyPrice = new Price(price, LocalSettings.CurrencySymbol);
+                if (TaxIncluded && TaxRate > 0)
+                {
+                    tip.PropertyPrice.Amount = tip.PropertyPrice.Amount / ((100 + TaxRate) / 100);
+                    tip.PropertyPrice.Amount = decimal.Round(tip.PropertyPrice.Amount, 2);
+                    tip.TaxAmount = price - tip.PropertyPrice.Amount;
+                }
+                else if (TaxRate > 0) tip.TaxAmount = (price * TaxRate) / 100;
+                else TaxAmount = 0;
+
                 tip.Quantity = quantity;
             }
         }
@@ -196,75 +216,44 @@ namespace Samba.Domain.Models.Tickets
 
         public decimal GetTotal()
         {
-            return GetTotal(CurrencyContext.DefaultCurrency, CurrencyContext.DefaultContext);
-        }
-
-        public decimal GetTotal(string currencyCode, CurrencyContext ccontext)
-        {
-            return Voided || Gifted ? 0 : GetItemValue(currencyCode, ccontext);
+            return Voided || Gifted ? 0 : GetItemValue();
         }
 
         public decimal GetItemValue()
         {
-            return GetItemValue(CurrencyContext.DefaultCurrency, CurrencyContext.DefaultContext);
-        }
-
-        public decimal GetItemValue(string currencyCode, CurrencyContext ccontext)
-        {
-            return Quantity * (GetItemPrice(currencyCode, ccontext));
+            return Quantity * GetItemPrice();
         }
 
         public decimal GetSelectedValue()
         {
-            return GetSelectedValue(CurrencyContext.DefaultCurrency, CurrencyContext.DefaultContext);
-        }
-
-        public decimal GetSelectedValue(string currencyCode, CurrencyContext ccontext)
-        {
-            return SelectedQuantity > 0 ?
-                (SelectedQuantity * (GetItemPrice(currencyCode, ccontext))) :
-                GetItemValue(currencyCode, ccontext);
+            return SelectedQuantity > 0 ? SelectedQuantity * GetItemPrice() : GetItemValue();
         }
 
         public decimal GetItemPrice()
         {
-            return GetItemPrice(CurrencyContext.DefaultCurrency, CurrencyContext.DefaultContext);
-        }
-
-        public decimal GetItemPrice(string currencyCode, CurrencyContext ccontext)
-        {
-            return (ccontext.ConvertTo(CurrencyCode, Price, currencyCode) +
-                                GetTotalPropertyPrice(currencyCode, ccontext));
+            var result = Price + GetTotalPropertyPrice();
+            if (TaxIncluded) result += TaxAmount;
+            return result;
         }
 
         public decimal GetTotalPropertyPrice()
         {
-            return GetTotalPropertyPrice(CurrencyContext.DefaultCurrency, CurrencyContext.DefaultContext);
-        }
-
-        private decimal GetTotalPropertyPrice(string currencyCode, CurrencyContext ccontext)
-        {
-            return Properties.Sum(property => ccontext.ConvertTo(CurrencyCode, property.PropertyPrice.Amount * property.Quantity, currencyCode));
+            return GetPropertySum(Properties);
         }
 
         public decimal GetPropertyPrice()
         {
-            return GetPropertyPrice(CurrencyContext.DefaultCurrency, CurrencyContext.DefaultContext);
-        }
-
-        public decimal GetPropertyPrice(string currencyCode, CurrencyContext ccontext)
-        {
-            return Properties.Where(x => !x.CalculateWithParentPrice).Sum(property => ccontext.ConvertTo(CurrencyCode, property.PropertyPrice.Amount * property.Quantity, currencyCode));
+            return GetPropertySum(Properties.Where(x => !x.CalculateWithParentPrice));
         }
 
         public decimal GetMenuItemPropertyPrice()
         {
-            return GetMenuItemPropertyPrice(CurrencyContext.DefaultCurrency, CurrencyContext.DefaultContext);
+            return GetPropertySum(Properties.Where(x => x.CalculateWithParentPrice));
         }
 
-        public decimal GetMenuItemPropertyPrice(string currencyCode, CurrencyContext ccontext)
+        private static decimal GetPropertySum(IEnumerable<TicketItemProperty> properties)
         {
-            return Properties.Where(x => x.CalculateWithParentPrice).Sum(property => ccontext.ConvertTo(CurrencyCode, property.PropertyPrice.Amount * property.Quantity, currencyCode));
+            return properties.Sum(property => (property.PropertyPrice.Amount + property.TaxAmount) * property.Quantity);
         }
 
         public void IncSelectedQuantity()
@@ -292,6 +281,20 @@ namespace Samba.Domain.Models.Tickets
                 && PortionName.ToLower() != "normal")
                 return "." + PortionName;
             return "";
+        }
+
+        public void UpdatePrice(decimal value, string priceTag)
+        {
+            Price = value;
+            PriceTag = priceTag;
+            if (TaxIncluded && TaxRate > 0)
+            {
+                Price = Price / ((100 + TaxRate) / 100);
+                Price = decimal.Round(Price, 2);
+                TaxAmount = value - Price;
+            }
+            else if (TaxRate > 0) TaxAmount = (Price * TaxRate) / 100;
+            else TaxAmount = 0;
         }
     }
 }

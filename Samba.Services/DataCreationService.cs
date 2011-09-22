@@ -289,11 +289,8 @@ namespace Samba.Services
             }
         }
 
-        private void CreateDefaultCurrenciesIfNeeded()
+        private static void CreateDefaultCurrenciesIfNeeded()
         {
-            var nf = Localization.Engine.LocalizeDictionary.Instance.Culture.NumberFormat;
-            var sym = nf.CurrencySymbol;
-            CurrencyContext.DefaultCurrency = sym;
             LocalSettings.DefaultCurrencyFormat = "C";
         }
     }

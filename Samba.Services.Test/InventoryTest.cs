@@ -232,7 +232,6 @@ namespace Samba.Services.Test
             var dataCreationService = new DataCreationService();
             dataCreationService.CreateData();
             var workspace = WorkspaceFactory.Create();
-            CurrencyContext.DefaultCurrency = "TL";
             return workspace;
         }
     }

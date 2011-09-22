@@ -65,7 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Foundation\CurrencyContext.cs" />
     <Compile Include="Foundation\DocumentDate.cs" />
     <Compile Include="Models\Actions\ActionContainer.cs" />
     <Compile Include="Models\Actions\AppRule.cs" />

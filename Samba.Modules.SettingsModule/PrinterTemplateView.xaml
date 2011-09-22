@@ -320,6 +320,16 @@
                         <LocText ResourceIdentifierKey="TicketPaidTotal"/>
                     </Run>
                     <LineBreak />
+
+                    <Bold>{PLAIN TOTAL}</Bold> Plain Ticket Total
+                    <LineBreak />
+                    <Bold>{DISCOUNT TOTAL}</Bold> Discount Total
+                    <LineBreak />
+                    <Bold>{TAX TOTAL}</Bold> Tax Total
+                    <LineBreak />
+                    <Bold>{TAX DETAILS}</Bold> Tax Totals grouped by tax template
+                    <LineBreak />
+
                     <Bold>
                         <Run>
                             <LocText ResourceIdentifierKey="TF_TicketRemainingAmount"/>
@@ -336,11 +346,6 @@
                     </Bold>
                     <Run>
                         <LocText ResourceIdentifierKey="RemainingAmountIfPaid"/>
-                    </Run>
-                    <LineBreak />
-                    <Bold>{TIP TOTAL}</Bold>
-                    <Run>
-                        <LocText ResourceIdentifierKey="TicketTipTotalAmount"/>
                     </Run>
                     <LineBreak />
                     <Bold>

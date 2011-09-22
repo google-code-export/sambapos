@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Samba.Domain.Foundation;
 using Samba.Infrastructure.Data;
+using Samba.Infrastructure.Settings;
 
 namespace Samba.Domain.Models.Menus
 {
@@ -76,12 +77,12 @@ namespace Samba.Domain.Models.Menus
 
         public static MenuItemPortion AddDefaultMenuPortion(MenuItem item)
         {
-            return item.AddPortion("Normal", 0, CurrencyContext.DefaultCurrency);
+            return item.AddPortion("Normal", 0, LocalSettings.CurrencySymbol);
         }
 
         public static MenuItemProperty AddDefaultMenuItemProperty(MenuItemPropertyGroup item)
         {
-            return item.AddProperty("", 0, CurrencyContext.DefaultCurrency);
+            return item.AddProperty("", 0, LocalSettings.CurrencySymbol);
         }
 
         public static MenuItem Create()

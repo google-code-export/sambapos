@@ -96,7 +96,7 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
 
             var ticketGroups = ReportContext.Tickets
                 .GroupBy(x => new { x.DepartmentId })
-                .Select(x => new { x.Key.DepartmentId, TicketCount = x.Count(), Amount = x.Sum(y => y.GetSum()) });
+                .Select(x => new { x.Key.DepartmentId, TicketCount = x.Count(), Amount = x.Sum(y => y.GetSumWithoutTax()) });
 
             if (ticketGroups.Count() > 0)
             {

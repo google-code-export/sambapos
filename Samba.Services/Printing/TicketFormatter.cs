@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
@@ -145,7 +146,6 @@ namespace Samba.Services.Printing
         {
             string result = document;
             if (string.IsNullOrEmpty(document)) return "";
-            //int userNo = ticket.TicketItems.Count > 0 ? ticket.TicketItems[0].CreatingUserId : 0;
 
             result = FormatData(result, Resources.TF_TicketDate, ticket.Date.ToShortDateString());
             result = FormatData(result, Resources.TF_TicketTime, ticket.Date.ToShortTimeString());
@@ -203,6 +203,12 @@ namespace Samba.Services.Printing
             var discount = ticket.GetDiscountAmount();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
+            var taxAmount = ticket.CalculateTax(plainTotal, discount);
+
+            result = FormatDataIf(taxAmount > 0 || discount > 0, result, "{PLAIN TOTAL}", plainTotal.ToString("#,#0.00"));
+            result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", discount.ToString("#,#0.00"));
+            result = FormatDataIf(taxAmount > 0, result, "{TAX TOTAL}", taxAmount.ToString("#,#0.00"));
+            result = FormatDataIf(taxAmount > 0, result, "{TAX DETAILS}", GetTaxDetails(ticket.TicketItems, plainTotal, discount));
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
                 string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
@@ -212,11 +218,31 @@ namespace Samba.Services.Printing
 
             result = FormatDataIf(giftAmount > 0, result, Resources.TF_GiftTotal, giftAmount.ToString("#,#0.00"));
             result = FormatDataIf(discount < 0, result, Resources.TF_IfFlatten, string.Format(Resources.IfNegativeDiscountValue_f, discount.ToString("#,#0.00")));
+
             result = FormatData(result, Resources.TF_TicketTotal, ticket.GetSum().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketPaidTotal, ticket.GetPaymentAmount().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketRemainingAmount, ticket.GetRemainingAmount().ToString("#,#0.00"));
 
             return result;
+        }
+
+        private static string GetTaxDetails(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)
+        {
+            var sb = new StringBuilder();
+            var groups = ticketItems.Where(x => x.TaxTemplateId > 0).GroupBy(x => x.TaxTemplateId);
+            foreach (var @group in groups)
+            {
+                var iGroup = @group;
+                var tb = AppServices.MainDataContext.TaxTemplates.FirstOrDefault(x => x.Id == iGroup.Key);
+                var tbTitle = tb != null ? tb.Name : Resources.UndefinedWithBrackets;
+                var total = @group.Sum(x => x.TaxAmount * x.Quantity);
+                if (discount > 0)
+                {
+                    total -= (total * discount) / plainSum;
+                }
+                if (total > 0) sb.AppendLine("<J>" + tbTitle + ":|" + total.ToString("#,#0.00"));
+            }
+            return string.Join("\r", sb);
         }
 
         // [Toplam:{TOPLAM BAKİYE}]

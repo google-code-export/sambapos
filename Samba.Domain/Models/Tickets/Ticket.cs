@@ -140,32 +140,38 @@ namespace Samba.Domain.Models.Tickets
             return TicketItems.Count();
         }
 
-        public decimal GetSum()
+        public decimal GetSumWithoutTax()
         {
-            return GetSum(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
-        }
-
-        public decimal GetSum(CurrencyContext ccontext, string currencyCode)
-        {
-            var sum = GetPlainSum(ccontext, currencyCode);
+            var sum = GetPlainSum();
             sum -= CalculateDiscounts(sum);
             return sum;
         }
 
-        public decimal GetTotalDiscounts()
+        public decimal GetSum()
         {
-            return GetTotalDiscounts(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
+            var plainSum = GetPlainSum();
+            var discount = CalculateDiscounts(plainSum);
+            var tax = CalculateTax(plainSum, discount);
+            return plainSum - discount + tax;
         }
 
-        public decimal GetTotalDiscounts(CurrencyContext ccontext, string currencyCode)
+        public decimal CalculateTax(decimal plainSum, decimal discount)
         {
-            decimal sum = GetPlainSum(ccontext, currencyCode);
+            var result = TicketItems.Where(x => !x.TaxIncluded).Sum(x => x.TaxAmount * x.Quantity);
+            if (discount > 0)
+                result -= (result * discount) / plainSum;
+            return result;
+        }
+
+        public decimal GetTotalDiscounts()
+        {
+            decimal sum = GetPlainSum();
             return CalculateDiscounts(sum);
         }
 
         public decimal GetDiscountAmount()
         {
-            decimal sum = GetPlainSum(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
+            decimal sum = GetPlainSum();
             return CalculateDiscounts(Discounts, sum);
         }
 
@@ -214,22 +220,12 @@ namespace Samba.Domain.Models.Tickets
 
         public decimal GetPlainSum()
         {
-            return GetPlainSum(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
-        }
-
-        public decimal GetPlainSum(CurrencyContext ccontext, string currencyCode)
-        {
-            return TicketItems.Sum(item => item.GetTotal(currencyCode, ccontext));
+            return TicketItems.Sum(item => item.GetTotal());
         }
 
         public decimal GetTotalGiftAmount()
         {
-            return GetTotalGiftAmount(CurrencyContext.DefaultContext, CurrencyContext.DefaultCurrency);
-        }
-
-        public decimal GetTotalGiftAmount(CurrencyContext ccontext, string currencyCode)
-        {
-            return TicketItems.Where(x => x.Gifted && !x.Voided).Sum(item => item.GetItemValue(currencyCode, ccontext));
+            return TicketItems.Where(x => x.Gifted && !x.Voided).Sum(item => item.GetItemValue());
         }
 
         public decimal GetPaymentAmount()

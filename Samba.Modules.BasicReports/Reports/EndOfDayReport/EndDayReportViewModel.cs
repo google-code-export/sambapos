@@ -30,7 +30,13 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             var ticketGropus = ReportContext.Tickets
                 .GroupBy(x => new { x.DepartmentId })
-                .Select(x => new DepartmentInfo { DepartmentId = x.Key.DepartmentId, TicketCount = x.Count(), Amount = x.Sum(y => y.GetSum()) });
+                .Select(x => new DepartmentInfo
+                {
+                    DepartmentId = x.Key.DepartmentId,
+                    TicketCount = x.Count(),
+                    Amount = x.Sum(y => y.GetSumWithoutTax()),
+                    Tax = x.Sum(y => y.CalculateTax(y.GetPlainSum(), y.GetTotalDiscounts()))
+                });
 
             if (ticketGropus.Count() > 1)
             {
@@ -41,7 +47,12 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
             }
 
             report.AddRow("Departman", Resources.TotalSales.ToUpper(), ticketGropus.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
-
+            var taxSum = ticketGropus.Sum(x => x.Tax);
+            if (taxSum > 0)
+            {
+                report.AddRow("Departman", Resources.TaxTotal.ToUpper(), taxSum.ToString(ReportContext.CurrencyFormat));
+                report.AddRow("Departman", Resources.GrandTotal.ToUpper(), ticketGropus.Sum(x => x.Amount + x.Tax).ToString(ReportContext.CurrencyFormat));
+            }
             //---------------
 
             var ac = ReportContext.GetOperationalAmountCalculator();
@@ -195,7 +206,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     }
                 }
 
-                var tagGroups = dict.Select(x => new TicketTagInfo { Amount = x.Value.Sum(y => y.GetSum()), TicketCount = x.Value.Count, TagName = x.Key }).OrderBy(x => x.TagName);
+                var tagGroups = dict.Select(x => new TicketTagInfo { Amount = x.Value.Sum(y => y.GetSumWithoutTax()), TicketCount = x.Value.Count, TagName = x.Key }).OrderBy(x => x.TagName);
 
                 var tagGrp = tagGroups.GroupBy(x => x.TagName.Split(':')[0]);
 

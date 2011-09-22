@@ -46,7 +46,6 @@ namespace Samba.Persistance.Data
         public DbSet<ProgramSetting> ProgramSettings { get; set; }
         public DbSet<PrinterMap> PrinterMaps { get; set; }
         public DbSet<PrinterTemplate> PrinterTemplates { get; set; }
-        public DbSet<CurrencyContext> CurrencyContexts { get; set; }
         public DbSet<TableScreen> TableScreens { get; set; }
         public DbSet<Numerator> Numerators { get; set; }
         public DbSet<Reason> Reasons { get; set; }

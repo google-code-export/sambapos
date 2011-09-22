@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
@@ -90,13 +91,8 @@ namespace Samba.Presentation.ViewModels
 
         public decimal Price
         {
-            get { return _model.Price; }
-            set
-            {
-                Model.Price = value;
-                RaisePropertyChanged("Price");
-                RaisePropertyChanged("TotalPrice");
-            }
+            get { return Model.GetItemPrice(); }
+            // _model.TaxIncluded ? _model.Price + _model.TaxAmount : _model.Price; }
         }
 
         public decimal TotalPrice
@@ -140,7 +136,15 @@ namespace Samba.Presentation.ViewModels
 
         public decimal CustomPropertyPrice
         {
-            get { return Model.GetCustomProperty() != null ? Model.GetCustomProperty().PropertyPrice.Amount : 0; }
+            get
+            {
+                var prop = Model.GetCustomProperty();
+                if (prop != null)
+                {
+                    return Model.TaxIncluded ? prop.PropertyPrice.Amount + prop.TaxAmount : prop.PropertyPrice.Amount;
+                }
+                return 0;
+            }
             set
             {
                 Model.UpdateCustomProperty(CustomPropertyName, value, CustomPropertyQuantity);
@@ -234,7 +238,7 @@ namespace Samba.Presentation.ViewModels
 
         public void UpdatePortion(MenuItemPortion portion, string priceTag)
         {
-            _model.UpdatePortion(portion, priceTag);
+            _model.UpdatePortion(portion, priceTag, AppServices.MainDataContext.GetTaxTemplate(portion.MenuItemId));
             RaisePropertyChanged("Description");
             RaisePropertyChanged("TotalPrice");
         }
@@ -253,5 +257,11 @@ namespace Samba.Presentation.ViewModels
             Properties.AddRange(Model.Properties.Select(x => new TicketItemPropertyViewModel(x)));
         }
 
+        public void UpdatePrice(decimal value)
+        {
+            Model.UpdatePrice(value, AppServices.MainDataContext.SelectedDepartment.PriceTag);
+            RaisePropertyChanged("Price");
+            RaisePropertyChanged("TotalPrice");
+        }
     }
 }

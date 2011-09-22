@@ -6,6 +6,7 @@ using System.Threading;
 using Samba.Domain;
 using Samba.Domain.Models.Actions;
 using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
@@ -185,6 +186,12 @@ namespace Samba.Services
 
         private IEnumerable<User> _users;
         public IEnumerable<User> Users { get { return _users ?? (_users = Dao.Query<User>(x => x.UserRole)); } }
+
+        private IEnumerable<TaxTemplate> _taxTemplates;
+        public IEnumerable<TaxTemplate> TaxTemplates
+        {
+            get { return _taxTemplates ?? (_taxTemplates = Dao.Query<TaxTemplate>()); }
+        }
 
         public WorkPeriod CurrentWorkPeriod { get { return LastTwoWorkPeriods.LastOrDefault(); } }
         public WorkPeriod PreviousWorkPeriod { get { return LastTwoWorkPeriods.Count() > 1 ? LastTwoWorkPeriods.FirstOrDefault() : null; } }
@@ -532,6 +539,7 @@ namespace Samba.Services
                 _users = null;
                 _rules = null;
                 _actions = null;
+                _taxTemplates = null;
 
                 if (selectedTableScreen > 0)
                     SelectedTableScreen = TableScreens.Single(x => x.Id == selectedTableScreen);
@@ -616,6 +624,11 @@ namespace Samba.Services
         public void Recalculate(Ticket ticket)
         {
             ticket.Recalculate(AppServices.SettingService.AutoRoundDiscount, AppServices.CurrentLoggedInUser.Id);
+        }
+
+        public TaxTemplate GetTaxTemplate(int menuItemId)
+        {
+            return AppServices.DataAccessService.GetMenuItem(menuItemId).TaxTemplate;
         }
     }
 }

@@ -104,6 +104,11 @@ namespace Samba.Presentation.ViewModels
             get { return Model.GetSum(); }
         }
 
+        public decimal TicketTaxValue
+        {
+            get { return Model.CalculateTax(Model.GetPlainSum(), Model.GetDiscountAmount()); }
+        }
+
         public decimal TicketPaymentValue
         {
             get { return Model.GetPaymentAmount(); }
@@ -142,6 +147,11 @@ namespace Samba.Presentation.ViewModels
         public string TicketDiscountLabel
         {
             get { return TicketDiscountAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
+        }
+
+        public string TicketTaxLabel
+        {
+            get { return TicketTaxValue.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
         public string TicketPaymentLabel
@@ -330,10 +340,14 @@ namespace Samba.Presentation.ViewModels
             get { return TicketRemainingValue > 0; }
         }
 
+        public bool IsTicketTaxTotalVisible
+        {
+            get { return TicketTaxValue > 0; }
+        }
+
         public bool IsPlainTotalVisible
         {
-            //will display when taxes available
-            get { return IsTicketDiscountVisible; }
+            get { return IsTicketDiscountVisible || IsTicketTaxTotalVisible; }
         }
 
         public bool IsTicketDiscountVisible

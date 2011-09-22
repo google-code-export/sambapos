@@ -2785,4 +2785,7 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="Tax" xml:space="preserve">
     <value>Tax</value>
   </data>
+  <data name="TaxTotal" xml:space="preserve">
+    <value>Tax Total</value>
+  </data>
 </root>
