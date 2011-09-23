@@ -60,6 +60,7 @@
       <DependentUpon>MenuItemPriceDefinitionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MenuItemPriceDefinitionViewModel.cs" />
+    <Compile Include="MenuItemPriceViewModel.cs" />
     <Compile Include="MenuItemPropertyGroupListViewModel.cs" />
     <Compile Include="MenuItemPropertyGroupView.xaml.cs">
       <DependentUpon>MenuItemPropertyGroupView.xaml</DependentUpon>

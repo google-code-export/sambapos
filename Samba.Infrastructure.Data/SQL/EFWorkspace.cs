@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Objects;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -15,7 +16,7 @@ namespace Samba.Infrastructure.Data.SQL
         {
             _context = context;
             if (context.Database.Connection.ConnectionString.EndsWith(".sdf"))
-            context.ObjContext().Connection.Open();
+                context.ObjContext().Connection.Open();
         }
 
         public void CommitChanges()
@@ -63,6 +64,13 @@ namespace Samba.Infrastructure.Data.SQL
         public T Single<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return _context.Set<T>().SingleOrDefault(expression);
+        }
+
+        public T Single<T>(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includes) where T : class
+        {
+            if (includes == null || includes.Length < 1)
+                return _context.Trackable<T>().Where(expression).SingleOrDefault();
+            return includes.Aggregate(_context.Trackable<T>(), (current, include) => current.Include(include)).Where(expression).SingleOrDefault();
         }
 
         public T Last<T>() where T : class,IEntity

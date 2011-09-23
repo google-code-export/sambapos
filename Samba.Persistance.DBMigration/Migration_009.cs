@@ -12,6 +12,8 @@ namespace Samba.Persistance.DBMigration
     {
         public override void Up()
         {
+            Create.Column("ExcludeTax").OnTable("PrintJobs").AsBoolean().WithDefaultValue(false);
+
             Create.Column("Tag").OnTable("ScreenMenuItems").AsString(128).Nullable();
             Create.Column("UsageCount").OnTable("ScreenMenuItems").AsInt32().WithDefaultValue(0);
             Create.Column("ItemPortion").OnTable("ScreenMenuItems").AsString(128).Nullable();
@@ -19,7 +21,7 @@ namespace Samba.Persistance.DBMigration
             Create.Column("MaxItems").OnTable("ScreenMenuCategories").AsInt32().WithDefaultValue(0);
             Create.Column("SortType").OnTable("ScreenMenuCategories").AsInt32().WithDefaultValue(0);
             Create.Column("TaxAmount").OnTable("TicketItemProperties").AsDecimal(16, 2).WithDefaultValue(0);
-
+            
             Create.Column("TaxRate").OnTable("TicketItems").AsDecimal(16, 2).WithDefaultValue(0);
             Create.Column("TaxAmount").OnTable("TicketItems").AsDecimal(16, 2).WithDefaultValue(0);
             Create.Column("TaxTemplateId").OnTable("TicketItems").AsInt32().WithDefaultValue(0);

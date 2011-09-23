@@ -2908,5 +2908,9 @@ Borçlandır</value>
 	<data name="OneThousand">
 		<value xml:space="preserve">Bin</value>
 	</data>
+	<data name="AlwaysExcludeTax" xml:space="preserve">
+    <value>Vergiyi Ayırarak Yazdır</value>
+    <comment>CheckBox content</comment>
+  </data>
 
 </root>

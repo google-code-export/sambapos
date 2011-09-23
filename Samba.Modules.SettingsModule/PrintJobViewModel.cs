@@ -29,7 +29,7 @@ namespace Samba.Modules.SettingsModule
         public ICaptionCommand DeletePrinterMapCommand { get; set; }
 
         private readonly IList<string> _whenToPrintTypes = new[] { Resources.Manual, Resources.WhenNewLinesAddedToTicket, Resources.WhenTicketPaid };
-        private readonly IList<string> _whatToPrintTypes = new[] { Resources.AllLines, Resources.OnlyNewLines, Resources.LinesGroupedByBarcode, Resources.LinesGroupedByGroupCode,Resources.LinesGroupedByTag };
+        private readonly IList<string> _whatToPrintTypes = new[] { Resources.AllLines, Resources.OnlyNewLines, Resources.LinesGroupedByBarcode, Resources.LinesGroupedByGroupCode, Resources.LinesGroupedByTag };
         public IList<string> WhenToPrintTypes { get { return _whenToPrintTypes; } }
         public IList<string> WhatToPrintTypes { get { return _whatToPrintTypes; } }
 
@@ -53,7 +53,8 @@ namespace Samba.Modules.SettingsModule
         public bool UseFromPaymentScreen { get { return Model.UseFromPaymentScreen; } set { Model.UseFromPaymentScreen = value; } }
         public bool UseFromTerminal { get { return Model.UseFromTerminal; } set { Model.UseFromTerminal = value; } }
         public bool UseForPaidTickets { get { return Model.UseForPaidTickets; } set { Model.UseForPaidTickets = value; } }
-        
+        public bool ExcludeTax { get { return Model.ExcludeTax; } set { Model.ExcludeTax = value; } }
+
         public bool AutoPrintIfCash
         {
             get { return Model.AutoPrintIfCash; }

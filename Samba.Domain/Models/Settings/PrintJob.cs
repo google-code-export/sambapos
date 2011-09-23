@@ -41,6 +41,7 @@ namespace Samba.Domain.Models.Settings
         public bool UseFromTerminal { get; set; }
         public bool UseFromPos { get; set; }
         public bool UseForPaidTickets { get; set; }
+        public bool ExcludeTax { get; set; }
 
         private IList<PrinterMap> _printerMaps;
         public virtual IList<PrinterMap> PrinterMaps
@@ -48,7 +49,7 @@ namespace Samba.Domain.Models.Settings
             get { return _printerMaps; }
             set { _printerMaps = value; }
         }
-
+        
         public PrintJob()
         {
             _printerMaps = new List<PrinterMap>();

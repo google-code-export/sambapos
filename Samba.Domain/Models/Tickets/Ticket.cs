@@ -163,6 +163,14 @@ namespace Samba.Domain.Models.Tickets
             return result;
         }
 
+        public decimal GetAllTotalTax(decimal plainSum, decimal discount)
+        {
+            var result = TicketItems.Sum(x => x.TaxAmount * x.Quantity);
+            if (discount > 0)
+                result -= (result * discount) / plainSum;
+            return result;
+        }
+
         public decimal GetTotalDiscounts()
         {
             decimal sum = GetPlainSum();

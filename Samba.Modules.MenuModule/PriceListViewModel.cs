@@ -37,20 +37,20 @@ namespace Samba.Modules.MenuModule
             }
         }
 
-        public IEnumerable<string> PriceTags { get { return Items.SelectMany(x => x.AdditionalPrices.Select(y => y.PriceTag)).Distinct(); } }
+        public IEnumerable<string> PriceTags { get { return Items.SelectMany(x => x.Model.Prices.Select(y => y.PriceTag)).Distinct(); } }
 
         private ObservableCollection<PriceViewModel> CreateItems()
         {
+            var tags = Dao.Select<MenuItemPriceDefinition, string>(x => x.PriceTag, x => x.Id > 0).Distinct().ToArray();
+
             var result = new ObservableCollection<PriceViewModel>(
-                    _workspace.All<MenuItem>(x=>x.Portions.Select(y=>y.Prices))
-                    .SelectMany(y => y.Portions, (mi, pt) => new PriceViewModel(pt, mi.Name)));
-
-            var tags = Dao.Select<MenuItemPriceDefinition, string>(x => x.PriceTag, x => x.Id > 0);
-
+                    _workspace.All<MenuItem>(x => x.Portions.Select(y => y.Prices))
+                    .SelectMany(y => y.Portions, (mi, pt) => new PriceViewModel(pt, mi.Name, tags)));
+            
             foreach (var tag in tags)
             {
-                var portions = result.Where(x => !x.AdditionalPrices.Select(y => y.PriceTag).Contains(tag)).ToList();
-                portions.ForEach(x => x.AdditionalPrices.Add(new MenuItemPrice() { PriceTag = tag }));
+                var portions = result.Where(x => !x.Model.Prices.Select(y => y.PriceTag).Contains(tag)).ToList();
+                portions.ForEach(x => x.AddPrice(tag));
             }
 
             return result;

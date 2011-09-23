@@ -5,15 +5,11 @@
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}" x:Key="GridBlockStyle">
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Visibility" Value="{Binding Path=IsSelected,           
-                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}},            
-                Converter={StaticResource VisibilityConverter}, ConverterParameter=False}" />
+            <Setter Property="Visibility" Value="{Binding Path=IsSelected,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter={StaticResource VisibilityConverter}, ConverterParameter=False}" />
         </Style>
         <Style TargetType="{x:Type FrameworkElement}" x:Key="GridEditStyle">
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Visibility" Value="{Binding Path=IsSelected,         
-                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}},              
-                Converter={StaticResource VisibilityConverter}, ConverterParameter=True}" />
+            <Setter Property="Visibility" Value="{Binding Path=IsSelected,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter={StaticResource VisibilityConverter}, ConverterParameter=True}" />
         </Style>
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -31,31 +27,34 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0">
             <Label>
-                <LocText ResourceIdentifierKey="PrintJobName" Suffix=":"/>
+                <LocText ResourceIdentifierKey="PrintJobName" Suffix=":" />
             </Label>
             <TextBox HorizontalAlignment="Left" Width="250" Text="{Binding Name}" />
             <Label>
-                <LocText ResourceIdentifierKey="ButtonHeader" Suffix=":"/>
+                <LocText ResourceIdentifierKey="ButtonHeader" Suffix=":" />
             </Label>
             <TextBox HorizontalAlignment="Left" Width="250" Text="{Binding ButtonText}" />
             <CheckBox IsChecked="{Binding LocksTicket}" Margin="0,5,0,2">
-                <LocText ResourceIdentifierKey="LockTicket"/>
+                <LocText ResourceIdentifierKey="LockTicket" />
             </CheckBox>
             <CheckBox IsChecked="{Binding UseFromPos}" Margin="0,2">
-                <LocText ResourceIdentifierKey="UseAtPosScreen"/>
+                <LocText ResourceIdentifierKey="UseAtPosScreen" />
             </CheckBox>
             <CheckBox IsChecked="{Binding UseFromPaymentScreen}" Margin="0,2">
-                <LocText ResourceIdentifierKey="UseAtPaymentScreen"/>
+                <LocText ResourceIdentifierKey="UseAtPaymentScreen" />
             </CheckBox>
             <CheckBox IsChecked="{Binding UseFromTerminal}" Margin="0,2">
-                <LocText ResourceIdentifierKey="UseAtTerminal"/>
+                <LocText ResourceIdentifierKey="UseAtTerminal" />
+            </CheckBox>
+            <CheckBox IsChecked="{Binding ExcludeTax}" Margin="0,2">
+                <LocText ResourceIdentifierKey="AlwaysExcludeTax"/>
             </CheckBox>
             <CheckBox IsChecked="{Binding UseForPaidTickets}" Margin="0,2,0,5">
-                <LocText ResourceIdentifierKey="UseAtOldTickets"/>
+                <LocText ResourceIdentifierKey="UseAtOldTickets" />
             </CheckBox>
             <StackPanel Orientation="Horizontal">
                 <Label>
-                    <LocText ResourceIdentifierKey="PrintMapping" Suffix=":"/>
+                    <LocText ResourceIdentifierKey="PrintMapping" Suffix=":" />
                 </Label>
                 <TextBlock Margin="2,5">
                     <Hyperlink Command="{Binding AddPrinterMapCommand}">
@@ -71,23 +70,23 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="20,0">
             <Label>
-                <LocText ResourceIdentifierKey="PrintContent"/>
+                <LocText ResourceIdentifierKey="PrintContent" />
             </Label>
             <ComboBox HorizontalAlignment="Left" MinWidth="230" SelectedItem="{Binding WhatToPrint}"
                  ItemsSource="{Binding WhatToPrintTypes}" />
             <Label>
-                <LocText ResourceIdentifierKey="AutoPrintWhen"/>
+                <LocText ResourceIdentifierKey="AutoPrintWhen" />
             </Label>
             <ComboBox HorizontalAlignment="Left" MinWidth="230" SelectedItem="{Binding WhenToPrint}"
                  ItemsSource="{Binding WhenToPrintTypes}" />
-            <GroupBox Header="{LocText AutoPrintPaymentType}"
-                 Margin="0,5,0,0" HorizontalAlignment="Left" MinWidth="250">
+            <GroupBox Header="{LocText AutoPrintPaymentType}" Margin="0,5,0,0" HorizontalAlignment="Left"
+                 MinWidth="250">
                 <StackPanel Margin="3,5,3,5">
                     <CheckBox IsChecked="{Binding AutoPrintIfCash}">
-                        <LocText ResourceIdentifierKey="Cash"/>
+                        <LocText ResourceIdentifierKey="Cash" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding AutoPrintIfCreditCard}">
-                        <LocText ResourceIdentifierKey="CreditCard"/>
+                        <LocText ResourceIdentifierKey="CreditCard" />
                     </CheckBox>
                     <CheckBox IsChecked="{Binding AutoPrintIfTicket}">
                         <LocText ResourceIdentifierKey="Voucher" />
@@ -99,8 +98,7 @@
              HorizontalContentAlignment="Stretch" ListViewLM:ListViewLayoutManager.Enabled="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="{LocText Department}"
-                         ListViewLM:ProportionalColumn.Width="1">
+                    <GridViewColumn Header="{LocText Department}" ListViewLM:ProportionalColumn.Width="1">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -111,8 +109,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{LocText Tag}"
-                         ListViewLM:ProportionalColumn.Width="1">
+                    <GridViewColumn Header="{LocText Tag}" ListViewLM:ProportionalColumn.Width="1">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -123,8 +120,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{LocText MenuItemGroup}"
-                         ListViewLM:ProportionalColumn.Width="1">
+                    <GridViewColumn Header="{LocText MenuItemGroup}" ListViewLM:ProportionalColumn.Width="1">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -135,8 +131,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{LocText MenuItem}"
-                         ListViewLM:ProportionalColumn.Width="1.5">
+                    <GridViewColumn Header="{LocText MenuItem}" ListViewLM:ProportionalColumn.Width="1.5">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -147,8 +142,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{LocText Printer}"
-                         ListViewLM:ProportionalColumn.Width="1.5">
+                    <GridViewColumn Header="{LocText Printer}" ListViewLM:ProportionalColumn.Width="1.5">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -159,8 +153,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{LocText PrinterTemplate}"
-                         ListViewLM:ProportionalColumn.Width="1.5">
+                    <GridViewColumn Header="{LocText PrinterTemplate}" ListViewLM:ProportionalColumn.Width="1.5">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>

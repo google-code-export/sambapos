@@ -10,6 +10,7 @@ using Samba.Domain.Foundation;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Infrastructure.Data.Serializer;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
@@ -92,6 +93,12 @@ namespace Samba.Services.Printing
 
         public static void PrintOrders(PrintJob printJob, Ticket ticket)
         {
+            if (printJob.ExcludeTax)
+            {
+                ticket = ObjectCloner.Clone(ticket);
+                ticket.TicketItems.ToList().ForEach(x => x.TaxIncluded = false);
+            }
+
             IEnumerable<TicketItem> ti;
             switch (printJob.WhatToPrint)
             {
