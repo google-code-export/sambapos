@@ -39,6 +39,8 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTax", Resources.UpdateTicketTax, new { TaxTemplate = "" });
+            RuleActionTypeRegistry.RegisterActionType("RegenerateTicketTax", "Regenerate Ticket Tax");
         }
 
         private static void RegisterRules()
@@ -64,6 +66,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("MenuItemName", () => Dao.Select<MenuItem, string>(yz => yz.Name, y => y.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("PriceTag", () => Dao.Select<MenuItemPriceDefinition, string>(x => x.PriceTag, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("Color", () => typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static).Select(x => x.Name));
+            RuleActionTypeRegistry.RegisterParameterSoruce("TaxTemplate", () => Dao.Select<TaxTemplate, string>(x => x.Name, x => x.Id > 0));
         }
 
         private static void ResetCache()
@@ -110,6 +113,33 @@ namespace Samba.Presentation.ViewModels
                         x.Value.GetAsString("EMailMessage"),
                         x.Value.GetAsString("FileName"),
                         x.Value.GetAsBoolean("DeleteFile"));
+                }
+
+                if (x.Value.Action.ActionType == "UpdateTicketTax")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var taxTemplateName = x.Value.GetAsString("TaxTemplate");
+                        var taxTemplate = AppServices.MainDataContext.TaxTemplates.FirstOrDefault(y => y.Name == taxTemplateName);
+                        if (taxTemplate != null)
+                        {
+                            ticket.UpdateTax(taxTemplate);
+                            TicketViewModel.RecalculateTicket(ticket);
+                            EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
+                        }
+                    }
+                }
+
+                if (x.Value.Action.ActionType == "RegenerateTicketTax")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        TicketViewModel.RegenerateTaxes(ticket);
+                        TicketViewModel.RecalculateTicket(ticket);
+                        EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
+                    }
                 }
 
                 if (x.Value.Action.ActionType == "AddTicketDiscount")

@@ -136,10 +136,13 @@ namespace Samba.Persistance.Data
 
             //TicketItemProperty
             modelBuilder.Entity<TicketItemProperty>().Property(x => x.Quantity).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItemProperty>().Property(x => x.TaxAmount).HasPrecision(precision, scale);
 
             //TicketItem
             modelBuilder.Entity<TicketItem>().Property(x => x.Quantity).HasPrecision(precision, scale);
             modelBuilder.Entity<TicketItem>().Property(x => x.Price).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItem>().Property(x => x.TaxRate).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItem>().Property(x => x.TaxAmount).HasPrecision(precision, scale);
 
             //Ticket
             modelBuilder.Entity<Ticket>().Property(x => x.RemainingAmount).HasPrecision(precision, scale);

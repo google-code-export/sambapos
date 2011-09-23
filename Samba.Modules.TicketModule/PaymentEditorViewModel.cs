@@ -388,7 +388,20 @@ namespace Samba.Modules.TicketModule
             if (!AppServices.IsUserPermittedFor(PermissionNames.RoundPayment)) return;
             SelectedTicket.Model.AddTicketDiscount(DiscountType.Amount, 0, AppServices.CurrentLoggedInUser.Id);
             SelectedTicket.Model.AddTicketDiscount(DiscountType.Auto, 0, AppServices.CurrentLoggedInUser.Id);
-            SelectedTicket.Model.AddTicketDiscount(DiscountType.Amount, AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() - GetTenderedValue(), AppServices.CurrentLoggedInUser.Id);
+
+            var tenderedValue = GetTenderedValue();
+
+            var discountAmount = (tenderedValue * AppServices.MainDataContext.SelectedTicket.GetSumWithoutTax()) /
+                                 AppServices.MainDataContext.SelectedTicket.GetRemainingAmount();
+            discountAmount = decimal.Round(discountAmount, 2);
+            discountAmount = AppServices.MainDataContext.SelectedTicket.GetSumWithoutTax() - discountAmount;
+
+            SelectedTicket.Model.AddTicketDiscount(DiscountType.Amount, discountAmount, AppServices.CurrentLoggedInUser.Id);
+
+            var currentSum = AppServices.MainDataContext.SelectedTicket.GetRemainingAmount();
+            if (currentSum != tenderedValue) SelectedTicket.Model.AddTicketDiscount(DiscountType.Auto, currentSum - tenderedValue,
+                                                        AppServices.CurrentLoggedInUser.Id);
+
             PaymentAmount = "";
             RefreshValues();
         }

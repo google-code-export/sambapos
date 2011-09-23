@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Samba.Domain.Models.Customers;
@@ -200,7 +201,7 @@ namespace Samba.Services.Printing
 
             var payment = ticket.GetPaymentAmount();
             var remaining = ticket.GetRemainingAmount();
-            var discount = ticket.GetDiscountAmount();
+            var discount = ticket.GetTotalDiscounts();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
             var taxAmount = ticket.CalculateTax(plainTotal, discount);
@@ -208,7 +209,9 @@ namespace Samba.Services.Printing
             result = FormatDataIf(taxAmount > 0 || discount > 0, result, "{PLAIN TOTAL}", plainTotal.ToString("#,#0.00"));
             result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", discount.ToString("#,#0.00"));
             result = FormatDataIf(taxAmount > 0, result, "{TAX TOTAL}", taxAmount.ToString("#,#0.00"));
-            result = FormatDataIf(taxAmount > 0, result, "{TAX DETAILS}", GetTaxDetails(ticket.TicketItems, plainTotal, discount));
+
+            if (result.Contains("{TAX DETAILS}"))
+                result = FormatDataIf(taxAmount > 0, result, "{TAX DETAILS}", GetTaxDetails(ticket.TicketItems, plainTotal, discount));
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
                 string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
@@ -222,6 +225,11 @@ namespace Samba.Services.Printing
             result = FormatData(result, Resources.TF_TicketTotal, ticket.GetSum().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketPaidTotal, ticket.GetPaymentAmount().ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketRemainingAmount, ticket.GetRemainingAmount().ToString("#,#0.00"));
+
+            if (result.Contains("{TOTAL TEXT}"))
+                result = FormatData(result, "{TOTAL TEXT}", HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum()));
+            if (result.Contains("{TOTALTEXT}"))
+                result = FormatData(result, "{TOTALTEXT}", HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum(), true));
 
             return result;
         }
@@ -333,5 +341,98 @@ namespace Samba.Services.Printing
             }
             return result;
         }
+    }
+
+    public static class HumanFriendlyInteger
+    {
+        static string[] ones = new string[] { "", Resources.One, Resources.Two, Resources.Three, Resources.Four, Resources.Five, Resources.Six, Resources.Seven, Resources.Eight, Resources.Nine };
+        static string[] teens = new string[] { Resources.Ten, Resources.Eleven, Resources.Twelve, Resources.Thirteen, Resources.Fourteen, Resources.Fifteen, Resources.Sixteen, Resources.Seventeen, Resources.Eighteen, Resources.Nineteen };
+        static string[] tens = new string[] { Resources.Twenty, Resources.Thirty, Resources.Forty, Resources.Fifty, Resources.Sixty, Resources.Seventy, Resources.Eighty, Resources.Ninety };
+        static string[] thousandsGroups = { "", " " + Resources.Thousand, " " + Resources.Million, " " + Resources.Billion };
+
+        private static string FriendlyInteger(int n, string leftDigits, int thousands)
+        {
+            if (n == 0)
+            {
+                return leftDigits;
+            }
+            string friendlyInt = leftDigits;
+            if (friendlyInt.Length > 0)
+            {
+                friendlyInt += " ";
+            }
+
+            if (n < 10)
+            {
+                friendlyInt += ones[n];
+            }
+            else if (n < 20)
+            {
+                friendlyInt += teens[n - 10];
+            }
+            else if (n < 100)
+            {
+                friendlyInt += FriendlyInteger(n % 10, tens[n / 10 - 2], 0);
+            }
+            else if (n < 1000)
+            {
+                var t = ones[n / 100] + " " + Resources.Hundred;
+                if (n / 100 == 1) t = Resources.OneHundred;
+                friendlyInt += FriendlyInteger(n % 100, t, 0);
+            }
+            else if (n < 10000 && thousands == 0)
+            {
+                var t = ones[n / 1000] + " " + Resources.Thousand;
+                if (n / 1000 == 1) t = Resources.OneThousand;
+                friendlyInt += FriendlyInteger(n % 1000, t, 0);
+            }
+            else
+            {
+                friendlyInt += FriendlyInteger(n % 1000, FriendlyInteger(n / 1000, "", thousands + 1), 0);
+            }
+
+            return friendlyInt + thousandsGroups[thousands];
+        }
+
+        public static string CurrencyToWritten(decimal d, bool upper = false)
+        {
+            var result = "";
+            var fraction = d - Math.Floor(d);
+            var value = d - fraction;
+            if (value > 0)
+            {
+                var start = IntegerToWritten(Convert.ToInt32(value));
+                if (upper) start = start.Replace(" ", "").ToUpper();
+                result += string.Format("{0} {1} ", start, Resources.Dollar + GetPlural(value));
+            }
+
+            if (fraction > 0)
+            {
+                var end = IntegerToWritten(Convert.ToInt32(fraction * 100));
+                if (upper) end = end.Replace(" ", "").ToUpper();
+                result += string.Format("{0} {1} ", end, Resources.Cent + GetPlural(fraction));
+            }
+            return result.Replace("  ", " ").Trim();
+        }
+
+        private static string GetPlural(decimal number)
+        {
+            return number == 1 ? "" : Resources.PluralCurrencySuffix;
+        }
+
+        public static string IntegerToWritten(int n)
+        {
+            if (n == 0)
+            {
+                return Resources.Zero;
+            }
+            else if (n < 0)
+            {
+                return Resources.Negative + " " + IntegerToWritten(-n);
+            }
+
+            return FriendlyInteger(n, "", 0);
+        }
+
     }
 }

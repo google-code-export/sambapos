@@ -106,7 +106,7 @@ namespace Samba.Presentation.ViewModels
 
         public decimal TicketTaxValue
         {
-            get { return Model.CalculateTax(Model.GetPlainSum(), Model.GetDiscountAmount()); }
+            get { return Model.CalculateTax(Model.GetPlainSum(), Model.GetTotalDiscounts()); }
         }
 
         public decimal TicketPaymentValue
@@ -119,14 +119,9 @@ namespace Samba.Presentation.ViewModels
             get { return Model.GetRemainingAmount(); }
         }
 
-        public decimal TicketDiscountValue
-        {
-            get { return Model.GetTotalDiscounts(); }
-        }
-
         public decimal TicketDiscountAmount
         {
-            get { return Model.GetDiscountAmount(); }
+            get { return Model.GetTotalDiscounts(); }
         }
 
         public decimal TicketPlainTotalValue
@@ -515,7 +510,6 @@ namespace Samba.Presentation.ViewModels
                         PreviousTotal = total,
                         TicketTotal = ticket.GetSum(),
                         DiscountTotal = ticket.GetTotalDiscounts(),
-                        DiscountAmount = ticket.GetDiscountAmount(),
                         GiftTotal = ticket.GetTotalGiftAmount(),
                         PaymentTotal = ticket.GetPaymentAmount()
                     });
@@ -526,6 +520,18 @@ namespace Samba.Presentation.ViewModels
         {
             AppServices.MainDataContext.CreateNewTicket();
             RuleExecutor.NotifyEvent(RuleEventNames.TicketCreated, new { Ticket = AppServices.MainDataContext.SelectedTicket });
+        }
+
+        public static void RegenerateTaxes(Ticket ticket)
+        {
+            foreach (var ticketItem in ticket.TicketItems)
+            {
+                var mi = AppServices.DataAccessService.GetMenuItem(ticketItem.MenuItemId);
+                if (mi == null) continue;
+                var item = ticketItem;
+                var portion = mi.Portions.FirstOrDefault(x => x.Name == item.PortionName);
+                if (portion != null) ticketItem.UpdatePortion(portion, ticketItem.PriceTag, mi.TaxTemplate);
+            }
         }
     }
 }

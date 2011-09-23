@@ -143,16 +143,16 @@ namespace Samba.Domain.Models.Tickets
         public decimal GetSumWithoutTax()
         {
             var sum = GetPlainSum();
-            sum -= CalculateDiscounts(sum);
+            sum -= GetTotalDiscounts();
             return sum;
         }
 
         public decimal GetSum()
         {
             var plainSum = GetPlainSum();
-            var discount = CalculateDiscounts(plainSum);
+            var discount = CalculateDiscounts(Discounts.Where(x => x.DiscountType != (int)DiscountType.Auto), plainSum);
             var tax = CalculateTax(plainSum, discount);
-            return plainSum - discount + tax;
+            return (plainSum - discount + tax) - Discounts.Where(x => x.DiscountType == (int)DiscountType.Auto).Sum(x => x.Amount);
         }
 
         public decimal CalculateTax(decimal plainSum, decimal discount)
@@ -164,12 +164,6 @@ namespace Samba.Domain.Models.Tickets
         }
 
         public decimal GetTotalDiscounts()
-        {
-            decimal sum = GetPlainSum();
-            return CalculateDiscounts(sum);
-        }
-
-        public decimal GetDiscountAmount()
         {
             decimal sum = GetPlainSum();
             return CalculateDiscounts(Discounts, sum);
@@ -200,10 +194,7 @@ namespace Samba.Domain.Models.Tickets
             return decimal.Round(totalDiscount, LocalSettings.Decimals);
         }
 
-        private decimal CalculateDiscounts(decimal sum)
-        {
-            return CalculateDiscounts(Discounts, sum);
-        }
+
 
         public void AddTicketDiscount(DiscountType type, decimal amount, int userId)
         {
@@ -569,7 +560,15 @@ namespace Samba.Domain.Models.Tickets
             return newItems;
         }
 
-
-
+        public void UpdateTax(TaxTemplate taxTemplate)
+        {
+            foreach (var ticketItem in TicketItems)
+            {
+                ticketItem.TaxRate = taxTemplate.Rate;
+                ticketItem.TaxTemplateId = taxTemplate.Id;
+                ticketItem.TaxIncluded = taxTemplate.TaxIncluded;
+                ticketItem.UpdatePrice(ticketItem.Price, ticketItem.PriceTag);
+            }
+        }
     }
 }
