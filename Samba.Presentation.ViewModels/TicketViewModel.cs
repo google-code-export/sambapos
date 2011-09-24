@@ -104,9 +104,9 @@ namespace Samba.Presentation.ViewModels
             get { return Model.GetSum(); }
         }
 
-        public decimal TicketTaxValue
+        public decimal TicketVatValue
         {
-            get { return Model.CalculateTax(Model.GetPlainSum(), Model.GetTotalDiscounts()); }
+            get { return Model.CalculateVat(); }
         }
 
         public decimal TicketPaymentValue
@@ -117,11 +117,6 @@ namespace Samba.Presentation.ViewModels
         public decimal TicketRemainingValue
         {
             get { return Model.GetRemainingAmount(); }
-        }
-
-        public decimal TicketDiscountAmount
-        {
-            get { return Model.GetTotalDiscounts(); }
         }
 
         public decimal TicketPlainTotalValue
@@ -139,14 +134,29 @@ namespace Samba.Presentation.ViewModels
             get { return TicketTotalValue.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
+        public decimal TicketDiscountAmount
+        {
+            get { return Model.GetDiscountTotal(); }
+        }
+
         public string TicketDiscountLabel
         {
             get { return TicketDiscountAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
-        public string TicketTaxLabel
+        public decimal TicketRoundingAmount
         {
-            get { return TicketTaxValue.ToString(LocalSettings.DefaultCurrencyFormat); }
+            get { return Model.GetRoundingTotal(); }
+        }
+
+        public string TicketRoundingLabel
+        {
+            get { return TicketRoundingAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
+        }
+
+        public string TicketVatLabel
+        {
+            get { return TicketVatValue.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
         public string TicketPaymentLabel
@@ -335,19 +345,24 @@ namespace Samba.Presentation.ViewModels
             get { return TicketRemainingValue > 0; }
         }
 
-        public bool IsTicketTaxTotalVisible
+        public bool IsTicketVatTotalVisible
         {
-            get { return TicketTaxValue > 0; }
+            get { return TicketVatValue > 0; }
         }
 
         public bool IsPlainTotalVisible
         {
-            get { return IsTicketDiscountVisible || IsTicketTaxTotalVisible; }
+            get { return IsTicketDiscountVisible || IsTicketVatTotalVisible || IsTicketRoundingVisible; }
         }
 
         public bool IsTicketDiscountVisible
         {
             get { return TicketDiscountAmount != 0; }
+        }
+
+        public bool IsTicketRoundingVisible
+        {
+            get { return TicketRoundingAmount != 0; }
         }
 
         public string Location
@@ -509,7 +524,7 @@ namespace Samba.Presentation.ViewModels
                         Ticket = ticket,
                         PreviousTotal = total,
                         TicketTotal = ticket.GetSum(),
-                        DiscountTotal = ticket.GetTotalDiscounts(),
+                        DiscountTotal = ticket.GetDiscountAndRoundingTotal(),
                         GiftTotal = ticket.GetTotalGiftAmount(),
                         PaymentTotal = ticket.GetPaymentAmount()
                     });
@@ -522,7 +537,7 @@ namespace Samba.Presentation.ViewModels
             RuleExecutor.NotifyEvent(RuleEventNames.TicketCreated, new { Ticket = AppServices.MainDataContext.SelectedTicket });
         }
 
-        public static void RegenerateTaxes(Ticket ticket)
+        public static void RegenerateVatRates(Ticket ticket)
         {
             foreach (var ticketItem in ticket.TicketItems)
             {
@@ -530,7 +545,7 @@ namespace Samba.Presentation.ViewModels
                 if (mi == null) continue;
                 var item = ticketItem;
                 var portion = mi.Portions.FirstOrDefault(x => x.Name == item.PortionName);
-                if (portion != null) ticketItem.UpdatePortion(portion, ticketItem.PriceTag, mi.TaxTemplate);
+                if (portion != null) ticketItem.UpdatePortion(portion, ticketItem.PriceTag, mi.VatTemplate);
             }
         }
     }

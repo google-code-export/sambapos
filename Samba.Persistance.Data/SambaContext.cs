@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
-using System.Data.Objects;
-using System.Linq;
+﻿using System.Data.Entity;
 using Samba.Domain.Foundation;
 using Samba.Domain.Models.Actions;
 using Samba.Domain.Models.Customers;
@@ -71,7 +67,7 @@ namespace Samba.Persistance.Data
         public DbSet<Trigger> Triggers { get; set; }
         public DbSet<MenuItemPriceDefinition> MenuItemPriceDefinitions { get; set; }
         public DbSet<MenuItemPrice> MenuItemPrices { get; set; }
-        public DbSet<TaxTemplate> TaxTemplates { get; set; }
+        public DbSet<VatTemplate> VatTemplates { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -89,9 +85,9 @@ namespace Samba.Persistance.Data
 
             modelBuilder.ComplexType<Price>().Property(x => x.Amount).HasPrecision(precision, scale);
 
-            //TaxTemplate
+            //VatTemplate
 
-            modelBuilder.Entity<TaxTemplate>().Property(x => x.Rate).HasPrecision(precision, scale);
+            modelBuilder.Entity<VatTemplate>().Property(x => x.Rate).HasPrecision(precision, scale);
 
             //MenuItemPrice
             modelBuilder.Entity<MenuItemPrice>().Property(x => x.Price).HasPrecision(precision, scale);
@@ -136,13 +132,13 @@ namespace Samba.Persistance.Data
 
             //TicketItemProperty
             modelBuilder.Entity<TicketItemProperty>().Property(x => x.Quantity).HasPrecision(precision, scale);
-            modelBuilder.Entity<TicketItemProperty>().Property(x => x.TaxAmount).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItemProperty>().Property(x => x.VatAmount).HasPrecision(precision, scale);
 
             //TicketItem
             modelBuilder.Entity<TicketItem>().Property(x => x.Quantity).HasPrecision(precision, scale);
             modelBuilder.Entity<TicketItem>().Property(x => x.Price).HasPrecision(precision, scale);
-            modelBuilder.Entity<TicketItem>().Property(x => x.TaxRate).HasPrecision(precision, scale);
-            modelBuilder.Entity<TicketItem>().Property(x => x.TaxAmount).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItem>().Property(x => x.VatRate).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItem>().Property(x => x.VatAmount).HasPrecision(precision, scale);
 
             //Ticket
             modelBuilder.Entity<Ticket>().Property(x => x.RemainingAmount).HasPrecision(precision, scale);

@@ -187,10 +187,10 @@ namespace Samba.Services
         private IEnumerable<User> _users;
         public IEnumerable<User> Users { get { return _users ?? (_users = Dao.Query<User>(x => x.UserRole)); } }
 
-        private IEnumerable<TaxTemplate> _taxTemplates;
-        public IEnumerable<TaxTemplate> TaxTemplates
+        private IEnumerable<VatTemplate> _vatTemplates;
+        public IEnumerable<VatTemplate> VatTemplates
         {
-            get { return _taxTemplates ?? (_taxTemplates = Dao.Query<TaxTemplate>()); }
+            get { return _vatTemplates ?? (_vatTemplates = Dao.Query<VatTemplate>()); }
         }
 
         public WorkPeriod CurrentWorkPeriod { get { return LastTwoWorkPeriods.LastOrDefault(); } }
@@ -539,7 +539,7 @@ namespace Samba.Services
                 _users = null;
                 _rules = null;
                 _actions = null;
-                _taxTemplates = null;
+                _vatTemplates = null;
 
                 if (selectedTableScreen > 0)
                     SelectedTableScreen = TableScreens.Single(x => x.Id == selectedTableScreen);
@@ -626,9 +626,9 @@ namespace Samba.Services
             ticket.Recalculate(AppServices.SettingService.AutoRoundDiscount, AppServices.CurrentLoggedInUser.Id);
         }
 
-        public TaxTemplate GetTaxTemplate(int menuItemId)
+        public VatTemplate GetVatTemplate(int menuItemId)
         {
-            return AppServices.DataAccessService.GetMenuItem(menuItemId).TaxTemplate;
+            return AppServices.DataAccessService.GetMenuItem(menuItemId).VatTemplate;
         }
     }
 }

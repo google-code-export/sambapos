@@ -19,10 +19,10 @@
                     </Label>
                     <TextBox HorizontalAlignment="Left" MinWidth="200" Text="{Binding Barcode,Mode=TwoWay}" />
                     <Label>
-                        <LocText ResourceIdentifierKey="Tax" Suffix=":"/>
+                        <LocText ResourceIdentifierKey="Vat" Suffix=":"/>
                     </Label>
                     <ComboBox HorizontalAlignment="Left" MinWidth="150"
-                     ItemsSource="{Binding TaxTemplates}" SelectedValue="{Binding TaxTemplate}" DisplayMemberPath="DisplayName" SelectedValuePath="Model">
+                     ItemsSource="{Binding VatTemplates}" SelectedValue="{Binding VatTemplate}" DisplayMemberPath="DisplayName" SelectedValuePath="Model">
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Column="1">

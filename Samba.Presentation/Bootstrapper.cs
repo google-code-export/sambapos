@@ -46,8 +46,8 @@ namespace Samba.Presentation
         protected override void InitializeModules()
         {
             var moduleManager = Container.GetExportedValue<IModuleManager>();
-            moduleManager.LoadModule("DashboardModule");
-            moduleManager.LoadModule("NavigationModule");
+            //moduleManager.LoadModule("DashboardModule");
+            //moduleManager.LoadModule("NavigationModule");
 
             base.InitializeModules();
 

@@ -10,7 +10,7 @@ using Samba.Services;
 
 namespace Samba.Modules.NavigationModule
 {
-    [ModuleExport(typeof(NavigationModule), InitializationMode = InitializationMode.OnDemand)]
+    [ModuleExport(typeof(NavigationModule))]
     public class NavigationModule : ModuleBase
     {
         private readonly IRegionManager _regionManager;

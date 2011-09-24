@@ -35,18 +35,18 @@ namespace Samba.Domain.Tests
             ticket.AddTicketDiscount(DiscountType.Amount, 10, 0);
             Assert.IsTrue(ticket.GetSum() == 10);
 
-            Assert.IsTrue(ticket.GetTotalDiscounts() == 15);
+            Assert.IsTrue(ticket.GetDiscountAndRoundingTotal() == 15);
 
             ticket.AddTicketDiscount(DiscountType.Amount, 5, 0);
 
             Assert.IsTrue(ticket.GetSum() == 15);
-            Assert.IsTrue(ticket.GetTotalDiscounts() == 10);
+            Assert.IsTrue(ticket.GetDiscountAndRoundingTotal() == 10);
 
             ticket.AddTicketDiscount(DiscountType.Percent, 0, 0);
             ticket.AddTicketDiscount(DiscountType.Amount, 0, 0);
 
             Assert.IsTrue(ticket.GetSum() == 25);
-            Assert.IsTrue(ticket.GetTotalDiscounts() == 0);
+            Assert.IsTrue(ticket.GetDiscountAndRoundingTotal() == 0);
             Assert.IsTrue(ticket.Discounts.Count == 0);
 
             ticket.AddTicketDiscount(DiscountType.Percent, 50, 0);
@@ -62,14 +62,14 @@ namespace Samba.Domain.Tests
 
             ticket.AddTicketDiscount(DiscountType.Percent, 10, 0);
             Assert.IsTrue(ticket.GetSum() == 13.5m);
-            Assert.IsTrue(ticket.GetTotalDiscounts() == 1.5m);
+            Assert.IsTrue(ticket.GetDiscountAndRoundingTotal() == 1.5m);
 
             ticket.TicketItems[0].Voided = true;
             Assert.IsTrue(ticket.GetSum() == 13.5m);
 
             ticket.AddTicketDiscount(DiscountType.Percent, 10, 0);
             Assert.IsTrue(ticket.GetSum() == 13.5m);
-            Assert.IsTrue(ticket.GetTotalDiscounts() == 1.5m);
+            Assert.IsTrue(ticket.GetDiscountAndRoundingTotal() == 1.5m);
 
         }
     }

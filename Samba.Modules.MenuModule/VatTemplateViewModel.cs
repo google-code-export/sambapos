@@ -5,9 +5,9 @@ using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.MenuModule
 {
-    public class TaxTemplateViewModel : EntityViewModelBase<TaxTemplate>
+    public class VatTemplateViewModel : EntityViewModelBase<VatTemplate>
     {
-        public TaxTemplateViewModel(TaxTemplate model)
+        public VatTemplateViewModel(VatTemplate model)
             : base(model)
         {
         }
@@ -16,22 +16,22 @@ namespace Samba.Modules.MenuModule
         {
             get
             {
-                return string.Format("{0} - {1}", Name, (TaxIncluded ? "Included" : "Excluded"));
+                return string.Format("{0} - {1}", Name, (VatIncluded ? "Included" : "Excluded"));
             }
         }
 
         public decimal Rate { get { return Model.Rate; } set { Model.Rate = value; } }
 
-        public bool TaxIncluded { get { return Model.TaxIncluded; } set { Model.TaxIncluded = value; } }
+        public bool VatIncluded { get { return Model.VatIncluded; } set { Model.VatIncluded = value; } }
 
         public override Type GetViewType()
         {
-            return typeof(TaxTemplateView);
+            return typeof(VatTemplateView);
         }
 
         public override string GetModelTypeString()
         {
-            return Resources.TaxTemplate;
+            return Resources.VatTemplate;
         }
     }
 }

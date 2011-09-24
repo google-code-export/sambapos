@@ -115,8 +115,8 @@ namespace Samba.Services.Printing
                                                     x.Voided,
                                                     x.Gifted,
                                                     x.Price,
-                                                    x.TaxAmount,
-                                                    x.TaxTemplateId,
+                                                    x.VatAmount,
+                                                    x.VatTemplateId,
                                                     x.PortionName,
                                                     x.PortionCount,
                                                     x.ReasonId,
@@ -131,8 +131,8 @@ namespace Samba.Services.Printing
                                         Voided = x.Key.Voided,
                                         Gifted = x.Key.Gifted,
                                         Price = x.Key.Price,
-                                        TaxAmount =  x.Key.TaxAmount,
-                                        TaxTemplateId = x.Key.TaxTemplateId,
+                                        VatAmount =  x.Key.VatAmount,
+                                        VatTemplateId = x.Key.VatTemplateId,
                                         CreatedDateTime = x.Last().CreatedDateTime,
                                         OrderNumber = x.Last().OrderNumber,
                                         TicketId = x.Last().TicketId,
@@ -205,17 +205,17 @@ namespace Samba.Services.Printing
 
             var payment = ticket.GetPaymentAmount();
             var remaining = ticket.GetRemainingAmount();
-            var discount = ticket.GetTotalDiscounts();
+            var discount = ticket.GetDiscountAndRoundingTotal();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
-            var taxAmount = ticket.CalculateTax(plainTotal, discount);
+            var vatAmount = ticket.CalculateVat();
 
-            result = FormatDataIf(taxAmount > 0 || discount > 0, result, "{PLAIN TOTAL}", plainTotal.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0 || discount > 0, result, "{PLAIN TOTAL}", plainTotal.ToString("#,#0.00"));
             result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", discount.ToString("#,#0.00"));
-            result = FormatDataIf(taxAmount > 0, result, "{TAX TOTAL}", taxAmount.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0, result, "{VAT TOTAL}", vatAmount.ToString("#,#0.00"));
 
-            if (result.Contains("{TAX DETAILS}"))
-                result = FormatDataIf(taxAmount > 0, result, "{TAX DETAILS}", GetTaxDetails(ticket.TicketItems, plainTotal, discount));
+            if (result.Contains("{VAT DETAILS}"))
+                result = FormatDataIf(vatAmount > 0, result, "{VAT DETAILS}", GetVatDetails(ticket.TicketItems, plainTotal, discount));
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
                 string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
@@ -238,16 +238,16 @@ namespace Samba.Services.Printing
             return result;
         }
 
-        private static string GetTaxDetails(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)
+        private static string GetVatDetails(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)
         {
             var sb = new StringBuilder();
-            var groups = ticketItems.Where(x => x.TaxTemplateId > 0).GroupBy(x => x.TaxTemplateId);
+            var groups = ticketItems.Where(x => x.VatTemplateId > 0).GroupBy(x => x.VatTemplateId);
             foreach (var @group in groups)
             {
                 var iGroup = @group;
-                var tb = AppServices.MainDataContext.TaxTemplates.FirstOrDefault(x => x.Id == iGroup.Key);
+                var tb = AppServices.MainDataContext.VatTemplates.FirstOrDefault(x => x.Id == iGroup.Key);
                 var tbTitle = tb != null ? tb.Name : Resources.UndefinedWithBrackets;
-                var total = @group.Sum(x => x.TaxAmount * x.Quantity);
+                var total = @group.Sum(x => x.VatAmount * x.Quantity);
                 if (discount > 0)
                 {
                     total -= (total * discount) / plainSum;

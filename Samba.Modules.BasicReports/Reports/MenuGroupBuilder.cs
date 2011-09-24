@@ -39,7 +39,7 @@ namespace Samba.Modules.BasicReports.Reports
                 if (string.IsNullOrEmpty(menuItemInfoGroup.GroupName))
                     menuItemInfoGroup.GroupName = Localization.Properties.Resources.UndefinedWithBrackets;
             }
-            
+
             return result;
         }
 
@@ -60,10 +60,10 @@ namespace Samba.Modules.BasicReports.Reports
 
         public static decimal CalculateTicketItemTotal(Ticket ticket, TicketItem ticketItem)
         {
-            var discount = ticket.GetTotalDiscounts();
+            var discount = ticket.GetDiscountAndRoundingTotal();
             if (discount != 0)
             {
-                var tsum = ticket.GetSumWithoutTax() + discount;
+                var tsum = ticket.GetSumWithoutVat() + discount;
                 var rate = (discount * 100) / tsum;
                 var tiTotal = ticketItem.GetTotal();
                 var itemDiscount = (tiTotal * rate) / 100;

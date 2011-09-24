@@ -264,10 +264,15 @@
                     <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketDiscountLabel}"
                          Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}" />
 
-                    <TextBlock Text="{LocText TaxTotal,Suffix=':'}"
-                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketTaxTotalVisible,Converter={StaticResource VisibilityConverter}}" />
-                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketTaxLabel}"
-                         Visibility="{Binding IsTicketTaxTotalVisible,Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock Text="{LocText VatTotal,Suffix=':'}"
+                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketVatTotalVisible,Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketVatLabel}"
+                         Visibility="{Binding IsTicketVatTotalVisible,Converter={StaticResource VisibilityConverter}}" />
+
+                    <TextBlock Text="{LocText RoundingTotal,Suffix=':'}"
+                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketRoundingVisible,Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketRoundingLabel}"
+                         Visibility="{Binding IsTicketRoundingVisible,Converter={StaticResource VisibilityConverter}}" />
 
                     <TextBlock Text="{LocText GrandTotal,Suffix=':'}" Visibility="{Binding IsTicketTotalVisible,Converter={StaticResource VisibilityConverter}}" />
                     <TextBlock TextAlignment="Right" Text="{Binding SelectedTicket.TicketTotalLabel}"

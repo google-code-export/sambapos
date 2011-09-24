@@ -2764,32 +2764,32 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="DeleteErrorProductUsedInMenuItemProperty" xml:space="preserve">
     <value>Can't delete because this product assigned to a menu item property</value>
   </data>
-  <data name="TaxTemplates" xml:space="preserve">
-    <value>Tax Templates</value>
+  <data name="VatTemplates" xml:space="preserve">
+    <value>VAT Templates</value>
   </data>
-  <data name="TaxTemplate" xml:space="preserve">
-    <value>Tax Template</value>
+  <data name="VatTemplate" xml:space="preserve">
+    <value>VAT Template</value>
   </data>
-  <data name="TaxTemplateName" xml:space="preserve">
-    <value>Tax Template Name</value>
+  <data name="VatTemplateName" xml:space="preserve">
+    <value>VAT Template Name</value>
     <comment>Label.Content</comment>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Rate</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="TaxIncludedToPrice" xml:space="preserve">
-    <value>Tax Included to Price</value>
+  <data name="VatIncludedToPrice" xml:space="preserve">
+    <value>VAT Included to Price</value>
     <comment>CheckBox content</comment>
   </data>
-  <data name="Tax" xml:space="preserve">
-    <value>Tax</value>
+  <data name="Vat" xml:space="preserve">
+    <value>VAT</value>
   </data>
-  <data name="TaxTotal" xml:space="preserve">
-    <value>Tax Total</value>
+  <data name="VatTotal" xml:space="preserve">
+    <value>VAT Total</value>
   </data>
-  <data name="UpdateTicketTax" xml:space="preserve">
-    <value>Update Ticket Tax</value>
+  <data name="UpdateTicketVat" xml:space="preserve">
+    <value>Update Ticket Vat</value>
   </data>
   <data name="One" xml:space="preserve">
     <value>One</value>
@@ -2905,8 +2905,11 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="OneThousand" xml:space="preserve">
     <value>One Thousand</value>
   </data>
-  <data name="AlwaysExcludeTax" xml:space="preserve">
-    <value>Always Exclude Tax</value>
+  <data name="AlwaysExcludeVat" xml:space="preserve">
+    <value>Always Exclude VAT</value>
     <comment>CheckBox content</comment>
+  </data>
+  <data name="RoundingTotal" xml:space="preserve">
+    <value>Rounding Total</value>
   </data>
 </root>

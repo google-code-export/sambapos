@@ -325,11 +325,10 @@
                     <LineBreak />
                     <Bold>{DISCOUNT TOTAL}</Bold> Discount Total
                     <LineBreak />
-                    <Bold>{TAX TOTAL}</Bold> Tax Total
+                    <Bold>{VAT TOTAL}</Bold> VAT Total
                     <LineBreak />
-                    <Bold>{TAX DETAILS}</Bold> Tax Totals grouped by tax template
+                    <Bold>{VAT DETAILS}</Bold> VAT Totals grouped by VAT template
                     <LineBreak />
-
                     <Bold>
                         <Run>
                             <LocText ResourceIdentifierKey="TF_TicketRemainingAmount"/>
@@ -347,6 +346,8 @@
                     <Run>
                         <LocText ResourceIdentifierKey="RemainingAmountIfPaid"/>
                     </Run>
+                    <LineBreak />
+                    <Bold>{TOTAL TEXT}</Bold> Text written Total Value
                     <LineBreak />
                     <Bold>
                         <Run>

@@ -34,13 +34,13 @@ namespace Samba.Modules.MenuModule
             get { return _propertyGroups ?? (_propertyGroups = new ObservableCollection<MenuItemPropertyGroupViewModel>(GetProperties(Model))); }
         }
 
-        private IEnumerable<TaxTemplateViewModel> _taxTemplates;
-        public IEnumerable<TaxTemplateViewModel> TaxTemplates
+        private IEnumerable<VatTemplateViewModel> _vatTemplates;
+        public IEnumerable<VatTemplateViewModel> VatTemplates
         {
-            get { return _taxTemplates ?? (_taxTemplates = _workspace.All<TaxTemplate>().Select(x => new TaxTemplateViewModel(x))); }
+            get { return _vatTemplates ?? (_vatTemplates = _workspace.All<VatTemplate>().Select(x => new VatTemplateViewModel(x))); }
         }
 
-        public TaxTemplate TaxTemplate { get { return Model.TaxTemplate; } set { Model.TaxTemplate = value; } }
+        public VatTemplate VatTemplate { get { return Model.VatTemplate; } set { Model.VatTemplate = value; } }
 
         public PortionViewModel SelectedPortion { get; set; }
 

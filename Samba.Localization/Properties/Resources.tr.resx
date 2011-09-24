@@ -2764,153 +2764,155 @@ Borçlandır</value>
   <data name="SortType" xml:space="preserve">
     <value>Sıralama Tipi</value>
   </data>
-  <data name="DeleteErrorProductUsedInMenuItemProperty">
-    <value><![CDATA[Bu ürün bir ürün özelliğinde kullanıldığı için silinemez.]]></value>
+  <data name="DeleteErrorProductUsedInMenuItemProperty" xml:space="preserve">
+    <value>Bu ürün bir ürün özelliğinde kullanıldığı için silinemez.</value>
   </data>
-  <data name="TaxTemplates">
-    <value xml:space="preserve">Vergi Şablonları</value>
+  <data name="VatTemplates" xml:space="preserve">
+    <value>KDV Şablonları</value>
   </data>
-  <data name="TaxTemplate">
-    <value xml:space="preserve">Vergi Şablonu</value>
+  <data name="VatTemplate" xml:space="preserve">
+    <value>KDV Şablonu</value>
   </data>
-  <data name="TaxTemplateName" xml:space="preserve">
-    <value>Vergi Şablonu Adı</value>
+  <data name="VatTemplateName" xml:space="preserve">
+    <value>KDV Şablonu Adı</value>
     <comment>Label.Content</comment>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Oran</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="TaxIncludedToPrice" xml:space="preserve">
-    <value>Vergi Fiyata Dahil</value>
+  <data name="VatIncludedToPrice" xml:space="preserve">
+    <value>KDV Fiyata Dahil</value>
     <comment>CheckBox content</comment>
   </data>
-  <data name="Tax" xml:space="preserve">
-    <value>Vergi</value>
+  <data name="Vat" xml:space="preserve">
+    <value>KDV</value>
   </data>
-  <data name="TaxTotal" xml:space="preserve">
-    <value>Vergi Toplamı</value>
+  <data name="VatTotal" xml:space="preserve">
+    <value>KDV Toplamı</value>
   </data>
-  <data name="UpdateTicketTax">
-    <value xml:space="preserve">Adisyon Vergisi Güncelle</value>
+  <data name="UpdateTicketVat" xml:space="preserve">
+    <value>KDV Güncelle</value>
   </data>
-  <data name="One">
-    <value xml:space="preserve">Bir</value>
+  <data name="One" xml:space="preserve">
+    <value>Bir</value>
   </data>
-  <data name="Two">
-    <value xml:space="preserve">İki</value>
+  <data name="Two" xml:space="preserve">
+    <value>İki</value>
   </data>
-  <data name="Three">
-    <value xml:space="preserve">Üç</value>
+  <data name="Three" xml:space="preserve">
+    <value>Üç</value>
   </data>
-  <data name="Four">
-    <value xml:space="preserve">Dört</value>
+  <data name="Four" xml:space="preserve">
+    <value>Dört</value>
   </data>
-  <data name="Five">
-    <value xml:space="preserve">Beş</value>
+  <data name="Five" xml:space="preserve">
+    <value>Beş</value>
   </data>
-  <data name="Six">
-    <value xml:space="preserve">Altı</value>
+  <data name="Six" xml:space="preserve">
+    <value>Altı</value>
   </data>
-  <data name="Seven">
-    <value xml:space="preserve">Yedi</value>
+  <data name="Seven" xml:space="preserve">
+    <value>Yedi</value>
   </data>
-  <data name="Eight">
-    <value xml:space="preserve">Sekiz</value>
+  <data name="Eight" xml:space="preserve">
+    <value>Sekiz</value>
   </data>
-  <data name="Nine">
-    <value xml:space="preserve">Dokuz</value>
+  <data name="Nine" xml:space="preserve">
+    <value>Dokuz</value>
   </data>
-  <data name="Nineteen">
-    <value xml:space="preserve">Ondokuz</value>
+  <data name="Nineteen" xml:space="preserve">
+    <value>Ondokuz</value>
   </data>
-  <data name="Eighteen">
-    <value xml:space="preserve">Onsekiz</value>
+  <data name="Eighteen" xml:space="preserve">
+    <value>Onsekiz</value>
   </data>
-  <data name="Seventeen">
-    <value xml:space="preserve">Onyedi</value>
+  <data name="Seventeen" xml:space="preserve">
+    <value>Onyedi</value>
   </data>
-  <data name="Sixteen">
-    <value xml:space="preserve">Onaltı</value>
+  <data name="Sixteen" xml:space="preserve">
+    <value>Onaltı</value>
   </data>
-  <data name="Fifteen">
-    <value xml:space="preserve">Onbeş</value>
+  <data name="Fifteen" xml:space="preserve">
+    <value>Onbeş</value>
   </data>
-  <data name="Fourteen">
-    <value xml:space="preserve">Ondört</value>
+  <data name="Fourteen" xml:space="preserve">
+    <value>Ondört</value>
   </data>
-  <data name="Thirteen">
-    <value xml:space="preserve">Onüç</value>
+  <data name="Thirteen" xml:space="preserve">
+    <value>Onüç</value>
   </data>
-  <data name="Twelve">
-    <value xml:space="preserve">Oniki</value>
+  <data name="Twelve" xml:space="preserve">
+    <value>Oniki</value>
   </data>
-  <data name="Eleven">
-    <value xml:space="preserve">Onbir</value>
+  <data name="Eleven" xml:space="preserve">
+    <value>Onbir</value>
   </data>
-  <data name="Ten">
-    <value xml:space="preserve">On</value>
+  <data name="Ten" xml:space="preserve">
+    <value>On</value>
   </data>
-  <data name="Twenty">
-    <value xml:space="preserve">Yirmi</value>
+  <data name="Twenty" xml:space="preserve">
+    <value>Yirmi</value>
   </data>
-  <data name="Thirty">
-    <value xml:space="preserve">Otuz</value>
+  <data name="Thirty" xml:space="preserve">
+    <value>Otuz</value>
   </data>
-  <data name="Forty">
-    <value xml:space="preserve">Kırk</value>
+  <data name="Forty" xml:space="preserve">
+    <value>Kırk</value>
   </data>
-  <data name="Fifty">
-    <value xml:space="preserve">Elli</value>
+  <data name="Fifty" xml:space="preserve">
+    <value>Elli</value>
   </data>
-  <data name="Sixty">
-    <value xml:space="preserve">Altmış</value>
+  <data name="Sixty" xml:space="preserve">
+    <value>Altmış</value>
   </data>
-  <data name="Seventy">
-    <value xml:space="preserve">Yetmiş</value>
+  <data name="Seventy" xml:space="preserve">
+    <value>Yetmiş</value>
   </data>
-  <data name="Eighty">
-    <value xml:space="preserve">Seksen</value>
+  <data name="Eighty" xml:space="preserve">
+    <value>Seksen</value>
   </data>
-  <data name="Ninety">
-    <value xml:space="preserve">Doksan</value>
+  <data name="Ninety" xml:space="preserve">
+    <value>Doksan</value>
   </data>
-  <data name="Thousand">
+  <data name="Thousand" xml:space="preserve">
     <value>Bin</value>
   </data>
-  <data name="Million">
-    <value xml:space="preserve">Milyon</value>
+  <data name="Million" xml:space="preserve">
+    <value>Milyon</value>
   </data>
-  <data name="Billion">
-    <value xml:space="preserve">Milyar</value>
+  <data name="Billion" xml:space="preserve">
+    <value>Milyar</value>
   </data>
-  <data name="Hundred">
-    <value xml:space="preserve">Yüz</value>
+  <data name="Hundred" xml:space="preserve">
+    <value>Yüz</value>
   </data>
-  <data name="Zero">
-    <value xml:space="preserve">Sıfır</value>
+  <data name="Zero" xml:space="preserve">
+    <value>Sıfır</value>
   </data>
-  <data name="Negative">
-    <value xml:space="preserve">Negatif</value>
+  <data name="Negative" xml:space="preserve">
+    <value>Negatif</value>
   </data>
-  <data name="Dollar">
-    <value xml:space="preserve">Lira</value>
+  <data name="Dollar" xml:space="preserve">
+    <value>Lira</value>
   </data>
-  <data name="Cent">
-    <value xml:space="preserve">Kuruş</value>
+  <data name="Cent" xml:space="preserve">
+    <value>Kuruş</value>
   </data>
-  <data name="PluralCurrencySuffix">
-    <value xml:space="preserve"> </value>
+  <data name="PluralCurrencySuffix" xml:space="preserve">
+    <value> </value>
   </data>
-	<data name="OneHundred">
-		<value xml:space="preserve">Yüz</value>
-	</data>
-	<data name="OneThousand">
-		<value xml:space="preserve">Bin</value>
-	</data>
-	<data name="AlwaysExcludeTax" xml:space="preserve">
-    <value>Vergiyi Ayırarak Yazdır</value>
+  <data name="OneHundred" xml:space="preserve">
+    <value>Yüz</value>
+  </data>
+  <data name="OneThousand" xml:space="preserve">
+    <value>Bin</value>
+  </data>
+  <data name="AlwaysExcludeVat" xml:space="preserve">
+    <value>KDV'yi Ayırarak Yazdır</value>
     <comment>CheckBox content</comment>
   </data>
-
+  <data name="RoundingTotal" xml:space="preserve">
+    <value>Yuvarlama Toplamı</value>
+  </data>
 </root>

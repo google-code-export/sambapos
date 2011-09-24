@@ -140,41 +140,49 @@ namespace Samba.Domain.Models.Tickets
             return TicketItems.Count();
         }
 
-        public decimal GetSumWithoutTax()
+        public decimal GetSumWithoutVat()
         {
             var sum = GetPlainSum();
-            sum -= GetTotalDiscounts();
+            sum -= GetDiscountAndRoundingTotal();
             return sum;
         }
 
         public decimal GetSum()
         {
             var plainSum = GetPlainSum();
-            var discount = CalculateDiscounts(Discounts.Where(x => x.DiscountType != (int)DiscountType.Auto), plainSum);
-            var tax = CalculateTax(plainSum, discount);
-            return (plainSum - discount + tax) - Discounts.Where(x => x.DiscountType == (int)DiscountType.Auto).Sum(x => x.Amount);
+            var discount = CalculateDiscounts(Discounts.Where(x => x.DiscountType == (int)DiscountType.Percent), plainSum);
+            var vat = CalculateVat(plainSum, discount);
+            return (plainSum - discount + vat) - Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent).Sum(x => x.Amount);
         }
 
-        public decimal CalculateTax(decimal plainSum, decimal discount)
+        public decimal CalculateVat()
         {
-            var result = TicketItems.Where(x => !x.TaxIncluded).Sum(x => x.TaxAmount * x.Quantity);
+            return CalculateVat(GetPlainSum(), GetDiscountTotal());
+        }
+
+        private decimal CalculateVat(decimal plainSum, decimal discount)
+        {
+            var result = TicketItems.Where(x => !x.VatIncluded).Sum(x => x.VatAmount * x.Quantity);
             if (discount > 0)
                 result -= (result * discount) / plainSum;
             return result;
         }
 
-        public decimal GetAllTotalTax(decimal plainSum, decimal discount)
-        {
-            var result = TicketItems.Sum(x => x.TaxAmount * x.Quantity);
-            if (discount > 0)
-                result -= (result * discount) / plainSum;
-            return result;
-        }
-
-        public decimal GetTotalDiscounts()
+        public decimal GetDiscountAndRoundingTotal()
         {
             decimal sum = GetPlainSum();
             return CalculateDiscounts(Discounts, sum);
+        }
+
+        public decimal GetDiscountTotal()
+        {
+            decimal sum = GetPlainSum();
+            return CalculateDiscounts(Discounts.Where(x => x.DiscountType == (int)DiscountType.Percent), sum);
+        }
+
+        public decimal GetRoundingTotal()
+        {
+            return CalculateDiscounts(Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent), 0);
         }
 
         private decimal CalculateDiscounts(IEnumerable<Discount> discounts, decimal sum)
@@ -201,8 +209,6 @@ namespace Samba.Domain.Models.Tickets
             }
             return decimal.Round(totalDiscount, LocalSettings.Decimals);
         }
-
-
 
         public void AddTicketDiscount(DiscountType type, decimal amount, int userId)
         {
@@ -568,13 +574,13 @@ namespace Samba.Domain.Models.Tickets
             return newItems;
         }
 
-        public void UpdateTax(TaxTemplate taxTemplate)
+        public void UpdateVat(VatTemplate vatTemplate)
         {
             foreach (var ticketItem in TicketItems)
             {
-                ticketItem.TaxRate = taxTemplate.Rate;
-                ticketItem.TaxTemplateId = taxTemplate.Id;
-                ticketItem.TaxIncluded = taxTemplate.TaxIncluded;
+                ticketItem.VatRate = vatTemplate.Rate;
+                ticketItem.VatTemplateId = vatTemplate.Id;
+                ticketItem.VatIncluded = vatTemplate.VatIncluded;
                 ticketItem.UpdatePrice(ticketItem.Price, ticketItem.PriceTag);
             }
         }

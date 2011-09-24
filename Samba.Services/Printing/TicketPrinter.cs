@@ -93,10 +93,10 @@ namespace Samba.Services.Printing
 
         public static void PrintOrders(PrintJob printJob, Ticket ticket)
         {
-            if (printJob.ExcludeTax)
+            if (printJob.ExcludeVat)
             {
                 ticket = ObjectCloner.Clone(ticket);
-                ticket.TicketItems.ToList().ForEach(x => x.TaxIncluded = false);
+                ticket.TicketItems.ToList().ForEach(x => x.VatIncluded = false);
             }
 
             IEnumerable<TicketItem> ti;
@@ -136,7 +136,7 @@ namespace Samba.Services.Printing
 
         private static IEnumerable<TicketItem> GroupLinesByValue(Ticket ticket, Func<MenuItem, object> selector, string defaultValue)
         {
-            var discounts = ticket.GetTotalDiscounts();
+            var discounts = ticket.GetDiscountAndRoundingTotal();
             var di = discounts > 0 ? discounts / ticket.GetPlainSum() : 0;
             var cache = new Dictionary<string, decimal>();
             foreach (var ticketItem in ticket.TicketItems.OrderBy(x => x.Id).ToList())

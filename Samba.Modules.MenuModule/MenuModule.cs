@@ -18,7 +18,7 @@ namespace Samba.Modules.MenuModule
         private PriceListViewModel _priceListViewModel;
         private TicketTagGroupListViewModel _ticketTagGroupListViewModel;
         private MenuItemPriceDefinitionListViewModel _menuItemPriceDefinitionListViewModel;
-        private TaxTemplateListViewModel _taxTemplateListViewModel;
+        private VatTemplateListViewModel _vatTemplateListViewModel;
 
         public ICategoryCommand ListMenuItemsCommand { get; set; }
         public ICategoryCommand ListScreenMenusCommand { get; set; }
@@ -27,7 +27,7 @@ namespace Samba.Modules.MenuModule
         public ICategoryCommand ListPricesCommand { get; set; }
         public ICategoryCommand ListTicketTagGroupsCommand { get; set; }
         public ICategoryCommand ListMenuItemPriceDefinitionsCommand { get; set; }
-        public ICategoryCommand ListTaxTemplatesCommand { get; set; }
+        public ICategoryCommand ListVatTemplatesCommand { get; set; }
 
         protected override void OnPostInitialization()
         {
@@ -38,7 +38,7 @@ namespace Samba.Modules.MenuModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListPricesCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListTicketTagGroupsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemPriceDefinitionsCommand);
-            CommonEventPublisher.PublishDashboardCommandEvent(ListTaxTemplatesCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListVatTemplatesCommand);
         }
 
         [ImportingConstructor]
@@ -51,7 +51,7 @@ namespace Samba.Modules.MenuModule
             ListPricesCommand = new CategoryCommand<string>(Resources.BatchPriceList, Resources.Products, OnListPrices);
             ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags) { Order = 10 };
             ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>(Resources.PriceDefinitions, Resources.Products, OnListMenuItemPriceDefinitions);
-            ListTaxTemplatesCommand = new CategoryCommand<string>(Resources.TaxTemplates, Resources.Products, OnListTaxTemplates);
+            ListVatTemplatesCommand = new CategoryCommand<string>(Resources.VatTemplates, Resources.Products, OnListVatTemplates);
 
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeDepartment, PermissionCategories.Department, Resources.CanChangeDepartment);
             foreach (var department in AppServices.MainDataContext.Departments)
@@ -84,19 +84,19 @@ namespace Samba.Modules.MenuModule
                     if (s.Value == _menuItemPriceDefinitionListViewModel)
                         _menuItemPriceDefinitionListViewModel = null;
 
-                    if (s.Value == _taxTemplateListViewModel)
-                        _taxTemplateListViewModel = null;
+                    if (s.Value == _vatTemplateListViewModel)
+                        _vatTemplateListViewModel = null;
                 }
             });
 
 
         }
 
-        private void OnListTaxTemplates(string obj)
+        private void OnListVatTemplates(string obj)
         {
-            if (_taxTemplateListViewModel == null)
-                _taxTemplateListViewModel = new TaxTemplateListViewModel();
-            CommonEventPublisher.PublishViewAddedEvent(_taxTemplateListViewModel);
+            if (_vatTemplateListViewModel == null)
+                _vatTemplateListViewModel = new VatTemplateListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_vatTemplateListViewModel);
         }
 
         private void OnListMenuItemPriceDefinitions(string obj)

@@ -91,11 +91,11 @@
       <DependentUpon>DepartmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmentViewModel.cs" />
-    <Compile Include="TaxTemplateListViewModel.cs" />
-    <Compile Include="TaxTemplateView.xaml.cs">
-      <DependentUpon>TaxTemplateView.xaml</DependentUpon>
+    <Compile Include="VatTemplateListViewModel.cs" />
+    <Compile Include="VatTemplateView.xaml.cs">
+      <DependentUpon>VatTemplateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TaxTemplateViewModel.cs" />
+    <Compile Include="VatTemplateViewModel.cs" />
     <Compile Include="TicketTagGroupListViewModel.cs" />
     <Compile Include="TicketTagGroupView.xaml.cs">
       <DependentUpon>TicketTagGroupView.xaml</DependentUpon>
@@ -169,7 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TaxTemplateView.xaml">
+    <Page Include="VatTemplateView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

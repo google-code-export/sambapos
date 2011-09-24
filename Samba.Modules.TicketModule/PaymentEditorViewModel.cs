@@ -367,11 +367,10 @@ namespace Samba.Modules.TicketModule
         {
             if (GetTenderedValue() > 0 && SelectedTicket.Model.GetPlainSum() > 0)
             {
-                var plainSum = SelectedTicket.Model.GetPlainSum();
-                var discounts = SelectedTicket.Model.GetTotalDiscounts();
-                var discountAmount = SelectedTicket.Model.GetRemainingAmount() - SelectedTicket.Model.CalculateTax(plainSum, discounts) + discounts;
+                var discounts = SelectedTicket.Model.GetDiscountAndRoundingTotal();
+                var discountAmount = SelectedTicket.Model.GetRemainingAmount() - SelectedTicket.Model.CalculateVat() + discounts;
                 discountAmount = discountAmount * (GetTenderedValue() / 100);
-                var discountRate = SelectedTicket.Model.GetSumWithoutTax();
+                var discountRate = SelectedTicket.Model.GetPlainSum();
                 discountRate = (discountAmount * 100) / discountRate;
                 discountRate = decimal.Round(discountRate, LocalSettings.Decimals);
                 SelectedTicket.Model.AddTicketDiscount(DiscountType.Percent, discountRate, AppServices.CurrentLoggedInUser.Id);
@@ -389,19 +388,7 @@ namespace Samba.Modules.TicketModule
             SelectedTicket.Model.AddTicketDiscount(DiscountType.Amount, 0, AppServices.CurrentLoggedInUser.Id);
             SelectedTicket.Model.AddTicketDiscount(DiscountType.Auto, 0, AppServices.CurrentLoggedInUser.Id);
 
-            var tenderedValue = GetTenderedValue();
-
-            var discountAmount = (tenderedValue * AppServices.MainDataContext.SelectedTicket.GetSumWithoutTax()) /
-                                 AppServices.MainDataContext.SelectedTicket.GetRemainingAmount();
-            discountAmount = decimal.Round(discountAmount, 2);
-            discountAmount = AppServices.MainDataContext.SelectedTicket.GetSumWithoutTax() - discountAmount;
-
-            SelectedTicket.Model.AddTicketDiscount(DiscountType.Amount, discountAmount, AppServices.CurrentLoggedInUser.Id);
-
-            var currentSum = AppServices.MainDataContext.SelectedTicket.GetRemainingAmount();
-            if (currentSum != tenderedValue) SelectedTicket.Model.AddTicketDiscount(DiscountType.Auto, currentSum - tenderedValue,
-                                                        AppServices.CurrentLoggedInUser.Id);
-
+            SelectedTicket.Model.AddTicketDiscount(DiscountType.Amount, AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() - GetTenderedValue(), AppServices.CurrentLoggedInUser.Id);
             PaymentAmount = "";
             RefreshValues();
         }
@@ -448,7 +435,7 @@ namespace Samba.Modules.TicketModule
                 {
                     var ticketItem = item;
                     var price = ticketItem.GetItemPrice();
-                    if (!ticketItem.TaxIncluded) price += ticketItem.TaxAmount;
+                    if (!ticketItem.VatIncluded) price += ticketItem.VatAmount;
                     var mitem = MergedItems.SingleOrDefault(x => x.MenuItemId == ticketItem.MenuItemId && x.Price == price);
                     if (mitem == null)
                     {

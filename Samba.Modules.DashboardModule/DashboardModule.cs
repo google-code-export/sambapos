@@ -8,7 +8,7 @@ using Samba.Services;
 
 namespace Samba.Modules.DashboardModule
 {
-    [ModuleExport(typeof(DashboardModule), InitializationMode = InitializationMode.OnDemand)]
+    [ModuleExport(typeof(DashboardModule))]
     public class DashboardModule : ModuleBase
     {
         private readonly IRegionManager _regionManager;

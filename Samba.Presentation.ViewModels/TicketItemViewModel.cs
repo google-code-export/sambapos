@@ -92,7 +92,6 @@ namespace Samba.Presentation.ViewModels
         public decimal Price
         {
             get { return Model.GetItemPrice(); }
-            // _model.TaxIncluded ? _model.Price + _model.TaxAmount : _model.Price; }
         }
 
         public decimal TotalPrice
@@ -141,7 +140,7 @@ namespace Samba.Presentation.ViewModels
                 var prop = Model.GetCustomProperty();
                 if (prop != null)
                 {
-                    return Model.TaxIncluded ? prop.PropertyPrice.Amount + prop.TaxAmount : prop.PropertyPrice.Amount;
+                    return Model.VatIncluded ? prop.PropertyPrice.Amount + prop.VatAmount : prop.PropertyPrice.Amount;
                 }
                 return 0;
             }
@@ -238,7 +237,7 @@ namespace Samba.Presentation.ViewModels
 
         public void UpdatePortion(MenuItemPortion portion, string priceTag)
         {
-            _model.UpdatePortion(portion, priceTag, AppServices.MainDataContext.GetTaxTemplate(portion.MenuItemId));
+            _model.UpdatePortion(portion, priceTag, AppServices.MainDataContext.GetVatTemplate(portion.MenuItemId));
             RaisePropertyChanged("Description");
             RaisePropertyChanged("TotalPrice");
         }
