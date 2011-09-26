@@ -22,7 +22,8 @@ namespace Samba.Presentation.Terminal
             //TODO: Para birimi servisinden al.
 
             LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
-            
+            LocalSettings.SetTraceLogPath("term");
+
             LocalSettings.DefaultCurrencyFormat = "#,#0.00";
             LocalSettings.AppPath = System.IO.Path.GetDirectoryName(Application.ResourceAssembly.Location);
             AppServices.MainDispatcher = Application.Current.Dispatcher;

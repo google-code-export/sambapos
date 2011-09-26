@@ -131,7 +131,7 @@ namespace Samba.Services
 
         public static void Log(string message)
         {
-            Logger.Write(message, "User");
+            Logger.Write(message, "General", 0, 0, TraceEventType.Verbose);
         }
 
         public static void Log(string message, string category)

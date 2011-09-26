@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 
 namespace Samba.Infrastructure.Settings
 {
@@ -203,6 +205,33 @@ html
         public static string ReadSetting(string settingName)
         {
             return _settingsObject.GetCustomValue(settingName);
+        }
+
+        public static void SetTraceLogPath(string prefix)
+        {
+            var logFilePath = DocumentPath + "\\" + prefix + "_trace.log";
+
+            var objConfigPath = new ConfigurationFileMap();
+
+            var appPath = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            objConfigPath.MachineConfigFilename = appPath;
+
+            var entLibConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            var loggingSettings = (LoggingSettings)entLibConfig.GetSection(LoggingSettings.SectionName);
+
+            var traceListenerData = loggingSettings.TraceListeners.Get("Flat File Trace Listener");
+            var objFlatFileTraceListenerData = traceListenerData as FlatFileTraceListenerData;
+
+            if (objFlatFileTraceListenerData != null) objFlatFileTraceListenerData.FileName = logFilePath;
+            try
+            {
+                entLibConfig.Save();
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

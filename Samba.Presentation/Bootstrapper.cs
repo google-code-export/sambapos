@@ -43,12 +43,7 @@ namespace Samba.Presentation
 
         protected override void InitializeModules()
         {
-            //var moduleManager = Container.GetExportedValue<IModuleManager>();
-            ////moduleManager.LoadModule("DashboardModule");
-            ////moduleManager.LoadModule("NavigationModule");
-
             base.InitializeModules();
-
             var moduleInitializationService = ServiceLocator.Current.GetInstance<IModuleInitializationService>();
             moduleInitializationService.Initialize();
         }
@@ -56,7 +51,7 @@ namespace Samba.Presentation
         protected override void InitializeShell()
         {
             LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
-
+            LocalSettings.SetTraceLogPath("app");
             InteractionService.UserIntraction = ServiceLocator.Current.GetInstance<IUserInteraction>();
             InteractionService.UserIntraction.ToggleSplashScreen();
 

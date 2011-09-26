@@ -135,7 +135,7 @@ namespace Samba.Domain.Models.Tickets
                 ti = new TicketItemProperty
                         {
                             Name = property.Name,
-                            PropertyPrice = property.Price,
+                            PropertyPrice = new Price { Amount = property.Price.Amount, CurrencyCode = property.Price.CurrencyCode },
                             PropertyGroupId = group.Id,
                             MenuItemId = property.MenuItemId,
                             CalculateWithParentPrice = group.CalculateWithParentPrice,
@@ -150,6 +150,7 @@ namespace Samba.Domain.Models.Tickets
                     ti.VatAmount = property.Price.Amount - ti.PropertyPrice.Amount;
                 }
                 else if (VatRate > 0) ti.VatAmount = (property.Price.Amount * VatRate) / 100;
+                else ti.VatAmount = 0;
             }
             if (group.SingleSelection)
             {
@@ -259,7 +260,7 @@ namespace Samba.Domain.Models.Tickets
 
         public decimal GetMenuItemPropertyPrice()
         {
-            return GetPropertySum(Properties.Where(x => x.CalculateWithParentPrice),VatIncluded);
+            return GetPropertySum(Properties.Where(x => x.CalculateWithParentPrice), VatIncluded);
         }
 
         private static decimal GetPropertySum(IEnumerable<TicketItemProperty> properties, bool vatIncluded)
