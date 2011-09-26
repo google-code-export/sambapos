@@ -19,6 +19,7 @@ namespace Samba.Modules.MenuModule
         private TicketTagGroupListViewModel _ticketTagGroupListViewModel;
         private MenuItemPriceDefinitionListViewModel _menuItemPriceDefinitionListViewModel;
         private VatTemplateListViewModel _vatTemplateListViewModel;
+        private TaxServiceTemplateListViewModel _taxServiceTemplateListViewModel;
 
         public ICategoryCommand ListMenuItemsCommand { get; set; }
         public ICategoryCommand ListScreenMenusCommand { get; set; }
@@ -28,6 +29,7 @@ namespace Samba.Modules.MenuModule
         public ICategoryCommand ListTicketTagGroupsCommand { get; set; }
         public ICategoryCommand ListMenuItemPriceDefinitionsCommand { get; set; }
         public ICategoryCommand ListVatTemplatesCommand { get; set; }
+        public ICategoryCommand ListTaxServiceTemplates { get; set; }
 
         protected override void OnPostInitialization()
         {
@@ -39,6 +41,7 @@ namespace Samba.Modules.MenuModule
             CommonEventPublisher.PublishDashboardCommandEvent(ListTicketTagGroupsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListMenuItemPriceDefinitionsCommand);
             CommonEventPublisher.PublishDashboardCommandEvent(ListVatTemplatesCommand);
+            CommonEventPublisher.PublishDashboardCommandEvent(ListTaxServiceTemplates);
         }
 
         [ImportingConstructor]
@@ -52,6 +55,7 @@ namespace Samba.Modules.MenuModule
             ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags) { Order = 10 };
             ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>(Resources.PriceDefinitions, Resources.Products, OnListMenuItemPriceDefinitions);
             ListVatTemplatesCommand = new CategoryCommand<string>(Resources.VatTemplates, Resources.Products, OnListVatTemplates);
+            ListTaxServiceTemplates = new CategoryCommand<string>(Resources.TaxServiceTemplates, Resources.Products, OnListTaxServiceTemplates);
 
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeDepartment, PermissionCategories.Department, Resources.CanChangeDepartment);
             foreach (var department in AppServices.MainDataContext.Departments)
@@ -86,10 +90,18 @@ namespace Samba.Modules.MenuModule
 
                     if (s.Value == _vatTemplateListViewModel)
                         _vatTemplateListViewModel = null;
+
+                    if (s.Value == _taxServiceTemplateListViewModel)
+                        _taxServiceTemplateListViewModel = null;
                 }
             });
+        }
 
-
+        private void OnListTaxServiceTemplates(string obj)
+        {
+            if (_taxServiceTemplateListViewModel == null)
+                _taxServiceTemplateListViewModel = new TaxServiceTemplateListViewModel();
+            CommonEventPublisher.PublishViewAddedEvent(_taxServiceTemplateListViewModel);
         }
 
         private void OnListVatTemplates(string obj)

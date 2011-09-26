@@ -68,9 +68,26 @@ namespace Samba.Domain.Tests
             Assert.IsTrue(ticket.GetSum() == 13.5m);
 
             ticket.AddTicketDiscount(DiscountType.Percent, 10, 0);
-            Assert.IsTrue(ticket.GetSum() == 13.5m);
-            Assert.IsTrue(ticket.GetDiscountAndRoundingTotal() == 1.5m);
+            Assert.AreEqual(13.5m, ticket.GetSum());
+            Assert.AreEqual(1.5m, ticket.GetDiscountAndRoundingTotal());
 
+            ticket.AddTicketDiscount(DiscountType.Amount, 0.5m, 0);
+            Assert.AreEqual(13m, ticket.GetSum());
+
+            ticket.Discounts.Clear();
+            Assert.AreEqual(15m, ticket.GetSum());
+            var t = new VatTemplate { Rate = 10 };
+
+            var mix = new MenuItem("TestItem2") { VatTemplate = t };
+            mix.AddPortion("Adet", 10, "TL");
+            ticket.AddTicketItem(0, mix, "Adet");
+
+            Assert.AreEqual(26m, ticket.GetSum());
+
+            ticket.AddTicketDiscount(DiscountType.Percent, 10, 0);
+            Assert.AreEqual(23.4m, ticket.GetSum());
+            ticket.AddTicketDiscount(DiscountType.Amount, 0.4m, 0);
+            Assert.AreEqual(23m, ticket.GetSum());
         }
     }
 }

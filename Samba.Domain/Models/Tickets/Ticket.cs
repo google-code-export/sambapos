@@ -39,6 +39,7 @@ namespace Samba.Domain.Models.Tickets
             _payments = new List<Payment>();
             _discounts = new List<Discount>();
             _paidItems = new List<PaidItem>();
+            _taxServices = new List<TaxService>();
         }
 
         private bool _shouldLock;
@@ -85,6 +86,13 @@ namespace Samba.Domain.Models.Tickets
         {
             get { return _discounts; }
             set { _discounts = value; }
+        }
+
+        private IList<TaxService> _taxServices;
+        public virtual IList<TaxService> TaxServices
+        {
+            get { return _taxServices; }
+            set { _taxServices = value; }
         }
 
         private IList<PaidItem> _paidItems;
@@ -151,8 +159,9 @@ namespace Samba.Domain.Models.Tickets
         {
             var plainSum = GetPlainSum();
             var discount = CalculateDiscounts(Discounts.Where(x => x.DiscountType == (int)DiscountType.Percent), plainSum);
+            var services = CalculateTaxServices(TaxServices, plainSum-discount);
             var vat = CalculateVat(plainSum, discount);
-            return (plainSum - discount + vat) - Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent).Sum(x => x.Amount);
+            return (plainSum - discount + services + vat) - Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent).Sum(x => x.Amount);
         }
 
         public decimal CalculateVat()
@@ -185,6 +194,38 @@ namespace Samba.Domain.Models.Tickets
             return CalculateDiscounts(Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent), 0);
         }
 
+        public decimal GetTaxServicesTotal()
+        {
+            return CalculateTaxServices(TaxServices, GetPlainSum()-GetDiscountTotal());
+        }
+
+        private static decimal CalculateTaxServices(IEnumerable<TaxService> taxServices, decimal sum)
+        {
+            //Rate From Ticket Amount = 0, Rate From Previous Template = 1, Fixed Amount = 2
+
+            decimal totalAmount = 0;
+            var currentSum = sum;
+
+            foreach (var taxService in taxServices)
+            {
+                if (taxService.CalculationType == 0)
+                {
+                    taxService.CalculationAmount = taxService.Amount > 0 ? (sum * taxService.Amount) / 100 : 0;
+                }
+                else if (taxService.CalculationType == 1)
+                {
+                    taxService.CalculationAmount = taxService.Amount > 0 ? (currentSum * taxService.Amount) / 100 : 0;
+                }
+                else taxService.CalculationAmount = taxService.Amount;
+
+                taxService.CalculationAmount = Decimal.Round(taxService.CalculationAmount, LocalSettings.Decimals);
+                totalAmount += taxService.CalculationAmount;
+                currentSum += taxService.CalculationAmount;
+            }
+
+            return decimal.Round(totalAmount, LocalSettings.Decimals);
+        }
+
         private decimal CalculateDiscounts(IEnumerable<Discount> discounts, decimal sum)
         {
             decimal totalDiscount = 0;
@@ -212,7 +253,7 @@ namespace Samba.Domain.Models.Tickets
 
         public void AddTicketDiscount(DiscountType type, decimal amount, int userId)
         {
-            var c = Discounts.SingleOrDefault(x => x.DiscountType == (int)type && x.SourceId == 0);
+            var c = Discounts.SingleOrDefault(x => x.DiscountType == (int)type);
             if (c == null)
             {
                 c = new Discount { DiscountType = (int)type, Amount = amount };
@@ -221,6 +262,24 @@ namespace Samba.Domain.Models.Tickets
             if (amount == 0) Discounts.Remove(c);
             c.UserId = userId;
             c.Amount = amount;
+        }
+
+        public void AddTaxService(int taxServiceId, int calculationMethod, decimal amount)
+        {
+            var t = TaxServices.SingleOrDefault(x => x.TaxServiceId == taxServiceId);
+            if (t == null)
+            {
+                t = new TaxService
+                        {
+                            Amount = amount,
+                            CalculationType = calculationMethod,
+                            TaxServiceId = taxServiceId
+                        };
+                TaxServices.Add(t);
+            }
+
+            if (amount == 0) TaxServices.Remove(t);
+            t.Amount = amount;
         }
 
         public decimal GetPlainSum()
@@ -422,7 +481,12 @@ namespace Samba.Domain.Models.Tickets
 
         public static Ticket Create(Department department)
         {
-            return new Ticket { DepartmentId = department.Id };
+            var ticket = new Ticket { DepartmentId = department.Id };
+            foreach (var taxServiceTemplate in department.TaxServiceTemplates)
+            {
+                ticket.AddTaxService(taxServiceTemplate.Id, taxServiceTemplate.CalculationMethod, taxServiceTemplate.Amount);
+            }
+            return ticket;
         }
 
         public TicketItem CloneItem(TicketItem item)

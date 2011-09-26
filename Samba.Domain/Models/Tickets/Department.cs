@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Data;
 
@@ -34,6 +35,13 @@ namespace Samba.Domain.Models.Tickets
             set { _ticketTagGroups = value; }
         }
 
+        private IList<TaxServiceTemplate> _taxServiceTemplates;
+        public virtual IList<TaxServiceTemplate> TaxServiceTemplates
+        {
+            get { return _taxServiceTemplates; }
+            set { _taxServiceTemplates = value; }
+        }
+
         private static readonly Department _all = new Department { Name = "*" };
         public static Department All { get { return _all; } }
 
@@ -41,6 +49,7 @@ namespace Samba.Domain.Models.Tickets
         {
             OpenTicketViewColumnCount = 5;
             _ticketTagGroups = new List<TicketTagGroup>();
+            _taxServiceTemplates = new List<TaxServiceTemplate>();
         }
     }
 }

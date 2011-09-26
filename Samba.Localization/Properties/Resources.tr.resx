@@ -2915,4 +2915,33 @@ Borçlandır</value>
   <data name="RoundingTotal" xml:space="preserve">
     <value>Yuvarlama Toplamı</value>
   </data>
+  <data name="TaxServiceTemplates" xml:space="preserve">
+    <value>Hizmet Şablonları</value>
+  </data>
+  <data name="ChooseTaxServicesForDepartmentHint_f" xml:space="preserve">
+    <value>{0} departmanında kullanmak istediğiniz hizmet şablonlarını seçiniz.</value>
+  </data>
+  <data name="TaxServiceTemplate" xml:space="preserve">
+    <value>Hizmet Şablonu</value>
+  </data>
+  <data name="TaxServiceTotal" xml:space="preserve">
+    <value>Toplam Hizmet</value>
+  </data>
+  <data name="CalculationMethod" xml:space="preserve">
+    <value>Hesaplama Metodu</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="RateOrAmount" xml:space="preserve">
+    <value>Oran veya Tutar</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="RateFromTicketAmount">
+    <value xml:space="preserve">Adisyon Tutarından Oranla</value>
+  </data>
+  <data name="RateFromPreviousTemplate">
+    <value xml:space="preserve">Önceki Şablon Tutarından Oranla</value>
+  </data>
+  <data name="FixedAmount">
+    <value xml:space="preserve">Sabit Tutar</value>
+  </data>
 </root>

@@ -60,6 +60,12 @@ namespace Samba.Modules.BasicReports
             get { return _workPeriods ?? (_workPeriods = Dao.Query<WorkPeriod>()); }
         }
 
+        private static IEnumerable<TaxServiceTemplate> _taxServiceTemplates;
+        public static IEnumerable<TaxServiceTemplate> TaxServiceTemplates
+        {
+            get { return _taxServiceTemplates ?? (_taxServiceTemplates = Dao.Query<TaxServiceTemplate>()); }
+        }
+
         private static WorkPeriod _currentWorkPeriod;
         public static WorkPeriod CurrentWorkPeriod
         {
@@ -134,7 +140,7 @@ namespace Samba.Modules.BasicReports
         {
             if (CurrentWorkPeriod.StartDate == CurrentWorkPeriod.EndDate)
                 return Dao.Query<Ticket>(x => x.LastPaymentDate >= CurrentWorkPeriod.StartDate,
-                                         x => x.Payments,
+                                         x => x.Payments, x => x.TaxServices,
                                          x => x.Discounts, x => x.TicketItems,
                                          x => x.TicketItems.Select(y => y.Properties));
 
@@ -142,7 +148,7 @@ namespace Samba.Modules.BasicReports
                 Dao.Query<Ticket>(
                     x =>
                     x.LastPaymentDate >= CurrentWorkPeriod.StartDate && x.LastPaymentDate < CurrentWorkPeriod.EndDate,
-                    x => x.Payments, x => x.Discounts, x => x.TicketItems.Select(y => y.Properties));
+                    x => x.Payments, x => x.TaxServices, x => x.Discounts, x => x.TicketItems.Select(y => y.Properties));
 
         }
 
@@ -184,6 +190,7 @@ namespace Samba.Modules.BasicReports
             _yesterdayWorkPeriod = null;
             _todayWorkPeriod = null;
             _workPeriods = null;
+            _taxServiceTemplates = null;
         }
 
         private static WorkPeriod _thisMonthWorkPeriod;

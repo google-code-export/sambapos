@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Composition.Hosting;
-using System.Linq;
 using System.Windows;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.MefExtensions;
-using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.ServiceLocation;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Engine;
@@ -45,9 +43,9 @@ namespace Samba.Presentation
 
         protected override void InitializeModules()
         {
-            var moduleManager = Container.GetExportedValue<IModuleManager>();
-            //moduleManager.LoadModule("DashboardModule");
-            //moduleManager.LoadModule("NavigationModule");
+            //var moduleManager = Container.GetExportedValue<IModuleManager>();
+            ////moduleManager.LoadModule("DashboardModule");
+            ////moduleManager.LoadModule("NavigationModule");
 
             base.InitializeModules();
 

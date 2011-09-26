@@ -124,6 +124,36 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+                        <GroupBox Header="{LocText TaxServiceTemplates}" Padding="5">
+                            <StackPanel Orientation="Horizontal">
+                                <DataGrid ItemsSource="{Binding TaxServiceTemplates}" SelectedItem="{Binding SelectedTaxServiceTemplate, Mode=TwoWay}"
+                                     HorizontalAlignment="Stretch" GridLinesVisibility="None" RowHeaderWidth="0" Margin="0,3"
+                                     AutoGenerateColumns="False" CanUserSortColumns="False" IsReadOnly="True" Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="{LocText TaxServiceTemplate}"
+                                             MinWidth="100" Binding="{Binding Name}" />
+                                    </DataGrid.Columns>
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Command="{Binding AddTaxServiceTemplateCommand}" Header="{Binding AddTaxServiceTemplateCommand.Caption}" />
+                                            <MenuItem Command="{Binding DeleteTaxServiceTemplateCommand}" Header="{Binding DeleteTaxServiceTemplateCommand.Caption}" />
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
+                                </DataGrid>
+                                <StackPanel Margin="10">
+                                    <TextBlock Margin="2,3">
+                                        <Hyperlink Command="{Binding AddTaxServiceTemplateCommand}">
+                                            <TextBlock Text="{Binding Path=AddTaxServiceTemplateCommand.Caption}" />
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock Margin="2,3">
+                                        <Hyperlink Command="{Binding DeleteTaxServiceTemplateCommand}">
+                                            <TextBlock Text="{Binding Path=DeleteTaxServiceTemplateCommand.Caption}" />
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
                     </StackPanel>
                 </Grid>
             </StackPanel>

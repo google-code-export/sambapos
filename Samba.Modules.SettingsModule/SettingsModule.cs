@@ -27,6 +27,7 @@ namespace Samba.Modules.SettingsModule
         public ICategoryCommand ListRuleActionsCommand { get; set; }
         public ICategoryCommand ListRulesCommand { get; set; }
         public ICategoryCommand ListTriggersCommand { get; set; }
+
         public ICategoryCommand ShowBrowser { get; set; }
 
         private BrowserViewModel _browserViewModel;
@@ -42,6 +43,7 @@ namespace Samba.Modules.SettingsModule
         private RuleActionListViewModel _ruleActionListViewModel;
         private TriggerListViewModel _triggerListViewModel;
         private RuleListViewModel _ruleListViewModel;
+
 
         public ICategoryCommand NavigateWorkPeriodsCommand { get; set; }
 
@@ -92,7 +94,7 @@ namespace Samba.Modules.SettingsModule
             ListRuleActionsCommand = new CategoryCommand<string>(Resources.RuleActions, Resources.Settings, OnListRuleActions);
             ListRulesCommand = new CategoryCommand<string>(Resources.Rules, Resources.Settings, OnListRules);
             ListTriggersCommand = new CategoryCommand<string>(Resources.Triggers, Resources.Settings, OnListTriggers);
-
+            
             ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.SambaNetwork, OnShowBrowser) { Order = 99 };
 
             PermissionRegistry.RegisterPermission(PermissionNames.OpenWorkPeriods, PermissionCategories.Navigation, Resources.CanStartEndOfDay);

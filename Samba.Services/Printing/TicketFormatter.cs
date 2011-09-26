@@ -257,8 +257,6 @@ namespace Samba.Services.Printing
             return string.Join("\r", sb);
         }
 
-        // [Toplam:{TOPLAM BAKİYE}]
-
         private static string FormatData(string data, string tag, string value)
         {
             var tagData = new TagData(data, tag);
@@ -349,10 +347,10 @@ namespace Samba.Services.Printing
 
     public static class HumanFriendlyInteger
     {
-        static string[] ones = new string[] { "", Resources.One, Resources.Two, Resources.Three, Resources.Four, Resources.Five, Resources.Six, Resources.Seven, Resources.Eight, Resources.Nine };
-        static string[] teens = new string[] { Resources.Ten, Resources.Eleven, Resources.Twelve, Resources.Thirteen, Resources.Fourteen, Resources.Fifteen, Resources.Sixteen, Resources.Seventeen, Resources.Eighteen, Resources.Nineteen };
-        static string[] tens = new string[] { Resources.Twenty, Resources.Thirty, Resources.Forty, Resources.Fifty, Resources.Sixty, Resources.Seventy, Resources.Eighty, Resources.Ninety };
-        static string[] thousandsGroups = { "", " " + Resources.Thousand, " " + Resources.Million, " " + Resources.Billion };
+        static readonly string[] Ones = new[] { "", Resources.One, Resources.Two, Resources.Three, Resources.Four, Resources.Five, Resources.Six, Resources.Seven, Resources.Eight, Resources.Nine };
+        static readonly string[] Teens = new[] { Resources.Ten, Resources.Eleven, Resources.Twelve, Resources.Thirteen, Resources.Fourteen, Resources.Fifteen, Resources.Sixteen, Resources.Seventeen, Resources.Eighteen, Resources.Nineteen };
+        static readonly string[] Tens = new[] { Resources.Twenty, Resources.Thirty, Resources.Forty, Resources.Fifty, Resources.Sixty, Resources.Seventy, Resources.Eighty, Resources.Ninety };
+        static readonly string[] ThousandsGroups = { "", " " + Resources.Thousand, " " + Resources.Million, " " + Resources.Billion };
 
         private static string FriendlyInteger(int n, string leftDigits, int thousands)
         {
@@ -368,25 +366,25 @@ namespace Samba.Services.Printing
 
             if (n < 10)
             {
-                friendlyInt += ones[n];
+                friendlyInt += Ones[n];
             }
             else if (n < 20)
             {
-                friendlyInt += teens[n - 10];
+                friendlyInt += Teens[n - 10];
             }
             else if (n < 100)
             {
-                friendlyInt += FriendlyInteger(n % 10, tens[n / 10 - 2], 0);
+                friendlyInt += FriendlyInteger(n % 10, Tens[n / 10 - 2], 0);
             }
             else if (n < 1000)
             {
-                var t = ones[n / 100] + " " + Resources.Hundred;
+                var t = Ones[n / 100] + " " + Resources.Hundred;
                 if (n / 100 == 1) t = Resources.OneHundred;
                 friendlyInt += FriendlyInteger(n % 100, t, 0);
             }
             else if (n < 10000 && thousands == 0)
             {
-                var t = ones[n / 1000] + " " + Resources.Thousand;
+                var t = Ones[n / 1000] + " " + Resources.Thousand;
                 if (n / 1000 == 1) t = Resources.OneThousand;
                 friendlyInt += FriendlyInteger(n % 1000, t, 0);
             }
@@ -395,7 +393,7 @@ namespace Samba.Services.Printing
                 friendlyInt += FriendlyInteger(n % 1000, FriendlyInteger(n / 1000, "", thousands + 1), 0);
             }
 
-            return friendlyInt + thousandsGroups[thousands];
+            return friendlyInt + ThousandsGroups[thousands];
         }
 
         public static string CurrencyToWritten(decimal d, bool upper = false)
@@ -430,7 +428,7 @@ namespace Samba.Services.Printing
             {
                 return Resources.Zero;
             }
-            else if (n < 0)
+            if (n < 0)
             {
                 return Resources.Negative + " " + IntegerToWritten(-n);
             }

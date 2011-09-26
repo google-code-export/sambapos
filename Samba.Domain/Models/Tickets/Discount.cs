@@ -10,7 +10,6 @@
     public class Discount
     {
         public int Id { get; set; }
-        public int SourceId { get; set; }
         public int UserId { get; set; }
         public int TicketItemId { get; set; }
         public int DiscountType { get; set; }

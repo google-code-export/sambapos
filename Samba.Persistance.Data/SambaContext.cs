@@ -68,6 +68,8 @@ namespace Samba.Persistance.Data
         public DbSet<MenuItemPriceDefinition> MenuItemPriceDefinitions { get; set; }
         public DbSet<MenuItemPrice> MenuItemPrices { get; set; }
         public DbSet<VatTemplate> VatTemplates { get; set; }
+        public DbSet<TaxServiceTemplate> TaxServiceTemplates { get; set; }
+        public DbSet<TaxService> TaxServices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -77,6 +79,7 @@ namespace Samba.Persistance.Data
 
             modelBuilder.Entity<MenuItem>().HasMany(p => p.PropertyGroups).WithMany();
             modelBuilder.Entity<Department>().HasMany(p => p.TicketTagGroups).WithMany();
+            modelBuilder.Entity<Department>().HasMany(p => p.TaxServiceTemplates).WithMany();
             modelBuilder.Entity<TableScreen>().HasMany(p => p.Tables).WithMany();
             modelBuilder.Entity<Terminal>().HasMany(p => p.PrintJobs).WithMany();
 
@@ -84,6 +87,15 @@ namespace Samba.Persistance.Data
             const int precision = 16;
 
             modelBuilder.ComplexType<Price>().Property(x => x.Amount).HasPrecision(precision, scale);
+
+            //TaxServiceTemplate
+
+            modelBuilder.Entity<TaxServiceTemplate>().Property(x => x.Amount).HasPrecision(precision, scale);
+
+            //TaxService
+
+            modelBuilder.Entity<TaxService>().Property(x => x.Amount).HasPrecision(precision, scale);
+            modelBuilder.Entity<TaxService>().Property(x => x.CalculationAmount).HasPrecision(precision, scale);
 
             //VatTemplate
 

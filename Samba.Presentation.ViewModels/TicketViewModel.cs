@@ -109,6 +109,11 @@ namespace Samba.Presentation.ViewModels
             get { return Model.CalculateVat(); }
         }
 
+        public decimal TicketTaxServiceValue
+        {
+            get { return Model.GetTaxServicesTotal(); }
+        }
+
         public decimal TicketPaymentValue
         {
             get { return Model.GetPaymentAmount(); }
@@ -157,6 +162,11 @@ namespace Samba.Presentation.ViewModels
         public string TicketVatLabel
         {
             get { return TicketVatValue.ToString(LocalSettings.DefaultCurrencyFormat); }
+        }
+
+        public string TicketTaxServiceLabel
+        {
+            get { return TicketTaxServiceValue.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
         public string TicketPaymentLabel
@@ -352,7 +362,7 @@ namespace Samba.Presentation.ViewModels
 
         public bool IsPlainTotalVisible
         {
-            get { return IsTicketDiscountVisible || IsTicketVatTotalVisible || IsTicketRoundingVisible; }
+            get { return IsTicketDiscountVisible || IsTicketVatTotalVisible || IsTicketRoundingVisible || IsTicketTaxServiceVisible; }
         }
 
         public bool IsTicketDiscountVisible
@@ -363,6 +373,11 @@ namespace Samba.Presentation.ViewModels
         public bool IsTicketRoundingVisible
         {
             get { return TicketRoundingAmount != 0; }
+        }
+
+        public bool IsTicketTaxServiceVisible
+        {
+            get { return TicketTaxServiceValue > 0; }
         }
 
         public string Location

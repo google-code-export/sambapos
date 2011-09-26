@@ -178,7 +178,8 @@ namespace Samba.Modules.TicketModule
         public bool IsTicketDiscountVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketDiscountVisible; } }
         public bool IsTicketRoundingVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketRoundingVisible; } }
         public bool IsTicketVatTotalVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketVatTotalVisible; } }
-        public bool IsPlainTotalVisible { get { return IsTicketDiscountVisible || IsTicketVatTotalVisible || IsTicketRoundingVisible; } }
+        public bool IsTicketTaxServiceVisible { get { return SelectedTicket != null && SelectedTicket.IsTicketTaxServiceVisible; } }
+        public bool IsPlainTotalVisible { get { return IsTicketDiscountVisible || IsTicketVatTotalVisible || IsTicketRoundingVisible || IsTicketTaxServiceVisible; } }
 
         public bool IsTableButtonVisible
         {
@@ -1092,6 +1093,7 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("IsTicketTotalVisible");
             RaisePropertyChanged("IsTicketDiscountVisible");
             RaisePropertyChanged("IsTicketVatTotalVisible");
+            RaisePropertyChanged("IsTicketTaxServiceVisible");
             RaisePropertyChanged("IsTicketRoundingVisible");
             RaisePropertyChanged("IsPlainTotalVisible");
             RaisePropertyChanged("IsFastPaymentButtonsVisible");
@@ -1145,6 +1147,7 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("IsTicketTotalVisible");
             RaisePropertyChanged("IsTicketDiscountVisible");
             RaisePropertyChanged("IsTicketVatTotalVisible");
+            RaisePropertyChanged("IsTicketTaxServiceVisible");
             RaisePropertyChanged("IsTicketRoundingVisible");
             RaisePropertyChanged("IsPlainTotalVisible");
             RaisePropertyChanged("CanChangeDepartment");

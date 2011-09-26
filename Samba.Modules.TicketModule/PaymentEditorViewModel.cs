@@ -367,13 +367,13 @@ namespace Samba.Modules.TicketModule
         {
             if (GetTenderedValue() > 0 && SelectedTicket.Model.GetPlainSum() > 0)
             {
-                var discounts = SelectedTicket.Model.GetDiscountAndRoundingTotal();
-                var discountAmount = SelectedTicket.Model.GetRemainingAmount() - SelectedTicket.Model.CalculateVat() + discounts;
-                discountAmount = discountAmount * (GetTenderedValue() / 100);
-                var discountRate = SelectedTicket.Model.GetPlainSum();
-                discountRate = (discountAmount * 100) / discountRate;
-                discountRate = decimal.Round(discountRate, LocalSettings.Decimals);
-                SelectedTicket.Model.AddTicketDiscount(DiscountType.Percent, discountRate, AppServices.CurrentLoggedInUser.Id);
+                //var discounts = SelectedTicket.Model.GetDiscountAndRoundingTotal();
+                //var discountAmount = SelectedTicket.Model.GetRemainingAmount() + discounts-SelectedTicket.Model.CalculateVat()-SelectedTicket.Model.GetTaxServicesTotal();
+                //discountAmount = discountAmount * (GetTenderedValue() / 100);
+                //var discountRate = SelectedTicket.Model.GetPlainSum();
+                //discountRate = (discountAmount * 100) / discountRate;
+                //discountRate = decimal.Round(discountRate, LocalSettings.Decimals);
+                SelectedTicket.Model.AddTicketDiscount(DiscountType.Percent, GetTenderedValue(), AppServices.CurrentLoggedInUser.Id);
             }
             else SelectedTicket.Model.AddTicketDiscount(DiscountType.Percent, 0, AppServices.CurrentLoggedInUser.Id);
             PaymentAmount = "";
@@ -429,12 +429,17 @@ namespace Samba.Modules.TicketModule
             MergedItems.Clear();
             PaymentAmount = "";
             _selectedTotal = 0;
+
+            var serviceAmount = SelectedTicket.Model.GetTaxServicesTotal();
+            var sum = SelectedTicket.Model.GetSumWithoutVat();
+
             foreach (var item in SelectedTicket.Model.TicketItems)
             {
                 if (!item.Voided && !item.Gifted)
                 {
                     var ticketItem = item;
                     var price = ticketItem.GetItemPrice();
+                    price += (price * serviceAmount) / sum;
                     if (!ticketItem.VatIncluded) price += ticketItem.VatAmount;
                     var mitem = MergedItems.SingleOrDefault(x => x.MenuItemId == ticketItem.MenuItemId && x.Price == price);
                     if (mitem == null)

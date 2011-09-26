@@ -46,7 +46,9 @@ namespace Samba.Services
                 Debug.Assert(_workspace == null);
                 Debug.Assert(Ticket == null);
                 _workspace = WorkspaceFactory.Create();
-                Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId, x => x.TicketItems.Select(y => y.Properties));
+                Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId,
+                    x => x.TaxServices, x => x.Payments, x => x.Discounts,
+                    x => x.TicketItems.Select(y => y.Properties));
             }
 
             public void CommitChanges()
@@ -162,7 +164,7 @@ namespace Samba.Services
         public IEnumerable<TableScreen> TableScreens { get { return _tableScreens ?? (_tableScreens = Dao.Query<TableScreen>(x => x.Tables)); } }
 
         private IEnumerable<Department> _departments;
-        public IEnumerable<Department> Departments { get { return _departments ?? (_departments = Dao.Query<Department>(x => x.TicketNumerator, x => x.OrderNumerator, x => x.TicketTagGroups.Select(y => y.TicketTags))); } }
+        public IEnumerable<Department> Departments { get { return _departments ?? (_departments = Dao.Query<Department>(x => x.TicketNumerator, x => x.OrderNumerator, x => x.TaxServiceTemplates, x => x.TicketTagGroups.Select(y => y.TicketTags))); } }
 
         private IEnumerable<Department> _permittedDepartments;
         public IEnumerable<Department> PermittedDepartments

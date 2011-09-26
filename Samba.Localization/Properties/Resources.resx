@@ -2912,4 +2912,33 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="RoundingTotal" xml:space="preserve">
     <value>Rounding Total</value>
   </data>
+  <data name="TaxServiceTemplates" xml:space="preserve">
+    <value>Tax or Service Templates</value>
+  </data>
+  <data name="ChooseTaxServicesForDepartmentHint_f" xml:space="preserve">
+    <value>Select tax or services for using at {0} department.</value>
+  </data>
+  <data name="TaxServiceTemplate" xml:space="preserve">
+    <value>Tax or Service Template</value>
+  </data>
+  <data name="TaxServiceTotal" xml:space="preserve">
+    <value>Tax or Services Total</value>
+  </data>
+  <data name="CalculationMethod" xml:space="preserve">
+    <value>Calculation Method</value>
+    <comment>Label.Content</comment>
+  </data>
+  <data name="RateOrAmount" xml:space="preserve">
+    <value>Rate or Amount</value>
+    <comment>Label.Content</comment>
+  </data>
+	<data name="RateFromTicketAmount">
+		<value xml:space="preserve">Rate From Ticket Amount</value>
+	</data>
+	<data name="RateFromPreviousTemplate">
+		<value xml:space="preserve">Rate From Previous Template Amount</value>
+	</data>
+	<data name="FixedAmount">
+		<value xml:space="preserve">Fixed Amount</value>
+	</data>
 </root>
