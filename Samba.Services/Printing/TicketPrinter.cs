@@ -106,7 +106,7 @@ namespace Samba.Services.Printing
                     ti = ticket.GetUnlockedLines();
                     break;
                 case (int)WhatToPrintTypes.GroupedByBarcode:
-                    ti = GroupLinesByValue(ticket, x => x.Barcode ?? "", "1");
+                    ti = GroupLinesByValue(ticket, x => x.Barcode ?? "", "1", true);
                     break;
                 case (int)WhatToPrintTypes.GroupedByGroupCode:
                     ti = GroupLinesByValue(ticket, x => x.GroupCode ?? "", Resources.UndefinedWithBrackets);
@@ -134,9 +134,9 @@ namespace Samba.Services.Printing
                     }));
         }
 
-        private static IEnumerable<TicketItem> GroupLinesByValue(Ticket ticket, Func<MenuItem, object> selector, string defaultValue)
+        private static IEnumerable<TicketItem> GroupLinesByValue(Ticket ticket, Func<MenuItem, object> selector, string defaultValue, bool calcDiscounts = false)
         {
-            var discounts = ticket.GetDiscountAndRoundingTotal();
+            var discounts = calcDiscounts ? ticket.GetDiscountAndRoundingTotal() : 0;
             var di = discounts > 0 ? discounts / ticket.GetPlainSum() : 0;
             var cache = new Dictionary<string, decimal>();
             foreach (var ticketItem in ticket.TicketItems.OrderBy(x => x.Id).ToList())
@@ -146,7 +146,7 @@ namespace Samba.Services.Printing
                 if (string.IsNullOrEmpty(value)) value = defaultValue;
                 if (!cache.ContainsKey(value))
                     cache.Add(value, 0);
-                var total = (item.GetTotal() + item.GetTotalPropertyPrice());
+                var total = (item.GetTotal());
                 cache[value] += Decimal.Round(total - (total * di), 2);
             }
             return cache.Select(x => new TicketItem

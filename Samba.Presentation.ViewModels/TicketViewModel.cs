@@ -91,7 +91,6 @@ namespace Samba.Presentation.ViewModels
             get { return Model.Id; }
         }
 
-        public string Table { get { return Model.LocationName; } set { Model.LocationName = value; } }
         public string Note { get { return Model.Note; } set { Model.Note = value; RaisePropertyChanged("Note"); } }
         public string TagDisplay { get { return Model.GetTagData().Split('\r').Select(x => !string.IsNullOrEmpty(x) && x.Contains(":") && x.Split(':')[0].Trim() == x.Split(':')[1].Trim() ? x.Split(':')[0] : x).Aggregate("", (c, v) => c + v + "\r").Trim('\r'); } }
 
@@ -283,6 +282,7 @@ namespace Samba.Presentation.ViewModels
             RaisePropertyChanged("TicketRemainingLabel");
             RaisePropertyChanged("TicketDiscountLabel");
             RaisePropertyChanged("TicketPlainTotalLabel");
+            RaisePropertyChanged("TicketTaxServiceValue");
             RaisePropertyChanged("IsTagged");
         }
 
@@ -471,7 +471,7 @@ namespace Samba.Presentation.ViewModels
         public bool CanChangeTable()
         {
             if (IsLocked || Items.Count == 0 || (Payments.Count > 0 && !string.IsNullOrEmpty(Location)) || !Model.CanSubmit) return false;
-            return string.IsNullOrEmpty(Table) || AppServices.IsUserPermittedFor(PermissionNames.ChangeTable);
+            return string.IsNullOrEmpty(Location) || AppServices.IsUserPermittedFor(PermissionNames.ChangeTable);
         }
 
         public string GetPrintError()

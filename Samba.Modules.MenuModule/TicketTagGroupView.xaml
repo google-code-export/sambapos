@@ -37,8 +37,11 @@
             <CheckBox Margin="0,1" IsChecked="{Binding NumericTags}">
                 <LocText ResourceIdentifierKey="NumericTags"/>
             </CheckBox>
-            <CheckBox Margin="0,1,0,10" IsChecked="{Binding FreeTagging}">
+            <CheckBox Margin="0,1" IsChecked="{Binding FreeTagging}">
                 <LocText ResourceIdentifierKey="FreeTagging"/>
+            </CheckBox>
+            <CheckBox Margin="0,1,0,10" IsChecked="{Binding SaveFreeTags}">
+                <LocText ResourceIdentifierKey="SaveFreeTags"/>
             </CheckBox>
             <GroupBox Header="{LocText ButtonColors}" Padding="5"
                  HorizontalAlignment="Left">

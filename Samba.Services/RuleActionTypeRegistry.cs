@@ -165,7 +165,8 @@ namespace Samba.Services
 
         public static IEnumerable<string> GetParameterNames(string eventKey)
         {
-            return RuleEvents[eventKey].ParameterObject.GetType().GetProperties().Select(x => x.Name);
+            var po = RuleEvents[eventKey].ParameterObject;
+            return po != null ? po.GetType().GetProperties().Select(x => x.Name) : new List<string>();
         }
 
         public static void RegisterEvent(string eventKey, string eventName)

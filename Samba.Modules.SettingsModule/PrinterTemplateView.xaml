@@ -329,6 +329,10 @@
                     <LineBreak />
                     <Bold>{VAT DETAILS}</Bold> VAT Totals grouped by VAT template
                     <LineBreak />
+                    <Bold>{TAX TOTAL}</Bold> Tax Total
+                    <LineBreak />
+                    <Bold>{TAX DETAILS}</Bold> Tax Totals grouped by Tax or Service template
+                    <LineBreak />
                     <Bold>
                         <Run>
                             <LocText ResourceIdentifierKey="TF_TicketRemainingAmount"/>

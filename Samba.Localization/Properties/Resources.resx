@@ -2932,13 +2932,22 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>Rate or Amount</value>
     <comment>Label.Content</comment>
   </data>
-	<data name="RateFromTicketAmount">
-		<value xml:space="preserve">Rate From Ticket Amount</value>
-	</data>
-	<data name="RateFromPreviousTemplate">
-		<value xml:space="preserve">Rate From Previous Template Amount</value>
-	</data>
-	<data name="FixedAmount">
-		<value xml:space="preserve">Fixed Amount</value>
-	</data>
+  <data name="RateFromTicketAmount" xml:space="preserve">
+    <value>Rate from ticket amount</value>
+  </data>
+  <data name="RateFromPreviousTemplate" xml:space="preserve">
+    <value>Rate from previous template amount</value>
+  </data>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>Fixed amount</value>
+  </data>
+  <data name="RateFromVatIncludedTicketAmount">
+    <value xml:space="preserve">Rate from VAT included ticket amount</value>
+  </data>
+  <data name="UnhandledExceptionErrorMessage" xml:space="preserve">
+    <value>SambaPOS encountered an unexpected problem. Problem details logged to trace.log file</value>
+  </data>
+  <data name="SaveFreeTags" xml:space="preserve">
+    <value>Save Free Tags</value>
+  </data>
 </root>

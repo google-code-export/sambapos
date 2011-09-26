@@ -15,7 +15,7 @@ namespace Samba.Modules.MenuModule
         private string[] _calculationMethods;
         public string[] CalculationMethods
         {
-            get { return _calculationMethods ?? (_calculationMethods = new[] { Resources.RateFromTicketAmount, Resources.RateFromPreviousTemplate, Resources.FixedAmount }); }
+            get { return _calculationMethods ?? (_calculationMethods = new[] { Resources.RateFromTicketAmount,Resources.RateFromVatIncludedTicketAmount, Resources.RateFromPreviousTemplate, Resources.FixedAmount }); }
         }
 
         public string SelectedCalculationMethod { get { return CalculationMethods[CalculationMethod]; } set { CalculationMethod = Array.IndexOf(CalculationMethods, value); } }

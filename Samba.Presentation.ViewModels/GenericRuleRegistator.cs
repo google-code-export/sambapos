@@ -41,6 +41,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketVat", Resources.UpdateTicketVat, new { VatTemplate = "" });
             RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", "Regenerate Ticket VAT");
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", "Update Ticket Tax Service", new { TaxServiceTemplate = "", Amount = 0m });
         }
 
         private static void RegisterRules()
@@ -67,6 +68,8 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("PriceTag", () => Dao.Select<MenuItemPriceDefinition, string>(x => x.PriceTag, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("Color", () => typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static).Select(x => x.Name));
             RuleActionTypeRegistry.RegisterParameterSoruce("VatTemplate", () => Dao.Select<VatTemplate, string>(x => x.Name, x => x.Id > 0));
+            RuleActionTypeRegistry.RegisterParameterSoruce("TaxServiceTemplate", () => Dao.Select<TaxServiceTemplate, string>(x => x.Name, x => x.Id > 0));
+            RuleActionTypeRegistry.RegisterParameterSoruce("TagName", () => Dao.Select<TicketTagGroup, string>(x => x.Name, x => x.Id > 0));
         }
 
         private static void ResetCache()
@@ -127,6 +130,24 @@ namespace Samba.Presentation.ViewModels
                             ticket.UpdateVat(vatTemplate);
                             TicketViewModel.RecalculateTicket(ticket);
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
+                        }
+                    }
+                }
+
+                if (x.Value.Action.ActionType == "UpdateTicketTaxService")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var taxServiceTemplateName = x.Value.GetAsString("TaxServiceTemplate");
+                        var taxServiceTemplate =
+                            AppServices.MainDataContext.TaxServiceTemplates.FirstOrDefault(
+                                y => y.Name == taxServiceTemplateName);
+                        if (taxServiceTemplate != null)
+                        {
+                            var amount = x.Value.GetAsDecimal("Amount");
+                            ticket.AddTaxService(taxServiceTemplate.Id, taxServiceTemplate.CalculationMethod, amount);
+                            TicketViewModel.RecalculateTicket(ticket);
                         }
                     }
                 }

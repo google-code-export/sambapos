@@ -14,6 +14,8 @@ namespace Samba.Persistance.DBMigration
         {
             Delete.Column("SourceId").FromTable("Discounts");
 
+            Create.Column("SaveFreeTags").OnTable("TicketTagGroups").AsBoolean().WithDefaultValue(true);
+
             Create.Column("ExcludeVat").OnTable("PrintJobs").AsBoolean().WithDefaultValue(false);
 
             Create.Column("Tag").OnTable("ScreenMenuItems").AsString(128).Nullable();

@@ -2936,12 +2936,21 @@ Borçlandır</value>
     <comment>Label.Content</comment>
   </data>
   <data name="RateFromTicketAmount">
-    <value xml:space="preserve">Adisyon Tutarından Oranla</value>
+    <value xml:space="preserve">Adisyon tutarından oranla</value>
+  </data>
+  <data name="RateFromVatIncludedTicketAmount">
+    <value xml:space="preserve">KDV Dahil Adisyon tutarından oranla</value>
   </data>
   <data name="RateFromPreviousTemplate">
-    <value xml:space="preserve">Önceki Şablon Tutarından Oranla</value>
+    <value xml:space="preserve">Önceki şablon tutarından oranla</value>
   </data>
   <data name="FixedAmount">
-    <value xml:space="preserve">Sabit Tutar</value>
+    <value xml:space="preserve">Sabit tutar</value>
+  </data>
+  <data name="UnhandledExceptionErrorMessage">
+    <value xml:space="preserve">Samba POS Beklenmeyen bir sorunla karşılaştı. Uygulama şu anda kapatılacak. Detaylı bilgi için log dosyasını inceleyiniz</value>
+  </data>
+  <data name="SaveFreeTags" xml:space="preserve">
+    <value>Serbest Etiketleri Kaydet</value>
   </data>
 </root>

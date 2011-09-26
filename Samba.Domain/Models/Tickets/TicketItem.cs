@@ -129,17 +129,28 @@ namespace Samba.Domain.Models.Tickets
                 return;
             }
 
-            var ti = FindProperty(property.Name) ?? new TicketItemProperty
-                                                        {
-                                                            Name = property.Name,
-                                                            PropertyPrice = property.Price,
-                                                            PropertyGroupId = group.Id,
-                                                            MenuItemId = property.MenuItemId,
-                                                            CalculateWithParentPrice = group.CalculateWithParentPrice,
-                                                            PortionName = PortionName,
-                                                            Quantity = group.MultipleSelection ? 0 : 1
-                                                        };
+            var ti = FindProperty(property.Name);
+            if (ti == null)
+            {
+                ti = new TicketItemProperty
+                        {
+                            Name = property.Name,
+                            PropertyPrice = property.Price,
+                            PropertyGroupId = group.Id,
+                            MenuItemId = property.MenuItemId,
+                            CalculateWithParentPrice = group.CalculateWithParentPrice,
+                            PortionName = PortionName,
+                            Quantity = group.MultipleSelection ? 0 : 1
+                        };
 
+                if (VatIncluded && VatRate > 0)
+                {
+                    ti.PropertyPrice.Amount = ti.PropertyPrice.Amount / ((100 + VatRate) / 100);
+                    ti.PropertyPrice.Amount = decimal.Round(ti.PropertyPrice.Amount, 2);
+                    ti.VatAmount = property.Price.Amount - ti.PropertyPrice.Amount;
+                }
+                else if (VatRate > 0) ti.VatAmount = (property.Price.Amount * VatRate) / 100;
+            }
             if (group.SingleSelection)
             {
                 var tip = Properties.FirstOrDefault(x => x.PropertyGroupId == group.Id);

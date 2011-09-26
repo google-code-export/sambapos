@@ -770,7 +770,7 @@ namespace Samba.Modules.TicketModule
         {
             get
             {
-                if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.Table))
+                if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.Location))
                     return Resources.ChangeTable_r;
                 return Resources.SelectTable_r;
             }

@@ -131,7 +131,7 @@ namespace Samba.Services.Printing
                                         Voided = x.Key.Voided,
                                         Gifted = x.Key.Gifted,
                                         Price = x.Key.Price,
-                                        VatAmount =  x.Key.VatAmount,
+                                        VatAmount = x.Key.VatAmount,
                                         VatTemplateId = x.Key.VatTemplateId,
                                         CreatedDateTime = x.Last().CreatedDateTime,
                                         OrderNumber = x.Last().OrderNumber,
@@ -209,13 +209,18 @@ namespace Samba.Services.Printing
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
             var vatAmount = ticket.CalculateVat();
+            var taxServicesTotal = ticket.GetTaxServicesTotal();
 
-            result = FormatDataIf(vatAmount > 0 || discount > 0, result, "{PLAIN TOTAL}", plainTotal.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", plainTotal.ToString("#,#0.00"));
             result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", discount.ToString("#,#0.00"));
             result = FormatDataIf(vatAmount > 0, result, "{VAT TOTAL}", vatAmount.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0, result, "{TAX TOTAL}", taxServicesTotal.ToString("#,#0.00"));
 
             if (result.Contains("{VAT DETAILS}"))
                 result = FormatDataIf(vatAmount > 0, result, "{VAT DETAILS}", GetVatDetails(ticket.TicketItems, plainTotal, discount));
+
+            if (result.Contains("{TAX DETAILS}"))
+                result = FormatDataIf(taxServicesTotal > 0, result, "{TAX DETAILS}", GetTaxDetails(ticket));
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
                 string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
@@ -236,6 +241,19 @@ namespace Samba.Services.Printing
                 result = FormatData(result, "{TOTALTEXT}", HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum(), true));
 
             return result;
+        }
+
+        private static string GetTaxDetails(Ticket ticket)
+        {
+            var sb = new StringBuilder();
+            foreach (var taxService in ticket.TaxServices)
+            {
+                var service = taxService;
+                var ts = AppServices.MainDataContext.TaxServiceTemplates.FirstOrDefault(x => x.Id == service.TaxServiceId);
+                var tsTitle = ts != null ? ts.Name : Resources.UndefinedWithBrackets;
+                sb.AppendLine("<J>" + tsTitle + ":|" + service.CalculationAmount.ToString("#,#0.00"));
+            }
+            return string.Join("\r", sb);
         }
 
         private static string GetVatDetails(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)

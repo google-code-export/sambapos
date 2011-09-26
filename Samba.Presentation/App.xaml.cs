@@ -57,11 +57,9 @@ namespace Samba.Presentation
 
         private static void HandleException(Exception ex)
         {
-            if (ex == null)
-                return;
-
+            if (ex == null) return;
             ExceptionPolicy.HandleException(ex, "Policy");
-            MessageBox.Show(Presentation.Properties.Resources.UnhandledException, "Uyarı ");
+            MessageBox.Show(Localization.Properties.Resources.UnhandledExceptionErrorMessage, Localization.Properties.Resources.Warning);
             Environment.Exit(1);
         }
     }

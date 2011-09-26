@@ -141,6 +141,14 @@ namespace Samba.Services
                 }
             }
 
+            public void RemoveTaxServices(IEnumerable<TaxService> taxServices)
+            {
+                foreach (var taxService in taxServices)
+                {
+                    _workspace.Delete(taxService);
+                }
+            }
+
             public void AddItemToSelectedTicket(TicketItem model)
             {
                 _workspace.Add(model);
@@ -193,6 +201,12 @@ namespace Samba.Services
         public IEnumerable<VatTemplate> VatTemplates
         {
             get { return _vatTemplates ?? (_vatTemplates = Dao.Query<VatTemplate>()); }
+        }
+
+        private IEnumerable<TaxServiceTemplate> _taxServiceTemplates;
+        public IEnumerable<TaxServiceTemplate> TaxServiceTemplates
+        {
+            get { return _taxServiceTemplates ?? (_taxServiceTemplates = Dao.Query<TaxServiceTemplate>()); }
         }
 
         public WorkPeriod CurrentWorkPeriod { get { return LastTwoWorkPeriods.LastOrDefault(); } }
@@ -445,6 +459,7 @@ namespace Samba.Services
             if (canSumbitTicket)
             {
                 _ticketWorkspace.RemoveTicketItems(SelectedTicket.PopRemovedTicketItems());
+                _ticketWorkspace.RemoveTaxServices(SelectedTicket.PopRemovedTaxServices());
                 Recalculate(SelectedTicket);
                 SelectedTicket.IsPaid = SelectedTicket.RemainingAmount == 0;
 
@@ -542,6 +557,7 @@ namespace Samba.Services
                 _rules = null;
                 _actions = null;
                 _vatTemplates = null;
+                _taxServiceTemplates = null;
 
                 if (selectedTableScreen > 0)
                     SelectedTableScreen = TableScreens.Single(x => x.Id == selectedTableScreen);

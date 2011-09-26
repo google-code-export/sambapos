@@ -35,6 +35,7 @@ namespace Samba.Modules.MenuModule
         public string Action { get { return Actions[Model.Action]; } set { Model.Action = Actions.IndexOf(value); } }
         public Numerator Numerator { get { return Model.Numerator; } set { Model.Numerator = value; } }
         public bool FreeTagging { get { return Model.FreeTagging; } set { Model.FreeTagging = value; } }
+        public bool SaveFreeTags { get { return Model.SaveFreeTags; } set { Model.SaveFreeTags = value; } }
         public bool ForceValue { get { return Model.ForceValue; } set { Model.ForceValue = value; } }
         public bool NumericTags { get { return Model.NumericTags; } set { Model.NumericTags = value; } }
         public string ButtonColorWhenTagSelected { get { return Model.ButtonColorWhenTagSelected; } set { Model.ButtonColorWhenTagSelected = value; } }

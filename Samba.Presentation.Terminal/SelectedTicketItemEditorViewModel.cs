@@ -74,7 +74,7 @@ namespace Samba.Presentation.Terminal
                 x => x.Id == SelectedTicketTag.Id);
             Debug.Assert(cachedTag != null);
             var ctag = cachedTag.TicketTags.SingleOrDefault(x => x.Name.ToLower() == CustomTag.ToLower());
-            if (ctag == null)
+            if (ctag == null && cachedTag.SaveFreeTags)
             {
                 using (var workspace = WorkspaceFactory.Create())
                 {
