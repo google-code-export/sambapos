@@ -249,22 +249,22 @@ namespace Samba.Domain.Models.Tickets
 
         public decimal GetTotalPropertyPrice()
         {
-            return GetPropertySum(Properties);
+            return GetPropertySum(Properties, VatIncluded);
         }
 
         public decimal GetPropertyPrice()
         {
-            return GetPropertySum(Properties.Where(x => !x.CalculateWithParentPrice));
+            return GetPropertySum(Properties.Where(x => !x.CalculateWithParentPrice), VatIncluded);
         }
 
         public decimal GetMenuItemPropertyPrice()
         {
-            return GetPropertySum(Properties.Where(x => x.CalculateWithParentPrice));
+            return GetPropertySum(Properties.Where(x => x.CalculateWithParentPrice),VatIncluded);
         }
 
-        private static decimal GetPropertySum(IEnumerable<TicketItemProperty> properties)
+        private static decimal GetPropertySum(IEnumerable<TicketItemProperty> properties, bool vatIncluded)
         {
-            return properties.Sum(property => (property.PropertyPrice.Amount + property.VatAmount) * property.Quantity);
+            return properties.Sum(property => (property.PropertyPrice.Amount + (vatIncluded ? property.VatAmount : 0)) * property.Quantity);
         }
 
         public void IncSelectedQuantity()
