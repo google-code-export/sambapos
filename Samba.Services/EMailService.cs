@@ -25,9 +25,19 @@ namespace Samba.Services
             smtpServer.Port = smtpPort;
             smtpServer.Credentials = new System.Net.NetworkCredential(smtpUser, smtpPassword);
             smtpServer.EnableSsl = true;
-            smtpServer.Send(mail);
-            if (deleteFile && !string.IsNullOrEmpty(fileName) && File.Exists(fileName))
-                File.Delete(fileName);
+            try
+            {
+                smtpServer.Send(mail);
+            }
+            catch (Exception e)
+            {   
+                AppServices.LogError(e);
+            }
+            finally
+            {
+                if (deleteFile && !string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                    File.Delete(fileName);
+            }
         }
 
         public static void SendEMailAsync(string smtpServerAddress, string smtpUser, string smtpPassword, int smtpPort, string toEmailAddress, string fromEmailAddress, string subject, string body, string fileName, bool deleteFile)

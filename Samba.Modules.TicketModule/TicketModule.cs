@@ -72,13 +72,13 @@ namespace Samba.Modules.TicketModule
                             using (var vr = WorkspaceFactory.CreateReadOnly())
                             {
                                 AppServices.ResetCache();
-                                var startDate = AppServices.MainDataContext.LastTwoWorkPeriods.First().StartDate;
                                 var endDate = AppServices.MainDataContext.LastTwoWorkPeriods.Last().EndDate;
+                                var startDate = endDate.AddDays(-7);
                                 vr.Queryable<TicketItem>()
-                                    .Where(y=>y.CreatedDateTime >=startDate && y.CreatedDateTime< endDate)
+                                    .Where(y => y.CreatedDateTime >= startDate && y.CreatedDateTime < endDate)
                                     .GroupBy(y => y.MenuItemId)
                                     .ToList().ForEach(
-                                        y => items.Single(z => z.MenuItemId == y.Key).UsageCount = y.Count());
+                                        y => items.Where(z => z.MenuItemId == y.Key).ToList().ForEach(z => z.UsageCount = y.Count()));
                             }
                             v.CommitChanges();
                         }
