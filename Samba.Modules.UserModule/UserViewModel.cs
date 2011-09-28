@@ -13,6 +13,8 @@ namespace Samba.Modules.UserModule
 {
     public class UserViewModel : EntityViewModelBase<User>
     {
+        private bool _edited;
+
         public UserViewModel(User user)
             : base(user)
         {
@@ -21,11 +23,19 @@ namespace Samba.Modules.UserModule
 
         public string PinCode
         {
-            get { return Model.PinCode; }
+            get
+            {
+                if (_edited) return Model.PinCode;
+                return !string.IsNullOrEmpty(Model.PinCode) ? "********" : "";
+            }
             set
             {
-                Model.PinCode = value;
-                RaisePropertyChanged("PinCode");
+                if (!Model.PinCode.Contains("*") && !string.IsNullOrEmpty(value))
+                {
+                    _edited = true;
+                    Model.PinCode = value;
+                    RaisePropertyChanged("PinCode");
+                }
             }
         }
 
@@ -50,7 +60,7 @@ namespace Samba.Modules.UserModule
 
         protected override string GetSaveErrorMessage()
         {
-            var users = AppServices.Workspace.All<User>(x => x.PinCode == PinCode);
+            var users = AppServices.Workspace.All<User>(x => x.PinCode == Model.PinCode);
             return users.Count() > 1 || (users.Count() == 1 && users.ElementAt(0).Id != Model.Id)
                 ? Resources.SaveErrorThisPinCodeInUse : "";
         }

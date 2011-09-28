@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimatedTabControl.cs" />
+    <Compile Include="BindablePasswordBox.cs" />
     <Compile Include="ContentTicker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

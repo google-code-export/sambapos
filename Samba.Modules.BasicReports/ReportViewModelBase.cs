@@ -68,7 +68,14 @@ namespace Samba.Modules.BasicReports
             var fn = AskFileName("Report", ".xps");
             if (!string.IsNullOrEmpty(fn))
             {
-                SaveAsXps(fn, Document);
+                try
+                {
+                    SaveAsXps(fn, Document);
+                }
+                catch (Exception e)
+                {
+                    AppServices.LogError(e);
+                }
             }
         }
 
@@ -157,7 +164,7 @@ namespace Samba.Modules.BasicReports
             RaisePropertyChanged("Document");
 
             //Program ilk yüklendiğinde aktif gün başı işlemi yoktur.
-            
+
             if (ReportContext.CurrentWorkPeriod == null) return;
             var memStream = new MemoryStream();
             using (var worker = new BackgroundWorker())

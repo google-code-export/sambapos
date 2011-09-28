@@ -16,7 +16,7 @@ namespace Samba.Modules.MenuModule
         {
             get
             {
-                return string.Format("{0} - {1}", Name, (VatIncluded ? "Included" : "Excluded"));
+                return string.Format("{0} - {1}", Name, (VatIncluded ? Resources.Included : Resources.Excluded));
             }
         }
 

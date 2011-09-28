@@ -29,9 +29,10 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Margin="0,3">
                                         <Label Content="{Binding NameDisplay}" MinWidth="130" />
-                                        <ComboBox Margin="3,0" MinWidth="45" IsEditable="True" Text="{Binding Operation}"
-                                             ItemsSource="{Binding Operations}" />
-                                        <ComboBox MinWidth="80" IsEditable="True" ItemsSource="{Binding Values}" Text="{Binding Value}" />
+                                        <ComboBox Margin="3,0" MinWidth="45" IsEditable="True" Text="{Binding Operation}" 
+                                                  ItemsSource="{Binding Operations}"/>
+                                        <ComboBox MinWidth="80" IsEditable="True" 
+                                                  ItemsSource="{Binding Values}" Text="{Binding Value}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

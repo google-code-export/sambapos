@@ -365,7 +365,12 @@ namespace Samba.Modules.TicketModule
 
         private void OnSetDiscountRateCommand(string obj)
         {
-            if (GetTenderedValue() > 0 && SelectedTicket.Model.GetPlainSum() > 0)
+            var tenderedvalue = GetTenderedValue();
+            if(tenderedvalue == 0 && SelectedTicket.Model.GetDiscountTotal() ==0)
+            {
+                InteractionService.UserIntraction.GiveFeedback(Resources.EmptyDiscountRateFeedback);
+            }
+            if (tenderedvalue > 0 && SelectedTicket.Model.GetPlainSum() > 0)
             {
                 //var discounts = SelectedTicket.Model.GetDiscountAndRoundingTotal();
                 //var discountAmount = SelectedTicket.Model.GetRemainingAmount() + discounts-SelectedTicket.Model.CalculateVat()-SelectedTicket.Model.GetTaxServicesTotal();

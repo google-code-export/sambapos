@@ -16,7 +16,7 @@ namespace Samba.Persistance.Data
     public class SambaContext : CommonDbContext
     {
         public SambaContext(bool disableProxy)
-            : base("SambaData2")
+            : base("SambaData3")
         {
             if (disableProxy)
                 ObjContext().ContextOptions.ProxyCreationEnabled = false;

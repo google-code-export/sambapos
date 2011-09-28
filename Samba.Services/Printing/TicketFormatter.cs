@@ -152,14 +152,16 @@ namespace Samba.Services.Printing
             string result = document;
             if (string.IsNullOrEmpty(document)) return "";
 
-            result = FormatData(result, Resources.TF_TicketDate, ticket.Date.ToShortDateString());
-            result = FormatData(result, Resources.TF_TicketTime, ticket.Date.ToShortTimeString());
-            result = FormatData(result, Resources.TF_DayDate, DateTime.Now.ToShortDateString());
-            result = FormatData(result, Resources.TF_DayTime, DateTime.Now.ToShortTimeString());
-            result = FormatData(result, Resources.TF_UniqueTicketId, ticket.Id.ToString());
-            result = FormatData(result, Resources.TF_TicketNumber, ticket.TicketNumber);
-            result = FormatData(result, Resources.TF_LineOrderNumber, orderNo.ToString());
-            result = FormatData(result, Resources.TF_TicketTag, ticket.GetTagData());
+            result = FormatData(result, Resources.TF_TicketDate, () => ticket.Date.ToShortDateString());
+            result = FormatData(result, Resources.TF_TicketTime, () => ticket.Date.ToShortTimeString());
+            result = FormatData(result, Resources.TF_DayDate, () => DateTime.Now.ToShortDateString());
+            result = FormatData(result, Resources.TF_DayTime, () => DateTime.Now.ToShortTimeString());
+            result = FormatData(result, Resources.TF_UniqueTicketId, () => ticket.Id.ToString());
+            result = FormatData(result, Resources.TF_TicketNumber, () => ticket.TicketNumber);
+            result = FormatData(result, Resources.TF_LineOrderNumber, orderNo.ToString);
+            result = FormatData(result, Resources.TF_TicketTag, ticket.GetTagData);
+            result = FormatDataIf(true, result, "{DEPARTMENT}", () => GetDepartmentName(ticket.DepartmentId));
+
             if (result.Contains(Resources.TF_OptionalTicketTag))
             {
                 var start = result.IndexOf(Resources.TF_OptionalTicketTag);
@@ -173,11 +175,11 @@ namespace Samba.Services.Printing
                         (!string.IsNullOrEmpty(ticket.GetTagValue(t.Trim()))
                         ? (t + ": " + ticket.GetTagValue(t.Trim()) + "\r")
                         : ""));
-                    result = FormatData(result.Trim('\r'), value, tags);
+                    result = FormatData(result.Trim('\r'), value, () => tags);
                 }
                 catch (Exception)
                 {
-                    result = FormatData(result, value, "");
+                    result = FormatData(result, value, () => "");
                 }
             }
 
@@ -187,17 +189,17 @@ namespace Samba.Services.Printing
             if (string.IsNullOrEmpty(ticket.LocationName))
                 title = userName;
 
-            result = FormatData(result, Resources.TF_TableOrUserName, title);
-            result = FormatData(result, Resources.TF_UserName, userName);
-            result = FormatData(result, Resources.TF_TableName, ticket.LocationName);
-            result = FormatData(result, Resources.TF_TicketNote, ticket.Note);
-            result = FormatData(result, Resources.TF_AccountName, ticket.CustomerName);
+            result = FormatData(result, Resources.TF_TableOrUserName, () => title);
+            result = FormatData(result, Resources.TF_UserName, () => userName);
+            result = FormatData(result, Resources.TF_TableName, () => ticket.LocationName);
+            result = FormatData(result, Resources.TF_TicketNote, () => ticket.Note);
+            result = FormatData(result, Resources.TF_AccountName, () => ticket.CustomerName);
 
             if (ticket.CustomerId > 0 && (result.Contains(Resources.TF_AccountAddress) || result.Contains(Resources.TF_AccountPhone)))
             {
                 var customer = Dao.SingleWithCache<Customer>(x => x.Id == ticket.CustomerId);
-                result = FormatData(result, Resources.TF_AccountAddress, customer.Address);
-                result = FormatData(result, Resources.TF_AccountPhone, customer.PhoneNumber);
+                result = FormatData(result, Resources.TF_AccountAddress, () => customer.Address);
+                result = FormatData(result, Resources.TF_AccountPhone, () => customer.PhoneNumber);
             }
 
             result = RemoveTag(result, Resources.TF_AccountAddress);
@@ -211,36 +213,36 @@ namespace Samba.Services.Printing
             var vatAmount = ticket.CalculateVat();
             var taxServicesTotal = ticket.GetTaxServicesTotal();
 
-            result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", plainTotal.ToString("#,#0.00"));
-            result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", discount.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{VAT TOTAL}", vatAmount.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{TAX TOTAL}", taxServicesTotal.ToString("#,#0.00"));
-
-            if (result.Contains("{VAT DETAILS}"))
-                result = FormatDataIf(vatAmount > 0, result, "{VAT DETAILS}", GetVatDetails(ticket.TicketItems, plainTotal, discount));
-
-            if (result.Contains("{TAX DETAILS}"))
-                result = FormatDataIf(taxServicesTotal > 0, result, "{TAX DETAILS}", GetTaxDetails(ticket));
+            result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", () => plainTotal.ToString("#,#0.00"));
+            result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", () => discount.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0, result, "{VAT TOTAL}", () => vatAmount.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0, result, "{TAX TOTAL}", () => taxServicesTotal.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0, result, "{VAT DETAILS}", () => GetVatDetails(ticket.TicketItems, plainTotal, discount));
+            result = FormatDataIf(taxServicesTotal > 0, result, "{TAX DETAILS}", () => GetTaxDetails(ticket));
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
-                string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
+                () => string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
 
             result = FormatDataIf(discount > 0, result, Resources.TF_DiscountTotalAndTicketTotal,
-                string.Format(Resources.DiscountTotalAndTicketTotalValue_f, (plainTotal).ToString("#,#0.00"), discount.ToString("#,#0.00")));
+                () => string.Format(Resources.DiscountTotalAndTicketTotalValue_f, (plainTotal).ToString("#,#0.00"), discount.ToString("#,#0.00")));
 
-            result = FormatDataIf(giftAmount > 0, result, Resources.TF_GiftTotal, giftAmount.ToString("#,#0.00"));
-            result = FormatDataIf(discount < 0, result, Resources.TF_IfFlatten, string.Format(Resources.IfNegativeDiscountValue_f, discount.ToString("#,#0.00")));
+            result = FormatDataIf(giftAmount > 0, result, Resources.TF_GiftTotal, () => giftAmount.ToString("#,#0.00"));
+            result = FormatDataIf(discount < 0, result, Resources.TF_IfFlatten, () => string.Format(Resources.IfNegativeDiscountValue_f, discount.ToString("#,#0.00")));
 
-            result = FormatData(result, Resources.TF_TicketTotal, ticket.GetSum().ToString("#,#0.00"));
-            result = FormatData(result, Resources.TF_TicketPaidTotal, ticket.GetPaymentAmount().ToString("#,#0.00"));
-            result = FormatData(result, Resources.TF_TicketRemainingAmount, ticket.GetRemainingAmount().ToString("#,#0.00"));
+            result = FormatData(result, Resources.TF_TicketTotal, () => ticket.GetSum().ToString("#,#0.00"));
+            result = FormatData(result, Resources.TF_TicketPaidTotal, () => ticket.GetPaymentAmount().ToString("#,#0.00"));
+            result = FormatData(result, Resources.TF_TicketRemainingAmount, () => ticket.GetRemainingAmount().ToString("#,#0.00"));
 
-            if (result.Contains("{TOTAL TEXT}"))
-                result = FormatData(result, "{TOTAL TEXT}", HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum()));
-            if (result.Contains("{TOTALTEXT}"))
-                result = FormatData(result, "{TOTALTEXT}", HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum(), true));
+            result = FormatData(result, "{TOTAL TEXT}", () => HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum()));
+            result = FormatData(result, "{TOTALTEXT}", () => HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum(), true));
 
             return result;
+        }
+
+        private static string GetDepartmentName(int departmentId)
+        {
+            var dep = AppServices.MainDataContext.Departments.SingleOrDefault(x => x.Id == departmentId);
+            return dep != null ? dep.Name : Resources.UndefinedWithBrackets;
         }
 
         private static string GetTaxDetails(Ticket ticket)
@@ -275,8 +277,11 @@ namespace Samba.Services.Printing
             return string.Join("\r", sb);
         }
 
-        private static string FormatData(string data, string tag, string value)
+        private static string FormatData(string data, string tag, Func<string> valueFunc)
         {
+            if (!data.Contains(tag)) return data;
+
+            var value = valueFunc.Invoke();
             var tagData = new TagData(data, tag);
             if (!string.IsNullOrEmpty(value)) value =
                 !string.IsNullOrEmpty(tagData.Title) && tagData.Title.Contains("<value>")
@@ -285,9 +290,9 @@ namespace Samba.Services.Printing
             return data.Replace(tagData.DataString, value);
         }
 
-        private static string FormatDataIf(bool condition, string data, string tag, string value)
+        private static string FormatDataIf(bool condition, string data, string tag, Func<string> valueFunc)
         {
-            if (condition) return FormatData(data, tag, value);
+            if (condition && data.Contains(tag)) return FormatData(data, tag, valueFunc.Invoke);
             return RemoveTag(data, tag);
         }
 
@@ -331,16 +336,16 @@ namespace Samba.Services.Printing
 
             if (ticketItem != null)
             {
-                result = FormatData(result, Resources.TF_LineItemQuantity, ticketItem.Quantity.ToString("#,#0.##"));
-                result = FormatData(result, Resources.TF_LineItemName, ticketItem.MenuItemName + ticketItem.GetPortionDesc());
-                result = FormatData(result, Resources.TF_LineItemPrice, ticketItem.Price.ToString("#,#0.00"));
-                result = FormatData(result, Resources.TF_LineItemTotal, ticketItem.GetItemPrice().ToString("#,#0.00"));
-                result = FormatData(result, Resources.TF_LineItemTotalAndQuantity, ticketItem.GetItemValue().ToString("#,#0.00"));
-                result = FormatData(result, Resources.TF_LineItemPriceCents, (ticketItem.Price * 100).ToString("#,##"));
-                result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, ticketItem.GetTotal().ToString("#,#0.00"));
-                result = FormatData(result, Resources.TF_LineOrderNumber, ticketItem.OrderNumber.ToString());
-                result = FormatData(result, Resources.TF_LineGiftOrVoidReason, AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
-                result = FormatData(result, "{PRICE TAG}", ticketItem.PriceTag);
+                result = FormatData(result, Resources.TF_LineItemQuantity, () => ticketItem.Quantity.ToString("#,#0.##"));
+                result = FormatData(result, Resources.TF_LineItemName, () => ticketItem.MenuItemName + ticketItem.GetPortionDesc());
+                result = FormatData(result, Resources.TF_LineItemPrice, () => ticketItem.Price.ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineItemTotal, () => ticketItem.GetItemPrice().ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineItemTotalAndQuantity, () => ticketItem.GetItemValue().ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineItemPriceCents, () => (ticketItem.Price * 100).ToString("#,##"));
+                result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, () => ticketItem.GetTotal().ToString("#,#0.00"));
+                result = FormatData(result, Resources.TF_LineOrderNumber, () => ticketItem.OrderNumber.ToString());
+                result = FormatData(result, Resources.TF_LineGiftOrVoidReason, () => AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
+                result = FormatData(result, "{PRICE TAG}", () => ticketItem.PriceTag);
                 if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
                 {
                     string lineFormat = result;
@@ -349,9 +354,10 @@ namespace Samba.Services.Printing
                         string label = "";
                         foreach (var property in ticketItem.Properties)
                         {
-                            var lineValue = FormatData(lineFormat, Resources.TF_LineItemDetails, property.Name);
-                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailQuantity, property.Quantity.ToString("#.##"));
-                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, property.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#,#0.00"));
+                            var itemProperty = property;
+                            var lineValue = FormatData(lineFormat, Resources.TF_LineItemDetails, () => itemProperty.Name);
+                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailQuantity, () => itemProperty.Quantity.ToString("#.##"));
+                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, () => itemProperty.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#,#0.00"));
                             label += lineValue + "\r\n";
                         }
                         result = "\r\n" + label;
@@ -381,7 +387,6 @@ namespace Samba.Services.Printing
             {
                 friendlyInt += " ";
             }
-
             if (n < 10)
             {
                 friendlyInt += Ones[n];

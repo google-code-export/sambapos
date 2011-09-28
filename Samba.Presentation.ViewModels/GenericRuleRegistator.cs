@@ -40,8 +40,8 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketVat", Resources.UpdateTicketVat, new { VatTemplate = "" });
-            RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", "Regenerate Ticket VAT");
-            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", "Update Ticket Tax Service", new { TaxServiceTemplate = "", Amount = 0m });
+            RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
         }
 
         private static void RegisterRules()

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using Samba.Domain.Models.Customers;
-using Samba.Domain.Models.Tables;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
-using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 
 namespace Samba.Modules.TicketModule
@@ -52,30 +47,10 @@ namespace Samba.Modules.TicketModule
             {
                 _filterValue = value;
                 RaisePropertyChanged("FilterValue");
-                //UpdateFilterValues();
             }
         }
 
-        private List<string> _filterValues;
-        public List<string> FilterValues
-        {
-            get { return _filterValues; }
-            set { _filterValues = value; }
-        }
-
-        //public void UpdateFilterValues()
-        //{
-        //    FilterValues.Clear();
-        //    if (FilterType == FilterType.Customer && FilterValue.Length >= 2)
-        //    {
-        //        FilterValues.AddRange(Dao.Select<Customer, String>(x => x.Name, x => x.Name.StartsWith(FilterValue)).ToList());
-        //    }
-        //    if (FilterType == FilterType.Location && FilterValue.Length == 1)
-        //    {
-        //        FilterValues.AddRange(Dao.Select<Table, String>(x => x.Name, x => x.Name.StartsWith(FilterValue)).ToList());
-        //    }
-        //    RaisePropertyChanged("FilterValues");
-        //}
+        public List<string> FilterValues { get; set; }
 
         public Expression<Func<Ticket, bool>> GetExpression()
         {

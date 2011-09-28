@@ -10,6 +10,13 @@ namespace Samba.Modules.UserModule
         public UserView()
         {
             InitializeComponent();
+            PasswordTextBox.GotFocus += PasswordTextBoxGotFocus;
+        }
+
+        void PasswordTextBoxGotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if(PasswordTextBox.Text.Contains("*"))
+            PasswordTextBox.Clear();
         }
     }
 }

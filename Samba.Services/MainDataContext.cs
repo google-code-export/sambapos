@@ -172,7 +172,14 @@ namespace Samba.Services
         public IEnumerable<TableScreen> TableScreens { get { return _tableScreens ?? (_tableScreens = Dao.Query<TableScreen>(x => x.Tables)); } }
 
         private IEnumerable<Department> _departments;
-        public IEnumerable<Department> Departments { get { return _departments ?? (_departments = Dao.Query<Department>(x => x.TicketNumerator, x => x.OrderNumerator, x => x.TaxServiceTemplates, x => x.TicketTagGroups.Select(y => y.TicketTags))); } }
+        public IEnumerable<Department> Departments
+        {
+            get
+            {
+                return _departments ?? (_departments = Dao.Query<Department>(x => x.TicketNumerator, x => x.OrderNumerator,
+                    x => x.TaxServiceTemplates, x => x.TicketTagGroups.Select(y => y.Numerator), x => x.TicketTagGroups.Select(y => y.TicketTags)));
+            }
+        }
 
         private IEnumerable<Department> _permittedDepartments;
         public IEnumerable<Department> PermittedDepartments

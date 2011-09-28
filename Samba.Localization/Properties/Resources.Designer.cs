@@ -2269,6 +2269,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To add discounts, type a rate and click discount button. To remove discount click discount button without typing a value..
+        /// </summary>
+        public static string EmptyDiscountRateFeedback {
+            get {
+                return ResourceManager.GetString("EmptyDiscountRateFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t leave {0} name empty..
         /// </summary>
         public static string EmptyNameError {
@@ -2508,6 +2517,15 @@ namespace Samba.Localization.Properties {
         public static string EveryWeekday {
             get {
                 return ResourceManager.GetString("EveryWeekday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excluded.
+        /// </summary>
+        public static string Excluded {
+            get {
+                return ResourceManager.GetString("Excluded", resourceCulture);
             }
         }
         
@@ -3024,6 +3042,15 @@ namespace Samba.Localization.Properties {
         public static string ImagePath {
             get {
                 return ResourceManager.GetString("ImagePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Included.
+        /// </summary>
+        public static string Included {
+            get {
+                return ResourceManager.GetString("Included", resourceCulture);
             }
         }
         
@@ -5007,6 +5034,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Regenerate Ticket VAT.
+        /// </summary>
+        public static string RegenerateTicketVat {
+            get {
+                return ResourceManager.GetString("RegenerateTicketVat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Release Lock.
         /// </summary>
         public static string ReleaseLock {
@@ -5939,6 +5975,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tax Total.
+        /// </summary>
+        public static string TaxTotal {
+            get {
+                return ResourceManager.GetString("TaxTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Totals grouped by Tax or Service template.
+        /// </summary>
+        public static string TaxTotalsGroupedByTaxTemplate {
+            get {
+                return ResourceManager.GetString("TaxTotalsGroupedByTaxTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template.
         /// </summary>
         public static string Template {
@@ -6043,6 +6097,15 @@ namespace Samba.Localization.Properties {
         public static string Text {
             get {
                 return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text written total value.
+        /// </summary>
+        public static string TextWrittenTotalValue {
+            get {
+                return ResourceManager.GetString("TextWrittenTotalValue", resourceCulture);
             }
         }
         
@@ -6643,6 +6706,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket Sub Total.
+        /// </summary>
+        public static string TicketSubTotal {
+            get {
+                return ResourceManager.GetString("TicketSubTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Tag.
         /// </summary>
         public static string TicketTag {
@@ -7208,6 +7280,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Ticket Tax or Service.
+        /// </summary>
+        public static string UpdateTicketTaxService {
+            get {
+                return ResourceManager.GetString("UpdateTicketTaxService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Ticket Vat.
         /// </summary>
         public static string UpdateTicketVat {
@@ -7393,6 +7474,15 @@ namespace Samba.Localization.Properties {
         public static string VatTotal {
             get {
                 return ResourceManager.GetString("VatTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT Totals grouped by VAT template.
+        /// </summary>
+        public static string VatTotalsGroupedByVatTemplate {
+            get {
+                return ResourceManager.GetString("VatTotalsGroupedByVatTemplate", resourceCulture);
             }
         }
         

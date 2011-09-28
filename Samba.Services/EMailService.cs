@@ -14,29 +14,42 @@ namespace Samba.Services
         {
             var mail = new MailMessage();
             var smtpServer = new SmtpClient(smtpServerAddress);
-
-            mail.From = new MailAddress(fromEmailAddress);
-            mail.To.Add(toEmailAddress);
-            mail.Subject = subject;
-            mail.Body = body;
-
-            if (!string.IsNullOrEmpty(fileName))
-                mail.Attachments.Add(new Attachment(fileName));
-            smtpServer.Port = smtpPort;
-            smtpServer.Credentials = new System.Net.NetworkCredential(smtpUser, smtpPassword);
-            smtpServer.EnableSsl = true;
             try
             {
+                mail.From = new MailAddress(fromEmailAddress);
+                mail.To.Add(toEmailAddress);
+                mail.Subject = subject;
+                mail.Body = body;
+
+                if (!string.IsNullOrEmpty(fileName))
+                    fileName.Split(',').ToList().ForEach(x => mail.Attachments.Add(new Attachment(x)));
+
+                smtpServer.Port = smtpPort;
+                smtpServer.Credentials = new System.Net.NetworkCredential(smtpUser, smtpPassword);
+                smtpServer.EnableSsl = true;
                 smtpServer.Send(mail);
             }
             catch (Exception e)
-            {   
+            {
                 AppServices.LogError(e);
             }
             finally
             {
-                if (deleteFile && !string.IsNullOrEmpty(fileName) && File.Exists(fileName))
-                    File.Delete(fileName);
+                if (deleteFile && !string.IsNullOrEmpty(fileName))
+                {
+                    fileName.Split(',').ToList().ForEach(
+                        x =>
+                        {
+                            if (File.Exists(x))
+                            {
+                                try
+                                {
+                                    File.Delete(x);
+                                }
+                                catch (Exception) { }
+                            }
+                        });
+                }
             }
         }
 

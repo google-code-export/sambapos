@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
@@ -25,7 +26,7 @@ namespace Samba.Modules.SettingsModule
         {
             return typeof(PrinterTemplateView);
         }
-        
+
         public override string GetModelTypeString()
         {
             return Resources.PrinterTemplate;
@@ -33,7 +34,61 @@ namespace Samba.Modules.SettingsModule
 
         public override void Initialize(IWorkspace workspace)
         {
-            
+
+        }
+
+        private IDictionary<string, string> _descriptions;
+        public IDictionary<string, string> Descriptions
+        {
+            get { return _descriptions ?? (_descriptions = CreateDescriptions()); }
+        }
+
+        private static IDictionary<string, string> CreateDescriptions()
+        {
+            var result = new Dictionary<string, string>();
+            result.Add(Resources.TF_TicketDate, Resources.TicketDate);
+            result.Add(Resources.TF_TicketTime, Resources.TicketTime);
+            result.Add(Resources.TF_DayDate, Resources.DayDate);
+            result.Add(Resources.TF_DayTime, Resources.DayTime);
+            result.Add(Resources.TF_UniqueTicketId, Resources.UniqueTicketId);
+            result.Add(Resources.TF_TicketNumber, Resources.TicketNumber);
+            result.Add(Resources.TF_TicketTag, Resources.TicketTag);
+            result.Add("{DEPARTMENT}", Resources.DepartmentName);
+            result.Add(Resources.TF_OptionalTicketTag, Resources.OptionalTicketTag);
+            result.Add(Resources.TF_TableOrUserName, Resources.TableOrUserName);
+            result.Add(Resources.TF_UserName, Resources.UserName);
+            result.Add(Resources.TF_TableName, Resources.TableName);
+            result.Add(Resources.TF_TicketNote, Resources.TicketNote);
+            result.Add(Resources.TF_AccountName, Resources.AccountName);
+            result.Add(Resources.TF_AccountAddress, Resources.AccountAddress);
+            result.Add(Resources.TF_AccountPhone, Resources.AccountPhone);
+            result.Add(Resources.TF_LineItemQuantity, Resources.LineItemQuantity);
+            result.Add(Resources.TF_LineItemName, Resources.LineItemName);
+            result.Add(Resources.TF_LineItemPrice, Resources.LineItemPrice);
+            result.Add(Resources.TF_LineItemPriceCents, Resources.LineItemPriceCents);
+            result.Add(Resources.TF_LineItemTotal, Resources.LineItemTotal);
+            result.Add(Resources.TF_LineItemTotalAndQuantity, Resources.LineItemQuantity);
+            result.Add(Resources.TF_LineItemTotalWithoutGifts, Resources.LineItemTotalWithoutGifts);
+            result.Add(Resources.TF_LineItemDetails, Resources.LineItemDetails);
+            result.Add(Resources.TF_LineItemDetailPrice, Resources.LineItemDetailPrice);
+            result.Add(Resources.TF_LineItemDetailQuantity, Resources.TF_LineItemDetailQuantity);
+            result.Add(Resources.TF_LineOrderNumber, Resources.LineOrderNumber);
+            result.Add("{PRICE TAG}", Resources.LinePriceTag);
+            result.Add(Resources.TF_LineGiftOrVoidReason, Resources.LineGiftOrVoidReason);
+            result.Add(Resources.TF_TicketTotal, Resources.TicketTotal);
+            result.Add(Resources.TF_TicketPaidTotal, Resources.TicketPaidTotal);
+            result.Add("{PLAIN TOTAL}", Resources.TicketSubTotal);
+            result.Add("{DISCOUNT TOTAL}", Resources.DiscountTotal);
+            result.Add("{VAT TOTAL}", Resources.VatTotal);
+            result.Add("{VAT DETAILS}", Resources.VatTotalsGroupedByVatTemplate);
+            result.Add("{TAX TOTAL}", Resources.TaxTotal);
+            result.Add("{TAX DETAILS}", Resources.TaxTotalsGroupedByTaxTemplate);
+            result.Add(Resources.TF_TicketRemainingAmount, Resources.TicketRemainingAmount);
+            result.Add(Resources.TF_RemainingAmountIfPaid, Resources.RemainingAmountIfPaid);
+            result.Add("{TOTAL TEXT}", Resources.TextWrittenTotalValue);
+            result.Add(Resources.TF_DiscountTotalAndTicketTotal, Resources.DiscountTotalAndTicketTotal);
+
+            return result;
         }
     }
 }

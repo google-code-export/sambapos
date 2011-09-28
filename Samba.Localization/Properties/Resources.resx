@@ -2950,4 +2950,34 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="SaveFreeTags" xml:space="preserve">
     <value>Save Free Tags</value>
   </data>
+	<data name="RegenerateTicketVat">
+		<value xml:space="preserve">Regenerate Ticket VAT</value>
+	</data>
+	<data name="UpdateTicketTaxService">
+		<value xml:space="preserve">Update Ticket Tax or Service</value>
+	</data>
+	<data name="Included">
+		<value xml:space="preserve">Included</value>
+	</data>
+	<data name="Excluded">
+		<value xml:space="preserve">Excluded</value>
+	</data>
+	<data name="EmptyDiscountRateFeedback">
+		<value xml:space="preserve">To add discounts, type a rate and click discount button. To remove discount click discount button without typing a value.</value>
+	</data>
+  <data name="TicketSubTotal">
+    <value xml:space="preserve">Ticket Sub Total</value>
+  </data>
+  <data name="VatTotalsGroupedByVatTemplate">
+    <value xml:space="preserve">VAT Totals grouped by VAT template</value>
+  </data>
+  <data name="TaxTotal">
+    <value xml:space="preserve">Tax Total</value>
+  </data>
+  <data name="TaxTotalsGroupedByTaxTemplate">
+    <value xml:space="preserve">Tax Totals grouped by Tax or Service template</value>
+  </data>
+  <data name="TextWrittenTotalValue">
+    <value xml:space="preserve">Text written total value</value>
+  </data>
 </root>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
-using Samba.Domain.Foundation;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
