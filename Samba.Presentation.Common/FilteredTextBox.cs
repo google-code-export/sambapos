@@ -78,7 +78,7 @@ namespace Samba.Presentation.Common
             base.OnPreviewTextInput(e);
 
             char LetterOrDigit = Convert.ToChar(e.Text);
-            char ds = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0];
+            char ds = CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator[0];
 
             switch (Type)
             {
