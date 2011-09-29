@@ -1,7 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows.Media;
+using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
@@ -42,6 +45,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketVat", Resources.UpdateTicketVat, new { VatTemplate = "" });
             RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketAccount", Resources.UpdateTicketAccount, new { AccountPhone = "", AccountName = "", Note = "" });
         }
 
         private static void RegisterRules()
@@ -52,6 +56,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.WorkPeriodEnds, Resources.WorkPeriodEnded, new { UserName = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TriggerExecuted, Resources.TriggerExecuted, new { TriggerName = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLocationChanged, Resources.TicketLocationChanged, new { OldLocation = "", NewLocation = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "", NumericValue = 0, TicketTag = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m });
@@ -83,6 +88,40 @@ namespace Samba.Presentation.ViewModels
         {
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
+                if (x.Value.Action.ActionType == "UpdateTicketAccount")
+                {
+                    Expression<Func<Customer, bool>> qFilter = null;
+
+                    var phoneNumber = x.Value.GetAsString("AccountPhone");
+                    var accountName = x.Value.GetAsString("AccountName");
+                    var note = x.Value.GetAsString("Note");
+
+                    if (!string.IsNullOrEmpty(phoneNumber))
+                    {
+                        qFilter = y => y.PhoneNumber == phoneNumber;
+                    }
+
+                    if (!string.IsNullOrEmpty(accountName))
+                    {
+                        if (qFilter == null) qFilter = y => y.Name == accountName;
+                        else qFilter = qFilter.And(y => y.Name == accountName);
+                    }
+
+                    if (!string.IsNullOrEmpty(note))
+                    {
+                        if (qFilter == null) qFilter = y => y.Note == note;
+                        else qFilter = qFilter.And(y => y.Note == note);
+                    }
+
+                    if (qFilter != null)
+                    {
+                        var customer = Dao.Query(qFilter).FirstOrDefault();
+                        if (customer != null)
+                            AppServices.MainDataContext.AssignCustomerToSelectedTicket(customer);
+                    }
+                    else AppServices.MainDataContext.AssignCustomerToSelectedTicket(Customer.Null);
+                }
+
                 if (x.Value.Action.ActionType == "UpdateProgramSetting")
                 {
                     var settingName = x.Value.GetAsString("SettingName");

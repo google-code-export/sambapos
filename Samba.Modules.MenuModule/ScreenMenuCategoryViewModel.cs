@@ -65,7 +65,7 @@ namespace Samba.Modules.MenuModule
         public int SubButtonHeight { get { return Model.SubButtonHeight; } set { Model.SubButtonHeight = value; RaisePropertyChanged("SubButtonHeight"); } }
 
         [LocalizedDisplayName(ResourceStrings.ImagePath), LocalizedCategory(ResourceStrings.CategoryProperties)]
-        public string ImagePath { get { return Model.ImagePath; } set { Model.ImagePath = value; RaisePropertyChanged("ImagePath"); } }
+        public string ImagePath { get { return Model.ImagePath ?? ""; } set { Model.ImagePath = value; RaisePropertyChanged("ImagePath"); } }
 
         [LocalizedDisplayName(ResourceStrings.ColumnCount), LocalizedCategory(ResourceStrings.MenuProperties)]
         public int ColumnCount { get { return Model.ColumnCount; } set { Model.ColumnCount = value; RaisePropertyChanged("ColumnCount"); } }
@@ -74,10 +74,10 @@ namespace Samba.Modules.MenuModule
         public int ButtonHeight { get { return Model.ButtonHeight; } set { Model.ButtonHeight = value; RaisePropertyChanged("ButtonHeight"); } }
 
         [LocalizedDisplayName(ResourceStrings.PageCount), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public int PageCount { get { return Model.PageCount; } set { Model.PageCount = value; RaisePropertyChanged("PageCount");} }
+        public int PageCount { get { return Model.PageCount; } set { Model.PageCount = value; RaisePropertyChanged("PageCount"); } }
 
         [LocalizedDisplayName(ResourceStrings.WrapText), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public bool WrapText { get { return Model.WrapText; } set { Model.WrapText = value; RaisePropertyChanged("WrapText");} }
+        public bool WrapText { get { return Model.WrapText; } set { Model.WrapText = value; RaisePropertyChanged("WrapText"); } }
 
         [LocalizedDisplayName(ResourceStrings.ButtonColor), LocalizedCategory(ResourceStrings.MenuProperties)]
         public SolidColorBrush ButtonColor
@@ -94,19 +94,19 @@ namespace Samba.Modules.MenuModule
         }
 
         [LocalizedDisplayName(ResourceStrings.MaxItems), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public int MaxItems { get { return Model.MaxItems; } set { Model.MaxItems = value; RaisePropertyChanged("MaxItems");} }
+        public int MaxItems { get { return Model.MaxItems; } set { Model.MaxItems = value; RaisePropertyChanged("MaxItems"); } }
 
         [LocalizedDisplayName(ResourceStrings.SortType), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public SortType SortType { get { return (SortType)Model.SortType; } set { Model.SortType = (int)value; RaisePropertyChanged("SortType");} }
+        public SortType SortType { get { return (SortType)Model.SortType; } set { Model.SortType = (int)value; RaisePropertyChanged("SortType"); } }
 
         [LocalizedDisplayName(ResourceStrings.NumeratorType), LocalizedCategory(ResourceStrings.NumeratorProperties)]
-        public NumeratorType NumeratorType { get { return (NumeratorType)Model.NumeratorType; } set { Model.NumeratorType = (int)value; RaisePropertyChanged("NumeratorType");} }
+        public NumeratorType NumeratorType { get { return (NumeratorType)Model.NumeratorType; } set { Model.NumeratorType = (int)value; RaisePropertyChanged("NumeratorType"); } }
 
         [LocalizedDisplayName(ResourceStrings.NumeratorValue), LocalizedCategory(ResourceStrings.NumeratorProperties)]
-        public string NumeratorValues { get { return Model.NumeratorValues; } set { Model.NumeratorValues = value; RaisePropertyChanged("NumeratorValues");} }
+        public string NumeratorValues { get { return Model.NumeratorValues; } set { Model.NumeratorValues = value; RaisePropertyChanged("NumeratorValues"); } }
 
         [LocalizedDisplayName(ResourceStrings.AlphanumericButtonValues), LocalizedCategory(ResourceStrings.NumeratorProperties)]
-        public string AlphaButtonValues { get { return Model.AlphaButtonValues; } set { Model.AlphaButtonValues = value; RaisePropertyChanged("AlphaButtonValues");} }
+        public string AlphaButtonValues { get { return Model.AlphaButtonValues; } set { Model.AlphaButtonValues = value; RaisePropertyChanged("AlphaButtonValues"); } }
 
         internal void UpdateDisplay()
         {

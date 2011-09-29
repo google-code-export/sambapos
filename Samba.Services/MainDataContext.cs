@@ -153,7 +153,8 @@ namespace Samba.Services
             {
                 _workspace.Add(model);
             }
-        }
+
+       }
 
         public int CustomerCount { get; set; }
         public int TableCount { get; set; }

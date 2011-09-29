@@ -63,7 +63,7 @@ namespace Samba.Modules.MenuModule
         [LocalizedDisplayName(ResourceStrings.ImagePath)]
         public string ImagePath
         {
-            get { return Model.ImagePath; }
+            get { return Model.ImagePath ?? ""; }
             set { Model.ImagePath = value; RaisePropertyChanged("ImagePath"); }
         }
 

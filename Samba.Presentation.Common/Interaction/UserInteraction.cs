@@ -203,10 +203,10 @@ namespace Samba.Presentation.Common.Interaction
             form.ShowDialog();
         }
 
-
         public void EditProperties<T>(IList<T> items)
         {
-            var form = new PropertyEditorForm { PropertyEditorControl = { SelectedObject = new CollectionProxy<T>(items) } };
+            var form = new GridEditorForm();
+            form.SetList(items.ToList());
             form.ShowDialog();
         }
 

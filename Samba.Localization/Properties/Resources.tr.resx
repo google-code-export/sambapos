@@ -2953,21 +2953,21 @@ Borçlandır</value>
   <data name="SaveFreeTags" xml:space="preserve">
     <value>Serbest Etiketleri Kaydet</value>
   </data>
-	<data name="RegenerateTicketVat">
-		<value xml:space="preserve">Adisyon KDV oranlarını baştan oluştur</value>
-	</data>
-	<data name="UpdateTicketTaxService">
-		<value xml:space="preserve">Adisyon Hizmeti Ekle</value>
-	</data>
-	<data name="Included">
-		<value xml:space="preserve">Dahil</value>
-	</data>
-	<data name="Excluded">
-		<value xml:space="preserve">Hariç</value>
-	</data>
-	<data name="EmptyDiscountRateFeedback">
-		<value xml:space="preserve">İskonto yapmak için önce bir iskonto oranı yazıp sonra iskonto düğmelerine tıklayınız. İskontoyu kaldırmak için hiç bir rakam yazmadan boş bir şekilde iskonto düğmelerine tıklayınız. </value>
-	</data>
+  <data name="RegenerateTicketVat">
+    <value xml:space="preserve">Adisyon KDV oranlarını baştan oluştur</value>
+  </data>
+  <data name="UpdateTicketTaxService">
+    <value xml:space="preserve">Adisyon Hizmeti Ekle</value>
+  </data>
+  <data name="Included">
+    <value xml:space="preserve">Dahil</value>
+  </data>
+  <data name="Excluded">
+    <value xml:space="preserve">Hariç</value>
+  </data>
+  <data name="EmptyDiscountRateFeedback">
+    <value xml:space="preserve">İskonto yapmak için önce bir iskonto oranı yazıp sonra iskonto düğmelerine tıklayınız. İskontoyu kaldırmak için hiç bir rakam yazmadan boş bir şekilde iskonto düğmelerine tıklayınız. </value>
+  </data>
   <data name="TicketSubTotal">
     <value xml:space="preserve">Adisyon ara toplamı</value>
   </data>
@@ -2982,6 +2982,12 @@ Borçlandır</value>
   </data>
   <data name="TextWrittenTotalValue">
     <value xml:space="preserve">Yazıyla genel toplam</value>
+  </data>
+  <data name="TicketLocationChanged">
+    <value xml:space="preserve">Adisyon Yeri Değişti</value>
+  </data>
+  <data name="UpdateTicketAccount">
+    <value xml:space="preserve">Adisyon Hesabını Değiştir</value>
   </data>
 
 </root>

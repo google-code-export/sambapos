@@ -77,7 +77,7 @@ VersionInfoVersion={#Version}
 VersionInfoCompany=Özgü Teknoloji
 VersionInfoCopyright=Copyright © Ozgu 2010
 ShowUndisplayableLanguages=false
-LanguageDetectionMethod=uilanguage
+LanguageDetectionMethod=locale
 InternalCompressLevel=fast
 SolidCompression=true
 Compression=lzma/fast
@@ -88,7 +88,7 @@ PrivilegesRequired=admin
 ArchitecturesAllowed=
 VersionInfoProductName=Samba POS Setup
 AppID={{7FFA6CCB-2A30-4F09-A216-0CDFC031E870}
-ShowLanguageDialog=yes
+
 
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl

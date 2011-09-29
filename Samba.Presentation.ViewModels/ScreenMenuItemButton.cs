@@ -46,7 +46,15 @@ namespace Samba.Presentation.ViewModels
         public ScreenMenuCategory Category { get { return _category; } }
         public double ButtonHeight { get { return Category.ButtonHeight > 0 ? Category.ButtonHeight : double.NaN; } }
         public string ButtonColor { get; private set; }
-        public string ImagePath { get { return !string.IsNullOrEmpty(ScreenMenuItem.ImagePath) ? ScreenMenuItem.ImagePath : LocalSettings.AppPath + "\\images\\empty.png"; } }
+        public string ImagePath
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(ScreenMenuItem.ImagePath) 
+                    ? ScreenMenuItem.ImagePath 
+                    : LocalSettings.AppPath + "\\images\\empty.png";
+            }
+        }
 
         public int UsageCount { get { return ScreenMenuItem.UsageCount; } set { ScreenMenuItem.UsageCount = value; } }
 

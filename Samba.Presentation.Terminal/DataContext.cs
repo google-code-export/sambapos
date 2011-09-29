@@ -26,7 +26,8 @@ namespace Samba.Presentation.Terminal
         {
             Debug.Assert(SelectedTicket == null);
             if (table.TicketId == 0)
-                AppServices.MainDataContext.AssignTableToSelectedTicket(table.Id);
+                TicketViewModel.AssignTableToSelectedTicket(table.Id);
+            //AppServices.MainDataContext.AssignTableToSelectedTicket(table.Id););
             else AppServices.MainDataContext.OpenTicket(table.TicketId);
             RefreshSelectedTicket();
         }
@@ -34,7 +35,7 @@ namespace Samba.Presentation.Terminal
         public static void OpenTicket(int ticketId)
         {
             Debug.Assert(SelectedTicket == null);
-            if (ticketId == 0) TicketViewModel.CreateNewTicket(); //AppServices.MainDataContext.CreateNewTicket();
+            if (ticketId == 0) TicketViewModel.CreateNewTicket(); 
             else AppServices.MainDataContext.OpenTicket(ticketId);
             RefreshSelectedTicket();
         }

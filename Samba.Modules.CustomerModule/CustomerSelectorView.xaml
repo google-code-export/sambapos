@@ -215,6 +215,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
@@ -291,6 +292,18 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView Grid.Row="2" Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}"
+                             ListViewLM:ListViewLayoutManager.Enabled="True" BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemExContainerStyle}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource SilverBackground}"
+                                     ColumnHeaderTemplate="{StaticResource WrappedFooterTemplate}">
+                        <GridViewColumn ListViewLM:ProportionalColumn.Width="4.7" />
+                        <GridViewColumn Header="{Binding TotalReceivable}" ListViewLM:ProportionalColumn.Width="1" />
+                        <GridViewColumn Header="{Binding TotalLiability}" ListViewLM:ProportionalColumn.Width="1" />
+                        <GridViewColumn Header="{Binding TotalBalance}" ListViewLM:ProportionalColumn.Width="1" />
                     </GridView>
                 </ListView.View>
             </ListView>

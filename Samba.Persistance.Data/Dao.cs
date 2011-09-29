@@ -52,7 +52,7 @@ namespace Samba.Persistance.Data
             using (var workspace = WorkspaceFactory.CreateReadOnly())
             {
                 var result = workspace.Single(predictate, includes);
-                AddToCache(typeof(T), ObjectCloner.DataHash(includes), result);
+                //AddToCache(typeof(T), ObjectCloner.DataHash(includes), result);
                 return result;
             }
         }

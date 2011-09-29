@@ -124,6 +124,9 @@
     <Compile Include="Helpers.cs" />
     <Compile Include="IDiagram.cs" />
     <Compile Include="IModuleInitializationService.cs" />
+    <Compile Include="Interaction\GridEditorForm.xaml.cs">
+      <DependentUpon>GridEditorForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\InteractionService.cs" />
     <Compile Include="ICaptionCommand.cs" />
     <Compile Include="ICategoryCommand.cs" />
@@ -248,6 +251,10 @@
     <Page Include="Browser\BrowserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interaction\GridEditorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interaction\PopupWindow.xaml">
       <SubType>Designer</SubType>

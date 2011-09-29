@@ -552,6 +552,13 @@ namespace Samba.Presentation.ViewModels
             RuleExecutor.NotifyEvent(RuleEventNames.TicketCreated, new { Ticket = AppServices.MainDataContext.SelectedTicket });
         }
 
+        public static void AssignTableToSelectedTicket(int locationId)
+        {
+            var oldLocation = AppServices.MainDataContext.SelectedTicket != null ? AppServices.MainDataContext.SelectedTicket.LocationName : "";
+            AppServices.MainDataContext.AssignTableToSelectedTicket(locationId);
+            RuleExecutor.NotifyEvent(RuleEventNames.TicketLocationChanged, new { Ticket = AppServices.MainDataContext.SelectedTicket, OldLocation = oldLocation, NewLocation = AppServices.MainDataContext.SelectedTicket.LocationName });
+        }
+
         public static void RegenerateVatRates(Ticket ticket)
         {
             foreach (var ticketItem in ticket.TicketItems)

@@ -148,6 +148,10 @@ namespace Samba.Modules.CustomerModule
             set { _activeView = value; RaisePropertyChanged("ActiveView"); }
         }
 
+        public string TotalReceivable { get { return SelectedCustomerTransactions.Sum(x => x.Receivable).ToString("#,#0.00"); } }
+        public string TotalLiability { get { return SelectedCustomerTransactions.Sum(x => x.Liability).ToString("#,#0.00"); } }
+        public string TotalBalance { get { return SelectedCustomerTransactions.Sum(x => x.Receivable - x.Liability).ToString("#,#0.00"); } }
+
         public CustomerSelectorViewModel()
         {
             _updateTimer = new Timer(500);
@@ -277,6 +281,9 @@ namespace Samba.Modules.CustomerModule
                 }
 
                 SelectedCustomerTransactions.AddRange(transactions);
+                RaisePropertyChanged("TotalReceivable");
+                RaisePropertyChanged("TotalLiability");
+                RaisePropertyChanged("TotalBalance");
             }
             ActiveView = 1;
         }

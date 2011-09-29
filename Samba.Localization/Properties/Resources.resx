@@ -2980,4 +2980,10 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="TextWrittenTotalValue">
     <value xml:space="preserve">Text written total value</value>
   </data>
+	<data name="TicketLocationChanged">
+		<value xml:space="preserve">Ticket Location Changed</value>
+	</data>
+	<data name="UpdateTicketAccount">
+		<value xml:space="preserve">Update Ticket Account</value>
+	</data>
 </root>

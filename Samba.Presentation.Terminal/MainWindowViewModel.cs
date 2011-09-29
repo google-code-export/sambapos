@@ -200,7 +200,8 @@ namespace Samba.Presentation.Terminal
             {
                 if (DataContext.SelectedTicket.SelectedItems.Count == 0)
                 {
-                    AppServices.MainDataContext.AssignTableToSelectedTicket(selectedTable.Id);
+                    TicketViewModel.AssignTableToSelectedTicket(selectedTable.Id);
+                    //AppServices.MainDataContext.AssignTableToSelectedTicket(selectedTable.Id);
                     ShowFeedback("Adisyon " + selectedTable.Name + " masasına taşındı.");
                 }
                 else
@@ -406,7 +407,9 @@ namespace Samba.Presentation.Terminal
             DataContext.SelectedTicket.FixSelectedItems();
             var newTicketId = DataContext.MoveSelectedTicketItemsToNewTicket();
             DataContext.OpenTicket(newTicketId);
-            if (tableId > 0) AppServices.MainDataContext.AssignTableToSelectedTicket(tableId);
+            if (tableId > 0)
+                TicketViewModel.AssignTableToSelectedTicket(tableId);
+            //AppServices.MainDataContext.AssignTableToSelectedTicket(tableId);
         }
 
         private bool ShouldSelectTag()

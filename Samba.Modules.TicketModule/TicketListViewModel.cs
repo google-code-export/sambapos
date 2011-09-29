@@ -270,8 +270,9 @@ namespace Samba.Modules.TicketModule
                         {
                             var oldLocationName = SelectedTicket.Location;
                             var ticketsMerged = x.Value.TicketId > 0 && x.Value.TicketId != SelectedTicket.Id;
-                            AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
-
+                            TicketViewModel.AssignTableToSelectedTicket(x.Value.LocationId);
+                            //AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
+                            
                             if (!string.IsNullOrEmpty(SelectedTicket.Location))
                                 CloseTicket();
 
@@ -291,7 +292,8 @@ namespace Samba.Modules.TicketModule
                             if (x.Value.TicketId == 0)
                             {
                                 TicketViewModel.CreateNewTicket();
-                                AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
+                                TicketViewModel.AssignTableToSelectedTicket(x.Value.LocationId);
+                                //AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
                             }
                             else
                             {
@@ -302,9 +304,11 @@ namespace Samba.Modules.TicketModule
                                         AppServices.MainDataContext.ResetTableDataForSelectedTicket();
                                 }
                             }
+                            
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
                         }
                     }
+
                 }
                 );
 
