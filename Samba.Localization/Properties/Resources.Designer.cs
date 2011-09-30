@@ -461,7 +461,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always Exclude VAT.
+        ///   Looks up a localized string similar to Always Exclude TAX.
         /// </summary>
         public static string AlwaysExcludeVat {
             get {
@@ -4962,7 +4962,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate from VAT included ticket amount.
+        ///   Looks up a localized string similar to Rate from TAX included ticket amount.
         /// </summary>
         public static string RateFromVatIncludedTicketAmount {
             get {
@@ -5034,7 +5034,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Regenerate Ticket VAT.
+        ///   Looks up a localized string similar to Regenerate Ticket TAX.
         /// </summary>
         public static string RegenerateTicketVat {
             get {
@@ -5948,7 +5948,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax or Service Template.
+        ///   Looks up a localized string similar to Service Template.
         /// </summary>
         public static string TaxServiceTemplate {
             get {
@@ -5957,7 +5957,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax or Service Templates.
+        ///   Looks up a localized string similar to Service Templates.
         /// </summary>
         public static string TaxServiceTemplates {
             get {
@@ -5966,7 +5966,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax or Services Total.
+        ///   Looks up a localized string similar to Services Total.
         /// </summary>
         public static string TaxServiceTotal {
             get {
@@ -5984,7 +5984,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax Totals grouped by Tax or Service template.
+        ///   Looks up a localized string similar to Totals grouped by Service template.
         /// </summary>
         public static string TaxTotalsGroupedByTaxTemplate {
             get {
@@ -7307,7 +7307,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Ticket Vat.
+        ///   Looks up a localized string similar to Update Ticket Tax.
         /// </summary>
         public static string UpdateTicketVat {
             get {
@@ -7442,7 +7442,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT.
+        ///   Looks up a localized string similar to Tax.
         /// </summary>
         public static string Vat {
             get {
@@ -7451,7 +7451,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT Included to Price.
+        ///   Looks up a localized string similar to Tax Included to Price.
         /// </summary>
         public static string VatIncludedToPrice {
             get {
@@ -7460,7 +7460,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT Template.
+        ///   Looks up a localized string similar to Tax Template.
         /// </summary>
         public static string VatTemplate {
             get {
@@ -7469,7 +7469,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT Template Name.
+        ///   Looks up a localized string similar to Tax Template Name.
         /// </summary>
         public static string VatTemplateName {
             get {
@@ -7478,7 +7478,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT Templates.
+        ///   Looks up a localized string similar to Tax Templates.
         /// </summary>
         public static string VatTemplates {
             get {
@@ -7487,7 +7487,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT Total.
+        ///   Looks up a localized string similar to Tax Total.
         /// </summary>
         public static string VatTotal {
             get {
@@ -7496,7 +7496,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT Totals grouped by VAT template.
+        ///   Looks up a localized string similar to Totals grouped by Tax template.
         /// </summary>
         public static string VatTotalsGroupedByVatTemplate {
             get {

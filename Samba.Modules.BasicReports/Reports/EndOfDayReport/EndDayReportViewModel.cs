@@ -35,8 +35,8 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                 {
                     DepartmentId = x.Key.DepartmentId,
                     TicketCount = x.Count(),
-                    Amount = x.Sum(y => y.GetSumWithoutVat()),
-                    Vat = x.Sum(y => y.CalculateVat()),
+                    Amount = x.Sum(y => y.GetSumWithoutTax()),
+                    Vat = x.Sum(y => y.CalculateTax()),
                     TaxServices = x.Sum(y => y.GetTaxServicesTotal())
                 });
 
@@ -226,7 +226,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     }
                 }
 
-                var tagGroups = dict.Select(x => new TicketTagInfo { Amount = x.Value.Sum(y => y.GetSumWithoutVat()), TicketCount = x.Value.Count, TagName = x.Key }).OrderBy(x => x.TagName);
+                var tagGroups = dict.Select(x => new TicketTagInfo { Amount = x.Value.Sum(y => y.GetSumWithoutTax()), TicketCount = x.Value.Count, TagName = x.Key }).OrderBy(x => x.TagName);
 
                 var tagGrp = tagGroups.GroupBy(x => x.TagName.Split(':')[0]);
 

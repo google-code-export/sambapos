@@ -79,10 +79,10 @@ namespace Samba.Modules.SettingsModule
             result.Add(Resources.TF_TicketPaidTotal, Resources.TicketPaidTotal);
             result.Add("{PLAIN TOTAL}", Resources.TicketSubTotal);
             result.Add("{DISCOUNT TOTAL}", Resources.DiscountTotal);
-            result.Add("{VAT TOTAL}", Resources.VatTotal);
-            result.Add("{VAT DETAILS}", Resources.VatTotalsGroupedByVatTemplate);
-            result.Add("{TAX TOTAL}", Resources.TaxTotal);
-            result.Add("{TAX DETAILS}", Resources.TaxTotalsGroupedByTaxTemplate);
+            result.Add("{TAX TOTAL}", Resources.VatTotal);
+            result.Add("{TAX DETAILS}", Resources.VatTotalsGroupedByVatTemplate);
+            result.Add("{SERVICE TOTAL}", Resources.TaxServiceTotal);
+            result.Add("{SERVICE DETAILS}", Resources.TaxTotalsGroupedByTaxTemplate);
             result.Add(Resources.TF_TicketRemainingAmount, Resources.TicketRemainingAmount);
             result.Add(Resources.TF_RemainingAmountIfPaid, Resources.RemainingAmountIfPaid);
             result.Add("{TOTAL TEXT}", Resources.TextWrittenTotalValue);

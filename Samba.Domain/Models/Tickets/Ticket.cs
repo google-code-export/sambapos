@@ -156,7 +156,7 @@ namespace Samba.Domain.Models.Tickets
             return TicketItems.Count();
         }
 
-        public decimal GetSumWithoutVat()
+        public decimal GetSumWithoutTax()
         {
             var sum = GetPlainSum();
             sum -= GetDiscountAndRoundingTotal();
@@ -167,17 +167,17 @@ namespace Samba.Domain.Models.Tickets
         {
             var plainSum = GetPlainSum();
             var discount = CalculateDiscounts(Discounts.Where(x => x.DiscountType == (int)DiscountType.Percent), plainSum);
-            var vat = CalculateVat(plainSum, discount);
-            var services = CalculateTaxServices(TaxServices, plainSum - discount, vat);
-            return (plainSum - discount + services + vat) - Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent).Sum(x => x.Amount);
+            var tax = CalculateTax(plainSum, discount);
+            var services = CalculateServices(TaxServices, plainSum - discount, tax);
+            return (plainSum - discount + services + tax) - Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent).Sum(x => x.Amount);
         }
 
-        public decimal CalculateVat()
+        public decimal CalculateTax()
         {
-            return CalculateVat(GetPlainSum(), GetDiscountTotal());
+            return CalculateTax(GetPlainSum(), GetDiscountTotal());
         }
 
-        private decimal CalculateVat(decimal plainSum, decimal discount)
+        private decimal CalculateTax(decimal plainSum, decimal discount)
         {
             var result = TicketItems.Where(x => !x.VatIncluded).Sum(x => (x.VatAmount + x.Properties.Sum(y => y.VatAmount)) * x.Quantity);
             if (discount > 0)
@@ -206,14 +206,12 @@ namespace Samba.Domain.Models.Tickets
         {
             var plainSum = GetPlainSum();
             var discount = GetDiscountTotal();
-            var vat = CalculateVat(plainSum, discount);
-            return CalculateTaxServices(TaxServices, plainSum - discount, vat);
+            var tax = CalculateTax(plainSum, discount);
+            return CalculateServices(TaxServices, plainSum - discount, tax);
         }
 
-        private static decimal CalculateTaxServices(IEnumerable<TaxService> taxServices, decimal sum, decimal vat)
+        private static decimal CalculateServices(IEnumerable<TaxService> taxServices, decimal sum, decimal tax)
         {
-            //Rate From Ticket Amount = 0, Rate From Previous Template = 1, Fixed Amount = 2
-
             decimal totalAmount = 0;
             var currentSum = sum;
 
@@ -225,7 +223,7 @@ namespace Samba.Domain.Models.Tickets
                 }
                 else if (taxService.CalculationType == 1)
                 {
-                    taxService.CalculationAmount = taxService.Amount > 0 ? ((sum + vat) * taxService.Amount) / 100 : 0;
+                    taxService.CalculationAmount = taxService.Amount > 0 ? ((sum + tax) * taxService.Amount) / 100 : 0;
                 }
                 else if (taxService.CalculationType == 2)
                 {

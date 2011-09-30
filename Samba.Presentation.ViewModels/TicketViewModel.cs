@@ -105,7 +105,7 @@ namespace Samba.Presentation.ViewModels
 
         public decimal TicketVatValue
         {
-            get { return Model.CalculateVat(); }
+            get { return Model.CalculateTax(); }
         }
 
         public decimal TicketTaxServiceValue

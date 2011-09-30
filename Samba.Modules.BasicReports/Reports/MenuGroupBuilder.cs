@@ -63,7 +63,7 @@ namespace Samba.Modules.BasicReports.Reports
             var discount = ticket.GetDiscountAndRoundingTotal();
             if (discount != 0)
             {
-                var tsum = ticket.GetSumWithoutVat() + discount;
+                var tsum = ticket.GetSumWithoutTax() + discount;
                 var rate = (discount * 100) / tsum;
                 var tiTotal = ticketItem.GetTotal();
                 var itemDiscount = (tiTotal * rate) / 100;

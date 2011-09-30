@@ -2765,13 +2765,13 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>Can't delete because this product assigned to a menu item property</value>
   </data>
   <data name="VatTemplates" xml:space="preserve">
-    <value>VAT Templates</value>
+    <value>Tax Templates</value>
   </data>
   <data name="VatTemplate" xml:space="preserve">
-    <value>VAT Template</value>
+    <value>Tax Template</value>
   </data>
   <data name="VatTemplateName" xml:space="preserve">
-    <value>VAT Template Name</value>
+    <value>Tax Template Name</value>
     <comment>Label.Content</comment>
   </data>
   <data name="Rate" xml:space="preserve">
@@ -2779,17 +2779,17 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <comment>Label.Content</comment>
   </data>
   <data name="VatIncludedToPrice" xml:space="preserve">
-    <value>VAT Included to Price</value>
+    <value>Tax Included to Price</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="Vat" xml:space="preserve">
-    <value>VAT</value>
+    <value>Tax</value>
   </data>
   <data name="VatTotal" xml:space="preserve">
-    <value>VAT Total</value>
+    <value>Tax Total</value>
   </data>
   <data name="UpdateTicketVat" xml:space="preserve">
-    <value>Update Ticket Vat</value>
+    <value>Update Ticket Tax</value>
   </data>
   <data name="One" xml:space="preserve">
     <value>One</value>
@@ -2906,23 +2906,23 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>One Thousand</value>
   </data>
   <data name="AlwaysExcludeVat" xml:space="preserve">
-    <value>Always Exclude VAT</value>
+    <value>Always Exclude TAX</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="RoundingTotal" xml:space="preserve">
     <value>Rounding Total</value>
   </data>
   <data name="TaxServiceTemplates" xml:space="preserve">
-    <value>Tax or Service Templates</value>
+    <value>Service Templates</value>
   </data>
   <data name="ChooseTaxServicesForDepartmentHint_f" xml:space="preserve">
     <value>Select tax or services for using at {0} department.</value>
   </data>
   <data name="TaxServiceTemplate" xml:space="preserve">
-    <value>Tax or Service Template</value>
+    <value>Service Template</value>
   </data>
   <data name="TaxServiceTotal" xml:space="preserve">
-    <value>Tax or Services Total</value>
+    <value>Services Total</value>
   </data>
   <data name="CalculationMethod" xml:space="preserve">
     <value>Calculation Method</value>
@@ -2941,8 +2941,8 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="FixedAmount" xml:space="preserve">
     <value>Fixed amount</value>
   </data>
-  <data name="RateFromVatIncludedTicketAmount">
-    <value xml:space="preserve">Rate from VAT included ticket amount</value>
+  <data name="RateFromVatIncludedTicketAmount" xml:space="preserve">
+    <value>Rate from TAX included ticket amount</value>
   </data>
   <data name="UnhandledExceptionErrorMessage" xml:space="preserve">
     <value>SambaPOS encountered an unexpected problem. Problem details logged to trace.log file</value>
@@ -2950,40 +2950,40 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="SaveFreeTags" xml:space="preserve">
     <value>Save Free Tags</value>
   </data>
-	<data name="RegenerateTicketVat">
-		<value xml:space="preserve">Regenerate Ticket VAT</value>
-	</data>
-	<data name="UpdateTicketTaxService">
-		<value xml:space="preserve">Update Ticket Tax or Service</value>
-	</data>
-	<data name="Included">
-		<value xml:space="preserve">Included</value>
-	</data>
-	<data name="Excluded">
-		<value xml:space="preserve">Excluded</value>
-	</data>
-	<data name="EmptyDiscountRateFeedback">
-		<value xml:space="preserve">To add discounts, type a rate and click discount button. To remove discount click discount button without typing a value.</value>
-	</data>
-  <data name="TicketSubTotal">
-    <value xml:space="preserve">Ticket Sub Total</value>
+  <data name="RegenerateTicketVat" xml:space="preserve">
+    <value>Regenerate Ticket TAX</value>
   </data>
-  <data name="VatTotalsGroupedByVatTemplate">
-    <value xml:space="preserve">VAT Totals grouped by VAT template</value>
+  <data name="UpdateTicketTaxService" xml:space="preserve">
+    <value>Update Ticket Tax or Service</value>
   </data>
-  <data name="TaxTotal">
-    <value xml:space="preserve">Tax Total</value>
+  <data name="Included" xml:space="preserve">
+    <value>Included</value>
   </data>
-  <data name="TaxTotalsGroupedByTaxTemplate">
-    <value xml:space="preserve">Tax Totals grouped by Tax or Service template</value>
+  <data name="Excluded" xml:space="preserve">
+    <value>Excluded</value>
   </data>
-  <data name="TextWrittenTotalValue">
-    <value xml:space="preserve">Text written total value</value>
+  <data name="EmptyDiscountRateFeedback" xml:space="preserve">
+    <value>To add discounts, type a rate and click discount button. To remove discount click discount button without typing a value.</value>
   </data>
-	<data name="TicketLocationChanged">
-		<value xml:space="preserve">Ticket Location Changed</value>
-	</data>
-	<data name="UpdateTicketAccount">
-		<value xml:space="preserve">Update Ticket Account</value>
-	</data>
+  <data name="TicketSubTotal" xml:space="preserve">
+    <value>Ticket Sub Total</value>
+  </data>
+  <data name="VatTotalsGroupedByVatTemplate" xml:space="preserve">
+    <value>Totals grouped by Tax template</value>
+  </data>
+  <data name="TaxTotal" xml:space="preserve">
+    <value>Tax Total</value>
+  </data>
+  <data name="TaxTotalsGroupedByTaxTemplate" xml:space="preserve">
+    <value>Totals grouped by Service template</value>
+  </data>
+  <data name="TextWrittenTotalValue" xml:space="preserve">
+    <value>Text written total value</value>
+  </data>
+  <data name="TicketLocationChanged" xml:space="preserve">
+    <value>Ticket Location Changed</value>
+  </data>
+  <data name="UpdateTicketAccount" xml:space="preserve">
+    <value>Update Ticket Account</value>
+  </data>
 </root>

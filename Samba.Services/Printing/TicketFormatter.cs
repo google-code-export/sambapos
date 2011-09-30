@@ -210,15 +210,15 @@ namespace Samba.Services.Printing
             var discount = ticket.GetDiscountAndRoundingTotal();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
-            var vatAmount = ticket.CalculateVat();
+            var vatAmount = ticket.CalculateTax();
             var taxServicesTotal = ticket.GetTaxServicesTotal();
 
             result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", () => plainTotal.ToString("#,#0.00"));
             result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", () => discount.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{VAT TOTAL}", () => vatAmount.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{TAX TOTAL}", () => taxServicesTotal.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{VAT DETAILS}", () => GetVatDetails(ticket.TicketItems, plainTotal, discount));
-            result = FormatDataIf(taxServicesTotal > 0, result, "{TAX DETAILS}", () => GetTaxDetails(ticket));
+            result = FormatDataIf(vatAmount > 0, result, "{TAX TOTAL}", () => vatAmount.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0, result, "{SERVICE TOTAL}", () => taxServicesTotal.ToString("#,#0.00"));
+            result = FormatDataIf(vatAmount > 0, result, "{TAX DETAILS}", () => GetTaxDetails(ticket.TicketItems, plainTotal, discount));
+            result = FormatDataIf(taxServicesTotal > 0, result, "{SERVICE DETAILS}", () => GetServiceDetails(ticket));
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
                 () => string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
@@ -245,7 +245,7 @@ namespace Samba.Services.Printing
             return dep != null ? dep.Name : Resources.UndefinedWithBrackets;
         }
 
-        private static string GetTaxDetails(Ticket ticket)
+        private static string GetServiceDetails(Ticket ticket)
         {
             var sb = new StringBuilder();
             foreach (var taxService in ticket.TaxServices)
@@ -258,7 +258,7 @@ namespace Samba.Services.Printing
             return string.Join("\r", sb);
         }
 
-        private static string GetVatDetails(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)
+        private static string GetTaxDetails(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)
         {
             var sb = new StringBuilder();
             var groups = ticketItems.Where(x => x.VatTemplateId > 0).GroupBy(x => x.VatTemplateId);
