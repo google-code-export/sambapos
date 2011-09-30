@@ -30,7 +30,7 @@ namespace Samba.Modules.UserModule
             }
             set
             {
-                if (!Model.PinCode.Contains("*") && !string.IsNullOrEmpty(value))
+                if (Model.PinCode == null || !Model.PinCode.Contains("*") && !string.IsNullOrEmpty(value))
                 {
                     _edited = true;
                     Model.PinCode = value;
