@@ -172,7 +172,7 @@ namespace Samba.Modules.BasicReports.Reports.CashReport
 
         private static string Fct(CashTransactionData data)
         {
-            var cn = !string.IsNullOrEmpty(data.CustomerName) ? data.CustomerName + " " : "";
+            var cn = !string.IsNullOrEmpty(data.AccountName) ? data.AccountName + " " : "";
             return data.Date.ToShortDateString() + " " + cn + data.Name;
         }
 

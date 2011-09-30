@@ -81,7 +81,7 @@
                 <DataGridTextColumn Header="{LocText Total}"
                      Binding="{Binding Sum,StringFormat='#,#0.00'}" MinWidth="65" CellStyle="{StaticResource RightAlignedCellStyle}" />
                 <DataGridTextColumn Header="{LocText Account}"
-                     Binding="{Binding Customer}" />
+                     Binding="{Binding AccountName}" />
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">25</sys:Double>

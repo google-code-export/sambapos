@@ -11,7 +11,7 @@ namespace Samba.Modules.TicketModule
     {
         OpenTickets,
         AllTickets,
-        Customer,
+        Account,
         Location
     }
 
@@ -68,14 +68,14 @@ namespace Samba.Modules.TicketModule
                 else result = x => string.IsNullOrEmpty(x.LocationName);
             }
 
-            if (FilterType == FilterType.Customer)
+            if (FilterType == FilterType.Account)
             {
                 if (FilterValue == "*")
-                    result = x => !string.IsNullOrEmpty(x.CustomerName);
+                    result = x => !string.IsNullOrEmpty(x.AccountName);
                 else if (!string.IsNullOrEmpty(FilterValue))
-                    result = x => x.CustomerName.ToLower().Contains(FilterValue.ToLower());
+                    result = x => x.AccountName.ToLower().Contains(FilterValue.ToLower());
                 else
-                    result = x => string.IsNullOrEmpty(x.CustomerName);
+                    result = x => string.IsNullOrEmpty(x.AccountName);
             }
 
             return result;

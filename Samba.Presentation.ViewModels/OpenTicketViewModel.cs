@@ -9,7 +9,7 @@ namespace Samba.Presentation.ViewModels
     {
         public int Id { get; set; }
         public string LocationName { get; set; }
-        public string CustomerName { get; set; }
+        public string AccountName { get; set; }
         public decimal RemainingAmount { get; set; }
         public string TicketNumber { get; set; }
         public DateTime Date { get; set; }
@@ -34,11 +34,11 @@ namespace Samba.Presentation.ViewModels
                 result = result + " ";
                 result = WrapText ? result.Replace(" ", "\r") : result;
                 if (!string.IsNullOrEmpty(Info)) result += Info;
-                else if (!string.IsNullOrEmpty(CustomerName)) result += CustomerName;
+                else if (!string.IsNullOrEmpty(AccountName)) result += AccountName;
                 return result.TrimEnd('\r');
             }
         }
-        public string TitleTextColor { get { return !string.IsNullOrEmpty(LocationName) || !string.IsNullOrEmpty(CustomerName) ? "DarkBlue" : "Maroon"; } }
+        public string TitleTextColor { get { return !string.IsNullOrEmpty(LocationName) || !string.IsNullOrEmpty(AccountName) ? "DarkBlue" : "Maroon"; } }
         public string Total
         {
             get

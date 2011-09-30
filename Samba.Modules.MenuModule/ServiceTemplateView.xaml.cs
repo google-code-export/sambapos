@@ -3,11 +3,11 @@
 namespace Samba.Modules.MenuModule
 {
     /// <summary>
-    /// Interaction logic for TaxServiceView.xaml
+    /// Interaction logic for ServiceTemplateView.xaml
     /// </summary>
-    public partial class TaxServiceTemplateView : UserControl
+    public partial class ServiceTemplateView : UserControl
     {
-        public TaxServiceTemplateView()
+        public ServiceTemplateView()
         {
             InitializeComponent();
         }

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using Samba.Domain;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Transactions;
@@ -19,7 +19,7 @@ namespace Samba.Services
         public int PaymentType { get; set; }
         public int TransactionType { get; set; }
         public decimal Amount { get; set; }
-        public string CustomerName { get; set; }
+        public string AccountName { get; set; }
     }
 
     public class CashService
@@ -49,24 +49,24 @@ namespace Samba.Services
             return new[] { cashAmount, creditCardAmount, ticketAmount };
         }
 
-        public void AddIncome(int customerId, decimal amount, string description, PaymentType paymentType)
+        public void AddIncome(int accountId, decimal amount, string description, PaymentType paymentType)
         {
-            AddTransaction(customerId, amount, description, paymentType, TransactionType.Income);
+            AddTransaction(accountId, amount, description, paymentType, TransactionType.Income);
         }
 
-        public void AddExpense(int customerId, decimal amount, string description, PaymentType paymentType)
+        public void AddExpense(int accountId, decimal amount, string description, PaymentType paymentType)
         {
-            AddTransaction(customerId, amount, description, paymentType, TransactionType.Expense);
+            AddTransaction(accountId, amount, description, paymentType, TransactionType.Expense);
         }
 
-        public void AddLiability(int customerId, decimal amount, string description)
+        public void AddLiability(int accountId, decimal amount, string description)
         {
-            AddTransaction(customerId, amount, description, 0, TransactionType.Liability);
+            AddTransaction(accountId, amount, description, 0, TransactionType.Liability);
         }
 
-        public void AddReceivable(int customerId, decimal amount, string description)
+        public void AddReceivable(int accountId, decimal amount, string description)
         {
-            AddTransaction(customerId, amount, description, 0, TransactionType.Receivable);
+            AddTransaction(accountId, amount, description, 0, TransactionType.Receivable);
         }
 
         public IEnumerable<CashTransaction> GetTransactions(WorkPeriod workPeriod)
@@ -77,20 +77,20 @@ namespace Samba.Services
             return Dao.Query<CashTransaction>(x => x.Date >= workPeriod.StartDate && x.Date < workPeriod.EndDate);
         }
 
-        public IEnumerable<CashTransactionData> GetTransactionsWithCustomerData(WorkPeriod workPeriod)
+        public IEnumerable<CashTransactionData> GetTransactionsWithAccountData(WorkPeriod workPeriod)
         {
-            var wp = new WorkPeriod() { StartDate = workPeriod.StartDate, EndDate = workPeriod.EndDate };
+            var wp = new WorkPeriod { StartDate = workPeriod.StartDate, EndDate = workPeriod.EndDate };
             if (wp.StartDate == wp.EndDate) wp.EndDate = DateTime.Now;
             using (var workspace = WorkspaceFactory.CreateReadOnly())
             {
                 var lines = from ct in workspace.Queryable<CashTransaction>()
-                            join customer in workspace.Queryable<Customer>() on ct.CustomerId equals customer.Id into ctC
-                            from customer in ctC.DefaultIfEmpty()
+                            join account in workspace.Queryable<Account>() on ct.AccountId equals account.Id into ctC
+                            from account in ctC.DefaultIfEmpty()
                             where ct.Date >= wp.StartDate && ct.Date < wp.EndDate
                             select new CashTransactionData
                                        {
                                            Amount = ct.Amount,
-                                           CustomerName = customer.Name,
+                                           AccountName = account.Name,
                                            Date = ct.Date,
                                            Name = ct.Name,
                                            PaymentType = ct.PaymentType,
@@ -100,7 +100,7 @@ namespace Samba.Services
             }
         }
 
-        private static void AddTransaction(int customerId, decimal amount, string description, PaymentType paymentType, TransactionType transactionType)
+        private static void AddTransaction(int accountId, decimal amount, string description, PaymentType paymentType, TransactionType transactionType)
         {
             using (var workspace = WorkspaceFactory.Create())
             {
@@ -114,7 +114,7 @@ namespace Samba.Services
                         PaymentType = (int)paymentType,
                         TransactionType = (int)transactionType,
                         UserId = AppServices.CurrentLoggedInUser.Id,
-                        CustomerId = customerId
+                        AccountId = accountId
                     };
                     workspace.Add(c);
                 }
@@ -127,7 +127,7 @@ namespace Samba.Services
                         Name = description,
                         TransactionType = (int)transactionType,
                         UserId = AppServices.CurrentLoggedInUser.Id,
-                        CustomerId = customerId
+                        AccountId = accountId
                     };
                     workspace.Add(c);
                 }

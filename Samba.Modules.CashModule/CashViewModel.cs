@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
 using Samba.Domain;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Transactions;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
@@ -34,8 +33,8 @@ namespace Samba.Modules.CashModule
                             x => new CashTransactionViewModel(x)).OrderByDescending(x => x.Date).Cast<ICashTransactionViewModel>().ToList();
 
                     var operations = AppServices.CashService.GetCurrentCashOperationData();
-                    var operationViewModel = new CashOperationViewModel()
-                                                  {
+                    var operationViewModel = new CashOperationViewModel
+                                                 {
                                                       CashPaymentValue = operations[0],
                                                       CreditCardPaymentValue = operations[1],
                                                       TicketPaymentValue = operations[2],
@@ -46,7 +45,7 @@ namespace Samba.Modules.CashModule
 
                     if (AppServices.MainDataContext.CurrentWorkPeriod != null)
                     {
-                        var dayStartCashViewModel = new CashOperationViewModel()
+                        var dayStartCashViewModel = new CashOperationViewModel
                                                         {
                                                             CashPaymentValue = AppServices.MainDataContext.CurrentWorkPeriod.CashAmount,
                                                             CreditCardPaymentValue = AppServices.MainDataContext.CurrentWorkPeriod.CreditCardAmount,
@@ -98,15 +97,15 @@ namespace Samba.Modules.CashModule
             }
         }
 
-        private CustomerViewModel _selectedCustomer;
-        public CustomerViewModel SelectedCustomer
+        private AccountViewModel _selectedAccount;
+        public AccountViewModel SelectedAccount
         {
-            get { return _selectedCustomer; }
+            get { return _selectedAccount; }
             set
             {
-                _selectedCustomer = value;
-                RaisePropertyChanged("IsCustomerDetailsVisible");
-                RaisePropertyChanged("SelectedCustomer");
+                _selectedAccount = value;
+                RaisePropertyChanged("IsAccountDetailsVisible");
+                RaisePropertyChanged("SelectedAccount");
             }
         }
 
@@ -117,7 +116,7 @@ namespace Samba.Modules.CashModule
         public ICaptionCommand ApplyTicketTransactionCommand { get; set; }
         public ICaptionCommand ApplyTransactionCommand { get; set; }
         public ICaptionCommand CancelTransactionCommand { get; set; }
-        public ICaptionCommand DisplayCustomerAccountsCommand { get; set; }
+        public ICaptionCommand DisplayAccountsCommand { get; set; }
 
         private string _description;
         public string Description
@@ -172,7 +171,7 @@ namespace Samba.Modules.CashModule
             }
         }
 
-        public bool IsCustomerDetailsVisible { get { return SelectedCustomer != null; } }
+        public bool IsAccountDetailsVisible { get { return SelectedAccount != null; } }
         public bool IsPaymentButtonsVisible { get { return TransactionType == TransactionType.Income || TransactionType == TransactionType.Expense; } }
         public bool IsTransactionButtonVisible { get { return !IsPaymentButtonsVisible; } }
         public decimal CashIncomeTotal { get { return IncomeTransactions.Sum(x => x.CashPaymentValue); } }
@@ -195,13 +194,13 @@ namespace Samba.Modules.CashModule
             ApplyCashTransactionCommand = new CaptionCommand<string>(Resources.Cash, OnApplyCashTransaction, CanApplyTransaction);
             ApplyCreditCardTransactionCommand = new CaptionCommand<string>(Resources.CreditCard, OnApplyCreditCardTransaction, CanApplyTransaction);
             ApplyTicketTransactionCommand = new CaptionCommand<string>(Resources.Voucher, OnApplyTicketTransaction, CanApplyTransaction);
-            DisplayCustomerAccountsCommand = new CaptionCommand<string>(Resources.CustomerAccounts, OnDisplayCustomerAccounts);
+            DisplayAccountsCommand = new CaptionCommand<string>(Resources.Accounts, OnDisplayAccounts);
         }
 
 
-        private static void OnDisplayCustomerAccounts(string obj)
+        private static void OnDisplayAccounts(string obj)
         {
-            EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateCustomerView);
+            EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateAccountView);
         }
 
         private static bool CanActivateIncomeTransactionRecord(string arg)
@@ -209,44 +208,44 @@ namespace Samba.Modules.CashModule
             return AppServices.MainDataContext.IsCurrentWorkPeriodOpen && AppServices.IsUserPermittedFor(PermissionNames.MakeCashTransaction);
         }
 
-        private int GetSelectedCustomerId()
+        private int GetSelectedAccountId()
         {
-            return SelectedCustomer != null ? SelectedCustomer.Id : 0;
+            return SelectedAccount != null ? SelectedAccount.Id : 0;
         }
 
         private void OnApplyTransaction(string obj)
         {
             if (TransactionType == TransactionType.Liability)
-                AppServices.CashService.AddLiability(GetSelectedCustomerId(), Amount, Description);
+                AppServices.CashService.AddLiability(GetSelectedAccountId(), Amount, Description);
             else if (TransactionType == TransactionType.Receivable)
-                AppServices.CashService.AddReceivable(GetSelectedCustomerId(), Amount, Description);
+                AppServices.CashService.AddReceivable(GetSelectedAccountId(), Amount, Description);
             ActivateTransactionList();
         }
 
         private void OnApplyTicketTransaction(string obj)
         {
             if (TransactionType == TransactionType.Expense)
-                AppServices.CashService.AddExpense(GetSelectedCustomerId(), Amount, Description, PaymentType.Ticket);
+                AppServices.CashService.AddExpense(GetSelectedAccountId(), Amount, Description, PaymentType.Ticket);
             else
-                AppServices.CashService.AddIncome(GetSelectedCustomerId(), Amount, Description, PaymentType.Ticket);
+                AppServices.CashService.AddIncome(GetSelectedAccountId(), Amount, Description, PaymentType.Ticket);
             ActivateTransactionList();
         }
 
         private void OnApplyCreditCardTransaction(string obj)
         {
             if (TransactionType == TransactionType.Expense)
-                AppServices.CashService.AddExpense(GetSelectedCustomerId(), Amount, Description, PaymentType.CreditCard);
+                AppServices.CashService.AddExpense(GetSelectedAccountId(), Amount, Description, PaymentType.CreditCard);
             else
-                AppServices.CashService.AddIncome(GetSelectedCustomerId(), Amount, Description, PaymentType.CreditCard);
+                AppServices.CashService.AddIncome(GetSelectedAccountId(), Amount, Description, PaymentType.CreditCard);
             ActivateTransactionList();
         }
 
         private void OnApplyCashTransaction(string obj)
         {
             if (TransactionType == TransactionType.Expense)
-                AppServices.CashService.AddExpense(GetSelectedCustomerId(), Amount, Description, PaymentType.Cash);
+                AppServices.CashService.AddExpense(GetSelectedAccountId(), Amount, Description, PaymentType.Cash);
             else
-                AppServices.CashService.AddIncome(GetSelectedCustomerId(), Amount, Description, PaymentType.Cash);
+                AppServices.CashService.AddIncome(GetSelectedAccountId(), Amount, Description, PaymentType.Cash);
             ActivateTransactionList();
         }
 
@@ -286,10 +285,10 @@ namespace Samba.Modules.CashModule
             _incomeTransactions = null;
             _expenseTransactions = null;
 
-            if (SelectedCustomer != null)
+            if (SelectedAccount != null)
             {
-                SelectedCustomer.Model.PublishEvent(EventTopicNames.ActivateCustomerAccount);
-                SelectedCustomer = null;
+                SelectedAccount.Model.PublishEvent(EventTopicNames.ActivateAccount);
+                SelectedAccount = null;
                 return;
             }
             RaisePropertyChanged("IncomeTransactions");
@@ -312,28 +311,28 @@ namespace Samba.Modules.CashModule
                     : new List<CashTransaction>();
         }
 
-        public void MakePaymentToCustomer(Customer customer)
+        public void MakePaymentToAccount(Account account)
         {
             ResetTransactionData(TransactionType.Expense);
-            SelectedCustomer = new CustomerViewModel(customer);
+            SelectedAccount = new AccountViewModel(account);
         }
 
-        internal void GetPaymentFromCustomer(Customer customer)
+        internal void GetPaymentFromAccount(Account account)
         {
             ResetTransactionData(TransactionType.Income);
-            SelectedCustomer = new CustomerViewModel(customer);
+            SelectedAccount = new AccountViewModel(account);
         }
 
-        internal void AddLiabilityAmount(Customer customer)
+        internal void AddLiabilityAmount(Account account)
         {
             ResetTransactionData(TransactionType.Liability);
-            SelectedCustomer = new CustomerViewModel(customer);
+            SelectedAccount = new AccountViewModel(account);
         }
 
-        internal void AddReceivableAmount(Customer customer)
+        internal void AddReceivableAmount(Account account)
         {
             ResetTransactionData(TransactionType.Receivable);
-            SelectedCustomer = new CustomerViewModel(customer);
+            SelectedAccount = new AccountViewModel(account);
         }
     }
 }

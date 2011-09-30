@@ -26,7 +26,7 @@ namespace Samba.Presentation.Terminal
         {
             Debug.Assert(SelectedTicket == null);
             if (table.TicketId == 0)
-                TicketViewModel.AssignTableToSelectedTicket(table.Id);
+                TicketViewModel.AssignLocationToSelectedTicket(table.Id);
             //AppServices.MainDataContext.AssignTableToSelectedTicket(table.Id););
             else AppServices.MainDataContext.OpenTicket(table.TicketId);
             RefreshSelectedTicket();

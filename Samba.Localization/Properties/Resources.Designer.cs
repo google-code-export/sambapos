@@ -107,6 +107,25 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account
+        ///Info.
+        /// </summary>
+        public static string AccountInfo_r {
+            get {
+                return ResourceManager.GetString("AccountInfo_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account List.
+        /// </summary>
+        public static string AccountList {
+            get {
+                return ResourceManager.GetString("AccountList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Name.
         /// </summary>
         public static string AccountName {
@@ -126,6 +145,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Note.
+        /// </summary>
+        public static string AccountNote {
+            get {
+                return ResourceManager.GetString("AccountNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Phone.
         /// </summary>
         public static string AccountPhone {
@@ -140,6 +168,15 @@ namespace Samba.Localization.Properties {
         public static string Accounts {
             get {
                 return ResourceManager.GetString("Accounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Selected for Ticket.
+        /// </summary>
+        public static string AccountSelectedForTicket {
+            get {
+                return ResourceManager.GetString("AccountSelectedForTicket", resourceCulture);
             }
         }
         
@@ -461,11 +498,11 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always Exclude TAX.
+        ///   Looks up a localized string similar to Always Exclude Tax.
         /// </summary>
-        public static string AlwaysExcludeVat {
+        public static string AlwaysExcludeTax {
             get {
-                return ResourceManager.GetString("AlwaysExcludeVat", resourceCulture);
+                return ResourceManager.GetString("AlwaysExcludeTax", resourceCulture);
             }
         }
         
@@ -1282,20 +1319,20 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select tax or services for using at {0} department..
+        /// </summary>
+        public static string ChooseServicesForDepartmentHint_f {
+            get {
+                return ResourceManager.GetString("ChooseServicesForDepartmentHint_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select tags for using at {0} department..
         /// </summary>
         public static string ChooseTagsForDepartmentHint {
             get {
                 return ResourceManager.GetString("ChooseTagsForDepartmentHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select tax or services for using at {0} department..
-        /// </summary>
-        public static string ChooseTaxServicesForDepartmentHint_f {
-            get {
-                return ResourceManager.GetString("ChooseTaxServicesForDepartmentHint_f", resourceCulture);
             }
         }
         
@@ -1532,90 +1569,6 @@ namespace Samba.Localization.Properties {
         public static string Custom {
             get {
                 return ResourceManager.GetString("Custom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer.
-        /// </summary>
-        public static string Customer {
-            get {
-                return ResourceManager.GetString("Customer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer
-        ///Account.
-        /// </summary>
-        public static string CustomerAccount_r {
-            get {
-                return ResourceManager.GetString("CustomerAccount_r", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer
-        ///Accounts.
-        /// </summary>
-        public static string CustomerAccounts {
-            get {
-                return ResourceManager.GetString("CustomerAccounts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer
-        ///Info.
-        /// </summary>
-        public static string CustomerInfo_r {
-            get {
-                return ResourceManager.GetString("CustomerInfo_r", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer List.
-        /// </summary>
-        public static string CustomerList {
-            get {
-                return ResourceManager.GetString("CustomerList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer Name.
-        /// </summary>
-        public static string CustomerName {
-            get {
-                return ResourceManager.GetString("CustomerName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer Note.
-        /// </summary>
-        public static string CustomerNote {
-            get {
-                return ResourceManager.GetString("CustomerNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customers.
-        /// </summary>
-        public static string Customers {
-            get {
-                return ResourceManager.GetString("Customers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer Selected for Ticket.
-        /// </summary>
-        public static string CustomerSelectedForTicket {
-            get {
-                return ResourceManager.GetString("CustomerSelectedForTicket", resourceCulture);
             }
         }
         
@@ -3891,11 +3844,11 @@ namespace Samba.Localization.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to New
-        ///Customer.
+        ///Account.
         /// </summary>
-        public static string NewCustomer_r {
+        public static string NewAccount_r {
             get {
-                return ResourceManager.GetString("NewCustomer_r", resourceCulture);
+                return ResourceManager.GetString("NewAccount_r", resourceCulture);
             }
         }
         
@@ -4953,20 +4906,20 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rate from Tax included ticket amount.
+        /// </summary>
+        public static string RateFromTaxIncludedTicketAmount {
+            get {
+                return ResourceManager.GetString("RateFromTaxIncludedTicketAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate from ticket amount.
         /// </summary>
         public static string RateFromTicketAmount {
             get {
                 return ResourceManager.GetString("RateFromTicketAmount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rate from TAX included ticket amount.
-        /// </summary>
-        public static string RateFromVatIncludedTicketAmount {
-            get {
-                return ResourceManager.GetString("RateFromVatIncludedTicketAmount", resourceCulture);
             }
         }
         
@@ -5034,11 +4987,11 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Regenerate Ticket TAX.
+        ///   Looks up a localized string similar to Regenerate Ticket Tax.
         /// </summary>
-        public static string RegenerateTicketVat {
+        public static string RegenerateTicketTax {
             get {
-                return ResourceManager.GetString("RegenerateTicketVat", resourceCulture);
+                return ResourceManager.GetString("RegenerateTicketTax", resourceCulture);
             }
         }
         
@@ -5117,11 +5070,11 @@ namespace Samba.Localization.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Reset
-        ///Customer.
+        ///Account.
         /// </summary>
-        public static string ResetCustomer_r {
+        public static string ResetAccount_r {
             get {
-                return ResourceManager.GetString("ResetCustomer_r", resourceCulture);
+                return ResourceManager.GetString("ResetAccount_r", resourceCulture);
             }
         }
         
@@ -5351,30 +5304,30 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Actions.
+        ///   Looks up a localized string similar to Select Account.
         /// </summary>
-        public static string SelectActions {
+        public static string SelectAccount {
             get {
-                return ResourceManager.GetString("SelectActions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Customer.
-        /// </summary>
-        public static string SelectCustomer {
-            get {
-                return ResourceManager.GetString("SelectCustomer", resourceCulture);
+                return ResourceManager.GetString("SelectAccount", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Select
-        ///Customer.
+        ///Account.
         /// </summary>
-        public static string SelectCustomer_r {
+        public static string SelectAccount_r {
             get {
-                return ResourceManager.GetString("SelectCustomer_r", resourceCulture);
+                return ResourceManager.GetString("SelectAccount_r", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Actions.
+        /// </summary>
+        public static string SelectActions {
+            get {
+                return ResourceManager.GetString("SelectActions", resourceCulture);
             }
         }
         
@@ -5511,6 +5464,33 @@ namespace Samba.Localization.Properties {
         public static string Server {
             get {
                 return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Template.
+        /// </summary>
+        public static string ServiceTemplate {
+            get {
+                return ResourceManager.GetString("ServiceTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Templates.
+        /// </summary>
+        public static string ServiceTemplates {
+            get {
+                return ResourceManager.GetString("ServiceTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Services Total.
+        /// </summary>
+        public static string ServiceTotal {
+            get {
+                return ResourceManager.GetString("ServiceTotal", resourceCulture);
             }
         }
         
@@ -5948,29 +5928,47 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service Template.
+        ///   Looks up a localized string similar to Tax.
         /// </summary>
-        public static string TaxServiceTemplate {
+        public static string Tax {
             get {
-                return ResourceManager.GetString("TaxServiceTemplate", resourceCulture);
+                return ResourceManager.GetString("Tax", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service Templates.
+        ///   Looks up a localized string similar to Tax Included to Price.
         /// </summary>
-        public static string TaxServiceTemplates {
+        public static string TaxIncludedToPrice {
             get {
-                return ResourceManager.GetString("TaxServiceTemplates", resourceCulture);
+                return ResourceManager.GetString("TaxIncludedToPrice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Services Total.
+        ///   Looks up a localized string similar to Tax Template.
         /// </summary>
-        public static string TaxServiceTotal {
+        public static string TaxTemplate {
             get {
-                return ResourceManager.GetString("TaxServiceTotal", resourceCulture);
+                return ResourceManager.GetString("TaxTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Template Name.
+        /// </summary>
+        public static string TaxTemplateName {
+            get {
+                return ResourceManager.GetString("TaxTemplateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Templates.
+        /// </summary>
+        public static string TaxTemplates {
+            get {
+                return ResourceManager.GetString("TaxTemplates", resourceCulture);
             }
         }
         
@@ -5980,15 +5978,6 @@ namespace Samba.Localization.Properties {
         public static string TaxTotal {
             get {
                 return ResourceManager.GetString("TaxTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Totals grouped by Service template.
-        /// </summary>
-        public static string TaxTotalsGroupedByTaxTemplate {
-            get {
-                return ResourceManager.GetString("TaxTotalsGroupedByTaxTemplate", resourceCulture);
             }
         }
         
@@ -6025,15 +6014,6 @@ namespace Samba.Localization.Properties {
         public static string Terminal {
             get {
                 return ResourceManager.GetString("Terminal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Terminal Name.
-        /// </summary>
-        public static string TerminalAdı {
-            get {
-                return ResourceManager.GetString("TerminalAdı", resourceCulture);
             }
         }
         
@@ -7008,6 +6988,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Totals grouped by Service template.
+        /// </summary>
+        public static string TotalsGroupedByServiceTemplate {
+            get {
+                return ResourceManager.GetString("TotalsGroupedByServiceTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Totals grouped by Tax template.
+        /// </summary>
+        public static string TotalsGroupedByTaxTemplate {
+            get {
+                return ResourceManager.GetString("TotalsGroupedByTaxTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Work Time:
         ///{0:0} days {1:0} hours {2:0} minutes.
         /// </summary>
@@ -7289,6 +7287,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Ticket Service.
+        /// </summary>
+        public static string UpdateTicketService {
+            get {
+                return ResourceManager.GetString("UpdateTicketService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Ticket Tag.
         /// </summary>
         public static string UpdateTicketTag {
@@ -7298,20 +7305,11 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Ticket Tax or Service.
-        /// </summary>
-        public static string UpdateTicketTaxService {
-            get {
-                return ResourceManager.GetString("UpdateTicketTaxService", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Update Ticket Tax.
         /// </summary>
-        public static string UpdateTicketVat {
+        public static string UpdateTicketTax {
             get {
-                return ResourceManager.GetString("UpdateTicketVat", resourceCulture);
+                return ResourceManager.GetString("UpdateTicketTax", resourceCulture);
             }
         }
         
@@ -7438,69 +7436,6 @@ namespace Samba.Localization.Properties {
         public static string UserSales {
             get {
                 return ResourceManager.GetString("UserSales", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax.
-        /// </summary>
-        public static string Vat {
-            get {
-                return ResourceManager.GetString("Vat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Included to Price.
-        /// </summary>
-        public static string VatIncludedToPrice {
-            get {
-                return ResourceManager.GetString("VatIncludedToPrice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Template.
-        /// </summary>
-        public static string VatTemplate {
-            get {
-                return ResourceManager.GetString("VatTemplate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Template Name.
-        /// </summary>
-        public static string VatTemplateName {
-            get {
-                return ResourceManager.GetString("VatTemplateName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Templates.
-        /// </summary>
-        public static string VatTemplates {
-            get {
-                return ResourceManager.GetString("VatTemplates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Total.
-        /// </summary>
-        public static string VatTotal {
-            get {
-                return ResourceManager.GetString("VatTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Totals grouped by Tax template.
-        /// </summary>
-        public static string VatTotalsGroupedByVatTemplate {
-            get {
-                return ResourceManager.GetString("VatTotalsGroupedByVatTemplate", resourceCulture);
             }
         }
         

@@ -200,7 +200,7 @@ namespace Samba.Presentation.Terminal
             {
                 if (DataContext.SelectedTicket.SelectedItems.Count == 0)
                 {
-                    TicketViewModel.AssignTableToSelectedTicket(selectedTable.Id);
+                    TicketViewModel.AssignLocationToSelectedTicket(selectedTable.Id);
                     //AppServices.MainDataContext.AssignTableToSelectedTicket(selectedTable.Id);
                     ShowFeedback("Adisyon " + selectedTable.Name + " masasına taşındı.");
                 }
@@ -408,7 +408,7 @@ namespace Samba.Presentation.Terminal
             var newTicketId = DataContext.MoveSelectedTicketItemsToNewTicket();
             DataContext.OpenTicket(newTicketId);
             if (tableId > 0)
-                TicketViewModel.AssignTableToSelectedTicket(tableId);
+                TicketViewModel.AssignLocationToSelectedTicket(tableId);
             //AppServices.MainDataContext.AssignTableToSelectedTicket(tableId);
         }
 

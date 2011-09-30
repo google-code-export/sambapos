@@ -35,11 +35,11 @@ namespace Samba.Domain.Models.Tickets
             set { _ticketTagGroups = value; }
         }
 
-        private IList<TaxServiceTemplate> _taxServiceTemplates;
-        public virtual IList<TaxServiceTemplate> TaxServiceTemplates
+        private IList<ServiceTemplate> _serviceTemplates;
+        public virtual IList<ServiceTemplate> ServiceTemplates
         {
-            get { return _taxServiceTemplates; }
-            set { _taxServiceTemplates = value; }
+            get { return _serviceTemplates; }
+            set { _serviceTemplates = value; }
         }
 
         private static readonly Department _all = new Department { Name = "*" };
@@ -49,7 +49,7 @@ namespace Samba.Domain.Models.Tickets
         {
             OpenTicketViewColumnCount = 5;
             _ticketTagGroups = new List<TicketTagGroup>();
-            _taxServiceTemplates = new List<TaxServiceTemplate>();
+            _serviceTemplates = new List<ServiceTemplate>();
         }
     }
 }

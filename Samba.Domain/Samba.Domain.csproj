@@ -69,8 +69,8 @@
     <Compile Include="Models\Actions\ActionContainer.cs" />
     <Compile Include="Models\Actions\AppRule.cs" />
     <Compile Include="Models\Actions\AppAction.cs" />
-    <Compile Include="Models\Tickets\TaxService.cs" />
-    <Compile Include="Models\Menus\TaxServiceTemplate.cs" />
+    <Compile Include="Models\Tickets\Service.cs" />
+    <Compile Include="Models\Menus\ServiceTemplate.cs" />
     <Compile Include="Models\Menus\TaxTemplate.cs" />
     <Compile Include="Models\Transactions\AccountTransaction.cs" />
     <Compile Include="Models\Transactions\CashTransaction.cs" />
@@ -89,7 +89,7 @@
     <Compile Include="Models\Tickets\TicketTag.cs" />
     <Compile Include="Models\Tickets\TicketTagGroup.cs" />
     <Compile Include="TransactionType.cs" />
-    <Compile Include="Models\Customers\Customer.cs" />
+    <Compile Include="Models\Accounts\Account.cs" />
     <Compile Include="Models\Tickets\Department.cs">
       <SubType>Code</SubType>
     </Compile>

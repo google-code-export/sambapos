@@ -602,7 +602,7 @@ namespace Samba.Localization.BaseExtensions
                     }
                     else
                     {
-                        // tell the customer, that the forced culture cannot be converted propperly
+                        // tell that the forced culture cannot be converted propperly
                         throw new ArgumentException("Cannot create a CultureInfo with '" + this.ForceCulture + "'", ex);
                     }
                 }

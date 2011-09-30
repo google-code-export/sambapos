@@ -8,7 +8,7 @@ namespace Samba.Presentation.Common
         public const string TriggerExecuted = "TriggerExecuted";
         public const string TicketTotalChanged = "TicketTotalChanged";
         public const string TicketTagSelected = "TicketTagSelected";
-        public const string CustomerSelectedForTicket = "CustomerSelectedForTicket";
+        public const string AccountSelectedForTicket = "AccountSelectedForTicket";
         public const string TicketCreated = "TicketCreated";
         public const string WorkPeriodStarts = "WorkPeriodStarts";
         public const string WorkPeriodEnds = "WorkPeriodEnds";
@@ -32,14 +32,14 @@ namespace Samba.Presentation.Common
         public const string ResetNumerator = "Reset Numerator";
         public const string WorkPeriodStatusChanged = "WorkPeriod Status Changed";
         public const string BrowseUrl = "Browse Url";
-        public const string ActivateCustomerAccount = "Activate Customer Account";
-        public const string ActivateCustomerView = "Activate Customer View";
+        public const string ActivateAccount = "Activate Account";
+        public const string ActivateAccountView = "Activate Account View";
         public const string SelectExtraProperty = "Select Extra Property";
         public const string SelectVoidReason = "Select Void Reason";
         public const string SelectGiftReason = "Select Gift Reason";
         public const string ActivateNavigation = "Activate Navigation";
-        public const string CustomerSelectedForTicket = "Customer Selected For Ticket";
-        public const string SelectCustomer = "Select Customer";
+        public const string AccountSelectedForTicket = "Account Selected For Ticket";
+        public const string SelectAccount = "Select Account";
         public const string NavigationCommandAdded = "Navigation Command Added";
         public const string DashboardCommandAdded = "Dashboard Command Added";
         public const string SelectedTicketChanged = "Selected Ticket Changed";
@@ -64,7 +64,7 @@ namespace Samba.Presentation.Common
         public const string RefreshSelectedTicket = "Refresh Selected Ticket";
         public const string EditTicketNote = "Edit Ticket Note";
         public const string PaymentRequestedForTicket = "Payment Requested For Ticket";
-        public const string GetPaymentFromCustomer = "Get Payment From Customer";
-        public const string MakePaymentToCustomer = "Make Payment To Customer";
+        public const string GetPaymentFromAccount = "Get Payment From Account";
+        public const string MakePaymentToAccount = "Make Payment To Account";
     }
 }

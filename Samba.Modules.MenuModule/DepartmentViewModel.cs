@@ -39,10 +39,10 @@ namespace Samba.Modules.MenuModule
             get { return _ticketTagGroups ?? (_ticketTagGroups = new ObservableCollection<TicketTagGroupViewModel>(GetTicketTags(Model))); }
         }
 
-        private ObservableCollection<TaxServiceTemplateViewModel> _taxServiceTemplates;
-        public ObservableCollection<TaxServiceTemplateViewModel> TaxServiceTemplates
+        private ObservableCollection<ServiceTemplateViewModel> _serviceTemplates;
+        public ObservableCollection<ServiceTemplateViewModel> ServiceTemplates
         {
-            get { return _taxServiceTemplates ?? (_taxServiceTemplates = new ObservableCollection<TaxServiceTemplateViewModel>(GetTaxServiceTemplates(Model))); }
+            get { return _serviceTemplates ?? (_serviceTemplates = new ObservableCollection<ServiceTemplateViewModel>(GetServiceTemplates(Model))); }
         }
 
         private IEnumerable<Numerator> _numerators;
@@ -92,49 +92,49 @@ namespace Samba.Modules.MenuModule
         public string PriceTag { get { return Model.PriceTag; } set { Model.PriceTag = value; } }
 
         public TicketTagGroupViewModel SelectedTicketTag { get; set; }
-        public TaxServiceTemplateViewModel SelectedTaxServiceTemplate { get; set; }
+        public ServiceTemplateViewModel SelectedServiceTemplate { get; set; }
 
         public ICaptionCommand AddTicketTagGroupCommand { get; set; }
         public ICaptionCommand DeleteTicketTagGroupCommand { get; set; }
-        public ICaptionCommand AddTaxServiceTemplateCommand { get; set; }
-        public ICaptionCommand DeleteTaxServiceTemplateCommand { get; set; }
+        public ICaptionCommand AddServiceTemplateCommand { get; set; }
+        public ICaptionCommand DeleteServiceTemplateCommand { get; set; }
 
         public DepartmentViewModel(Department model)
             : base(model)
         {
             AddTicketTagGroupCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.TagGroup), OnAddTicketTagGroup);
             DeleteTicketTagGroupCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.TagGroup), OnDeleteTicketTagGroup, CanDeleteTicketTagGroup);
-            AddTaxServiceTemplateCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.TaxServiceTemplate), OnAddTaxServiceTemplate);
-            DeleteTaxServiceTemplateCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.TaxServiceTemplate), OnDeleteTaxServiceTempalte, CanDeleteTaxServiceTemplate);
+            AddServiceTemplateCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.ServiceTemplate), OnAddServiceTemplate);
+            DeleteServiceTemplateCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.ServiceTemplate), OnDeleteServiceTempalte, CanDeleteServiceTemplate);
         }
 
-        private bool CanDeleteTaxServiceTemplate(string arg)
+        private bool CanDeleteServiceTemplate(string arg)
         {
-            return SelectedTaxServiceTemplate != null;
+            return SelectedServiceTemplate != null;
         }
 
-        private void OnDeleteTaxServiceTempalte(string obj)
+        private void OnDeleteServiceTempalte(string obj)
         {
-            Model.TaxServiceTemplates.Remove(SelectedTaxServiceTemplate.Model);
-            TaxServiceTemplates.Remove(SelectedTaxServiceTemplate);
+            Model.ServiceTemplates.Remove(SelectedServiceTemplate.Model);
+            ServiceTemplates.Remove(SelectedServiceTemplate);
         }
 
-        private void OnAddTaxServiceTemplate(string obj)
+        private void OnAddServiceTemplate(string obj)
         {
             var selectedValues =
-              InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<TaxServiceTemplate>().ToList<IOrderable>(),
-              Model.TaxServiceTemplates.ToList<IOrderable>(), Resources.TaxServiceTemplates, string.Format(Resources.ChooseTaxServicesForDepartmentHint_f, Model.Name),
-              Resources.TaxServiceTemplate, Resources.TaxServiceTemplates);
+              InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<ServiceTemplate>().ToList<IOrderable>(),
+              Model.ServiceTemplates.ToList<IOrderable>(), Resources.ServiceTemplates, string.Format(Resources.ChooseServicesForDepartmentHint_f, Model.Name),
+              Resources.ServiceTemplate, Resources.ServiceTemplates);
 
-            foreach (TaxServiceTemplate selectedValue in selectedValues)
+            foreach (ServiceTemplate selectedValue in selectedValues)
             {
-                if (!Model.TaxServiceTemplates.Contains(selectedValue))
-                    Model.TaxServiceTemplates.Add(selectedValue);
+                if (!Model.ServiceTemplates.Contains(selectedValue))
+                    Model.ServiceTemplates.Add(selectedValue);
             }
 
-            _taxServiceTemplates = new ObservableCollection<TaxServiceTemplateViewModel>(GetTaxServiceTemplates(Model));
+            _serviceTemplates = new ObservableCollection<ServiceTemplateViewModel>(GetServiceTemplates(Model));
 
-            RaisePropertyChanged("TaxServiceTemplates");
+            RaisePropertyChanged("ServiceTemplates");
         }
 
         private bool CanDeleteTicketTagGroup(string arg)
@@ -166,9 +166,9 @@ namespace Samba.Modules.MenuModule
             RaisePropertyChanged("TicketTagGroups");
         }
 
-        private static IEnumerable<TaxServiceTemplateViewModel> GetTaxServiceTemplates(Department model)
+        private static IEnumerable<ServiceTemplateViewModel> GetServiceTemplates(Department model)
         {
-            return model.TaxServiceTemplates.OrderBy(x => x.Order).Select(x => new TaxServiceTemplateViewModel(x));
+            return model.ServiceTemplates.OrderBy(x => x.Order).Select(x => new ServiceTemplateViewModel(x));
         }
 
         private static IEnumerable<TicketTagGroupViewModel> GetTicketTags(Department model)

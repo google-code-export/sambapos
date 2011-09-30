@@ -14,6 +14,6 @@ namespace Samba.Domain.Models.Transactions
         public int TransactionType { get; set; }
         public decimal Amount { get; set; }
         public int UserId { get; set; }
-        public int CustomerId { get; set; }
+        public int AccountId { get; set; }
     }
 }

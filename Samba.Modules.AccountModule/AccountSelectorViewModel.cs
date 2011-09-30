@@ -8,7 +8,7 @@ using System.Timers;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Samba.Domain;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Transactions;
 using Samba.Localization.Properties;
@@ -17,30 +17,30 @@ using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
 
-namespace Samba.Modules.CustomerModule
+namespace Samba.Modules.AccountModule
 {
     [Export]
-    public class CustomerSelectorViewModel : ObservableObject
+    public class AccountSelectorViewModel : ObservableObject
     {
         private readonly Timer _updateTimer;
 
         public ICaptionCommand CloseScreenCommand { get; set; }
-        public ICaptionCommand SelectCustomerCommand { get; set; }
-        public ICaptionCommand CreateCustomerCommand { get; set; }
-        public ICaptionCommand ResetCustomerCommand { get; set; }
+        public ICaptionCommand SelectAccountCommand { get; set; }
+        public ICaptionCommand CreateAccountCommand { get; set; }
+        public ICaptionCommand ResetAccountCommand { get; set; }
         public ICaptionCommand FindTicketCommand { get; set; }
         public ICaptionCommand MakePaymentCommand { get; set; }
-        public ICaptionCommand DisplayCustomerAccountCommand { get; set; }
-        public ICaptionCommand GetPaymentFromCustomerCommand { get; set; }
-        public ICaptionCommand MakePaymentToCustomerCommand { get; set; }
+        public ICaptionCommand DisplayAccountCommand { get; set; }
+        public ICaptionCommand GetPaymentFromAccountCommand { get; set; }
+        public ICaptionCommand MakePaymentToAccountCommand { get; set; }
         public ICaptionCommand AddReceivableCommand { get; set; }
         public ICaptionCommand AddLiabilityCommand { get; set; }
         public ICaptionCommand CloseAccountScreenCommand { get; set; }
 
         public Ticket SelectedTicket { get { return AppServices.MainDataContext.SelectedTicket; } }
-        public ObservableCollection<CustomerViewModel> FoundCustomers { get; set; }
+        public ObservableCollection<AccountViewModel> FoundAccounts { get; set; }
 
-        public ObservableCollection<CustomerTransactionViewModel> SelectedCustomerTransactions { get; set; }
+        public ObservableCollection<AccountTransactionViewModel> SelectedAccountTransactions { get; set; }
 
         private int _selectedView;
         public int SelectedView
@@ -49,17 +49,17 @@ namespace Samba.Modules.CustomerModule
             set { _selectedView = value; RaisePropertyChanged("SelectedView"); }
         }
 
-        public CustomerViewModel SelectedCustomer { get { return FoundCustomers.Count == 1 ? FoundCustomers[0] : FocusedCustomer; } }
+        public AccountViewModel SelectedAccount { get { return FoundAccounts.Count == 1 ? FoundAccounts[0] : FocusedAccount; } }
 
-        private CustomerViewModel _focusedCustomer;
-        public CustomerViewModel FocusedCustomer
+        private AccountViewModel _focusedAccount;
+        public AccountViewModel FocusedAccount
         {
-            get { return _focusedCustomer; }
+            get { return _focusedAccount; }
             set
             {
-                _focusedCustomer = value;
-                RaisePropertyChanged("FocusedCustomer");
-                RaisePropertyChanged("SelectedCustomer");
+                _focusedAccount = value;
+                RaisePropertyChanged("FocusedAccount");
+                RaisePropertyChanged("SelectedAccount");
             }
         }
 
@@ -85,16 +85,16 @@ namespace Samba.Modules.CustomerModule
             }
         }
 
-        private string _customerNameSearchText;
-        public string CustomerNameSearchText
+        private string _accountNameSearchText;
+        public string AccountNameSearchText
         {
-            get { return _customerNameSearchText; }
+            get { return _accountNameSearchText; }
             set
             {
-                if (value != _customerNameSearchText)
+                if (value != _accountNameSearchText)
                 {
-                    _customerNameSearchText = value;
-                    RaisePropertyChanged("CustomerNameSearchText");
+                    _accountNameSearchText = value;
+                    RaisePropertyChanged("AccountNameSearchText");
                     ResetTimer();
                 }
             }
@@ -115,12 +115,12 @@ namespace Samba.Modules.CustomerModule
             }
         }
 
-        public bool IsResetCustomerVisible
+        public bool IsResetAccountVisible
         {
             get
             {
                 return (AppServices.MainDataContext.SelectedTicket != null &&
-                        AppServices.MainDataContext.SelectedTicket.CustomerId > 0);
+                        AppServices.MainDataContext.SelectedTicket.AccountId > 0);
             }
         }
 
@@ -129,7 +129,7 @@ namespace Samba.Modules.CustomerModule
             get
             {
                 return (AppServices.MainDataContext.SelectedTicket != null &&
-                        AppServices.MainDataContext.SelectedTicket.CustomerId == 0);
+                        AppServices.MainDataContext.SelectedTicket.AccountId == 0);
             }
         }
 
@@ -148,91 +148,91 @@ namespace Samba.Modules.CustomerModule
             set { _activeView = value; RaisePropertyChanged("ActiveView"); }
         }
 
-        public string TotalReceivable { get { return SelectedCustomerTransactions.Sum(x => x.Receivable).ToString("#,#0.00"); } }
-        public string TotalLiability { get { return SelectedCustomerTransactions.Sum(x => x.Liability).ToString("#,#0.00"); } }
-        public string TotalBalance { get { return SelectedCustomerTransactions.Sum(x => x.Receivable - x.Liability).ToString("#,#0.00"); } }
+        public string TotalReceivable { get { return SelectedAccountTransactions.Sum(x => x.Receivable).ToString("#,#0.00"); } }
+        public string TotalLiability { get { return SelectedAccountTransactions.Sum(x => x.Liability).ToString("#,#0.00"); } }
+        public string TotalBalance { get { return SelectedAccountTransactions.Sum(x => x.Receivable - x.Liability).ToString("#,#0.00"); } }
 
-        public CustomerSelectorViewModel()
+        public AccountSelectorViewModel()
         {
             _updateTimer = new Timer(500);
             _updateTimer.Elapsed += UpdateTimerElapsed;
-            FoundCustomers = new ObservableCollection<CustomerViewModel>();
+            FoundAccounts = new ObservableCollection<AccountViewModel>();
             CloseScreenCommand = new CaptionCommand<string>(Resources.Close, OnCloseScreen);
-            SelectCustomerCommand = new CaptionCommand<string>(Resources.SelectCustomer_r, OnSelectCustomer, CanSelectCustomer);
-            CreateCustomerCommand = new CaptionCommand<string>(Resources.NewCustomer_r, OnCreateCustomer, CanCreateCustomer);
+            SelectAccountCommand = new CaptionCommand<string>(Resources.SelectAccount_r, OnSelectAccount, CanSelectAccount);
+            CreateAccountCommand = new CaptionCommand<string>(Resources.NewAccount_r, OnCreateAccount, CanCreateAccount);
             FindTicketCommand = new CaptionCommand<string>(Resources.FindTicket_r, OnFindTicket, CanFindTicket);
-            ResetCustomerCommand = new CaptionCommand<string>(Resources.ResetCustomer_r, OnResetCustomer, CanResetCustomer);
+            ResetAccountCommand = new CaptionCommand<string>(Resources.ResetAccount_r, OnResetAccount, CanResetAccount);
             MakePaymentCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnMakePayment, CanMakePayment);
-            DisplayCustomerAccountCommand = new CaptionCommand<string>(Resources.CustomerAccount_r, OnDisplayCustomerAccount, CanSelectCustomer);
-            MakePaymentToCustomerCommand = new CaptionCommand<string>(Resources.MakePayment_r, OnMakePaymentToCustomerCommand, CanMakePaymentToCustomer);
-            GetPaymentFromCustomerCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnGetPaymentFromCustomerCommand, CanMakePaymentToCustomer);
+            DisplayAccountCommand = new CaptionCommand<string>(Resources.Account, OnDisplayAccount, CanSelectAccount);
+            MakePaymentToAccountCommand = new CaptionCommand<string>(Resources.MakePayment_r, OnMakePaymentToAccountCommand, CanMakePaymentToAccount);
+            GetPaymentFromAccountCommand = new CaptionCommand<string>(Resources.GetPayment_r, OnGetPaymentFromAccountCommand, CanMakePaymentToAccount);
             AddLiabilityCommand = new CaptionCommand<string>(Resources.AddLiability_r, OnAddLiability, CanAddLiability);
             AddReceivableCommand = new CaptionCommand<string>(Resources.AddReceivable_r, OnAddReceivable, CanAddLiability);
             CloseAccountScreenCommand = new CaptionCommand<string>(Resources.Close, OnCloseAccountScreen);
 
-            SelectedCustomerTransactions = new ObservableCollection<CustomerTransactionViewModel>();
+            SelectedAccountTransactions = new ObservableCollection<AccountTransactionViewModel>();
         }
 
         private bool CanAddLiability(string arg)
         {
-            return CanSelectCustomer(arg) && AppServices.IsUserPermittedFor(PermissionNames.CreditOrDeptAccount);
+            return CanSelectAccount(arg) && AppServices.IsUserPermittedFor(PermissionNames.CreditOrDeptAccount);
         }
 
-        private bool CanMakePaymentToCustomer(string arg)
+        private bool CanMakePaymentToAccount(string arg)
         {
-            return CanSelectCustomer(arg) && AppServices.IsUserPermittedFor(PermissionNames.MakeAccountTransaction);
+            return CanSelectAccount(arg) && AppServices.IsUserPermittedFor(PermissionNames.MakeAccountTransaction);
         }
 
         private void OnAddReceivable(string obj)
         {
-            SelectedCustomer.Model.PublishEvent(EventTopicNames.AddReceivableAmount);
-            FoundCustomers.Clear();
+            SelectedAccount.Model.PublishEvent(EventTopicNames.AddReceivableAmount);
+            FoundAccounts.Clear();
         }
 
         private void OnAddLiability(string obj)
         {
-            SelectedCustomer.Model.PublishEvent(EventTopicNames.AddLiabilityAmount);
-            FoundCustomers.Clear();
+            SelectedAccount.Model.PublishEvent(EventTopicNames.AddLiabilityAmount);
+            FoundAccounts.Clear();
         }
 
         private void OnCloseAccountScreen(string obj)
         {
-            RefreshSelectedCustomer();
+            RefreshSelectedAccount();
         }
 
-        private void OnGetPaymentFromCustomerCommand(string obj)
+        private void OnGetPaymentFromAccountCommand(string obj)
         {
-            SelectedCustomer.Model.PublishEvent(EventTopicNames.GetPaymentFromCustomer);
-            FoundCustomers.Clear();
+            SelectedAccount.Model.PublishEvent(EventTopicNames.GetPaymentFromAccount);
+            FoundAccounts.Clear();
         }
 
-        private void OnMakePaymentToCustomerCommand(string obj)
+        private void OnMakePaymentToAccountCommand(string obj)
         {
-            SelectedCustomer.Model.PublishEvent(EventTopicNames.MakePaymentToCustomer);
-            FoundCustomers.Clear();
+            SelectedAccount.Model.PublishEvent(EventTopicNames.MakePaymentToAccount);
+            FoundAccounts.Clear();
         }
 
-        internal void DisplayCustomerAccount(Customer customer)
+        internal void DisplayAccount(Account account)
         {
-            FoundCustomers.Clear();
-            if (customer != null)
-                FoundCustomers.Add(new CustomerViewModel(customer));
-            RaisePropertyChanged("SelectedCustomer");
-            OnDisplayCustomerAccount("");
+            FoundAccounts.Clear();
+            if (account != null)
+                FoundAccounts.Add(new AccountViewModel(account));
+            RaisePropertyChanged("SelectedAccount");
+            OnDisplayAccount("");
         }
 
-        private void OnDisplayCustomerAccount(string obj)
+        private void OnDisplayAccount(string obj)
         {
-            SaveSelectedCustomer();
-            SelectedCustomerTransactions.Clear();
-            if (SelectedCustomer != null)
+            SaveSelectedAccount();
+            SelectedAccountTransactions.Clear();
+            if (SelectedAccount != null)
             {
-                var tickets = Dao.Query<Ticket>(x => x.CustomerId == SelectedCustomer.Id && x.LastPaymentDate > SelectedCustomer.AccountOpeningDate, x => x.Payments);
-                var cashTransactions = Dao.Query<CashTransaction>(x => x.Date > SelectedCustomer.AccountOpeningDate && x.CustomerId == SelectedCustomer.Id);
-                var accountTransactions = Dao.Query<AccountTransaction>(x => x.Date > SelectedCustomer.AccountOpeningDate && x.CustomerId == SelectedCustomer.Id);
+                var tickets = Dao.Query<Ticket>(x => x.AccountId == SelectedAccount.Id && x.LastPaymentDate > SelectedAccount.AccountOpeningDate, x => x.Payments);
+                var cashTransactions = Dao.Query<CashTransaction>(x => x.Date > SelectedAccount.AccountOpeningDate && x.AccountId == SelectedAccount.Id);
+                var accountTransactions = Dao.Query<AccountTransaction>(x => x.Date > SelectedAccount.AccountOpeningDate && x.AccountId == SelectedAccount.Id);
 
-                var transactions = new List<CustomerTransactionViewModel>();
-                transactions.AddRange(tickets.Select(x => new CustomerTransactionViewModel
+                var transactions = new List<AccountTransactionViewModel>();
+                transactions.AddRange(tickets.Select(x => new AccountTransactionViewModel
                                                        {
                                                            Description = string.Format(Resources.TicketNumber_f, x.TicketNumber),
                                                            Date = x.LastPaymentDate,
@@ -241,7 +241,7 @@ namespace Samba.Modules.CustomerModule
                                                        }));
 
                 transactions.AddRange(cashTransactions.Where(x => x.TransactionType == (int)TransactionType.Income)
-                    .Select(x => new CustomerTransactionViewModel
+                    .Select(x => new AccountTransactionViewModel
                     {
                         Description = x.Name,
                         Date = x.Date,
@@ -249,7 +249,7 @@ namespace Samba.Modules.CustomerModule
                     }));
 
                 transactions.AddRange(cashTransactions.Where(x => x.TransactionType == (int)TransactionType.Expense)
-                    .Select(x => new CustomerTransactionViewModel
+                    .Select(x => new AccountTransactionViewModel
                     {
                         Description = x.Name,
                         Date = x.Date,
@@ -257,7 +257,7 @@ namespace Samba.Modules.CustomerModule
                     }));
 
                 transactions.AddRange(accountTransactions.Where(x => x.TransactionType == (int)TransactionType.Liability)
-                    .Select(x => new CustomerTransactionViewModel
+                    .Select(x => new AccountTransactionViewModel
                     {
                         Description = x.Name,
                         Date = x.Date,
@@ -265,7 +265,7 @@ namespace Samba.Modules.CustomerModule
                     }));
 
                 transactions.AddRange(accountTransactions.Where(x => x.TransactionType == (int)TransactionType.Receivable)
-                    .Select(x => new CustomerTransactionViewModel
+                    .Select(x => new AccountTransactionViewModel
                     {
                         Description = x.Name,
                         Date = x.Date,
@@ -280,7 +280,7 @@ namespace Samba.Modules.CustomerModule
                     if (i > 0) (transactions[i].Balance) += (transactions[i - 1].Balance);
                 }
 
-                SelectedCustomerTransactions.AddRange(transactions);
+                SelectedAccountTransactions.AddRange(transactions);
                 RaisePropertyChanged("TotalReceivable");
                 RaisePropertyChanged("TotalLiability");
                 RaisePropertyChanged("TotalBalance");
@@ -290,25 +290,25 @@ namespace Samba.Modules.CustomerModule
 
         private bool CanMakePayment(string arg)
         {
-            return SelectedCustomer != null && AppServices.MainDataContext.SelectedTicket != null;
+            return SelectedAccount != null && AppServices.MainDataContext.SelectedTicket != null;
         }
 
         private void OnMakePayment(string obj)
         {
-            SelectedCustomer.Model.PublishEvent(EventTopicNames.PaymentRequestedForTicket);
+            SelectedAccount.Model.PublishEvent(EventTopicNames.PaymentRequestedForTicket);
             ClearSearchValues();
         }
 
-        private bool CanResetCustomer(string arg)
+        private static bool CanResetAccount(string arg)
         {
             return AppServices.MainDataContext.SelectedTicket != null &&
                 AppServices.MainDataContext.SelectedTicket.CanSubmit &&
-                AppServices.MainDataContext.SelectedTicket.CustomerId > 0;
+                AppServices.MainDataContext.SelectedTicket.AccountId > 0;
         }
 
-        private void OnResetCustomer(string obj)
+        private static void OnResetAccount(string obj)
         {
-            Customer.Null.PublishEvent(EventTopicNames.CustomerSelectedForTicket);
+            Account.Null.PublishEvent(EventTopicNames.AccountSelectedForTicket);
         }
 
         private void OnFindTicket(string obj)
@@ -324,57 +324,57 @@ namespace Samba.Modules.CustomerModule
             return !string.IsNullOrEmpty(TicketSearchText) && SelectedTicket == null;
         }
 
-        private bool CanCreateCustomer(string arg)
+        private bool CanCreateAccount(string arg)
         {
-            return SelectedCustomer == null;
+            return SelectedAccount == null;
         }
 
-        private void OnCreateCustomer(string obj)
+        private void OnCreateAccount(string obj)
         {
-            FoundCustomers.Clear();
-            var c = new Customer
+            FoundAccounts.Clear();
+            var c = new Account
                         {
                             Address = AddressSearchText,
-                            Name = CustomerNameSearchText,
+                            Name = AccountNameSearchText,
                             PhoneNumber = PhoneNumberSearchText
                         };
-            FoundCustomers.Add(new CustomerViewModel(c));
+            FoundAccounts.Add(new AccountViewModel(c));
             SelectedView = 1;
-            RaisePropertyChanged("SelectedCustomer");
+            RaisePropertyChanged("SelectedAccount");
         }
 
-        private bool CanSelectCustomer(string arg)
+        private bool CanSelectAccount(string arg)
         {
             return
                 AppServices.MainDataContext.IsCurrentWorkPeriodOpen
-                && SelectedCustomer != null
-                && !string.IsNullOrEmpty(SelectedCustomer.PhoneNumber)
-                && !string.IsNullOrEmpty(SelectedCustomer.Address)
-                && !string.IsNullOrEmpty(SelectedCustomer.Name)
-                && (AppServices.MainDataContext.SelectedTicket == null || AppServices.MainDataContext.SelectedTicket.CustomerId == 0);
+                && SelectedAccount != null
+                && !string.IsNullOrEmpty(SelectedAccount.PhoneNumber)
+                && !string.IsNullOrEmpty(SelectedAccount.Address)
+                && !string.IsNullOrEmpty(SelectedAccount.Name)
+                && (AppServices.MainDataContext.SelectedTicket == null || AppServices.MainDataContext.SelectedTicket.AccountId == 0);
         }
 
-        private void SaveSelectedCustomer()
+        private void SaveSelectedAccount()
         {
-            if (!SelectedCustomer.IsNotNew)
+            if (!SelectedAccount.IsNotNew)
             {
                 var ws = WorkspaceFactory.Create();
-                ws.Add(SelectedCustomer.Model);
+                ws.Add(SelectedAccount.Model);
                 ws.CommitChanges();
             }
         }
 
-        private void OnSelectCustomer(string obj)
+        private void OnSelectAccount(string obj)
         {
-            SaveSelectedCustomer();
-            SelectedCustomer.Model.PublishEvent(EventTopicNames.CustomerSelectedForTicket);
+            SaveSelectedAccount();
+            SelectedAccount.Model.PublishEvent(EventTopicNames.AccountSelectedForTicket);
             ClearSearchValues();
         }
 
         void UpdateTimerElapsed(object sender, ElapsedEventArgs e)
         {
             _updateTimer.Stop();
-            UpdateFoundCustomers();
+            UpdateFoundAccounts();
         }
 
         private void ResetTimer()
@@ -382,31 +382,31 @@ namespace Samba.Modules.CustomerModule
             _updateTimer.Stop();
 
             if (!string.IsNullOrEmpty(PhoneNumberSearchText)
-                || !string.IsNullOrEmpty(CustomerNameSearchText)
+                || !string.IsNullOrEmpty(AccountNameSearchText)
                 || !string.IsNullOrEmpty(AddressSearchText))
             {
                 _updateTimer.Start();
             }
-            else FoundCustomers.Clear();
+            else FoundAccounts.Clear();
         }
 
-        private void UpdateFoundCustomers()
+        private void UpdateFoundAccounts()
         {
 
-            IEnumerable<Customer> result = new List<Customer>();
+            IEnumerable<Account> result = new List<Account>();
 
             using (var worker = new BackgroundWorker())
             {
                 worker.DoWork += delegate
                                      {
                                          bool searchPn = string.IsNullOrEmpty(PhoneNumberSearchText);
-                                         bool searchCn = string.IsNullOrEmpty(CustomerNameSearchText);
+                                         bool searchCn = string.IsNullOrEmpty(AccountNameSearchText);
                                          bool searchAd = string.IsNullOrEmpty(AddressSearchText);
 
-                                         result = Dao.Query<Customer>(
+                                         result = Dao.Query<Account>(
                                              x =>
                                                 (searchPn || x.PhoneNumber.Contains(PhoneNumberSearchText)) &&
-                                                (searchCn || x.Name.ToLower().Contains(CustomerNameSearchText.ToLower())) &&
+                                                (searchCn || x.Name.ToLower().Contains(AccountNameSearchText.ToLower())) &&
                                                 (searchAd || x.Address.ToLower().Contains(AddressSearchText.ToLower())));
                                      };
 
@@ -417,16 +417,16 @@ namespace Samba.Modules.CustomerModule
                         AppServices.MainDispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(
                                delegate
                                {
-                                   FoundCustomers.Clear();
-                                   FoundCustomers.AddRange(result.Select(x => new CustomerViewModel(x)));
+                                   FoundAccounts.Clear();
+                                   FoundAccounts.AddRange(result.Select(x => new AccountViewModel(x)));
 
-                                   if (SelectedCustomer != null && PhoneNumberSearchText == SelectedCustomer.PhoneNumber)
+                                   if (SelectedAccount != null && PhoneNumberSearchText == SelectedAccount.PhoneNumber)
                                    {
                                        SelectedView = 1;
-                                       SelectedCustomer.UpdateDetailedInfo();
+                                       SelectedAccount.UpdateDetailedInfo();
                                    }
 
-                                   RaisePropertyChanged("SelectedCustomer");
+                                   RaisePropertyChanged("SelectedAccount");
 
                                    CommandManager.InvalidateRequerySuggested();
                                }));
@@ -445,46 +445,46 @@ namespace Samba.Modules.CustomerModule
                 EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateNavigation);
             SelectedView = 0;
             ActiveView = 0;
-            SelectedCustomerTransactions.Clear();
+            SelectedAccountTransactions.Clear();
         }
 
-        public void RefreshSelectedCustomer()
+        public void RefreshSelectedAccount()
         {
             ClearSearchValues();
 
-            if (AppServices.MainDataContext.SelectedTicket != null && AppServices.MainDataContext.SelectedTicket.CustomerId > 0)
+            if (AppServices.MainDataContext.SelectedTicket != null && AppServices.MainDataContext.SelectedTicket.AccountId > 0)
             {
-                var customer = Dao.SingleWithCache<Customer>(x => x.Id == AppServices.MainDataContext.SelectedTicket.CustomerId);
-                if (customer != null) FoundCustomers.Add(new CustomerViewModel(customer));
-                if (SelectedCustomer != null)
+                var account = Dao.SingleWithCache<Account>(x => x.Id == AppServices.MainDataContext.SelectedTicket.AccountId);
+                if (account != null) FoundAccounts.Add(new AccountViewModel(account));
+                if (SelectedAccount != null)
                 {
                     SelectedView = 1;
-                    SelectedCustomer.UpdateDetailedInfo();
+                    SelectedAccount.UpdateDetailedInfo();
                 }
             }
-            RaisePropertyChanged("SelectedCustomer");
+            RaisePropertyChanged("SelectedAccount");
             RaisePropertyChanged("IsClearVisible");
-            RaisePropertyChanged("IsResetCustomerVisible");
+            RaisePropertyChanged("IsResetAccountVisible");
             RaisePropertyChanged("IsMakePaymentVisible");
             ActiveView = 0;
-            SelectedCustomerTransactions.Clear();
+            SelectedAccountTransactions.Clear();
         }
 
         private void ClearSearchValues()
         {
-            FoundCustomers.Clear();
+            FoundAccounts.Clear();
             SelectedView = 0;
             ActiveView = 0;
             PhoneNumberSearchText = "";
             AddressSearchText = "";
-            CustomerNameSearchText = "";
+            AccountNameSearchText = "";
         }
 
-        public void SearchCustomer(string phoneNumber)
+        public void SearchAccount(string phoneNumber)
         {
             ClearSearchValues();
             PhoneNumberSearchText = phoneNumber;
-            UpdateFoundCustomers();
+            UpdateFoundAccounts();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Samba.Services
         TicketList,
         Payment,
         TableList,
-        CustomerList,
+        AccountList,
         WorkPeriods,
         Dashboard,
         CashView

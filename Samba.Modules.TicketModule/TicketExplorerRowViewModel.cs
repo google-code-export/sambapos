@@ -18,7 +18,7 @@ namespace Samba.Modules.TicketModule
         public string TicketNumber { get { return Model.TicketNumber; } }
         public string Location { get { return Model.LocationName; } }
         public string Date { get { return Model.Date.ToShortDateString(); } }
-        public string Customer { get { return Model.CustomerName; } }
+        public string AccountName { get { return Model.AccountName; } }
         public string CreationTime { get { return Model.Date.ToShortTimeString(); } }
         public string LastPaymentTime { get { return Model.LastPaymentDate.ToShortTimeString(); } }
         public decimal Sum { get { return Model.TotalAmount; } }

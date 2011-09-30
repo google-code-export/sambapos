@@ -5,9 +5,9 @@ using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.MenuModule
 {
-    public class TaxServiceTemplateViewModel : EntityViewModelBase<TaxServiceTemplate>
+    public class ServiceTemplateViewModel : EntityViewModelBase<ServiceTemplate>
     {
-        public TaxServiceTemplateViewModel(TaxServiceTemplate model)
+        public ServiceTemplateViewModel(ServiceTemplate model)
             : base(model)
         {
         }
@@ -15,7 +15,7 @@ namespace Samba.Modules.MenuModule
         private string[] _calculationMethods;
         public string[] CalculationMethods
         {
-            get { return _calculationMethods ?? (_calculationMethods = new[] { Resources.RateFromTicketAmount,Resources.RateFromVatIncludedTicketAmount, Resources.RateFromPreviousTemplate, Resources.FixedAmount }); }
+            get { return _calculationMethods ?? (_calculationMethods = new[] { Resources.RateFromTicketAmount,Resources.RateFromTaxIncludedTicketAmount, Resources.RateFromPreviousTemplate, Resources.FixedAmount }); }
         }
 
         public string SelectedCalculationMethod { get { return CalculationMethods[CalculationMethod]; } set { CalculationMethod = Array.IndexOf(CalculationMethods, value); } }
@@ -25,12 +25,12 @@ namespace Samba.Modules.MenuModule
 
         public override Type GetViewType()
         {
-            return typeof(TaxServiceTemplateView);
+            return typeof(ServiceTemplateView);
         }
 
         public override string GetModelTypeString()
         {
-            return Resources.TaxServiceTemplate;
+            return Resources.ServiceTemplate;
         }
     }
 }

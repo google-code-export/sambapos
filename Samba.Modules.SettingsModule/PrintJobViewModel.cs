@@ -53,7 +53,7 @@ namespace Samba.Modules.SettingsModule
         public bool UseFromPaymentScreen { get { return Model.UseFromPaymentScreen; } set { Model.UseFromPaymentScreen = value; } }
         public bool UseFromTerminal { get { return Model.UseFromTerminal; } set { Model.UseFromTerminal = value; } }
         public bool UseForPaidTickets { get { return Model.UseForPaidTickets; } set { Model.UseForPaidTickets = value; } }
-        public bool ExcludeVat { get { return Model.ExcludeVat; } set { Model.ExcludeVat = value; } }
+        public bool ExcludeTax { get { return Model.ExcludeTax; } set { Model.ExcludeTax = value; } }
 
         public bool AutoPrintIfCash
         {

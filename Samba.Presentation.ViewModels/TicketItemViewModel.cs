@@ -140,7 +140,7 @@ namespace Samba.Presentation.ViewModels
                 var prop = Model.GetCustomProperty();
                 if (prop != null)
                 {
-                    return Model.VatIncluded ? prop.PropertyPrice.Amount + prop.VatAmount : prop.PropertyPrice.Amount;
+                    return Model.TaxIncluded ? prop.PropertyPrice.Amount + prop.TaxAmount : prop.PropertyPrice.Amount;
                 }
                 return 0;
             }
@@ -237,7 +237,7 @@ namespace Samba.Presentation.ViewModels
 
         public void UpdatePortion(MenuItemPortion portion, string priceTag)
         {
-            _model.UpdatePortion(portion, priceTag, AppServices.MainDataContext.GetVatTemplate(portion.MenuItemId));
+            _model.UpdatePortion(portion, priceTag, AppServices.MainDataContext.GetTaxTemplate(portion.MenuItemId));
             RaisePropertyChanged("Description");
             RaisePropertyChanged("TotalPrice");
         }

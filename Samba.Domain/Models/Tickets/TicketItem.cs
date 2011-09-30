@@ -41,10 +41,10 @@ namespace Samba.Domain.Models.Tickets
         public string PriceTag { get; set; }
         public string Tag { get; set; }
 
-        public decimal VatRate { get; set; }
-        public decimal VatAmount { get; set; }
-        public int VatTemplateId { get; set; }
-        public bool VatIncluded { get; set; }
+        public decimal TaxRate { get; set; }
+        public decimal TaxAmount { get; set; }
+        public int TaxTemplateId { get; set; }
+        public bool TaxIncluded { get; set; }
 
         private IList<TicketItemProperty> _properties;
         public virtual IList<TicketItemProperty> Properties
@@ -62,7 +62,7 @@ namespace Samba.Domain.Models.Tickets
             MenuItemName = menuItem.Name;
             var portion = menuItem.GetPortion(portionName);
             Debug.Assert(portion != null);
-            UpdatePortion(portion, priceTag, menuItem.VatTemplate);
+            UpdatePortion(portion, priceTag, menuItem.TaxTemplate);
             Quantity = quantity;
             _selectedQuantity = quantity;
             PortionCount = menuItem.Portions.Count;
@@ -85,15 +85,15 @@ namespace Samba.Domain.Models.Tickets
             }
         }
 
-        public void UpdatePortion(MenuItemPortion portion, string priceTag, VatTemplate vatTemplate)
+        public void UpdatePortion(MenuItemPortion portion, string priceTag, TaxTemplate taxTemplate)
         {
             PortionName = portion.Name;
 
-            if (vatTemplate != null)
+            if (taxTemplate != null)
             {
-                VatRate = vatTemplate.Rate;
-                VatIncluded = vatTemplate.VatIncluded;
-                VatTemplateId = vatTemplate.Id;
+                TaxRate = taxTemplate.Rate;
+                TaxIncluded = taxTemplate.TaxIncluded;
+                TaxTemplateId = taxTemplate.Id;
             }
 
             if (!string.IsNullOrEmpty(priceTag))
@@ -143,14 +143,14 @@ namespace Samba.Domain.Models.Tickets
                             Quantity = group.MultipleSelection ? 0 : 1
                         };
 
-                if (VatIncluded && VatRate > 0)
+                if (TaxIncluded && TaxRate > 0)
                 {
-                    ti.PropertyPrice.Amount = ti.PropertyPrice.Amount / ((100 + VatRate) / 100);
+                    ti.PropertyPrice.Amount = ti.PropertyPrice.Amount / ((100 + TaxRate) / 100);
                     ti.PropertyPrice.Amount = decimal.Round(ti.PropertyPrice.Amount, 2);
-                    ti.VatAmount = property.Price.Amount - ti.PropertyPrice.Amount;
+                    ti.TaxAmount = property.Price.Amount - ti.PropertyPrice.Amount;
                 }
-                else if (VatRate > 0) ti.VatAmount = (property.Price.Amount * VatRate) / 100;
-                else ti.VatAmount = 0;
+                else if (TaxRate > 0) ti.TaxAmount = (property.Price.Amount * TaxRate) / 100;
+                else ti.TaxAmount = 0;
             }
             if (group.SingleSelection)
             {
@@ -208,14 +208,14 @@ namespace Samba.Domain.Models.Tickets
             {
                 tip.Name = text;
                 tip.PropertyPrice = new Price(price, LocalSettings.CurrencySymbol);
-                if (VatIncluded && VatRate > 0)
+                if (TaxIncluded && TaxRate > 0)
                 {
-                    tip.PropertyPrice.Amount = tip.PropertyPrice.Amount / ((100 + VatRate) / 100);
+                    tip.PropertyPrice.Amount = tip.PropertyPrice.Amount / ((100 + TaxRate) / 100);
                     tip.PropertyPrice.Amount = decimal.Round(tip.PropertyPrice.Amount, 2);
-                    tip.VatAmount = price - tip.PropertyPrice.Amount;
+                    tip.TaxAmount = price - tip.PropertyPrice.Amount;
                 }
-                else if (VatRate > 0) tip.VatAmount = (price * VatRate) / 100;
-                else VatAmount = 0;
+                else if (TaxRate > 0) tip.TaxAmount = (price * TaxRate) / 100;
+                else TaxAmount = 0;
 
                 tip.Quantity = quantity;
             }
@@ -244,28 +244,28 @@ namespace Samba.Domain.Models.Tickets
         public decimal GetItemPrice()
         {
             var result = Price + GetTotalPropertyPrice();
-            if (VatIncluded) result += VatAmount;
+            if (TaxIncluded) result += TaxAmount;
             return result;
         }
 
         public decimal GetTotalPropertyPrice()
         {
-            return GetPropertySum(Properties, VatIncluded);
+            return GetPropertySum(Properties, TaxIncluded);
         }
 
         public decimal GetPropertyPrice()
         {
-            return GetPropertySum(Properties.Where(x => !x.CalculateWithParentPrice), VatIncluded);
+            return GetPropertySum(Properties.Where(x => !x.CalculateWithParentPrice), TaxIncluded);
         }
 
         public decimal GetMenuItemPropertyPrice()
         {
-            return GetPropertySum(Properties.Where(x => x.CalculateWithParentPrice), VatIncluded);
+            return GetPropertySum(Properties.Where(x => x.CalculateWithParentPrice), TaxIncluded);
         }
 
         private static decimal GetPropertySum(IEnumerable<TicketItemProperty> properties, bool vatIncluded)
         {
-            return properties.Sum(property => (property.PropertyPrice.Amount + (vatIncluded ? property.VatAmount : 0)) * property.Quantity);
+            return properties.Sum(property => (property.PropertyPrice.Amount + (vatIncluded ? property.TaxAmount : 0)) * property.Quantity);
         }
 
         public void IncSelectedQuantity()
@@ -299,14 +299,14 @@ namespace Samba.Domain.Models.Tickets
         {
             Price = value;
             PriceTag = priceTag;
-            if (VatIncluded && VatRate > 0)
+            if (TaxIncluded && TaxRate > 0)
             {
-                Price = Price / ((100 + VatRate) / 100);
+                Price = Price / ((100 + TaxRate) / 100);
                 Price = decimal.Round(Price, 2);
-                VatAmount = value - Price;
+                TaxAmount = value - Price;
             }
-            else if (VatRate > 0) VatAmount = (Price * VatRate) / 100;
-            else VatAmount = 0;
+            else if (TaxRate > 0) TaxAmount = (Price * TaxRate) / 100;
+            else TaxAmount = 0;
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
                         Time = x.TicketItem.CreatedDateTime.ToShortTimeString(),
                         x.Ticket.TicketNumber,
                         UserName = ReportContext.GetUserName(x.TicketItem.CreatingUserId),
-                        Account = x.Ticket.CustomerName,
+                        Account = x.Ticket.AccountName,
                         Location = x.Ticket.LocationName,
                         x.TicketItem.OrderNumber,
                         x.TicketItem.Voided,

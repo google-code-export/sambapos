@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Services;
@@ -38,7 +38,7 @@ namespace Samba.Modules.CashModule
         private void ActivateTransactionList()
         {
             ActivateModuleScreen();
-            ((CashViewModel)_cashView.DataContext).SelectedCustomer = null;
+            ((CashViewModel)_cashView.DataContext).SelectedAccount = null;
             ((CashViewModel)_cashView.DataContext).ActivateTransactionList();
         }
 
@@ -52,19 +52,19 @@ namespace Samba.Modules.CashModule
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(CashView));
 
-            EventServiceFactory.EventService.GetEvent<GenericEvent<Customer>>().Subscribe(
+            EventServiceFactory.EventService.GetEvent<GenericEvent<Account>>().Subscribe(
                 x =>
                 {
-                    if (x.Topic == EventTopicNames.MakePaymentToCustomer)
+                    if (x.Topic == EventTopicNames.MakePaymentToAccount)
                     {
                         ActivateModuleScreen();
-                        ((CashViewModel)_cashView.DataContext).MakePaymentToCustomer(x.Value);
+                        ((CashViewModel)_cashView.DataContext).MakePaymentToAccount(x.Value);
                     }
 
-                    if (x.Topic == EventTopicNames.GetPaymentFromCustomer)
+                    if (x.Topic == EventTopicNames.GetPaymentFromAccount)
                     {
                         ActivateModuleScreen();
-                        ((CashViewModel)_cashView.DataContext).GetPaymentFromCustomer(x.Value);
+                        ((CashViewModel)_cashView.DataContext).GetPaymentFromAccount(x.Value);
                     }
 
                     if (x.Topic == EventTopicNames.AddLiabilityAmount)

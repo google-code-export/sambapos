@@ -1,25 +1,25 @@
 ﻿using System;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
-namespace Samba.Modules.CustomerModule
+namespace Samba.Modules.AccountModule
 {
-    public class CustomerEditorViewModel : EntityViewModelBase<Customer>
+    public class AccountEditorViewModel : EntityViewModelBase<Account>
     {
-        public CustomerEditorViewModel(Customer model)
+        public AccountEditorViewModel(Account model)
             : base(model)
         {
         }
 
         public override Type GetViewType()
         {
-            return typeof(CustomerEditorView);
+            return typeof(AccountEditorView);
         }
 
         public override string GetModelTypeString()
         {
-            return Resources.Customer;
+            return Resources.Account;
         }
 
         public string PhoneNumber { get { return Model.PhoneNumber; } set { Model.PhoneNumber = value; } }

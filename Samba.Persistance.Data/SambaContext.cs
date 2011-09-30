@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Samba.Domain.Foundation;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Actions;
-using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
@@ -10,13 +10,14 @@ using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Transactions;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data.SQL;
+using Samba.Infrastructure.Settings;
 
 namespace Samba.Persistance.Data
 {
     public class SambaContext : CommonDbContext
     {
         public SambaContext(bool disableProxy)
-            : base("SambaData3")
+            : base(LocalSettings.AppName)
         {
             if (disableProxy)
                 ObjContext().ContextOptions.ProxyCreationEnabled = false;
@@ -48,7 +49,7 @@ namespace Samba.Persistance.Data
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<WorkPeriod> WorkPeriods { get; set; }
         public DbSet<PaidItem> PaidItems { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<CashTransaction> CashTransactions { get; set; }
         public DbSet<AccountTransaction> AccountTransactions { get; set; }
@@ -67,9 +68,9 @@ namespace Samba.Persistance.Data
         public DbSet<Trigger> Triggers { get; set; }
         public DbSet<MenuItemPriceDefinition> MenuItemPriceDefinitions { get; set; }
         public DbSet<MenuItemPrice> MenuItemPrices { get; set; }
-        public DbSet<VatTemplate> VatTemplates { get; set; }
-        public DbSet<TaxServiceTemplate> TaxServiceTemplates { get; set; }
-        public DbSet<TaxService> TaxServices { get; set; }
+        public DbSet<TaxTemplate> TaxTemplates { get; set; }
+        public DbSet<ServiceTemplate> ServiceTemplates { get; set; }
+        public DbSet<Service> Services { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -79,7 +80,7 @@ namespace Samba.Persistance.Data
 
             modelBuilder.Entity<MenuItem>().HasMany(p => p.PropertyGroups).WithMany();
             modelBuilder.Entity<Department>().HasMany(p => p.TicketTagGroups).WithMany();
-            modelBuilder.Entity<Department>().HasMany(p => p.TaxServiceTemplates).WithMany();
+            modelBuilder.Entity<Department>().HasMany(p => p.ServiceTemplates).WithMany();
             modelBuilder.Entity<TableScreen>().HasMany(p => p.Tables).WithMany();
             modelBuilder.Entity<Terminal>().HasMany(p => p.PrintJobs).WithMany();
 
@@ -88,18 +89,18 @@ namespace Samba.Persistance.Data
 
             modelBuilder.ComplexType<Price>().Property(x => x.Amount).HasPrecision(precision, scale);
 
-            //TaxServiceTemplate
+            //ServiceTemplate
 
-            modelBuilder.Entity<TaxServiceTemplate>().Property(x => x.Amount).HasPrecision(precision, scale);
+            modelBuilder.Entity<ServiceTemplate>().Property(x => x.Amount).HasPrecision(precision, scale);
 
-            //TaxService
+            //Service
 
-            modelBuilder.Entity<TaxService>().Property(x => x.Amount).HasPrecision(precision, scale);
-            modelBuilder.Entity<TaxService>().Property(x => x.CalculationAmount).HasPrecision(precision, scale);
+            modelBuilder.Entity<Service>().Property(x => x.Amount).HasPrecision(precision, scale);
+            modelBuilder.Entity<Service>().Property(x => x.CalculationAmount).HasPrecision(precision, scale);
 
-            //VatTemplate
+            //TaxTemplate
 
-            modelBuilder.Entity<VatTemplate>().Property(x => x.Rate).HasPrecision(precision, scale);
+            modelBuilder.Entity<TaxTemplate>().Property(x => x.Rate).HasPrecision(precision, scale);
 
             //MenuItemPrice
             modelBuilder.Entity<MenuItemPrice>().Property(x => x.Price).HasPrecision(precision, scale);
@@ -144,13 +145,13 @@ namespace Samba.Persistance.Data
 
             //TicketItemProperty
             modelBuilder.Entity<TicketItemProperty>().Property(x => x.Quantity).HasPrecision(precision, scale);
-            modelBuilder.Entity<TicketItemProperty>().Property(x => x.VatAmount).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItemProperty>().Property(x => x.TaxAmount).HasPrecision(precision, scale);
 
             //TicketItem
             modelBuilder.Entity<TicketItem>().Property(x => x.Quantity).HasPrecision(precision, scale);
             modelBuilder.Entity<TicketItem>().Property(x => x.Price).HasPrecision(precision, scale);
-            modelBuilder.Entity<TicketItem>().Property(x => x.VatRate).HasPrecision(precision, scale);
-            modelBuilder.Entity<TicketItem>().Property(x => x.VatAmount).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItem>().Property(x => x.TaxRate).HasPrecision(precision, scale);
+            modelBuilder.Entity<TicketItem>().Property(x => x.TaxAmount).HasPrecision(precision, scale);
 
             //Ticket
             modelBuilder.Entity<Ticket>().Property(x => x.RemainingAmount).HasPrecision(precision, scale);

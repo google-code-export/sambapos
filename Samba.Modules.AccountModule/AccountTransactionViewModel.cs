@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Samba.Modules.CustomerModule
+namespace Samba.Modules.AccountModule
 {
-    public class CustomerTransactionViewModel
+    public class AccountTransactionViewModel
     {
         public DateTime Date { get; set; }
         public string Description { get; set; }

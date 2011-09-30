@@ -2,7 +2,7 @@
 
 namespace Samba.Domain.Models.Menus
 {
-    public class TaxServiceTemplate : IEntity, IOrderable
+    public class ServiceTemplate : IEntity, IOrderable
     {
         public int Id { get; set; }
         public string Name { get; set; }

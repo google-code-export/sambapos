@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
@@ -115,8 +114,8 @@ namespace Samba.Services.Printing
                                                     x.Voided,
                                                     x.Gifted,
                                                     x.Price,
-                                                    x.VatAmount,
-                                                    x.VatTemplateId,
+                                                    x.TaxAmount,
+                                                    x.TaxTemplateId,
                                                     x.PortionName,
                                                     x.PortionCount,
                                                     x.ReasonId,
@@ -131,8 +130,8 @@ namespace Samba.Services.Printing
                                         Voided = x.Key.Voided,
                                         Gifted = x.Key.Gifted,
                                         Price = x.Key.Price,
-                                        VatAmount = x.Key.VatAmount,
-                                        VatTemplateId = x.Key.VatTemplateId,
+                                        TaxAmount = x.Key.TaxAmount,
+                                        TaxTemplateId = x.Key.TaxTemplateId,
                                         CreatedDateTime = x.Last().CreatedDateTime,
                                         OrderNumber = x.Last().OrderNumber,
                                         TicketId = x.Last().TicketId,
@@ -193,13 +192,13 @@ namespace Samba.Services.Printing
             result = FormatData(result, Resources.TF_UserName, () => userName);
             result = FormatData(result, Resources.TF_TableName, () => ticket.LocationName);
             result = FormatData(result, Resources.TF_TicketNote, () => ticket.Note);
-            result = FormatData(result, Resources.TF_AccountName, () => ticket.CustomerName);
+            result = FormatData(result, Resources.TF_AccountName, () => ticket.AccountName);
 
-            if (ticket.CustomerId > 0 && (result.Contains(Resources.TF_AccountAddress) || result.Contains(Resources.TF_AccountPhone)))
+            if (ticket.AccountId > 0 && (result.Contains(Resources.TF_AccountAddress) || result.Contains(Resources.TF_AccountPhone)))
             {
-                var customer = Dao.SingleWithCache<Customer>(x => x.Id == ticket.CustomerId);
-                result = FormatData(result, Resources.TF_AccountAddress, () => customer.Address);
-                result = FormatData(result, Resources.TF_AccountPhone, () => customer.PhoneNumber);
+                var account = Dao.SingleWithCache<Account>(x => x.Id == ticket.AccountId);
+                result = FormatData(result, Resources.TF_AccountAddress, () => account.Address);
+                result = FormatData(result, Resources.TF_AccountPhone, () => account.PhoneNumber);
             }
 
             result = RemoveTag(result, Resources.TF_AccountAddress);
@@ -210,15 +209,15 @@ namespace Samba.Services.Printing
             var discount = ticket.GetDiscountAndRoundingTotal();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
-            var vatAmount = ticket.CalculateTax();
-            var taxServicesTotal = ticket.GetTaxServicesTotal();
+            var taxAmount = ticket.CalculateTax();
+            var servicesTotal = ticket.GetServicesTotal();
 
-            result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", () => plainTotal.ToString("#,#0.00"));
+            result = FormatDataIf(taxAmount > 0 || discount > 0 || servicesTotal > 0, result, "{PLAIN TOTAL}", () => plainTotal.ToString("#,#0.00"));
             result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", () => discount.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{TAX TOTAL}", () => vatAmount.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{SERVICE TOTAL}", () => taxServicesTotal.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{TAX DETAILS}", () => GetTaxDetails(ticket.TicketItems, plainTotal, discount));
-            result = FormatDataIf(taxServicesTotal > 0, result, "{SERVICE DETAILS}", () => GetServiceDetails(ticket));
+            result = FormatDataIf(taxAmount > 0, result, "{TAX TOTAL}", () => taxAmount.ToString("#,#0.00"));
+            result = FormatDataIf(taxAmount > 0, result, "{SERVICE TOTAL}", () => servicesTotal.ToString("#,#0.00"));
+            result = FormatDataIf(taxAmount > 0, result, "{TAX DETAILS}", () => GetTaxDetails(ticket.TicketItems, plainTotal, discount));
+            result = FormatDataIf(servicesTotal > 0, result, "{SERVICE DETAILS}", () => GetServiceDetails(ticket));
 
             result = FormatDataIf(payment > 0, result, Resources.TF_RemainingAmountIfPaid,
                 () => string.Format(Resources.RemainingAmountIfPaidValue_f, payment.ToString("#,#0.00"), remaining.ToString("#,#0.00")));
@@ -248,12 +247,12 @@ namespace Samba.Services.Printing
         private static string GetServiceDetails(Ticket ticket)
         {
             var sb = new StringBuilder();
-            foreach (var taxService in ticket.TaxServices)
+            foreach (var service in ticket.Services)
             {
-                var service = taxService;
-                var ts = AppServices.MainDataContext.TaxServiceTemplates.FirstOrDefault(x => x.Id == service.TaxServiceId);
+                var lservice = service;
+                var ts = AppServices.MainDataContext.ServiceTemplates.FirstOrDefault(x => x.Id == lservice.ServiceId);
                 var tsTitle = ts != null ? ts.Name : Resources.UndefinedWithBrackets;
-                sb.AppendLine("<J>" + tsTitle + ":|" + service.CalculationAmount.ToString("#,#0.00"));
+                sb.AppendLine("<J>" + tsTitle + ":|" + lservice.CalculationAmount.ToString("#,#0.00"));
             }
             return string.Join("\r", sb);
         }
@@ -261,13 +260,13 @@ namespace Samba.Services.Printing
         private static string GetTaxDetails(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)
         {
             var sb = new StringBuilder();
-            var groups = ticketItems.Where(x => x.VatTemplateId > 0).GroupBy(x => x.VatTemplateId);
+            var groups = ticketItems.Where(x => x.TaxTemplateId > 0).GroupBy(x => x.TaxTemplateId);
             foreach (var @group in groups)
             {
                 var iGroup = @group;
-                var tb = AppServices.MainDataContext.VatTemplates.FirstOrDefault(x => x.Id == iGroup.Key);
+                var tb = AppServices.MainDataContext.TaxTemplates.FirstOrDefault(x => x.Id == iGroup.Key);
                 var tbTitle = tb != null ? tb.Name : Resources.UndefinedWithBrackets;
-                var total = @group.Sum(x => x.VatAmount * x.Quantity);
+                var total = @group.Sum(x => x.TaxAmount * x.Quantity);
                 if (discount > 0)
                 {
                     total -= (total * discount) / plainSum;
@@ -357,7 +356,7 @@ namespace Samba.Services.Printing
                             var itemProperty = property;
                             var lineValue = FormatData(lineFormat, Resources.TF_LineItemDetails, () => itemProperty.Name);
                             lineValue = FormatData(lineValue, Resources.TF_LineItemDetailQuantity, () => itemProperty.Quantity.ToString("#.##"));
-                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, () => itemProperty.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#,#0.00"));
+                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, () => itemProperty.CalculateWithParentPrice ? "" : itemProperty.PropertyPrice.Amount.ToString("#,#0.00"));
                             label += lineValue + "\r\n";
                         }
                         result = "\r\n" + label;

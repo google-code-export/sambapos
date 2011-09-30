@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
@@ -9,11 +9,11 @@ using Samba.Presentation.Common;
 
 namespace Samba.Presentation.ViewModels
 {
-    public class CustomerViewModel : ObservableObject
+    public class AccountViewModel : ObservableObject
     {
-        public Customer Model { get; set; }
+        public Account Model { get; set; }
 
-        public CustomerViewModel(Customer model)
+        public AccountViewModel(Account model)
         {
             Model = model;
         }
@@ -36,8 +36,8 @@ namespace Samba.Presentation.ViewModels
 
         public void UpdateDetailedInfo()
         {
-            LastTicket = Dao.Last<Ticket>(x => x.CustomerId == Model.Id, x => x.TicketItems);
-            TotalTicketAmount = Dao.Sum<Ticket>(x => x.TotalAmount, x => x.CustomerId == Model.Id);
+            LastTicket = Dao.Last<Ticket>(x => x.AccountId == Model.Id, x => x.TicketItems);
+            TotalTicketAmount = Dao.Sum<Ticket>(x => x.TotalAmount, x => x.AccountId == Model.Id);
         }
 
         public IEnumerable<TicketItemViewModel> LastTicketLines { get { return LastTicket != null ? LastTicket.TicketItems.Where(x => !x.Gifted || !x.Voided).Select(x => new TicketItemViewModel(x)) : null; } }

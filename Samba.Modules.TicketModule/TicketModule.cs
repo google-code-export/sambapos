@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
@@ -44,10 +44,10 @@ namespace Samba.Modules.TicketModule
             PermissionRegistry.RegisterPermission(PermissionNames.RoundPayment, PermissionCategories.Payment, Resources.CanRoundTicketTotal);
             PermissionRegistry.RegisterPermission(PermissionNames.FixPayment, PermissionCategories.Payment, Resources.CanFlattenTicketTotal);
 
-            EventServiceFactory.EventService.GetEvent<GenericEvent<Customer>>().Subscribe(
+            EventServiceFactory.EventService.GetEvent<GenericEvent<Account>>().Subscribe(
                 x =>
                 {
-                    if (x.Topic == EventTopicNames.CustomerSelectedForTicket || x.Topic == EventTopicNames.PaymentRequestedForTicket)
+                    if (x.Topic == EventTopicNames.AccountSelectedForTicket || x.Topic == EventTopicNames.PaymentRequestedForTicket)
                         ActivateTicketEditorView();
                 }
                 );

@@ -11,7 +11,7 @@ namespace Samba.Presentation.ViewModels
     {
         public int Id { get; set; }
         public string LocationName { get; set; }
-        public string CustomerName { get; set; }
+        public string AccountName { get; set; }
         public string TicketNumber { get; set; }
         public bool IsLocked { get; set; }
         public string TicketTag { get; set; }
@@ -28,7 +28,7 @@ namespace Samba.Presentation.ViewModels
                 return result;
             }
         }
-        public string TitleTextColor { get { return !string.IsNullOrEmpty(Info) || !string.IsNullOrEmpty(LocationName) || !string.IsNullOrEmpty(CustomerName) ? "DarkBlue" : "Maroon"; } }
+        public string TitleTextColor { get { return !string.IsNullOrEmpty(Info) || !string.IsNullOrEmpty(LocationName) || !string.IsNullOrEmpty(AccountName) ? "DarkBlue" : "Maroon"; } }
 
         public void Refresh()
         {

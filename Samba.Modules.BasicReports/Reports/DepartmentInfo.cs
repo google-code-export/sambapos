@@ -6,8 +6,8 @@ namespace Samba.Modules.BasicReports.Reports
     {
         public int DepartmentId { get; set; }
         public decimal Amount { get; set; }
-        public decimal Vat { get; set; }
-        public decimal TaxServices { get; set; }
+        public decimal Tax { get; set; }
+        public decimal Services { get; set; }
         public int TicketCount { get; set; }
         public string DepartmentName
         {

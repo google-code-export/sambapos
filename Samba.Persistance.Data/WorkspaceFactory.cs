@@ -29,7 +29,7 @@ namespace Samba.Persistance.Data
             if (string.IsNullOrEmpty(LocalSettings.ConnectionString))
             {
                 if (IsSqlce40Installed())
-                    LocalSettings.ConnectionString = "data source=" + LocalSettings.DocumentPath + "\\SambaData2.sdf";
+                    LocalSettings.ConnectionString = string.Format("data source={0}\\{1}.sdf", LocalSettings.DocumentPath, LocalSettings.AppName);
                 else LocalSettings.ConnectionString = GetTextFileName();
             }
             if (LocalSettings.ConnectionString.EndsWith(".sdf"))
@@ -91,7 +91,7 @@ namespace Samba.Persistance.Data
         {
             return _connectionString.EndsWith(".txt")
                 ? _connectionString
-                : LocalSettings.DocumentPath + "\\SambaData.txt";
+                : string.Format("{0}\\{1}.txt", LocalSettings.DocumentPath, LocalSettings.AppName);
         }
 
         private static MongoWorkspace GetMongoWorkspace()

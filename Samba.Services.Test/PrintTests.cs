@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Samba.Domain.Foundation;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
@@ -94,11 +94,11 @@ Toplam: 33,00";
 
             Assert.AreEqual(expectedResult, result);
 
-            var c = new Customer { Name = "Emre EREN" };
+            var c = new Account { Name = "Emre EREN" };
             workspace.Add(c);
 
-            ticket.CustomerId = c.Id;
-            ticket.CustomerName = c.Name;
+            ticket.AccountId = c.Id;
+            ticket.AccountName = c.Name;
 
             ticket.AddTicketDiscount(DiscountType.Amount, 0, user.Id);
             formatResult = TicketFormatter.GetFormattedTicket(ticket, ticket.GetUnlockedLines(), template);

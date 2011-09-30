@@ -77,7 +77,7 @@ namespace Samba.Presentation.Terminal
                 Id = x.Id,
                 TicketNumber = x.TicketNumber,
                 LocationName = x.LocationName,
-                CustomerName = x.CustomerName,
+                AccountName = x.AccountName,
                 IsLocked = x.Locked,
                 TicketTag = x.Tag
             }, prediction).OrderBy(x => x.Title);

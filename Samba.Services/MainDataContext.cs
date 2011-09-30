@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Samba.Domain;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Actions;
-using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tables;
@@ -47,7 +48,7 @@ namespace Samba.Services
                 Debug.Assert(Ticket == null);
                 _workspace = WorkspaceFactory.Create();
                 Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId,
-                    x => x.TaxServices, x => x.Payments, x => x.Discounts,
+                    x => x.Services, x => x.Payments, x => x.Discounts,
                     x => x.TicketItems.Select(y => y.Properties));
             }
 
@@ -75,36 +76,36 @@ namespace Samba.Services
                 return _workspace.Single<Table>(x => x.Name == locationName);
             }
 
-            public Customer UpdateCustomer(Customer customer)
+            public Account UpdateAccount(Account account)
             {
-                if (customer == Customer.Null)
-                    return Customer.Null;
+                if (account == Account.Null)
+                    return Account.Null;
 
-                if (customer.Id == 0)
+                if (account.Id == 0)
                 {
                     using (var workspace = WorkspaceFactory.Create())
                     {
-                        workspace.Add(customer);
+                        workspace.Add(account);
                         workspace.CommitChanges();
                     }
-                    return customer;
+                    return account;
                 }
 
-                var result = _workspace.Single<Customer>(
-                        x => x.Id == customer.Id
-                        && x.Name == customer.Name
-                        && x.Address == customer.Address
-                        && x.PhoneNumber == customer.PhoneNumber
-                        && x.Note == customer.Note);
+                var result = _workspace.Single<Account>(
+                        x => x.Id == account.Id
+                        && x.Name == account.Name
+                        && x.Address == account.Address
+                        && x.PhoneNumber == account.PhoneNumber
+                        && x.Note == account.Note);
 
                 if (result == null)
                 {
-                    result = _workspace.Single<Customer>(x => x.Id == customer.Id);
+                    result = _workspace.Single<Account>(x => x.Id == account.Id);
                     Debug.Assert(result != null);
-                    result.Address = customer.Address;
-                    result.Name = customer.Name;
-                    result.PhoneNumber = customer.PhoneNumber;
-                    result.Note = customer.Note;
+                    result.Address = account.Address;
+                    result.Name = account.Name;
+                    result.PhoneNumber = account.PhoneNumber;
+                    result.Note = account.Note;
                 }
                 return result;
             }
@@ -121,32 +122,20 @@ namespace Samba.Services
                 return _workspace.Single<Table>(x => x.Name == Ticket.LocationName);
             }
 
-            public void ResetTableData(Ticket ticket)
+            public void ResetTableData(IEntity ticket)
             {
-                var tables = _workspace.All<Table>(x => x.TicketId == ticket.Id);
-                foreach (var table in tables)
-                {
-                    table.TicketId = 0;
-                    table.IsTicketLocked = false;
-                }
+                _workspace.All<Table>(x => x.TicketId == ticket.Id).ForEach(x => x.Reset());
             }
 
             public void RemoveTicketItems(IEnumerable<TicketItem> selectedItems)
             {
-                foreach (var ticketItem in selectedItems)
-                {
-                    Ticket.TicketItems.Remove(ticketItem);
-                    if (ticketItem.Id > 0)
-                        _workspace.Delete(ticketItem);
-                }
+                selectedItems.ForEach(x => Ticket.TicketItems.Remove(x));
+                selectedItems.Where(x => x.Id > 0).ForEach(x => _workspace.Delete(x));
             }
 
-            public void RemoveTaxServices(IEnumerable<TaxService> taxServices)
+            public void RemoveServices(IEnumerable<Service> services)
             {
-                foreach (var taxService in taxServices)
-                {
-                    _workspace.Delete(taxService);
-                }
+                services.ForEach(x => _workspace.Delete(x));
             }
 
             public void AddItemToSelectedTicket(TicketItem model)
@@ -154,9 +143,9 @@ namespace Samba.Services
                 _workspace.Add(model);
             }
 
-       }
+        }
 
-        public int CustomerCount { get; set; }
+        public int AccountCount { get; set; }
         public int TableCount { get; set; }
         public string NumeratorValue { get; set; }
 
@@ -178,7 +167,7 @@ namespace Samba.Services
             get
             {
                 return _departments ?? (_departments = Dao.Query<Department>(x => x.TicketNumerator, x => x.OrderNumerator,
-                    x => x.TaxServiceTemplates, x => x.TicketTagGroups.Select(y => y.Numerator), x => x.TicketTagGroups.Select(y => y.TicketTags)));
+                    x => x.ServiceTemplates, x => x.TicketTagGroups.Select(y => y.Numerator), x => x.TicketTagGroups.Select(y => y.TicketTags)));
             }
         }
 
@@ -205,16 +194,16 @@ namespace Samba.Services
         private IEnumerable<User> _users;
         public IEnumerable<User> Users { get { return _users ?? (_users = Dao.Query<User>(x => x.UserRole)); } }
 
-        private IEnumerable<VatTemplate> _vatTemplates;
-        public IEnumerable<VatTemplate> VatTemplates
+        private IEnumerable<TaxTemplate> _taxTemplates;
+        public IEnumerable<TaxTemplate> TaxTemplates
         {
-            get { return _vatTemplates ?? (_vatTemplates = Dao.Query<VatTemplate>()); }
+            get { return _taxTemplates ?? (_taxTemplates = Dao.Query<TaxTemplate>()); }
         }
 
-        private IEnumerable<TaxServiceTemplate> _taxServiceTemplates;
-        public IEnumerable<TaxServiceTemplate> TaxServiceTemplates
+        private IEnumerable<ServiceTemplate> _serviceTemplates;
+        public IEnumerable<ServiceTemplate> ServiceTemplates
         {
-            get { return _taxServiceTemplates ?? (_taxServiceTemplates = Dao.Query<TaxServiceTemplate>()); }
+            get { return _serviceTemplates ?? (_serviceTemplates = Dao.Query<ServiceTemplate>()); }
         }
 
         public WorkPeriod CurrentWorkPeriod { get { return LastTwoWorkPeriods.LastOrDefault(); } }
@@ -247,12 +236,12 @@ namespace Samba.Services
         public void ResetUserData()
         {
             _permittedDepartments = null;
-            ThreadPool.QueueUserWorkItem(ResetTableCustomerCounts);
+            ThreadPool.QueueUserWorkItem(ResetTableAndAccountCounts);
         }
 
-        private void ResetTableCustomerCounts(object state)
+        private void ResetTableAndAccountCounts(object state)
         {
-            CustomerCount = Dao.Count<Customer>(null);
+            AccountCount = Dao.Count<Account>(null);
             TableCount = Dao.Count<Table>(null);
         }
 
@@ -347,29 +336,29 @@ namespace Samba.Services
             }
         }
 
-        public void AssignCustomerToTicket(Ticket ticket, Customer customer)
+        public void AssignAccountToTicket(Ticket ticket, Account account)
         {
             Debug.Assert(ticket != null);
-            ticket.UpdateCustomer(_ticketWorkspace.UpdateCustomer(customer));
+            ticket.UpdateAccount(_ticketWorkspace.UpdateAccount(account));
         }
 
-        public void AssignCustomerToSelectedTicket(Customer customer)
+        public void AssignAccountToSelectedTicket(Account account)
         {
             if (SelectedTicket == null)
             {
                 _ticketWorkspace.CreateTicket(SelectedDepartment);
             }
-            AssignCustomerToTicket(SelectedTicket, customer);
+            AssignAccountToTicket(SelectedTicket, account);
         }
 
-        public void AssignTableToSelectedTicket(int tableId)
+        public void AssignLocationToSelectedTicket(int locationId)
         {
             if (SelectedTicket == null)
             {
                 _ticketWorkspace.CreateTicket(SelectedDepartment);
             }
 
-            var table = _ticketWorkspace.GetTableWithId(tableId);
+            var table = _ticketWorkspace.GetTableWithId(locationId);
 
             Debug.Assert(SelectedTicket != null);
 
@@ -467,7 +456,7 @@ namespace Samba.Services
             if (canSumbitTicket)
             {
                 _ticketWorkspace.RemoveTicketItems(SelectedTicket.PopRemovedTicketItems());
-                _ticketWorkspace.RemoveTaxServices(SelectedTicket.PopRemovedTaxServices());
+                _ticketWorkspace.RemoveServices(SelectedTicket.PopRemovedServices());
                 Recalculate(SelectedTicket);
                 SelectedTicket.IsPaid = SelectedTicket.RemainingAmount == 0;
 
@@ -564,8 +553,8 @@ namespace Samba.Services
                 _users = null;
                 _rules = null;
                 _actions = null;
-                _vatTemplates = null;
-                _taxServiceTemplates = null;
+                _taxTemplates = null;
+                _serviceTemplates = null;
 
                 if (selectedTableScreen > 0)
                     SelectedTableScreen = TableScreens.Single(x => x.Id == selectedTableScreen);
@@ -581,7 +570,7 @@ namespace Samba.Services
             {
                 if (table.TicketId > 0)
                     OpenTicket(table.TicketId);
-                AssignTableToSelectedTicket(table.Id);
+                AssignLocationToSelectedTicket(table.Id);
             }
         }
 
@@ -652,9 +641,9 @@ namespace Samba.Services
             ticket.Recalculate(AppServices.SettingService.AutoRoundDiscount, AppServices.CurrentLoggedInUser.Id);
         }
 
-        public VatTemplate GetVatTemplate(int menuItemId)
+        public TaxTemplate GetTaxTemplate(int menuItemId)
         {
-            return AppServices.DataAccessService.GetMenuItem(menuItemId).VatTemplate;
+            return AppServices.DataAccessService.GetMenuItem(menuItemId).TaxTemplate;
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using Samba.Infrastructure.Data;
 
-namespace Samba.Domain.Models.Customers
+namespace Samba.Domain.Models.Accounts
 {
-    public class Customer : IEntity
+    public class Account : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -13,10 +13,10 @@ namespace Samba.Domain.Models.Customers
         public DateTime AccountOpeningDate { get; set; }
         public bool InternalAccount { get; set; }
 
-        private static readonly Customer _null = new Customer { Name = "*" };
-        public static Customer Null { get { return _null; } }
+        private static Account _null;
+        public static Account Null { get { return _null ?? (_null = new Account { Name = "*" }); } }
 
-        public Customer()
+        public Account()
         {
             AccountOpeningDate = DateTime.Now;
         }

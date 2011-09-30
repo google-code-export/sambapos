@@ -46,8 +46,8 @@
             <CheckBox IsChecked="{Binding UseFromTerminal}" Margin="0,2">
                 <LocText ResourceIdentifierKey="UseAtTerminal" />
             </CheckBox>
-            <CheckBox IsChecked="{Binding ExcludeVat}" Margin="0,2">
-                <LocText ResourceIdentifierKey="AlwaysExcludeVat"/>
+            <CheckBox IsChecked="{Binding ExcludeTax}" Margin="0,2">
+                <LocText ResourceIdentifierKey="AlwaysExcludeTax"/>
             </CheckBox>
             <CheckBox IsChecked="{Binding UseForPaidTickets}" Margin="0,2,0,5">
                 <LocText ResourceIdentifierKey="UseAtOldTickets" />

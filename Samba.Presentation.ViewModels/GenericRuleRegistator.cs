@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows.Media;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
@@ -42,9 +42,9 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "" });
-            RuleActionTypeRegistry.RegisterActionType("UpdateTicketVat", Resources.UpdateTicketVat, new { VatTemplate = "" });
-            RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
-            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketTax", Resources.UpdateTicketTax, new { TaxTemplate = "" });
+            RuleActionTypeRegistry.RegisterActionType("RegenerateTicketTax", Resources.RegenerateTicketTax);
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketService", Resources.UpdateTicketService, new { ServiceTemplate = "", Amount = 0m });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketAccount", Resources.UpdateTicketAccount, new { AccountPhone = "", AccountName = "", Note = "" });
         }
 
@@ -58,7 +58,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLocationChanged, Resources.TicketLocationChanged, new { OldLocation = "", NewLocation = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "", NumericValue = 0, TicketTag = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.AccountSelectedForTicket, Resources.AccountSelectedForTicket, new { AccountName = "", PhoneNumber = "", AccountNote = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
         }
@@ -72,8 +72,8 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("MenuItemName", () => Dao.Select<MenuItem, string>(yz => yz.Name, y => y.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("PriceTag", () => Dao.Select<MenuItemPriceDefinition, string>(x => x.PriceTag, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("Color", () => typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static).Select(x => x.Name));
-            RuleActionTypeRegistry.RegisterParameterSoruce("VatTemplate", () => Dao.Select<VatTemplate, string>(x => x.Name, x => x.Id > 0));
-            RuleActionTypeRegistry.RegisterParameterSoruce("TaxServiceTemplate", () => Dao.Select<TaxServiceTemplate, string>(x => x.Name, x => x.Id > 0));
+            RuleActionTypeRegistry.RegisterParameterSoruce("TaxTemplate", () => Dao.Select<TaxTemplate, string>(x => x.Name, x => x.Id > 0));
+            RuleActionTypeRegistry.RegisterParameterSoruce("ServiceTemplate", () => Dao.Select<ServiceTemplate, string>(x => x.Name, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("TagName", () => Dao.Select<TicketTagGroup, string>(x => x.Name, x => x.Id > 0));
         }
 
@@ -90,7 +90,7 @@ namespace Samba.Presentation.ViewModels
             {
                 if (x.Value.Action.ActionType == "UpdateTicketAccount")
                 {
-                    Expression<Func<Customer, bool>> qFilter = null;
+                    Expression<Func<Account, bool>> qFilter = null;
 
                     var phoneNumber = x.Value.GetAsString("AccountPhone");
                     var accountName = x.Value.GetAsString("AccountName");
@@ -115,11 +115,11 @@ namespace Samba.Presentation.ViewModels
 
                     if (qFilter != null)
                     {
-                        var customer = Dao.Query(qFilter).FirstOrDefault();
-                        if (customer != null)
-                            AppServices.MainDataContext.AssignCustomerToSelectedTicket(customer);
+                        var account = Dao.Query(qFilter).FirstOrDefault();
+                        if (account != null)
+                            AppServices.MainDataContext.AssignAccountToSelectedTicket(account);
                     }
-                    else AppServices.MainDataContext.AssignCustomerToSelectedTicket(Customer.Null);
+                    else AppServices.MainDataContext.AssignAccountToSelectedTicket(Account.Null);
                 }
 
                 if (x.Value.Action.ActionType == "UpdateProgramSetting")
@@ -157,46 +157,45 @@ namespace Samba.Presentation.ViewModels
                         x.Value.GetAsBoolean("DeleteFile"));
                 }
 
-                if (x.Value.Action.ActionType == "UpdateTicketVat")
+                if (x.Value.Action.ActionType == "UpdateTicketTax")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
                     if (ticket != null)
                     {
-                        var vatTemplateName = x.Value.GetAsString("VatTemplate");
-                        var vatTemplate = AppServices.MainDataContext.VatTemplates.FirstOrDefault(y => y.Name == vatTemplateName);
-                        if (vatTemplate != null)
+                        var taxTemplateName = x.Value.GetAsString("TaxTemplate");
+                        var taxTemplate = AppServices.MainDataContext.TaxTemplates.FirstOrDefault(y => y.Name == taxTemplateName);
+                        if (taxTemplate != null)
                         {
-                            ticket.UpdateVat(vatTemplate);
+                            ticket.UpdateTax(taxTemplate);
                             TicketViewModel.RecalculateTicket(ticket);
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                         }
                     }
                 }
 
-                if (x.Value.Action.ActionType == "UpdateTicketTaxService")
+                if (x.Value.Action.ActionType == "UpdateTicketService")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
                     if (ticket != null)
                     {
-                        var taxServiceTemplateName = x.Value.GetAsString("TaxServiceTemplate");
-                        var taxServiceTemplate =
-                            AppServices.MainDataContext.TaxServiceTemplates.FirstOrDefault(
-                                y => y.Name == taxServiceTemplateName);
-                        if (taxServiceTemplate != null)
+                        var serviceTemplateName = x.Value.GetAsString("ServiceTemplate");
+                        var serviceTemplate = AppServices.MainDataContext.ServiceTemplates.FirstOrDefault(
+                                y => y.Name == serviceTemplateName);
+                        if (serviceTemplate != null)
                         {
                             var amount = x.Value.GetAsDecimal("Amount");
-                            ticket.AddTaxService(taxServiceTemplate.Id, taxServiceTemplate.CalculationMethod, amount);
+                            ticket.AddService(serviceTemplate.Id, serviceTemplate.CalculationMethod, amount);
                             TicketViewModel.RecalculateTicket(ticket);
                         }
                     }
                 }
 
-                if (x.Value.Action.ActionType == "RegenerateTicketVat")
+                if (x.Value.Action.ActionType == "RegenerateTicketTax")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
                     if (ticket != null)
                     {
-                        TicketViewModel.RegenerateVatRates(ticket);
+                        TicketViewModel.RegenerateTaxRates(ticket);
                         TicketViewModel.RecalculateTicket(ticket);
                         EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                     }

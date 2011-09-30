@@ -60,10 +60,10 @@ namespace Samba.Modules.BasicReports
             get { return _workPeriods ?? (_workPeriods = Dao.Query<WorkPeriod>()); }
         }
 
-        private static IEnumerable<TaxServiceTemplate> _taxServiceTemplates;
-        public static IEnumerable<TaxServiceTemplate> TaxServiceTemplates
+        private static IEnumerable<ServiceTemplate> _serviceTemplates;
+        public static IEnumerable<ServiceTemplate> ServiceTemplates
         {
-            get { return _taxServiceTemplates ?? (_taxServiceTemplates = Dao.Query<TaxServiceTemplate>()); }
+            get { return _serviceTemplates ?? (_serviceTemplates = Dao.Query<ServiceTemplate>()); }
         }
 
         private static WorkPeriod _currentWorkPeriod;
@@ -140,7 +140,7 @@ namespace Samba.Modules.BasicReports
         {
             if (CurrentWorkPeriod.StartDate == CurrentWorkPeriod.EndDate)
                 return Dao.Query<Ticket>(x => x.LastPaymentDate >= CurrentWorkPeriod.StartDate,
-                                         x => x.Payments, x => x.TaxServices,
+                                         x => x.Payments, x => x.Services,
                                          x => x.Discounts, x => x.TicketItems,
                                          x => x.TicketItems.Select(y => y.Properties));
 
@@ -148,13 +148,13 @@ namespace Samba.Modules.BasicReports
                 Dao.Query<Ticket>(
                     x =>
                     x.LastPaymentDate >= CurrentWorkPeriod.StartDate && x.LastPaymentDate < CurrentWorkPeriod.EndDate,
-                    x => x.Payments, x => x.TaxServices, x => x.Discounts, x => x.TicketItems.Select(y => y.Properties));
+                    x => x.Payments, x => x.Services, x => x.Discounts, x => x.TicketItems.Select(y => y.Properties));
 
         }
 
         private static IEnumerable<CashTransactionData> GetCashTransactions()
         {
-            return AppServices.CashService.GetTransactionsWithCustomerData(CurrentWorkPeriod);
+            return AppServices.CashService.GetTransactionsWithAccountData(CurrentWorkPeriod);
         }
 
         public static string CurrencyFormat { get { return "#,#0.00;-#,#0.00;-"; } }
@@ -190,7 +190,7 @@ namespace Samba.Modules.BasicReports
             _yesterdayWorkPeriod = null;
             _todayWorkPeriod = null;
             _workPeriods = null;
-            _taxServiceTemplates = null;
+            _serviceTemplates = null;
         }
 
         private static WorkPeriod _thisMonthWorkPeriod;

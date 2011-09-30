@@ -93,10 +93,10 @@ namespace Samba.Services.Printing
 
         public static void PrintOrders(PrintJob printJob, Ticket ticket)
         {
-            if (printJob.ExcludeVat)
+            if (printJob.ExcludeTax)
             {
                 ticket = ObjectCloner.Clone(ticket);
-                ticket.TicketItems.ToList().ForEach(x => x.VatIncluded = false);
+                ticket.TicketItems.ToList().ForEach(x => x.TaxIncluded = false);
             }
 
             IEnumerable<TicketItem> ti;

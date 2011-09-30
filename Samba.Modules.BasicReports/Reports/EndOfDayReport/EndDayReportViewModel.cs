@@ -36,8 +36,8 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     DepartmentId = x.Key.DepartmentId,
                     TicketCount = x.Count(),
                     Amount = x.Sum(y => y.GetSumWithoutTax()),
-                    Vat = x.Sum(y => y.CalculateTax()),
-                    TaxServices = x.Sum(y => y.GetTaxServicesTotal())
+                    Tax = x.Sum(y => y.CalculateTax()),
+                    Services = x.Sum(y => y.GetServicesTotal())
                 });
 
             if (ticketGropus.Count() > 1)
@@ -50,25 +50,25 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             report.AddRow("Departman", Resources.TotalSales.ToUpper(), ticketGropus.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
 
-            var vatSum = ticketGropus.Sum(x => x.Vat);
-            var serviceSum = ticketGropus.Sum(x => x.TaxServices);
+            var vatSum = ticketGropus.Sum(x => x.Tax);
+            var serviceSum = ticketGropus.Sum(x => x.Services);
             if (vatSum > 0 || serviceSum > 0)
             {
                 if (vatSum > 0)
-                    report.AddRow("Departman", Resources.VatTotal.ToUpper(), vatSum.ToString(ReportContext.CurrencyFormat));
+                    report.AddRow("Departman", Resources.TaxTotal.ToUpper(), vatSum.ToString(ReportContext.CurrencyFormat));
 
                 if (serviceSum > 0)
                 {
-                    ReportContext.Tickets.SelectMany(x => x.TaxServices).GroupBy(x => x.TaxServiceId).ForEach(
+                    ReportContext.Tickets.SelectMany(x => x.Services).GroupBy(x => x.ServiceId).ForEach(
                         x =>
                         {
-                            var template = ReportContext.TaxServiceTemplates.SingleOrDefault(y => y.Id == x.Key);
+                            var template = ReportContext.ServiceTemplates.SingleOrDefault(y => y.Id == x.Key);
                             var title = template != null ? template.Name : Resources.UndefinedWithBrackets;
                             report.AddRow("Departman", title, x.Sum(y => y.CalculationAmount).ToString(ReportContext.CurrencyFormat));
                         });
                 }
 
-                report.AddRow("Departman", Resources.GrandTotal.ToUpper(), ticketGropus.Sum(x => x.Amount + x.Vat + x.TaxServices).ToString(ReportContext.CurrencyFormat));
+                report.AddRow("Departman", Resources.GrandTotal.ToUpper(), ticketGropus.Sum(x => x.Amount + x.Tax + x.Services).ToString(ReportContext.CurrencyFormat));
             }
 
 

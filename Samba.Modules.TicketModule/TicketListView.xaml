@@ -264,15 +264,15 @@
                     <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketDiscountLabel}"
                          Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}" />
 
-                    <TextBlock Text="{LocText TaxServiceTotal,Suffix=':'}"
-                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketTaxServiceVisible,Converter={StaticResource VisibilityConverter}}" />
-                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketTaxServiceLabel}"
-                         Visibility="{Binding IsTicketTaxServiceVisible,Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock Text="{LocText ServiceTotal,Suffix=':'}"
+                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketServiceVisible,Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketServiceLabel}"
+                         Visibility="{Binding IsTicketServiceVisible,Converter={StaticResource VisibilityConverter}}" />
 
-                    <TextBlock Text="{LocText VatTotal,Suffix=':'}"
-                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketVatTotalVisible,Converter={StaticResource VisibilityConverter}}" />
-                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketVatLabel}"
-                         Visibility="{Binding IsTicketVatTotalVisible,Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock Text="{LocText TaxTotal,Suffix=':'}"
+                         Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketTaxTotalVisible,Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketTaxLabel}"
+                         Visibility="{Binding IsTicketTaxTotalVisible,Converter={StaticResource VisibilityConverter}}" />
 
                     <TextBlock Text="{LocText RoundingTotal,Suffix=':'}"
                          Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketRoundingVisible,Converter={StaticResource VisibilityConverter}}" />
@@ -317,10 +317,10 @@
                         <TextBlock FontSize="16" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap"
                              Text="{Binding SelectTableButtonCaption}" />
                     </FxButton:FlexButton>
-                    <FxButton:FlexButton Height="50" Margin="0,0,3,3" Command="{Binding SelectCustomerCommand}"
-                         Visibility="{Binding IsCustomerButtonVisible,Converter={StaticResource VisibilityConverter}}">
+                    <FxButton:FlexButton Height="50" Margin="0,0,3,3" Command="{Binding SelectAccountCommand}"
+                         Visibility="{Binding IsAccountButtonVisible,Converter={StaticResource VisibilityConverter}}">
                         <TextBlock FontSize="16" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap"
-                             Text="{Binding SelectCustomerButtonCaption}" />
+                             Text="{Binding SelectAccountButtonCaption}" />
                     </FxButton:FlexButton>
                     <ItemsControl ItemsSource="{Binding TicketTagButtons,NotifyOnTargetUpdated=True}"
                          HorizontalAlignment="Stretch" Visibility="{Binding IsNothingSelected,Converter={StaticResource VisibilityConverter}}">

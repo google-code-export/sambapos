@@ -1,4 +1,5 @@
-﻿using Samba.Infrastructure.Data;
+﻿using System;
+using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Tables
 {
@@ -27,6 +28,12 @@ namespace Samba.Domain.Models.Tables
         {
             Height = 70;
             Width = 70;
+        }
+
+        public void Reset()
+        {
+            TicketId = 0;
+            IsTicketLocked = false;
         }
     }
 }

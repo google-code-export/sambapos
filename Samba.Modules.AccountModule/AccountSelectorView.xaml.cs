@@ -7,19 +7,19 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Samba.Presentation.Common;
 
-namespace Samba.Modules.CustomerModule
+namespace Samba.Modules.AccountModule
 {
     /// <summary>
-    /// Interaction logic for CustomerSelectorView.xaml
+    /// Interaction logic for AccountSelectorView.xaml
     /// </summary>
 
     [Export]
-    public partial class CustomerSelectorView : UserControl
+    public partial class AccountSelectorView : UserControl
     {
         readonly DependencyPropertyDescriptor _selectedIndexChange = DependencyPropertyDescriptor.FromProperty(Selector.SelectedIndexProperty, typeof(TabControl));
 
         [ImportingConstructor]
-        public CustomerSelectorView(CustomerSelectorViewModel viewModel)
+        public AccountSelectorView(AccountSelectorViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
@@ -32,14 +32,14 @@ namespace Samba.Modules.CustomerModule
                 PhoneNumberTextBox.BackgroundFocus();
         }
 
-        private void FlexButton_Click(object sender, RoutedEventArgs e)
+        private void FlexButtonClick(object sender, RoutedEventArgs e)
         {
             Reset();
         }
 
         private void Reset()
         {
-            ((CustomerSelectorViewModel)DataContext).RefreshSelectedCustomer();
+            ((AccountSelectorViewModel)DataContext).RefreshSelectedAccount();
             PhoneNumber.BackgroundFocus();
         }
 
@@ -48,42 +48,42 @@ namespace Samba.Modules.CustomerModule
             if (e.Key == Key.Enter)
             {
                 e.Handled = true;
-                if (((CustomerSelectorViewModel)DataContext).SelectCustomerCommand.CanExecute(""))
-                    ((CustomerSelectorViewModel)DataContext).SelectCustomerCommand.Execute("");
+                if (((AccountSelectorViewModel)DataContext).SelectAccountCommand.CanExecute(""))
+                    ((AccountSelectorViewModel)DataContext).SelectAccountCommand.Execute("");
             }
         }
 
-        private void PhoneNumber_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void PhoneNumberPreviewKeyDown(object sender, KeyEventArgs e)
         {
             HandleKeyDown(e);
         }
 
-        private void CustomerName_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void AccountNamePreviewKeyDown(object sender, KeyEventArgs e)
         {
             HandleKeyDown(e);
         }
 
-        private void Address_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void AddressPreviewKeyDown(object sender, KeyEventArgs e)
         {
             HandleKeyDown(e);
         }
 
-        private void PhoneNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void PhoneNumberTextBoxPreviewKeyDown(object sender, KeyEventArgs e)
         {
             HandleKeyDown(e);
         }
 
-        private void TicketNo_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void TicketNoPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
                 e.Handled = true;
-                if (((CustomerSelectorViewModel)DataContext).FindTicketCommand.CanExecute(""))
-                    ((CustomerSelectorViewModel)DataContext).FindTicketCommand.Execute("");
+                if (((AccountSelectorViewModel)DataContext).FindTicketCommand.CanExecute(""))
+                    ((AccountSelectorViewModel)DataContext).FindTicketCommand.Execute("");
             }
         }
 
-        private void PhoneNumber_Loaded(object sender, RoutedEventArgs e)
+        private void PhoneNumberLoaded(object sender, RoutedEventArgs e)
         {
             PhoneNumber.BackgroundFocus();
         }

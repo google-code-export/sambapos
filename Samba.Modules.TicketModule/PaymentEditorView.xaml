@@ -132,15 +132,15 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>-->
 
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="{LocText TaxServiceTotal,Suffix=':'}"
-                     Visibility="{Binding SelectedTicket.IsTicketTaxServiceVisible,Converter={StaticResource VisibilityConverter}}" />
-                <TextBlock Grid.Column="1" Grid.Row="3" TextAlignment="Right" Text="{Binding SelectedTicket.TicketTaxServiceLabel}"
-                     Visibility="{Binding SelectedTicket.IsTicketTaxServiceVisible,Converter={StaticResource VisibilityConverter}}" />
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="{LocText ServiceTotal,Suffix=':'}"
+                     Visibility="{Binding SelectedTicket.IsTicketServiceVisible,Converter={StaticResource VisibilityConverter}}" />
+                <TextBlock Grid.Column="1" Grid.Row="3" TextAlignment="Right" Text="{Binding SelectedTicket.TicketServiceLabel}"
+                     Visibility="{Binding SelectedTicket.IsTicketServiceVisible,Converter={StaticResource VisibilityConverter}}" />
 
-                <TextBlock Grid.Column="0" Grid.Row="4" Text="{LocText VatTotal,Suffix=':'}"
-                     Visibility="{Binding SelectedTicket.IsTicketVatTotalVisible,Converter={StaticResource VisibilityConverter}}" />
-                <TextBlock Grid.Column="1" Grid.Row="4" TextAlignment="Right" Text="{Binding SelectedTicket.TicketVatLabel}"
-                     Visibility="{Binding SelectedTicket.IsTicketVatTotalVisible,Converter={StaticResource VisibilityConverter}}" />
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="{LocText TaxTotal,Suffix=':'}"
+                     Visibility="{Binding SelectedTicket.IsTicketTaxTotalVisible,Converter={StaticResource VisibilityConverter}}" />
+                <TextBlock Grid.Column="1" Grid.Row="4" TextAlignment="Right" Text="{Binding SelectedTicket.TicketTaxLabel}"
+                     Visibility="{Binding SelectedTicket.IsTicketTaxTotalVisible,Converter={StaticResource VisibilityConverter}}" />
 
                 <TextBlock Grid.Column="0" Grid.Row="5" Text="{LocText RoundingTotal,Suffix=':'}"
                      Visibility="{Binding SelectedTicket.IsTicketRoundingVisible,Converter={StaticResource VisibilityConverter}}" />

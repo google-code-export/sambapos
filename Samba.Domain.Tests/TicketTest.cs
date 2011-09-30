@@ -76,9 +76,9 @@ namespace Samba.Domain.Tests
 
             ticket.Discounts.Clear();
             Assert.AreEqual(15m, ticket.GetSum());
-            var t = new VatTemplate { Rate = 10 };
+            var t = new TaxTemplate { Rate = 10 };
 
-            var mix = new MenuItem("TestItem2") { VatTemplate = t };
+            var mix = new MenuItem("TestItem2") { TaxTemplate = t };
             mix.AddPortion("Adet", 10, "TL");
             ticket.AddTicketItem(0, mix, "Adet");
 

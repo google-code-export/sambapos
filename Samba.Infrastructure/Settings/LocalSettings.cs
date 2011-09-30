@@ -123,10 +123,10 @@ html
         }
 
         public static string AppPath { get; set; }
-        public static string DocumentPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SambaPOS2"; } }
+        public static string DocumentPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + AppName; } }
 
-        public static string DataPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\Ozgu Tech\\SambaPOS2"; } }
-        public static string UserPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ozgu Tech\\SambaPOS2"; } }
+        public static string DataPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\Ozgu Tech\\" + AppName; } }
+        public static string UserPath { get { return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Ozgu Tech\\" + AppName; } }
 
         public static string CommonSettingsFileName { get { return DataPath + "\\SambaSettings.txt"; } }
         public static string UserSettingsFileName { get { return UserPath + "\\SambaSettings.txt"; } }
@@ -136,8 +136,9 @@ html
         public static string DefaultCurrencyFormat { get; set; }
         public static string CurrencySymbol { get { return CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol; } }
 
-        public static int DbVersion { get { return 9; } }
+        public static int DbVersion { get { return 1; } }
         public static string AppVersion { get { return "3.00"; } }
+        public static string AppName { get { return "SambaPOS3"; } }
         public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }

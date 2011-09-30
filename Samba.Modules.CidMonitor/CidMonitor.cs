@@ -2,7 +2,7 @@
 using System.Linq;
 using Axcidv5callerid;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
@@ -35,18 +35,18 @@ namespace Samba.Modules.CidMonitor
             pn = pn.TrimStart('9');
             pn = pn.TrimStart('0');
 
-            var c = Dao.Query<Customer>(x => x.PhoneNumber == pn);
+            var c = Dao.Query<Account>(x => x.PhoneNumber == pn);
             if (c.Count() == 0)
-                c = Dao.Query<Customer>(x => x.PhoneNumber.Contains(pn));
+                c = Dao.Query<Account>(x => x.PhoneNumber.Contains(pn));
             if (c.Count() == 1)
             {
-                var customer = c.First();
-                InteractionService.UserIntraction.DisplayPopup(customer.Name, customer.Name + " " + Resources.Calling + ".\r" + customer.PhoneNumber + "\r" + customer.Address + "\r" + customer.Note,
-                                                            customer.PhoneNumber, "SelectCustomer");
+                var account = c.First();
+                InteractionService.UserIntraction.DisplayPopup(account.Name, account.Name + " " + Resources.Calling + ".\r" + account.PhoneNumber + "\r" + account.Address + "\r" + account.Note,
+                                                            account.PhoneNumber, EventTopicNames.SelectAccount);
             }
             else
                 InteractionService.UserIntraction.DisplayPopup(e.phoneNumber, e.phoneNumber + " " + Resources.Calling + "...",
-                                                               e.phoneNumber, "SelectCustomer");
+                                                               e.phoneNumber, EventTopicNames.SelectAccount);
         }
     }
 }

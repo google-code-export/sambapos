@@ -229,14 +229,6 @@ Hareketi</value>
   <data name="Cancel" xml:space="preserve">
     <value>İptal</value>
   </data>
-  <data name="CustomerAccounts" xml:space="preserve">
-    <value>Müşteri
-Hesapları</value>
-  </data>
-  <data name="CustomerName" xml:space="preserve">
-    <value>Müşteri Adı</value>
-    <comment>Label content</comment>
-  </data>
   <data name="InternalAccount" xml:space="preserve">
     <value>İç Kullanım Hesabı</value>
     <comment>CheckBox content</comment>
@@ -277,38 +269,28 @@ Hesapları</value>
     <value>Alacak</value>
     <comment>GridViewColumn.Header</comment>
   </data>
-  <data name="Customer" xml:space="preserve">
-    <value>Müşteri</value>
+  <data name="AccountList" xml:space="preserve">
+    <value>Hesap Listesi</value>
   </data>
-  <data name="CustomerList" xml:space="preserve">
-    <value>Müşteri Listesi</value>
-  </data>
-  <data name="Customers" xml:space="preserve">
-    <value>Müşteriler</value>
-  </data>
-  <data name="SelectCustomer_r" xml:space="preserve">
-    <value>Müşteri
+  <data name="SelectAccount_r" xml:space="preserve">
+    <value>Hesap
 Seç</value>
   </data>
-  <data name="NewCustomer_r" xml:space="preserve">
+  <data name="NewAccount_r" xml:space="preserve">
     <value>Yeni
-Müşteri</value>
+Hesap</value>
   </data>
   <data name="FindTicket_r" xml:space="preserve">
     <value>Adisyon
 Bul</value>
   </data>
-  <data name="ResetCustomer_r" xml:space="preserve">
-    <value>Müşteri
+  <data name="ResetAccount_r" xml:space="preserve">
+    <value>Hesap
 İptal</value>
   </data>
   <data name="GetPayment_r" xml:space="preserve">
     <value>Ödeme
 Al</value>
-  </data>
-  <data name="CustomerAccount_r" xml:space="preserve">
-    <value>Müşteri
-Hesabı</value>
   </data>
   <data name="MakePayment_r" xml:space="preserve">
     <value>Ödeme
@@ -1302,10 +1284,6 @@ Yap</value>
   <data name="DeleteErrorShouldHaveAtLeastOneTerminal" xml:space="preserve">
     <value>En az bir terminal tanımı bulunmalıdır.</value>
   </data>
-  <data name="TerminalAdı" xml:space="preserve">
-    <value>Terminal Adı</value>
-    <comment>Label content</comment>
-  </data>
   <data name="DefaultTerminal" xml:space="preserve">
     <value>Varsayılan Terminal</value>
     <comment>CheckBox content</comment>
@@ -1583,8 +1561,8 @@ Kapat</value>
     <value>Kredi
 Kartı</value>
   </data>
-  <data name="SelectCustomer" xml:space="preserve">
-    <value>Müşteri Seç</value>
+  <data name="SelectAccount" xml:space="preserve">
+    <value>Hesap Seç</value>
   </data>
   <data name="AllTickets_r" xml:space="preserve">
     <value>Tüm
@@ -1619,8 +1597,8 @@ Değiştir</value>
     <value>Masa
 Seç</value>
   </data>
-  <data name="CustomerInfo_r" xml:space="preserve">
-    <value>Müşteri
+  <data name="AccountInfo_r" xml:space="preserve">
+    <value>Hesap
 Bilgileri</value>
   </data>
   <data name="ChangeAmount_f" xml:space="preserve">
@@ -2376,8 +2354,8 @@ Masa: {2}</value>
   <data name="TagValue" xml:space="preserve">
     <value>Etiket Değeri</value>
   </data>
-  <data name="CustomerNote" xml:space="preserve">
-    <value>Müşteri Notu</value>
+  <data name="AccountNote" xml:space="preserve">
+    <value>Hesap Notu</value>
   </data>
   <data name="GiftTotal" xml:space="preserve">
     <value>İkram Toplamı</value>
@@ -2394,8 +2372,8 @@ Masa: {2}</value>
   <data name="TicketTagSelected" xml:space="preserve">
     <value>Adisyon Etiketi Seçildi</value>
   </data>
-  <data name="CustomerSelectedForTicket" xml:space="preserve">
-    <value>Adisyona Müşteri Seçildi</value>
+  <data name="AccountSelectedForTicket" xml:space="preserve">
+    <value>Adisyona Hesap Seçildi</value>
   </data>
   <data name="TicketTotalChanged" xml:space="preserve">
     <value>Adisyon Tutarı Değişti</value>
@@ -2767,13 +2745,13 @@ Borçlandır</value>
   <data name="DeleteErrorProductUsedInMenuItemProperty" xml:space="preserve">
     <value>Bu ürün bir ürün özelliğinde kullanıldığı için silinemez.</value>
   </data>
-  <data name="VatTemplates" xml:space="preserve">
+  <data name="TaxTemplates" xml:space="preserve">
     <value>KDV Şablonları</value>
   </data>
-  <data name="VatTemplate" xml:space="preserve">
+  <data name="TaxTemplate" xml:space="preserve">
     <value>KDV Şablonu</value>
   </data>
-  <data name="VatTemplateName" xml:space="preserve">
+  <data name="TaxTemplateName" xml:space="preserve">
     <value>KDV Şablonu Adı</value>
     <comment>Label.Content</comment>
   </data>
@@ -2781,17 +2759,14 @@ Borçlandır</value>
     <value>Oran</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="VatIncludedToPrice" xml:space="preserve">
+  <data name="TaxIncludedToPrice" xml:space="preserve">
     <value>KDV Fiyata Dahil</value>
     <comment>CheckBox content</comment>
   </data>
-  <data name="Vat" xml:space="preserve">
+  <data name="Tax" xml:space="preserve">
     <value>KDV</value>
   </data>
-  <data name="VatTotal" xml:space="preserve">
-    <value>KDV Toplamı</value>
-  </data>
-  <data name="UpdateTicketVat" xml:space="preserve">
+  <data name="UpdateTicketTax" xml:space="preserve">
     <value>KDV Güncelle</value>
   </data>
   <data name="One" xml:space="preserve">
@@ -2908,23 +2883,23 @@ Borçlandır</value>
   <data name="OneThousand" xml:space="preserve">
     <value>Bin</value>
   </data>
-  <data name="AlwaysExcludeVat" xml:space="preserve">
+  <data name="AlwaysExcludeTax" xml:space="preserve">
     <value>KDV'yi Ayırarak Yazdır</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="RoundingTotal" xml:space="preserve">
     <value>Yuvarlama Toplamı</value>
   </data>
-  <data name="TaxServiceTemplates" xml:space="preserve">
+  <data name="ServiceTemplates" xml:space="preserve">
     <value>Hizmet Şablonları</value>
   </data>
-  <data name="ChooseTaxServicesForDepartmentHint_f" xml:space="preserve">
+  <data name="ChooseServicesForDepartmentHint_f" xml:space="preserve">
     <value>{0} departmanında kullanmak istediğiniz hizmet şablonlarını seçiniz.</value>
   </data>
-  <data name="TaxServiceTemplate" xml:space="preserve">
+  <data name="ServiceTemplate" xml:space="preserve">
     <value>Hizmet Şablonu</value>
   </data>
-  <data name="TaxServiceTotal" xml:space="preserve">
+  <data name="ServiceTotal" xml:space="preserve">
     <value>Toplam Hizmet</value>
   </data>
   <data name="CalculationMethod" xml:space="preserve">
@@ -2935,59 +2910,58 @@ Borçlandır</value>
     <value>Oran veya Tutar</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="RateFromTicketAmount">
-    <value xml:space="preserve">Adisyon tutarından oranla</value>
+  <data name="RateFromTicketAmount" xml:space="preserve">
+    <value>Adisyon tutarından oranla</value>
   </data>
-  <data name="RateFromVatIncludedTicketAmount">
-    <value xml:space="preserve">KDV Dahil Adisyon tutarından oranla</value>
+  <data name="RateFromTaxIncludedTicketAmount" xml:space="preserve">
+    <value>KDV Dahil Adisyon tutarından oranla</value>
   </data>
-  <data name="RateFromPreviousTemplate">
-    <value xml:space="preserve">Önceki şablon tutarından oranla</value>
+  <data name="RateFromPreviousTemplate" xml:space="preserve">
+    <value>Önceki şablon tutarından oranla</value>
   </data>
-  <data name="FixedAmount">
-    <value xml:space="preserve">Sabit tutar</value>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>Sabit tutar</value>
   </data>
-  <data name="UnhandledExceptionErrorMessage">
-    <value xml:space="preserve">Samba POS Beklenmeyen bir sorunla karşılaştı. Uygulama şu anda kapatılacak. Detaylı bilgi için log dosyasını inceleyiniz</value>
+  <data name="UnhandledExceptionErrorMessage" xml:space="preserve">
+    <value>Samba POS Beklenmeyen bir sorunla karşılaştı. Uygulama şu anda kapatılacak. Detaylı bilgi için log dosyasını inceleyiniz</value>
   </data>
   <data name="SaveFreeTags" xml:space="preserve">
     <value>Serbest Etiketleri Kaydet</value>
   </data>
-  <data name="RegenerateTicketVat">
-    <value xml:space="preserve">Adisyon KDV oranlarını baştan oluştur</value>
+  <data name="RegenerateTicketTax" xml:space="preserve">
+    <value>Adisyon KDV oranlarını baştan oluştur</value>
   </data>
-  <data name="UpdateTicketTaxService">
-    <value xml:space="preserve">Adisyon Hizmeti Ekle</value>
+  <data name="UpdateTicketService" xml:space="preserve">
+    <value>Adisyon Hizmeti Ekle</value>
   </data>
-  <data name="Included">
-    <value xml:space="preserve">Dahil</value>
+  <data name="Included" xml:space="preserve">
+    <value>Dahil</value>
   </data>
-  <data name="Excluded">
-    <value xml:space="preserve">Hariç</value>
+  <data name="Excluded" xml:space="preserve">
+    <value>Hariç</value>
   </data>
-  <data name="EmptyDiscountRateFeedback">
-    <value xml:space="preserve">İskonto yapmak için önce bir iskonto oranı yazıp sonra iskonto düğmelerine tıklayınız. İskontoyu kaldırmak için hiç bir rakam yazmadan boş bir şekilde iskonto düğmelerine tıklayınız. </value>
+  <data name="EmptyDiscountRateFeedback" xml:space="preserve">
+    <value>İskonto yapmak için önce bir iskonto oranı yazıp sonra iskonto düğmelerine tıklayınız. İskontoyu kaldırmak için hiç bir rakam yazmadan boş bir şekilde iskonto düğmelerine tıklayınız. </value>
   </data>
-  <data name="TicketSubTotal">
-    <value xml:space="preserve">Adisyon ara toplamı</value>
+  <data name="TicketSubTotal" xml:space="preserve">
+    <value>Adisyon ara toplamı</value>
   </data>
-  <data name="VatTotalsGroupedByVatTemplate">
-    <value xml:space="preserve">KDV türlerine göre gruplanmış KDV tutarları</value>
+  <data name="TotalsGroupedByTaxTemplate" xml:space="preserve">
+    <value>KDV türlerine göre gruplanmış KDV tutarları</value>
   </data>
-  <data name="TaxTotal">
-    <value xml:space="preserve">Hizmet Toplamı</value>
+  <data name="TaxTotal" xml:space="preserve">
+    <value>Hizmet Toplamı</value>
   </data>
-  <data name="TaxTotalsGroupedByTaxTemplate">
-    <value xml:space="preserve">Hizmet türlerine göre gruplanmış Hizmet tutarları</value>
+  <data name="TotalsGroupedByServiceTemplate" xml:space="preserve">
+    <value>Hizmet türlerine göre gruplanmış Hizmet tutarları</value>
   </data>
-  <data name="TextWrittenTotalValue">
-    <value xml:space="preserve">Yazıyla genel toplam</value>
+  <data name="TextWrittenTotalValue" xml:space="preserve">
+    <value>Yazıyla genel toplam</value>
   </data>
-  <data name="TicketLocationChanged">
-    <value xml:space="preserve">Adisyon Yeri Değişti</value>
+  <data name="TicketLocationChanged" xml:space="preserve">
+    <value>Adisyon Yeri Değişti</value>
   </data>
-  <data name="UpdateTicketAccount">
-    <value xml:space="preserve">Adisyon Hesabını Değiştir</value>
+  <data name="UpdateTicketAccount" xml:space="preserve">
+    <value>Adisyon Hesabını Değiştir</value>
   </data>
-
 </root>

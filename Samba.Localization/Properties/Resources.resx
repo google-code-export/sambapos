@@ -230,14 +230,6 @@ Transaction</value>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="CustomerAccounts" xml:space="preserve">
-    <value>Customer
-Accounts</value>
-  </data>
-  <data name="CustomerName" xml:space="preserve">
-    <value>Customer Name</value>
-    <comment>Label content</comment>
-  </data>
   <data name="InternalAccount" xml:space="preserve">
     <value>Internal Account</value>
     <comment>CheckBox content</comment>
@@ -278,38 +270,28 @@ Accounts</value>
     <value>Receiveable</value>
     <comment>GridViewColumn.Header</comment>
   </data>
-  <data name="Customer" xml:space="preserve">
-    <value>Customer</value>
+  <data name="AccountList" xml:space="preserve">
+    <value>Account List</value>
   </data>
-  <data name="CustomerList" xml:space="preserve">
-    <value>Customer List</value>
-  </data>
-  <data name="Customers" xml:space="preserve">
-    <value>Customers</value>
-  </data>
-  <data name="SelectCustomer_r" xml:space="preserve">
+  <data name="SelectAccount_r" xml:space="preserve">
     <value>Select
-Customer</value>
+Account</value>
   </data>
-  <data name="NewCustomer_r" xml:space="preserve">
+  <data name="NewAccount_r" xml:space="preserve">
     <value>New
-Customer</value>
+Account</value>
   </data>
   <data name="FindTicket_r" xml:space="preserve">
     <value>Find
 Ticket</value>
   </data>
-  <data name="ResetCustomer_r" xml:space="preserve">
+  <data name="ResetAccount_r" xml:space="preserve">
     <value>Reset
-Customer</value>
+Account</value>
   </data>
   <data name="GetPayment_r" xml:space="preserve">
     <value>Get
 Payment</value>
-  </data>
-  <data name="CustomerAccount_r" xml:space="preserve">
-    <value>Customer
-Account</value>
   </data>
   <data name="MakePayment_r" xml:space="preserve">
     <value>Make
@@ -1303,10 +1285,6 @@ Payment</value>
   <data name="DeleteErrorShouldHaveAtLeastOneTerminal" xml:space="preserve">
     <value>Can't delete because there should be at least one terminal.</value>
   </data>
-  <data name="TerminalAdı" xml:space="preserve">
-    <value>Terminal Name</value>
-    <comment>Label content</comment>
-  </data>
   <data name="DefaultTerminal" xml:space="preserve">
     <value>Default Terminal</value>
     <comment>CheckBox content</comment>
@@ -1588,8 +1566,8 @@ Payment</value>
     <value>Credit
 Card</value>
   </data>
-  <data name="SelectCustomer" xml:space="preserve">
-    <value>Select Customer</value>
+  <data name="SelectAccount" xml:space="preserve">
+    <value>Select Account</value>
   </data>
   <data name="AllTickets_r" xml:space="preserve">
     <value>All
@@ -1624,8 +1602,8 @@ Table</value>
     <value>Select
 Table</value>
   </data>
-  <data name="CustomerInfo_r" xml:space="preserve">
-    <value>Customer
+  <data name="AccountInfo_r" xml:space="preserve">
+    <value>Account
 Info</value>
   </data>
   <data name="ChangeAmount_f" xml:space="preserve">
@@ -2376,8 +2354,8 @@ Table: {2}</value>
   <data name="TagValue" xml:space="preserve">
     <value>Tag Value</value>
   </data>
-  <data name="CustomerNote" xml:space="preserve">
-    <value>Customer Note</value>
+  <data name="AccountNote" xml:space="preserve">
+    <value>Account Note</value>
   </data>
   <data name="GiftTotal" xml:space="preserve">
     <value>Gift Total</value>
@@ -2394,8 +2372,8 @@ Table: {2}</value>
   <data name="TicketTagSelected" xml:space="preserve">
     <value>Ticket Tag Selected</value>
   </data>
-  <data name="CustomerSelectedForTicket" xml:space="preserve">
-    <value>Customer Selected for Ticket</value>
+  <data name="AccountSelectedForTicket" xml:space="preserve">
+    <value>Account Selected for Ticket</value>
   </data>
   <data name="TicketTotalChanged" xml:space="preserve">
     <value>Ticket Total Changed</value>
@@ -2764,13 +2742,13 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="DeleteErrorProductUsedInMenuItemProperty" xml:space="preserve">
     <value>Can't delete because this product assigned to a menu item property</value>
   </data>
-  <data name="VatTemplates" xml:space="preserve">
+  <data name="TaxTemplates" xml:space="preserve">
     <value>Tax Templates</value>
   </data>
-  <data name="VatTemplate" xml:space="preserve">
+  <data name="TaxTemplate" xml:space="preserve">
     <value>Tax Template</value>
   </data>
-  <data name="VatTemplateName" xml:space="preserve">
+  <data name="TaxTemplateName" xml:space="preserve">
     <value>Tax Template Name</value>
     <comment>Label.Content</comment>
   </data>
@@ -2778,17 +2756,14 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>Rate</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="VatIncludedToPrice" xml:space="preserve">
+  <data name="TaxIncludedToPrice" xml:space="preserve">
     <value>Tax Included to Price</value>
     <comment>CheckBox content</comment>
   </data>
-  <data name="Vat" xml:space="preserve">
+  <data name="Tax" xml:space="preserve">
     <value>Tax</value>
   </data>
-  <data name="VatTotal" xml:space="preserve">
-    <value>Tax Total</value>
-  </data>
-  <data name="UpdateTicketVat" xml:space="preserve">
+  <data name="UpdateTicketTax" xml:space="preserve">
     <value>Update Ticket Tax</value>
   </data>
   <data name="One" xml:space="preserve">
@@ -2905,23 +2880,23 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="OneThousand" xml:space="preserve">
     <value>One Thousand</value>
   </data>
-  <data name="AlwaysExcludeVat" xml:space="preserve">
-    <value>Always Exclude TAX</value>
+  <data name="AlwaysExcludeTax" xml:space="preserve">
+    <value>Always Exclude Tax</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="RoundingTotal" xml:space="preserve">
     <value>Rounding Total</value>
   </data>
-  <data name="TaxServiceTemplates" xml:space="preserve">
+  <data name="ServiceTemplates" xml:space="preserve">
     <value>Service Templates</value>
   </data>
-  <data name="ChooseTaxServicesForDepartmentHint_f" xml:space="preserve">
+  <data name="ChooseServicesForDepartmentHint_f" xml:space="preserve">
     <value>Select tax or services for using at {0} department.</value>
   </data>
-  <data name="TaxServiceTemplate" xml:space="preserve">
+  <data name="ServiceTemplate" xml:space="preserve">
     <value>Service Template</value>
   </data>
-  <data name="TaxServiceTotal" xml:space="preserve">
+  <data name="ServiceTotal" xml:space="preserve">
     <value>Services Total</value>
   </data>
   <data name="CalculationMethod" xml:space="preserve">
@@ -2941,8 +2916,8 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="FixedAmount" xml:space="preserve">
     <value>Fixed amount</value>
   </data>
-  <data name="RateFromVatIncludedTicketAmount" xml:space="preserve">
-    <value>Rate from TAX included ticket amount</value>
+  <data name="RateFromTaxIncludedTicketAmount" xml:space="preserve">
+    <value>Rate from Tax included ticket amount</value>
   </data>
   <data name="UnhandledExceptionErrorMessage" xml:space="preserve">
     <value>SambaPOS encountered an unexpected problem. Problem details logged to trace.log file</value>
@@ -2950,11 +2925,11 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="SaveFreeTags" xml:space="preserve">
     <value>Save Free Tags</value>
   </data>
-  <data name="RegenerateTicketVat" xml:space="preserve">
-    <value>Regenerate Ticket TAX</value>
+  <data name="RegenerateTicketTax" xml:space="preserve">
+    <value>Regenerate Ticket Tax</value>
   </data>
-  <data name="UpdateTicketTaxService" xml:space="preserve">
-    <value>Update Ticket Tax or Service</value>
+  <data name="UpdateTicketService" xml:space="preserve">
+    <value>Update Ticket Service</value>
   </data>
   <data name="Included" xml:space="preserve">
     <value>Included</value>
@@ -2968,13 +2943,13 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="TicketSubTotal" xml:space="preserve">
     <value>Ticket Sub Total</value>
   </data>
-  <data name="VatTotalsGroupedByVatTemplate" xml:space="preserve">
+  <data name="TotalsGroupedByTaxTemplate" xml:space="preserve">
     <value>Totals grouped by Tax template</value>
   </data>
   <data name="TaxTotal" xml:space="preserve">
     <value>Tax Total</value>
   </data>
-  <data name="TaxTotalsGroupedByTaxTemplate" xml:space="preserve">
+  <data name="TotalsGroupedByServiceTemplate" xml:space="preserve">
     <value>Totals grouped by Service template</value>
   </data>
   <data name="TextWrittenTotalValue" xml:space="preserve">

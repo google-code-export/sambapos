@@ -124,31 +124,31 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="{LocText TaxServiceTemplates}" Padding="5">
+                        <GroupBox Header="{LocText ServiceTemplates}" Padding="5">
                             <StackPanel Orientation="Horizontal">
-                                <DataGrid ItemsSource="{Binding TaxServiceTemplates}" SelectedItem="{Binding SelectedTaxServiceTemplate, Mode=TwoWay}"
+                                <DataGrid ItemsSource="{Binding ServiceTemplates}" SelectedItem="{Binding SelectedServiceTemplate, Mode=TwoWay}"
                                      HorizontalAlignment="Stretch" GridLinesVisibility="None" RowHeaderWidth="0" Margin="0,3"
                                      AutoGenerateColumns="False" CanUserSortColumns="False" IsReadOnly="True" Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="{LocText TaxServiceTemplate}"
+                                        <DataGridTextColumn Header="{LocText ServiceTemplate}"
                                              MinWidth="100" Binding="{Binding Name}" />
                                     </DataGrid.Columns>
                                     <DataGrid.ContextMenu>
                                         <ContextMenu>
-                                            <MenuItem Command="{Binding AddTaxServiceTemplateCommand}" Header="{Binding AddTaxServiceTemplateCommand.Caption}" />
-                                            <MenuItem Command="{Binding DeleteTaxServiceTemplateCommand}" Header="{Binding DeleteTaxServiceTemplateCommand.Caption}" />
+                                            <MenuItem Command="{Binding AddServiceTemplateCommand}" Header="{Binding AddServiceTemplateCommand.Caption}" />
+                                            <MenuItem Command="{Binding DeleteServiceTemplateCommand}" Header="{Binding DeleteServiceTemplateCommand.Caption}" />
                                         </ContextMenu>
                                     </DataGrid.ContextMenu>
                                 </DataGrid>
                                 <StackPanel Margin="10">
                                     <TextBlock Margin="2,3">
-                                        <Hyperlink Command="{Binding AddTaxServiceTemplateCommand}">
-                                            <TextBlock Text="{Binding Path=AddTaxServiceTemplateCommand.Caption}" />
+                                        <Hyperlink Command="{Binding AddServiceTemplateCommand}">
+                                            <TextBlock Text="{Binding Path=AddServiceTemplateCommand.Caption}" />
                                         </Hyperlink>
                                     </TextBlock>
                                     <TextBlock Margin="2,3">
-                                        <Hyperlink Command="{Binding DeleteTaxServiceTemplateCommand}">
-                                            <TextBlock Text="{Binding Path=DeleteTaxServiceTemplateCommand.Caption}" />
+                                        <Hyperlink Command="{Binding DeleteServiceTemplateCommand}">
+                                            <TextBlock Text="{Binding Path=DeleteServiceTemplateCommand.Caption}" />
                                         </Hyperlink>
                                     </TextBlock>
                                 </StackPanel>

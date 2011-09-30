@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
@@ -103,14 +103,14 @@ namespace Samba.Presentation.ViewModels
             get { return Model.GetSum(); }
         }
 
-        public decimal TicketVatValue
+        public decimal TicketTaxValue
         {
             get { return Model.CalculateTax(); }
         }
 
-        public decimal TicketTaxServiceValue
+        public decimal TicketServiceValue
         {
-            get { return Model.GetTaxServicesTotal(); }
+            get { return Model.GetServicesTotal(); }
         }
 
         public decimal TicketPaymentValue
@@ -158,14 +158,14 @@ namespace Samba.Presentation.ViewModels
             get { return TicketRoundingAmount.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
-        public string TicketVatLabel
+        public string TicketTaxLabel
         {
-            get { return TicketVatValue.ToString(LocalSettings.DefaultCurrencyFormat); }
+            get { return TicketTaxValue.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
-        public string TicketTaxServiceLabel
+        public string TicketServiceLabel
         {
-            get { return TicketTaxServiceValue.ToString(LocalSettings.DefaultCurrencyFormat); }
+            get { return TicketServiceValue.ToString(LocalSettings.DefaultCurrencyFormat); }
         }
 
         public string TicketPaymentLabel
@@ -282,7 +282,7 @@ namespace Samba.Presentation.ViewModels
             RaisePropertyChanged("TicketRemainingLabel");
             RaisePropertyChanged("TicketDiscountLabel");
             RaisePropertyChanged("TicketPlainTotalLabel");
-            RaisePropertyChanged("TicketTaxServiceValue");
+            RaisePropertyChanged("TicketServiceValue");
             RaisePropertyChanged("IsTagged");
         }
 
@@ -337,7 +337,7 @@ namespace Samba.Presentation.ViewModels
 
         public bool CanCloseTicket()
         {
-            return !_forcePayment || Model.GetRemainingAmount() <= 0 || !string.IsNullOrEmpty(Location) || !string.IsNullOrEmpty(CustomerName) || IsTagged || Items.Count == 0;
+            return !_forcePayment || Model.GetRemainingAmount() <= 0 || !string.IsNullOrEmpty(Location) || !string.IsNullOrEmpty(AccountName) || IsTagged || Items.Count == 0;
         }
 
         public bool IsTicketTotalVisible
@@ -355,14 +355,14 @@ namespace Samba.Presentation.ViewModels
             get { return TicketRemainingValue > 0; }
         }
 
-        public bool IsTicketVatTotalVisible
+        public bool IsTicketTaxTotalVisible
         {
-            get { return TicketVatValue > 0; }
+            get { return TicketTaxValue > 0; }
         }
 
         public bool IsPlainTotalVisible
         {
-            get { return IsTicketDiscountVisible || IsTicketVatTotalVisible || IsTicketRoundingVisible || IsTicketTaxServiceVisible; }
+            get { return IsTicketDiscountVisible || IsTicketTaxTotalVisible || IsTicketRoundingVisible || IsTicketServiceVisible; }
         }
 
         public bool IsTicketDiscountVisible
@@ -375,9 +375,9 @@ namespace Samba.Presentation.ViewModels
             get { return TicketRoundingAmount != 0; }
         }
 
-        public bool IsTicketTaxServiceVisible
+        public bool IsTicketServiceVisible
         {
-            get { return TicketTaxServiceValue > 0; }
+            get { return TicketServiceValue > 0; }
         }
 
         public string Location
@@ -386,16 +386,16 @@ namespace Samba.Presentation.ViewModels
             set { Model.LocationName = value; }
         }
 
-        public int CustomerId
+        public int AccountId
         {
-            get { return Model.CustomerId; }
-            set { Model.CustomerId = value; }
+            get { return Model.AccountId; }
+            set { Model.AccountId = value; }
         }
 
-        public string CustomerName
+        public string AccountName
         {
-            get { return Model.CustomerName; }
-            set { Model.CustomerName = value; }
+            get { return Model.AccountName; }
+            set { Model.AccountName = value; }
         }
 
         public bool IsLocked { get { return Model.Locked; } set { Model.Locked = value; } }
@@ -432,15 +432,15 @@ namespace Samba.Presentation.ViewModels
 
                 if (!string.IsNullOrEmpty(Location) && Model.Id == 0)
                     selectedTicketTitle = string.Format(Resources.Table_f, Location);
-                else if (!string.IsNullOrEmpty(CustomerName) && Model.Id == 0)
-                    selectedTicketTitle = string.Format(Resources.Account_f, CustomerName);
-                else if (string.IsNullOrEmpty(CustomerName)) selectedTicketTitle = string.IsNullOrEmpty(Location)
+                else if (!string.IsNullOrEmpty(AccountName) && Model.Id == 0)
+                    selectedTicketTitle = string.Format(Resources.Account_f, AccountName);
+                else if (string.IsNullOrEmpty(AccountName)) selectedTicketTitle = string.IsNullOrEmpty(Location)
                      ? string.Format("# {0}", Model.TicketNumber)
                      : string.Format(Resources.TicketNumberAndTable_f, Model.TicketNumber, Location);
-                else if (string.IsNullOrEmpty(Location)) selectedTicketTitle = string.IsNullOrEmpty(CustomerName)
+                else if (string.IsNullOrEmpty(Location)) selectedTicketTitle = string.IsNullOrEmpty(AccountName)
                      ? string.Format("# {0}", Model.TicketNumber)
-                     : string.Format(Resources.TicketNumberAndAccount_f, Model.TicketNumber, CustomerName);
-                else selectedTicketTitle = string.Format(Resources.AccountNameAndTableName_f, Model.TicketNumber, CustomerName, Location);
+                     : string.Format(Resources.TicketNumberAndAccount_f, Model.TicketNumber, AccountName);
+                else selectedTicketTitle = string.Format(Resources.AccountNameAndTableName_f, Model.TicketNumber, AccountName, Location);
 
                 return selectedTicketTitle;
             }
@@ -497,8 +497,8 @@ namespace Samba.Presentation.ViewModels
             }
 
             if (ticketTag.AccountId > 0)
-                AppServices.MainDataContext.AssignCustomerToTicket(Model,
-                    Dao.SingleWithCache<Customer>(x => x.Id == ticketTag.AccountId));
+                AppServices.MainDataContext.AssignAccountToTicket(Model,
+                    Dao.SingleWithCache<Account>(x => x.Id == ticketTag.AccountId));
 
             ClearSelectedItems();
 
@@ -552,14 +552,14 @@ namespace Samba.Presentation.ViewModels
             RuleExecutor.NotifyEvent(RuleEventNames.TicketCreated, new { Ticket = AppServices.MainDataContext.SelectedTicket });
         }
 
-        public static void AssignTableToSelectedTicket(int locationId)
+        public static void AssignLocationToSelectedTicket(int locationId)
         {
             var oldLocation = AppServices.MainDataContext.SelectedTicket != null ? AppServices.MainDataContext.SelectedTicket.LocationName : "";
-            AppServices.MainDataContext.AssignTableToSelectedTicket(locationId);
+            AppServices.MainDataContext.AssignLocationToSelectedTicket(locationId);
             RuleExecutor.NotifyEvent(RuleEventNames.TicketLocationChanged, new { Ticket = AppServices.MainDataContext.SelectedTicket, OldLocation = oldLocation, NewLocation = AppServices.MainDataContext.SelectedTicket.LocationName });
         }
 
-        public static void RegenerateVatRates(Ticket ticket)
+        public static void RegenerateTaxRates(Ticket ticket)
         {
             foreach (var ticketItem in ticket.TicketItems)
             {
@@ -567,7 +567,7 @@ namespace Samba.Presentation.ViewModels
                 if (mi == null) continue;
                 var item = ticketItem;
                 var portion = mi.Portions.FirstOrDefault(x => x.Name == item.PortionName);
-                if (portion != null) ticketItem.UpdatePortion(portion, ticketItem.PriceTag, mi.VatTemplate);
+                if (portion != null) ticketItem.UpdatePortion(portion, ticketItem.PriceTag, mi.TaxTemplate);
             }
         }
     }

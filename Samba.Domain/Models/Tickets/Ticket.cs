@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
-using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Data.Serializer;
@@ -34,19 +34,19 @@ namespace Samba.Domain.Models.Tickets
             LocationName = locationName;
             PrintJobData = "";
             _removedTicketItems = new List<TicketItem>();
-            _removedTaxServices = new List<TaxService>();
+            _removedServices = new List<Service>();
             _ticketItems = new List<TicketItem>();
             _payments = new List<Payment>();
             _discounts = new List<Discount>();
             _paidItems = new List<PaidItem>();
-            _taxServices = new List<TaxService>();
+            _services = new List<Service>();
         }
 
         private bool _shouldLock;
         private Dictionary<int, int> _printCounts;
         private Dictionary<string, string> _tagValues;
         private readonly List<TicketItem> _removedTicketItems;
-        private readonly List<TaxService> _removedTaxServices;
+        private readonly List<Service> _removedServices;
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -57,8 +57,8 @@ namespace Samba.Domain.Models.Tickets
         public DateTime LastOrderDate { get; set; }
         public DateTime LastPaymentDate { get; set; }
         public string LocationName { get; set; }
-        public int CustomerId { get; set; }
-        public string CustomerName { get; set; }
+        public int AccountId { get; set; }
+        public string AccountName { get; set; }
         public bool IsPaid { get; set; }
         public decimal RemainingAmount { get; set; }
         public decimal TotalAmount { get; set; }
@@ -89,11 +89,11 @@ namespace Samba.Domain.Models.Tickets
             set { _discounts = value; }
         }
 
-        private IList<TaxService> _taxServices;
-        public virtual IList<TaxService> TaxServices
+        private IList<Service> _services;
+        public virtual IList<Service> Services
         {
-            get { return _taxServices; }
-            set { _taxServices = value; }
+            get { return _services; }
+            set { _services = value; }
         }
 
         private IList<PaidItem> _paidItems;
@@ -144,10 +144,10 @@ namespace Samba.Domain.Models.Tickets
             return result;
         }
 
-        public IEnumerable<TaxService> PopRemovedTaxServices()
+        public IEnumerable<Service> PopRemovedServices()
         {
-            var result = _removedTaxServices.ToArray();
-            _removedTaxServices.Clear();
+            var result = _removedServices.ToArray();
+            _removedServices.Clear();
             return result;
         }
 
@@ -168,7 +168,7 @@ namespace Samba.Domain.Models.Tickets
             var plainSum = GetPlainSum();
             var discount = CalculateDiscounts(Discounts.Where(x => x.DiscountType == (int)DiscountType.Percent), plainSum);
             var tax = CalculateTax(plainSum, discount);
-            var services = CalculateServices(TaxServices, plainSum - discount, tax);
+            var services = CalculateServices(Services, plainSum - discount, tax);
             return (plainSum - discount + services + tax) - Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent).Sum(x => x.Amount);
         }
 
@@ -179,7 +179,7 @@ namespace Samba.Domain.Models.Tickets
 
         private decimal CalculateTax(decimal plainSum, decimal discount)
         {
-            var result = TicketItems.Where(x => !x.VatIncluded).Sum(x => (x.VatAmount + x.Properties.Sum(y => y.VatAmount)) * x.Quantity);
+            var result = TicketItems.Where(x => !x.TaxIncluded).Sum(x => (x.TaxAmount + x.Properties.Sum(y => y.TaxAmount)) * x.Quantity);
             if (discount > 0)
                 result -= (result * discount) / plainSum;
             return result;
@@ -202,38 +202,38 @@ namespace Samba.Domain.Models.Tickets
             return CalculateDiscounts(Discounts.Where(x => x.DiscountType != (int)DiscountType.Percent), 0);
         }
 
-        public decimal GetTaxServicesTotal()
+        public decimal GetServicesTotal()
         {
             var plainSum = GetPlainSum();
             var discount = GetDiscountTotal();
             var tax = CalculateTax(plainSum, discount);
-            return CalculateServices(TaxServices, plainSum - discount, tax);
+            return CalculateServices(Services, plainSum - discount, tax);
         }
 
-        private static decimal CalculateServices(IEnumerable<TaxService> taxServices, decimal sum, decimal tax)
+        private static decimal CalculateServices(IEnumerable<Service> services, decimal sum, decimal tax)
         {
             decimal totalAmount = 0;
             var currentSum = sum;
 
-            foreach (var taxService in taxServices)
+            foreach (var service in services)
             {
-                if (taxService.CalculationType == 0)
+                if (service.CalculationType == 0)
                 {
-                    taxService.CalculationAmount = taxService.Amount > 0 ? (sum * taxService.Amount) / 100 : 0;
+                    service.CalculationAmount = service.Amount > 0 ? (sum * service.Amount) / 100 : 0;
                 }
-                else if (taxService.CalculationType == 1)
+                else if (service.CalculationType == 1)
                 {
-                    taxService.CalculationAmount = taxService.Amount > 0 ? ((sum + tax) * taxService.Amount) / 100 : 0;
+                    service.CalculationAmount = service.Amount > 0 ? ((sum + tax) * service.Amount) / 100 : 0;
                 }
-                else if (taxService.CalculationType == 2)
+                else if (service.CalculationType == 2)
                 {
-                    taxService.CalculationAmount = taxService.Amount > 0 ? (currentSum * taxService.Amount) / 100 : 0;
+                    service.CalculationAmount = service.Amount > 0 ? (currentSum * service.Amount) / 100 : 0;
                 }
-                else taxService.CalculationAmount = taxService.Amount;
+                else service.CalculationAmount = service.Amount;
 
-                taxService.CalculationAmount = Decimal.Round(taxService.CalculationAmount, LocalSettings.Decimals);
-                totalAmount += taxService.CalculationAmount;
-                currentSum += taxService.CalculationAmount;
+                service.CalculationAmount = Decimal.Round(service.CalculationAmount, LocalSettings.Decimals);
+                totalAmount += service.CalculationAmount;
+                currentSum += service.CalculationAmount;
             }
 
             return decimal.Round(totalAmount, LocalSettings.Decimals);
@@ -277,24 +277,24 @@ namespace Samba.Domain.Models.Tickets
             c.Amount = amount;
         }
 
-        public void AddTaxService(int taxServiceId, int calculationMethod, decimal amount)
+        public void AddService(int serviceId, int calculationMethod, decimal amount)
         {
-            var t = TaxServices.SingleOrDefault(x => x.TaxServiceId == taxServiceId);
+            var t = Services.SingleOrDefault(x => x.ServiceId == serviceId);
             if (t == null)
             {
-                t = new TaxService
+                t = new Service
                         {
                             Amount = amount,
                             CalculationType = calculationMethod,
-                            TaxServiceId = taxServiceId
+                            ServiceId = serviceId
                         };
-                TaxServices.Add(t);
+                Services.Add(t);
             }
 
             if (amount == 0)
             {
-                if (t.Id > 0) _removedTaxServices.Add(t);
-                TaxServices.Remove(t);
+                if (t.Id > 0) _removedServices.Add(t);
+                Services.Remove(t);
             }
             t.Amount = amount;
         }
@@ -499,9 +499,9 @@ namespace Samba.Domain.Models.Tickets
         public static Ticket Create(Department department)
         {
             var ticket = new Ticket { DepartmentId = department.Id };
-            foreach (var taxServiceTemplate in department.TaxServiceTemplates)
+            foreach (var serviceTemplate in department.ServiceTemplates)
             {
-                ticket.AddTaxService(taxServiceTemplate.Id, taxServiceTemplate.CalculationMethod, taxServiceTemplate.Amount);
+                ticket.AddService(serviceTemplate.Id, serviceTemplate.CalculationMethod, serviceTemplate.Amount);
             }
             return ticket;
         }
@@ -598,17 +598,17 @@ namespace Samba.Domain.Models.Tickets
             return string.Join("\r", _tagValues.Where(x => !string.IsNullOrEmpty(x.Value)).Select(x => string.Format("{0}: {1}", x.Key, x.Value)));
         }
 
-        public void UpdateCustomer(Customer customer)
+        public void UpdateAccount(Account account)
         {
-            if (customer == Customer.Null)
+            if (account == Account.Null)
             {
-                CustomerId = 0;
-                CustomerName = "";
+                AccountId = 0;
+                AccountName = "";
             }
             else
             {
-                CustomerId = customer.Id;
-                CustomerName = customer.Name.Trim();
+                AccountId = account.Id;
+                AccountName = account.Name.Trim();
             }
         }
 
@@ -655,13 +655,13 @@ namespace Samba.Domain.Models.Tickets
             return newItems;
         }
 
-        public void UpdateVat(VatTemplate vatTemplate)
+        public void UpdateTax(TaxTemplate taxTemplate)
         {
             foreach (var ticketItem in TicketItems)
             {
-                ticketItem.VatRate = vatTemplate.Rate;
-                ticketItem.VatTemplateId = vatTemplate.Id;
-                ticketItem.VatIncluded = vatTemplate.VatIncluded;
+                ticketItem.TaxRate = taxTemplate.Rate;
+                ticketItem.TaxTemplateId = taxTemplate.Id;
+                ticketItem.TaxIncluded = taxTemplate.TaxIncluded;
                 ticketItem.UpdatePrice(ticketItem.Price, ticketItem.PriceTag);
             }
         }

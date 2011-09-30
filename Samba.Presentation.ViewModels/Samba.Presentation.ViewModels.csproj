@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandButtonViewModel.cs" />
-    <Compile Include="CustomerViewModel.cs" />
+    <Compile Include="AccountViewModel.cs" />
     <Compile Include="DiscountViewModel.cs" />
     <Compile Include="GenericRuleRegistator.cs" />
     <Compile Include="LocationData.cs" />

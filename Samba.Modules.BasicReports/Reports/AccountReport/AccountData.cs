@@ -9,7 +9,7 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
     {
         public int Id { get; set; }
         public string PhoneNumber { get; set; }
-        public string CustomerName { get; set; }
+        public string AccountName { get; set; }
         public decimal Amount { get; set; }
     }
 }
