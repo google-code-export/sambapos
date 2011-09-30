@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using FluentValidation;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tables;
@@ -189,6 +190,20 @@ namespace Samba.Modules.MenuModule
         public override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
+        }
+
+        protected override AbstractValidator<Department> GetValidator()
+        {
+            return new DepartmentValidator();
+        }
+    }
+
+    internal class DepartmentValidator : EntityValidator<Department>
+    {
+        public DepartmentValidator()
+        {
+            RuleFor(x => x.TicketNumerator).NotNull();
+            RuleFor(x => x.OrderNumerator).NotNull();
         }
     }
 }

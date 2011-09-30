@@ -58,6 +58,9 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\Lib\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="GongSolutions.Wpf.DragDrop">
       <HintPath>..\Lib\DragDrop\GongSolutions.Wpf.DragDrop.dll</HintPath>
     </Reference>
@@ -331,7 +334,6 @@
 copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.Prism.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.EnterpriseLibrary.Common.dll" "$(SolutionDir)SambaSetup\src"
-copy "$(TargetDir)Microsoft.Practices.EnterpriseLibrary.Validation.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.ServiceLocation.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.Unity.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.Unity.Interception.dll" "$(SolutionDir)SambaSetup\src"
@@ -341,6 +343,7 @@ copy "$(TargetDir)UIControls.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)GongSolutions.Wpf.DragDrop.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)DataGridFilterLibrary.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)System.Windows.Interactivity.dll" "$(SolutionDir)SambaSetup\src"
+copy "$(TargetDir)FluentValidation.dll" "$(SolutionDir)SambaSetup\src"
 
 :End</PostBuildEvent>
   </PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentValidation;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
@@ -30,7 +31,7 @@ namespace Samba.Modules.UserModule
             }
             set
             {
-                if (!Model.PinCode.Contains("*") && !string.IsNullOrEmpty(value))
+                if (Model.PinCode == null || !Model.PinCode.Contains("*") && !string.IsNullOrEmpty(value))
                 {
                     _edited = true;
                     Model.PinCode = value;
@@ -63,6 +64,20 @@ namespace Samba.Modules.UserModule
             var users = AppServices.Workspace.All<User>(x => x.PinCode == Model.PinCode);
             return users.Count() > 1 || (users.Count() == 1 && users.ElementAt(0).Id != Model.Id)
                 ? Resources.SaveErrorThisPinCodeInUse : "";
+        }
+
+        protected override AbstractValidator<User> GetValidator()
+        {
+            return new UserValidator();
+        }
+    }
+
+    internal class UserValidator : EntityValidator<User>
+    {
+        public UserValidator()
+        {
+            RuleFor(x => x.PinCode).Length(4, 10);
+            RuleFor(x => x.UserRole).NotNull();
         }
     }
 }

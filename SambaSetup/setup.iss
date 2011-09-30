@@ -54,7 +54,7 @@ tr.handheld_terminal_app=El terminali uygulamasý
 tr.ce_install_sp3_required=Compact SQL 4.0 çalýþtýrmak için Service Pack 3 gerektiðinden kurulum listesinden kaldýrýldý. Program TXT dosya veritabaný üzerinden çalýþacak.
 
 [Setup]
-AppName=Samba POS
+AppName=SambaPOS
 Uninstallable=true
 DirExistsWarning=no
 CreateAppDir=true
@@ -64,15 +64,15 @@ SourceDir=.
 AppCopyright=Copyright © Özgü Teknoloji 2011
 AppVerName=Samba POS {#Version}
 
-DefaultGroupName=Samba POS 2
+DefaultGroupName=SambaPOS3
 AllowNoIcons=true
 AppPublisher=Özgü Teknoloji
 AppVersion={#Version}
 UninstallDisplayIcon={app}\Samba.Presentation.exe
-UninstallDisplayName=Samba POS 2
+UninstallDisplayName=SambaPOS3
 UsePreviousGroup=true
 UsePreviousAppDir=true
-DefaultDirName={pf}\SambaPOS2
+DefaultDirName={pf}\SambaPOS3
 VersionInfoVersion={#Version}
 VersionInfoCompany=Özgü Teknoloji
 VersionInfoCopyright=Copyright © Ozgu 2010
@@ -87,7 +87,7 @@ MinVersion=4.1,5.0
 PrivilegesRequired=admin
 ArchitecturesAllowed=
 VersionInfoProductName=Samba POS Setup
-AppID={{7FFA6CCB-2A30-4F09-A216-0CDFC031E870}
+AppID={{9447659F-1795-44B2-B8A2-E0FA049A5F6E}
 
 
 [Languages]
@@ -109,7 +109,6 @@ Source: src\Microsoft.Practices.EnterpriseLibrary.Common.dll; DestDir: {app}
 Source: src\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll; DestDir: {app}
 Source: src\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll; DestDir: {app}
 Source: src\Microsoft.Practices.EnterpriseLibrary.Logging.dll; DestDir: {app}
-Source: src\Microsoft.Practices.EnterpriseLibrary.Validation.dll; DestDir: {app}
 Source: src\Microsoft.Practices.ServiceLocation.dll; DestDir: {app}
 Source: src\Microsoft.Practices.Unity.dll; DestDir: {app}
 Source: src\Microsoft.Practices.Unity.Interception.dll; DestDir: {app}
@@ -121,7 +120,7 @@ Source: src\Samba.Login.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.MessagingServer.exe; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.BasicReports.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.CashModule.dll; DestDir: {app}; Flags: ignoreversion
-Source: src\Samba.Modules.CustomerModule.dll; DestDir: {app}; Flags: ignoreversion
+Source: src\Samba.Modules.AccountModule.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.DashboardModule.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.MenuModule.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.InventoryModule.dll; DestDir: {app}; Flags: ignoreversion
@@ -155,6 +154,7 @@ Source: src\Imports\menu_tr.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_tr.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\FlexButton.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\DataGridFilterLibrary.dll; DestDir: {app}; Flags: ignoreversion
+Source: src\FluentValidation.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\FluentMigrator.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\FluentMigrator.Runner.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\GongSolutions.Wpf.DragDrop.dll; DestDir: {app}; Flags: ignoreversion
@@ -176,12 +176,12 @@ Name: full; Description: {cm:full_setup}
 Name: custom; Description: {cm:custom_setup}; Flags: iscustom
 
 [Icons]
-Name: {group}\Samba POS 2; Filename: {app}\Samba.Presentation.exe
+Name: {group}\Samba POS 3; Filename: {app}\Samba.Presentation.exe
 Name: {group}\{cm:UninstallProgram,Samba POS}; Filename: {uninstallexe}
-Name: {commondesktop}\Samba POS 2; Filename: {app}\Samba.Presentation.exe; IconIndex: 0; Flags: createonlyiffileexists; Components: 
+Name: {commondesktop}\SambaPOS3; Filename: {app}\Samba.Presentation.exe; IconIndex: 0; Flags: createonlyiffileexists; Components: 
 Name: {commondesktop}\Samba Terminal; Filename: {app}\Samba.Presentation.Terminal.exe; Flags: createonlyiffileexists
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\Samba POS; Filename: {app}\Samba.Presentation.exe; Tasks: quicklaunchicon
-Name: {group}\Samba Data; Filename: {commonappdata}\Ozgu Tech\SambaPOS2\
+Name: {group}\Samba Data; Filename: {commonappdata}\Ozgu Tech\SambaPOS3\
 
 [Run]
 Filename: {app}\Samba.Presentation.exe; Description: {cm:LaunchProgram,Samba POS}; Flags: nowait postinstall skipifsilent unchecked
@@ -258,4 +258,4 @@ end;
 Name: {app}\Images
 Name: {app}\Imports
 Name: {app}\tr
-Name: {commonappdata}\Ozgu Tech\SambaPOS2
+Name: {commonappdata}\Ozgu Tech\SambaPOS3

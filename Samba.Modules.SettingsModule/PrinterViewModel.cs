@@ -1,13 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentValidation;
 using Samba.Domain.Models.Settings;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
 
 namespace Samba.Modules.SettingsModule
 {
+    class PrinterValidator : EntityValidator<Printer>
+    {
+        public PrinterValidator()
+        {
+            RuleFor(x => x.CharsPerLine).GreaterThan(0);
+            RuleFor(x => x.CodePage).GreaterThan(0);
+        }
+    }
+
     public class PrinterViewModel : EntityViewModelBase<Printer>
     {
         public PrinterViewModel(Printer model)
@@ -49,9 +58,9 @@ namespace Samba.Modules.SettingsModule
             return Resources.Printer;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override AbstractValidator<Printer> GetValidator()
         {
-
+            return new PrinterValidator();
         }
     }
 }

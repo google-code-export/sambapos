@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Windows;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 
@@ -13,13 +15,12 @@ namespace Samba.Presentation.Common.ModelBase
     {
         public TModel Model { get; private set; }
         public ICaptionCommand SaveCommand { get; private set; }
-        private readonly ValidatorFactory _validatorFactory;
+        private IValidator<TModel> _validator;
 
         protected EntityViewModelBase(TModel model)
         {
             Model = model;
             SaveCommand = new CaptionCommand<string>(Resources.Save, OnSave, CanSave);
-            _validatorFactory = EnterpriseLibraryContainer.Current.GetInstance<ValidatorFactory>();
         }
 
         public string Name
@@ -74,26 +75,32 @@ namespace Samba.Presentation.Common.ModelBase
 
         private bool Validate()
         {
-            var results = _validatorFactory.CreateValidator(typeof(TModel)).Validate(Model);
-            Error = GetErrors(results);
-            return results.IsValid;
+            var validator = _validator ?? (_validator = GetValidator());
+            var vs = validator.Validate(Model);
+            if (!vs.IsValid)
+            {
+                Error = string.Join("\r", vs.Errors.Select(x => x.ErrorMessage));
+                return false;
+            }
+
+            return true;
         }
 
-        private static string GetErrors(IEnumerable<ValidationResult> results)
+        protected virtual AbstractValidator<TModel> GetValidator()
         {
-            var builder = new StringBuilder();
-            foreach (var result in results)
-            {
-                builder.AppendLine(
-                    string.Format(
-                       CultureInfo.CurrentCulture,
-                       "* {0}",
-                       result.Message));
-            }
-            return builder.ToString();
+            return new EntityValidator<TModel>();
         }
+
 
         private string _error;
         public string Error { get { return _error; } set { _error = value; RaisePropertyChanged("Error"); } }
+    }
+
+    public class EntityValidator<TModel> : AbstractValidator<TModel> where TModel : IEntity
+    {
+        public EntityValidator()
+        {
+            RuleFor(x => x.Name).NotEmpty();
+        }
     }
 }
