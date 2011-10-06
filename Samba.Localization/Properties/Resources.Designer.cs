@@ -5297,6 +5297,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select a default department.
+        /// </summary>
+        public static string SaveErrorSelectDefaultDepartment {
+            get {
+                return ResourceManager.GetString("SaveErrorSelectDefaultDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This Pin Code used by another user account..
         /// </summary>
         public static string SaveErrorThisPinCodeInUse {

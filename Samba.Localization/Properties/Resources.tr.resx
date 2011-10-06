@@ -2989,5 +2989,8 @@ Borçlandır</value>
   <data name="UpdateTicketAccount">
     <value xml:space="preserve">Adisyon Hesabını Değiştir</value>
   </data>
+	<data name="SaveErrorSelectDefaultDepartment">
+		<value xml:space="preserve">Lütfen varsayılan departmanı seçiniz.</value>
+	</data>
 
 </root>

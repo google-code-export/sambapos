@@ -69,5 +69,12 @@ namespace Samba.Modules.UserModule
         {
             _workspace = workspace;
         }
+
+        protected override string GetSaveErrorMessage()
+        {
+            if (DepartmentId == 0)
+                return Resources.SaveErrorSelectDefaultDepartment;
+            return base.GetSaveErrorMessage();
+        }
     }
 }

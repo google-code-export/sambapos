@@ -2986,4 +2986,7 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="UpdateTicketAccount" xml:space="preserve">
     <value>Update Ticket Account</value>
   </data>
+	<data name="SaveErrorSelectDefaultDepartment">
+		<value xml:space="preserve">Please select a default department</value>
+	</data>
 </root>
