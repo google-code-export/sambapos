@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
-using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Samba.Infrastructure;
 using Samba.Presentation.Common.Services;
 
@@ -58,7 +56,6 @@ namespace Samba.Presentation
         private static void HandleException(Exception ex)
         {
             if (ex == null) return;
-            ExceptionPolicy.HandleException(ex, "Policy");
             MessageBox.Show(Localization.Properties.Resources.UnhandledExceptionErrorMessage, Localization.Properties.Resources.Warning);
             Environment.Exit(1);
         }

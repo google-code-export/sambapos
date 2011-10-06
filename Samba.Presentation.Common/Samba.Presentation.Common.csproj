@@ -64,12 +64,6 @@
     <Reference Include="GongSolutions.Wpf.DragDrop">
       <HintPath>..\Lib\DragDrop\GongSolutions.Wpf.DragDrop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
-      <HintPath>..\Lib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation">
-      <HintPath>..\Lib\Microsoft.Practices.EnterpriseLibrary.Validation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>..\Lib\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
@@ -333,10 +327,7 @@
 
 copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.Prism.dll" "$(SolutionDir)SambaSetup\src"
-copy "$(TargetDir)Microsoft.Practices.EnterpriseLibrary.Common.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.ServiceLocation.dll" "$(SolutionDir)SambaSetup\src"
-copy "$(TargetDir)Microsoft.Practices.Unity.dll" "$(SolutionDir)SambaSetup\src"
-copy "$(TargetDir)Microsoft.Practices.Unity.Interception.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)FlexButton.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)PropertyTools.Wpf.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)UIControls.dll" "$(SolutionDir)SambaSetup\src"

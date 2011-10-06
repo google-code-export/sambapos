@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
@@ -101,7 +100,7 @@ namespace Samba.Presentation.Terminal
 
                 OpenTicketTags = opt.Count() > 1 ? opt : null;
 
-                OpenTickets.ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
+                OpenTickets.ToList().ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
             }
             else
             {

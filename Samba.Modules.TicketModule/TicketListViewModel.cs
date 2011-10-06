@@ -7,7 +7,6 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Samba.Domain;
@@ -1019,7 +1018,7 @@ namespace Samba.Modules.TicketModule
                 {
                     result = result.Where(x => x.TicketTag.ToLower().Contains((tag + tagFilter + "\r").ToLower()));
                 }
-                result.ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
+                result.ToList().ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
             }
 
             return result;

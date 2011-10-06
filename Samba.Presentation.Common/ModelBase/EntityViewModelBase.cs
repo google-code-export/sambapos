@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 

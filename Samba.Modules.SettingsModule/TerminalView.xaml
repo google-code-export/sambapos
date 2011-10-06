@@ -6,7 +6,7 @@
         <Grid>
             <StackPanel>
                 <Label>
-                    <LocText ResourceIdentifierKey="TerminalAdı" Suffix=":"/>
+                    <LocText ResourceIdentifierKey="TerminalName" Suffix=":"/>
                 </Label>
                 <TextBox HorizontalAlignment="Left" Width="250" Text="{Binding Name}" />
                 <CheckBox Margin="0,5" IsChecked="{Binding IsDefault, Mode=TwoWay}">

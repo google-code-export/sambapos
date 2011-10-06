@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
-using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 
@@ -59,7 +58,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
                 if (serviceSum > 0)
                 {
-                    ReportContext.Tickets.SelectMany(x => x.Services).GroupBy(x => x.ServiceId).ForEach(
+                    ReportContext.Tickets.SelectMany(x => x.Services).GroupBy(x => x.ServiceId).ToList().ForEach(
                         x =>
                         {
                             var template = ReportContext.ServiceTemplates.SingleOrDefault(y => y.Id == x.Key);
@@ -70,8 +69,6 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
                 report.AddRow("Departman", Resources.GrandTotal.ToUpper(), ticketGropus.Sum(x => x.Amount + x.Tax + x.Services).ToString(ReportContext.CurrencyFormat));
             }
-
-
 
             //---------------
 
@@ -85,46 +82,6 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
             report.AddRow("GelirlerTablosu", Resources.Voucher, ac.TicketPercent, ac.TicketTotal.ToString(ReportContext.CurrencyFormat));
             report.AddRow("GelirlerTablosu", Resources.AccountBalance, ac.AccountPercent, ac.AccountTotal.ToString(ReportContext.CurrencyFormat));
             report.AddRow("GelirlerTablosu", Resources.TotalIncome.ToUpper(), "", ac.TotalAmount.ToString(ReportContext.CurrencyFormat));
-
-            //---------------
-
-            //Kasa raporu eklendiği için kasa özeti bu rapordan kaldırıldı. Başka bir rapora taşınabilir şimdilik bıraktım.
-
-            //var cashTransactionTotal = ReportContext.GetCashTotalAmount();
-            //var creditCardTransactionTotal = ReportContext.GetCreditCardTotalAmount();
-            //var ticketTransactionTotal = ReportContext.GetTicketTotalAmount();
-
-            //report.AddColumnLength("Kasa", "25*", "18*", "18*", "18*", "21*");
-            //report.AddColumTextAlignment("Kasa", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right, TextAlignment.Right, TextAlignment.Right);
-            //report.AddTable("Kasa", "Kasa", "Nakit", "K.Kartı", "Y.Çeki", "Toplam");
-            //report.AddRow("Kasa", "Gün Başı",
-            //    currentPeriod.CashAmount.ToString(ReportContext.CurrencyFormat),
-            //    currentPeriod.CreditCardAmount.ToString(ReportContext.CurrencyFormat),
-            //    currentPeriod.TicketAmount.ToString(ReportContext.CurrencyFormat),
-            //    (currentPeriod.CashAmount + currentPeriod.CreditCardAmount + currentPeriod.TicketAmount).ToString(ReportContext.CurrencyFormat));
-
-            //report.AddRow("Kasa", "Faaliyet",
-            //                ac.CashTotal.ToString(ReportContext.CurrencyFormat),
-            //                ac.CreditCardTotal.ToString(ReportContext.CurrencyFormat),
-            //                ac.TicketTotal.ToString(ReportContext.CurrencyFormat),
-            //                ac.GrandTotal.ToString(ReportContext.CurrencyFormat));
-
-            //report.AddRow("Kasa", "Hareketler",
-            //                cashTransactionTotal.ToString(ReportContext.CurrencyFormat),
-            //                creditCardTransactionTotal.ToString(ReportContext.CurrencyFormat),
-            //                ticketTransactionTotal.ToString(ReportContext.CurrencyFormat),
-            //                (cashTransactionTotal + creditCardTransactionTotal + ticketTransactionTotal).ToString(ReportContext.CurrencyFormat));
-
-            //var totalCash = currentPeriod.CashAmount + ac.CashTotal + cashTransactionTotal;
-            //var totalCreditCard = currentPeriod.CreditCardAmount + ac.CreditCardTotal + creditCardTransactionTotal;
-            //var totalTicket = currentPeriod.TicketAmount + ac.TicketTotal + ticketTransactionTotal;
-
-            //report.AddRow("Kasa", "TOPLAM",
-            //    totalCash.ToString(ReportContext.CurrencyFormat),
-            //    totalCreditCard.ToString(ReportContext.CurrencyFormat),
-            //    totalTicket.ToString(ReportContext.CurrencyFormat),
-            //    (totalCash + totalCreditCard + totalTicket).ToString(ReportContext.CurrencyFormat));
-
 
             //---------------
 
@@ -172,8 +129,10 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
             {
                 foreach (var departmentInfo in ticketGropus)
                 {
+                    var dinfo = departmentInfo;
+                    
                     var dPayments = ReportContext.Tickets
-                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
+                        .Where(x => x.DepartmentId == dinfo.DepartmentId)
                         .SelectMany(x => x.Payments)
                         .GroupBy(x => new { x.PaymentType })
                         .Select(x => new TenderedAmount { PaymentType = x.Key.PaymentType, Amount = x.Sum(y => y.Amount) });
@@ -187,18 +146,18 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.TotalIncome, "", departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
 
                     var dvoids = ReportContext.Tickets
-                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
+                        .Where(x => x.DepartmentId == dinfo.DepartmentId)
                         .SelectMany(x => x.TicketItems)
                         .Where(x => x.Voided)
                         .Sum(x => x.GetItemValue());
 
                     var ddiscounts = ReportContext.Tickets
-                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
+                        .Where(x => x.DepartmentId == dinfo.DepartmentId)
                         .SelectMany(x => x.Discounts)
                         .Sum(x => x.DiscountAmount);
 
                     var dgifts = ReportContext.Tickets
-                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
+                        .Where(x => x.DepartmentId == dinfo.DepartmentId)
                         .SelectMany(x => x.TicketItems)
                         .Where(x => x.Gifted)
                         .Sum(x => x.GetItemValue());

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Samba.Domain;
 using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Actions;
@@ -124,18 +123,18 @@ namespace Samba.Services
 
             public void ResetTableData(IEntity ticket)
             {
-                _workspace.All<Table>(x => x.TicketId == ticket.Id).ForEach(x => x.Reset());
+                _workspace.All<Table>(x => x.TicketId == ticket.Id).ToList().ForEach(x => x.Reset());
             }
 
             public void RemoveTicketItems(IEnumerable<TicketItem> selectedItems)
             {
-                selectedItems.ForEach(x => Ticket.TicketItems.Remove(x));
-                selectedItems.Where(x => x.Id > 0).ForEach(x => _workspace.Delete(x));
+                selectedItems.ToList().ForEach(x => Ticket.TicketItems.Remove(x));
+                selectedItems.Where(x => x.Id > 0).ToList().ForEach(x => _workspace.Delete(x));
             }
 
             public void RemoveServices(IEnumerable<Service> services)
             {
-                services.ForEach(x => _workspace.Delete(x));
+                services.ToList().ForEach(x => _workspace.Delete(x));
             }
 
             public void AddItemToSelectedTicket(TicketItem model)

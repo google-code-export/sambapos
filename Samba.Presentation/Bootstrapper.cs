@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition.Hosting;
 using System.Windows;
-using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.ServiceLocation;
 using Samba.Infrastructure.Settings;
@@ -15,8 +14,6 @@ namespace Samba.Presentation
 {
     public class Bootstrapper : MefBootstrapper
     {
-        private readonly EntLibLoggerAdapter _logger = new EntLibLoggerAdapter();
-
         protected override DependencyObject CreateShell()
         {
             return Container.GetExportedValue<Shell>();
@@ -36,10 +33,10 @@ namespace Samba.Presentation
             LocalSettings.AppPath = path;
         }
 
-        protected override ILoggerFacade CreateLogger()
-        {
-            return _logger;
-        }
+        //protected override ILoggerFacade CreateLogger()
+        //{
+        //    return _logger;
+        //}
 
         protected override void InitializeModules()
         {
@@ -51,7 +48,7 @@ namespace Samba.Presentation
         protected override void InitializeShell()
         {
             LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
-            LocalSettings.SetTraceLogPath("app");
+            
             InteractionService.UserIntraction = ServiceLocator.Current.GetInstance<IUserInteraction>();
             InteractionService.UserIntraction.ToggleSplashScreen();
 

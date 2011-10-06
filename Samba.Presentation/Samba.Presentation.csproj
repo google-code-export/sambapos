@@ -86,22 +86,6 @@
     <Reference Include="GongSolutions.Wpf.DragDrop">
       <HintPath>..\Lib\DragDrop\GongSolutions.Wpf.DragDrop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>..\Lib\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
@@ -142,7 +126,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EntLibLoggerAdapter.cs" />
     <Compile Include="MessageClientStatusView.xaml.cs">
       <DependentUpon>MessageClientStatusView.xaml</DependentUpon>
     </Compile>
@@ -339,9 +322,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>IF NOT "$(ConfigurationName)"=="Release" GOTO End
@@ -351,9 +331,6 @@ copy "$(TargetDir)$(TargetFileName).manifest" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)$(TargetFileName).config" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.Prism.Interactivity.dll" "$(SolutionDir)SambaSetup\src"
 copy "$(TargetDir)Microsoft.Practices.Prism.MefExtensions.dll" "$(SolutionDir)SambaSetup\src"
-copy "$(TargetDir)Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" "$(SolutionDir)SambaSetup\src"
-copy "$(TargetDir)Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" "$(SolutionDir)SambaSetup\src"
-copy "$(TargetDir)Microsoft.Practices.EnterpriseLibrary.Logging.dll" "$(SolutionDir)SambaSetup\src"
 
 :End</PostBuildEvent>
   </PropertyGroup>

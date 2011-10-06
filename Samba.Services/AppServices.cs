@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-using Microsoft.Practices.EnterpriseLibrary.Logging;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data;
@@ -117,26 +116,28 @@ namespace Samba.Services
             return dterminal ?? Terminal.DefaultTerminal;
         }
 
+        //TODO:Implement Logger
+
         public static void LogError(Exception e)
         {
             MessageBox.Show("Bir sorun tespit ettik.\r\n\r\nProgram çalışmaya devam edecek ancak en kısa zamanda teknik destek almanız önerilir. Lütfen teknik destek için program danışmanınız ile irtibat kurunuz.\r\n\r\nMesaj:\r\n" + e.Message, "Bilgi", MessageBoxButton.OK, MessageBoxImage.Stop);
-            Logger.Write(e, "General");
+            //Logger.Write(e, "General");
         }
 
         public static void LogError(Exception e, string userMessage)
         {
             MessageBox.Show(userMessage, "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            Logger.Write(e, "General");
+            //Logger.Write(e, "General");
         }
 
         public static void Log(string message)
         {
-            Logger.Write(message, "General", 0, 0, TraceEventType.Verbose);
+            //Logger.Write(message, "General", 0, 0, TraceEventType.Verbose);
         }
 
         public static void Log(string message, string category)
         {
-            Logger.Write(message, category);
+            //Logger.Write(message, category);
         }
 
         public static void ResetCache()
