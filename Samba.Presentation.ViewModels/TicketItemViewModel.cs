@@ -96,7 +96,7 @@ namespace Samba.Presentation.ViewModels
 
         public decimal TotalPrice
         {
-            get { return (Price + Model.GetMenuItemPropertyPrice()) * Quantity; }
+            get { return Price * Quantity; }
         }
 
         private bool _selected;
