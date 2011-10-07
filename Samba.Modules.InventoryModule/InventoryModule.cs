@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
-using Samba.Domain.Models.Inventory;
+using Samba.Domain.Models.Inventories;
 using Samba.Domain.Models.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;

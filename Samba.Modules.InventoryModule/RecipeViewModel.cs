@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Samba.Domain.Models.Inventory;
+using Samba.Domain.Models.Inventories;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;

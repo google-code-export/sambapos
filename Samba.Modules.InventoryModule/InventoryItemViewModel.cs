@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Samba.Domain.Models.Inventory;
+using Samba.Domain.Models.Inventories;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;

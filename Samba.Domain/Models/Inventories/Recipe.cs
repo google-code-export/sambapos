@@ -2,7 +2,7 @@
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
 
-namespace Samba.Domain.Models.Inventory
+namespace Samba.Domain.Models.Inventories
 {
     public class Recipe : IEntity
     {

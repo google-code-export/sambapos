@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentValidation;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data;
@@ -68,6 +69,19 @@ namespace Samba.Modules.UserModule
         public override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
+        }
+
+        protected override AbstractValidator<UserRole> GetValidator()
+        {
+            return new UserRoleValidator();
+        }
+    }
+
+    internal class UserRoleValidator : EntityValidator<UserRole>
+    {
+        public UserRoleValidator()
+        {
+            RuleFor(x => x.DepartmentId).GreaterThan(0);
         }
     }
 }

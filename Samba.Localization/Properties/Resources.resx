@@ -2961,4 +2961,16 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="UpdateTicketAccount" xml:space="preserve">
     <value>Update Ticket Account</value>
   </data>
+	<data name="TransactionMultiplierError">
+		<value xml:space="preserve">Transaction multiplier should not be zero</value>
+	</data>
+	<data name="TransactionsEmptyError">
+		<value xml:space="preserve">Transactions should not be empty</value>
+	</data>
+	<data name="TranactionsZeroQuantityError">
+		<value xml:space="preserve">Transactions contains zero quantity items</value>
+	</data>
+	<data name="TransactionUnitError">
+		<value xml:space="preserve">Transaction Unit should not be empty</value>
+	</data>
 </root>

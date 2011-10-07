@@ -19,8 +19,6 @@ namespace Samba.Presentation.Terminal
     {
         public MainWindowViewModel()
         {
-            //TODO: Para birimi servisinden al.
-
             LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
 
             LocalSettings.DefaultCurrencyFormat = "#,#0.00";

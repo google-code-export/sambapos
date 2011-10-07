@@ -42,8 +42,8 @@ namespace Samba.Domain.Models.Tickets
             set { _serviceTemplates = value; }
         }
 
-        private static readonly Department _all = new Department { Name = "*" };
-        public static Department All { get { return _all; } }
+        private static Department _all;
+        public static Department All { get { return _all ?? (_all = new Department { Name = "*" }); } }
 
         public Department()
         {

@@ -80,7 +80,7 @@ namespace Samba.Presentation.Common.ModelBase
                 Error = string.Join("\r", vs.Errors.Select(x => x.ErrorMessage));
                 return false;
             }
-
+            Error = "";
             return true;
         }
 

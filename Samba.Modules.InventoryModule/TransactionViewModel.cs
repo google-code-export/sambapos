@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using Samba.Domain.Models.Inventory;
+using FluentValidation;
+using Samba.Domain.Models.Inventories;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
@@ -58,7 +59,7 @@ namespace Samba.Modules.InventoryModule
 
         private bool CanDeleteTransactionItem(string arg)
         {
-            return SelectedTransactionItem != null;
+            return SelectedTransactionItem != null && CanSave(arg);
         }
 
         private void OnDeleteTransactionItem(string obj)
@@ -71,12 +72,12 @@ namespace Samba.Modules.InventoryModule
 
         private bool CanAddTransactionItem(string arg)
         {
-            return true;
+            return CanSave(arg);
         }
 
         protected override bool CanSave(string arg)
         {
-            return AppServices.MainDataContext.IsCurrentWorkPeriodOpen && base.CanSave(arg);
+            return AppServices.MainDataContext.IsCurrentWorkPeriodOpen && AppServices.MainDataContext.CurrentWorkPeriod.StartDate < Model.Date && base.CanSave(arg);
         }
 
         private void OnAddTransactionItem(string obj)
@@ -118,6 +119,26 @@ namespace Samba.Modules.InventoryModule
         public override string GetModelTypeString()
         {
             return Resources.TransactionDocument;
+        }
+
+        protected override AbstractValidator<Transaction> GetValidator()
+        {
+            return new TransactionValidator();
+        }
+    }
+
+    internal class TransactionValidator : EntityValidator<Transaction>
+    {
+        public TransactionValidator()
+        {
+            var startDate = AppServices.MainDataContext.IsCurrentWorkPeriodOpen
+                                ? AppServices.MainDataContext.CurrentWorkPeriod.StartDate
+                                : DateTime.Now;
+            RuleFor(x => x.Date).GreaterThan(startDate);
+            RuleFor(x => x.TransactionItems).Must(x => x.Count > 0).WithMessage(Resources.TransactionsEmptyError)
+            .Must(x => x.Count(y => y.Quantity == 0) == 0).WithMessage(Resources.TranactionsZeroQuantityError)
+            .Must(x => x.Count(y => y.Multiplier == 0) == 0).WithMessage(Resources.TransactionMultiplierError)
+            .Must(x => x.Count(y => string.IsNullOrEmpty(y.Unit)) == 0).WithMessage(Resources.TransactionUnitError);       
         }
     }
 }

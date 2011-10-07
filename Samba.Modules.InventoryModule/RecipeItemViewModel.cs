@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Samba.Domain.Models.Inventory;
+using Samba.Domain.Models.Inventories;
 using Samba.Infrastructure.Data;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;

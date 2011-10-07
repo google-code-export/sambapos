@@ -2964,4 +2964,16 @@ Borçlandır</value>
   <data name="UpdateTicketAccount" xml:space="preserve">
     <value>Adisyon Hesabını Değiştir</value>
   </data>
+  <data name="TransactionMultiplierError">
+    <value xml:space="preserve">Hareket Çarpanı sıfır olmamalı</value>
+  </data>
+  <data name="TransactionsEmptyError">
+    <value xml:space="preserve">Hareketler boş olmamalı</value>
+  </data>
+  <data name="TranactionsZeroQuantityError">
+    <value xml:space="preserve">Hareker Miktarı sıfır olmamalı</value>
+  </data>
+  <data name="TransactionUnitError">
+    <value xml:space="preserve">Hareket Birimi boş olmamalı</value>
+  </data>
 </root>

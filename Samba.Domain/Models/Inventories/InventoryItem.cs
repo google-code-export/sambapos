@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Samba.Infrastructure.Data;
 
-namespace Samba.Domain.Models.Inventory
+namespace Samba.Domain.Models.Inventories
 {
     public class InventoryItem : IEntity
     {
