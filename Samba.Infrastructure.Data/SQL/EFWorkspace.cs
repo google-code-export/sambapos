@@ -121,8 +121,6 @@ namespace Samba.Infrastructure.Data.SQL
 
         }
 
-
-
         public void Dispose()
         {
             _context.Dispose();

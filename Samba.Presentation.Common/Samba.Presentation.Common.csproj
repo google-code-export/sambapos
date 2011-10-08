@@ -113,6 +113,12 @@
     <Compile Include="CommonEventPublisher.cs" />
     <Compile Include="DataContextGrid.cs" />
     <Compile Include="DiagramCanvas.cs" />
+    <Compile Include="DialogCloser.cs" />
+    <Compile Include="ErrorReport\ErrorReportView.xaml.cs">
+      <DependentUpon>ErrorReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorReport\ErrorReportViewModel.cs" />
+    <Compile Include="ErrorReport\ExceptionReporter.cs" />
     <Compile Include="EventServiceFactory.cs" />
     <Compile Include="EventTopicNames.cs" />
     <Compile Include="ExtensionServices.cs" />
@@ -227,6 +233,10 @@
       <Project>{2D64F506-D566-4CA5-A19C-BCB5F9A2E7F4}</Project>
       <Name>Samba.Infrastructure.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Samba.Infrastructure.ExceptionReporter\Samba.Infrastructure.ExceptionReporter.csproj">
+      <Project>{A3CCA406-C125-4261-8B6B-FD3DAF423050}</Project>
+      <Name>Samba.Infrastructure.ExceptionReporter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Samba.Infrastructure\Samba.Infrastructure.csproj">
       <Project>{B184E8F8-A507-4C3D-B580-184E3776A95C}</Project>
       <Name>Samba.Infrastructure</Name>
@@ -246,6 +256,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Browser\BrowserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ErrorReport\ErrorReportView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -320,7 +334,9 @@
   <ItemGroup>
     <Resource Include="Interaction\logo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ErrorReport\Images\warning.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>IF NOT "$(ConfigurationName)"=="Release" GOTO End

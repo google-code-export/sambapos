@@ -142,6 +142,17 @@ html
 
         public static long CurrentDbVersion { get; set; }
 
+        public static string DatabaseLabel
+        {
+            get
+            {
+                if (ConnectionString.ToLower().Contains(".sdf")) return "CE";
+                if (ConnectionString.ToLower().Contains("data source")) return "SQ";
+                if (ConnectionString.ToLower().StartsWith("mongodb://")) return "MG";
+                return "TX";
+            }
+        }
+
         public static void SaveSettings()
         {
             var serializer = new XmlSerializer(_settingsObject.GetType());

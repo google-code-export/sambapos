@@ -95,6 +95,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyTools.Wpf", "Lib\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samba.Modules.AccountModule", "Samba.Modules.AccountModule\Samba.Modules.AccountModule.csproj", "{EDEF0022-075C-4DEC-853F-6558F9E8438A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samba.Infrastructure.ExceptionReporter", "Samba.Infrastructure.ExceptionReporter\Samba.Infrastructure.ExceptionReporter.csproj", "{A3CCA406-C125-4261-8B6B-FD3DAF423050}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = SambaPos.vsmdi
@@ -418,6 +420,16 @@ Global
 		{EDEF0022-075C-4DEC-853F-6558F9E8438A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EDEF0022-075C-4DEC-853F-6558F9E8438A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EDEF0022-075C-4DEC-853F-6558F9E8438A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -436,6 +448,7 @@ Global
 		{A31255F4-E8D8-4D8E-B25A-48FB7ED059F5} = {4E2BB083-56B6-4323-9620-3F53F0774609}
 		{2D64F506-D566-4CA5-A19C-BCB5F9A2E7F4} = {4E2BB083-56B6-4323-9620-3F53F0774609}
 		{406B96A6-C886-4149-AD88-A2402EDB2B90} = {4E2BB083-56B6-4323-9620-3F53F0774609}
+		{A3CCA406-C125-4261-8B6B-FD3DAF423050} = {4E2BB083-56B6-4323-9620-3F53F0774609}
 		{3AED3A4C-F3D7-4D29-BF58-85743E4F7AFD} = {FEC2F6B9-AF96-49AC-8598-9F66FE8D130D}
 		{FEDA2199-91CD-4AF1-B571-4AA2E8371A18} = {FEC2F6B9-AF96-49AC-8598-9F66FE8D130D}
 		{6A64EA38-3CED-4810-BB79-0EBA0A70B38E} = {99E9B82C-E727-4EB2-B6E3-9A9DC955F3F6}

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
 using Samba.Infrastructure;
+using Samba.Presentation.Common.ErrorReport;
 using Samba.Presentation.Common.Services;
+using Samba.Services;
 
 namespace Samba.Presentation
 {
@@ -13,11 +15,11 @@ namespace Samba.Presentation
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-#if (DEBUG)
-            RunInDebugMode();
-#else
+            //#if (DEBUG)
+            //            RunInDebugMode();
+            //#else
             RunInReleaseMode();
-#endif
+            //#endif
             this.ShutdownMode = ShutdownMode.OnMainWindowClose;
         }
 
@@ -56,7 +58,7 @@ namespace Samba.Presentation
         private static void HandleException(Exception ex)
         {
             if (ex == null) return;
-            MessageBox.Show(Localization.Properties.Resources.UnhandledExceptionErrorMessage, Localization.Properties.Resources.Warning);
+            ExceptionReporter.Show(ex);
             Environment.Exit(1);
         }
     }

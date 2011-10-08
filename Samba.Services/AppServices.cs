@@ -6,7 +6,9 @@ using System.Windows;
 using System.Windows.Threading;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Users;
+using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
+using Samba.Infrastructure.ExceptionReporter;
 using Samba.Infrastructure.Settings;
 using Samba.Persistance.Data;
 
@@ -71,7 +73,6 @@ namespace Samba.Services
         }
 
         private static IEnumerable<Terminal> _terminals;
-        //public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals =  Dao.Query<Terminal>(x => x.PrintJobs, x => x.PrintJobs.Select(y => y.PrinterMaps))); } }
         public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals = Workspace.All<Terminal>()); } }
 
         private static Terminal _terminal;
@@ -116,28 +117,21 @@ namespace Samba.Services
             return dterminal ?? Terminal.DefaultTerminal;
         }
 
-        //TODO:Implement Logger
-
         public static void LogError(Exception e)
         {
             MessageBox.Show("Bir sorun tespit ettik.\r\n\r\nProgram çalışmaya devam edecek ancak en kısa zamanda teknik destek almanız önerilir. Lütfen teknik destek için program danışmanınız ile irtibat kurunuz.\r\n\r\nMesaj:\r\n" + e.Message, "Bilgi", MessageBoxButton.OK, MessageBoxImage.Stop);
-            //Logger.Write(e, "General");
+            Logger.Log(e);
         }
 
         public static void LogError(Exception e, string userMessage)
         {
             MessageBox.Show(userMessage, "Bilgi", MessageBoxButton.OK, MessageBoxImage.Information);
-            //Logger.Write(e, "General");
+            Logger.Log(e);
         }
 
         public static void Log(string message)
         {
-            //Logger.Write(message, "General", 0, 0, TraceEventType.Verbose);
-        }
-
-        public static void Log(string message, string category)
-        {
-            //Logger.Write(message, category);
+            Logger.Log(message);
         }
 
         public static void ResetCache()

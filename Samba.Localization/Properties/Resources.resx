@@ -2961,16 +2961,44 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="UpdateTicketAccount" xml:space="preserve">
     <value>Update Ticket Account</value>
   </data>
-	<data name="TransactionMultiplierError">
-		<value xml:space="preserve">Transaction multiplier should not be zero</value>
-	</data>
-	<data name="TransactionsEmptyError">
-		<value xml:space="preserve">Transactions should not be empty</value>
-	</data>
-	<data name="TranactionsZeroQuantityError">
-		<value xml:space="preserve">Transactions contains zero quantity items</value>
-	</data>
-	<data name="TransactionUnitError">
-		<value xml:space="preserve">Transaction Unit should not be empty</value>
-	</data>
+  <data name="TransactionMultiplierError" xml:space="preserve">
+    <value>Transaction multiplier should not be zero</value>
+  </data>
+  <data name="TransactionsEmptyError" xml:space="preserve">
+    <value>Transactions should not be empty</value>
+  </data>
+  <data name="TranactionsZeroQuantityError" xml:space="preserve">
+    <value>Transactions contains zero quantity items</value>
+  </data>
+  <data name="TransactionUnitError" xml:space="preserve">
+    <value>Transaction Unit should not be empty</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ErrorReportWithoutFeedback" xml:space="preserve">
+    <value>You are sending error report without your feedback.
+Please give some details about how it happend.
+
+Continue without adding details?</value>
+  </data>
+  <data name="SambaPOSReporter" xml:space="preserve">
+    <value>SambaPOS Reporter</value>
+    <comment>Window.Title</comment>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error Message</value>
+    <comment>TabItem.Header</comment>
+  </data>
+  <data name="PleaseEnterABriefExplanationOf" xml:space="preserve">
+    <value>Please enter a brief explanation of events leading up to this exception</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DetailedReport" xml:space="preserve">
+    <value>Detailed Report</value>
+    <comment>TabItem.Header</comment>
+  </data>
 </root>
