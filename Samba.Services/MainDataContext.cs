@@ -211,7 +211,19 @@ namespace Samba.Services
         public TableScreen SelectedTableScreen { get; set; }
         public Ticket SelectedTicket { get { return _ticketWorkspace.Ticket; } }
 
-        public Department SelectedDepartment { get; set; }
+        private Department _selectedDepartment;
+        public Department SelectedDepartment
+        {
+            get { return _selectedDepartment; }
+            set
+            {
+                if (_selectedDepartment == null || value != null && _selectedDepartment.Id != value.Id)
+                {
+                    SelectedTableScreen = TableScreens.FirstOrDefault(x => x.Id == value.TableScreenId);
+                }
+                _selectedDepartment = value;
+            }
+        }
 
         public bool IsCurrentWorkPeriodOpen
         {
