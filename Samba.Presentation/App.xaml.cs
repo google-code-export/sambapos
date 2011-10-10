@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Samba.Infrastructure;
+using Samba.Presentation.Common.ErrorReport;
 using Samba.Presentation.Common.Services;
 
 namespace Samba.Presentation
@@ -59,7 +60,8 @@ namespace Samba.Presentation
         {
             if (ex == null) return;
             ExceptionPolicy.HandleException(ex, "Policy");
-            MessageBox.Show(Localization.Properties.Resources.UnhandledExceptionErrorMessage, Localization.Properties.Resources.Warning);
+            //MessageBox.Show(Localization.Properties.Resources.UnhandledExceptionErrorMessage, Localization.Properties.Resources.Warning);
+            ExceptionReporter.Show(ex);
             Environment.Exit(1);
         }
     }

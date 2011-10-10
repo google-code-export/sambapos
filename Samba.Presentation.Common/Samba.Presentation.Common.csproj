@@ -79,6 +79,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\Lib\System.Windows.Interactivity.dll</HintPath>
@@ -116,6 +117,21 @@
     <Compile Include="CommonEventPublisher.cs" />
     <Compile Include="DataContextGrid.cs" />
     <Compile Include="DiagramCanvas.cs" />
+    <Compile Include="DialogCloser.cs" />
+    <Compile Include="ErrorReport\Disposable.cs" />
+    <Compile Include="ErrorReport\ErrorReportView.xaml.cs">
+      <DependentUpon>ErrorReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorReport\ErrorReportViewModel.cs" />
+    <Compile Include="ErrorReport\ExceptionReportBuilder.cs" />
+    <Compile Include="ErrorReport\ExceptionReporter.cs" />
+    <Compile Include="ErrorReport\ExceptionReportGenerator.cs" />
+    <Compile Include="ErrorReport\ExceptionReportInfo.cs" />
+    <Compile Include="ErrorReport\SystemInfo\SysInfoQueries.cs" />
+    <Compile Include="ErrorReport\SystemInfo\SysInfoQuery.cs" />
+    <Compile Include="ErrorReport\SystemInfo\SysInfoResult.cs" />
+    <Compile Include="ErrorReport\SystemInfo\SysInfoResultMapper.cs" />
+    <Compile Include="ErrorReport\SystemInfo\SysInfoRetriever.cs" />
     <Compile Include="EventServiceFactory.cs" />
     <Compile Include="EventTopicNames.cs" />
     <Compile Include="ExtensionServices.cs" />
@@ -252,6 +268,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ErrorReport\ErrorReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Interaction\GridEditorForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -323,7 +343,9 @@
   <ItemGroup>
     <Resource Include="Interaction\logo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ErrorReport\Images\warning.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>IF NOT "$(ConfigurationName)"=="Release" GOTO End

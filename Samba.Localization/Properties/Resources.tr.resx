@@ -2992,5 +2992,34 @@ Borçlandır</value>
 	<data name="SaveErrorSelectDefaultDepartment">
 		<value xml:space="preserve">Lütfen varsayılan departmanı seçiniz.</value>
 	</data>
+  <data name="Copy">
+    <value xml:space="preserve">Kopyala</value>
+  </data>
+  <data name="Send">
+    <value xml:space="preserve">Gönder</value>
+  </data>
+  <data name="ErrorReportWithoutFeedback">
+    <value>
+      <![CDATA[Raporu herhangi bir bilgi eklemeden gönderiyorsunuz.
+Lütfen problemin nasıl oluştuğu ile ilgili bilgi veriniz.
 
+Bilgi eklemeden devam etmek istiyor musunuz?]]>
+    </value>
+  </data>
+  <data name="SambaPOSReporter" xml:space="preserve">
+    <value>SambaPOS Raporlayıcı</value>
+    <comment>Window.Title</comment>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Hata Mesajı</value>
+    <comment>TabItem.Header</comment>
+  </data>
+  <data name="DetailedReport" xml:space="preserve">
+    <value>Detaylı Rapor</value>
+    <comment>TabItem.Header</comment>
+  </data>
+  <data name="PleaseEnterABriefExplanationOf" xml:space="preserve">
+    <value>Lütfen, bu hataya neden olan işleminiz ile ilgili kısaca bilgi veriniz</value>
+    <comment>TextBlock.Text</comment>
+  </data>
 </root>

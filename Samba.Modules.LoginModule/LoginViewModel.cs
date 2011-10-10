@@ -38,10 +38,7 @@ namespace Samba.Login
 
         private static string GetDatabaseLabel()
         {
-            if (LocalSettings.ConnectionString.ToLower().Contains(".sdf")) return "CE";
-            if (LocalSettings.ConnectionString.ToLower().Contains("data source")) return "SQ";
-            if (LocalSettings.ConnectionString.ToLower().StartsWith("mongodb://")) return "MG";
-            return "TX";
+            return LocalSettings.DatabaseLabel;
         }
 
         public static string GetAdminPasswordHint()

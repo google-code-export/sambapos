@@ -2989,4 +2989,32 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
 	<data name="SaveErrorSelectDefaultDepartment">
 		<value xml:space="preserve">Please select a default department</value>
 	</data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ErrorReportWithoutFeedback" xml:space="preserve">
+    <value>You are sending error report without your feedback.
+Please give some details about how it happend.
+
+Continue without adding details?</value>
+  </data>
+  <data name="SambaPOSReporter" xml:space="preserve">
+    <value>SambaPOS Reporter</value>
+    <comment>Window.Title</comment>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Error Message</value>
+    <comment>TabItem.Header</comment>
+  </data>
+  <data name="PleaseEnterABriefExplanationOf" xml:space="preserve">
+    <value>Please enter a brief explanation of events leading up to this exception</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DetailedReport" xml:space="preserve">
+    <value>Detailed Report</value>
+    <comment>TabItem.Header</comment>
+  </data>
 </root>

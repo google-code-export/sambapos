@@ -137,10 +137,21 @@ html
         public static string CurrencySymbol { get { return CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol; } }
 
         public static int DbVersion { get { return 9; } }
-        public static string AppVersion { get { return "2.54"; } }
+        public static string AppVersion { get { return "2.55"; } }
         public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }
+
+        public static string DatabaseLabel
+        {
+            get
+            {
+                if (ConnectionString.ToLower().Contains(".sdf")) return "CE";
+                if (ConnectionString.ToLower().Contains("data source")) return "SQ";
+                if (ConnectionString.ToLower().StartsWith("mongodb://")) return "MG";
+                return "TX";
+            }
+        }
 
         public static void SaveSettings()
         {
