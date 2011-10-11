@@ -56,8 +56,7 @@ namespace Samba.Presentation
             InteractionService.UserIntraction.ToggleSplashScreen();
 
             AppServices.MainDispatcher = Application.Current.Dispatcher;
-            var creationService = new DataCreationService();
-
+           
             AppServices.MessagingService.RegisterMessageListener(new MessageListener());
 
             if (LocalSettings.StartMessagingClient)
@@ -71,11 +70,8 @@ namespace Samba.Presentation
 
             try
             {
+                var creationService = new DataCreationService();
                 creationService.CreateData();
-                Application.Current.MainWindow = (Shell)Shell;
-                Application.Current.MainWindow.Show();
-                InteractionService.UserIntraction.ToggleSplashScreen();
-                TriggerService.UpdateCronObjects();
             }
             catch (Exception e)
             {
@@ -103,6 +99,11 @@ namespace Samba.Presentation
                 LocalSettings.SaveSettings();
                 Environment.Exit(1);
             }
+
+            Application.Current.MainWindow = (Shell)Shell;
+            Application.Current.MainWindow.Show();
+            InteractionService.UserIntraction.ToggleSplashScreen();
+            TriggerService.UpdateCronObjects();
         }
     }
 }

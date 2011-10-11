@@ -15,8 +15,8 @@ namespace Samba.Infrastructure.Data.SQL
         public EFWorkspace(CommonDbContext context)
         {
             _context = context;
-            if (context.Database.Connection.ConnectionString.EndsWith(".sdf"))
-                context.ObjContext().Connection.Open();
+            if (_context.Database.Connection.ConnectionString.EndsWith(".sdf"))
+                _context.ObjContext().Connection.Open();
         }
 
         public void CommitChanges()

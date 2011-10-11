@@ -30,9 +30,22 @@ namespace Samba.Services
     public static class AppServices
     {
         public static Dispatcher MainDispatcher { get; set; }
-        public static IWorkspace Workspace;
-        public static MainDataContext MainDataContext { get; set; }
+
         public static AppScreens ActiveAppScreen { get; set; }
+
+        private static IWorkspace _workspace;
+        public static IWorkspace Workspace
+        {
+            get { return _workspace ?? (_workspace = WorkspaceFactory.Create()); }
+            set { _workspace = value; }
+        }
+
+        private static MainDataContext _mainDataContext;
+        public static MainDataContext MainDataContext
+        {
+            get { return _mainDataContext ?? (_mainDataContext = new MainDataContext()); }
+            set { _mainDataContext = value; }
+        }
 
         private static PrinterService _printService;
         public static PrinterService PrintService
@@ -64,21 +77,18 @@ namespace Samba.Services
             get { return _settingService ?? (_settingService = new SettingService()); }
         }
 
-        static AppServices()
-        {
-            CurrentLoggedInUser = User.Nobody;
-            Workspace = WorkspaceFactory.Create();
-            MainDataContext = new MainDataContext();
-        }
-
         private static IEnumerable<Terminal> _terminals;
-        //public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals =  Dao.Query<Terminal>(x => x.PrintJobs, x => x.PrintJobs.Select(y => y.PrinterMaps))); } }
         public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals = Workspace.All<Terminal>()); } }
 
         private static Terminal _terminal;
         public static Terminal CurrentTerminal { get { return _terminal ?? (_terminal = GetCurrentTerminal()); } set { _terminal = value; } }
 
-        public static User CurrentLoggedInUser { get; private set; }
+        private static User _currentLoggedInUser;
+        public static User CurrentLoggedInUser
+        {
+            get { return _currentLoggedInUser ?? User.Nobody; }
+            private set { _currentLoggedInUser = value; }
+        }
 
         public static bool CanNavigate()
         {

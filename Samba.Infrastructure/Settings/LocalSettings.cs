@@ -137,7 +137,7 @@ html
         public static string CurrencySymbol { get { return CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol; } }
 
         public static int DbVersion { get { return 9; } }
-        public static string AppVersion { get { return "2.55"; } }
+        public static string AppVersion { get { return "2.56"; } }
         public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }
@@ -155,15 +155,26 @@ html
 
         public static void SaveSettings()
         {
-            var serializer = new XmlSerializer(_settingsObject.GetType());
-            var writer = new XmlTextWriter(SettingsFileName, null);
             try
             {
-                serializer.Serialize(writer, _settingsObject);
+                var serializer = new XmlSerializer(_settingsObject.GetType());
+                var writer = new XmlTextWriter(SettingsFileName, null);
+                try
+                {
+                    serializer.Serialize(writer, _settingsObject);
+                }
+                finally
+                {
+                    writer.Close();
+                }
             }
-            finally
+            catch (UnauthorizedAccessException)
             {
-                writer.Close();
+                if (!File.Exists(UserSettingsFileName))
+                {
+                    File.Create(UserSettingsFileName).Close();
+                    SaveSettings();
+                }
             }
         }
 

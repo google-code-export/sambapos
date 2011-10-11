@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.55 "
-#define FileVersion "255"
+#define Version "2.56 "
+#define FileVersion "256"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -120,6 +120,7 @@ Source: src\Samba.Infrastructure.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Login.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.MessagingServer.exe; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.BasicReports.dll; DestDir: {app}; Flags: ignoreversion
+Source: src\Samba.Modules.BasicReports.pdb; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.CashModule.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.CustomerModule.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\Samba.Modules.DashboardModule.dll; DestDir: {app}; Flags: ignoreversion
@@ -158,7 +159,7 @@ Source: src\DataGridFilterLibrary.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\FluentMigrator.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\FluentMigrator.Runner.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\GongSolutions.Wpf.DragDrop.dll; DestDir: {app}; Flags: ignoreversion
-Source: src\migrate.txt; DestDir: {commonappdata}\Ozgu Tech\SambaPOS2; Flags: ignoreversion
+Source: src\migrate.txt; DestDir: {userappdata}\Ozgu Tech\SambaPOS2; Flags: ignoreversion
 Source: C:\Windows\Fonts\lucon.ttf; DestDir: {fonts}; Flags: onlyifdoesntexist uninsneveruninstall; FontInstall: Lucida Console
 Source: src\Samba.Localization.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\tr\Samba.Localization.resources.dll; DestDir: {app}\tr\; Flags: ignoreversion

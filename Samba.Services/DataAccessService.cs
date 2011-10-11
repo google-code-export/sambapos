@@ -93,7 +93,5 @@ namespace Samba.Services
         {
             return Dao.Single<Table>(x => x.Name == tableName);
         }
-
-
     }
 }
