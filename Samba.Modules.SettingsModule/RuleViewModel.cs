@@ -108,7 +108,6 @@ namespace Samba.Modules.SettingsModule
         public override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
-            base.Initialize(workspace);
         }
 
         public override Type GetViewType()

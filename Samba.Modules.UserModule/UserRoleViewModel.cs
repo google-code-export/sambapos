@@ -28,10 +28,9 @@ namespace Samba.Modules.UserModule
         {
             if (Model.Permissions.Count() < PermissionRegistry.PermissionNames.Count)
             {
-                foreach (var pName in PermissionRegistry.PermissionNames.Keys)
+                foreach (var pName in PermissionRegistry.PermissionNames.Keys.Where(pName => Model.Permissions.SingleOrDefault(x => x.Name == pName) == null))
                 {
-                    if (Model.Permissions.SingleOrDefault(x => x.Name == pName) == null)
-                        Model.Permissions.Add(new Permission { Name = pName, Value = 0 });
+                    Model.Permissions.Add(new Permission { Name = pName, Value = 0 });
                 }
             }
             return Model.Permissions.Select(x => new PermissionViewModel(x));

@@ -212,11 +212,16 @@ namespace Samba.Services
                     }
                     else
                     {
-                        var table = new Table { Name = value.Trim(), Category = currentCategory };
-                        if (result.Count(x => x.Name.ToLower() == table.Name.ToLower()) == 0)
+                        var tableName = value;
+                        var count = Dao.Count<Table>(y => y.Name == tableName.Trim());
+                        if (count == 0)
                         {
-                            result.Add(table);
-                            workspace.Add(table);
+                            var table = new Table { Name = value.Trim(), Category = currentCategory };
+                            if (result.Count(x => x.Name.ToLower() == table.Name.ToLower()) == 0)
+                            {
+                                result.Add(table);
+                                workspace.Add(table);
+                            }
                         }
                     }
                 }

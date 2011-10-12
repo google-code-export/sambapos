@@ -4,7 +4,6 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Samba.Domain.Models.Menus;
-using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;

@@ -17,7 +17,12 @@ namespace Samba.Modules.TableModule
         private IWorkspace _workspace;
 
         public ICaptionCommand SelectTablesCommand { get; set; }
-        public ObservableCollection<TableScreenItemViewModel> ScreenItems { get; set; }
+        private ObservableCollection<TableScreenItemViewModel> _screenItems;
+        public ObservableCollection<TableScreenItemViewModel> ScreenItems
+        {
+            get { return _screenItems ?? (_screenItems = new ObservableCollection<TableScreenItemViewModel>(Model.Tables.Select(x => new TableScreenItemViewModel(x, Model)))); }
+        }
+
         public string[] DisplayModes { get { return new[] { Resources.Automatic, Resources.Custom, Resources.Hidden }; } }
         public string DisplayMode { get { return DisplayModes[Model.DisplayMode]; } set { Model.DisplayMode = Array.IndexOf(DisplayModes, value); } }
         public string BackgroundImage { get { return string.IsNullOrEmpty(Model.BackgroundImage) ? "/Images/empty.png" : Model.BackgroundImage; } set { Model.BackgroundImage = value; } }
@@ -71,7 +76,6 @@ namespace Samba.Modules.TableModule
         public override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
-            ScreenItems = new ObservableCollection<TableScreenItemViewModel>(Model.Tables.Select(x => new TableScreenItemViewModel(x, Model)));
         }
     }
 }

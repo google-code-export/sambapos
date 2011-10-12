@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Windows;
@@ -14,6 +15,7 @@ namespace Samba.Presentation.Common.ModelBase
         public TModel Model { get; private set; }
         public ICaptionCommand SaveCommand { get; private set; }
         private readonly ValidatorFactory _validatorFactory;
+        private IWorkspace _workspace;
 
         protected EntityViewModelBase(TModel model)
         {
@@ -28,10 +30,33 @@ namespace Samba.Presentation.Common.ModelBase
             set { Model.Name = value.Trim(); RaisePropertyChanged("Name"); }
         }
 
+        private string _error;
+        private bool _modelSaved;
+        public string Error { get { return _error; } set { _error = value; RaisePropertyChanged("Error"); } }
+
         public abstract string GetModelTypeString();
+
+        internal void Init(IWorkspace workspace)
+        {
+            _modelSaved = false;
+            _workspace = workspace;
+            Initialize(workspace);
+        }
 
         public virtual void Initialize(IWorkspace workspace)
         {
+
+        }
+
+        public override void OnShown()
+        {
+            _modelSaved = false;
+        }
+
+        public override void OnClosed()
+        {
+            if (!_modelSaved)
+                RollbackModel();
         }
 
         protected override string GetHeaderInfo()
@@ -46,11 +71,11 @@ namespace Samba.Presentation.Common.ModelBase
             var errorMessage = GetSaveErrorMessage();
             if (string.IsNullOrEmpty(errorMessage) && !string.IsNullOrEmpty(Name) && CanSave(""))
             {
+                _modelSaved = true;
                 if (Model.Id == 0)
                 {
                     this.PublishEvent(EventTopicNames.AddedModelSaved);
                 }
-
                 this.PublishEvent(EventTopicNames.ModelAddedOrDeleted);
                 ((VisibleViewModelBase)this).PublishEvent(EventTopicNames.ViewClosed);
             }
@@ -93,7 +118,13 @@ namespace Samba.Presentation.Common.ModelBase
             return builder.ToString();
         }
 
-        private string _error;
-        public string Error { get { return _error; } set { _error = value; RaisePropertyChanged("Error"); } }
+        protected void RollbackModel()
+        {
+            if (Model.Id > 0)
+            {
+                _workspace.Refresh(Model);
+                RaisePropertyChanged("Name");
+            }
+        }
     }
 }

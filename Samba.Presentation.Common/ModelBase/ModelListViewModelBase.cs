@@ -25,17 +25,19 @@ namespace Samba.Presentation.Common.ModelBase
                                 Views.Remove(s.Value);
                             if (s.Value.CallingView != null)
                                 SetActiveView(Views, s.Value.CallingView);
+                            s.Value.OnClosed();
                             s.Value.CallingView = null;
                             s.Value.Dispose();
                         }
                     }
 
-                    if (s.Topic == EventTopicNames.ViewAdded)
+                    if (s.Topic == EventTopicNames.ViewAdded && s.Value != null)
                     {
                         s.Value.CallingView = GetActiveView(Views);
                         if (!Views.Contains(s.Value))
                             Views.Add(s.Value);
                         SetActiveView(Views, s.Value);
+                        s.Value.OnShown();
                     }
                 });
         }

@@ -11,10 +11,15 @@ namespace Samba.Presentation.Common.ModelBase
         DelegateCommand<object> _closeCommand;
         public ICommand CloseCommand
         {
-            get { return _closeCommand ?? (_closeCommand = new DelegateCommand<object>(OnRequestClose)); }
+            get { return _closeCommand ?? (_closeCommand = new DelegateCommand<object>(OnRequestClose, CanClose)); }
         }
 
-        internal void PublishClose()
+        protected virtual bool CanClose(object arg)
+        {
+            return true;
+        }
+
+        private void PublishClose()
         {
             CommonEventPublisher.PublishViewClosedEvent(this);
         }
@@ -25,5 +30,15 @@ namespace Samba.Presentation.Common.ModelBase
         }
 
         public VisibleViewModelBase CallingView { get; set; }
+
+        public virtual void OnClosed()
+        {
+            //override if needed
+        }
+
+        public virtual void OnShown()
+        {
+            //override if needed    
+        }
     }
 }
