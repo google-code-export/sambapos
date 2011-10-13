@@ -70,7 +70,8 @@ namespace Samba.Infrastructure.Data.SQL
         {
             if (includes == null || includes.Length < 1)
                 return _context.Trackable<T>().Where(expression).SingleOrDefault();
-            return includes.Aggregate(_context.Trackable<T>(), (current, include) => current.Include(include)).Where(expression).SingleOrDefault();
+            var result = includes.Aggregate(_context.Trackable<T>(), (current, include) => current.Include(include)).Where(expression);
+            return result.SingleOrDefault();
         }
 
         public T Last<T>() where T : class,IEntity
