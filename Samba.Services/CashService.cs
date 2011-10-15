@@ -8,6 +8,7 @@ using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Transactions;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Services
@@ -87,16 +88,17 @@ namespace Samba.Services
                             join customer in workspace.Queryable<Customer>() on ct.CustomerId equals customer.Id into ctC
                             from customer in ctC.DefaultIfEmpty()
                             where ct.Date >= wp.StartDate && ct.Date < wp.EndDate
-                            select new CashTransactionData
+                            select new { CashTransaction = ct, Customer = customer };
+
+                return lines.ToList().Select(x => new CashTransactionData
                                        {
-                                           Amount = ct.Amount,
-                                           CustomerName = customer.Name,
-                                           Date = ct.Date,
-                                           Name = ct.Name,
-                                           PaymentType = ct.PaymentType,
-                                           TransactionType = ct.TransactionType
-                                       };
-                return lines.ToList();
+                                           Amount = x.CashTransaction.Amount,
+                                           CustomerName = x.Customer != null ? x.Customer.Name : Resources.UndefinedWithBrackets,
+                                           Date = x.CashTransaction.Date,
+                                           Name = x.CashTransaction.Name,
+                                           PaymentType = x.CashTransaction.PaymentType,
+                                           TransactionType = x.CashTransaction.TransactionType
+                                       });
             }
         }
 
