@@ -390,6 +390,7 @@ namespace Samba.Services
             }
 
             SelectedTicket.LocationName = table.Name;
+            if (SelectedDepartment != null) SelectedTicket.DepartmentId = SelectedDepartment.Id;
             table.TicketId = SelectedTicket.GetRemainingAmount() > 0 ? SelectedTicket.Id : 0;
         }
 

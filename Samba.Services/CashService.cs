@@ -8,6 +8,7 @@ using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Transactions;
+using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
 namespace Samba.Services
