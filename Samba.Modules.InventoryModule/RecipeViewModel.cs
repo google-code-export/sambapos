@@ -9,7 +9,6 @@ using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using System.Linq;
-using Samba.Services;
 
 namespace Samba.Modules.InventoryModule
 {

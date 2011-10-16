@@ -111,7 +111,6 @@ namespace Samba.Modules.SettingsModule
 
         public override void Initialize(IWorkspace workspace)
         {
-            base.Initialize(workspace);
             _workspace = workspace;
         }
 

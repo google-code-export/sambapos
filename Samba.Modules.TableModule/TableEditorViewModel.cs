@@ -17,7 +17,7 @@ namespace Samba.Modules.TableModule
         }
 
         private IEnumerable<string> _categories;
-        public IEnumerable<string> Categories { get { return _categories; } }
+        public IEnumerable<string> Categories { get { return _categories ?? (_categories = Dao.Distinct<Table>(x => x.Category)); } }
 
         public string Category { get { return Model.Category; } set { Model.Category = value; } }
         public string GroupValue { get { return Model.Category; } }
@@ -32,15 +32,9 @@ namespace Samba.Modules.TableModule
             return Resources.Table;
         }
 
-        public override void Initialize(IWorkspace workspace)
-        {
-            _categories = Dao.Distinct<Table>(x => x.Category);
-        }
-
         protected override bool CanSave(string arg)
         {
-            if (Model.TicketId > 0) return false;
-            return base.CanSave(arg);
+            return Model.TicketId <= 0 && base.CanSave(arg);
         }
 
         protected override string GetSaveErrorMessage()
@@ -49,6 +43,5 @@ namespace Samba.Modules.TableModule
                 return Resources.SaveErrorDuplicateTableName;
             return base.GetSaveErrorMessage();
         }
-
     }
 }

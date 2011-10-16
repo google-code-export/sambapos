@@ -1,7 +1,5 @@
 ﻿using System;
 using Samba.Domain.Models.Settings;
-using Samba.Infrastructure;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 
@@ -28,11 +26,6 @@ namespace Samba.Modules.SettingsModule
         public override string GetModelTypeString()
         {
             return Resources.Numerator;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-
         }
     }
 }
