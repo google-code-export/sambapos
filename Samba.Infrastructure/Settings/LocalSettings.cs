@@ -138,7 +138,7 @@ html
 
         public static int DbVersion { get { return 9; } }
         public static string AppVersion { get { return "2.58"; } }
-        public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
+        public static IList<string> SupportedLanguages { get { return new[] { "en", "tr", "pt-BR" }; } }
 
         public static long CurrentDbVersion { get; set; }
 
@@ -232,22 +232,17 @@ html
         public static void SetTraceLogPath(string prefix)
         {
             var logFilePath = DocumentPath + "\\" + prefix + "_trace.log";
-
             var objConfigPath = new ConfigurationFileMap();
-
             var appPath = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-            objConfigPath.MachineConfigFilename = appPath;
 
-            var entLibConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-            var loggingSettings = (LoggingSettings)entLibConfig.GetSection(LoggingSettings.SectionName);
-
-            var traceListenerData = loggingSettings.TraceListeners.Get("Flat File Trace Listener");
-            var objFlatFileTraceListenerData = traceListenerData as FlatFileTraceListenerData;
-
-            if (objFlatFileTraceListenerData != null) objFlatFileTraceListenerData.FileName = logFilePath;
             try
             {
+                objConfigPath.MachineConfigFilename = appPath;
+                var entLibConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var loggingSettings = (LoggingSettings)entLibConfig.GetSection(LoggingSettings.SectionName);
+                var traceListenerData = loggingSettings.TraceListeners.Get("Flat File Trace Listener");
+                var objFlatFileTraceListenerData = traceListenerData as FlatFileTraceListenerData;
+                if (objFlatFileTraceListenerData != null) objFlatFileTraceListenerData.FileName = logFilePath;
                 entLibConfig.Save();
             }
             catch (Exception)

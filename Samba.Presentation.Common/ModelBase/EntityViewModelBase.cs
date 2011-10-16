@@ -69,7 +69,7 @@ namespace Samba.Presentation.Common.ModelBase
         protected virtual void OnSave(string value)
         {
             var errorMessage = GetSaveErrorMessage();
-            if (string.IsNullOrEmpty(errorMessage) && !string.IsNullOrEmpty(Name) && CanSave(""))
+            if (CanSave())
             {
                 _modelSaved = true;
                 if (Model.Id == 0)
@@ -85,6 +85,11 @@ namespace Samba.Presentation.Common.ModelBase
                     errorMessage = string.Format(Resources.EmptyNameError, GetModelTypeString());
                 MessageBox.Show(errorMessage, Resources.CantSave);
             }
+        }
+
+        public bool CanSave()
+        {
+            return !string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(GetSaveErrorMessage()) && CanSave("");
         }
 
         protected virtual string GetSaveErrorMessage()
@@ -118,7 +123,7 @@ namespace Samba.Presentation.Common.ModelBase
             return builder.ToString();
         }
 
-        protected void RollbackModel()
+        public void RollbackModel()
         {
             if (Model.Id > 0)
             {

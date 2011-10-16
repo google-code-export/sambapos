@@ -48,11 +48,11 @@ namespace Samba.Presentation.Common.ModelBase
         protected abstract TModel CreateNewModel();
         private readonly SubscriptionToken _token;
         private readonly SubscriptionToken _token2;
-        public IList<ViewModelBase> OpenViewModels { get; set; }
+        public IList<EntityViewModelBase<TModel>> OpenViewModels { get; set; }
 
         protected EntityCollectionViewModelBase()
         {
-            OpenViewModels = new List<ViewModelBase>();
+            OpenViewModels = new List<EntityViewModelBase<TModel>>();
 
             _token = EventServiceFactory.EventService.GetEvent<GenericEvent<EntityViewModelBase<TModel>>>().Subscribe(x =>
                  {
@@ -62,6 +62,12 @@ namespace Samba.Presentation.Common.ModelBase
 
                      if (x.Topic == EventTopicNames.ModelAddedOrDeleted)
                      {
+                         foreach (var openViewModel in OpenViewModels)
+                         {
+                             if (!openViewModel.CanSave())
+                                 openViewModel.RollbackModel();
+                         }
+
                          if (x.Value is TViewModel)
                          {
                              _workspace.Update(x.Value.Model);
@@ -76,8 +82,8 @@ namespace Samba.Presentation.Common.ModelBase
                   {
                       if (s.Topic == EventTopicNames.ViewClosed)
                       {
-                          if (OpenViewModels.Contains(s.Value))
-                              OpenViewModels.Remove(s.Value);
+                          if (s.Value is EntityViewModelBase<TModel> && OpenViewModels.Contains(s.Value))
+                              OpenViewModels.Remove(s.Value as EntityViewModelBase<TModel>);
                       }
                   });
         }
@@ -137,7 +143,8 @@ namespace Samba.Presentation.Common.ModelBase
         protected override void OnAddItem(object obj)
         {
             VisibleViewModelBase wm = InternalCreateNewViewModel(CreateNewModel());
-            OpenViewModels.Add(wm);
+            if (wm is EntityViewModelBase<TModel>)
+                OpenViewModels.Add(wm as EntityViewModelBase<TModel>);
             wm.PublishEvent(EventTopicNames.ViewAdded);
         }
 
@@ -157,12 +164,17 @@ namespace Samba.Presentation.Common.ModelBase
 
         protected override bool CanEditItem(object obj)
         {
+            return SelectedItem != null;
+        }
+
+        protected override bool CanDeleteItem(object obj)
+        {
             return SelectedItem != null && !OpenViewModels.Contains(SelectedItem);
         }
 
         protected override void OnEditItem(object obj)
         {
-            OpenViewModels.Add(SelectedItem);
+            if (!OpenViewModels.Contains(SelectedItem)) OpenViewModels.Add(SelectedItem);
             (SelectedItem as VisibleViewModelBase).PublishEvent(EventTopicNames.ViewAdded);
         }
 

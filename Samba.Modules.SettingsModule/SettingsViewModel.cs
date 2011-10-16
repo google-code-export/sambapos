@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
@@ -87,7 +88,25 @@ namespace Samba.Modules.SettingsModule
         public string Language
         {
             get { return LocalSettings.CurrentLanguage; }
-            set { LocalSettings.CurrentLanguage = value; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    LocalSettings.CurrentLanguage = "";
+                }
+                else if (LocalSettings.SupportedLanguages.Contains(value))
+                {
+                    LocalSettings.CurrentLanguage = value;
+                }
+                else
+                {
+                    var ci = CultureInfo.GetCultureInfo(value);
+                    if (LocalSettings.SupportedLanguages.Contains(ci.TwoLetterISOLanguageName))
+                    {
+                        LocalSettings.CurrentLanguage = ci.TwoLetterISOLanguageName;
+                    }
+                }
+            }
         }
 
         public bool OverrideWindowsRegionalSettings
@@ -109,19 +128,11 @@ namespace Samba.Modules.SettingsModule
         private IEnumerable<CultureInfo> _supportedLanguages;
         public IEnumerable<CultureInfo> SupportedLanguages
         {
-            get { return _supportedLanguages ?? (_supportedLanguages = GetSupportedLanguages()); }
-        }
-
-        private static IEnumerable<CultureInfo> GetSupportedLanguages()
-        {
-            var result = new List<CultureInfo>();
-            foreach (var localSetting in LocalSettings.SupportedLanguages)
+            get
             {
-                var ci = CultureInfo.GetCultureInfo(localSetting);
-
-                result.Add(ci);
+                return _supportedLanguages ?? (_supportedLanguages =
+                    LocalSettings.SupportedLanguages.Select(CultureInfo.GetCultureInfo).ToList());
             }
-            return result;
         }
 
         protected override string GetHeaderInfo()
