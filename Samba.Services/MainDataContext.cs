@@ -309,19 +309,23 @@ namespace Samba.Services
         {
             if (string.IsNullOrEmpty(ticket.LocationName)) return;
             var table = _ticketWorkspace.LoadTable(ticket.LocationName);
-            if (ticket.IsPaid || ticket.TicketItems.Count == 0)
+            if (table != null)
             {
-                if (table.TicketId == ticket.Id)
+                if (ticket.IsPaid || ticket.TicketItems.Count == 0)
                 {
-                    table.TicketId = 0;
-                    table.IsTicketLocked = false;
+                    if (table.TicketId == ticket.Id)
+                    {
+                        table.TicketId = 0;
+                        table.IsTicketLocked = false;
+                    }
+                }
+                else
+                {
+                    table.TicketId = ticket.Id;
+                    table.IsTicketLocked = ticket.Locked;
                 }
             }
-            else
-            {
-                table.TicketId = ticket.Id;
-                table.IsTicketLocked = ticket.Locked;
-            }
+            else ticket.LocationName = "";
         }
 
         public void UpdateTableData(TableScreen selectedTableScreen, int pageNo)
