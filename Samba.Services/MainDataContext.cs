@@ -46,9 +46,7 @@ namespace Samba.Services
                 Debug.Assert(_workspace == null);
                 Debug.Assert(Ticket == null);
                 _workspace = WorkspaceFactory.Create();
-                Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId,
-                    x => x.Services, x => x.Payments, x => x.Discounts,
-                    x => x.TicketItems.Select(y => y.Properties));
+                Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId);
             }
 
             public void CommitChanges()

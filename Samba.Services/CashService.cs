@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
 using Samba.Domain;
 using Samba.Domain.Models.Accounts;
 using Samba.Domain.Models.Settings;
@@ -88,16 +87,17 @@ namespace Samba.Services
                             join account in workspace.Queryable<Account>() on ct.AccountId equals account.Id into ctC
                             from account in ctC.DefaultIfEmpty()
                             where ct.Date >= wp.StartDate && ct.Date < wp.EndDate
-                            select new CashTransactionData
-                                       {
-                                           Amount = ct.Amount,
-                                           AccountName = account.Name,
-                                           Date = ct.Date,
-                                           Name = ct.Name,
-                                           PaymentType = ct.PaymentType,
-                                           TransactionType = ct.TransactionType
-                                       };
-                return lines.ToList();
+                            select new { CashTransaction = ct, Account = account };
+
+                return lines.ToList().Select(x => new CashTransactionData
+                {
+                    Amount = x.CashTransaction.Amount,
+                    AccountName = x.Account != null ? x.Account.Name : Resources.UndefinedWithBrackets,
+                    Date = x.CashTransaction.Date,
+                    Name = x.CashTransaction.Name,
+                    PaymentType = x.CashTransaction.PaymentType,
+                    TransactionType = x.CashTransaction.TransactionType
+                });
             }
         }
 

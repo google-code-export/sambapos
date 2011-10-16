@@ -21,7 +21,7 @@
                     <Label>
                         <LocText ResourceIdentifierKey="TaxTemplate" Suffix=":"/>
                     </Label>
-                    <ComboBox HorizontalAlignment="Left" MinWidth="150"
+                    <ComboBox IsEditable="true" HorizontalAlignment="Left" MinWidth="150"
                      ItemsSource="{Binding TaxTemplates}" SelectedValue="{Binding TaxTemplate}" DisplayMemberPath="DisplayName" SelectedValuePath="Model">
                     </ComboBox>
                 </StackPanel>

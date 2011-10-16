@@ -164,15 +164,17 @@ namespace Samba.Modules.TicketModule
 
         private bool CanSetDiscount(string arg)
         {
+            if (GetTenderedValue() == 0) return true;
             return AppServices.MainDataContext.SelectedTicket != null
                 && GetTenderedValue() <= AppServices.MainDataContext.SelectedTicket.GetRemainingAmount()
-                && AppServices.MainDataContext.SelectedTicket.TotalAmount > 0
+                && (AppServices.MainDataContext.SelectedTicket.TotalAmount > 0)
                 && AppServices.IsUserPermittedFor(PermissionNames.MakeDiscount)
                 && AppServices.IsUserPermittedFor(PermissionNames.RoundPayment);
         }
 
         private bool CanSetDiscountRate(string arg)
         {
+            if (GetTenderedValue() == 0) return true;
             return AppServices.MainDataContext.SelectedTicket != null
                 && AppServices.MainDataContext.SelectedTicket.TotalAmount > 0
                 && AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() > 0
@@ -366,7 +368,7 @@ namespace Samba.Modules.TicketModule
         private void OnSetDiscountRateCommand(string obj)
         {
             var tenderedvalue = GetTenderedValue();
-            if(tenderedvalue == 0 && SelectedTicket.Model.GetDiscountTotal() ==0)
+            if (tenderedvalue == 0 && SelectedTicket.Model.GetDiscountTotal() == 0)
             {
                 InteractionService.UserIntraction.GiveFeedback(Resources.EmptyDiscountRateFeedback);
             }

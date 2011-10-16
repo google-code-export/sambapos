@@ -15,7 +15,7 @@ namespace Samba.Presentation.Common.ModelBase
         public TModel Model { get; private set; }
         public ICaptionCommand SaveCommand { get; private set; }
         private IValidator<TModel> _validator;
-
+        private IWorkspace _workspace;
         protected EntityViewModelBase(TModel model)
         {
             Model = model;

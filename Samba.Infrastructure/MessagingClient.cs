@@ -107,7 +107,7 @@ namespace Samba.Infrastructure
         {
             Timer.Change(0, Timeout.Infinite);
             if (messageListener == null) return;
-            if (string.IsNullOrEmpty(LocalSettings.MessagingServerName)) return;
+            if (string.IsNullOrEmpty(LocalSettings.MessagingServerName.Trim())) return;
 
             _messageListener = messageListener;
             var serverProv = new BinaryServerFormatterSinkProvider
@@ -125,30 +125,38 @@ namespace Samba.Infrastructure
             ChannelServices.RegisterChannel(_channel, false);
 
             var url = String.Format("tcp://{0}:{1}/ChatServer", LocalSettings.MessagingServerName, LocalSettings.MessagingServerPort);
-            _serverObject = (MessagingServerObject)Activator.GetObject(typeof(MessagingServerObject), url);
-
-            _clientObject = new MessagingClientObject();
 
             try
             {
+                _serverObject = (MessagingServerObject)Activator.GetObject(typeof(MessagingServerObject), url);
+                _clientObject = new MessagingClientObject();
                 _serverObject.Attach(_clientObject);
             }
             catch (SocketException)
             {
-                _messageListener = null;
-                _serverObject = null;
-                _clientObject = null;
-                if (_channel != null)
-                {
-                    ChannelServices.UnregisterChannel(_channel);
-                    _channel = null;
-                }
-
-                IsConnected = false;
+                HandleError();
+                return;
+            }
+            catch (UriFormatException)
+            {
+                HandleError();
                 return;
             }
             IsConnected = true;
             Timer.Change(0, 1000);
+        }
+
+        private static void HandleError()
+        {
+            _messageListener = null;
+            _serverObject = null;
+            _clientObject = null;
+            if (_channel != null)
+            {
+                ChannelServices.UnregisterChannel(_channel);
+                _channel = null;
+            }
+            IsConnected = false;
         }
     }
 }
