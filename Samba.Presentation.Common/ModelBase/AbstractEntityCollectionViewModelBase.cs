@@ -35,7 +35,7 @@ namespace Samba.Presentation.Common.ModelBase
             ModelTitle = GetModelTitle();
             AddItemCommand = new CaptionCommand<object>(string.Format(Resources.Add_f, ModelTitle), OnAddItem, CanAddItem);
             EditItemCommand = new CaptionCommand<object>(string.Format(Resources.Edit_f, ModelTitle), OnEditItem, CanEditItem);
-            DeleteItemCommand = new CaptionCommand<object>(string.Format(Resources.Delete_f, ModelTitle), OnDeleteItem, CanEditItem);
+            DeleteItemCommand = new CaptionCommand<object>(string.Format(Resources.Delete_f, ModelTitle), OnDeleteItem, CanDeleteItem);
             DuplicateItemCommand = new CaptionCommand<object>(string.Format(Resources.Clone_f, ModelTitle), OnDuplicateItem, CanDuplicateItem);
             CustomCommands = new List<ICaptionCommand>();
         }
@@ -46,6 +46,7 @@ namespace Samba.Presentation.Common.ModelBase
         protected abstract void OnAddItem(object obj);
         protected abstract void OnEditItem(object obj);
         protected abstract bool CanEditItem(object obj);
+        protected abstract bool CanDeleteItem(object obj);
         protected abstract bool CanDuplicateItem(object arg);
         protected abstract bool CanAddItem(object obj);
         protected abstract void OnDuplicateItem(object obj);

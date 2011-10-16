@@ -157,6 +157,9 @@ namespace Samba.Modules.InventoryModule
         {
             if (Model.RecipeItems.Any(x => x.InventoryItem == null || x.Quantity == 0))
                 return Resources.SaveErrorZeroOrNullInventoryLines;
+            var count = Dao.Count<Recipe>(x => x.Portion.Id == Model.Portion.Id && x.Id != Model.Id);
+            if (count > 0)
+                return "There is another recipe for " + SelectedMenuItem.Name;
             return base.GetSaveErrorMessage();
         }
     }

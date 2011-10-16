@@ -111,7 +111,6 @@ namespace Samba.Services
                         pci.Consumption += (item.Quantity * sale.Total) / pci.UnitMultiplier;
                         cost += recipeItem.Quantity * (pci.Cost / pci.UnitMultiplier);
                     }
-
                     pc.CostItems.Add(new CostItem { Name = sale.MenuItemName, Portion = recipe.Portion, CostPrediction = cost, Quantity = sale.Total });
                 }
             }

@@ -828,15 +828,23 @@ namespace Samba.Localization.Engine
             }
         }
 
-        public static void ChangeLanguage(string twoLetterLang)
+        public static void ChangeLanguage(string languageName)
         {
-            var requestedLang = twoLetterLang;
+            var requestedLang = languageName;
             if (string.IsNullOrEmpty(requestedLang))
             {
-                var currentUiLanguage = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
-                requestedLang = LocalSettings.SupportedLanguages.Contains(currentUiLanguage)
-                                   ? currentUiLanguage
-                                   : LocalSettings.SupportedLanguages[0];
+                var currentUiLanguageLarge = Thread.CurrentThread.CurrentCulture.Name;
+                if (LocalSettings.SupportedLanguages.Contains(currentUiLanguageLarge))
+                {
+                    requestedLang = currentUiLanguageLarge;
+                }
+                else
+                {
+                    var currentUiLanguage = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+                    requestedLang = LocalSettings.SupportedLanguages.Contains(currentUiLanguage)
+                                       ? currentUiLanguage
+                                       : LocalSettings.SupportedLanguages[0];
+                }
             }
             Instance.Culture = CultureInfo.GetCultureInfo(requestedLang);
             LocalSettings.CurrentLanguage = requestedLang;
