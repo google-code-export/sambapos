@@ -46,7 +46,7 @@
                     </StackPanel>
                     <TextBox FontFamily="Lucida Console" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                          ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1" Text="{Binding ErrorReportAsText}"
-                         IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True">
+                         IsReadOnly="True" AcceptsReturn="True">
                     </TextBox>
                 </Grid>
             </TabItem>

@@ -16,6 +16,7 @@ using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.ErrorReport;
 using Samba.Services;
 
 namespace Samba.Modules.BasicReports
@@ -178,8 +179,14 @@ namespace Samba.Modules.BasicReports
                 };
 
                 worker.RunWorkerCompleted +=
-                    delegate
+                    delegate(object sender, RunWorkerCompletedEventArgs eventArgs)
                     {
+                        if (eventArgs.Error != null)
+                        {
+                            ExceptionReporter.Show(eventArgs.Error);
+                            return;
+                        }
+
                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(
                         delegate
                         {

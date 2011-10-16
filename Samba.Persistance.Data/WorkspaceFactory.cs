@@ -150,7 +150,7 @@ namespace Samba.Persistance.Data
 
         private static void Migrate(CommonDbContext context)
         {
-            if (!File.Exists(LocalSettings.DataPath + "\\migrate.txt")) return;
+            if (!File.Exists(LocalSettings.UserPath + "\\migrate.txt")) return;
 
             var db = context.Database.Connection.ConnectionString.Contains(".sdf") ? "sqlserverce" : "sqlserver";
 
@@ -167,8 +167,7 @@ namespace Samba.Persistance.Data
                 var executor = new TaskExecutor(migrationContext);
                 executor.Execute();
             }
-
-            File.Delete(LocalSettings.DataPath + "\\migrate.txt");
+            File.Delete(LocalSettings.UserPath + "\\migrate.txt");
         }
     }
 }

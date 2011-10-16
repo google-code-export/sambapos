@@ -31,9 +31,22 @@ namespace Samba.Services
     public static class AppServices
     {
         public static Dispatcher MainDispatcher { get; set; }
-        public static IWorkspace Workspace;
-        public static MainDataContext MainDataContext { get; set; }
+
         public static AppScreens ActiveAppScreen { get; set; }
+
+        private static IWorkspace _workspace;
+        public static IWorkspace Workspace
+        {
+            get { return _workspace ?? (_workspace = WorkspaceFactory.Create()); }
+            set { _workspace = value; }
+        }
+
+        private static MainDataContext _mainDataContext;
+        public static MainDataContext MainDataContext
+        {
+            get { return _mainDataContext ?? (_mainDataContext = new MainDataContext()); }
+            set { _mainDataContext = value; }
+        }
 
         private static PrinterService _printService;
         public static PrinterService PrintService
