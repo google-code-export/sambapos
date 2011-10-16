@@ -78,20 +78,18 @@ namespace Samba.Services
             get { return _settingService ?? (_settingService = new SettingService()); }
         }
 
-        static AppServices()
-        {
-            CurrentLoggedInUser = User.Nobody;
-            Workspace = WorkspaceFactory.Create();
-            MainDataContext = new MainDataContext();
-        }
-
         private static IEnumerable<Terminal> _terminals;
         public static IEnumerable<Terminal> Terminals { get { return _terminals ?? (_terminals = Workspace.All<Terminal>()); } }
 
         private static Terminal _terminal;
         public static Terminal CurrentTerminal { get { return _terminal ?? (_terminal = GetCurrentTerminal()); } set { _terminal = value; } }
 
-        public static User CurrentLoggedInUser { get; private set; }
+        private static User _currentLoggedInUser;
+        public static User CurrentLoggedInUser
+        {
+            get { return _currentLoggedInUser ?? User.Nobody; }
+            private set { _currentLoggedInUser = value; }
+        }
 
         public static bool CanNavigate()
         {
