@@ -21,7 +21,7 @@
                     <Label>
                         <LocText ResourceIdentifierKey="Vat" Suffix=":"/>
                     </Label>
-                    <ComboBox HorizontalAlignment="Left" MinWidth="150"
+                    <ComboBox IsEditable="true" HorizontalAlignment="Left" MinWidth="150"
                      ItemsSource="{Binding VatTemplates}" SelectedValue="{Binding VatTemplate}" DisplayMemberPath="DisplayName" SelectedValuePath="Model">
                     </ComboBox>
                 </StackPanel>
