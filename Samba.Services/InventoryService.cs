@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Settings;
@@ -108,6 +109,7 @@ namespace Samba.Services
                         var item = recipeItem;
                         var pci = pc.PeriodicConsumptionItems.Single(x => x.InventoryItem.Id == item.InventoryItem.Id);
                         pci.Consumption += (item.Quantity * sale.Total) / pci.UnitMultiplier;
+                        Debug.Assert(pci.Consumption > 0);
                         cost += recipeItem.Quantity * (pci.Cost / pci.UnitMultiplier);
                     }
                     pc.CostItems.Add(new CostItem { Name = sale.MenuItemName, Portion = recipe.Portion, CostPrediction = cost, Quantity = sale.Total });
@@ -160,9 +162,12 @@ namespace Samba.Services
                     {
                         var item = recipeItem;
                         var pci = pc.PeriodicConsumptionItems.Single(x => x.InventoryItem.Id == item.InventoryItem.Id);
-                        var cost = recipeItem.Quantity * (pci.Cost / pci.UnitMultiplier);
-                        cost = (pci.GetConsumption() * cost) / pci.GetPredictedConsumption();
-                        totalcost += cost;
+                        if (pci.GetPredictedConsumption() > 0)
+                        {
+                            var cost = recipeItem.Quantity * (pci.Cost / pci.UnitMultiplier);
+                            cost = (pci.GetConsumption() * cost) / pci.GetPredictedConsumption();
+                            totalcost += cost;
+                        }
                     }
                     pc.CostItems.Single(x => x.Portion.Id == recipe.Portion.Id).Cost = decimal.Round(totalcost, 2);
                 }

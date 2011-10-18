@@ -132,12 +132,7 @@ namespace Samba.Infrastructure
                 _clientObject = new MessagingClientObject();
                 _serverObject.Attach(_clientObject);
             }
-            catch (SocketException)
-            {
-                HandleError();
-                return;
-            }
-            catch (UriFormatException)
+            catch
             {
                 HandleError();
                 return;

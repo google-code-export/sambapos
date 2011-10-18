@@ -154,6 +154,8 @@ namespace Samba.Presentation.Common.ModelBase
             duplicate.Id = 0;
             duplicate.Name = "_" + duplicate.Name;
             VisibleViewModelBase wm = InternalCreateNewViewModel(duplicate);
+            if (wm is EntityViewModelBase<TModel>)
+                OpenViewModels.Add(wm as EntityViewModelBase<TModel>);
             wm.PublishEvent(EventTopicNames.ViewAdded);
         }
 
