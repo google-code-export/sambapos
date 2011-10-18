@@ -157,6 +157,8 @@ namespace Samba.Modules.InventoryModule
         {
             if (Model.RecipeItems.Any(x => x.InventoryItem == null || x.Quantity == 0))
                 return Resources.SaveErrorZeroOrNullInventoryLines;
+            if (Model.Portion == null)
+                return "Should select a portion";
             var count = Dao.Count<Recipe>(x => x.Portion.Id == Model.Portion.Id && x.Id != Model.Id);
             if (count > 0)
                 return "There is another recipe for " + SelectedMenuItem.Name;
