@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <Label>
-                <LocText ResourceIdentifierKey="PropertyGroupName" Suffix=":"/>
+                <LocText ResourceIdentifierKey="ModifierGroupName" Suffix=":"/>
             </Label>
             <TextBox HorizontalAlignment="Left" MinWidth="200" Text="{Binding Name,Mode=TwoWay}" />
             <CheckBox Margin="5,5,0,0" Content="{LocText SingleSelection}"
@@ -68,7 +68,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.ColumnSpan="2">
-                <LocText ResourceIdentifierKey="Properties" Suffix=":"/>
+                <LocText ResourceIdentifierKey="Modifiers" Suffix=":"/>
             </Label>
 
             <DataGrid Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Properties}" SelectedItem="{Binding SelectedProperty, Mode=TwoWay}"
@@ -78,7 +78,7 @@
                       Background="{StaticResource {x:Static SystemColors.WindowBrushKey}}"
                       CellEditEnding="DataGrid_CellEditEnding">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{LocText Property}"
+                    <DataGridTextColumn Header="{LocText Modifier}"
                              MinWidth="100" Binding="{Binding Name}" />
                     <DataGridTemplateColumn Header="{LocText Product}"
                              MinWidth="100">

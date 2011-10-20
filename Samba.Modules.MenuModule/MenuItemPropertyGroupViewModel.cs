@@ -34,8 +34,8 @@ namespace Samba.Modules.MenuModule
             : base(model)
         {
             _properties = new ObservableCollection<MenuItemPropertyViewModel>(GetProperties(model));
-            AddPropertyCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Property), OnAddPropertyExecuted);
-            DeletePropertyCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Property), OnDeletePropertyExecuted, CanDeleteProperty);
+            AddPropertyCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Modifier), OnAddPropertyExecuted);
+            DeletePropertyCommand = new CaptionCommand<string>(string.Format(Resources.Delete_f, Resources.Modifier), OnDeletePropertyExecuted, CanDeleteProperty);
         }
 
         private void OnDeletePropertyExecuted(string obj)
@@ -64,7 +64,7 @@ namespace Samba.Modules.MenuModule
 
         public override string GetModelTypeString()
         {
-            return Resources.PropertyGroup;
+            return Resources.ModifierGroup;
         }
 
         public override void Initialize(IWorkspace workspace)

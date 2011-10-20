@@ -232,6 +232,8 @@ namespace Samba.Presentation.ViewModels
                         ti.Gifted = gifted;
                         ti.Tag = tag;
 
+                        TicketViewModel.RecalculateTicket(ticket);
+
                         EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                     }
                 }
@@ -249,6 +251,7 @@ namespace Samba.Presentation.ViewModels
                                 (string.IsNullOrEmpty(menuItemName) || y.MenuItemName.Contains(menuItemName)) &&
                                 (y.Tag.Contains(tag) || string.IsNullOrEmpty(tag))).ToList();
                             lines.ForEach(y => ticket.VoidItem(y, 0, AppServices.CurrentLoggedInUser.Id));
+                            TicketViewModel.RecalculateTicket(ticket);
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                         }
                     }

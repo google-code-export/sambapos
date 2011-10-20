@@ -334,7 +334,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Property Price to Product Price.
+        ///   Looks up a localized string similar to Add Modifier Price to Product Price.
         /// </summary>
         public static string AddPropertyPriceToProductPrice {
             get {
@@ -530,6 +530,15 @@ namespace Samba.Localization.Properties {
         public static string Angle {
             get {
                 return ResourceManager.GetString("Angle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A portion should selected.
+        /// </summary>
+        public static string APortionShouldSelected {
+            get {
+                return ResourceManager.GetString("APortionShouldSelected", resourceCulture);
             }
         }
         
@@ -1767,6 +1776,24 @@ namespace Samba.Localization.Properties {
         public static string DeleteErrorNumeratorUsedInTicket {
             get {
                 return ResourceManager.GetString("DeleteErrorNumeratorUsedInTicket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t delete because this Printer assigned to a Print Job.
+        /// </summary>
+        public static string DeleteErrorPrinterAssignedToPrinterMap {
+            get {
+                return ResourceManager.GetString("DeleteErrorPrinterAssignedToPrinterMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t delete because this Printer assigned to a Terminal.
+        /// </summary>
+        public static string DeleteErrorPrinterAssignedToTerminal {
+            get {
+                return ResourceManager.GetString("DeleteErrorPrinterAssignedToTerminal", resourceCulture);
             }
         }
         
@@ -3797,6 +3824,51 @@ namespace Samba.Localization.Properties {
         public static string Minute {
             get {
                 return ResourceManager.GetString("Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifier.
+        /// </summary>
+        public static string Modifier {
+            get {
+                return ResourceManager.GetString("Modifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifier Group.
+        /// </summary>
+        public static string ModifierGroup {
+            get {
+                return ResourceManager.GetString("ModifierGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifier Group Name.
+        /// </summary>
+        public static string ModifierGroupName {
+            get {
+                return ResourceManager.GetString("ModifierGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifier Groups.
+        /// </summary>
+        public static string ModifierGroups {
+            get {
+                return ResourceManager.GetString("ModifierGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiers.
+        /// </summary>
+        public static string Modifiers {
+            get {
+                return ResourceManager.GetString("Modifiers", resourceCulture);
             }
         }
         
@@ -6486,6 +6558,15 @@ namespace Samba.Localization.Properties {
         public static string ThereIsAnotherPriceDefinition_f {
             get {
                 return ResourceManager.GetString("ThereIsAnotherPriceDefinition_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is another recipe for {0}.
+        /// </summary>
+        public static string ThereIsAnotherRecipeFor_f {
+            get {
+                return ResourceManager.GetString("ThereIsAnotherRecipeFor_f", resourceCulture);
             }
         }
         
