@@ -1,6 +1,7 @@
 ﻿using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Localization.Properties;
+using Samba.Persistance.Data;
 using Samba.Presentation.Common.ModelBase;
 
 namespace Samba.Modules.UserModule
@@ -21,8 +22,8 @@ namespace Samba.Modules.UserModule
         {
             if (model.UserRole.IsAdmin) return Resources.DeleteErrorAdminUser;
             if (Workspace.Count<User>() == 1) return Resources.DeleteErrorLastUser;
-            var ti = Workspace.Single<TicketItem>(x => x.CreatingUserId == model.Id || x.ModifiedUserId == model.Id);
-            if (ti != null) return Resources.DeleteErrorUserDidTicketOperation;
+            var ti = Dao.Count<TicketItem>(x => x.CreatingUserId == model.Id || x.ModifiedUserId == model.Id);
+            if (ti > 0) return Resources.DeleteErrorUserDidTicketOperation;
             return base.CanDeleteItem(model);
         }
     }

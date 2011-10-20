@@ -135,6 +135,7 @@ namespace Samba.Services.Printing
                                         TaxTemplateId = x.Key.TaxTemplateId,
                                         TaxIncluded = x.Key.TaxIncluded,
                                         CreatedDateTime = x.Last().CreatedDateTime,
+                                        CreatingUserId = x.Last().CreatingUserId,
                                         OrderNumber = x.Last().OrderNumber,
                                         TicketId = x.Last().TicketId,
                                         PortionName = x.Key.PortionName,
