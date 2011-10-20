@@ -629,7 +629,7 @@ Payment</value>
     <comment>CheckBox.Content</comment>
   </data>
   <data name="AddPropertyPriceToProductPrice" xml:space="preserve">
-    <value>Add Property Price to Product Price</value>
+    <value>Add Modifier Price to Product Price</value>
     <comment>CheckBox.Content</comment>
   </data>
   <data name="POSView" xml:space="preserve">
@@ -2986,9 +2986,9 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
   <data name="UpdateTicketAccount" xml:space="preserve">
     <value>Update Ticket Account</value>
   </data>
-	<data name="SaveErrorSelectDefaultDepartment">
-		<value xml:space="preserve">Please select a default department</value>
-	</data>
+  <data name="SaveErrorSelectDefaultDepartment" xml:space="preserve">
+    <value>Please select a default department</value>
+  </data>
   <data name="Copy" xml:space="preserve">
     <value>Copy</value>
   </data>
@@ -3017,4 +3017,31 @@ Continue without adding details?</value>
     <value>Detailed Report</value>
     <comment>TabItem.Header</comment>
   </data>
+  <data name="Modifier" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="ModifierGroup" xml:space="preserve">
+    <value>Modifier Group</value>
+  </data>
+  <data name="ModifierGroupName" xml:space="preserve">
+    <value>Modifier Group Name</value>
+  </data>
+  <data name="ModifierGroups" xml:space="preserve">
+    <value>Modifier Groups</value>
+  </data>
+  <data name="Modifiers" xml:space="preserve">
+    <value>Modifiers</value>
+  </data>
+	<data name="APortionShouldSelected">
+		<value xml:space="preserve">A portion should selected</value>
+	</data>
+	<data name="ThereIsAnotherRecipeFor_f">
+		<value xml:space="preserve">There is another recipe for {0}</value>
+	</data>
+	<data name="DeleteErrorPrinterAssignedToTerminal">
+		<value><![CDATA[Can't delete because this Printer assigned to a Terminal]]></value>
+	</data>
+	<data name="DeleteErrorPrinterAssignedToPrinterMap">
+		<value><![CDATA[Can't delete because this Printer assigned to a Print Job]]></value>
+	</data>
 </root>

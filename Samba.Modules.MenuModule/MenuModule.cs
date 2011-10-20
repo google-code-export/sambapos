@@ -50,7 +50,7 @@ namespace Samba.Modules.MenuModule
             ListDepartmentsCommand = new CategoryCommand<string>(Resources.Departments, Resources.Settings, OnListDepartments);
             ListMenuItemsCommand = new CategoryCommand<string>(Resources.ProductList, Resources.Products, OnListMenuItems);
             ListScreenMenusCommand = new CategoryCommand<string>(Resources.MenuList, Resources.Products, OnListScreenMenus);
-            ListMenuItemPropertyGroupsCommand = new CategoryCommand<string>(Resources.PropertyGroups, Resources.Products, OnListMenuItemPropertyGroupsCommand);
+            ListMenuItemPropertyGroupsCommand = new CategoryCommand<string>(Resources.ModifierGroups, Resources.Products, OnListMenuItemPropertyGroupsCommand);
             ListPricesCommand = new CategoryCommand<string>(Resources.BatchPriceList, Resources.Products, OnListPrices);
             ListTicketTagGroupsCommand = new CategoryCommand<string>(Resources.TicketTags, Resources.Settings, OnListTicketTags) { Order = 10 };
             ListMenuItemPriceDefinitionsCommand = new CategoryCommand<string>(Resources.PriceDefinitions, Resources.Products, OnListMenuItemPriceDefinitions);
