@@ -81,14 +81,14 @@ namespace Samba.Presentation.Common
             if (sIndex >= 0)
             {
                 var selected = dataGrid.GetContainerFromIndex<DataGridRow>(sIndex);
-                if (selected.IsEditing) return selected;
+                if (selected != null && selected.IsEditing) return selected;
             }
 
             for (int i = 0; i < dataGrid.Items.Count; i++)
             {
                 if (i == sIndex) continue;
                 var item = dataGrid.GetContainerFromIndex<DataGridRow>(i);
-                if (item.IsEditing) return item;
+                if (item !=null && item.IsEditing) return item;
             }
 
             return null;

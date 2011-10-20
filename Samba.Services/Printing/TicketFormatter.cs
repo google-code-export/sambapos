@@ -136,6 +136,7 @@ namespace Samba.Services.Printing
                                         VatTemplateId = x.Key.VatTemplateId,
                                         VatIncluded = x.Key.VatIncluded,
                                         CreatedDateTime = x.Last().CreatedDateTime,
+                                        CreatingUserId = x.Last().CreatingUserId,
                                         OrderNumber = x.Last().OrderNumber,
                                         TicketId = x.Last().TicketId,
                                         PortionName = x.Key.PortionName,
