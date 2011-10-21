@@ -30,9 +30,12 @@ namespace Samba.Services
 
         public void StartMessagingClient()
         {
-            if (!CanStartMessagingClient())
-                throw new Exception("Mesaj istemcisi başlatılamaz.");
-            MessagingClient.Connect(_messageListener);
+            if(_messageListener != null)
+            {
+                if (!CanStartMessagingClient())
+                    throw new Exception("Mesaj istemcisi başlatılamaz.");
+                MessagingClient.Connect(_messageListener);
+            }
         }
 
         public void SendMessage(string command, string value)

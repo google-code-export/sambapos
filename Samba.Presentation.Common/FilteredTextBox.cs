@@ -101,7 +101,7 @@ namespace Samba.Presentation.Common
                     break;
 
                 case FilteredTextBoxType.Letters:
-                    if (!char.IsLetter(LetterOrDigit))
+                    if (!char.IsLetterOrDigit(LetterOrDigit))
                     {
                         e.Handled = true;
                     }
