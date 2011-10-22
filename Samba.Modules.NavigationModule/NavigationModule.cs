@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -10,14 +11,14 @@ using Samba.Services;
 namespace Samba.Modules.NavigationModule
 {
     [ModuleExport(typeof(NavigationModule))]
-    public class NavigationModule : ModuleBase
+    public class NavigationModule : VisibleModuleBase
     {
         private readonly IRegionManager _regionManager;
         private readonly NavigationView _navigationView;
-
-
+        
         [ImportingConstructor]
         public NavigationModule(IRegionManager regionManager, NavigationView navigationView)
+            : base(regionManager, AppScreens.Navigation)
         {
             _regionManager = regionManager;
             _navigationView = navigationView;
@@ -39,6 +40,11 @@ namespace Samba.Modules.NavigationModule
                 });
         }
 
+        public override object GetVisibleView()
+        {
+            return _navigationView;
+        }
+
         protected override void OnInitialization()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(NavigationView));
@@ -48,9 +54,8 @@ namespace Samba.Modules.NavigationModule
         {
             if (AppServices.IsUserPermittedFor(PermissionNames.OpenNavigation))
             {
-                AppServices.ActiveAppScreen = AppScreens.Navigation;
-                _regionManager.Regions[RegionNames.MainRegion].Activate(_navigationView);
-                (_navigationView.DataContext as NavigationViewModel).Refresh();
+                Activate();
+                ((NavigationViewModel)_navigationView.DataContext).Refresh();
             }
             else
             {

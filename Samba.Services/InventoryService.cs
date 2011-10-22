@@ -20,9 +20,9 @@ namespace Samba.Services
 
     public static class InventoryService
     {
-        private static IEnumerable<TransactionItem> GetTransactionItems()
+        private static IEnumerable<InventoryTransactionItem> GetTransactionItems()
         {
-            return Dao.Query<Transaction>(x =>
+            return Dao.Query<InventoryTransaction>(x =>
                 x.Date > AppServices.MainDataContext.CurrentWorkPeriod.StartDate,
                         x => x.TransactionItems,
                         x => x.TransactionItems.Select(y => y.InventoryItem))

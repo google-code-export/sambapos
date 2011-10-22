@@ -56,8 +56,8 @@ namespace Samba.Persistance.Data
         public DbSet<InventoryItem> InventoryItems { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<RecipeItem> RecipeItems { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<TransactionItem> TransactionItems { get; set; }
+        public DbSet<InventoryTransaction> Transactions { get; set; }
+        public DbSet<InventoryTransactionItem> TransactionItems { get; set; }
         public DbSet<PeriodicConsumption> PeriodicConsumptions { get; set; }
         public DbSet<PeriodicConsumptionItem> PeriodicConsumptionItems { get; set; }
         public DbSet<CostItem> CostItems { get; set; }
@@ -125,8 +125,8 @@ namespace Samba.Persistance.Data
             modelBuilder.Entity<RecipeItem>().Property(x => x.Quantity).HasPrecision(precision, scale);
 
             //TransactionItem
-            modelBuilder.Entity<TransactionItem>().Property(x => x.Price).HasPrecision(precision, scale);
-            modelBuilder.Entity<TransactionItem>().Property(x => x.Quantity).HasPrecision(precision, scale);
+            modelBuilder.Entity<InventoryTransactionItem>().Property(x => x.Price).HasPrecision(precision, scale);
+            modelBuilder.Entity<InventoryTransactionItem>().Property(x => x.Quantity).HasPrecision(precision, scale);
 
             //CashTransaction
             modelBuilder.Entity<CashTransaction>().Property(x => x.Amount).HasPrecision(precision, scale);

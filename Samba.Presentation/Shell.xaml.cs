@@ -86,8 +86,8 @@ namespace Samba.Presentation
 
         public void UserLoggedOut(User user)
         {
-            AppServices.ActiveAppScreen = AppScreens.LoginScreen;
-            MainTabControl.SelectedIndex = 0;
+            //AppServices.ActiveAppScreen = AppScreens.LoginScreen;
+            //MainTabControl.SelectedIndex = 0;
             UserRegion.Visibility = Visibility.Collapsed;
             RightUserRegion.Visibility = Visibility.Collapsed;
         }

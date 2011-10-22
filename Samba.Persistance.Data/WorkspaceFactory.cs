@@ -116,11 +116,11 @@ namespace Samba.Persistance.Data
                 Create(context);
             }
 #if DEBUG
-            //else if (!context.Database.CompatibleWithModel(false))
-            //{
-            //    context.Database.Delete();
-            //    Create(context);
-            //}
+            else if (!context.Database.CompatibleWithModel(false))
+            {
+                context.Database.Delete();
+                Create(context);
+            }
 #else
             else
             {

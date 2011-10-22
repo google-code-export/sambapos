@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
@@ -15,16 +16,17 @@ using Samba.Services;
 namespace Samba.Modules.TicketModule
 {
     [ModuleExport(typeof(TicketModule))]
-    public class TicketModule : ModuleBase
+    public class TicketModule : VisibleModuleBase
     {
         readonly IRegionManager _regionManager;
         private readonly TicketEditorView _ticketEditorView;
-        private readonly ICategoryCommand _navigateTicketCommand;
 
         [ImportingConstructor]
         public TicketModule(IRegionManager regionManager, TicketEditorView ticketEditorView)
+            : base(regionManager, AppScreens.TicketList)
         {
-            _navigateTicketCommand = new CategoryCommand<string>("POS", Resources.Common, "Images/Network.png", OnNavigateTicketCommand, CanNavigateTicket);
+            SetNavigationCommand("POS", Resources.Common, "Images/Network.png");
+
             _regionManager = regionManager;
             _ticketEditorView = ticketEditorView;
 
@@ -48,7 +50,7 @@ namespace Samba.Modules.TicketModule
                 x =>
                 {
                     if (x.Topic == EventTopicNames.AccountSelectedForTicket || x.Topic == EventTopicNames.PaymentRequestedForTicket)
-                        ActivateTicketEditorView();
+                        Activate();
                 }
                 );
 
@@ -56,7 +58,7 @@ namespace Samba.Modules.TicketModule
                 x =>
                 {
                     if (x.Topic == EventTopicNames.ActivateTicketView || x.Topic == EventTopicNames.DisplayTicketView)
-                        ActivateTicketEditorView();
+                        Activate();
                 });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<WorkPeriod>>().Subscribe(
@@ -88,30 +90,26 @@ namespace Samba.Modules.TicketModule
 
         }
 
-        private static bool CanNavigateTicket(string arg)
+        protected override bool CanNavigate(string arg)
         {
             return AppServices.MainDataContext.IsCurrentWorkPeriodOpen;
         }
 
-        private static void OnNavigateTicketCommand(string obj)
+        protected override void OnNavigate(string obj)
         {
+            base.OnNavigate(obj);
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
         }
 
-        private void ActivateTicketEditorView()
+        public override object GetVisibleView()
         {
-            _regionManager.Regions[RegionNames.MainRegion].Activate(_ticketEditorView);
+            return _ticketEditorView;
         }
 
         protected override void OnInitialization()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(TicketEditorView));
             _regionManager.RegisterViewWithRegion(RegionNames.UserRegion, typeof(DepartmentButtonView));
-        }
-
-        protected override void OnPostInitialization()
-        {
-            CommonEventPublisher.PublishNavigationCommandEvent(_navigateTicketCommand);
         }
     }
 }

@@ -8,16 +8,16 @@ using Samba.Services;
 
 namespace Samba.Modules.InventoryModule
 {
-    class TransactionListViewModel : EntityCollectionViewModelBase<TransactionViewModel, Transaction>
+    class TransactionListViewModel : EntityCollectionViewModelBase<TransactionViewModel, InventoryTransaction>
     {
-        protected override TransactionViewModel CreateNewViewModel(Transaction model)
+        protected override TransactionViewModel CreateNewViewModel(InventoryTransaction model)
         {
             return new TransactionViewModel(model);
         }
 
-        protected override Transaction CreateNewModel()
+        protected override InventoryTransaction CreateNewModel()
         {
-            return new Transaction();
+            return new InventoryTransaction();
         }
 
         protected override bool CanAddItem(object obj)

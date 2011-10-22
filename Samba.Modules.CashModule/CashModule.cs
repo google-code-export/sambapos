@@ -9,7 +9,7 @@ using Samba.Services;
 namespace Samba.Modules.CashModule
 {
     [ModuleExport(typeof(CashModule))]
-    public class CashModule : ModuleBase
+    public class CashModule : VisibleModuleBase
     {
         private readonly IRegionManager _regionManager;
         private readonly CashView _cashView;
@@ -17,35 +17,30 @@ namespace Samba.Modules.CashModule
 
         [ImportingConstructor]
         public CashModule(IRegionManager regionManager, CashView cashView)
+            : base(regionManager, AppScreens.CashView)
         {
             _regionManager = regionManager;
             _cashView = cashView;
-            NavigateCashViewCommand = new CategoryCommand<string>(Resources.Drawer, Resources.Common, "images/Xls.png", OnNavigateCashView, CanNavigateCashView) { Order = 70 };
+            SetNavigationCommand(Resources.Drawer, Resources.Common, "images/Xls.png", 70);
             PermissionRegistry.RegisterPermission(PermissionNames.NavigateCashView, PermissionCategories.Navigation, Resources.CanNavigateCash);
             PermissionRegistry.RegisterPermission(PermissionNames.MakeCashTransaction, PermissionCategories.Cash, Resources.CanMakeCashTransaction);
         }
 
-        private static bool CanNavigateCashView(string arg)
+        protected override bool CanNavigate(string arg)
         {
             return AppServices.IsUserPermittedFor(PermissionNames.NavigateCashView) && AppServices.MainDataContext.CurrentWorkPeriod != null;
         }
 
-        private void OnNavigateCashView(string obj)
+        protected override void OnNavigate(string obj)
         {
-            ActivateTransactionList();
-        }
-
-        private void ActivateTransactionList()
-        {
-            ActivateModuleScreen();
+            base.OnNavigate(obj);
             ((CashViewModel)_cashView.DataContext).SelectedAccount = null;
             ((CashViewModel)_cashView.DataContext).ActivateTransactionList();
         }
 
-        private void ActivateModuleScreen()
+        public override object GetVisibleView()
         {
-            AppServices.ActiveAppScreen = AppScreens.CashView;
-            _regionManager.Regions[RegionNames.MainRegion].Activate(_cashView);
+            return _cashView;
         }
 
         protected override void OnInitialization()
@@ -57,33 +52,28 @@ namespace Samba.Modules.CashModule
                 {
                     if (x.Topic == EventTopicNames.MakePaymentToAccount)
                     {
-                        ActivateModuleScreen();
+                        Activate();
                         ((CashViewModel)_cashView.DataContext).MakePaymentToAccount(x.Value);
                     }
 
                     if (x.Topic == EventTopicNames.GetPaymentFromAccount)
                     {
-                        ActivateModuleScreen();
+                        Activate();
                         ((CashViewModel)_cashView.DataContext).GetPaymentFromAccount(x.Value);
                     }
 
                     if (x.Topic == EventTopicNames.AddLiabilityAmount)
                     {
-                        ActivateModuleScreen();
+                        Activate();
                         ((CashViewModel)_cashView.DataContext).AddLiabilityAmount(x.Value);
                     }
 
                     if (x.Topic == EventTopicNames.AddReceivableAmount)
                     {
-                        ActivateModuleScreen();
+                        Activate();
                         ((CashViewModel)_cashView.DataContext).AddReceivableAmount(x.Value);
                     }
                 });
-        }
-
-        protected override void OnPostInitialization()
-        {
-            CommonEventPublisher.PublishNavigationCommandEvent(NavigateCashViewCommand);
         }
     }
 }

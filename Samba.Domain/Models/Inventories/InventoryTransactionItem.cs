@@ -1,6 +1,6 @@
 ﻿namespace Samba.Domain.Models.Inventories
 {
-    public class TransactionItem
+    public class InventoryTransactionItem
     {
         public int Id { get; set; }
         public int TransactionId { get; set; }

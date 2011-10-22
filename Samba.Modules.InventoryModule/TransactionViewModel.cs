@@ -13,10 +13,10 @@ using Samba.Services;
 
 namespace Samba.Modules.InventoryModule
 {
-    class TransactionViewModel : EntityViewModelBase<Transaction>
+    class TransactionViewModel : EntityViewModelBase<InventoryTransaction>
     {
         private IWorkspace _workspace;
-        public TransactionViewModel(Transaction model)
+        public TransactionViewModel(InventoryTransaction model)
             : base(model)
         {
             AddTransactionItemCommand = new CaptionCommand<string>(string.Format(Resources.Add_f, Resources.Line), OnAddTransactionItem, CanAddTransactionItem);
@@ -82,7 +82,7 @@ namespace Samba.Modules.InventoryModule
 
         private void OnAddTransactionItem(string obj)
         {
-            var ti = new TransactionItem();
+            var ti = new InventoryTransactionItem();
             var tiv = new TransactionItemViewModel(ti, _workspace);
             Model.TransactionItems.Add(ti);
             TransactionItems.Add(tiv);
@@ -121,13 +121,13 @@ namespace Samba.Modules.InventoryModule
             return Resources.TransactionDocument;
         }
 
-        protected override AbstractValidator<Transaction> GetValidator()
+        protected override AbstractValidator<InventoryTransaction> GetValidator()
         {
             return new TransactionValidator();
         }
     }
 
-    internal class TransactionValidator : EntityValidator<Transaction>
+    internal class TransactionValidator : EntityValidator<InventoryTransaction>
     {
         public TransactionValidator()
         {

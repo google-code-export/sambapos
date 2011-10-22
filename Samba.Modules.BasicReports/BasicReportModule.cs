@@ -9,18 +9,18 @@ using Samba.Services;
 namespace Samba.Modules.BasicReports
 {
     [ModuleExport(typeof(BasicReportModule))]
-    public class BasicReportModule : ModuleBase
+    public class BasicReportModule : VisibleModuleBase
     {
         private readonly IRegionManager _regionManager;
-        private readonly ICategoryCommand _navigateReportsCommand;
         private readonly BasicReportView _basicReportView;
 
         [ImportingConstructor]
         public BasicReportModule(IRegionManager regionManager, BasicReportView basicReportView)
+            : base(regionManager, AppScreens.ReportScreen)
         {
             _regionManager = regionManager;
             _basicReportView = basicReportView;
-            _navigateReportsCommand = new CategoryCommand<string>(Resources.Reports, Resources.Common, "Images/Ppt.png", OnNavigateReportModule, CanNavigateReportModule) { Order = 80 };
+            SetNavigationCommand(Resources.Reports, Resources.Common, "Images/Ppt.png", 80);
 
             PermissionRegistry.RegisterPermission(PermissionNames.OpenReports, PermissionCategories.Navigation, Resources.CanDisplayReports);
             PermissionRegistry.RegisterPermission(PermissionNames.ChangeReportDate, PermissionCategories.Report, Resources.CanChangeReportFilter);
@@ -48,14 +48,19 @@ namespace Samba.Modules.BasicReports
             });
         }
 
-        private static bool CanNavigateReportModule(string arg)
+        public override object GetVisibleView()
+        {
+            return _basicReportView;
+        }
+
+        protected override bool CanNavigate(string arg)
         {
             return (AppServices.IsUserPermittedFor(PermissionNames.OpenReports) && AppServices.MainDataContext.CurrentWorkPeriod != null);
         }
 
-        private void OnNavigateReportModule(string obj)
+        protected override void OnNavigate(string obj)
         {
-            _regionManager.Regions[RegionNames.MainRegion].Activate(_basicReportView);
+            base.OnNavigate(obj);
             ReportContext.ResetCache();
             ReportContext.CurrentWorkPeriod = AppServices.MainDataContext.CurrentWorkPeriod;
         }
@@ -63,11 +68,6 @@ namespace Samba.Modules.BasicReports
         protected override void OnInitialization()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(BasicReportView));
-        }
-
-        protected override void OnPostInitialization()
-        {
-            CommonEventPublisher.PublishNavigationCommandEvent(_navigateReportsCommand);
         }
     }
 }

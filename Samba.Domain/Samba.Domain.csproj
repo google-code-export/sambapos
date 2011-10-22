@@ -80,8 +80,8 @@
     <Compile Include="Models\Inventories\RecipeItem.cs" />
     <Compile Include="Models\Inventories\PeriodicConsumption.cs" />
     <Compile Include="Models\Inventories\PeriodicConsumptionItem.cs" />
-    <Compile Include="Models\Inventories\Transaction.cs" />
-    <Compile Include="Models\Inventories\TransactionItem.cs" />
+    <Compile Include="Models\Inventories\InventoryTransaction.cs" />
+    <Compile Include="Models\Inventories\InventoryTransactionItem.cs" />
     <Compile Include="Models\Menus\MenuItemPrice.cs" />
     <Compile Include="Models\Menus\MenuItemPriceDefinitions.cs" />
     <Compile Include="Models\Settings\PrintJob.cs" />

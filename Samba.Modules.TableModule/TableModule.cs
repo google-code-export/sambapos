@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
-using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
@@ -11,32 +10,25 @@ using Samba.Services;
 namespace Samba.Modules.TableModule
 {
     [ModuleExport(typeof(TableModule))]
-    public class TableModule : ModuleBase
+    public class TableModule : VisibleModuleBase
     {
         private readonly IRegionManager _regionManager;
-
-        public ICategoryCommand ListTablesCommand { get; set; }
-        public ICategoryCommand ListTableScreensCommand { get; set; }
-        public ICategoryCommand NavigateTablesCommand { get; set; }
-
-        private TableListViewModel _tableListViewModel;
         private readonly TableSelectorView _tableSelectorView;
-        private TableScreenListViewModel _tableScreenListViewModel;
 
         [ImportingConstructor]
         public TableModule(IRegionManager regionManager, TableSelectorView tableSelectorView)
+            : base(regionManager, AppScreens.TableList)
         {
             _regionManager = regionManager;
             _tableSelectorView = tableSelectorView;
-            ListTablesCommand = new CategoryCommand<string>(Resources.TableList, Resources.Tables, OnListTablesExecute) { Order = 30 };
-            ListTableScreensCommand = new CategoryCommand<string>(Resources.TableViews, Resources.Tables, OnListTableScreensExecute);
-            NavigateTablesCommand = new CategoryCommand<string>(Resources.Tables, Resources.Common, "images/Png.png", OnNavigateTables, CanNavigateTables);
+
+            AddDashboardCommand<TableListViewModel>(Resources.TableList, Resources.Tables, 30);
+            AddDashboardCommand<TableScreenListViewModel>(Resources.TableViews, Resources.Tables);
         }
 
-        protected override void OnPostInitialization()
+        public override object GetVisibleView()
         {
-            CommonEventPublisher.PublishDashboardCommandEvent(ListTablesCommand);
-            CommonEventPublisher.PublishDashboardCommandEvent(ListTableScreensCommand);
+            return _tableSelectorView;
         }
 
         protected override void OnInitialization()
@@ -52,55 +44,12 @@ namespace Samba.Modules.TableModule
                     ActivateTableView();
                 }
             });
-
-            EventServiceFactory.EventService.GetEvent<GenericEvent<VisibleViewModelBase>>().Subscribe(
-                x =>
-                {
-                    if (x.Topic == EventTopicNames.ViewClosed)
-                    {
-                        if (x.Value == _tableListViewModel)
-                            _tableListViewModel = null;
-                        if (x.Value == _tableScreenListViewModel)
-                            _tableScreenListViewModel = null;
-                    }
-                }
-                );
-        }
-
-        private void OnNavigateTables(string obj)
-        {
-            ActivateTableView();
-            ((TableSelectorViewModel)_tableSelectorView.DataContext).IsNavigated = true;
-            ((TableSelectorViewModel)_tableSelectorView.DataContext).RefreshTables();
-        }
-
-        private static bool CanNavigateTables(string arg)
-        {
-            return
-                AppServices.IsUserPermittedFor(PermissionNames.OpenTables) &&
-                AppServices.MainDataContext.IsCurrentWorkPeriodOpen;
         }
 
         private void ActivateTableView()
         {
-            AppServices.ActiveAppScreen = AppScreens.TableList;
-            _regionManager.Regions[RegionNames.MainRegion].Activate(_tableSelectorView);
+            Activate();
             ((TableSelectorViewModel)_tableSelectorView.DataContext).IsNavigated = false;
         }
-
-        private void OnListTableScreensExecute(string obj)
-        {
-            if (_tableScreenListViewModel == null)
-                _tableScreenListViewModel = new TableScreenListViewModel();
-            CommonEventPublisher.PublishViewAddedEvent(_tableScreenListViewModel);
-        }
-
-        private void OnListTablesExecute(string obj)
-        {
-            if (_tableListViewModel == null)
-                _tableListViewModel = new TableListViewModel();
-            CommonEventPublisher.PublishViewAddedEvent(_tableListViewModel);
-        }
-
     }
 }

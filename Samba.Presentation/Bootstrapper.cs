@@ -33,11 +33,6 @@ namespace Samba.Presentation
             LocalSettings.AppPath = path;
         }
 
-        //protected override ILoggerFacade CreateLogger()
-        //{
-        //    return _logger;
-        //}
-
         protected override void InitializeModules()
         {
             base.InitializeModules();
@@ -48,12 +43,12 @@ namespace Samba.Presentation
         protected override void InitializeShell()
         {
             LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
-            
+
             InteractionService.UserIntraction = ServiceLocator.Current.GetInstance<IUserInteraction>();
             InteractionService.UserIntraction.ToggleSplashScreen();
 
             AppServices.MainDispatcher = Application.Current.Dispatcher;
-           
+
             AppServices.MessagingService.RegisterMessageListener(new MessageListener());
 
             if (LocalSettings.StartMessagingClient)
@@ -99,6 +94,7 @@ namespace Samba.Presentation
 
             Application.Current.MainWindow = (Shell)Shell;
             Application.Current.MainWindow.Show();
+            AppServices.CurrentLoggedInUser.PublishEvent(EventTopicNames.UserLoggedOut);
             InteractionService.UserIntraction.ToggleSplashScreen();
             TriggerService.UpdateCronObjects();
         }

@@ -34,8 +34,8 @@ namespace Samba.Modules.BasicReports
         private static IEnumerable<MenuItem> _menutItems;
         public static IEnumerable<MenuItem> MenuItems { get { return _menutItems ?? (_menutItems = GetMenuItems()); } }
 
-        private static IEnumerable<Transaction> _transactions;
-        public static IEnumerable<Transaction> Transactions { get { return _transactions ?? (_transactions = GetTransactions()); } }
+        private static IEnumerable<InventoryTransaction> _transactions;
+        public static IEnumerable<InventoryTransaction> Transactions { get { return _transactions ?? (_transactions = GetTransactions()); } }
 
         private static IEnumerable<PeriodicConsumption> _periodicConsumptions;
         public static IEnumerable<PeriodicConsumption> PeriodicConsumptions { get { return _periodicConsumptions ?? (_periodicConsumptions = GetPeriodicConsumtions()); } }
@@ -112,11 +112,11 @@ namespace Samba.Modules.BasicReports
             return Dao.Query<InventoryItem>();
         }
 
-        private static IEnumerable<Transaction> GetTransactions()
+        private static IEnumerable<InventoryTransaction> GetTransactions()
         {
             if (CurrentWorkPeriod.StartDate != CurrentWorkPeriod.EndDate)
-                return Dao.Query<Transaction>(x => x.Date >= CurrentWorkPeriod.StartDate && x.Date < CurrentWorkPeriod.EndDate, x => x.TransactionItems, x => x.TransactionItems.Select(y => y.InventoryItem));
-            return Dao.Query<Transaction>(x => x.Date >= CurrentWorkPeriod.StartDate, x => x.TransactionItems, x => x.TransactionItems.Select(y => y.InventoryItem));
+                return Dao.Query<InventoryTransaction>(x => x.Date >= CurrentWorkPeriod.StartDate && x.Date < CurrentWorkPeriod.EndDate, x => x.TransactionItems, x => x.TransactionItems.Select(y => y.InventoryItem));
+            return Dao.Query<InventoryTransaction>(x => x.Date >= CurrentWorkPeriod.StartDate, x => x.TransactionItems, x => x.TransactionItems.Select(y => y.InventoryItem));
         }
 
         private static IEnumerable<PeriodicConsumption> GetPeriodicConsumtions()

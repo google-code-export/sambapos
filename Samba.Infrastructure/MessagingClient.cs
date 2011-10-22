@@ -107,7 +107,7 @@ namespace Samba.Infrastructure
         {
             Timer.Change(0, Timeout.Infinite);
             if (messageListener == null) return;
-            if (string.IsNullOrEmpty(LocalSettings.MessagingServerName.Trim())) return;
+            if (string.IsNullOrWhiteSpace(LocalSettings.MessagingServerName)) return;
 
             _messageListener = messageListener;
             var serverProv = new BinaryServerFormatterSinkProvider

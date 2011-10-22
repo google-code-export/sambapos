@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Threading;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Users;
-using Samba.Infrastructure;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.ExceptionReporter;
 using Samba.Infrastructure.Settings;
@@ -25,7 +24,8 @@ namespace Samba.Services
         AccountList,
         WorkPeriods,
         Dashboard,
-        CashView
+        CashView,
+        ReportScreen
     }
 
     public static class AppServices

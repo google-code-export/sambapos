@@ -196,8 +196,7 @@ namespace Samba.Modules.CashModule
             ApplyTicketTransactionCommand = new CaptionCommand<string>(Resources.Voucher, OnApplyTicketTransaction, CanApplyTransaction);
             DisplayAccountsCommand = new CaptionCommand<string>(Resources.Accounts, OnDisplayAccounts);
         }
-
-
+        
         private static void OnDisplayAccounts(string obj)
         {
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateAccountView);

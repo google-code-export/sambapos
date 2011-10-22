@@ -12,13 +12,13 @@ namespace Samba.Modules.InventoryModule
     class TransactionItemViewModel : ObservableObject
     {
         private readonly IWorkspace _workspace;
-        public TransactionItemViewModel(TransactionItem model, IWorkspace workspace)
+        public TransactionItemViewModel(InventoryTransactionItem model, IWorkspace workspace)
         {
             _workspace = workspace;
             Model = model;
         }
 
-        public TransactionItem Model { get; set; }
+        public InventoryTransactionItem Model { get; set; }
 
         public InventoryItem InventoryItem
         {

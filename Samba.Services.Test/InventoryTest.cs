@@ -49,13 +49,13 @@ namespace Samba.Services.Test
 
             AppServices.MainDataContext.StartWorkPeriod("", 0, 0, 0);
 
-            var transaction = new Transaction { Date = DateTime.Now, Name = "1" };
+            var transaction = new InventoryTransaction { Date = DateTime.Now, Name = "1" };
             workspace.Add(transaction);
 
-            transaction.TransactionItems.Add(new TransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 16, Quantity = 10, Unit = "KG" });
-            transaction.TransactionItems.Add(new TransactionItem { InventoryItem = pide, Multiplier = 2, Price = 1, Quantity = 50, Unit = "Adet" });
-            transaction.TransactionItems.Add(new TransactionItem { InventoryItem = yogurt, Multiplier = 1000, Price = 4, Quantity = 30, Unit = "KG" });
-            transaction.TransactionItems.Add(new TransactionItem { InventoryItem = zeytinYagi, Multiplier = 100, Price = 5, Quantity = 5, Unit = "Litre" });
+            transaction.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 16, Quantity = 10, Unit = "KG" });
+            transaction.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = pide, Multiplier = 2, Price = 1, Quantity = 50, Unit = "Adet" });
+            transaction.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = yogurt, Multiplier = 1000, Price = 4, Quantity = 30, Unit = "KG" });
+            transaction.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = zeytinYagi, Multiplier = 100, Price = 5, Quantity = 5, Unit = "Litre" });
 
             var ticket = new Ticket();
             workspace.Add(ticket);
@@ -123,12 +123,12 @@ namespace Samba.Services.Test
 
             AppServices.MainDataContext.StartWorkPeriod("", 0, 0, 0);
 
-            var transaction = new Transaction { Date = DateTime.Now, Name = "1" };
+            var transaction = new InventoryTransaction { Date = DateTime.Now, Name = "1" };
             workspace.Add(transaction);
 
-            transaction.TransactionItems.Add(new TransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 16, Quantity = 10, Unit = "KG" });
-            transaction.TransactionItems.Add(new TransactionItem { InventoryItem = pide, Multiplier = 2, Price = 1, Quantity = 50, Unit = "Adet" });
-            transaction.TransactionItems.Add(new TransactionItem { InventoryItem = yogurt, Multiplier = 1000, Price = 4, Quantity = 30, Unit = "KG" });
+            transaction.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 16, Quantity = 10, Unit = "KG" });
+            transaction.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = pide, Multiplier = 2, Price = 1, Quantity = 50, Unit = "Adet" });
+            transaction.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = yogurt, Multiplier = 1000, Price = 4, Quantity = 30, Unit = "KG" });
 
             var transactionTotal = transaction.TransactionItems.Sum(x => x.Price * x.Quantity);
             Assert.AreEqual(transactionTotal, (16 * 10) + (50 * 1) + (30 * 4));
@@ -138,9 +138,9 @@ namespace Samba.Services.Test
             ticket.AddTicketItem(0, iskender, iskender.Portions[0].Name);
             ticket.AddTicketItem(0, iskender, iskender.Portions[0].Name);
 
-            var transaction2 = new Transaction { Date = DateTime.Now, Name = "1" };
+            var transaction2 = new InventoryTransaction { Date = DateTime.Now, Name = "1" };
             workspace.Add(transaction2);
-            transaction2.TransactionItems.Add(new TransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 15, Quantity = 10, Unit = "KG" });
+            transaction2.TransactionItems.Add(new InventoryTransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 15, Quantity = 10, Unit = "KG" });
 
             var pc = InventoryService.GetCurrentPeriodicConsumption(workspace);
             workspace.Add(pc);
@@ -171,10 +171,10 @@ namespace Samba.Services.Test
             AppServices.MainDataContext.StartWorkPeriod("", 0, 0, 0);
             Thread.Sleep(1);
 
-            transaction = new Transaction { Date = DateTime.Now, Name = "1" };
+            transaction = new InventoryTransaction { Date = DateTime.Now, Name = "1" };
             workspace.Add(transaction);
             const int etAlimMiktari = 50;
-            var ti = new TransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 12, Quantity = etAlimMiktari, Unit = "KG" };
+            var ti = new InventoryTransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 12, Quantity = etAlimMiktari, Unit = "KG" };
             transaction.TransactionItems.Add(ti);
 
             ticket = new Ticket();
@@ -199,9 +199,9 @@ namespace Samba.Services.Test
             AppServices.MainDataContext.StartWorkPeriod("", 0, 0, 0);
             Thread.Sleep(1);
 
-            transaction = new Transaction { Date = DateTime.Now, Name = "1" };
+            transaction = new InventoryTransaction { Date = DateTime.Now, Name = "1" };
             workspace.Add(transaction);
-            ti = new TransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 10, Quantity = etAlimMiktari, Unit = "KG" };
+            ti = new InventoryTransactionItem { InventoryItem = donerEti, Multiplier = 1000, Price = 10, Quantity = etAlimMiktari, Unit = "KG" };
             transaction.TransactionItems.Add(ti);
 
             ticket = new Ticket();

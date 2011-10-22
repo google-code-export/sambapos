@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
-using Samba.Presentation.Common;
 using Samba.Presentation.Common.Services;
 using Samba.Services;
 

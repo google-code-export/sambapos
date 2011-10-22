@@ -63,6 +63,7 @@ namespace Samba.Modules.TicketModule
                 if (TicketTags.Count == 1 && !_showFreeTagEditor) obj.Value.UpdateTag(SelectedTicket.LastSelectedTicketTag, TicketTags[0]);
                 RaisePropertyChanged("TagColumnCount");
                 RaisePropertyChanged("IsFreeTagEditorVisible");
+                RaisePropertyChanged("FilteredTextBoxType");
             }
 
             if (obj.Topic == EventTopicNames.SelectVoidReason)
@@ -131,6 +132,16 @@ namespace Samba.Modules.TicketModule
 
         public int ReasonColumnCount { get { return Reasons.Count % 7 == 0 ? Reasons.Count / 7 : (Reasons.Count / 7) + 1; } }
         public int TagColumnCount { get { return TicketTags.Count % 7 == 0 ? TicketTags.Count / 7 : (TicketTags.Count / 7) + 1; } }
+
+        public FilteredTextBox.FilteredTextBoxType FilteredTextBoxType
+        {
+            get
+            {
+                if (SelectedTicket != null && SelectedTicket.LastSelectedTicketTag != null && SelectedTicket.LastSelectedTicketTag.NumericTags)
+                    return FilteredTextBox.FilteredTextBoxType.Digits;
+                return FilteredTextBox.FilteredTextBoxType.Letters;
+            }
+        }
 
         private string _freeTag;
         public string FreeTag

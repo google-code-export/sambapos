@@ -202,8 +202,8 @@
                          Command="{Binding CreateAccountCommand}" Name="CreateAccountButton" />
                     <FlexButton:FlexButton Margin="2" Height="60" Content="{Binding FindTicketCommand.Caption}"
                          Command="{Binding FindTicketCommand}" />
-                    <FlexButton:FlexButton Margin="2" Height="60" Content="{Binding DisplayAccountAccountCommand.Caption}"
-                         Command="{Binding DisplayAccountAccountCommand}" />
+                    <FlexButton:FlexButton Margin="2" Height="60" Content="{Binding DisplayAccountCommand.Caption}"
+                         Command="{Binding DisplayAccountCommand}" />
                 </StackPanel>
             </Grid>
         </Grid>

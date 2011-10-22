@@ -206,6 +206,7 @@
       <DependentUpon>KeyboardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="VirtualKeyboard\KeyboardViewModel.cs" />
+    <Compile Include="VisibleModuleBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lib\DataGridFilterLibrary\DataGridFilterLibrary.csproj">

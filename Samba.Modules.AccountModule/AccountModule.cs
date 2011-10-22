@@ -13,55 +13,44 @@ using Samba.Services;
 namespace Samba.Modules.AccountModule
 {
     [ModuleExport(typeof(AccountModule))]
-    public class AccountModule : ModuleBase
+    public class AccountModule : VisibleModuleBase
     {
         private readonly IRegionManager _regionManager;
         private readonly AccountSelectorView _accountSelectorView;
-        private AccountListViewModel _accountListViewModel;
-        public ICategoryCommand ListAccountsCommand { get; set; }
-
+        
         [ImportingConstructor]
         public AccountModule(IRegionManager regionManager, AccountSelectorView accountSelectorView)
+            :base(regionManager,AppScreens.AccountList)
         {
             _regionManager = regionManager;
             _accountSelectorView = accountSelectorView;
-            ListAccountsCommand = new CategoryCommand<string>(Resources.AccountList, Resources.Accounts, OnListAccountsExecute) { Order = 40 };
+
+            AddDashboardCommand<AccountListViewModel>(Resources.AccountList, Resources.Accounts, 40);
             PermissionRegistry.RegisterPermission(PermissionNames.MakeAccountTransaction, PermissionCategories.Cash, Resources.CanMakeAccountTransaction);
             PermissionRegistry.RegisterPermission(PermissionNames.CreditOrDeptAccount, PermissionCategories.Cash, Resources.CanMakeCreditOrDeptTransaction);
         }
-
-        private void OnListAccountsExecute(string obj)
+        
+        public override object GetVisibleView()
         {
-            if (_accountListViewModel == null)
-                _accountListViewModel = new AccountListViewModel();
-            CommonEventPublisher.PublishViewAddedEvent(_accountListViewModel);
+            return _accountSelectorView;
         }
 
         protected override void OnInitialization()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(AccountSelectorView));
 
-            EventServiceFactory.EventService.GetEvent<GenericEvent<VisibleViewModelBase>>().Subscribe(s =>
-            {
-                if (s.Topic == EventTopicNames.ViewClosed)
-                {
-                    if (s.Value == _accountListViewModel)
-                        _accountListViewModel = null;
-                }
-            });
-
             EventServiceFactory.EventService.GetEvent<GenericEvent<Department>>().Subscribe(x =>
             {
                 if (x.Topic == EventTopicNames.SelectAccount)
                 {
-                    ActivateAccountView();
+                    Activate();
                     ((AccountSelectorViewModel)_accountSelectorView.DataContext).RefreshSelectedAccount();
                 }
             });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(x =>
             {
-                if (x.Topic == EventTopicNames.ActivateAccountView) ActivateAccountView();
+                if (x.Topic == EventTopicNames.ActivateAccountView) Activate();
                 ((AccountSelectorViewModel)_accountSelectorView.DataContext).RefreshSelectedAccount();
             });
 
@@ -69,7 +58,7 @@ namespace Samba.Modules.AccountModule
             {
                 if (x.Topic == EventTopicNames.ActivateAccount)
                 {
-                    ActivateAccountView();
+                    Activate();
                     ((AccountSelectorViewModel)_accountSelectorView.DataContext).DisplayAccount(x.Value);
                 }
             });
@@ -79,22 +68,11 @@ namespace Samba.Modules.AccountModule
                 {
                     if (x.Topic == EventTopicNames.PopupClicked && x.Value.EventMessage == EventTopicNames.SelectAccount)
                     {
-                        ActivateAccountView();
+                        Activate();
                         ((AccountSelectorViewModel)_accountSelectorView.DataContext).SearchAccount(x.Value.DataObject as string);
                     }
                 }
                 );
-        }
-
-        private void ActivateAccountView()
-        {
-            AppServices.ActiveAppScreen = AppScreens.AccountList;
-            _regionManager.Regions[RegionNames.MainRegion].Activate(_accountSelectorView);
-        }
-
-        protected override void OnPostInitialization()
-        {
-            CommonEventPublisher.PublishDashboardCommandEvent(ListAccountsCommand);
         }
     }
 }
