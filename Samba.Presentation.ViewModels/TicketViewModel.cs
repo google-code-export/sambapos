@@ -233,10 +233,8 @@ namespace Samba.Presentation.ViewModels
             foreach (var item in Items)
                 item.NotSelected();
 
-            RaisePropertyChanged("Items");
-            RaisePropertyChanged("TicketTotalLabel");
-            RaisePropertyChanged("TicketRemainingLabel");
-            RaisePropertyChanged("IsTicketNoteVisible");
+            RefreshVisuals();
+
             this.PublishEvent(EventTopicNames.SelectedItemsChanged);
         }
 
@@ -274,15 +272,21 @@ namespace Samba.Presentation.ViewModels
 
         public void RefreshVisuals()
         {
-            RaisePropertyChanged("IsTicketRemainingVisible");
-            RaisePropertyChanged("IsTicketPaymentVisible");
-            RaisePropertyChanged("IsTicketDiscountVisible");
-            RaisePropertyChanged("IsTicketTotalVisible");
             RaisePropertyChanged("TicketTotalLabel");
             RaisePropertyChanged("TicketRemainingLabel");
             RaisePropertyChanged("TicketDiscountLabel");
             RaisePropertyChanged("TicketPlainTotalLabel");
-            RaisePropertyChanged("TicketTaxServiceValue");
+            RaisePropertyChanged("TicketTaxServiceLabel");
+            RaisePropertyChanged("TicketRoundingLabel");
+            RaisePropertyChanged("TicketVatLabel");
+
+            RaisePropertyChanged("IsTicketRemainingVisible");
+            RaisePropertyChanged("IsTicketPaymentVisible");
+            RaisePropertyChanged("IsTicketDiscountVisible");
+            RaisePropertyChanged("IsTicketTotalVisible");
+            RaisePropertyChanged("IsTicketVatTotalVisible");
+            RaisePropertyChanged("IsTicketRoundingVisible");
+            RaisePropertyChanged("IsTicketTaxServiceVisible");
             RaisePropertyChanged("IsTagged");
         }
 

@@ -72,8 +72,12 @@ namespace Samba.Services.Printing
                     printer.Cut();
                 else if (line.StartsWith("<BEEP"))
                     printer.Beep();
+                else if (line.StartsWith("<DRAWER"))
+                    printer.OpenCashDrawer();
                 else if (line.StartsWith("<B"))
                     printer.Beep((char)_lastHeight, (char)_lastWidth);
+                else if (line.StartsWith("<XCT") && line.EndsWith(">"))
+                    printer.ExecCommand(line.Substring(4, line.Length - 5));
                 else printer.WriteLine(line);
             }
         }
