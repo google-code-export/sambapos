@@ -30,11 +30,12 @@ namespace Samba.Services.Printing
             }
             return document;
         }
-        
+
         public static string[] FlowDocumentToSlipPrinterFormat(FlowDocument document)
         {
             var result = new List<string>();
-            result.AddRange(ReadBlocks(document.Blocks));
+            if (document != null)
+                result.AddRange(ReadBlocks(document.Blocks));
             return result.ToArray();
         }
 
@@ -101,7 +102,7 @@ namespace Samba.Services.Printing
                     else
                     {
                         var value = string.Join(" ", values);
-                        
+
                         if (i < row.Cells.Count)
                         {
                             value = colAlignments[i] == TextAlignment.Right

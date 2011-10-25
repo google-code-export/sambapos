@@ -179,7 +179,7 @@ namespace Samba.Domain.Models.Tickets
 
         private decimal CalculateTax(decimal plainSum, decimal discount)
         {
-            var result = TicketItems.Where(x => !x.TaxIncluded).Sum(x => (x.TaxAmount + x.Properties.Sum(y => y.TaxAmount)) * x.Quantity);
+            var result = TicketItems.Where(x => !x.TaxIncluded && !x.Voided && !x.Gifted).Sum(x => (x.TaxAmount + x.Properties.Sum(y => y.TaxAmount)) * x.Quantity);
             if (discount > 0)
                 result -= (result * discount) / plainSum;
             return result;

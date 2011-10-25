@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -313,6 +314,21 @@ namespace Samba.Infrastructure.Printing
                 bw.Flush();
 
                 return ms.ToArray();
+            }
+        }
+
+        public void OpenCashDrawer()
+        {
+            // http://social.msdn.microsoft.com/forums/en-US/netfxbcl/thread/35575dd8-7593-4fe6-9b57-64ad6b5f7ae6/
+            WriteData(((char)27 + (char)112 + (char)0 + (char)25 + (char)250).ToString());
+        }
+
+        public void ExecCommand(string command)
+        {
+            if (!string.IsNullOrEmpty(command))
+            {
+                var data = command.Trim().Split(',').Select(x => Convert.ToInt32(x)).Aggregate("", (current, i) => current + (char)i);
+                WriteData(data);
             }
         }
     }
