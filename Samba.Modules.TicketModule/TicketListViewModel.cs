@@ -271,10 +271,8 @@ namespace Samba.Modules.TicketModule
                             var oldLocationName = SelectedTicket.Location;
                             var ticketsMerged = x.Value.TicketId > 0 && x.Value.TicketId != SelectedTicket.Id;
                             TicketViewModel.AssignTableToSelectedTicket(x.Value.LocationId);
-                            //AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
                             
-                            if (!string.IsNullOrEmpty(SelectedTicket.Location))
-                                CloseTicket();
+                            CloseTicket();
 
                             if (!AppServices.CurrentTerminal.AutoLogout)
                                 EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
@@ -293,7 +291,6 @@ namespace Samba.Modules.TicketModule
                             {
                                 TicketViewModel.CreateNewTicket();
                                 TicketViewModel.AssignTableToSelectedTicket(x.Value.LocationId);
-                                //AppServices.MainDataContext.AssignTableToSelectedTicket(x.Value.LocationId);
                             }
                             else
                             {
@@ -304,7 +301,6 @@ namespace Samba.Modules.TicketModule
                                         AppServices.MainDataContext.ResetTableDataForSelectedTicket();
                                 }
                             }
-                            
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
                         }
                     }
