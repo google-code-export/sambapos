@@ -137,8 +137,13 @@ namespace Samba.Modules.TicketModule
         {
             get
             {
-                if (SelectedTicket != null && SelectedTicket.LastSelectedTicketTag != null && SelectedTicket.LastSelectedTicketTag.NumericTags)
-                    return FilteredTextBox.FilteredTextBoxType.Digits;
+                if (SelectedTicket != null && SelectedTicket.LastSelectedTicketTag != null)
+                {
+                    if (SelectedTicket.LastSelectedTicketTag.IsInteger)
+                        return FilteredTextBox.FilteredTextBoxType.Digits;
+                    if (SelectedTicket.LastSelectedTicketTag.IsDecimal)
+                        return FilteredTextBox.FilteredTextBoxType.Number;
+                }
                 return FilteredTextBox.FilteredTextBoxType.Letters;
             }
         }

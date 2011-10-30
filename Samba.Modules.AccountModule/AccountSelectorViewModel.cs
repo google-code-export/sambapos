@@ -73,7 +73,7 @@ namespace Samba.Modules.AccountModule
         private string _phoneNumberSearchText;
         public string PhoneNumberSearchText
         {
-            get { return string.IsNullOrEmpty(_phoneNumberSearchText) ? null : _phoneNumberSearchText.TrimStart('+', '0', '9'); }
+            get { return string.IsNullOrEmpty(_phoneNumberSearchText) ? null : _phoneNumberSearchText.TrimStart('+', '0'); }
             set
             {
                 if (value != _phoneNumberSearchText)

@@ -3006,10 +3006,10 @@ Bilgi eklemeden devam etmek istiyor musunuz?]]>
     <value>Lütfen, bu hataya neden olan işleminiz ile ilgili kısaca bilgi veriniz</value>
     <comment>TextBlock.Text</comment>
   </data>
-	<data name="Modifier" xml:space="preserve">
+  <data name="Modifier" xml:space="preserve">
     <value>Özellik</value>
   </data>
-	<data name="ModifierGroup" xml:space="preserve">
+  <data name="ModifierGroup" xml:space="preserve">
     <value>Özellik Grubu</value>
   </data>
   <data name="ModifierGroupName" xml:space="preserve">
@@ -3027,10 +3027,19 @@ Bilgi eklemeden devam etmek istiyor musunuz?]]>
   <data name="ThereIsAnotherRecipeFor_f">
     <value xml:space="preserve">{0} için başka bir reçete var</value>
   </data>
-	<data name="DeleteErrorPrinterAssignedToTerminal">
-		<value>Bu yazıcı bir terminalde kullanıldığı için silinemez.</value>
-	</data>
-	<data name="DeleteErrorPrinterAssignedToPrinterMap">
-		<value>Bu yazıcı bir yazdırma görevinde kullanıldığı için silinemez.</value>
-	</data>
+  <data name="DeleteErrorPrinterAssignedToTerminal">
+    <value>Bu yazıcı bir terminalde kullanıldığı için silinemez.</value>
+  </data>
+  <data name="DeleteErrorPrinterAssignedToPrinterMap">
+    <value>Bu yazıcı bir yazdırma görevinde kullanıldığı için silinemez.</value>
+  </data>
+  <data name="Alphanumeric">
+    <value xml:space="preserve">Alfasayısal</value>
+  </data>
+  <data name="Numeric">
+    <value xml:space="preserve">Sayısal</value>
+  </data>
+  <data name="TaggingType">
+    <value xml:space="preserve">Etiket Tipi</value>
+  </data>
 </root>

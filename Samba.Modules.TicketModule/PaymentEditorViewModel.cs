@@ -434,31 +434,31 @@ namespace Samba.Modules.TicketModule
             var serviceAmount = SelectedTicket.Model.GetServicesTotal();
             var sum = SelectedTicket.Model.GetSumWithoutTax();
 
-            foreach (var item in SelectedTicket.Model.TicketItems)
-            {
-                if (!item.Voided && !item.Gifted)
-                {
-                    var ticketItem = item;
-                    var price = ticketItem.GetItemPrice();
-                    price += (price * serviceAmount) / sum;
-                    if (!ticketItem.TaxIncluded) price += ticketItem.TaxAmount;
-                    var mitem = MergedItems.SingleOrDefault(x => x.MenuItemId == ticketItem.MenuItemId && x.Price == price);
-                    if (mitem == null)
-                    {
-                        mitem = new MergedItem { Description = item.MenuItemName + item.GetPortionDesc(), Price = price, MenuItemId = item.MenuItemId };
-                        MergedItems.Add(mitem);
-                    }
-                    mitem.Quantity += item.Quantity;
-                }
-            }
+            if (sum == 0) return;
+
+            SelectedTicket.Model.TicketItems.Where(x => !x.Voided && !x.Gifted).ToList().ForEach(x => CreateMergedItem(sum, x, serviceAmount));
 
             foreach (var paidItem in SelectedTicket.Model.PaidItems)
             {
                 var item = paidItem;
                 var mi = MergedItems.SingleOrDefault(x => x.MenuItemId == item.MenuItemId && x.Price == item.Price);
-                if (mi != null)
+                if (mi != null) 
                     mi.PaidItems.Add(paidItem);
             }
+        }
+
+        private void CreateMergedItem(decimal sum, TicketItem item, decimal serviceAmount)
+        {
+            var price = item.GetItemPrice();
+            price += (price * serviceAmount) / sum;
+            if (!item.TaxIncluded) price += item.TaxAmount;
+            var mitem = MergedItems.SingleOrDefault(x => x.MenuItemId == item.MenuItemId && x.Price == price);
+            if (mitem == null)
+            {
+                mitem = new MergedItem { Description = item.MenuItemName + item.GetPortionDesc(), Price = price, MenuItemId = item.MenuItemId };
+                MergedItems.Add(mitem);
+            }
+            mitem.Quantity += item.Quantity;
         }
 
         private decimal _selectedTotal;

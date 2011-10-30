@@ -3028,4 +3028,13 @@ Continue without adding details?</value>
 	<data name="DeleteErrorPrinterAssignedToPrinterMap">
 		<value><![CDATA[Can't delete because this Printer assigned to a Print Job]]></value>
 	</data>
+	<data name="Alphanumeric">
+		<value xml:space="preserve">Alphanumeric</value>
+	</data>
+	<data name="Numeric">
+		<value xml:space="preserve">Numeric</value>
+	</data>
+	<data name="TaggingType">
+		<value xml:space="preserve">Tagging Type</value>
+	</data>
 </root>

@@ -276,17 +276,17 @@ namespace Samba.Presentation.ViewModels
             RaisePropertyChanged("TicketRemainingLabel");
             RaisePropertyChanged("TicketDiscountLabel");
             RaisePropertyChanged("TicketPlainTotalLabel");
-            RaisePropertyChanged("TicketTaxServiceLabel");
+            RaisePropertyChanged("TicketServiceLabel");
             RaisePropertyChanged("TicketRoundingLabel");
-            RaisePropertyChanged("TicketVatLabel");
+            RaisePropertyChanged("TicketTaxLabel");
 
             RaisePropertyChanged("IsTicketRemainingVisible");
             RaisePropertyChanged("IsTicketPaymentVisible");
             RaisePropertyChanged("IsTicketDiscountVisible");
             RaisePropertyChanged("IsTicketTotalVisible");
-            RaisePropertyChanged("IsTicketVatTotalVisible");
+            RaisePropertyChanged("IsTicketTaxTotalVisible");
             RaisePropertyChanged("IsTicketRoundingVisible");
-            RaisePropertyChanged("IsTicketTaxServiceVisible");
+            RaisePropertyChanged("IsTicketServiceVisible");
             RaisePropertyChanged("IsTagged");
         }
 
@@ -506,7 +506,7 @@ namespace Samba.Presentation.ViewModels
 
             ClearSelectedItems();
 
-            var tagData = new TicketTagData { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name, NumericValue = tagGroup.NumericTags ? Convert.ToInt32(ticketTag.Name) : 0 };
+            var tagData = new TicketTagData { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name, NumericValue = tagGroup.IsNumeric ? Convert.ToDecimal(ticketTag.Name) : 0 };
 
             RuleExecutor.NotifyEvent(RuleEventNames.TicketTagSelected,
                         new

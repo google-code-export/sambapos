@@ -19,6 +19,9 @@ namespace Samba.Modules.MenuModule
         private readonly IList<string> _actions = new[] { Resources.Refresh, Resources.CloseTicket, Resources.GetPayment };
         public IList<string> Actions { get { return _actions; } }
 
+        private readonly IList<string> _tagTypes = new[] { Resources.Alphanumeric, Resources.Numeric, Resources.Price };
+        public IList<string> TagTypes { get { return _tagTypes; } }
+
         private IEnumerable<Numerator> _numerators;
         public IEnumerable<Numerator> Numerators
         {
@@ -33,11 +36,12 @@ namespace Samba.Modules.MenuModule
         public ICaptionCommand DeleteTicketTagCommand { get; set; }
 
         public string Action { get { return Actions[Model.Action]; } set { Model.Action = Actions.IndexOf(value); } }
+        public string TaggingType { get { return TagTypes[Model.TaggingType]; } set { Model.TaggingType = TagTypes.IndexOf(value); } }
+
         public Numerator Numerator { get { return Model.Numerator; } set { Model.Numerator = value; } }
         public bool FreeTagging { get { return Model.FreeTagging; } set { Model.FreeTagging = value; } }
         public bool SaveFreeTags { get { return Model.SaveFreeTags; } set { Model.SaveFreeTags = value; } }
         public bool ForceValue { get { return Model.ForceValue; } set { Model.ForceValue = value; } }
-        public bool NumericTags { get { return Model.NumericTags; } set { Model.NumericTags = value; } }
         public string ButtonColorWhenTagSelected { get { return Model.ButtonColorWhenTagSelected; } set { Model.ButtonColorWhenTagSelected = value; } }
         public string ButtonColorWhenNoTagSelected { get { return Model.ButtonColorWhenNoTagSelected; } set { Model.ButtonColorWhenNoTagSelected = value; } }
         public bool ActiveOnPosClient { get { return Model.ActiveOnPosClient; } set { Model.ActiveOnPosClient = value; } }
@@ -95,18 +99,28 @@ namespace Samba.Modules.MenuModule
 
         protected override string GetSaveErrorMessage()
         {
-            if (NumericTags)
+            foreach (var ticketTag in TicketTags)
             {
-                foreach (var ticketTag in TicketTags)
+                try
                 {
-                    try
-                    {
-                        Convert.ToInt32(ticketTag.Model.Name);
-                    }
-                    catch (Exception)
-                    {
+                    var str = ticketTag.Model.Name;
+
+                    if (Model.IsDecimal)
+                        str = Convert.ToDecimal(ticketTag.Model.Name).ToString();
+
+                    if (Model.IsInteger)
+                        str = Convert.ToInt32(ticketTag.Model.Name).ToString();
+
+                    if (str != ticketTag.Model.Name)
                         return Resources.NumericTagsShouldBeNumbersErrorMessage;
-                    }
+                }
+                catch (FormatException)
+                {
+                    return Resources.NumericTagsShouldBeNumbersErrorMessage;
+                }
+                catch (OverflowException)
+                {
+                    return Resources.NumericTagsShouldBeNumbersErrorMessage;
                 }
             }
             return base.GetSaveErrorMessage();

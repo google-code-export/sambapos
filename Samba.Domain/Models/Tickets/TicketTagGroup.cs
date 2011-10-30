@@ -7,6 +7,13 @@ using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Tickets
 {
+    internal enum TagTypes
+    {
+        Alphanumeric,
+        Numeric,
+        Price
+    }
+
     public class TicketTagGroup : IEntity, IOrderable
     {
         public int Id { get; set; }
@@ -24,7 +31,12 @@ namespace Samba.Domain.Models.Tickets
         public bool ActiveOnPosClient { get; set; }
         public bool ActiveOnTerminalClient { get; set; }
         public bool ForceValue { get; set; }
-        public bool NumericTags { get; set; }
+        public int TaggingType { get; set; }
+
+        public bool IsNumeric { get { return IsDecimal || IsInteger; } }
+        public bool IsAlphanumeric { get { return TaggingType == 0; } }
+        public bool IsInteger { get { return TaggingType == 1; } }
+        public bool IsDecimal { get { return TaggingType == 2; } }
 
         public string UserString
         {

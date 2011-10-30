@@ -32,7 +32,7 @@ namespace Samba.Domain.Models.Actions
 
             var parameters = (parameterValues ?? "").Split('#').Select(y => y.Split('='))
                 .Where(x => x.Length == 2 && propertyNames.Contains(x[1]))
-                .ToDictionary(x => x[0], x => dataObject.GetType().GetProperty(x[1].Trim('[', ']')).GetValue(dataObject, null).ToString());
+                .ToDictionary(x => x[0], x => dataObject.GetType().GetProperty(x[1].Trim('[', ']')).GetValue(dataObject, null));
 
             foreach (var pVals in (parameterValues ?? "").Split('#').Select(p => p.Split('=')).Where(pVals => pVals.Length == 2 && !parameters.ContainsKey(pVals[0])))
             {
@@ -43,7 +43,7 @@ namespace Samba.Domain.Models.Actions
                 .Select(match => match.Groups[1].Value)
                 .Where(value => parameters.Keys.Contains(value));
 
-            return matches.Aggregate(s, (current, value) => current.Replace(string.Format("[{0}]", value), parameters[value]));
+            return matches.Aggregate(s, (current, value) => current.Replace(string.Format("[{0}]", value), parameters[value].ToString()));
         }
     }
 }
