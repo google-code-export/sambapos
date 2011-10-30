@@ -506,7 +506,7 @@ namespace Samba.Presentation.ViewModels
 
             ClearSelectedItems();
 
-            var tagData = new TicketTagData { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name, NumericValue = tagGroup.NumericTags ? Convert.ToInt32(ticketTag.Name) : 0 };
+            var tagData = new TicketTagData { Action = tagGroup.Action, TagName = tagGroup.Name, TagValue = ticketTag.Name, NumericValue = tagGroup.NumericTags || tagGroup.PriceTags ? Convert.ToDecimal(ticketTag.Name) : 0 };
 
             RuleExecutor.NotifyEvent(RuleEventNames.TicketTagSelected,
                         new

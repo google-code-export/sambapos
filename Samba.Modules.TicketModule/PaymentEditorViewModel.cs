@@ -439,6 +439,7 @@ namespace Samba.Modules.TicketModule
 
             var serviceAmount = SelectedTicket.Model.GetTaxServicesTotal();
             var sum = SelectedTicket.Model.GetSumWithoutTax();
+            if (sum == 0) return;
 
             foreach (var item in SelectedTicket.Model.TicketItems)
             {

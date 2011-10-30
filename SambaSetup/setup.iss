@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.63 "
-#define FileVersion "263"
+#define Version "2.64 "
+#define FileVersion "264"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3

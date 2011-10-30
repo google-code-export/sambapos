@@ -25,6 +25,7 @@ namespace Samba.Domain.Models.Tickets
         public bool ActiveOnTerminalClient { get; set; }
         public bool ForceValue { get; set; }
         public bool NumericTags { get; set; }
+        public bool PriceTags { get; set; }
 
         public string UserString
         {

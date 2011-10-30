@@ -443,6 +443,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alphanumeric.
+        /// </summary>
+        public static string AlphaNumeric {
+            get {
+                return ResourceManager.GetString("AlphaNumeric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alphanumeric Buttons.
         /// </summary>
         public static string AlphanumericButtons {
@@ -4272,7 +4281,16 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numeric Tags.
+        ///   Looks up a localized string similar to Numeric.
+        /// </summary>
+        public static string Numeric {
+            get {
+                return ResourceManager.GetString("Numeric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numeric Tagging.
         /// </summary>
         public static string NumericTags {
             get {
@@ -4736,6 +4754,15 @@ namespace Samba.Localization.Properties {
         public static string PriceTag {
             get {
                 return ResourceManager.GetString("PriceTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price Tagging.
+        /// </summary>
+        public static string PriceTags {
+            get {
+                return ResourceManager.GetString("PriceTags", resourceCulture);
             }
         }
         
@@ -6082,6 +6109,15 @@ namespace Samba.Localization.Properties {
         public static string TagName {
             get {
                 return ResourceManager.GetString("TagName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag Type.
+        /// </summary>
+        public static string TagType {
+            get {
+                return ResourceManager.GetString("TagType", resourceCulture);
             }
         }
         
@@ -7454,7 +7490,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Ticket Tax or Service.
+        ///   Looks up a localized string similar to Update Ticket Service Amount.
         /// </summary>
         public static string UpdateTicketTaxService {
             get {

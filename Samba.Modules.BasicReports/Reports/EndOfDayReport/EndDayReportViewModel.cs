@@ -236,7 +236,24 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
                 foreach (var grp in tagGrp)
                 {
+                    var tag = ReportContext.TicketTagGroups.SingleOrDefault(x => x.Name == grp.Key);
+                    if (tag == null) continue;
+
                     report.AddBoldRow("Etiket", grp.Key, "", "");
+
+                    if (tag.PriceTags)
+                    {
+                        var tCount = grp.Sum(x => x.TicketCount);
+                        var tSum = grp.Sum(x => Convert.ToDecimal(x.TagName.Split(':')[1]) * x.TicketCount);
+                        var amnt = grp.Sum(x => x.Amount);
+                        var rate = tSum / amnt;
+                        report.AddRow("Etiket", string.Format(Resources.TotalAmount_f, tag.Name), "", tSum.ToString(ReportContext.CurrencyFormat));
+                        report.AddRow("Etiket", Resources.TicketCount, "", tCount);
+                        report.AddRow("Etiket", Resources.TicketTotal, "", amnt.ToString(ReportContext.CurrencyFormat));
+                        report.AddRow("Etiket", Resources.Rate, "", rate.ToString("%#0.##"));
+                        continue;
+                    }
+
                     foreach (var ticketTagInfo in grp)
                     {
                         report.AddRow("Etiket",
@@ -244,35 +261,32 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                             ticketTagInfo.TicketCount,
                             ticketTagInfo.Amount.ToString(ReportContext.CurrencyFormat));
                     }
-                    var tag = ReportContext.TicketTagGroups.SingleOrDefault(x => x.Name == grp.Key);
-                    if (tag != null)
+
+                    var totalAmount = grp.Sum(x => x.Amount);
+                    report.AddRow("Etiket", string.Format(Resources.TotalAmount_f, tag.Name), "", totalAmount.ToString(ReportContext.CurrencyFormat));
+
+                    var sum = 0m;
+
+                    if (tag.NumericTags)
                     {
-                        var totalAmount = grp.Sum(x => x.Amount);
-                        report.AddRow("Etiket", string.Format(Resources.TotalAmount_f, tag.Name), "", totalAmount.ToString(ReportContext.CurrencyFormat));
-
-                        var sum = 0m;
-
-                        if (tag.NumericTags)
+                        try
                         {
-                            try
-                            {
-                                sum = grp.Sum(x => Convert.ToDecimal(x.TagName.Split(':')[1]) * x.TicketCount);
-                                report.AddRow("Etiket", string.Format(Resources.TicketTotal_f, tag.Name), "", sum.ToString("#,##.##"));
-                            }
-                            catch (FormatException)
-                            {
-                                report.AddRow("Etiket", string.Format(Resources.TicketTotal_f, tag.Name), "", "#Hata!");
-                            }
+                            sum = grp.Sum(x => Convert.ToDecimal(x.TagName.Split(':')[1]) * x.TicketCount);
+                            report.AddRow("Etiket", string.Format(Resources.TicketTotal_f, tag.Name), "", sum.ToString("#,##.##"));
                         }
-                        else
+                        catch (FormatException)
                         {
-                            sum = grp.Sum(x => x.TicketCount);
+                            report.AddRow("Etiket", string.Format(Resources.TicketTotal_f, tag.Name), "", "#Hata!");
                         }
-                        if (sum > 0)
-                        {
-                            var average = totalAmount / sum;
-                            report.AddRow("Etiket", string.Format(Resources.TotalAmountDivTag_f, tag.Name), "", average.ToString(ReportContext.CurrencyFormat));
-                        }
+                    }
+                    else
+                    {
+                        sum = grp.Sum(x => x.TicketCount);
+                    }
+                    if (sum > 0)
+                    {
+                        var average = totalAmount / sum;
+                        report.AddRow("Etiket", string.Format(Resources.TotalAmountDivTag_f, tag.Name), "", average.ToString(ReportContext.CurrencyFormat));
                     }
                 }
             }

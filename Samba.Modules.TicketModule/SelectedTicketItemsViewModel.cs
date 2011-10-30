@@ -139,6 +139,8 @@ namespace Samba.Modules.TicketModule
             {
                 if (SelectedTicket != null && SelectedTicket.LastSelectedTicketTag != null && SelectedTicket.LastSelectedTicketTag.NumericTags)
                     return FilteredTextBox.FilteredTextBoxType.Digits;
+                if (SelectedTicket != null && SelectedTicket.LastSelectedTicketTag != null && SelectedTicket.LastSelectedTicketTag.PriceTags)
+                    return FilteredTextBox.FilteredTextBoxType.Number;
                 return FilteredTextBox.FilteredTextBoxType.Letters;
             }
         }
@@ -200,7 +202,7 @@ namespace Samba.Modules.TicketModule
                     var tag = tt.TicketTags.SingleOrDefault(x => x.Name.ToLower() == FreeTag.ToLower());
                     if (tag == null)
                     {
-                        tag = new TicketTag() { Name = FreeTag };
+                        tag = new TicketTag { Name = FreeTag };
                         tt.TicketTags.Add(tag);
                         workspace.Add(tag);
                         workspace.CommitChanges();

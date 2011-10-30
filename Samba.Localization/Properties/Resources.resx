@@ -838,7 +838,7 @@ Payment</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="NumericTags" xml:space="preserve">
-    <value>Numeric Tags</value>
+    <value>Numeric Tagging</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="FreeTagging" xml:space="preserve">
@@ -2954,7 +2954,7 @@ Will Trigger after {1} days, {2} hours, {3} minutes</value>
     <value>Regenerate Ticket TAX</value>
   </data>
   <data name="UpdateTicketTaxService" xml:space="preserve">
-    <value>Update Ticket Tax or Service</value>
+    <value>Update Ticket Service Amount</value>
   </data>
   <data name="Included" xml:space="preserve">
     <value>Included</value>
@@ -3032,16 +3032,29 @@ Continue without adding details?</value>
   <data name="Modifiers" xml:space="preserve">
     <value>Modifiers</value>
   </data>
-	<data name="APortionShouldSelected">
-		<value xml:space="preserve">A portion should selected</value>
-	</data>
-	<data name="ThereIsAnotherRecipeFor_f">
-		<value xml:space="preserve">There is another recipe for {0}</value>
-	</data>
-	<data name="DeleteErrorPrinterAssignedToTerminal">
-		<value><![CDATA[Can't delete because this Printer assigned to a Terminal]]></value>
-	</data>
-	<data name="DeleteErrorPrinterAssignedToPrinterMap">
-		<value><![CDATA[Can't delete because this Printer assigned to a Print Job]]></value>
-	</data>
+  <data name="APortionShouldSelected" xml:space="preserve">
+    <value>A portion should selected</value>
+  </data>
+  <data name="ThereIsAnotherRecipeFor_f" xml:space="preserve">
+    <value>There is another recipe for {0}</value>
+  </data>
+  <data name="DeleteErrorPrinterAssignedToTerminal" xml:space="preserve">
+    <value>Can't delete because this Printer assigned to a Terminal</value>
+  </data>
+  <data name="DeleteErrorPrinterAssignedToPrinterMap" xml:space="preserve">
+    <value>Can't delete because this Printer assigned to a Print Job</value>
+  </data>
+  <data name="PriceTags" xml:space="preserve">
+    <value>Price Tagging</value>
+  </data>
+  <data name="AlphaNumeric" xml:space="preserve">
+    <value>Alphanumeric</value>
+  </data>
+  <data name="Numeric" xml:space="preserve">
+    <value>Numeric</value>
+  </data>
+  <data name="TagType" xml:space="preserve">
+    <value>Tag Type</value>
+    <comment>Label content</comment>
+  </data>
 </root>

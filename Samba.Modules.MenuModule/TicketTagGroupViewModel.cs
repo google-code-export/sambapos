@@ -19,6 +19,9 @@ namespace Samba.Modules.MenuModule
         private readonly IList<string> _actions = new[] { Resources.Refresh, Resources.CloseTicket, Resources.GetPayment };
         public IList<string> Actions { get { return _actions; } }
 
+        private readonly IList<string> _tagTypes = new[] { Resources.AlphaNumeric, Resources.Numeric, Resources.Price };
+        public IList<string> TagTypes { get { return _tagTypes; } }
+
         private IEnumerable<Numerator> _numerators;
         public IEnumerable<Numerator> Numerators
         {
@@ -38,10 +41,41 @@ namespace Samba.Modules.MenuModule
         public bool SaveFreeTags { get { return Model.SaveFreeTags; } set { Model.SaveFreeTags = value; } }
         public bool ForceValue { get { return Model.ForceValue; } set { Model.ForceValue = value; } }
         public bool NumericTags { get { return Model.NumericTags; } set { Model.NumericTags = value; } }
+        public bool PriceTags { get { return Model.PriceTags; } set { Model.PriceTags = value; } }
         public string ButtonColorWhenTagSelected { get { return Model.ButtonColorWhenTagSelected; } set { Model.ButtonColorWhenTagSelected = value; } }
         public string ButtonColorWhenNoTagSelected { get { return Model.ButtonColorWhenNoTagSelected; } set { Model.ButtonColorWhenNoTagSelected = value; } }
         public bool ActiveOnPosClient { get { return Model.ActiveOnPosClient; } set { Model.ActiveOnPosClient = value; } }
         public bool ActiveOnTerminalClient { get { return Model.ActiveOnTerminalClient; } set { Model.ActiveOnTerminalClient = value; } }
+
+        public string TaggingType { get { return TagTypes[SelectedTaggingType]; } set { SelectedTaggingType = TagTypes.IndexOf(value); } }
+
+        public int SelectedTaggingType
+        {
+            get
+            {
+                if (NumericTags && !PriceTags) return 1;
+                if (!NumericTags && PriceTags) return 2;
+                return 0;
+            }
+            set
+            {
+                if (value == 1)
+                {
+                    NumericTags = true;
+                    PriceTags = false;
+                }
+                else if (value == 2)
+                {
+                    NumericTags = false;
+                    PriceTags = true;
+                }
+                else
+                {
+                    NumericTags = false;
+                    PriceTags = false;
+                }
+            }
+        }
 
         public TicketTagGroupViewModel(TicketTagGroup model)
             : base(model)
@@ -95,13 +129,32 @@ namespace Samba.Modules.MenuModule
 
         protected override string GetSaveErrorMessage()
         {
+            if (PriceTags)
+            {
+                foreach (var ticketTag in TicketTags)
+                {
+                    try
+                    {
+                        var dec = Convert.ToDecimal(ticketTag.Model.Name);
+                        if (dec.ToString() != ticketTag.Model.Name)
+                            return Resources.NumericTagsShouldBeNumbersErrorMessage;
+                    }
+                    catch (Exception)
+                    {
+                        return Resources.NumericTagsShouldBeNumbersErrorMessage;
+                    }
+                }
+            }
+
             if (NumericTags)
             {
                 foreach (var ticketTag in TicketTags)
                 {
                     try
                     {
-                        Convert.ToInt32(ticketTag.Model.Name);
+                        var dec = Convert.ToInt32(ticketTag.Model.Name);
+                        if (dec.ToString() != ticketTag.Model.Name)
+                            return Resources.NumericTagsShouldBeNumbersErrorMessage;
                     }
                     catch (Exception)
                     {

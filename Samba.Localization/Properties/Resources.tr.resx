@@ -837,7 +837,7 @@ Yap</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="NumericTags" xml:space="preserve">
-    <value>Sayısal Etiketler</value>
+    <value>Sayısal Etiketleme</value>
     <comment>CheckBox content</comment>
   </data>
   <data name="FreeTagging" xml:space="preserve">
@@ -3049,4 +3049,17 @@ Bilgi eklemeden devam etmek istiyor musunuz?]]>
 	<data name="DeleteErrorPrinterAssignedToPrinterMap">
 		<value>Bu yazıcı bir yazdırma görevinde kullanıldığı için silinemez.</value>
 	</data>
+	<data name="PriceTags" xml:space="preserve">
+    <value>Fiyat Etiketleme</value>
+  </data>
+	<data name="AlphaNumeric">
+		<value xml:space="preserve">Alfasayısal</value>
+	</data>
+	<data name="Numeric">
+		<value xml:space="preserve">Sayısal</value>
+	</data>
+	<data name="TagType" xml:space="preserve">
+    <value>Etiket Tipi</value>
+    <comment>Label content</comment>
+  </data>
 </root>
