@@ -105,7 +105,7 @@ namespace Samba.Modules.SettingsModule
             }
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

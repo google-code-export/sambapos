@@ -86,7 +86,7 @@ namespace Samba.Modules.InventoryModule
             SelectedTransactionItem = tiv;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

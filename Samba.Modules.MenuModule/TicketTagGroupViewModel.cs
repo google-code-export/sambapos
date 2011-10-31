@@ -95,7 +95,7 @@ namespace Samba.Modules.MenuModule
             return Resources.TicketTag;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

@@ -109,7 +109,7 @@ namespace Samba.Modules.SettingsModule
             return Resources.PrintJob;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

@@ -67,7 +67,7 @@ namespace Samba.Modules.MenuModule
             return Resources.ModifierGroup;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

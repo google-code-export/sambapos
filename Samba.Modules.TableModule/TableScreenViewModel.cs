@@ -73,7 +73,7 @@ namespace Samba.Modules.TableModule
             return Resources.TableView;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

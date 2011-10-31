@@ -42,7 +42,7 @@ namespace Samba.Modules.SettingsModule
             return Resources.Terminal;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
             Printers = workspace.All<Printer>();

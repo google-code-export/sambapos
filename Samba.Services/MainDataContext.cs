@@ -571,6 +571,9 @@ namespace Samba.Services
                 var selectedDepartment = SelectedDepartment != null ? SelectedDepartment.Id : 0;
                 var selectedTableScreen = SelectedTableScreen != null ? SelectedTableScreen.Id : 0;
 
+                SelectedTableScreen = null;
+                SelectedDepartment = null;
+                
                 _tableScreens = null;
                 _departments = null;
                 _permittedDepartments = null;
@@ -582,9 +585,9 @@ namespace Samba.Services
                 _vatTemplates = null;
                 _taxServiceTemplates = null;
 
-                if (selectedTableScreen > 0)
+                if (selectedTableScreen > 0 && TableScreens.Count(x => x.Id == selectedTableScreen) > 0)
                     SelectedTableScreen = TableScreens.Single(x => x.Id == selectedTableScreen);
-                if (selectedDepartment > 0)
+                if (selectedDepartment > 0 && Departments.Count(x => x.Id == selectedDepartment) > 0)
                     SelectedDepartment = Departments.Single(x => x.Id == selectedDepartment);
             }
         }

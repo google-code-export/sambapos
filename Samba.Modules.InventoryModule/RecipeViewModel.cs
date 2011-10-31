@@ -118,7 +118,7 @@ namespace Samba.Modules.InventoryModule
             set { Model.FixedCost = value; }
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

@@ -139,7 +139,7 @@ namespace Samba.Modules.MenuModule
             return Resources.Product;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

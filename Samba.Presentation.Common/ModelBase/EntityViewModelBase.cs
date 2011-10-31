@@ -35,14 +35,14 @@ namespace Samba.Presentation.Common.ModelBase
 
         public abstract string GetModelTypeString();
 
-        internal void Init(IWorkspace workspace)
+        public void Init(IWorkspace workspace)
         {
             _modelSaved = false;
             _workspace = workspace;
             Initialize(workspace);
         }
 
-        public virtual void Initialize(IWorkspace workspace)
+        protected virtual void Initialize(IWorkspace workspace)
         {
 
         }

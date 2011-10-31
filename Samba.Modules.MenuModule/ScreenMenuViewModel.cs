@@ -46,7 +46,7 @@ namespace Samba.Modules.MenuModule
             return Resources.Menu;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
             Categories = new ObservableCollection<ScreenMenuCategoryViewModel>(GetCategories(Model));

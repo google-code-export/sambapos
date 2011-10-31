@@ -64,7 +64,7 @@ namespace Samba.Modules.UserModule
             return Resources.UserRole;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize(IWorkspace workspace)
         {
             _workspace = workspace;
         }

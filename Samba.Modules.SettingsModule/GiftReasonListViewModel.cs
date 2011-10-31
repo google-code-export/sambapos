@@ -33,7 +33,7 @@ namespace Samba.Modules.SettingsModule
 
             foreach (var mv in createdItems.Select(CreateNewViewModel))
             {
-                mv.Initialize(Workspace);
+                mv.Init(Workspace);
                 Items.Add(mv);
             }
         }
@@ -45,7 +45,7 @@ namespace Samba.Modules.SettingsModule
 
         protected override Reason CreateNewModel()
         {
-            return new Reason() { ReasonType = 1 };
+            return new Reason { ReasonType = 1 };
         }
 
         protected override System.Collections.ObjectModel.ObservableCollection<GiftReasonViewModel> GetItemsList()
