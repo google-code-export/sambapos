@@ -15,7 +15,6 @@ namespace Samba.Modules.InventoryModule
 {
     class TransactionViewModel : EntityViewModelBase<InventoryTransaction>
     {
-        private IWorkspace _workspace;
         public TransactionViewModel(InventoryTransaction model)
             : base(model)
         {
@@ -43,7 +42,7 @@ namespace Samba.Modules.InventoryModule
             if (Model.TransactionItems.Count == 0)
                 AddTransactionItemCommand.Execute("");
             return new ObservableCollection<TransactionItemViewModel>(
-                     Model.TransactionItems.Select(x => new TransactionItemViewModel(x, _workspace)));
+                     Model.TransactionItems.Select(x => new TransactionItemViewModel(x, Workspace)));
         }
 
         private TransactionItemViewModel _selectedTransactionItem;
@@ -65,7 +64,7 @@ namespace Samba.Modules.InventoryModule
         private void OnDeleteTransactionItem(string obj)
         {
             if (SelectedTransactionItem.Model.Id > 0)
-                _workspace.Delete(SelectedTransactionItem.Model);
+                Workspace.Delete(SelectedTransactionItem.Model);
             Model.TransactionItems.Remove(SelectedTransactionItem.Model);
             TransactionItems.Remove(SelectedTransactionItem);
         }
@@ -83,15 +82,10 @@ namespace Samba.Modules.InventoryModule
         private void OnAddTransactionItem(string obj)
         {
             var ti = new InventoryTransactionItem();
-            var tiv = new TransactionItemViewModel(ti, _workspace);
+            var tiv = new TransactionItemViewModel(ti, Workspace);
             Model.TransactionItems.Add(ti);
             TransactionItems.Add(tiv);
             SelectedTransactionItem = tiv;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
 
         protected override void OnSave(string value)
@@ -104,7 +98,7 @@ namespace Samba.Modules.InventoryModule
                     modified = true;
                     Model.TransactionItems.Remove(transactionItemViewModel.Model);
                     if (transactionItemViewModel.Model.Id > 0)
-                        _workspace.Delete(transactionItemViewModel.Model);
+                        Workspace.Delete(transactionItemViewModel.Model);
                 }
             }
             if (modified) _transactionItems = null;

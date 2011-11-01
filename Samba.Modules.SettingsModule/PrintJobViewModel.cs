@@ -5,7 +5,6 @@ using System.Linq;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -23,8 +22,6 @@ namespace Samba.Modules.SettingsModule
             DeletePrinterMapCommand = new CaptionCommand<string>(Resources.Delete, OnDelete, CanDelete);
         }
 
-        private IWorkspace _workspace;
-
         public ICaptionCommand AddPrinterMapCommand { get; set; }
         public ICaptionCommand DeletePrinterMapCommand { get; set; }
 
@@ -34,8 +31,8 @@ namespace Samba.Modules.SettingsModule
         public IList<string> WhatToPrintTypes { get { return _whatToPrintTypes; } }
 
         public IEnumerable<Department> Departments { get { return GetAllDepartments(); } }
-        public IEnumerable<Printer> Printers { get { return _workspace.All<Printer>(); } }
-        public IEnumerable<PrinterTemplate> PrinterTemplates { get { return _workspace.All<PrinterTemplate>(); } }
+        public IEnumerable<Printer> Printers { get { return Workspace.All<Printer>(); } }
+        public IEnumerable<PrinterTemplate> PrinterTemplates { get { return Workspace.All<PrinterTemplate>(); } }
 
         private readonly IList<PrinterMap> _newPrinterMaps;
 
@@ -87,7 +84,7 @@ namespace Samba.Modules.SettingsModule
 
         private IEnumerable<Department> GetAllDepartments()
         {
-            IList<Department> result = new List<Department>(_workspace.All<Department>().OrderBy(x => x.Name));
+            IList<Department> result = new List<Department>(Workspace.All<Department>().OrderBy(x => x.Name));
             result.Insert(0, Department.All);
             return result;
         }
@@ -96,7 +93,7 @@ namespace Samba.Modules.SettingsModule
         {
             return new ObservableCollection<PrinterMapViewModel>(
                     Model.PrinterMaps.Select(
-                    printerMap => new PrinterMapViewModel(printerMap, _workspace)));
+                    printerMap => new PrinterMapViewModel(printerMap, Workspace)));
         }
 
         public override Type GetViewType()
@@ -107,11 +104,6 @@ namespace Samba.Modules.SettingsModule
         public override string GetModelTypeString()
         {
             return Resources.PrintJob;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
 
         protected override void OnSave(string value)
@@ -132,7 +124,7 @@ namespace Samba.Modules.SettingsModule
                     if (newPrinterMap.MenuItem == MenuItem.All) newPrinterMap.MenuItem = null;
                     if (newPrinterMap.MenuItemGroupCode == "*") newPrinterMap.MenuItemGroupCode = null;
                     if (newPrinterMap.TicketTag == "*") newPrinterMap.TicketTag = null;
-                    _workspace.Add(newPrinterMap);
+                    Workspace.Add(newPrinterMap);
                 }
             }
             base.OnSave(value);
@@ -150,8 +142,8 @@ namespace Samba.Modules.SettingsModule
                     _newPrinterMaps.Remove(map);
                 else
                 {
-                    _workspace.Delete(map);
-                    _workspace.CommitChanges();
+                    Workspace.Delete(map);
+                    Workspace.CommitChanges();
                 }
             }
         }
@@ -164,7 +156,7 @@ namespace Samba.Modules.SettingsModule
         private void OnAddPrinterMap(object obj)
         {
             var map = new PrinterMap { Department = Department.All, MenuItem = MenuItem.All, MenuItemGroupCode = "*" };
-            var mapModel = new PrinterMapViewModel(map, _workspace);
+            var mapModel = new PrinterMapViewModel(map, Workspace);
             Model.PrinterMaps.Add(map);
             PrinterMaps.Add(mapModel);
             _newPrinterMaps.Add(map);

@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -14,8 +13,6 @@ namespace Samba.Modules.MenuModule
 {
     public class TicketTagGroupViewModel : EntityViewModelBase<TicketTagGroup>
     {
-        private IWorkspace _workspace;
-
         private readonly IList<string> _actions = new[] { Resources.Refresh, Resources.CloseTicket, Resources.GetPayment };
         public IList<string> Actions { get { return _actions; } }
 
@@ -25,7 +22,7 @@ namespace Samba.Modules.MenuModule
         private IEnumerable<Numerator> _numerators;
         public IEnumerable<Numerator> Numerators
         {
-            get { return _numerators ?? (_numerators = _workspace.All<Numerator>()); }
+            get { return _numerators ?? (_numerators = Workspace.All<Numerator>()); }
         }
 
         private readonly ObservableCollection<TicketTagViewModel> _ticketTags;
@@ -65,11 +62,6 @@ namespace Samba.Modules.MenuModule
             return Resources.TicketTag;
         }
 
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
-        }
-
         public override Type GetViewType()
         {
             return typeof(TicketTagGroupView);
@@ -84,7 +76,7 @@ namespace Samba.Modules.MenuModule
         {
             if (SelectedTicketTag == null) return;
             if (SelectedTicketTag.Model.Id > 0)
-                _workspace.Delete(SelectedTicketTag.Model);
+                Workspace.Delete(SelectedTicketTag.Model);
             Model.TicketTags.Remove(SelectedTicketTag.Model);
             TicketTags.Remove(SelectedTicketTag);
         }
@@ -92,7 +84,7 @@ namespace Samba.Modules.MenuModule
         private void OnAddTicketTagExecuted(string obj)
         {
             var ti = new TicketTag { Name = Resources.NewTag };
-            _workspace.Add(ti);
+            Workspace.Add(ti);
             Model.TicketTags.Add(ti);
             TicketTags.Add(new TicketTagViewModel(ti));
         }

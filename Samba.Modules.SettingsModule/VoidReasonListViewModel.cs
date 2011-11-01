@@ -31,7 +31,7 @@ namespace Samba.Modules.SettingsModule
 
             foreach (var mv in createdItems.Select(CreateNewViewModel))
             {
-                mv.Initialize(Workspace);
+                mv.Init(Workspace);
                 Items.Add(mv);
             }
         }

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Samba.Domain.Models.Menus;
-using Samba.Infrastructure;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -13,8 +11,6 @@ namespace Samba.Modules.MenuModule
 {
     public class MenuItemPropertyGroupViewModel : EntityViewModelBase<MenuItemPropertyGroup>
     {
-        private IWorkspace _workspace;
-
         private readonly ObservableCollection<MenuItemPropertyViewModel> _properties;
         public ObservableCollection<MenuItemPropertyViewModel> Properties { get { return _properties; } }
 
@@ -42,7 +38,7 @@ namespace Samba.Modules.MenuModule
         {
             if (SelectedProperty == null) return;
             if (SelectedProperty.Model.Id > 0)
-                _workspace.Delete(SelectedProperty.Model);
+                Workspace.Delete(SelectedProperty.Model);
             Model.Properties.Remove(SelectedProperty.Model);
             Properties.Remove(SelectedProperty);
         }
@@ -65,11 +61,6 @@ namespace Samba.Modules.MenuModule
         public override string GetModelTypeString()
         {
             return Resources.ModifierGroup;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
 
         public override Type GetViewType()

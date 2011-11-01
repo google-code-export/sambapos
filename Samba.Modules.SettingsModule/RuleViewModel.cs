@@ -14,8 +14,6 @@ namespace Samba.Modules.SettingsModule
 {
     public class RuleViewModel : EntityViewModelBase<AppRule>
     {
-        private IWorkspace _workspace;
-
         public RuleViewModel(AppRule model)
             : base(model)
         {
@@ -47,7 +45,7 @@ namespace Samba.Modules.SettingsModule
         {
             IList<IOrderable> selectedValues = new List<IOrderable>(Model.Actions);
             var selectedIds = selectedValues.Select(x => ((ActionContainer)x).AppActionId);
-            IList<IOrderable> values = new List<IOrderable>(_workspace.All<AppAction>(x => !selectedIds.Contains(x.Id)).Select(x => new ActionContainer(x)));
+            IList<IOrderable> values = new List<IOrderable>(Workspace.All<AppAction>(x => !selectedIds.Contains(x.Id)).Select(x => new ActionContainer(x)));
 
             var choosenValues = InteractionService.UserIntraction.ChooseValuesFrom(values, selectedValues, Resources.ActionList,
                                                                                    Resources.SelectActions, Resources.Action, Resources.Actions);
@@ -58,7 +56,7 @@ namespace Samba.Modules.SettingsModule
                 if (choosenValues.FirstOrDefault(x => ((ActionContainer)x).AppActionId == laction.AppActionId) == null)
                 {
                     if (action.Id > 0)
-                        _workspace.Delete(action);
+                        Workspace.Delete(action);
                 }
             }
 
@@ -103,11 +101,6 @@ namespace Samba.Modules.SettingsModule
                 Constraints = new ObservableCollection<RuleConstraintViewModel>(
                     RuleActionTypeRegistry.GetEventConstraints(Model.EventName));
             }
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
 
         public override Type GetViewType()

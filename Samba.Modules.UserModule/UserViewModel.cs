@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using FluentValidation;
 using Samba.Domain.Models.Users;
-using Samba.Infrastructure;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -54,9 +52,9 @@ namespace Samba.Modules.UserModule
             return Resources.User;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize()
         {
-            Roles = workspace.All<UserRole>();
+            Roles = Workspace.All<UserRole>();
         }
 
         protected override string GetSaveErrorMessage()

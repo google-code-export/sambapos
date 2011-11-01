@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
 using FluentValidation;
 using Samba.Infrastructure.Data;
@@ -14,7 +11,9 @@ namespace Samba.Presentation.Common.ModelBase
         public TModel Model { get; private set; }
         public ICaptionCommand SaveCommand { get; private set; }
         private IValidator<TModel> _validator;
-        private IWorkspace _workspace;
+
+        protected IWorkspace Workspace { get; private set; }
+
         protected EntityViewModelBase(TModel model)
         {
             Model = model;
@@ -33,16 +32,16 @@ namespace Samba.Presentation.Common.ModelBase
 
         public abstract string GetModelTypeString();
 
-        internal void Init(IWorkspace workspace)
+        public void Init(IWorkspace workspace)
         {
             _modelSaved = false;
-            _workspace = workspace;
-            Initialize(workspace);
+            Workspace = workspace;
+            Initialize();
         }
 
-        public virtual void Initialize(IWorkspace workspace)
+        protected virtual void Initialize()
         {
-
+            // override to initialize
         }
 
         public override void OnShown()
@@ -122,7 +121,7 @@ namespace Samba.Presentation.Common.ModelBase
         {
             if (Model.Id > 0)
             {
-                _workspace.Refresh(Model);
+                Workspace.Refresh(Model);
                 RaisePropertyChanged("Name");
             }
         }

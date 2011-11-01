@@ -18,8 +18,6 @@ namespace Samba.Modules.MenuModule
 {
     public class DepartmentViewModel : EntityViewModelBase<Department>
     {
-        private IWorkspace _workspace;
-
         private IEnumerable<ScreenMenu> _screenMenus;
         public IEnumerable<ScreenMenu> ScreenMenus
         {
@@ -47,7 +45,7 @@ namespace Samba.Modules.MenuModule
         }
 
         private IEnumerable<Numerator> _numerators;
-        public IEnumerable<Numerator> Numerators { get { return _numerators ?? (_numerators = _workspace.All<Numerator>()); } set { _numerators = value; } }
+        public IEnumerable<Numerator> Numerators { get { return _numerators ?? (_numerators = Workspace.All<Numerator>()); } set { _numerators = value; } }
 
         public int ScreenMenuId { get { return Model.ScreenMenuId; } set { Model.ScreenMenuId = value; } }
         public int TerminalScreenMenuId { get { return Model.TerminalScreenMenuId; } set { Model.TerminalScreenMenuId = value; } }
@@ -123,7 +121,7 @@ namespace Samba.Modules.MenuModule
         private void OnAddServiceTemplate(string obj)
         {
             var selectedValues =
-              InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<ServiceTemplate>().ToList<IOrderable>(),
+              InteractionService.UserIntraction.ChooseValuesFrom(Workspace.All<ServiceTemplate>().ToList<IOrderable>(),
               Model.ServiceTemplates.ToList<IOrderable>(), Resources.ServiceTemplates, string.Format(Resources.ChooseServicesForDepartmentHint_f, Model.Name),
               Resources.ServiceTemplate, Resources.ServiceTemplates);
 
@@ -152,7 +150,7 @@ namespace Samba.Modules.MenuModule
         private void OnAddTicketTagGroup(string obj)
         {
             var selectedValues =
-                InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<TicketTagGroup>().ToList<IOrderable>(),
+                InteractionService.UserIntraction.ChooseValuesFrom(Workspace.All<TicketTagGroup>().ToList<IOrderable>(),
                 Model.TicketTagGroups.ToList<IOrderable>(), Resources.TicketTags, string.Format(Resources.ChooseTagsForDepartmentHint, Model.Name),
                 Resources.TicketTag, Resources.TicketTags);
 
@@ -185,11 +183,6 @@ namespace Samba.Modules.MenuModule
         public override string GetModelTypeString()
         {
             return Resources.Department;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
 
         protected override AbstractValidator<Department> GetValidator()

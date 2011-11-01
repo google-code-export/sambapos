@@ -14,8 +14,6 @@ namespace Samba.Modules.TableModule
 {
     public class TableScreenViewModel : EntityViewModelBase<TableScreen>
     {
-        private IWorkspace _workspace;
-
         public ICaptionCommand SelectTablesCommand { get; set; }
         private ObservableCollection<TableScreenItemViewModel> _screenItems;
         public ObservableCollection<TableScreenItemViewModel> ScreenItems
@@ -44,7 +42,7 @@ namespace Samba.Modules.TableModule
 
         private void OnSelectTables(string obj)
         {
-            IList<IOrderable> values = new List<IOrderable>(_workspace.All<Table>()
+            IList<IOrderable> values = new List<IOrderable>(Workspace.All<Table>()
                 .Where(x => ScreenItems.SingleOrDefault(y => y.Model.Id == x.Id) == null));
 
             IList<IOrderable> selectedValues = new List<IOrderable>(ScreenItems.Select(x => x.Model));
@@ -71,11 +69,6 @@ namespace Samba.Modules.TableModule
         public override string GetModelTypeString()
         {
             return Resources.TableView;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
     }
 }

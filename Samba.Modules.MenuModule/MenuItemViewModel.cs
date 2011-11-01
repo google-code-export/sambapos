@@ -14,8 +14,6 @@ namespace Samba.Modules.MenuModule
 {
     public class MenuItemViewModel : EntityViewModelBase<MenuItem>
     {
-        private IWorkspace _workspace;
-
         private IEnumerable<string> _groupCodes;
         public IEnumerable<string> GroupCodes { get { return _groupCodes ?? (_groupCodes = Dao.Distinct<MenuItem>(x => x.GroupCode)); } }
 
@@ -37,7 +35,7 @@ namespace Samba.Modules.MenuModule
         private IEnumerable<TaxTemplateViewModel> _taxTemplates;
         public IEnumerable<TaxTemplateViewModel> TaxTemplates
         {
-            get { return _taxTemplates ?? (_taxTemplates = _workspace.All<TaxTemplate>().Select(x => new TaxTemplateViewModel(x))); }
+            get { return _taxTemplates ?? (_taxTemplates = Workspace.All<TaxTemplate>().Select(x => new TaxTemplateViewModel(x))); }
         }
 
         public TaxTemplate TaxTemplate { get { return Model.TaxTemplate; } set { Model.TaxTemplate = value; } }
@@ -94,7 +92,7 @@ namespace Samba.Modules.MenuModule
         private void OnAddPropertyGroup(string obj)
         {
             var selectedValues =
-                InteractionService.UserIntraction.ChooseValuesFrom(_workspace.All<MenuItemPropertyGroup>().ToList<IOrderable>(),
+                InteractionService.UserIntraction.ChooseValuesFrom(Workspace.All<MenuItemPropertyGroup>().ToList<IOrderable>(),
                 Model.PropertyGroups.ToList<IOrderable>(), Resources.PropertyGroups, string.Format(Resources.SelectPropertyGroupsHint_f, Model.Name),
                 Resources.PropertyGroup, Resources.PropertyGroups);
 
@@ -116,14 +114,14 @@ namespace Samba.Modules.MenuModule
         {
             var portion = MenuItem.AddDefaultMenuPortion(Model);
             Portions.Add(new PortionViewModel(portion));
-            _workspace.Add(portion);
+            Workspace.Add(portion);
         }
 
         private void OnDeletePortion(string value)
         {
             if (SelectedPortion != null)
             {
-                _workspace.Delete(SelectedPortion.Model);
+                Workspace.Delete(SelectedPortion.Model);
                 Model.Portions.Remove(SelectedPortion.Model);
                 Portions.Remove(SelectedPortion);
             }
@@ -137,11 +135,6 @@ namespace Samba.Modules.MenuModule
         public override string GetModelTypeString()
         {
             return Resources.Product;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
 
         public override Type GetViewType()

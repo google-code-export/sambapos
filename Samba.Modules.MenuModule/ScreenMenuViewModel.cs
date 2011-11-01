@@ -14,8 +14,6 @@ namespace Samba.Modules.MenuModule
 {
     public class ScreenMenuViewModel : EntityViewModelBase<ScreenMenu>
     {
-        private IWorkspace _workspace;
-
         public ScreenMenuViewModel(ScreenMenu model)
             : base(model)
         {
@@ -46,9 +44,8 @@ namespace Samba.Modules.MenuModule
             return Resources.Menu;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize()
         {
-            _workspace = workspace;
             Categories = new ObservableCollection<ScreenMenuCategoryViewModel>(GetCategories(Model));
         }
 
@@ -89,7 +86,7 @@ namespace Samba.Modules.MenuModule
         }
 
         private IEnumerable<MenuItem> GetMenuItemsByGroupCode(string groupCode)
-        { return _workspace.All<MenuItem>(x => x.GroupCode == groupCode); }
+        { return Workspace.All<MenuItem>(x => x.GroupCode == groupCode); }
 
         private bool CanEditCategory(string value)
         {
@@ -115,7 +112,7 @@ namespace Samba.Modules.MenuModule
         {
             if (SelectedCategory != null)
             {
-                IList<IOrderable> values = new List<IOrderable>(_workspace.All<MenuItem>().OrderBy(x => x.GroupCode + x.Name)
+                IList<IOrderable> values = new List<IOrderable>(Workspace.All<MenuItem>().OrderBy(x => x.GroupCode + x.Name)
                     .Where(x => !SelectedCategory.ContainsMenuItem(x))
                     .Select(x => new ScreenMenuItem { MenuItemId = x.Id, Name = x.Name, MenuItem = x }));
 
@@ -127,7 +124,7 @@ namespace Samba.Modules.MenuModule
                 foreach (var screenMenuItem in SelectedCategory.ScreenMenuItems.ToList())
                 {
                     if (!choosenValues.Contains(screenMenuItem))
-                        _workspace.Delete(screenMenuItem);
+                        Workspace.Delete(screenMenuItem);
                 }
 
                 SelectedCategory.ScreenMenuItems.Clear();
@@ -146,7 +143,7 @@ namespace Samba.Modules.MenuModule
             if (MessageBox.Show(Resources.DeleteSelectedCategoryQuestion, Resources.Confirmation, MessageBoxButton.YesNo) == MessageBoxResult.Yes
                 && SelectedCategory != null)
             {
-                _workspace.Delete(SelectedCategory.Model);
+                Workspace.Delete(SelectedCategory.Model);
                 Model.Categories.Remove(SelectedCategory.Model);
                 Categories.Remove(SelectedCategory);
             }

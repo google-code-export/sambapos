@@ -38,7 +38,7 @@ namespace Samba.Modules.InventoryModule
         private ObservableCollection<RecipeItemViewModel> _recipeItems;
         public ObservableCollection<RecipeItemViewModel> RecipeItems
         {
-            get { return _recipeItems ?? (_recipeItems = new ObservableCollection<RecipeItemViewModel>(Model.RecipeItems.Select(x => new RecipeItemViewModel(x, _workspace)))); }
+            get { return _recipeItems ?? (_recipeItems = new ObservableCollection<RecipeItemViewModel>(Model.RecipeItems.Select(x => new RecipeItemViewModel(x, Workspace)))); }
         }
 
         private RecipeItemViewModel _selectedRecipeItem;
@@ -61,7 +61,7 @@ namespace Samba.Modules.InventoryModule
                 _selectedMenuItemName = value;
                 if (SelectedMenuItem == null || SelectedMenuItem.Name != value)
                 {
-                    var mi = _workspace.Single<MenuItem>(x => x.Name.ToLower() == _selectedMenuItemName.ToLower());
+                    var mi = Workspace.Single<MenuItem>(x => x.Name.ToLower() == _selectedMenuItemName.ToLower());
                     SelectedMenuItem = mi;
                     if (mi != null && mi.Portions.Count == 1)
                         Portion = mi.Portions[0];
@@ -77,7 +77,6 @@ namespace Samba.Modules.InventoryModule
         }
 
         private MenuItem _selectedMenuItem;
-        private IWorkspace _workspace;
 
         public MenuItem SelectedMenuItem
         {
@@ -97,7 +96,7 @@ namespace Samba.Modules.InventoryModule
             if (_selectedMenuItem == null)
             {
                 if (Model.Portion != null)
-                    SelectedMenuItem = _workspace.Single<MenuItem>(x => x.Id == Model.Portion.MenuItemId);
+                    SelectedMenuItem = Workspace.Single<MenuItem>(x => x.Id == Model.Portion.MenuItemId);
             }
             return _selectedMenuItem;
         }
@@ -118,17 +117,12 @@ namespace Samba.Modules.InventoryModule
             set { Model.FixedCost = value; }
         }
 
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
-        }
-
         private void OnDeleteInventoryItem(string obj)
         {
             if (SelectedRecipeItem != null)
             {
                 if (SelectedRecipeItem.Model.Id > 0)
-                    _workspace.Delete(SelectedRecipeItem.Model);
+                    Workspace.Delete(SelectedRecipeItem.Model);
                 Model.RecipeItems.Remove(SelectedRecipeItem.Model);
                 RecipeItems.Remove(SelectedRecipeItem);
             }
@@ -138,7 +132,7 @@ namespace Samba.Modules.InventoryModule
         {
             var ri = new RecipeItem();
             Model.RecipeItems.Add(ri);
-            var riv = new RecipeItemViewModel(ri, _workspace);
+            var riv = new RecipeItemViewModel(ri, Workspace);
             RecipeItems.Add(riv);
             SelectedRecipeItem = riv;
         }

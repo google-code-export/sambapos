@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using FluentValidation;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
-using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Services;
@@ -13,8 +12,6 @@ namespace Samba.Modules.UserModule
 {
     public class UserRoleViewModel : EntityViewModelBase<UserRole>
     {
-        private IWorkspace _workspace;
-
         public UserRoleViewModel(UserRole role)
             : base(role)
         { }
@@ -40,7 +37,7 @@ namespace Samba.Modules.UserModule
         private IEnumerable<Department> _departments;
         public IEnumerable<Department> Departments
         {
-            get { return _departments ?? (_departments = _workspace.All<Department>()); }
+            get { return _departments ?? (_departments = Workspace.All<Department>()); }
         }
 
         public int DepartmentId
@@ -63,11 +60,6 @@ namespace Samba.Modules.UserModule
         public override string GetModelTypeString()
         {
             return Resources.UserRole;
-        }
-
-        public override void Initialize(IWorkspace workspace)
-        {
-            _workspace = workspace;
         }
 
         protected override AbstractValidator<UserRole> GetValidator()

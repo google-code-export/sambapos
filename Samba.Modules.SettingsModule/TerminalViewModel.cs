@@ -20,8 +20,6 @@ namespace Samba.Modules.SettingsModule
             SelectPrintJobsCommand = new CaptionCommand<string>(Resources.SelectPrintJob, OnAddPrintJob);
         }
 
-        private IWorkspace _workspace;
-
         public bool IsDefault { get { return Model.IsDefault; } set { Model.IsDefault = value; } }
         public bool AutoLogout { get { return Model.AutoLogout; } set { Model.AutoLogout = value; } }
         public Printer SlipReportPrinter { get { return Model.SlipReportPrinter; } set { Model.SlipReportPrinter = value; } }
@@ -42,17 +40,16 @@ namespace Samba.Modules.SettingsModule
             return Resources.Terminal;
         }
 
-        public override void Initialize(IWorkspace workspace)
+        protected override void Initialize()
         {
-            _workspace = workspace;
-            Printers = workspace.All<Printer>();
-            PrinterTemplates = workspace.All<PrinterTemplate>();
+            Printers = Workspace.All<Printer>();
+            PrinterTemplates = Workspace.All<PrinterTemplate>();
             PrintJobs = new ObservableCollection<PrintJob>(Model.PrintJobs);
         }
 
         private void OnAddPrintJob(string obj)
         {
-            IList<IOrderable> values = new List<IOrderable>(_workspace.All<PrintJob>()
+            IList<IOrderable> values = new List<IOrderable>(Workspace.All<PrintJob>()
                 .Where(x => PrintJobs.SingleOrDefault(y => y.Id == x.Id) == null));
 
             IList<IOrderable> selectedValues = new List<IOrderable>(PrintJobs.Select(x => x));
