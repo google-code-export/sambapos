@@ -47,6 +47,11 @@
   <ItemGroup>
     <Compile Include="BaseExtensions\BaseLocalizeExtension.cs" />
     <Compile Include="LocalizedCategoryAttribute.cs" />
+    <Compile Include="Properties\Resources.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.cs.resx</DependentUpon>
+    </Compile>
     <Compile Include="ResourceStrings.cs" />
     <Compile Include="LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Engine\LocalizeDictionary.cs" />
@@ -76,6 +81,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.cs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.cs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.tr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.tr.Designer.cs</LastGenOutput>
@@ -99,6 +108,7 @@
 
 copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)SambaSetup\src"
 xcopy /y "$(TargetDir)tr\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\tr\"
+xcopy /y "$(TargetDir)cs\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\cs\"
 
 :End</PostBuildEvent>
   </PropertyGroup>

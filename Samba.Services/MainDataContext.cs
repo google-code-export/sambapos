@@ -227,7 +227,7 @@ namespace Samba.Services
             get { return _selectedDepartment; }
             set
             {
-                if (_selectedDepartment == null || value != null && _selectedDepartment.Id != value.Id)
+                if (value != null && (_selectedDepartment == null || _selectedDepartment.Id != value.Id))
                 {
                     SelectedTableScreen = TableScreens.FirstOrDefault(x => x.Id == value.TableScreenId);
                 }

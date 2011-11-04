@@ -32,13 +32,14 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.65 "
-#define FileVersion "265"
+#define Version "2.66 "
+#define FileVersion "266"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
 winxpsp2_title=Windows XP Service Pack 2
 winxpsp3_title=Windows XP Service Pack 3
+
 en.full_setup=Full Setup
 en.compact_setup=Compact Setup
 en.custom_setup=Custom Setup
@@ -76,7 +77,7 @@ DefaultDirName={pf}\SambaPOS2
 VersionInfoVersion={#Version}
 VersionInfoCompany=Özgü Teknoloji
 VersionInfoCopyright=Copyright © Ozgu 2010
-ShowUndisplayableLanguages=false
+ShowUndisplayableLanguages=true
 LanguageDetectionMethod=locale
 InternalCompressLevel=fast
 SolidCompression=true
@@ -93,6 +94,7 @@ AppID={{7FFA6CCB-2A30-4F09-A216-0CDFC031E870}
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl
 Name: de; MessagesFile: compiler:Languages\German.isl
+Name: cs; MessagesFile: compiler:Languages\Czech.isl
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl
 
 [Tasks]
@@ -154,6 +156,8 @@ Source: src\Imports\menu.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\menu_tr.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_tr.txt; DestDir: {app}\Imports\; Components: veri
+//Source: src\Imports\menu_cs.txt; DestDir: {app}\Imports\; Components: veri
+Source: src\Imports\table_cs.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\FlexButton.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\DataGridFilterLibrary.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\FluentMigrator.dll; DestDir: {app}; Flags: ignoreversion
@@ -163,6 +167,7 @@ Source: src\migrate.txt; DestDir: {userappdata}\Ozgu Tech\SambaPOS2; Flags: igno
 Source: C:\Windows\Fonts\lucon.ttf; DestDir: {fonts}; Flags: onlyifdoesntexist uninsneveruninstall; FontInstall: Lucida Console
 Source: src\Samba.Localization.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\tr\Samba.Localization.resources.dll; DestDir: {app}\tr\; Flags: ignoreversion
+Source: src\cs\Samba.Localization.resources.dll; DestDir: {app}\cs\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -259,4 +264,5 @@ end;
 Name: {app}\Images
 Name: {app}\Imports
 Name: {app}\tr
+Name: {app}\cs
 Name: {commonappdata}\Ozgu Tech\SambaPOS2

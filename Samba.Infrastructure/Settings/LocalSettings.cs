@@ -137,8 +137,8 @@ html
         public static string CurrencySymbol { get { return CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol; } }
 
         public static int DbVersion { get { return 10; } }
-        public static string AppVersion { get { return "2.65"; } }
-        public static IList<string> SupportedLanguages { get { return new[] { "en", "tr" }; } }
+        public static string AppVersion { get { return "2.66"; } }
+        public static IList<string> SupportedLanguages { get { return new[] { "en", "cs", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }
 
