@@ -18,10 +18,12 @@ namespace Samba.Modules.CashModule
         string TextColor { get; }
     }
 
-    public class CashTransactionViewModelBase : ObservableObject
+    public abstract class CashTransactionViewModelBase : ObservableObject
     {
-        private bool _isSelected;
+        public string TextColor { get {return GetTextColor(); } }
+        internal abstract string GetTextColor();
 
+        private bool _isSelected;
         public bool IsSelected
         {
             get { return _isSelected; }
@@ -30,7 +32,7 @@ namespace Samba.Modules.CashModule
                 if (_isSelected != value)
                 {
                     _isSelected = value;
-                    RaisePropertyChanged("TextColor");
+                    RaisePropertyChanged(() => TextColor);
                 }
             }
         }
@@ -46,7 +48,11 @@ namespace Samba.Modules.CashModule
         public decimal CashPaymentValue { get; set; }
         public decimal CreditCardPaymentValue { get; set; }
         public decimal TicketPaymentValue { get; set; }
-        public string TextColor { get { return IsSelected ? "White" : "Black"; } }
+
+        internal override string GetTextColor()
+        {
+            return IsSelected ? "White" : "Black"; 
+        }
     }
 
     public class CashTransactionViewModel : CashTransactionViewModelBase, ICashTransactionViewModel
@@ -66,6 +72,10 @@ namespace Samba.Modules.CashModule
         public decimal CashPaymentValue { get { return PaymentType == PaymentType.Cash ? Model.Amount : 0; } set { } }
         public decimal CreditCardPaymentValue { get { return PaymentType == PaymentType.CreditCard ? Model.Amount : 0; } set { } }
         public decimal TicketPaymentValue { get { return PaymentType == PaymentType.Ticket ? Model.Amount : 0; } set { } }
-        public string TextColor { get { if (IsSelected) return "White"; return Amount < 0 ? "Red" : "Black"; } }
+
+        internal override string GetTextColor()
+        {
+            if (IsSelected) return "White"; return Amount < 0 ? "Red" : "Black"; 
+        }
     }
 }

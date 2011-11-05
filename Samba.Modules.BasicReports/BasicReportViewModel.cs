@@ -20,8 +20,8 @@ namespace Samba.Modules.BasicReports
             set
             {
                 _activeReport = value;
-                RaisePropertyChanged("ActiveReport");
-                RaisePropertyChanged("IsReportVisible");
+                RaisePropertyChanged(()=>ActiveReport);
+                RaisePropertyChanged(()=>IsReportVisible);
             }
         }
 

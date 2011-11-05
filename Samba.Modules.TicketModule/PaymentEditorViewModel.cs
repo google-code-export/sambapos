@@ -70,34 +70,31 @@ namespace Samba.Modules.TicketModule
         public string PaymentAmount
         {
             get { return _paymentAmount; }
-            set
-            {
-                _paymentAmount = value;
-                RaisePropertyChanged("PaymentAmount");
-            }
+            set { _paymentAmount = value; RaisePropertyChanged(() => PaymentAmount); }
         }
 
         private string _tenderedAmount;
         public string TenderedAmount
         {
             get { return _tenderedAmount; }
-            set
-            {
-                _tenderedAmount = value;
-                RaisePropertyChanged("TenderedAmount");
-            }
+            set { _tenderedAmount = value; RaisePropertyChanged(() => TenderedAmount); }
         }
 
         private string _lastTenderedAmount;
         public string LastTenderedAmount
         {
             get { return _lastTenderedAmount; }
-            set { _lastTenderedAmount = value; RaisePropertyChanged("LastTenderedAmount"); }
+            set { _lastTenderedAmount = value; RaisePropertyChanged(() => LastTenderedAmount); }
         }
 
         public string ReturningAmount { get; set; }
+
         private Visibility _returningAmountVisibility;
-        public Visibility ReturningAmountVisibility { get { return _returningAmountVisibility; } set { _returningAmountVisibility = value; RaisePropertyChanged("ReturningAmountVisibility"); } }
+        public Visibility ReturningAmountVisibility
+        {
+            get { return _returningAmountVisibility; }
+            set { _returningAmountVisibility = value; RaisePropertyChanged(() => ReturningAmountVisibility); }
+        }
 
         public Visibility PaymentsVisibility
         {
@@ -358,8 +355,8 @@ namespace Samba.Modules.TicketModule
             private set
             {
                 _selectedTicket = value;
-                RaisePropertyChanged("SelectedTicket");
-                RaisePropertyChanged("SelectedTicketTitle");
+                RaisePropertyChanged(() => SelectedTicket);
+                RaisePropertyChanged(() => SelectedTicketTitle);
             }
         }
 
@@ -418,10 +415,10 @@ namespace Samba.Modules.TicketModule
             SelectedTicket.Discounts.Clear();
             SelectedTicket.Discounts.AddRange(SelectedTicket.Model.Discounts.Select(x => new DiscountViewModel(x)));
 
-            RaisePropertyChanged("SelectedTicket");
-            RaisePropertyChanged("ReturningAmountVisibility");
-            RaisePropertyChanged("PaymentsVisibility");
-            RaisePropertyChanged("ReturningAmount");
+            RaisePropertyChanged(() => SelectedTicket);
+            RaisePropertyChanged(() => ReturningAmountVisibility);
+            RaisePropertyChanged(() => PaymentsVisibility);
+            RaisePropertyChanged(() => ReturningAmount);
             TenderedAmount = "";
         }
 
@@ -442,7 +439,7 @@ namespace Samba.Modules.TicketModule
             {
                 var item = paidItem;
                 var mi = MergedItems.SingleOrDefault(x => x.MenuItemId == item.MenuItemId && x.Price == item.Price);
-                if (mi != null) 
+                if (mi != null)
                     mi.PaidItems.Add(paidItem);
             }
         }
@@ -505,7 +502,7 @@ namespace Samba.Modules.TicketModule
         public void CreateButtons()
         {
             CommandButtons = CreateCommandButtons();
-            RaisePropertyChanged("CommandButtons");
+            RaisePropertyChanged(() => CommandButtons);
         }
 
         public void Prepare()
@@ -524,7 +521,7 @@ namespace Samba.Modules.TicketModule
     {
         public int MenuItemId { get; set; }
         private decimal _quantity;
-        public decimal Quantity { get { return _quantity; } set { _quantity = value; RaisePropertyChanged("Quantity"); } }
+        public decimal Quantity { get { return _quantity; } set { _quantity = value; RaisePropertyChanged(() => Quantity); } }
         public string Description { get; set; }
         public string Label { get { return GetPaidItemsQuantity() > 0 ? string.Format("{0} ({1:#.##})", Description, GetPaidItemsQuantity()) : Description; } }
         public decimal Price { get; set; }
@@ -585,10 +582,9 @@ namespace Samba.Modules.TicketModule
 
         public void Refresh()
         {
-            RaisePropertyChanged("Label");
-            RaisePropertyChanged("TotalLabel");
-            RaisePropertyChanged("FontWeight");
-
+            RaisePropertyChanged(() => Label);
+            RaisePropertyChanged(() => TotalLabel);
+            RaisePropertyChanged(() => FontWeight);
         }
     }
 }

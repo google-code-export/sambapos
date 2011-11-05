@@ -8,6 +8,8 @@ namespace Samba.Presentation.Common.ModelBase
 {
     public abstract class EntityViewModelBase<TModel> : VisibleViewModelBase where TModel : class, IEntity
     {
+        private bool _modelSaved;
+
         public TModel Model { get; private set; }
         public ICaptionCommand SaveCommand { get; private set; }
         private IValidator<TModel> _validator;
@@ -23,12 +25,23 @@ namespace Samba.Presentation.Common.ModelBase
         public string Name
         {
             get { return Model.Name; }
-            set { Model.Name = value.Trim(); RaisePropertyChanged("Name"); }
+            set
+            {
+                Model.Name = value.Trim();
+                RaisePropertyChanged(() => Name);
+            }
         }
 
         private string _error;
-        private bool _modelSaved;
-        public string Error { get { return _error; } set { _error = value; RaisePropertyChanged("Error"); } }
+        public string Error
+        {
+            get { return _error; }
+            set
+            {
+                _error = value;
+                RaisePropertyChanged(() => Error);
+            }
+        }
 
         public abstract string GetModelTypeString();
 
@@ -116,13 +129,12 @@ namespace Samba.Presentation.Common.ModelBase
             return new EntityValidator<TModel>();
         }
 
-
         public void RollbackModel()
         {
             if (Model.Id > 0)
             {
                 Workspace.Refresh(Model);
-                RaisePropertyChanged("Name");
+                RaisePropertyChanged(() => Name);
             }
         }
     }

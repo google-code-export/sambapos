@@ -196,7 +196,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.Expression = value;
-                RaisePropertyChanged("Expression");
+                RaisePropertyChanged(() => Expression);
             }
         }
 
@@ -220,70 +220,70 @@ namespace Samba.Modules.SettingsModule
         public CommonCronSetting SelectedMinuteCronSetting
         {
             get { return _selectedMinuteCronSetting; }
-            set { _selectedMinuteCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged("SelectedMinuteCronSetting"); }
+            set { _selectedMinuteCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged(() => SelectedMinuteCronSetting); }
         }
 
         private CommonCronSetting _selectedHourCronSetting;
         public CommonCronSetting SelectedHourCronSetting
         {
             get { return _selectedHourCronSetting; }
-            set { _selectedHourCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged("SelectedHourCronSetting"); }
+            set { _selectedHourCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged(() => SelectedHourCronSetting); }
         }
 
         private CommonCronSetting _selectedDayCronSetting;
         public CommonCronSetting SelectedDayCronSetting
         {
             get { return _selectedDayCronSetting; }
-            set { _selectedDayCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged("SelectedDayCronSetting"); }
+            set { _selectedDayCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged(() => SelectedDayCronSetting); }
         }
 
         private CommonCronSetting _selectedMonthCronSetting;
         public CommonCronSetting SelectedMonthCronSetting
         {
             get { return _selectedMonthCronSetting; }
-            set { _selectedMonthCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged("SelectedMonthCronSetting"); }
+            set { _selectedMonthCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged(() => SelectedMonthCronSetting); }
         }
 
         private CommonCronSetting _selectedWeekdayCronSetting;
         public CommonCronSetting SelectedWeekdayCronSetting
         {
             get { return _selectedWeekdayCronSetting; }
-            set { _selectedWeekdayCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged("SelectedWeekdayCronSetting"); }
+            set { _selectedWeekdayCronSetting = value; UpdateCronSetting(value); RaisePropertyChanged(() => SelectedWeekdayCronSetting); }
         }
 
         private string _minute;
         public string Minute
         {
             get { return _minute; }
-            set { _minute = value; RaisePropertyChanged("Minute"); UpdateExpression(); }
+            set { _minute = value; RaisePropertyChanged(() => Minute); UpdateExpression(); }
         }
 
         private string _hour;
         public string Hour
         {
             get { return _hour; }
-            set { _hour = value; RaisePropertyChanged("Hour"); UpdateExpression(); }
+            set { _hour = value; RaisePropertyChanged(() => Hour); UpdateExpression(); }
         }
 
         private string _day;
         public string Day
         {
             get { return _day; }
-            set { _day = value; RaisePropertyChanged("Day"); UpdateExpression(); }
+            set { _day = value; RaisePropertyChanged(() => Day); UpdateExpression(); }
         }
 
         private string _month;
         public string Month
         {
             get { return _month; }
-            set { _month = value; RaisePropertyChanged("Month"); UpdateExpression(); }
+            set { _month = value; RaisePropertyChanged(() => Month); UpdateExpression(); }
         }
 
         private string _weekday;
         public string Weekday
         {
             get { return _weekday; }
-            set { _weekday = value; RaisePropertyChanged("Weekday"); UpdateExpression(); }
+            set { _weekday = value; RaisePropertyChanged(() => Weekday); UpdateExpression(); }
         }
 
         public DateTime LastTrigger { get { return Model.LastTrigger; } set { Model.LastTrigger = value; } }
@@ -304,14 +304,14 @@ namespace Samba.Modules.SettingsModule
             _selectedDayCronSetting = CommonDayCronSettings.FirstOrDefault(x => x.Day == Day);
             _selectedMonthCronSetting = CommonMonthCronSettings.FirstOrDefault(x => x.Month == Month);
             _selectedWeekdayCronSetting = CommonWeekdayCronSettings.FirstOrDefault(x => x.Weekday == Weekday);
-            RaisePropertyChanged("SelectedMinuteCronSetting");
-            RaisePropertyChanged("SelectedHourCronSetting");
-            RaisePropertyChanged("SelectedDayCronSetting");
-            RaisePropertyChanged("SelectedMonthCronSetting");
-            RaisePropertyChanged("SelectedWeekdayCronSetting");
+            RaisePropertyChanged(() => SelectedMinuteCronSetting);
+            RaisePropertyChanged(() => SelectedHourCronSetting);
+            RaisePropertyChanged(() => SelectedDayCronSetting);
+            RaisePropertyChanged(() => SelectedMonthCronSetting);
+            RaisePropertyChanged(() => SelectedWeekdayCronSetting);
             Expression = string.Format("{0} {1} {2} {3} {4}", Minute, Hour, Day, Month, Weekday);
             _selectedCronSetting = CommonCronSettings.FirstOrDefault(x => x.Expression == Expression);
-            RaisePropertyChanged("SelectedCronSetting");
+            RaisePropertyChanged(() => SelectedCronSetting);
         }
 
         public override Type GetViewType()

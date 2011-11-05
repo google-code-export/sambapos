@@ -31,12 +31,12 @@ namespace Samba.Domain.Models.Tickets
         public bool ActiveOnPosClient { get; set; }
         public bool ActiveOnTerminalClient { get; set; }
         public bool ForceValue { get; set; }
-        public int TaggingType { get; set; }
+        public int DataType { get; set; }
 
         public bool IsNumeric { get { return IsDecimal || IsInteger; } }
-        public bool IsAlphanumeric { get { return TaggingType == 0; } }
-        public bool IsInteger { get { return TaggingType == 1; } }
-        public bool IsDecimal { get { return TaggingType == 2; } }
+        public bool IsAlphanumeric { get { return DataType == 0; } }
+        public bool IsInteger { get { return DataType == 1; } }
+        public bool IsDecimal { get { return DataType == 2; } }
 
         public string UserString
         {

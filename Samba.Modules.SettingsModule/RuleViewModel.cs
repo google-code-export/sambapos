@@ -64,7 +64,7 @@ namespace Samba.Modules.SettingsModule
             choosenValues.Cast<ActionContainer>().ToList().ForEach(x => Model.Actions.Add(x));
             _actions = new ObservableCollection<ActionContainerViewModel>(Model.Actions.Select(x => new ActionContainerViewModel(x, this)));
 
-            RaisePropertyChanged("Actions");
+            RaisePropertyChanged(()=>Actions);
 
         }
 
@@ -81,7 +81,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 _constraints = value;
-                RaisePropertyChanged("Constraints");
+                RaisePropertyChanged(()=>Constraints);
             }
         }
 

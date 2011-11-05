@@ -53,14 +53,6 @@
                                     <LocText ResourceIdentifierKey="ColumnCount" Suffix=":"/>
                                 </Label>
                                 <Common:FilteredTextBox Type="Digits" HorizontalAlignment="Left" MinWidth="50" Text="{Binding OpenTicketViewColumnCount,Mode=TwoWay}" />
-                                <Label>
-                                    <LocText ResourceIdentifierKey="POSDefaultTicketTag" Suffix=":"/>
-                                </Label>
-                                <ComboBox Text="{Binding DefaultTag}" ItemsSource="{Binding TicketTagGroups}" DisplayMemberPath="Name" HorizontalAlignment="Left" MinWidth="80" IsEditable="True"/>
-                                <Label>
-                                    <LocText ResourceIdentifierKey="TerminalDefaultTicketTag" Suffix=":"/>
-                                </Label>
-                                <ComboBox Text="{Binding TerminalDefaultTag}" ItemsSource="{Binding TicketTagGroups}" DisplayMemberPath="Name" HorizontalAlignment="Left" MinWidth="80" IsEditable="True"/>
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>

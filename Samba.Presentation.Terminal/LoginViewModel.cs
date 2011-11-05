@@ -40,7 +40,7 @@ namespace Samba.Presentation.Terminal
         {
             InvokePinSubmitted(_pin);
             _pin = "";
-            RaisePropertyChanged("PinDisplay");
+            RaisePropertyChanged(() => PinDisplay);
         }
 
         private void OnEnterValue(string obj)
@@ -49,7 +49,7 @@ namespace Samba.Presentation.Terminal
                 _pin += obj;
             else
                 _pin = "";
-            RaisePropertyChanged("PinDisplay");
+            RaisePropertyChanged(() => PinDisplay);
         }
     }
 }

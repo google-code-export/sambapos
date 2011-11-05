@@ -66,8 +66,6 @@ namespace Samba.Modules.MenuModule
         }
 
         public int OpenTicketViewColumnCount { get { return Model.OpenTicketViewColumnCount; } set { Model.OpenTicketViewColumnCount = value; } }
-        public string DefaultTag { get { return Model.DefaultTag; } set { Model.DefaultTag = value; } }
-        public string TerminalDefaultTag { get { return Model.TerminalDefaultTag; } set { Model.TerminalDefaultTag = value; } }
 
         public bool IsFastFood
         {
@@ -133,7 +131,7 @@ namespace Samba.Modules.MenuModule
 
             _serviceTemplates = new ObservableCollection<ServiceTemplateViewModel>(GetServiceTemplates(Model));
 
-            RaisePropertyChanged("ServiceTemplates");
+            RaisePropertyChanged(() => ServiceTemplates);
         }
 
         private bool CanDeleteTicketTagGroup(string arg)
@@ -162,7 +160,7 @@ namespace Samba.Modules.MenuModule
 
             _ticketTagGroups = new ObservableCollection<TicketTagGroupViewModel>(GetTicketTags(Model));
 
-            RaisePropertyChanged("TicketTagGroups");
+            RaisePropertyChanged(() => TicketTagGroups);
         }
 
         private static IEnumerable<ServiceTemplateViewModel> GetServiceTemplates(Department model)

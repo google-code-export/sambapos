@@ -36,7 +36,7 @@ namespace Samba.Modules.TicketModule
             set
             {
                 _filters = value;
-                RaisePropertyChanged("Filters");
+                RaisePropertyChanged(() => Filters);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Samba.Modules.TicketModule
             {
                 _startDate = value;
                 EndDate = value;
-                RaisePropertyChanged("StartDate");
+                RaisePropertyChanged(() => StartDate);
             }
         }
 
@@ -63,7 +63,7 @@ namespace Samba.Modules.TicketModule
         public DateTime EndDate
         {
             get { return _endDate; }
-            set { _endDate = value; RaisePropertyChanged("EndDate"); }
+            set { _endDate = value; RaisePropertyChanged(() => EndDate); }
         }
 
         private IList<TicketExplorerRowViewModel> _tickets;
@@ -73,7 +73,7 @@ namespace Samba.Modules.TicketModule
             set
             {
                 _tickets = value;
-                RaisePropertyChanged("Tickets");
+                RaisePropertyChanged(() => Tickets);
             }
         }
 
@@ -86,8 +86,8 @@ namespace Samba.Modules.TicketModule
             set
             {
                 _total = value;
-                RaisePropertyChanged("Total");
-                RaisePropertyChanged("TotalStr");
+                RaisePropertyChanged(() => Total);
+                RaisePropertyChanged(() => TotalStr);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Samba.Modules.TicketModule
             qFilter = Filters.Aggregate(qFilter, (current, filter) => current.And(filter.GetExpression()));
             Tickets = Dao.Query(qFilter).Select(x => new TicketExplorerRowViewModel(x)).ToList();
             Total = Tickets.Sum(x => x.Sum);
-            RaisePropertyChanged("CanChanageDateFilter");
+            RaisePropertyChanged(() => CanChanageDateFilter);
         }
 
         void TimerElapsed(object sender, ElapsedEventArgs e)
@@ -128,7 +128,7 @@ namespace Samba.Modules.TicketModule
             }
         }
 
-        private void OnCloseCommandExecuted(string obj)
+        private static void OnCloseCommandExecuted(string obj)
         {
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
         }

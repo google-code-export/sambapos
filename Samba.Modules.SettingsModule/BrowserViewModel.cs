@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
@@ -29,7 +26,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 _activeUrl = value;
-                RaisePropertyChanged("ActiveUrl");
+                RaisePropertyChanged(()=>ActiveUrl);
             }
         }
         

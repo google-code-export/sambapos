@@ -46,7 +46,7 @@ namespace Samba.Modules.AccountModule
         public int SelectedView
         {
             get { return _selectedView; }
-            set { _selectedView = value; RaisePropertyChanged("SelectedView"); }
+            set { _selectedView = value; RaisePropertyChanged(() => SelectedView); }
         }
 
         public AccountViewModel SelectedAccount { get { return FoundAccounts.Count == 1 ? FoundAccounts[0] : FocusedAccount; } }
@@ -58,8 +58,8 @@ namespace Samba.Modules.AccountModule
             set
             {
                 _focusedAccount = value;
-                RaisePropertyChanged("FocusedAccount");
-                RaisePropertyChanged("SelectedAccount");
+                RaisePropertyChanged(() => FocusedAccount);
+                RaisePropertyChanged(() => SelectedAccount);
             }
         }
 
@@ -67,7 +67,7 @@ namespace Samba.Modules.AccountModule
         public string TicketSearchText
         {
             get { return _ticketSearchText; }
-            set { _ticketSearchText = value; RaisePropertyChanged("TicketSearchText"); }
+            set { _ticketSearchText = value; RaisePropertyChanged(() => TicketSearchText); }
         }
 
         private string _phoneNumberSearchText;
@@ -79,7 +79,7 @@ namespace Samba.Modules.AccountModule
                 if (value != _phoneNumberSearchText)
                 {
                     _phoneNumberSearchText = value;
-                    RaisePropertyChanged("PhoneNumberSearchText");
+                    RaisePropertyChanged(() => PhoneNumberSearchText);
                     ResetTimer();
                 }
             }
@@ -94,7 +94,7 @@ namespace Samba.Modules.AccountModule
                 if (value != _accountNameSearchText)
                 {
                     _accountNameSearchText = value;
-                    RaisePropertyChanged("AccountNameSearchText");
+                    RaisePropertyChanged(() => AccountNameSearchText);
                     ResetTimer();
                 }
             }
@@ -109,7 +109,7 @@ namespace Samba.Modules.AccountModule
                 if (value != _addressSearchText)
                 {
                     _addressSearchText = value;
-                    RaisePropertyChanged("AddressSearchText");
+                    RaisePropertyChanged(() => AddressSearchText);
                     ResetTimer();
                 }
             }
@@ -145,7 +145,7 @@ namespace Samba.Modules.AccountModule
         public int ActiveView
         {
             get { return _activeView; }
-            set { _activeView = value; RaisePropertyChanged("ActiveView"); }
+            set { _activeView = value; RaisePropertyChanged(() => ActiveView); }
         }
 
         public string TotalReceivable { get { return SelectedAccountTransactions.Sum(x => x.Receivable).ToString("#,#0.00"); } }
@@ -217,7 +217,7 @@ namespace Samba.Modules.AccountModule
             FoundAccounts.Clear();
             if (account != null)
                 FoundAccounts.Add(new AccountViewModel(account));
-            RaisePropertyChanged("SelectedAccount");
+            RaisePropertyChanged(() => SelectedAccount);
             OnDisplayAccount("");
         }
 
@@ -281,9 +281,9 @@ namespace Samba.Modules.AccountModule
                 }
 
                 SelectedAccountTransactions.AddRange(transactions);
-                RaisePropertyChanged("TotalReceivable");
-                RaisePropertyChanged("TotalLiability");
-                RaisePropertyChanged("TotalBalance");
+                RaisePropertyChanged(() => TotalReceivable);
+                RaisePropertyChanged(() => TotalLiability);
+                RaisePropertyChanged(() => TotalBalance);
             }
             ActiveView = 1;
         }
@@ -340,7 +340,7 @@ namespace Samba.Modules.AccountModule
                         };
             FoundAccounts.Add(new AccountViewModel(c));
             SelectedView = 1;
-            RaisePropertyChanged("SelectedAccount");
+            RaisePropertyChanged(() => SelectedAccount);
         }
 
         private bool CanSelectAccount(string arg)
@@ -426,7 +426,7 @@ namespace Samba.Modules.AccountModule
                                        SelectedAccount.UpdateDetailedInfo();
                                    }
 
-                                   RaisePropertyChanged("SelectedAccount");
+                                   RaisePropertyChanged(() => SelectedAccount);
 
                                    CommandManager.InvalidateRequerySuggested();
                                }));
@@ -462,10 +462,10 @@ namespace Samba.Modules.AccountModule
                     SelectedAccount.UpdateDetailedInfo();
                 }
             }
-            RaisePropertyChanged("SelectedAccount");
-            RaisePropertyChanged("IsClearVisible");
-            RaisePropertyChanged("IsResetAccountVisible");
-            RaisePropertyChanged("IsMakePaymentVisible");
+            RaisePropertyChanged(() => SelectedAccount);
+            RaisePropertyChanged(() => IsClearVisible);
+            RaisePropertyChanged(() => IsResetAccountVisible);
+            RaisePropertyChanged(() => IsMakePaymentVisible);
             ActiveView = 0;
             SelectedAccountTransactions.Clear();
         }

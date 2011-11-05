@@ -39,13 +39,25 @@ namespace Samba.Modules.MenuModule
         public IList<ScreenMenuItem> ScreenMenuItems { get { return Model.ScreenMenuItems; } }
 
         [LocalizedDisplayName(ResourceStrings.CategoryName), LocalizedCategory(ResourceStrings.CategoryProperties)]
-        public string Name { get { return Model.Name; } set { Model.Name = value; RaisePropertyChanged("Name"); } }
+        public string Name
+        {
+            get { return Model.Name; }
+            set { Model.Name = value; RaisePropertyChanged(() => Name); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.FastMenu), LocalizedCategory(ResourceStrings.CategoryProperties)]
-        public bool MostUsedItemsCategory { get { return Model.MostUsedItemsCategory; } set { Model.MostUsedItemsCategory = value; RaisePropertyChanged("MostUsedItemsCategory"); } }
+        public bool MostUsedItemsCategory
+        {
+            get { return Model.MostUsedItemsCategory; }
+            set { Model.MostUsedItemsCategory = value; RaisePropertyChanged(() => MostUsedItemsCategory); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.ButtonHeight), LocalizedCategory(ResourceStrings.CategoryProperties)]
-        public int MainButtonHeight { get { return Model.MButtonHeight; } set { Model.MButtonHeight = value; RaisePropertyChanged("MainButtonHeight"); } }
+        public int MainButtonHeight
+        {
+            get { return Model.MButtonHeight; }
+            set { Model.MButtonHeight = value; RaisePropertyChanged(() => MainButtonHeight); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.ButtonColor), LocalizedCategory(ResourceStrings.CategoryProperties)]
         public SolidColorBrush MainButtonColor
@@ -57,27 +69,51 @@ namespace Samba.Modules.MenuModule
             set
             {
                 Model.MButtonColor = value != Brushes.Transparent ? value.ToString() : string.Empty;
-                RaisePropertyChanged("MainButtonColor");
+                RaisePropertyChanged(() => MainButtonColor);
             }
         }
 
         [LocalizedDisplayName(ResourceStrings.SubButtonHeight), LocalizedCategory(ResourceStrings.CategoryProperties)]
-        public int SubButtonHeight { get { return Model.SubButtonHeight; } set { Model.SubButtonHeight = value; RaisePropertyChanged("SubButtonHeight"); } }
+        public int SubButtonHeight
+        {
+            get { return Model.SubButtonHeight; }
+            set { Model.SubButtonHeight = value; RaisePropertyChanged(() => SubButtonHeight); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.ImagePath), LocalizedCategory(ResourceStrings.CategoryProperties)]
-        public string ImagePath { get { return Model.ImagePath ?? ""; } set { Model.ImagePath = value; RaisePropertyChanged("ImagePath"); } }
+        public string ImagePath
+        {
+            get { return Model.ImagePath ?? ""; }
+            set { Model.ImagePath = value; RaisePropertyChanged(() => ImagePath); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.ColumnCount), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public int ColumnCount { get { return Model.ColumnCount; } set { Model.ColumnCount = value; RaisePropertyChanged("ColumnCount"); } }
+        public int ColumnCount
+        {
+            get { return Model.ColumnCount; }
+            set { Model.ColumnCount = value; RaisePropertyChanged(() => ColumnCount); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.ButtonHeight), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public int ButtonHeight { get { return Model.ButtonHeight; } set { Model.ButtonHeight = value; RaisePropertyChanged("ButtonHeight"); } }
+        public int ButtonHeight
+        {
+            get { return Model.ButtonHeight; }
+            set { Model.ButtonHeight = value; RaisePropertyChanged(() => ButtonHeight); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.PageCount), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public int PageCount { get { return Model.PageCount; } set { Model.PageCount = value; RaisePropertyChanged("PageCount"); } }
+        public int PageCount
+        {
+            get { return Model.PageCount; }
+            set { Model.PageCount = value; RaisePropertyChanged(() => PageCount); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.WrapText), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public bool WrapText { get { return Model.WrapText; } set { Model.WrapText = value; RaisePropertyChanged("WrapText"); } }
+        public bool WrapText
+        {
+            get { return Model.WrapText; }
+            set { Model.WrapText = value; RaisePropertyChanged(() => WrapText); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.ButtonColor), LocalizedCategory(ResourceStrings.MenuProperties)]
         public SolidColorBrush ButtonColor
@@ -89,28 +125,48 @@ namespace Samba.Modules.MenuModule
             set
             {
                 Model.ButtonColor = value != Brushes.Transparent ? value.ToString() : string.Empty;
-                RaisePropertyChanged("ButtonColor");
+                RaisePropertyChanged(() => ButtonColor);
             }
         }
 
         [LocalizedDisplayName(ResourceStrings.MaxItems), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public int MaxItems { get { return Model.MaxItems; } set { Model.MaxItems = value; RaisePropertyChanged("MaxItems"); } }
+        public int MaxItems
+        {
+            get { return Model.MaxItems; }
+            set { Model.MaxItems = value; RaisePropertyChanged(() => MaxItems); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.SortType), LocalizedCategory(ResourceStrings.MenuProperties)]
-        public SortType SortType { get { return (SortType)Model.SortType; } set { Model.SortType = (int)value; RaisePropertyChanged("SortType"); } }
+        public SortType SortType
+        {
+            get { return (SortType)Model.SortType; }
+            set { Model.SortType = (int)value; RaisePropertyChanged(() => SortType); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.NumeratorType), LocalizedCategory(ResourceStrings.NumeratorProperties)]
-        public NumeratorType NumeratorType { get { return (NumeratorType)Model.NumeratorType; } set { Model.NumeratorType = (int)value; RaisePropertyChanged("NumeratorType"); } }
+        public NumeratorType NumeratorType
+        {
+            get { return (NumeratorType)Model.NumeratorType; }
+            set { Model.NumeratorType = (int)value; RaisePropertyChanged(() => NumeratorType); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.NumeratorValue), LocalizedCategory(ResourceStrings.NumeratorProperties)]
-        public string NumeratorValues { get { return Model.NumeratorValues; } set { Model.NumeratorValues = value; RaisePropertyChanged("NumeratorValues"); } }
+        public string NumeratorValues
+        {
+            get { return Model.NumeratorValues; }
+            set { Model.NumeratorValues = value; RaisePropertyChanged(() => NumeratorValues); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.AlphanumericButtonValues), LocalizedCategory(ResourceStrings.NumeratorProperties)]
-        public string AlphaButtonValues { get { return Model.AlphaButtonValues; } set { Model.AlphaButtonValues = value; RaisePropertyChanged("AlphaButtonValues"); } }
+        public string AlphaButtonValues
+        {
+            get { return Model.AlphaButtonValues; }
+            set { Model.AlphaButtonValues = value; RaisePropertyChanged(() => AlphaButtonValues); }
+        }
 
         internal void UpdateDisplay()
         {
-            RaisePropertyChanged("CategoryListDisplay");
+            RaisePropertyChanged(() => CategoryListDisplay);
         }
 
         public bool ContainsMenuItem(MenuItem item)

@@ -30,7 +30,7 @@ namespace Samba.Modules.TicketModule
             {
                 FilterType = (FilterType)value;
                 FilterValue = "";
-                RaisePropertyChanged("IsTextBoxEnabled");
+                RaisePropertyChanged(() => IsTextBoxEnabled);
             }
         }
 
@@ -46,7 +46,7 @@ namespace Samba.Modules.TicketModule
             set
             {
                 _filterValue = value;
-                RaisePropertyChanged("FilterValue");
+                RaisePropertyChanged(() => FilterValue);
             }
         }
 

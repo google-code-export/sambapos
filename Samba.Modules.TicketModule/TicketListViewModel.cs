@@ -61,7 +61,6 @@ namespace Samba.Modules.TicketModule
         public ICaptionCommand RemoveTicketTagCommand { get; set; }
         public ICaptionCommand ChangePriceCommand { get; set; }
         public ICaptionCommand PrintJobCommand { get; set; }
-        public DelegateCommand<TicketTagFilterViewModel> FilterOpenTicketsCommand { get; set; }
 
         private TicketViewModel _selectedTicket;
         public TicketViewModel SelectedTicket
@@ -101,24 +100,6 @@ namespace Samba.Modules.TicketModule
 
         public IEnumerable<OpenTicketViewModel> OpenTickets { get; set; }
 
-        private IEnumerable<TicketTagFilterViewModel> _openTicketTags;
-        public IEnumerable<TicketTagFilterViewModel> OpenTicketTags
-        {
-            get { return _openTicketTags; }
-            set
-            {
-                _openTicketTags = value;
-                RaisePropertyChanged("OpenTicketTags");
-            }
-        }
-
-        private string _selectedTag;
-        public string SelectedTag
-        {
-            get { return !string.IsNullOrEmpty(_selectedTag) ? _selectedTag : SelectedDepartment != null ? SelectedDepartment.DefaultTag : null; }
-            set { _selectedTag = value; }
-        }
-
         private int _selectedTicketView;
         public int SelectedTicketView
         {
@@ -136,7 +117,7 @@ namespace Samba.Modules.TicketModule
                     AppServices.ActiveAppScreen = AppScreens.SingleTicket;
                 }
                 _selectedTicketView = value;
-                RaisePropertyChanged("SelectedTicketView");
+                RaisePropertyChanged(() => SelectedTicketView);
             }
         }
 
@@ -148,8 +129,8 @@ namespace Samba.Modules.TicketModule
                 if (value != AppServices.MainDataContext.SelectedDepartment)
                 {
                     AppServices.MainDataContext.SelectedDepartment = value;
-                    RaisePropertyChanged("SelectedDepartment");
-                    RaisePropertyChanged("SelectedTicket");
+                    RaisePropertyChanged(() => SelectedDepartment);
+                    RaisePropertyChanged(() => SelectedTicket);
                     SelectedDepartment.PublishEvent(EventTopicNames.SelectedDepartmentChanged);
                 }
             }
@@ -214,18 +195,18 @@ namespace Samba.Modules.TicketModule
         public int OpenTicketListViewColumnCount { get { return SelectedDepartment != null ? SelectedDepartment.OpenTicketViewColumnCount : 5; } }
         public TicketItemViewModel LastSelectedTicketItem { get; set; }
 
-        public IEnumerable<TicketTagButton> TicketTagButtons
-        {
-            get
-            {
-                return AppServices.MainDataContext.SelectedDepartment != null
-                    ? AppServices.MainDataContext.SelectedDepartment.TicketTagGroups
-                    .Where(x => x.ActiveOnPosClient)
-                    .OrderBy(x => x.Order)
-                    .Select(x => new TicketTagButton(x, SelectedTicket))
-                    : null;
-            }
-        }
+        //public IEnumerable<TicketTagButton> TicketTagButtons
+        //{
+        //    get
+        //    {
+        //        return AppServices.MainDataContext.SelectedDepartment != null
+        //            ? AppServices.MainDataContext.SelectedDepartment.TicketTagGroups
+        //            .Where(x => x.ActiveOnPosClient)
+        //            .OrderBy(x => x.Order)
+        //            .Select(x => new TicketTagButton(x, SelectedTicket))
+        //            : null;
+        //    }
+        //}
 
         public TicketListViewModel()
         {
@@ -244,7 +225,6 @@ namespace Samba.Modules.TicketModule
             SelectTableCommand = new CaptionCommand<string>(Resources.SelectTable, OnSelectTableExecute, CanSelectTable);
             SelectAccountCommand = new CaptionCommand<string>(Resources.SelectAccount, OnSelectAccountExecute, CanSelectAccount);
             ShowAllOpenTickets = new CaptionCommand<string>(Resources.AllTickets_r, OnShowAllOpenTickets);
-            FilterOpenTicketsCommand = new DelegateCommand<TicketTagFilterViewModel>(OnFilterOpenTicketsExecute);
 
             IncQuantityCommand = new CaptionCommand<string>("+", OnIncQuantityCommand, CanIncQuantity);
             DecQuantityCommand = new CaptionCommand<string>("-", OnDecQuantityCommand, CanDecQuantity);
@@ -270,7 +250,7 @@ namespace Samba.Modules.TicketModule
                             var oldLocationName = SelectedTicket.Location;
                             var ticketsMerged = x.Value.TicketId > 0 && x.Value.TicketId != SelectedTicket.Id;
                             TicketViewModel.AssignLocationToSelectedTicket(x.Value.LocationId);
-                            
+
                             CloseTicket();
 
                             if (!AppServices.CurrentTerminal.AutoLogout)
@@ -313,7 +293,7 @@ namespace Samba.Modules.TicketModule
                 {
                     if (x.Topic == EventTopicNames.WorkPeriodStatusChanged)
                     {
-                        RaisePropertyChanged("CanChangeDepartment");
+                        RaisePropertyChanged(() => CanChangeDepartment);
                     }
                 });
 
@@ -354,14 +334,14 @@ namespace Samba.Modules.TicketModule
                         _selectedTicketItems.Clear();
                         _selectedTicketItems.AddRange(x.Value.SelectedItems);
                         if (x.Value.SelectedItems.Count == 0) LastSelectedTicketItem = null;
-                        RaisePropertyChanged("IsItemsSelected");
-                        RaisePropertyChanged("IsNothingSelected");
-                        RaisePropertyChanged("IsNothingSelectedAndTicketLocked");
-                        RaisePropertyChanged("IsTableButtonVisible");
-                        RaisePropertyChanged("IsAccountButtonVisible");
-                        RaisePropertyChanged("IsItemsSelectedAndUnlocked");
-                        RaisePropertyChanged("IsItemsSelectedAndLocked");
-                        RaisePropertyChanged("IsTicketSelected");
+                        RaisePropertyChanged(() => IsItemsSelected);
+                        RaisePropertyChanged(() => IsNothingSelected);
+                        RaisePropertyChanged(() => IsNothingSelectedAndTicketLocked);
+                        RaisePropertyChanged(() => IsTableButtonVisible);
+                        RaisePropertyChanged(() => IsAccountButtonVisible);
+                        RaisePropertyChanged(() => IsItemsSelectedAndUnlocked);
+                        RaisePropertyChanged(() => IsItemsSelectedAndLocked);
+                        RaisePropertyChanged(() => IsTicketSelected);
                     }
                 });
 
@@ -448,7 +428,7 @@ namespace Samba.Modules.TicketModule
                         && x.Topic == EventTopicNames.MessageReceivedEvent
                         && x.Value.Command == Messages.TicketRefreshMessage)
                     {
-                        RefreshOpenTickets();
+                        UpdateOpenTickets(SelectedDepartment);
                         RefreshVisuals();
                     }
                 });
@@ -479,7 +459,7 @@ namespace Samba.Modules.TicketModule
             else
             {
                 SelectedTicketView = OpenTicketListView;
-                RefreshOpenTickets();
+                UpdateOpenTickets(SelectedDepartment);
             }
         }
 
@@ -497,12 +477,11 @@ namespace Samba.Modules.TicketModule
             }
             else if (ShowAllOpenTickets.CanExecute(""))
             {
-                SelectedTag = tagGroup.Name;
-                RefreshOpenTickets();
-                if ((OpenTickets != null && OpenTickets.Count() > 0) || OpenTicketTags.Count() > 0)
+                UpdateOpenTickets(SelectedDepartment);
+                if ((OpenTickets != null && OpenTickets.Count() > 0))
                 {
                     SelectedTicketView = OpenTicketListView;
-                    RaisePropertyChanged("OpenTickets");
+                    RaisePropertyChanged(() => OpenTickets);
                 }
                 else InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.NoTicketsFoundForTag, tagGroup.Name));
             }
@@ -717,23 +696,16 @@ namespace Samba.Modules.TicketModule
 
         private void OnShowAllOpenTickets(string obj)
         {
-            UpdateOpenTickets(null, "", "");
+            UpdateOpenTickets(null);
             SelectedTicketView = OpenTicketListView;
-            RaisePropertyChanged("OpenTickets");
-        }
-
-        private void OnFilterOpenTicketsExecute(TicketTagFilterViewModel obj)
-        {
-            UpdateOpenTickets(SelectedDepartment, obj.TagGroup, obj.TagValue);
-            RaisePropertyChanged("OpenTickets");
-            SelectedTag = null;
+            RaisePropertyChanged(() => OpenTickets);
         }
 
         private string _selectedTicketTitle;
         public string SelectedTicketTitle
         {
             get { return _selectedTicketTitle; }
-            set { _selectedTicketTitle = value; RaisePropertyChanged("SelectedTicketTitle"); }
+            set { _selectedTicketTitle = value; RaisePropertyChanged(() => SelectedTicketTitle); }
         }
 
         public void UpdateSelectedTicketTitle()
@@ -862,7 +834,7 @@ namespace Samba.Modules.TicketModule
                     }
                 }
             }
-            RefreshOpenTickets();
+            UpdateOpenTickets(SelectedDepartment);
             RefreshVisuals();
 
         }
@@ -885,13 +857,7 @@ namespace Samba.Modules.TicketModule
             get { return !IsFastPaymentButtonsVisible; }
         }
 
-        public void RefreshOpenTickets()
-        {
-            UpdateOpenTickets(SelectedDepartment, SelectedTag, "");
-            SelectedTag = string.Empty;
-        }
-
-        public void UpdateOpenTickets(Department department, string selectedTag, string tagFilter)
+        public void UpdateOpenTickets(Department department)
         {
             StopTimer();
 
@@ -913,112 +879,10 @@ namespace Samba.Modules.TicketModule
                 AccountName = x.AccountName,
                 RemainingAmount = x.RemainingAmount,
                 Date = x.Date,
-                WrapText = shouldWrap,
-                TicketTag = x.Tag
+                WrapText = shouldWrap
             }, prediction).OrderBy(x => x.LastOrderDate);
 
-            if (!string.IsNullOrEmpty(selectedTag))
-            {
-                var tagGroup = AppServices.MainDataContext.SelectedDepartment.TicketTagGroups.SingleOrDefault(
-                        x => x.Name == selectedTag);
-
-                if (tagGroup != null)
-                {
-                    var openTickets = GetOpenTickets(OpenTickets, tagGroup, tagFilter);
-
-                    if (!string.IsNullOrEmpty(tagFilter.Trim()) && tagFilter != "*")
-                    {
-                        if (openTickets.Count() == 1)
-                        {
-                            OpenTicketCommand.Execute(openTickets.ElementAt(0).Id);
-                        }
-                        if (openTickets.Count() == 0)
-                        {
-                            TicketViewModel.CreateNewTicket();
-                            AppServices.MainDataContext.SelectedTicket.SetTagValue(selectedTag, tagFilter);
-                            RefreshSelectedTicket();
-                            RefreshVisuals();
-                        }
-                    }
-
-                    if (SelectedTicket == null)
-                    {
-                        OpenTicketTags = GetOpenTicketTags(OpenTickets, tagGroup, tagFilter);
-                        OpenTickets = string.IsNullOrEmpty(tagFilter) && OpenTicketTags.Count() > 0 ? null : openTickets;
-                    }
-                }
-            }
-            else
-            {
-                OpenTicketTags = null;
-            }
-
-            SelectedTag = selectedTag;
-
-
             StartTimer();
-        }
-
-        private static IEnumerable<TicketTagFilterViewModel> GetOpenTicketTags(IEnumerable<OpenTicketViewModel> openTickets, TicketTagGroup tagGroup, string tagFilter)
-        {
-            var tag = tagGroup.Name.ToLower() + ":";
-            var cnt = openTickets.Count(x => string.IsNullOrEmpty(x.TicketTag) || !x.TicketTag.ToLower().Contains(tag));
-
-            var opt = new List<TicketTagFilterViewModel>();
-
-            if (string.IsNullOrEmpty(tagFilter) && tagGroup.TicketTags.Count > 1)
-            {
-                opt = openTickets.Where(x => !string.IsNullOrEmpty(x.TicketTag))
-                    .SelectMany(x => x.TicketTag.Split('\r'))
-                    .Where(x => x.ToLower().Contains(tag))
-                    .Distinct()
-                    .Select(x => x.Split(':')).Select(x => new TicketTagFilterViewModel { TagGroup = x[0], TagValue = x[1] }).OrderBy(x => x.TagValue).ToList();
-
-                var usedTags = opt.Select(x => x.TagValue);
-
-                opt.AddRange(tagGroup.TicketTags.Select(x => x.Name).Where(x => !usedTags.Contains(x)).Select(x => new TicketTagFilterViewModel { TagGroup = tagGroup.Name, ButtonColor = "White", TagValue = x }));
-
-                opt.Sort(new AlphanumComparator());
-            }
-
-            if (tagGroup.TicketTags.Count > 1)
-            {
-                if (string.IsNullOrEmpty(tagFilter))
-                    opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "*", ButtonColor = "Blue" });
-                else
-                    opt.Insert(0, new TicketTagFilterViewModel { TagGroup = tagGroup.Name, TagValue = "", ButtonColor = "Green" });
-                if (cnt > 0)
-                    opt.Insert(0, new TicketTagFilterViewModel { Count = cnt, TagGroup = tagGroup.Name, ButtonColor = "Red", TagValue = " " });
-            }
-
-            return opt;
-        }
-
-        private static IEnumerable<OpenTicketViewModel> GetOpenTickets(IEnumerable<OpenTicketViewModel> openTickets, TicketTagGroup tagGroup, string tagFilter)
-        {
-            var tag = tagGroup.Name.ToLower() + ":";
-            IEnumerable<OpenTicketViewModel> result = openTickets.ToList();
-            if (tagFilter == " ")
-            {
-                result = result.Where(x =>
-                string.IsNullOrEmpty(x.TicketTag) ||
-                  !x.TicketTag.ToLower().Contains(tag));
-            }
-            else
-            {
-                result = result.Where(x => !string.IsNullOrEmpty(x.TicketTag) && x.TicketTag.ToLower().Contains(tag));
-            }
-
-            if (!string.IsNullOrEmpty(tagFilter.Trim()))
-            {
-                if (tagFilter != "*")
-                {
-                    result = result.Where(x => x.TicketTag.ToLower().Contains((tag + tagFilter + "\r").ToLower()));
-                }
-                result.ToList().ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
-            }
-
-            return result;
         }
 
         private void StartTimer()
@@ -1086,33 +950,32 @@ namespace Samba.Modules.TicketModule
         private void RefreshVisuals()
         {
             UpdateSelectedTicketTitle();
-            RaisePropertyChanged("SelectedTicket");
-            RaisePropertyChanged("CanChangeDepartment");
-            RaisePropertyChanged("IsTicketRemainingVisible");
-            RaisePropertyChanged("IsTicketPaymentVisible");
-            RaisePropertyChanged("IsTicketTotalVisible");
-            RaisePropertyChanged("IsTicketDiscountVisible");
-            RaisePropertyChanged("IsTicketTaxTotalVisible");
-            RaisePropertyChanged("IsTicketServiceVisible");
-            RaisePropertyChanged("IsTicketRoundingVisible");
-            RaisePropertyChanged("IsPlainTotalVisible");
-            RaisePropertyChanged("IsFastPaymentButtonsVisible");
-            RaisePropertyChanged("IsCloseButtonVisible");
-            RaisePropertyChanged("SelectTableButtonCaption");
-            RaisePropertyChanged("SelectAccountButtonCaption");
-            RaisePropertyChanged("OpenTicketListViewColumnCount");
-            RaisePropertyChanged("IsDepartmentSelectorVisible");
-            RaisePropertyChanged("TicketBackground");
-            RaisePropertyChanged("IsTableButtonVisible");
-            RaisePropertyChanged("IsAccountButtonVisible");
-            RaisePropertyChanged("IsNothingSelectedAndTicketLocked");
-            RaisePropertyChanged("IsNothingSelectedAndTicketTagged");
-            RaisePropertyChanged("IsTicketSelected");
-            RaisePropertyChanged("TicketTagButtons");
-            RaisePropertyChanged("PrintJobButtons");
+            RaisePropertyChanged(() => SelectedTicket);
+            RaisePropertyChanged(() => CanChangeDepartment);
+            RaisePropertyChanged(() => IsTicketRemainingVisible);
+            RaisePropertyChanged(() => IsTicketPaymentVisible);
+            RaisePropertyChanged(() => IsTicketTotalVisible);
+            RaisePropertyChanged(() => IsTicketDiscountVisible);
+            RaisePropertyChanged(() => IsTicketTaxTotalVisible);
+            RaisePropertyChanged(() => IsTicketServiceVisible);
+            RaisePropertyChanged(() => IsTicketRoundingVisible);
+            RaisePropertyChanged(() => IsPlainTotalVisible);
+            RaisePropertyChanged(() => IsFastPaymentButtonsVisible);
+            RaisePropertyChanged(() => IsCloseButtonVisible);
+            RaisePropertyChanged(() => SelectTableButtonCaption);
+            RaisePropertyChanged(() => SelectAccountButtonCaption);
+            RaisePropertyChanged(() => OpenTicketListViewColumnCount);
+            RaisePropertyChanged(() => IsDepartmentSelectorVisible);
+            RaisePropertyChanged(() => TicketBackground);
+            RaisePropertyChanged(() => IsTableButtonVisible);
+            RaisePropertyChanged(() => IsAccountButtonVisible);
+            RaisePropertyChanged(() => IsNothingSelectedAndTicketLocked);
+            RaisePropertyChanged(() => IsNothingSelectedAndTicketTagged);
+            RaisePropertyChanged(() => IsTicketSelected);
+            RaisePropertyChanged(() => PrintJobButtons);
 
             if (SelectedTicketView == OpenTicketListView)
-                RaisePropertyChanged("OpenTickets");
+                RaisePropertyChanged(() => OpenTickets);
         }
 
         private void OnAddMenuItemCommandExecute(ScreenMenuItemData obj)
@@ -1141,26 +1004,26 @@ namespace Samba.Modules.TicketModule
         {
             SelectedTicketView = SingleTicketView;
 
-            RaisePropertyChanged("SelectedTicket");
-            RaisePropertyChanged("IsTicketRemainingVisible");
-            RaisePropertyChanged("IsTicketPaymentVisible");
-            RaisePropertyChanged("IsTicketTotalVisible");
-            RaisePropertyChanged("IsTicketDiscountVisible");
-            RaisePropertyChanged("IsTicketTaxTotalVisible");
-            RaisePropertyChanged("IsTicketServiceVisible");
-            RaisePropertyChanged("IsTicketRoundingVisible");
-            RaisePropertyChanged("IsPlainTotalVisible");
-            RaisePropertyChanged("CanChangeDepartment");
-            RaisePropertyChanged("TicketBackground");
-            RaisePropertyChanged("IsTicketSelected");
-            RaisePropertyChanged("IsFastPaymentButtonsVisible");
-            RaisePropertyChanged("IsCloseButtonVisible");
+            RaisePropertyChanged(() => SelectedTicket);
+            RaisePropertyChanged(() => IsTicketRemainingVisible);
+            RaisePropertyChanged(() => IsTicketPaymentVisible);
+            RaisePropertyChanged(() => IsTicketTotalVisible);
+            RaisePropertyChanged(() => IsTicketDiscountVisible);
+            RaisePropertyChanged(() => IsTicketTaxTotalVisible);
+            RaisePropertyChanged(() => IsTicketServiceVisible);
+            RaisePropertyChanged(() => IsTicketRoundingVisible);
+            RaisePropertyChanged(() => IsPlainTotalVisible);
+            RaisePropertyChanged(() => CanChangeDepartment);
+            RaisePropertyChanged(() => TicketBackground);
+            RaisePropertyChanged(() => IsTicketSelected);
+            RaisePropertyChanged(() => IsFastPaymentButtonsVisible);
+            RaisePropertyChanged(() => IsCloseButtonVisible);
         }
 
         public void UpdateSelectedDepartment(int departmentId)
         {
-            RaisePropertyChanged("Departments");
-            RaisePropertyChanged("PermittedDepartments");
+            RaisePropertyChanged(() => Departments);
+            RaisePropertyChanged(() => PermittedDepartments);
             SelectedDepartment = departmentId > 0
                 ? Departments.SingleOrDefault(x => x.Id == departmentId)
                 : null;

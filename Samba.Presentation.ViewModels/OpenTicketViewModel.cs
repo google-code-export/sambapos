@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
@@ -15,17 +18,17 @@ namespace Samba.Presentation.ViewModels
         public DateTime Date { get; set; }
         public DateTime LastOrderDate { get; set; }
         public bool WrapText { get; set; }
-        public string TicketTag { get; set; }
-        public string Info { get; set; }
+
+        public bool IsLocked { get; set; }
         public string TicketTime
         {
             get
             {
                 var difference = Convert.ToInt32(new TimeSpan(DateTime.Now.Ticks - LastOrderDate.Ticks).TotalMinutes);
-                if (difference == 0) return "-";
-                return string.Format(Resources.OpenTicketButtonDuration, difference.ToString("#"));
+                return difference == 0 ? "-" : string.Format(Resources.OpenTicketButtonDuration, difference.ToString("#"));
             }
         }
+        
         public string Title
         {
             get
@@ -33,12 +36,13 @@ namespace Samba.Presentation.ViewModels
                 var result = !string.IsNullOrEmpty(LocationName) ? LocationName : TicketNumber;
                 result = result + " ";
                 result = WrapText ? result.Replace(" ", "\r") : result;
-                if (!string.IsNullOrEmpty(Info)) result += Info;
-                else if (!string.IsNullOrEmpty(AccountName)) result += AccountName;
+                if (!string.IsNullOrEmpty(AccountName)) result += AccountName;
                 return result.TrimEnd('\r');
             }
         }
+        
         public string TitleTextColor { get { return !string.IsNullOrEmpty(LocationName) || !string.IsNullOrEmpty(AccountName) ? "DarkBlue" : "Maroon"; } }
+       
         public string Total
         {
             get
@@ -49,9 +53,9 @@ namespace Samba.Presentation.ViewModels
 
         public void Refresh()
         {
-            RaisePropertyChanged("TicketTime");
-            RaisePropertyChanged("Title");
-            RaisePropertyChanged("Total");
+            RaisePropertyChanged(() => TicketTime);
+            RaisePropertyChanged(() => Title);
+            RaisePropertyChanged(() => Total);
         }
     }
 }

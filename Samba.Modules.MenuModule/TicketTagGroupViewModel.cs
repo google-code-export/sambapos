@@ -17,7 +17,7 @@ namespace Samba.Modules.MenuModule
         public IList<string> Actions { get { return _actions; } }
 
         private readonly IList<string> _tagTypes = new[] { Resources.Alphanumeric, Resources.Numeric, Resources.Price };
-        public IList<string> TagTypes { get { return _tagTypes; } }
+        public IList<string> DataTypes { get { return _tagTypes; } }
 
         private IEnumerable<Numerator> _numerators;
         public IEnumerable<Numerator> Numerators
@@ -33,7 +33,7 @@ namespace Samba.Modules.MenuModule
         public ICaptionCommand DeleteTicketTagCommand { get; set; }
 
         public string Action { get { return Actions[Model.Action]; } set { Model.Action = Actions.IndexOf(value); } }
-        public string TaggingType { get { return TagTypes[Model.TaggingType]; } set { Model.TaggingType = TagTypes.IndexOf(value); } }
+        public string DataType { get { return DataTypes[Model.DataType]; } set { Model.DataType = DataTypes.IndexOf(value); } }
 
         public Numerator Numerator { get { return Model.Numerator; } set { Model.Numerator = value; } }
         public bool FreeTagging { get { return Model.FreeTagging; } set { Model.FreeTagging = value; } }

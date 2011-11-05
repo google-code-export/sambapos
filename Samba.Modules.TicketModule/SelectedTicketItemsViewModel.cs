@@ -61,9 +61,9 @@ namespace Samba.Modules.TicketModule
 
                 if (SelectedTicket.IsTaggedWith(SelectedTicket.LastSelectedTicketTag.Name)) TicketTags.Add(TicketTag.Empty);
                 if (TicketTags.Count == 1 && !_showFreeTagEditor) obj.Value.UpdateTag(SelectedTicket.LastSelectedTicketTag, TicketTags[0]);
-                RaisePropertyChanged("TagColumnCount");
-                RaisePropertyChanged("IsFreeTagEditorVisible");
-                RaisePropertyChanged("FilteredTextBoxType");
+                RaisePropertyChanged(() => TagColumnCount);
+                RaisePropertyChanged(() => IsFreeTagEditorVisible);
+                RaisePropertyChanged(() => FilteredTextBoxType);
             }
 
             if (obj.Topic == EventTopicNames.SelectVoidReason)
@@ -71,7 +71,7 @@ namespace Samba.Modules.TicketModule
                 ResetValues(obj.Value);
                 Reasons.AddRange(AppServices.MainDataContext.Reasons.Values.Where(x => x.ReasonType == 0));
                 if (Reasons.Count == 0) obj.Value.VoidSelectedItems(0);
-                RaisePropertyChanged("ReasonColumnCount");
+                RaisePropertyChanged(() => ReasonColumnCount);
             }
 
             if (obj.Topic == EventTopicNames.SelectGiftReason)
@@ -79,22 +79,22 @@ namespace Samba.Modules.TicketModule
                 ResetValues(obj.Value);
                 Reasons.AddRange(AppServices.MainDataContext.Reasons.Values.Where(x => x.ReasonType == 1));
                 if (Reasons.Count == 0) obj.Value.GiftSelectedItems(0);
-                RaisePropertyChanged("ReasonColumnCount");
+                RaisePropertyChanged(() => ReasonColumnCount);
             }
 
             if (obj.Topic == EventTopicNames.SelectExtraProperty)
             {
                 ResetValues(obj.Value);
                 _showExtraPropertyEditor = true;
-                RaisePropertyChanged("IsExtraPropertyEditorVisible");
-                RaisePropertyChanged("IsPortionsVisible");
+                RaisePropertyChanged(() => IsExtraPropertyEditorVisible);
+                RaisePropertyChanged(() => IsPortionsVisible);
             }
 
             if (obj.Topic == EventTopicNames.EditTicketNote)
             {
                 ResetValues(obj.Value);
                 _showTicketNoteEditor = true;
-                RaisePropertyChanged("IsTicketNoteEditorVisible");
+                RaisePropertyChanged(() => IsTicketNoteEditorVisible);
             }
         }
 
@@ -155,7 +155,7 @@ namespace Samba.Modules.TicketModule
             set
             {
                 _freeTag = value;
-                RaisePropertyChanged("FreeTag");
+                RaisePropertyChanged(() => FreeTag);
             }
         }
 
@@ -205,7 +205,7 @@ namespace Samba.Modules.TicketModule
                     var tag = tt.TicketTags.SingleOrDefault(x => x.Name.ToLower() == FreeTag.ToLower());
                     if (tag == null)
                     {
-                        tag = new TicketTag() { Name = FreeTag };
+                        tag = new TicketTag { Name = FreeTag };
                         tt.TicketTags.Add(tag);
                         workspace.Add(tag);
                         workspace.CommitChanges();
@@ -220,7 +220,7 @@ namespace Samba.Modules.TicketModule
         {
             SelectedTicket.RefreshVisuals();
             _showExtraPropertyEditor = false;
-            RaisePropertyChanged("IsExtraPropertyEditorVisible");
+            RaisePropertyChanged(() => IsExtraPropertyEditorVisible);
         }
 
         private void OnTicketTagSelected(TicketTag obj)
@@ -257,12 +257,12 @@ namespace Samba.Modules.TicketModule
         {
             SelectedTicket = ticketViewModel;
             SelectedItem = SelectedTicket.SelectedItems.Count() == 1 ? SelectedTicket.SelectedItems[0] : null;
-            RaisePropertyChanged("SelectedTicket");
-            RaisePropertyChanged("SelectedItem");
-            RaisePropertyChanged("IsTicketNoteEditorVisible");
-            RaisePropertyChanged("IsExtraPropertyEditorVisible");
-            RaisePropertyChanged("IsFreeTagEditorVisible");
-            RaisePropertyChanged("IsPortionsVisible");
+            RaisePropertyChanged(() => SelectedTicket);
+            RaisePropertyChanged(() => SelectedItem);
+            RaisePropertyChanged(() => IsTicketNoteEditorVisible);
+            RaisePropertyChanged(() => IsExtraPropertyEditorVisible);
+            RaisePropertyChanged(() => IsFreeTagEditorVisible);
+            RaisePropertyChanged(() => IsPortionsVisible);
         }
 
         public bool ShouldDisplay(TicketViewModel value)
@@ -278,7 +278,7 @@ namespace Samba.Modules.TicketModule
                 var mi = AppServices.DataAccessService.GetMenuItem(id);
                 if (SelectedItem.Model.PortionCount > 1) SelectedItemPortions.AddRange(mi.Portions);
                 SelectedItemPropertyGroups.AddRange(mi.PropertyGroups);
-                RaisePropertyChanged("IsPortionsVisible");
+                RaisePropertyChanged(() => IsPortionsVisible);
             }
 
             return SelectedItemPortions.Count > 1 || SelectedItemPropertyGroups.Count > 0;

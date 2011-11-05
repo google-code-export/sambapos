@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Samba.Domain.Models.Inventories;
 using Samba.Infrastructure.Data;
-using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Services;
 
@@ -38,8 +34,8 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 UpdateInventoryItem(value);
-                RaisePropertyChanged("Name");
-                RaisePropertyChanged("UnitName");
+                RaisePropertyChanged(() => Name);
+                RaisePropertyChanged(() => UnitName);
             }
         }
 
@@ -57,7 +53,7 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 Model.Quantity = value;
-                RaisePropertyChanged("Quantity");
+                RaisePropertyChanged(() => Quantity);
             }
         }
 

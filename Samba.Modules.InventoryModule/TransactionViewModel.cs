@@ -52,7 +52,7 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 _selectedTransactionItem = value;
-                RaisePropertyChanged("SelectedTransactionItem");
+                RaisePropertyChanged(()=>SelectedTransactionItem);
             }
         }
 

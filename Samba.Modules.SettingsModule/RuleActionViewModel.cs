@@ -67,7 +67,7 @@ namespace Samba.Modules.SettingsModule
             {
                 Model.ActionType = value;
                 ParameterValues = CreateParameterValues(value);
-                RaisePropertyChanged("IsParameterLabelVisible");
+                RaisePropertyChanged(() => IsParameterLabelVisible);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 _parameterValues = value;
-                RaisePropertyChanged("ParameterValues");
+                RaisePropertyChanged(() => ParameterValues);
             }
         }
 

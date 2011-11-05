@@ -91,7 +91,12 @@ namespace Samba.Presentation.ViewModels
             get { return Model.Id; }
         }
 
-        public string Note { get { return Model.Note; } set { Model.Note = value; RaisePropertyChanged("Note"); } }
+        public string Note
+        {
+            get { return Model.Note; }
+            set { Model.Note = value; RaisePropertyChanged(() => Note); }
+        }
+
         public string TagDisplay { get { return Model.GetTagData().Split('\r').Select(x => !string.IsNullOrEmpty(x) && x.Contains(":") && x.Split(':')[0].Trim() == x.Split(':')[1].Trim() ? x.Split(':')[0] : x).Aggregate("", (c, v) => c + v + "\r").Trim('\r'); } }
 
         public bool IsTicketNoteVisible { get { return !string.IsNullOrEmpty(Note); } }
@@ -272,22 +277,21 @@ namespace Samba.Presentation.ViewModels
 
         public void RefreshVisuals()
         {
-            RaisePropertyChanged("TicketTotalLabel");
-            RaisePropertyChanged("TicketRemainingLabel");
-            RaisePropertyChanged("TicketDiscountLabel");
-            RaisePropertyChanged("TicketPlainTotalLabel");
-            RaisePropertyChanged("TicketServiceLabel");
-            RaisePropertyChanged("TicketRoundingLabel");
-            RaisePropertyChanged("TicketTaxLabel");
-
-            RaisePropertyChanged("IsTicketRemainingVisible");
-            RaisePropertyChanged("IsTicketPaymentVisible");
-            RaisePropertyChanged("IsTicketDiscountVisible");
-            RaisePropertyChanged("IsTicketTotalVisible");
-            RaisePropertyChanged("IsTicketTaxTotalVisible");
-            RaisePropertyChanged("IsTicketRoundingVisible");
-            RaisePropertyChanged("IsTicketServiceVisible");
-            RaisePropertyChanged("IsTagged");
+            RaisePropertyChanged(() => TicketTotalLabel);
+            RaisePropertyChanged(() => TicketRemainingLabel);
+            RaisePropertyChanged(() => TicketDiscountLabel);
+            RaisePropertyChanged(() => TicketPlainTotalLabel);
+            RaisePropertyChanged(() => TicketServiceLabel);
+            RaisePropertyChanged(() => TicketRoundingLabel);
+            RaisePropertyChanged(() => TicketTaxLabel);
+            RaisePropertyChanged(() => IsTicketRemainingVisible);
+            RaisePropertyChanged(() => IsTicketPaymentVisible);
+            RaisePropertyChanged(() => IsTicketDiscountVisible);
+            RaisePropertyChanged(() => IsTicketTotalVisible);
+            RaisePropertyChanged(() => IsTicketTaxTotalVisible);
+            RaisePropertyChanged(() => IsTicketRoundingVisible);
+            RaisePropertyChanged(() => IsTicketServiceVisible);
+            RaisePropertyChanged(() => IsTagged);
         }
 
         private void VoidItems(IEnumerable<TicketItemViewModel> ticketItems, int reasonId, int userId)
@@ -403,7 +407,7 @@ namespace Samba.Presentation.ViewModels
         }
 
         public bool IsLocked { get { return Model.Locked; } set { Model.Locked = value; } }
-        public bool IsTagged { get { return !string.IsNullOrEmpty(Model.Tag); } }
+        public bool IsTagged { get { return Model.IsTagged; } }
 
         public void UpdatePaidItems(IEnumerable<PaidItem> paidItems)
         {
@@ -515,7 +519,7 @@ namespace Samba.Presentation.ViewModels
                             tagData.TagName,
                             tagData.TagValue,
                             tagData.NumericValue,
-                            TicketTag = Model.Tag
+                            TicketTag = Model.GetTagData()
                         });
 
             tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);

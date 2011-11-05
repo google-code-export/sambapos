@@ -4,7 +4,7 @@ using Samba.Presentation.Common;
 
 namespace Samba.Presentation.ViewModels
 {
-    public class MenuItemPropertyViewModel:ObservableObject
+    public class MenuItemPropertyViewModel : ObservableObject
     {
         public MenuItemProperty Model { get; set; }
 
@@ -13,12 +13,21 @@ namespace Samba.Presentation.ViewModels
             Model = model;
         }
 
-        public string Name { get { return Model.Name; } set { Model.Name = value; } }
-        public Price Price { get { return Model.Price; } set { Model.Price = value; } }
+        public string Name
+        {
+            get { return Model.Name; }
+            set { Model.Name = value; }
+        }
+
+        public Price Price
+        {
+            get { return Model.Price; }
+            set { Model.Price = value; }
+        }
 
         public void Refresh()
         {
-            RaisePropertyChanged("Name");
+            RaisePropertyChanged(() => Name);
         }
     }
 }

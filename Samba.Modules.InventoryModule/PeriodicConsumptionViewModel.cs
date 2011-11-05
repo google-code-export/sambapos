@@ -41,7 +41,7 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 _selectedPeriodicConsumptionItem = value;
-                RaisePropertyChanged("SelectedPeriodicConsumptionItem");
+                RaisePropertyChanged(()=>SelectedPeriodicConsumptionItem);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Samba.Modules.InventoryModule
         {
             InventoryService.CalculateCost(Model, AppServices.MainDataContext.CurrentWorkPeriod);
             _costItems = null;
-            RaisePropertyChanged("CostItems");
+            RaisePropertyChanged(()=>CostItems);
         }
 
         public override Type GetViewType()

@@ -43,7 +43,7 @@ namespace Samba.Presentation.ViewModels
             }
         }
 
-        [DisplayName("Masa")]
+        [LocalizedDisplayName(ResourceStrings.Table)]
         public string Name { get { return Model.Name; } }
 
         private string _buttonColor;
@@ -56,7 +56,7 @@ namespace Samba.Presentation.ViewModels
                 if (_buttonColor != value)
                 {
                     _buttonColor = value;
-                    RaisePropertyChanged("ButtonColor");
+                    RaisePropertyChanged(() => ButtonColor);
                 }
             }
         }
@@ -72,39 +72,43 @@ namespace Samba.Presentation.ViewModels
 
         private bool _isEnabled;
         [Browsable(false)]
-        public bool IsEnabled { get { return _isEnabled; } set { _isEnabled = value; RaisePropertyChanged("IsEnabled"); } }
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { _isEnabled = value; RaisePropertyChanged(() => IsEnabled); }
+        }
 
         [Browsable(false)]
         public string Caption
         {
             get { return Model.Name; }
-            set { Model.Name = value; RaisePropertyChanged("Caption"); }
+            set { Model.Name = value; RaisePropertyChanged(() => Caption); }
         }
 
         public int X
         {
             get { return Model.XLocation; }
-            set { Model.XLocation = value; RaisePropertyChanged("X"); }
+            set { Model.XLocation = value; RaisePropertyChanged(() => X); }
         }
 
         public int Y
         {
             get { return Model.YLocation; }
-            set { Model.YLocation = value; RaisePropertyChanged("Y"); }
+            set { Model.YLocation = value; RaisePropertyChanged(() => Y); }
         }
 
         [LocalizedDisplayName(ResourceStrings.Height)]
         public int Height
         {
             get { return Model.Height; }
-            set { Model.Height = value; RaisePropertyChanged("Height"); }
+            set { Model.Height = value; RaisePropertyChanged(() => Height); }
         }
 
         [LocalizedDisplayName(ResourceStrings.Width)]
         public int Width
         {
             get { return Model.Width; }
-            set { Model.Width = value; RaisePropertyChanged("Width"); }
+            set { Model.Width = value; RaisePropertyChanged(() => Width); }
         }
 
         [Browsable(false)]
@@ -120,8 +124,9 @@ namespace Samba.Presentation.ViewModels
             get { return Model.Angle; }
             set
             {
-                Model.Angle = value; RaisePropertyChanged("Angle");
-                RaisePropertyChanged("RenderTransform");
+                Model.Angle = value;
+                RaisePropertyChanged(() => Angle);
+                RaisePropertyChanged(() => RenderTransform);
             }
         }
 
@@ -129,7 +134,7 @@ namespace Samba.Presentation.ViewModels
         public CornerRadius CornerRadius
         {
             get { return new CornerRadius(Model.CornerRadius); }
-            set { Model.CornerRadius = Convert.ToInt32(value.BottomLeft); RaisePropertyChanged("CornerRadius"); }
+            set { Model.CornerRadius = Convert.ToInt32(value.BottomLeft); RaisePropertyChanged(() => CornerRadius); }
         }
 
         public void EditProperties()

@@ -41,14 +41,19 @@ namespace Samba.Modules.TableModule
         public string Feedback
         {
             get { return _feedback; }
-            set { _feedback = value; RaisePropertyChanged("Feedback"); RaisePropertyChanged("IsFeedbackVisible"); }
+            set
+            {
+                _feedback = value;
+                RaisePropertyChanged(() => Feedback);
+                RaisePropertyChanged(() => IsFeedbackVisible);
+            }
         }
 
         private string _feedbackColor;
         public string FeedbackColor
         {
             get { return _feedbackColor; }
-            set { _feedbackColor = value; RaisePropertyChanged("FeedbackColor"); }
+            set { _feedbackColor = value; RaisePropertyChanged(() => FeedbackColor); }
         }
 
         private string _feedbackForeground;
@@ -58,7 +63,7 @@ namespace Samba.Modules.TableModule
             set
             {
                 _feedbackForeground = value;
-                RaisePropertyChanged("FeedbackForeground");
+                RaisePropertyChanged(() => FeedbackForeground);
             }
         }
 
@@ -149,7 +154,7 @@ namespace Samba.Modules.TableModule
 
         private static void OnSelectTableExecuted(TableScreenItemViewModel obj)
         {
-            var location = new LocationData()
+            var location = new LocationData
                                {
                                    LocationId = obj.Model.Id,
                                    LocationName = obj.Model.Name,
@@ -157,48 +162,12 @@ namespace Samba.Modules.TableModule
                                    Caption = obj.Caption
                                };
             location.PublishEvent(EventTopicNames.LocationSelectedForTicket);
-
-            //if (SelectedTicket != null)
-            //{
-            //    var oldLocationName = SelectedTicket.LocationName;
-            //    var ticketsMerged = obj.Model.TicketId > 0 && obj.Model.TicketId != SelectedTicket.Id;
-            //    AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
-
-            //    SelectedTicket.PublishEvent(EventTopicNames.TableSelectedForTicket);
-
-            //    if (!string.IsNullOrEmpty(oldLocationName) || ticketsMerged)
-            //        if (ticketsMerged && !string.IsNullOrEmpty(oldLocationName))
-            //            InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TablesMerged_f, oldLocationName, obj.Caption));
-            //        else if (ticketsMerged)
-            //            InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMergedToTable_f, obj.Caption));
-            //        else if (oldLocationName != obj.Caption)
-            //            InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.TicketMovedToTable_f, oldLocationName, obj.Caption));
-            //}
-            //else if (obj.Model.TicketId == 0)
-            //{
-            //    AppServices.MainDataContext.AssignTableToSelectedTicket(obj.Model.Id);
-            //    obj.UpdateButtonColor();
-            //    SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-            //}
-            //else
-            //{
-            //    AppServices.MainDataContext.OpenTicket(obj.Model.TicketId);
-            //    if (SelectedTicket != null && SelectedTicket.LocationName == obj.Model.Name)
-            //    {
-            //        SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-            //    }
-            //    else if (SelectedTicket != null)
-            //    {
-            //        AppServices.MainDataContext.ResetTableDataForSelectedTicket();
-            //        SelectedTicket.PublishEvent(EventTopicNames.TicketSelectedFromTableList);
-            //    }
-            //}
         }
 
         private void UpdateTables(int tableScreenId)
         {
             UpdateMethod2(tableScreenId);
-            RaisePropertyChanged("TablesVerticalAlignment");
+            RaisePropertyChanged(() => TablesVerticalAlignment);
         }
 
         private void UpdateMethod2(int tableScreenId)
@@ -238,10 +207,10 @@ namespace Samba.Modules.TableModule
                 Feedback = Resources.SelectTableForOperation;
             }
 
-            RaisePropertyChanged("Tables");
-            RaisePropertyChanged("TableScreens");
-            RaisePropertyChanged("SelectedTableScreen");
-            RaisePropertyChanged("IsPageNavigatorVisible");
+            RaisePropertyChanged(() => Tables);
+            RaisePropertyChanged(() => TableScreens);
+            RaisePropertyChanged(() => SelectedTableScreen);
+            RaisePropertyChanged(() => IsPageNavigatorVisible);
         }
 
         public void LoadTrackableTables()
@@ -249,7 +218,7 @@ namespace Samba.Modules.TableModule
             Tables = new ObservableCollection<IDiagram>(
                 AppServices.MainDataContext.LoadTables(SelectedTableScreen.Name)
                 .Select<Table, IDiagram>(x => new TableScreenItemViewModel(x, SelectedTableScreen)));
-            RaisePropertyChanged("Tables");
+            RaisePropertyChanged(() => Tables);
         }
 
         public void SaveTrackableTables()

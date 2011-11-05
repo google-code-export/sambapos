@@ -40,13 +40,13 @@ namespace Samba.Presentation.Terminal
 
         private void OnCloseScreen(string obj)
         {
-            RaisePropertyChanged("LoggedInUserName");
+            RaisePropertyChanged(()=>LoggedInUserName);
             InvokeCloseButtonClickedEvent(EventArgs.Empty);
         }
 
         public void Refresh()
         {
-            RaisePropertyChanged("LoggedInUserName");
+            RaisePropertyChanged(()=>LoggedInUserName);
         }
     }
 }

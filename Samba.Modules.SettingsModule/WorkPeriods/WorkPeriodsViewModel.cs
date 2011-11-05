@@ -41,21 +41,21 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
         public int OpenTicketCount
         {
             get { return _openTicketCount; }
-            set { _openTicketCount = value; RaisePropertyChanged("OpenTicketCount"); }
+            set { _openTicketCount = value; RaisePropertyChanged(()=>OpenTicketCount); }
         }
 
         private string _openTicketLabel;
         public string OpenTicketLabel
         {
             get { return _openTicketLabel; }
-            set { _openTicketLabel = value; RaisePropertyChanged("OpenTicketLabel"); }
+            set { _openTicketLabel = value; RaisePropertyChanged(()=>OpenTicketLabel); }
         }
 
         private int _activeScreen;
         public int ActiveScreen
         {
             get { return _activeScreen; }
-            set { _activeScreen = value; RaisePropertyChanged("ActiveScreen"); }
+            set { _activeScreen = value; RaisePropertyChanged(()=>ActiveScreen); }
         }
 
         public string StartDescription { get; set; }
@@ -153,9 +153,9 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             }
             else OpenTicketLabel = "";
 
-            RaisePropertyChanged("WorkPeriods");
-            RaisePropertyChanged("LastEndOfDayLabel");
-            RaisePropertyChanged("WorkPeriods");
+            RaisePropertyChanged(()=>WorkPeriods);
+            RaisePropertyChanged(()=>LastEndOfDayLabel);
+            RaisePropertyChanged(()=>WorkPeriods);
 
             StartDescription = "";
             EndDescription = "";

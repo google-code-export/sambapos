@@ -33,9 +33,9 @@ namespace Samba.Modules.BasicReports
             set
             {
                 _selected = value;
-                RaisePropertyChanged("Selected");
-                RaisePropertyChanged("Background");
-                RaisePropertyChanged("Foreground");
+                RaisePropertyChanged(() => Selected);
+                RaisePropertyChanged(() => Background);
+                RaisePropertyChanged(() => Foreground);
             }
         }
 
@@ -162,7 +162,7 @@ namespace Samba.Modules.BasicReports
         public void RefreshReport()
         {
             Document = null;
-            RaisePropertyChanged("Document");
+            RaisePropertyChanged(() => Document);
 
             //Program ilk yüklendiğinde aktif gün başı işlemi yoktur.
 
@@ -198,9 +198,9 @@ namespace Samba.Modules.BasicReports
                                 if (hp != null) hp.Click += (s, e) => HandleClick(((Hyperlink)s).Name.Replace("_", " "));
                             }
 
-                            RaisePropertyChanged("Document");
-                            RaisePropertyChanged("StartDateString");
-                            RaisePropertyChanged("EndDateString");
+                            RaisePropertyChanged(() => Document);
+                            RaisePropertyChanged(() => StartDateString);
+                            RaisePropertyChanged(() => EndDateString);
 
                             CreateFilterGroups();
                             foreach (var filterGroup in FilterGroups)

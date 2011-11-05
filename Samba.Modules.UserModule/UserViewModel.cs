@@ -17,7 +17,7 @@ namespace Samba.Modules.UserModule
         public UserViewModel(User user)
             : base(user)
         {
-            EventServiceFactory.EventService.GetEvent<GenericEvent<UserRole>>().Subscribe(x => RaisePropertyChanged("Roles"));
+            EventServiceFactory.EventService.GetEvent<GenericEvent<UserRole>>().Subscribe(x => RaisePropertyChanged(()=>Roles));
         }
 
         public string PinCode
@@ -33,7 +33,7 @@ namespace Samba.Modules.UserModule
                 {
                     _edited = true;
                     Model.PinCode = value;
-                    RaisePropertyChanged("PinCode");
+                    RaisePropertyChanged(()=>PinCode);
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace Samba.Presentation.Terminal
             set
             {
                 AppServices.MainDataContext.SelectedDepartment = value;
-                RaisePropertyChanged("SelectedDepartment");
+                RaisePropertyChanged(()=>SelectedDepartment);
             }
         }
 
@@ -43,7 +43,7 @@ namespace Samba.Presentation.Terminal
 
         public void Refresh()
         {
-            RaisePropertyChanged("Departments");
+            RaisePropertyChanged(()=>Departments);
         }
     }
 }

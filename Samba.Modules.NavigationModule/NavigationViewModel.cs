@@ -23,7 +23,7 @@ namespace Samba.Modules.NavigationModule
 
         public void Refresh()
         {
-            RaisePropertyChanged("CategoryView");
+            RaisePropertyChanged(() => CategoryView);
         }
     }
 }

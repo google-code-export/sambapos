@@ -35,12 +35,12 @@ namespace Samba.Modules.CashModule
                     var operations = AppServices.CashService.GetCurrentCashOperationData();
                     var operationViewModel = new CashOperationViewModel
                                                  {
-                                                      CashPaymentValue = operations[0],
-                                                      CreditCardPaymentValue = operations[1],
-                                                      TicketPaymentValue = operations[2],
-                                                      Description = Resources.OperationIncome,
-                                                      Date = DateTime.Now
-                                                  };
+                                                     CashPaymentValue = operations[0],
+                                                     CreditCardPaymentValue = operations[1],
+                                                     TicketPaymentValue = operations[2],
+                                                     Description = Resources.OperationIncome,
+                                                     Date = DateTime.Now
+                                                 };
                     (_incomeTransactions as IList).Insert(0, operationViewModel);
 
                     if (AppServices.MainDataContext.CurrentWorkPeriod != null)
@@ -104,8 +104,8 @@ namespace Samba.Modules.CashModule
             set
             {
                 _selectedAccount = value;
-                RaisePropertyChanged("IsAccountDetailsVisible");
-                RaisePropertyChanged("SelectedAccount");
+                RaisePropertyChanged(() => IsAccountDetailsVisible);
+                RaisePropertyChanged(() => SelectedAccount);
             }
         }
 
@@ -122,21 +122,21 @@ namespace Samba.Modules.CashModule
         public string Description
         {
             get { return _description; }
-            set { _description = value; RaisePropertyChanged("Description"); }
+            set { _description = value; RaisePropertyChanged(() => Description); }
         }
 
         private decimal _amount;
         public decimal Amount
         {
             get { return _amount; }
-            set { _amount = value; RaisePropertyChanged("Amount"); }
+            set { _amount = value; RaisePropertyChanged(() => Amount); }
         }
 
         private TransactionType _transactionType;
         public TransactionType TransactionType
         {
             get { return _transactionType; }
-            set { _transactionType = value; RaisePropertyChanged("TransactionDescription"); }
+            set { _transactionType = value; RaisePropertyChanged(() => TransactionDescription); }
         }
 
         public string TransactionDescription
@@ -165,9 +165,9 @@ namespace Samba.Modules.CashModule
             set
             {
                 _activeView = value;
-                RaisePropertyChanged("ActiveView");
-                RaisePropertyChanged("IsPaymentButtonsVisible");
-                RaisePropertyChanged("IsTransactionButtonVisible");
+                RaisePropertyChanged(() => ActiveView);
+                RaisePropertyChanged(() => IsPaymentButtonsVisible);
+                RaisePropertyChanged(() => IsTransactionButtonVisible);
             }
         }
 
@@ -196,7 +196,7 @@ namespace Samba.Modules.CashModule
             ApplyTicketTransactionCommand = new CaptionCommand<string>(Resources.Voucher, OnApplyTicketTransaction, CanApplyTransaction);
             DisplayAccountsCommand = new CaptionCommand<string>(Resources.Accounts, OnDisplayAccounts);
         }
-        
+
         private static void OnDisplayAccounts(string obj)
         {
             EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateAccountView);
@@ -290,17 +290,18 @@ namespace Samba.Modules.CashModule
                 SelectedAccount = null;
                 return;
             }
-            RaisePropertyChanged("IncomeTransactions");
-            RaisePropertyChanged("ExpenseTransactions");
-            RaisePropertyChanged("CashIncomeTotal");
-            RaisePropertyChanged("CreditCardIncomeTotal");
-            RaisePropertyChanged("TicketIncomeTotal");
-            RaisePropertyChanged("CashExpenseTotal");
-            RaisePropertyChanged("CreditCardExpenseTotal");
-            RaisePropertyChanged("TicketExpenseTotal");
-            RaisePropertyChanged("CashTotal");
-            RaisePropertyChanged("CreditCardTotal");
-            RaisePropertyChanged("TicketTotal");
+
+            RaisePropertyChanged(() => IncomeTransactions);
+            RaisePropertyChanged(() => ExpenseTransactions);
+            RaisePropertyChanged(() => CashIncomeTotal);
+            RaisePropertyChanged(() => CreditCardIncomeTotal);
+            RaisePropertyChanged(() => TicketIncomeTotal);
+            RaisePropertyChanged(() => CashExpenseTotal);
+            RaisePropertyChanged(() => CreditCardExpenseTotal);
+            RaisePropertyChanged(() => TicketExpenseTotal);
+            RaisePropertyChanged(() => CashTotal);
+            RaisePropertyChanged(() => CreditCardTotal);
+            RaisePropertyChanged(() => TicketTotal);
         }
 
         private static IEnumerable<CashTransaction> GetTransactions()

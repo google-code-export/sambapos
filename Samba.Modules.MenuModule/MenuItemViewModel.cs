@@ -104,7 +104,7 @@ namespace Samba.Modules.MenuModule
 
             _propertyGroups = new ObservableCollection<MenuItemPropertyGroupViewModel>(GetProperties(Model));
 
-            RaisePropertyChanged("PropertyGroups");
+            RaisePropertyChanged(()=>PropertyGroups);
         }
 
 

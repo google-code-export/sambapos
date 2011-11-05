@@ -37,7 +37,11 @@ namespace Samba.Modules.TicketModule
         public ScreenMenuCategory MostUsedItemsCategory { get; set; }
 
         private ScreenMenuCategory _selectedCategory;
-        public ScreenMenuCategory SelectedCategory { get { return _selectedCategory; } set { _selectedCategory = value; RaisePropertyChanged("SelectedCategory"); } }
+        public ScreenMenuCategory SelectedCategory
+        {
+            get { return _selectedCategory; }
+            set { _selectedCategory = value; RaisePropertyChanged(() => SelectedCategory); }
+        }
 
         public string NumeratorValue
         {
@@ -46,7 +50,7 @@ namespace Samba.Modules.TicketModule
             {
                 AppServices.MainDataContext.NumeratorValue = value;
                 FilterMenuItems(AppServices.MainDataContext.NumeratorValue);
-                RaisePropertyChanged("NumeratorValue");
+                RaisePropertyChanged(() => NumeratorValue);
             }
         }
 
@@ -259,10 +263,10 @@ namespace Samba.Modules.TicketModule
                     OnCategoryCommandExecute(Categories[0].Category);
                     Categories.Clear();
                 }
-                RaisePropertyChanged("Categories");
-                RaisePropertyChanged("CategoriesVerticalAlignment");
-                RaisePropertyChanged("MostUsedMenuItems");
-                RaisePropertyChanged("MostUsedItemsCategory");
+                RaisePropertyChanged(() => Categories);
+                RaisePropertyChanged(() => CategoriesVerticalAlignment);
+                RaisePropertyChanged(() => MostUsedMenuItems);
+                RaisePropertyChanged(() => MostUsedItemsCategory);
             }
         }
 
@@ -315,9 +319,9 @@ namespace Samba.Modules.TicketModule
                 }
             }
 
-            RaisePropertyChanged("MenuItems");
-            RaisePropertyChanged("IsPageNumberNavigatorVisible");
-            RaisePropertyChanged("MenuItemsVerticalAlignment");
+            RaisePropertyChanged(() => MenuItems);
+            RaisePropertyChanged(() => IsPageNumberNavigatorVisible);
+            RaisePropertyChanged(() => MenuItemsVerticalAlignment);
         }
 
         private void OnSubCategoryCommand(ScreenSubCategoryButton obj)
@@ -340,11 +344,11 @@ namespace Samba.Modules.TicketModule
 
             AlphaButtonValues = string.IsNullOrEmpty(category.AlphaButtonValues) ? new string[0] : category.AlphaButtonValues.Split(',');
 
-            RaisePropertyChanged("IsQuickNumeratorVisible");
-            RaisePropertyChanged("IsNumeratorVisible");
-            RaisePropertyChanged("QuickNumeratorValues");
-            RaisePropertyChanged("AlphaButtonValues");
-            RaisePropertyChanged("MenuItemsVerticalAlignment");
+            RaisePropertyChanged(() => IsQuickNumeratorVisible);
+            RaisePropertyChanged(() => IsNumeratorVisible);
+            RaisePropertyChanged(() => QuickNumeratorValues);
+            RaisePropertyChanged(() => AlphaButtonValues);
+            RaisePropertyChanged(() => MenuItemsVerticalAlignment);
         }
 
         private ObservableCollection<ScreenMenuItemButton> CreateMenuButtons(ScreenMenuCategory category, int pageNo, string tag)

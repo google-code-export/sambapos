@@ -50,14 +50,14 @@ namespace Samba.Modules.TicketModule
         public int SelectedView
         {
             get { return _selectedView; }
-            set { _selectedView = value; RaisePropertyChanged("SelectedView"); }
+            set { _selectedView = value; RaisePropertyChanged(() => SelectedView); }
         }
 
         private int _selectedSubView;
         public int SelectedSubView
         {
             get { return _selectedSubView; }
-            set { _selectedSubView = value; RaisePropertyChanged("SelectedSubView"); }
+            set { _selectedSubView = value; RaisePropertyChanged(() => SelectedSubView); }
         }
 
         private void OnUserLoginEvent(EventParameters<User> obj)

@@ -34,8 +34,8 @@ namespace Samba.Presentation.Terminal
         public void DisplayFullScreenNumerator()
         {
             _fullScreenNumerator = true;
-            RaisePropertyChanged("NavigatorHeight");
-            RaisePropertyChanged("IsTablesVisible");
+            RaisePropertyChanged(() => NavigatorHeight);
+            RaisePropertyChanged(() => IsTablesVisible);
             NumeratorHeight = double.NaN;
         }
 
@@ -45,9 +45,9 @@ namespace Samba.Presentation.Terminal
             _fullScreenNumerator = false;
             if (SelectedTableScreen != null)
                 NumeratorHeight = SelectedTableScreen.NumeratorHeight;
-            RaisePropertyChanged("NavigatorHeight");
-            RaisePropertyChanged("NumeratorHeight");
-            RaisePropertyChanged("IsTablesVisible");
+            RaisePropertyChanged(() => NavigatorHeight);
+            RaisePropertyChanged(() => NumeratorHeight);
+            RaisePropertyChanged(() => IsTablesVisible);
         }
 
         public bool IsTablesVisible { get { return !_fullScreenNumerator; } }
@@ -59,7 +59,7 @@ namespace Samba.Presentation.Terminal
             set
             {
                 _numeratorHeight = value;
-                RaisePropertyChanged("NumeratorHeight");
+                RaisePropertyChanged(() => NumeratorHeight);
             }
         }
 
@@ -70,7 +70,7 @@ namespace Samba.Presentation.Terminal
             set
             {
                 _alphaButtonValues = value;
-                RaisePropertyChanged("AlphaButtonValues");
+                RaisePropertyChanged(() => AlphaButtonValues);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Samba.Presentation.Terminal
             set
             {
                 _numeratorValue = value;
-                RaisePropertyChanged("NumeratorValue");
+                RaisePropertyChanged(() => NumeratorValue);
             }
         }
 
@@ -177,11 +177,11 @@ namespace Samba.Presentation.Terminal
                 NumeratorHeight = 0;
                 AlphaButtonValues = new string[0];
             }
-            RaisePropertyChanged("Tables");
-            RaisePropertyChanged("NavigatorHeight");
-            RaisePropertyChanged("SelectedTableScreen");
-            RaisePropertyChanged("NumeratorHeight");
-            RaisePropertyChanged("TableScreenAlignment");
+            RaisePropertyChanged(() => Tables);
+            RaisePropertyChanged(() => NavigatorHeight);
+            RaisePropertyChanged(() => SelectedTableScreen);
+            RaisePropertyChanged(() => NumeratorHeight);
+            RaisePropertyChanged(() => TableScreenAlignment);
         }
     }
 }

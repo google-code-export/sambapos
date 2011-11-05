@@ -18,25 +18,14 @@ namespace Samba.Presentation.Terminal
     {
         public event TicketSelectionEventHandler TicketSelectedEvent;
 
-        public DelegateCommand<TerminalOpenTicketView> SelectTicketCommand { get; set; }
+        public DelegateCommand<OpenTicketViewModel> SelectTicketCommand { get; set; }
         public ICaptionCommand CreateNewTicketCommand { get; set; }
 
-        public IEnumerable<TerminalOpenTicketView> OpenTickets { get; set; }
-
-        private IEnumerable<TicketTagFilterViewModel> _openTicketTags;
-        public IEnumerable<TicketTagFilterViewModel> OpenTicketTags
-        {
-            get { return _openTicketTags; }
-            set
-            {
-                _openTicketTags = value;
-                RaisePropertyChanged("OpenTicketTags");
-            }
-        }
+        public IEnumerable<OpenTicketViewModel> OpenTickets { get; set; }
 
         public TicketScreenViewModel()
         {
-            SelectTicketCommand = new DelegateCommand<TerminalOpenTicketView>(OnSelectTicket);
+            SelectTicketCommand = new DelegateCommand<OpenTicketViewModel>(OnSelectTicket);
             CreateNewTicketCommand = new CaptionCommand<string>(Resources.NewTicket, OnCreateNewTicket);
         }
 
@@ -51,18 +40,18 @@ namespace Samba.Presentation.Terminal
             if (handler != null) handler(ticketId);
         }
 
-        private void OnSelectTicket(TerminalOpenTicketView obj)
+        private void OnSelectTicket(OpenTicketViewModel obj)
         {
             InvokeTicketSelectedEvent(obj.Id);
         }
 
         public void Refresh()
         {
-            UpdateOpenTickets(AppServices.MainDataContext.SelectedDepartment, AppServices.MainDataContext.SelectedDepartment.TerminalDefaultTag);
-            RaisePropertyChanged("OpenTickets");
+            UpdateOpenTickets(AppServices.MainDataContext.SelectedDepartment);
+            RaisePropertyChanged(() => OpenTickets);
         }
 
-        public void UpdateOpenTickets(Department department, string selectedTag)
+        public void UpdateOpenTickets(Department department)
         {
             Expression<Func<Ticket, bool>> prediction;
 
@@ -71,41 +60,14 @@ namespace Samba.Presentation.Terminal
             else
                 prediction = x => !x.IsPaid;
 
-            OpenTickets = Dao.Select(x => new TerminalOpenTicketView
+            OpenTickets = Dao.Select(x => new OpenTicketViewModel
             {
                 Id = x.Id,
                 TicketNumber = x.TicketNumber,
                 LocationName = x.LocationName,
                 AccountName = x.AccountName,
-                IsLocked = x.Locked,
-                TicketTag = x.Tag
+                IsLocked = x.Locked
             }, prediction).OrderBy(x => x.Title);
-
-            if (!string.IsNullOrEmpty(selectedTag))
-            {
-                var tag = selectedTag.ToLower() + ":";
-                var cnt = OpenTickets.Count(x => string.IsNullOrEmpty(x.TicketTag) || !x.TicketTag.ToLower().Contains(tag));
-
-                OpenTickets = OpenTickets.Where(x => !string.IsNullOrEmpty(x.TicketTag) && x.TicketTag.ToLower().Contains(tag));
-
-                var opt = OpenTickets.SelectMany(x => x.TicketTag.Split('\r'))
-                    .Where(x => x.ToLower().Contains(tag))
-                    .Distinct()
-                    .Select(x => x.Split(':')).Select(x => new TicketTagFilterViewModel { TagGroup = x[0], TagValue = x[1] }).OrderBy(x => x.TagValue).ToList();
-
-                opt.Insert(0, new TicketTagFilterViewModel { TagGroup = selectedTag, TagValue = "*", ButtonColor = "Blue" });
-
-                if (cnt > 0)
-                    opt.Insert(0, new TicketTagFilterViewModel { Count = cnt, TagGroup = selectedTag, ButtonColor = "Red" });
-
-                OpenTicketTags = opt.Count() > 1 ? opt : null;
-
-                OpenTickets.ToList().ForEach(x => x.Info = x.TicketTag.Split('\r').Where(y => y.ToLower().StartsWith(tag)).Single().Split(':')[1]);
-            }
-            else
-            {
-                OpenTicketTags = null;
-            }
         }
     }
 }

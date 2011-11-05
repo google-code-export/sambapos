@@ -29,7 +29,7 @@ namespace Samba.Modules.MenuModule
             set
             {
                 Model.Order = value;
-                RaisePropertyChanged("Order");
+                RaisePropertyChanged(() => Order);
             }
         }
 
@@ -40,7 +40,7 @@ namespace Samba.Modules.MenuModule
             set
             {
                 Model.AutoSelect = value;
-                RaisePropertyChanged("AutoSelect");
+                RaisePropertyChanged(() => AutoSelect);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Samba.Modules.MenuModule
             set
             {
                 Model.ButtonColor = value != Brushes.Transparent ? value.ToString() : string.Empty;
-                RaisePropertyChanged("ButtonColor");
+                RaisePropertyChanged(() => ButtonColor);
             }
         }
 
@@ -64,25 +64,49 @@ namespace Samba.Modules.MenuModule
         public string ImagePath
         {
             get { return Model.ImagePath ?? ""; }
-            set { Model.ImagePath = value; RaisePropertyChanged("ImagePath"); }
+            set { Model.ImagePath = value; RaisePropertyChanged(() => ImagePath); }
         }
 
         [LocalizedDisplayName(ResourceStrings.Header)]
-        public string Name { get { return Model.Name; } set { Model.Name = value; RaisePropertyChanged("Name"); } }
+        public string Name
+        {
+            get { return Model.Name; }
+            set { Model.Name = value; RaisePropertyChanged(() => Name); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.Quantity)]
-        public int Quantity { get { return Model.Quantity; } set { Model.Quantity = value; RaisePropertyChanged("Quantity"); } }
+        public int Quantity
+        {
+            get { return Model.Quantity; }
+            set { Model.Quantity = value; RaisePropertyChanged(() => Quantity); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.Gift)]
-        public bool Gift { get { return Model.Gift; } set { Model.Gift = value; RaisePropertyChanged("Gift"); } }
+        public bool Gift
+        {
+            get { return Model.Gift; }
+            set { Model.Gift = value; RaisePropertyChanged(() => Gift); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.DefaultProperties)]
-        public string DefaultProperties { get { return Model.DefaultProperties; } set { Model.DefaultProperties = value; RaisePropertyChanged("DefaultProperties"); } }
+        public string DefaultProperties
+        {
+            get { return Model.DefaultProperties; }
+            set { Model.DefaultProperties = value; RaisePropertyChanged(() => DefaultProperties); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.Tag)]
-        public string Tag { get { return Model.Tag; } set { Model.Tag = value; RaisePropertyChanged("Tag"); } }
+        public string Tag
+        {
+            get { return Model.Tag; }
+            set { Model.Tag = value; RaisePropertyChanged(() => Tag); }
+        }
 
         [LocalizedDisplayName(ResourceStrings.Portion)]
-        public string Portion { get { return Model.ItemPortion; } set { Model.ItemPortion = value; RaisePropertyChanged("Portion"); } }
+        public string Portion
+        {
+            get { return Model.ItemPortion; }
+            set { Model.ItemPortion = value; RaisePropertyChanged(() => Portion); }
+        }
     }
 }

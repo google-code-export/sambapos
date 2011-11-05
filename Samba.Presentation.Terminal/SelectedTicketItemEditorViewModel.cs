@@ -39,7 +39,7 @@ namespace Samba.Presentation.Terminal
             set
             {
                 _customTag = value;
-                RaisePropertyChanged("CustomTag");
+                RaisePropertyChanged(() => CustomTag);
             }
         }
 
@@ -126,7 +126,7 @@ namespace Samba.Presentation.Terminal
         public bool IsKeyboardVisible
         {
             get { return _isKeyboardVisible; }
-            set { _isKeyboardVisible = value; RaisePropertyChanged("IsKeyboardVisible"); }
+            set { _isKeyboardVisible = value; RaisePropertyChanged(() => IsKeyboardVisible); }
         }
 
         public TicketTagGroup SelectedTicketTag { get; set; }
@@ -171,22 +171,22 @@ namespace Samba.Presentation.Terminal
                     {
                         TicketTags.AddRange(selectedTicketTag.TicketTags.Select(x => new TicketTagViewModel(x)));
                     }
-                    RaisePropertyChanged("TicketTags");
+                    RaisePropertyChanged(() => TicketTags);
                 }
                 else
                 {
-                    RaisePropertyChanged("TicketNote");
+                    RaisePropertyChanged(() => TicketNote);
                     ShowKeyboard();
                 }
             }
 
-            RaisePropertyChanged("SelectedItem");
-            RaisePropertyChanged("IsPortionsVisible");
-            RaisePropertyChanged("IsEditorsVisible");
-            RaisePropertyChanged("IsTicketNoteVisible");
-            RaisePropertyChanged("IsTagEditorVisible");
-            RaisePropertyChanged("IsFreeTagEditorVisible");
-            RaisePropertyChanged("TagColumnCount");
+            RaisePropertyChanged(() => SelectedItem);
+            RaisePropertyChanged(() => IsPortionsVisible);
+            RaisePropertyChanged(() => IsEditorsVisible);
+            RaisePropertyChanged(() => IsTicketNoteVisible);
+            RaisePropertyChanged(() => IsTagEditorVisible);
+            RaisePropertyChanged(() => IsFreeTagEditorVisible);
+            RaisePropertyChanged(() => TagColumnCount);
         }
 
         public void CloseView()

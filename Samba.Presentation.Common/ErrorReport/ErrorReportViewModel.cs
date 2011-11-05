@@ -20,7 +20,7 @@ namespace Samba.Presentation.Common.ErrorReport
             set
             {
                 _dialogResult = value;
-                RaisePropertyChanged("DialogResult");
+                RaisePropertyChanged(() => DialogResult);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Samba.Presentation.Common.ErrorReport
             {
                 Model.UserExplanation = value;
                 _errorReportAsText = null;
-                RaisePropertyChanged("ErrorReportAsText");
+                RaisePropertyChanged(() => ErrorReportAsText);
             }
         }
 

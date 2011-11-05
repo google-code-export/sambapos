@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using Samba.Domain.Models.Accounts;
@@ -33,6 +32,7 @@ namespace Samba.Domain.Models.Tickets
             LastOrderDate = DateTime.Now;
             LocationName = locationName;
             PrintJobData = "";
+
             _removedTicketItems = new List<TicketItem>();
             _removedServices = new List<Service>();
             _ticketItems = new List<TicketItem>();
@@ -40,11 +40,11 @@ namespace Samba.Domain.Models.Tickets
             _discounts = new List<Discount>();
             _paidItems = new List<PaidItem>();
             _services = new List<Service>();
+            _tags = new List<TicketTagValue>();
         }
 
         private bool _shouldLock;
         private Dictionary<int, int> _printCounts;
-        private Dictionary<string, string> _tagValues;
         private readonly List<TicketItem> _removedTicketItems;
         private readonly List<Service> _removedServices;
 
@@ -65,8 +65,6 @@ namespace Samba.Domain.Models.Tickets
         public int DepartmentId { get; set; }
         public string Note { get; set; }
         public bool Locked { get; set; }
-        [StringLength(500)]
-        public string Tag { get; set; }
 
         private IList<TicketItem> _ticketItems;
         public virtual IList<TicketItem> TicketItems
@@ -94,6 +92,13 @@ namespace Samba.Domain.Models.Tickets
         {
             get { return _services; }
             set { _services = value; }
+        }
+
+        private IList<TicketTagValue> _tags;
+        public virtual IList<TicketTagValue> Tags
+        {
+            get { return _tags; }
+            set { _tags = value; }
         }
 
         private IList<PaidItem> _paidItems;
@@ -341,6 +346,11 @@ namespace Samba.Domain.Models.Tickets
             get { return !IsPaid; }
         }
 
+        public bool IsTagged
+        {
+            get { return Tags.Where(x => !string.IsNullOrEmpty(x.TagValue)).Count() > 0; }
+        }
+
         public void VoidItem(TicketItem item, int reasonId, int userId)
         {
             Locked = false;
@@ -553,49 +563,28 @@ namespace Samba.Domain.Models.Tickets
             }
         }
 
-        private static Dictionary<string, string> CreateTagValues(string tagData)
-        {
-            try
-            {
-                return tagData
-                    .Split('\r')
-                    .Where(x => !string.IsNullOrEmpty(x))
-                    .Select(item => item.Split(':').Where(x => !string.IsNullOrEmpty(x)).ToArray())
-                    .ToDictionary(d => d[0], d => d[1]);
-            }
-            catch (Exception)
-            {
-                return new Dictionary<string, string>();
-            }
-        }
-
         public string GetTagValue(string tagName)
         {
-            if (string.IsNullOrEmpty(Tag)) return "";
-            if (_tagValues == null)
-                _tagValues = CreateTagValues(Tag);
-            return _tagValues.ContainsKey(tagName) ? _tagValues[tagName] : "";
+            var tag = Tags.SingleOrDefault(x => x.TagName == tagName);
+            return tag != null ? tag.TagValue : "";
         }
 
         public void SetTagValue(string tagName, string tagValue)
         {
-            if (_tagValues == null)
-                _tagValues = CreateTagValues(Tag);
-            if (!_tagValues.ContainsKey(tagName))
-                _tagValues.Add(tagName, tagValue);
-            else _tagValues[tagName] = tagValue;
-            if (string.IsNullOrEmpty(tagValue))
-                _tagValues.Remove(tagName);
-            Tag = string.Join("\r", _tagValues.Select(x => string.Format("{0}:{1}", x.Key, x.Value)));
-            if (!string.IsNullOrEmpty(Tag)) Tag += "\r";
+            var tag = Tags.SingleOrDefault(x => x.TagName == tagName);
+            if (tag == null)
+            {
+                tag = new TicketTagValue { TagName = tagName, TagValue = tagValue };
+                Tags.Add(tag);
+            }
+            else
+                tag.TagValue = tagValue;
+            tag.DateTime = DateTime.Now;
         }
 
         public string GetTagData()
         {
-            if (string.IsNullOrEmpty(Tag)) return "";
-            if (_tagValues == null)
-                _tagValues = CreateTagValues(Tag);
-            return string.Join("\r", _tagValues.Where(x => !string.IsNullOrEmpty(x.Value)).Select(x => string.Format("{0}: {1}", x.Key, x.Value)));
+            return string.Join("\r", Tags.Where(x => !string.IsNullOrEmpty(x.TagValue)).Select(x => string.Format("{0}: {1}", x.TagName, x.TagValue)));
         }
 
         public void UpdateAccount(Account account)

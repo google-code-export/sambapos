@@ -102,8 +102,8 @@ namespace Samba.Presentation.Terminal
             set
             {
                 _selectedIndex = value;
-                RaisePropertyChanged("SelectedIndex");
-                RaisePropertyChanged("IsLoggedUserVisible");
+                RaisePropertyChanged(()=>SelectedIndex);
+                RaisePropertyChanged(()=>IsLoggedUserVisible);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Samba.Presentation.Terminal
             set
             {
                 _selectedTicketViewIndex = value;
-                RaisePropertyChanged("SelectedTicketViewIndex");
+                RaisePropertyChanged(()=>SelectedTicketViewIndex);
             }
         }
 
@@ -178,7 +178,6 @@ namespace Samba.Presentation.Terminal
             }
             else
             {
-                if (ShouldSelectTag()) return;
                 ActivateMenuItemSelector();
             }
 
@@ -338,7 +337,6 @@ namespace Samba.Presentation.Terminal
                     if (DataContext.SelectedTicket.SelectedItems.Count > 0)
                     {
                         MoveSelectedItems(0);
-                        if (ShouldSelectTag()) return;
                     }
                     ActivateTicketView(null);
                 }
@@ -406,23 +404,6 @@ namespace Samba.Presentation.Terminal
             DataContext.OpenTicket(newTicketId);
             if (tableId > 0)
                 TicketViewModel.AssignLocationToSelectedTicket(tableId);
-            //AppServices.MainDataContext.AssignTableToSelectedTicket(tableId);
         }
-
-        private bool ShouldSelectTag()
-        {
-            if (!string.IsNullOrEmpty(AppServices.MainDataContext.SelectedDepartment.TerminalDefaultTag))
-            {
-                var tg = AppServices.MainDataContext.SelectedDepartment.TicketTagGroups.FirstOrDefault(x => x.Name ==
-                    AppServices.MainDataContext.SelectedDepartment.TerminalDefaultTag);
-                if (tg != null)
-                {
-                    ActivateSelectedTicketItemEditorView(null, tg);
-                    return true;
-                }
-            }
-            return false;
-        }
-
     }
 }

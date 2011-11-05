@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
@@ -51,8 +50,8 @@ namespace Samba.Presentation.ViewModels
             set
             {
                 _model.Quantity = value;
-                RaisePropertyChanged("Quantity");
-                RaisePropertyChanged("TotalPrice");
+                RaisePropertyChanged(() => Quantity);
+                RaisePropertyChanged(() => TotalPrice);
                 ResetSelectedQuantity();
             }
         }
@@ -82,11 +81,11 @@ namespace Samba.Presentation.ViewModels
 
         private void RefreshSelectedItem()
         {
-            RaisePropertyChanged("SelectedQuantity");
-            RaisePropertyChanged("Description");
-            RaisePropertyChanged("Background");
-            RaisePropertyChanged("Foreground");
-            RaisePropertyChanged("BorderThickness");
+            RaisePropertyChanged(() => SelectedQuantity);
+            RaisePropertyChanged(() => Description);
+            RaisePropertyChanged(() => Background);
+            RaisePropertyChanged(() => Foreground);
+            RaisePropertyChanged(() => BorderThickness);
         }
 
         public decimal Price
@@ -100,13 +99,25 @@ namespace Samba.Presentation.ViewModels
         }
 
         private bool _selected;
-        public bool Selected { get { return _selected; } set { _selected = value; UpdateItemColor(); RaisePropertyChanged("Selected"); } }
+        public bool Selected
+        {
+            get { return _selected; }
+            set { _selected = value; UpdateItemColor(); RaisePropertyChanged(() => Selected); }
+        }
 
         private Brush _background;
-        public Brush Background { get { return _background; } set { _background = value; RaisePropertyChanged("Background"); } }
+        public Brush Background
+        {
+            get { return _background; }
+            set { _background = value; RaisePropertyChanged(() => Background); }
+        }
 
         private Brush _foreground;
-        public Brush Foreground { get { return _foreground; } set { _foreground = value; RaisePropertyChanged("Foreground"); } }
+        public Brush Foreground
+        {
+            get { return _foreground; }
+            set { _foreground = value; RaisePropertyChanged(() => Foreground); }
+        }
 
         public int BorderThickness { get { return IsLastSelected ? 1 : 0; } }
 
@@ -193,7 +204,7 @@ namespace Samba.Presentation.ViewModels
             set
             {
                 _isLastSelected = value;
-                RaisePropertyChanged("BorderThickness");
+                RaisePropertyChanged(() => BorderThickness);
             }
         }
 
@@ -238,16 +249,16 @@ namespace Samba.Presentation.ViewModels
         public void UpdatePortion(MenuItemPortion portion, string priceTag)
         {
             _model.UpdatePortion(portion, priceTag, AppServices.MainDataContext.GetTaxTemplate(portion.MenuItemId));
-            RaisePropertyChanged("Description");
-            RaisePropertyChanged("TotalPrice");
+            RaisePropertyChanged(() => Description);
+            RaisePropertyChanged(() => TotalPrice);
         }
 
         public void ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty menuItemProperty)
         {
             _model.ToggleProperty(group, menuItemProperty);
             RefreshProperties();
-            RaisePropertyChanged("TotalPrice");
-            RaisePropertyChanged("Quantity");
+            RaisePropertyChanged(() => TotalPrice);
+            RaisePropertyChanged(() => Quantity);
         }
 
         private void RefreshProperties()
@@ -259,8 +270,8 @@ namespace Samba.Presentation.ViewModels
         public void UpdatePrice(decimal value)
         {
             Model.UpdatePrice(value, AppServices.MainDataContext.SelectedDepartment.PriceTag);
-            RaisePropertyChanged("Price");
-            RaisePropertyChanged("TotalPrice");
+            RaisePropertyChanged(() => Price);
+            RaisePropertyChanged(() => TotalPrice);
         }
     }
 }

@@ -41,9 +41,9 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 UpdateInventoryItem(value);
-                RaisePropertyChanged("Name");
-                RaisePropertyChanged("UnitName");
-                RaisePropertyChanged("UnitNames");
+                RaisePropertyChanged(()=>Name);
+                RaisePropertyChanged(()=>UnitName);
+                RaisePropertyChanged(()=>UnitNames);
             }
         }
 
@@ -54,7 +54,7 @@ namespace Samba.Modules.InventoryModule
             {
                 Model.Unit = value;
                 Model.Multiplier = value == InventoryItem.TransactionUnit ? InventoryItem.TransactionUnitMultiplier : 1;
-                RaisePropertyChanged("UnitName");
+                RaisePropertyChanged(()=>UnitName);
             }
         }
 
@@ -85,8 +85,8 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 Model.Quantity = value;
-                RaisePropertyChanged("Quantity");
-                RaisePropertyChanged("TotalPrice");
+                RaisePropertyChanged(()=>Quantity);
+                RaisePropertyChanged(()=>TotalPrice);
             }
         }
 
@@ -96,8 +96,8 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 Model.Price = value;
-                RaisePropertyChanged("Price");
-                RaisePropertyChanged("TotalPrice");
+                RaisePropertyChanged(()=>Price);
+                RaisePropertyChanged(()=>TotalPrice);
             }
         }
 
@@ -107,8 +107,8 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 Model.Price = (value / Model.Quantity);
-                RaisePropertyChanged("Price");
-                RaisePropertyChanged("TotalPrice");
+                RaisePropertyChanged(()=>Price);
+                RaisePropertyChanged(()=>TotalPrice);
             }
         }
 

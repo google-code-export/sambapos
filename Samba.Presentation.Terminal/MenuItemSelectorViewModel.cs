@@ -42,15 +42,19 @@ namespace Samba.Presentation.Terminal
                     NumeratorValue = QuickNumeratorValues[0];
                 }
                 else NumeratorValue = "";
-                RaisePropertyChanged("IsQuickNumeratorVisible");
-                RaisePropertyChanged("QuickNumeratorValues");
-                RaisePropertyChanged("IsPageNumberNavigatorVisible");
-                RaisePropertyChanged("SelectedCategory");
+                RaisePropertyChanged(() => IsQuickNumeratorVisible);
+                RaisePropertyChanged(() => QuickNumeratorValues);
+                RaisePropertyChanged(() => IsPageNumberNavigatorVisible);
+                RaisePropertyChanged(() => SelectedCategory);
             }
         }
 
         private string _numeratorValue;
-        public string NumeratorValue { get { return _numeratorValue; } set { _numeratorValue = value; RaisePropertyChanged("NumeratorValue"); } }
+        public string NumeratorValue
+        {
+            get { return _numeratorValue; }
+            set { _numeratorValue = value; RaisePropertyChanged(() => NumeratorValue); }
+        }
         public string[] QuickNumeratorValues { get; set; }
 
         public bool IsQuickNumeratorVisible { get { return SelectedCategory != null && SelectedCategory.IsQuickNumeratorVisible; } }

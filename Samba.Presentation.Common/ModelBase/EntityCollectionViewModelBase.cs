@@ -95,7 +95,7 @@ namespace Samba.Presentation.Common.ModelBase
             set
             {
                 _selectedItem = value;
-                RaisePropertyChanged("SelectedItem");
+                RaisePropertyChanged(()=>SelectedItem);
             }
         }
 

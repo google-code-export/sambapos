@@ -33,7 +33,7 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 UpdateInventoryItem(value);
-                RaisePropertyChanged("Name");
+                RaisePropertyChanged(()=>Name);
             }
         }
 

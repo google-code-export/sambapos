@@ -58,7 +58,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.AutoPrintIfCash = value;
-                RaisePropertyChanged("AutoPrintIfCash");
+                RaisePropertyChanged(()=>AutoPrintIfCash);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.AutoPrintIfCreditCard = value;
-                RaisePropertyChanged("AutoPrintIfCreditCard");
+                RaisePropertyChanged(()=>AutoPrintIfCreditCard);
             }
         }
 
@@ -78,7 +78,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.AutoPrintIfTicket = value;
-                RaisePropertyChanged("AutoPrintIfTicket");
+                RaisePropertyChanged(()=>AutoPrintIfTicket);
             }
         }
 

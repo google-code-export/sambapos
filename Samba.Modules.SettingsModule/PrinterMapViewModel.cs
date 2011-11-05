@@ -72,8 +72,8 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.PrinterTemplate = value;
-                RaisePropertyChanged("PrinterTemplate");
-                RaisePropertyChanged("PrinterTemplateLabel");
+                RaisePropertyChanged(() => PrinterTemplate);
+                RaisePropertyChanged(() => PrinterTemplateLabel);
             }
         }
 
@@ -85,8 +85,8 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.Department = value;
-                RaisePropertyChanged("Department");
-                RaisePropertyChanged("DepartmentLabel");
+                RaisePropertyChanged(() => Department);
+                RaisePropertyChanged(() => DepartmentLabel);
             }
         }
 
@@ -103,9 +103,9 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.MenuItemGroupCode = value;
-                RaisePropertyChanged("MenuItemGroupCode");
-                RaisePropertyChanged("MenuItemGroupCodeLabel");
-                RaisePropertyChanged("MenuItems");
+                RaisePropertyChanged(() => MenuItemGroupCode);
+                RaisePropertyChanged(() => MenuItemGroupCodeLabel);
+                RaisePropertyChanged(() => MenuItems);
             }
         }
 
@@ -126,8 +126,8 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.TicketTag = value;
-                RaisePropertyChanged("TicketTag");
-                RaisePropertyChanged("TicketTagLabel");
+                RaisePropertyChanged(() => TicketTag);
+                RaisePropertyChanged(() => TicketTagLabel);
             }
         }
 
@@ -139,8 +139,8 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.MenuItem = value;
-                RaisePropertyChanged("MenuItem");
-                RaisePropertyChanged("MenuItemLabel");
+                RaisePropertyChanged(() => MenuItem);
+                RaisePropertyChanged(() => MenuItemLabel);
             }
         }
 
@@ -152,8 +152,8 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 Model.Printer = value;
-                RaisePropertyChanged("Printer");
-                RaisePropertyChanged("PrinterLabel");
+                RaisePropertyChanged(() => Printer);
+                RaisePropertyChanged(() => PrinterLabel);
             }
         }
     }

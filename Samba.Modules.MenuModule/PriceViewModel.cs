@@ -22,7 +22,7 @@ namespace Samba.Modules.MenuModule
                     Model.Price.Amount = value;
                     IsChanged = true;
                 }
-                RaisePropertyChanged("Price");
+                RaisePropertyChanged(() => Price);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Samba.Modules.MenuModule
             set
             {
                 _isChanged = value;
-                RaisePropertyChanged("IsChanged");
+                RaisePropertyChanged(() => IsChanged);
             }
         }
 

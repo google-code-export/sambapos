@@ -1,6 +1,5 @@
 ﻿using System;
 using Samba.Domain;
-using Samba.Domain.Foundation;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
@@ -19,7 +18,7 @@ namespace Samba.Presentation.ViewModels
         public decimal Amount
         {
             get { return Model.Amount; }
-            set { Model.Amount = value; RaisePropertyChanged("Amount"); }
+            set { Model.Amount = value; RaisePropertyChanged(() => Amount); }
         }
 
         public PaymentType PaymentType

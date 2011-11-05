@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 
-
 namespace Samba.Presentation.Common.VirtualKeyboard
 {
     public enum KeyState
@@ -12,7 +11,15 @@ namespace Samba.Presentation.Common.VirtualKeyboard
     public class VKey : ObservableObject
     {
         private KeyState _keyState;
-        public KeyState KeyState { get { return _keyState; } set { _keyState = value; RaisePropertyChanged("Caption"); } }
+        public KeyState KeyState
+        {
+            get { return _keyState; }
+            set
+            {
+                _keyState = value;
+                RaisePropertyChanged(() => Caption);
+            }
+        }
 
         public string Caption
         {

@@ -160,7 +160,7 @@ namespace Samba.Modules.MenuModule
             InteractionService.UserIntraction.SortItems(Model.Categories, Resources.SortCategories,
                 string.Format(Resources.SortCategoriesDialogHint_f, Model.Name));
             Categories = new ObservableCollection<ScreenMenuCategoryViewModel>(Categories.OrderBy(x => x.Model.Order));
-            RaisePropertyChanged("Categories");
+            RaisePropertyChanged(()=>Categories);
         }
 
         private bool CanSortCategories(string arg)

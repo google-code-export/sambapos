@@ -28,7 +28,7 @@ namespace Samba.Modules.DashboardModule
 
         public void Refresh()
         {
-            RaisePropertyChanged("CategoryView");
+            RaisePropertyChanged(() => CategoryView);
         }
     }
 }

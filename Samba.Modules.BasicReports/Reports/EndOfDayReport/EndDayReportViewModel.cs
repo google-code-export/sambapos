@@ -174,10 +174,9 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
             {
                 var dict = new Dictionary<string, List<Ticket>>();
 
-                foreach (var ticket in ReportContext.Tickets.Where(x => !string.IsNullOrEmpty(x.Tag)))
+                foreach (var ticket in ReportContext.Tickets.Where(x => x.IsTagged))
                 {
-                    var tags = ticket.Tag.Split(new[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (var tag in tags)
+                    foreach (var tag in ticket.Tags.Select(x => x.TagName + ":" + x.TagValue))
                     {
                         if (!dict.ContainsKey(tag))
                             dict.Add(tag, new List<Ticket>());

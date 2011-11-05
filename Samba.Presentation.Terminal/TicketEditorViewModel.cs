@@ -60,7 +60,7 @@ namespace Samba.Presentation.Terminal
         public string SelectedTicketTitle
         {
             get { return _selectedTicketTitle; }
-            set { _selectedTicketTitle = value; RaisePropertyChanged("SelectedTicketTitle"); }
+            set { _selectedTicketTitle = value; RaisePropertyChanged(() => SelectedTicketTitle); }
         }
 
         public bool IsTicketTotalVisible
@@ -292,16 +292,16 @@ namespace Samba.Presentation.Terminal
 
         public void Refresh()
         {
-            RaisePropertyChanged("SelectedTicket");
-            RaisePropertyChanged("IsTicketRemainingVisible");
-            RaisePropertyChanged("IsTicketPaymentVisible");
-            RaisePropertyChanged("IsTicketTotalVisible");
-            RaisePropertyChanged("IsTicketDiscountVisible");
-            RaisePropertyChanged("PrintJobButtons");
-            RaisePropertyChanged("TicketTagButtons");
-            RaisePropertyChanged("Note");
-            RaisePropertyChanged("IsTicketNoteVisible");
-            RaisePropertyChanged("IsTableButtonVisible");
+            RaisePropertyChanged(() => SelectedTicket);
+            RaisePropertyChanged(() => IsTicketRemainingVisible);
+            RaisePropertyChanged(() => IsTicketPaymentVisible);
+            RaisePropertyChanged(() => IsTicketTotalVisible);
+            RaisePropertyChanged(() => IsTicketDiscountVisible);
+            RaisePropertyChanged(() => PrintJobButtons);
+            RaisePropertyChanged(() => TicketTagButtons);
+            RaisePropertyChanged(() => Note);
+            RaisePropertyChanged(() => IsTicketNoteVisible);
+            RaisePropertyChanged(() => IsTableButtonVisible);
             UpdateSelectedTicketTitle();
         }
 

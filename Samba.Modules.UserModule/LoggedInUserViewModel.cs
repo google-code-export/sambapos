@@ -44,13 +44,13 @@ namespace Samba.Modules.UserModule
         private void UserLoggedIn(User user)
         {
             LoggedInUser = user;
-            RaisePropertyChanged("LoggedInUserName");
+            RaisePropertyChanged(() => LoggedInUserName);
         }
 
         private void UserLoggedOut(User user)
         {
             LoggedInUser = User.Nobody;
-            RaisePropertyChanged("LoggedInUserName");
+            RaisePropertyChanged(() => LoggedInUserName);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 _selectedRecipeItem = value;
-                RaisePropertyChanged("SelectedRecipeItem");
+                RaisePropertyChanged(()=>SelectedRecipeItem);
             }
         }
 
@@ -66,7 +66,7 @@ namespace Samba.Modules.InventoryModule
                     if (mi != null && mi.Portions.Count == 1)
                         Portion = mi.Portions[0];
                 }
-                RaisePropertyChanged("SelectedMenuItemName");
+                RaisePropertyChanged(()=>SelectedMenuItemName);
             }
         }
 
@@ -87,7 +87,7 @@ namespace Samba.Modules.InventoryModule
                 if (value != null)
                 { SelectedMenuItemName = value.Name; }
                 else Portion = null;
-                RaisePropertyChanged("SelectedMenuItem");
+                RaisePropertyChanged(()=>SelectedMenuItem);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 Model.Portion = value;
-                RaisePropertyChanged("Portion");
+                RaisePropertyChanged(()=>Portion);
             }
         }
 

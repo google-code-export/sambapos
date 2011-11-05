@@ -28,7 +28,7 @@ namespace Samba.Modules.InventoryModule
             set
             {
                 Model.PhysicalInventory = value;
-                RaisePropertyChanged("PhysicalInventory");
+                RaisePropertyChanged(()=>PhysicalInventory);
             }
         }
     }

@@ -115,7 +115,7 @@ namespace Samba.Modules.SettingsModule
             set
             {
                 LocalSettings.OverrideWindowsRegionalSettings = value;
-                RaisePropertyChanged("OverrideWindowsRegionalSettings");
+                RaisePropertyChanged(()=>OverrideWindowsRegionalSettings);
             }
         }
 

@@ -23,8 +23,6 @@ namespace Samba.Domain.Models.Tickets
         public int TableScreenId { get; set; }
         public int TerminalTableScreenId { get; set; }
         public int OpenTicketViewColumnCount { get; set; }
-        public string DefaultTag { get; set; }
-        public string TerminalDefaultTag { get; set; }
         [StringLength(10)]
         public string PriceTag { get; set; }
 
