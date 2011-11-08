@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.66 "
-#define FileVersion "266"
+#define Version "2.67 "
+#define FileVersion "267"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -156,7 +156,7 @@ Source: src\Imports\menu.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\menu_tr.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_tr.txt; DestDir: {app}\Imports\; Components: veri
-//Source: src\Imports\menu_cs.txt; DestDir: {app}\Imports\; Components: veri
+Source: src\Imports\menu_cs.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_cs.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\FlexButton.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\DataGridFilterLibrary.dll; DestDir: {app}; Flags: ignoreversion
