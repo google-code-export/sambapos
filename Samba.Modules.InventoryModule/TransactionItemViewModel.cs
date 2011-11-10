@@ -25,8 +25,11 @@ namespace Samba.Modules.InventoryModule
             get { return Model.InventoryItem; }
             set
             {
-                Model.InventoryItem = value;
-                UnitName = value.TransactionUnitMultiplier > 0 ? value.TransactionUnit : value.BaseUnit;
+                if(value != null)
+                {
+                    Model.InventoryItem = value;
+                    UnitName = value.TransactionUnitMultiplier > 0 ? value.TransactionUnit : value.BaseUnit;
+                }
             }
         }
 
