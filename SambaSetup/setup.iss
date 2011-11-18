@@ -95,6 +95,7 @@ AppID={{7FFA6CCB-2A30-4F09-A216-0CDFC031E870}
 Name: en; MessagesFile: compiler:Default.isl
 Name: de; MessagesFile: compiler:Languages\German.isl
 Name: cs; MessagesFile: compiler:Languages\Czech.isl
+Name: es; MessagesFile: compiler:Languages\Spanish.isl
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl
 
 [Tasks]
@@ -158,6 +159,8 @@ Source: src\Imports\menu_tr.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_tr.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\menu_cs.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_cs.txt; DestDir: {app}\Imports\; Components: veri
+Source: src\Imports\menu_es.txt; DestDir: {app}\Imports\; Components: veri
+Source: src\Imports\table_es.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\FlexButton.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\DataGridFilterLibrary.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\FluentMigrator.dll; DestDir: {app}; Flags: ignoreversion
@@ -168,6 +171,7 @@ Source: C:\Windows\Fonts\lucon.ttf; DestDir: {fonts}; Flags: onlyifdoesntexist u
 Source: src\Samba.Localization.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\tr\Samba.Localization.resources.dll; DestDir: {app}\tr\; Flags: ignoreversion
 Source: src\cs\Samba.Localization.resources.dll; DestDir: {app}\cs\; Flags: ignoreversion
+Source: src\es\Samba.Localization.resources.dll; DestDir: {app}\es\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -265,4 +269,5 @@ Name: {app}\Images
 Name: {app}\Imports
 Name: {app}\tr
 Name: {app}\cs
+Name: {app}\es
 Name: {commonappdata}\Ozgu Tech\SambaPOS2

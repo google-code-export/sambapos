@@ -1,0 +1,51 @@
+﻿#Desayuno
+Bagel tostado Jam 1.50
+Bagel tostado de queso 2,25
+Cereal frío con tostadas 3,49
+Pan tostado y mermelada 1,50
+Huevo, queso tocino 3,99
+Tocino y Queso 3,49
+Tocino y tomate 3,49
+#Sopa
+Sopa y galletas 2.99
+Sopa y tostadas bagel 3,99
+Ensalada con Sopa de 4,99
+#Wraps
+Pollo Jardín Envuelva 5,25
+César de pollo Envoltura 5.75
+México Envuelva 5,99
+Pollo griego Envuelva 6,99
+Canadá Envuelva 6,99
+Envuelva vegetariana 4,75
+#Sandwiches
+La abuela de 4,99
+Montreal Smoked Meat 4,99
+Turquía 4,99
+Tostadas occidentales 3,99
+La parrilla suiza 4,99
+#Ensaladas
+jardín 4,25
+Pollo Jardín 6,25
+César 4.99
+Ensalada griega 5,50
+César con pollo 6,25
+Ensalada de pasta 4,25
+#Desiertos
+Muffins 1,25
+Cinnamon Rolls 1,10
+Tartas de mantequilla 1
+Té Galletas 1,50
+Frutas danés 1,50
+Las cookies 1
+Arroz con Leche 2,25
+Sundae de caramelo 2,99
+Chocolate Sundae 2.99
+#Bebidas
+café 1,45
+té 1,17
+Té de hierbas 1,25
+Refrescos 1
+jugo de 1,75
+Té helado 1,75
+Bebidas grandes 2,25
+leche 1,50
