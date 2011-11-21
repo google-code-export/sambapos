@@ -1,4 +1,4 @@
-﻿#Jardín
+﻿#Exteriores
 B10
 B11
 B12
@@ -20,7 +20,7 @@ B27
 B28
 B29
 B30
-#Adentro
+#Interiores
 M10
 M11
 M12

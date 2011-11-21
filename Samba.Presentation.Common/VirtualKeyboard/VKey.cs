@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 
 namespace Samba.Presentation.Common.VirtualKeyboard
@@ -40,13 +41,13 @@ namespace Samba.Presentation.Common.VirtualKeyboard
 
             try
             {
-                LowKey = User32Interop.ToAscii(virtualKey, Keys.None).ToString();
+                LowKey = User32Interop.ToUnicode(virtualKey, Keys.None).ToString();
             }
             catch (Exception) { LowKey = " "; }
 
             try
             {
-                UpKey = User32Interop.ToAscii(virtualKey, Keys.ShiftKey).ToString();
+                UpKey = User32Interop.ToUnicode(virtualKey, Keys.ShiftKey).ToString();
             }
             catch (Exception) { UpKey = " "; }
         }
@@ -54,17 +55,22 @@ namespace Samba.Presentation.Common.VirtualKeyboard
 
     public static class User32Interop
     {
-        public static char ToAscii(Keys key, Keys modifiers)
+        public static char ToUnicode(Keys key, Keys modifiers)
         {
-            var outputBuilder = new StringBuilder(2);
-            int result = ToAscii((uint)key, 0, GetKeyState(modifiers),
-                                 outputBuilder, 0);
+            var chars = new char[1];
+            int result = ToUnicode((uint)key, 0, GetKeyState(modifiers),
+                                 chars, chars.Length, 0);
             if (result == 1)
             {
-                return outputBuilder[0];
+                return chars[0];
             }
 
-            ToAscii((uint)key, 0, GetKeyState(modifiers), outputBuilder, 0);
+            result = ToUnicode((uint)key, 0, GetKeyState(modifiers), chars, chars.Length, 0);
+            if (result == 1)
+            {
+                return chars[0];
+            }
+
             throw new Exception("Invalid key");
         }
 
@@ -82,10 +88,8 @@ namespace Samba.Presentation.Common.VirtualKeyboard
             return keyState;
         }
 
-        [DllImport("user32.dll")]
-        private static extern int ToAscii(uint uVirtKey, uint uScanCode,
-                                          byte[] lpKeyState,
-                                          [Out] StringBuilder lpChar,
-                                          uint uFlags);
+        [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
+        public static extern int ToUnicode(uint virtualKey, uint scanCode, byte[] keyStates, [MarshalAs(UnmanagedType.LPArray)] [Out] char[] chars, int charMaxCount, uint flags);
+
     }
 }
