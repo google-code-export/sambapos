@@ -2667,7 +2667,7 @@
 		<value>Невозможно удалить, потому что для этого принтера назначены задания на печать</value>
 	</data>
 	<data name="PriceTags" xml:space="preserve">
-		<value>Цена Ter</value>
+		<value>Тег цены</value>
 	</data>
 	<data name="AlphaNumeric" xml:space="preserve">
 		<value>Буквенно-цифровой</value>

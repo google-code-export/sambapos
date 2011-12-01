@@ -121,7 +121,7 @@ namespace Samba.Domain.Models.Tickets
 
         public void ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty property)
         {
-            if (group.MultipleSelection && property.Price.Amount == 0)
+            if (group.MultipleSelection && group.CalculateWithParentPrice && property.Price.Amount == 0)
             {
                 var groupItems = Properties.Where(x => x.PropertyGroupId == group.Id).ToList();
                 foreach (var tip in groupItems) Properties.Remove(tip);
