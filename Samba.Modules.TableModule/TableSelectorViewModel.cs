@@ -29,6 +29,21 @@ namespace Samba.Modules.TableModule
 
         public Ticket SelectedTicket { get { return AppServices.MainDataContext.SelectedTicket; } }
         public TableScreen SelectedTableScreen { get { return AppServices.MainDataContext.SelectedTableScreen; } }
+        public int SelectedDisplayMode
+        {
+            get
+            {
+                if (SelectedTableScreen == null) return 0;
+                if (SelectedTableScreen.DisplayMode == 2 && !string.IsNullOrEmpty(SelectedTableScreen.BackgroundImage))
+                    return 1;
+                return SelectedTableScreen.DisplayMode;
+            }
+            set
+            {
+                //
+            }
+        }
+
         public IEnumerable<TableScreen> TableScreens { get { return AppServices.MainDataContext.TableScreens.Where(x => x.DisplayMode < 2); } }
 
         public bool IsNavigated { get; set; }
@@ -241,6 +256,7 @@ namespace Samba.Modules.TableModule
             RaisePropertyChanged("Tables");
             RaisePropertyChanged("TableScreens");
             RaisePropertyChanged("SelectedTableScreen");
+            RaisePropertyChanged("SelectedDisplayMode");
             RaisePropertyChanged("IsPageNavigatorVisible");
         }
 

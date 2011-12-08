@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
+using Samba.Domain;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Settings;
@@ -554,6 +555,20 @@ namespace Samba.Presentation.ViewModels
         {
             AppServices.MainDataContext.CreateNewTicket();
             RuleExecutor.NotifyEvent(RuleEventNames.TicketCreated, new { Ticket = AppServices.MainDataContext.SelectedTicket });
+        }
+
+        public static void AddPaymentToSelectedTicket(decimal amount, PaymentType paymentType)
+        {
+            AppServices.MainDataContext.SelectedTicket.AddPayment(DateTime.Now, amount, paymentType, AppServices.CurrentLoggedInUser.Id);
+            string paymentName = Resources.Cash;
+            if (paymentType == PaymentType.CreditCard) paymentName = Resources.CreditCard;
+            if (paymentType == PaymentType.Ticket) paymentName = Resources.Voucher;
+            RuleExecutor.NotifyEvent(RuleEventNames.PaymentReceived, new { Ticket = AppServices.MainDataContext.SelectedTicket, PaymentType = paymentName, Amount = amount });
+        }
+
+        public static void PaySelectedTicket(PaymentType paymentType)
+        {
+            AddPaymentToSelectedTicket(AppServices.MainDataContext.SelectedTicket.GetRemainingAmount(), paymentType);
         }
 
         public static void AssignTableToSelectedTicket(int locationId)

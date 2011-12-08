@@ -46,6 +46,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketAccount", Resources.UpdateTicketAccount, new { AccountPhone = "", AccountName = "", Note = "" });
+            RuleActionTypeRegistry.RegisterActionType("ExecutePrintJob", Resources.ExecutePrintJob, new { PrintJobName = "" });
         }
 
         private static void RegisterRules()
@@ -61,6 +62,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerName = "", PhoneNumber = "", CustomerNote = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0 });
         }
 
         private static void RegisterParameterSources()
@@ -75,6 +77,8 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("VatTemplate", () => Dao.Select<VatTemplate, string>(x => x.Name, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("TaxServiceTemplate", () => Dao.Select<TaxServiceTemplate, string>(x => x.Name, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("TagName", () => Dao.Select<TicketTagGroup, string>(x => x.Name, x => x.Id > 0));
+            RuleActionTypeRegistry.RegisterParameterSoruce("PaymentType", () => new[] { Resources.Cash, Resources.CreditCard, Resources.Ticket });
+            RuleActionTypeRegistry.RegisterParameterSoruce("PrintJobName", () => Dao.Select<PrintJob, string>(x => x.Name, x => x.Id > 0));
         }
 
         private static void ResetCache()
@@ -283,6 +287,20 @@ namespace Samba.Presentation.ViewModels
                             department.PriceTag = priceTag;
                             workspace.CommitChanges();
                             MethodQueue.Queue("ResetCache", ResetCache);
+                        }
+                    }
+                }
+
+                if (x.Value.Action.ActionType == "ExecutePrintJob")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var pjName = x.Value.Action.GetParameter("PrintJobName");
+                        if (!string.IsNullOrEmpty(pjName))
+                        {
+                            var j = AppServices.CurrentTerminal.PrintJobs.SingleOrDefault(y => y.Name == pjName);
+                            if (j != null) AppServices.PrintService.ManualPrintTicket(ticket, j);
                         }
                     }
                 }

@@ -795,19 +795,19 @@ namespace Samba.Modules.TicketModule
 
         private void OnMakeCreditCardPaymentExecute(string obj)
         {
-            AppServices.MainDataContext.PaySelectedTicket(PaymentType.CreditCard);
+            TicketViewModel.PaySelectedTicket(PaymentType.CreditCard);
             CloseTicket();
         }
 
         private void OnMakeTicketPaymentExecute(string obj)
         {
-            AppServices.MainDataContext.PaySelectedTicket(PaymentType.Ticket);
+            TicketViewModel.PaySelectedTicket(PaymentType.Ticket);
             CloseTicket();
         }
 
         private void OnMakeCashPaymentExecute(string obj)
         {
-            AppServices.MainDataContext.PaySelectedTicket(PaymentType.Cash);
+            TicketViewModel.PaySelectedTicket(PaymentType.Cash);
             CloseTicket();
         }
 

@@ -2614,6 +2614,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Execute Print Job.
+        /// </summary>
+        public static string ExecutePrintJob {
+            get {
+                return ResourceManager.GetString("ExecutePrintJob", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
@@ -4529,6 +4538,15 @@ namespace Samba.Localization.Properties {
         public static string PastWeek {
             get {
                 return ResourceManager.GetString("PastWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Received.
+        /// </summary>
+        public static string PaymentReceived {
+            get {
+                return ResourceManager.GetString("PaymentReceived", resourceCulture);
             }
         }
         

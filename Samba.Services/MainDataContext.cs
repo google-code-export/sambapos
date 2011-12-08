@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using Samba.Domain;
 using Samba.Domain.Models.Actions;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
@@ -530,16 +529,6 @@ namespace Samba.Services
             if (numerator == null) numerator = SelectedDepartment.TicketNumerator;
             if (string.IsNullOrEmpty(ticket.TicketNumber))
                 ticket.TicketNumber = NumberGenerator.GetNextString(numerator.Id);
-        }
-
-        public void AddPaymentToSelectedTicket(decimal tenderedAmount, DateTime date, PaymentType paymentType)
-        {
-            SelectedTicket.AddPayment(date, tenderedAmount, paymentType, AppServices.CurrentLoggedInUser.Id);
-        }
-
-        public void PaySelectedTicket(PaymentType paymentType)
-        {
-            AddPaymentToSelectedTicket(SelectedTicket.GetRemainingAmount(), DateTime.Now, paymentType);
         }
 
         public IList<Table> LoadTables(string selectedTableScreen)

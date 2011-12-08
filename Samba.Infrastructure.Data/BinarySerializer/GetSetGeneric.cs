@@ -35,8 +35,7 @@ namespace Serialization
             CollectionType = FieldInfo.FieldType.GetInterface("IEnumerable", true) != null;
             return;
         }
-
-
+        
         public GetSetGeneric(string name)
         {
             Name = name;

@@ -52,9 +52,14 @@ namespace Samba.Modules.NavigationModule
                 _regionManager.Regions[RegionNames.MainRegion].Activate(_navigationView);
                 (_navigationView.DataContext as NavigationViewModel).Refresh();
             }
-            else
+            else if (AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
             {
                 EventServiceFactory.EventService.PublishEvent(EventTopicNames.ActivateTicketView);
+            }
+            else
+            {
+                AppServices.CurrentLoggedInUser.PublishEvent(EventTopicNames.UserLoggedOut);
+                AppServices.LogoutUser();
             }
         }
     }

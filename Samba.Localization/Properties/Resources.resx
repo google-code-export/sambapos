@@ -3057,4 +3057,10 @@ Continue without adding details?</value>
     <value>Tag Type</value>
     <comment>Label content</comment>
   </data>
+	<data name="PaymentReceived">
+		<value xml:space="preserve">Payment Received</value>
+	</data>
+	<data name="ExecutePrintJob">
+		<value xml:space="preserve">Execute Print Job</value>
+	</data>
 </root>

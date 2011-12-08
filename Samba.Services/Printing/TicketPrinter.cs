@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Threading;
 using Samba.Domain;
-using Samba.Domain.Foundation;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
@@ -69,7 +68,7 @@ namespace Samba.Services.Printing
 
         public static void ManualPrintTicket(Ticket ticket, PrintJob customPrinter)
         {
-            Debug.Assert(!string.IsNullOrEmpty(ticket.TicketNumber));
+            //Debug.Assert(!string.IsNullOrEmpty(ticket.TicketNumber));
             if (customPrinter.LocksTicket) ticket.RequestLock();
             ticket.AddPrintJob(customPrinter.Id);
             PrintOrders(customPrinter, ticket);

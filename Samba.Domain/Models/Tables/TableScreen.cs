@@ -9,6 +9,7 @@ namespace Samba.Domain.Models.Tables
         public string Name { get; set; }
         public byte[] LastUpdateTime { get; set; }
         public int DisplayMode { get; set; }
+
         public string BackgroundColor { get; set; }
         public string BackgroundImage { get; set; }
         public string TableEmptyColor { get; set; }

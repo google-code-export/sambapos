@@ -112,8 +112,8 @@ namespace Samba.Services
 
         private static LoginStatus CheckPinCodeStatus(string pinCode)
         {
-            var users = Workspace.All<User>(x => x.PinCode == pinCode);
-            return users.Count() == 0 ? LoginStatus.PinNotFound : LoginStatus.CanLogin;
+            var user = Workspace.Single<User>(x => x.PinCode == pinCode);
+            return user == null ? LoginStatus.PinNotFound : LoginStatus.CanLogin;
         }
 
         private static Terminal GetCurrentTerminal()
