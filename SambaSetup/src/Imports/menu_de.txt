@@ -1,0 +1,51 @@
+﻿#Frühstück
+Geröstete Bagel Jam 1,50
+Geröstete Bagel Käse 2,25
+Müsli mit Toast 3,49
+Toast und Jam 1,50
+Egg, Bacon Cheese 3,99
+Speck und Käse 3,49
+Bacon und Tomaten 3,49
+#Soup
+Suppe und Crackers 2,99
+Suppe und Toast Bagel 3,99
+Salat mit Suppe 4,99
+#Wraps
+Huhn Garden Wrap 5,25
+Chicken Caesar Wrap 5,75
+Mexican Wrap 5,99
+Huhn griechischen Wrap 6,99
+Kanadischen Wrap 6,99
+Vegetarische Wrap 4,75
+#Sandwiches
+Grandma G 4,99
+Montreal Smoked Meat 4,99
+Türkei 4,99
+Geröstete westlichen 3,99
+Gegrillte Swiss 4,99
+#Salate
+Garden 4,25
+Huhn Garden 6,25
+Caesar 4,99
+Griechischer Salat 5,50
+Chicken Caesar 6,25
+Pasta Salad 4,25
+#Deserts
+Muffins 1,25
+Cinnamon Rolls 1,10
+Butter Tarts 1
+Tea Biscuits 1,50
+Fruit Danish 1,50
+Cookies 1.
+Milchreis 2,25
+Carmel Sundae 2,99
+Schokolade Eisbecher 2,99
+#Beverages
+Kaffee 1,45
+Tea 1,17
+Kräutertee 1,25
+Soft-Drink 1
+Juice 1,75
+Iced Tea 1,75
+Große Getränke 2,25
+Milk 1,50

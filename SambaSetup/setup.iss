@@ -164,6 +164,8 @@ Source: src\Imports\menu_es.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_es.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\menu_ru.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\Imports\table_ru.txt; DestDir: {app}\Imports\; Components: veri
+Source: src\Imports\menu_de.txt; DestDir: {app}\Imports\; Components: veri
+Source: src\Imports\table_de.txt; DestDir: {app}\Imports\; Components: veri
 Source: src\FlexButton.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\DataGridFilterLibrary.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\FluentMigrator.dll; DestDir: {app}; Flags: ignoreversion
@@ -176,6 +178,7 @@ Source: src\tr\Samba.Localization.resources.dll; DestDir: {app}\tr\; Flags: igno
 Source: src\cs\Samba.Localization.resources.dll; DestDir: {app}\cs\; Flags: ignoreversion
 Source: src\es\Samba.Localization.resources.dll; DestDir: {app}\es\; Flags: ignoreversion
 Source: src\ru\Samba.Localization.resources.dll; DestDir: {app}\ru\; Flags: ignoreversion
+Source: src\de\Samba.Localization.resources.dll; DestDir: {app}\de\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -275,4 +278,5 @@ Name: {app}\tr
 Name: {app}\cs
 Name: {app}\es
 Name: {app}\ru
+Name: {app}\de
 Name: {commonappdata}\Ozgu Tech\SambaPOS2

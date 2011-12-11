@@ -138,7 +138,7 @@ html
 
         public static int DbVersion { get { return 10; } }
         public static string AppVersion { get { return "2.70"; } }
-        public static IList<string> SupportedLanguages { get { return new[] { "en", "es", "cs", "ru", "tr" }; } }
+        public static IList<string> SupportedLanguages { get { return new[] { "en", "de", "es", "cs", "ru", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }
 
