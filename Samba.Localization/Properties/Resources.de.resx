@@ -124,23 +124,23 @@
 		<value>PIN eingeben</value>
 	</data>
 	<data name="Exit" xml:space="preserve">
-		<value>Schliessen</value>
+		<value>Beenden</value>
 	</data>
 	<data name="Login" xml:space="preserve">
 		<value>Login</value>
 	</data>
 	<data name="CheckDBVersion" xml:space="preserve">
-		<value>Überprüfen der Database Version</value>
+		<value>Überprüfen der Datenbank-Version</value>
 	</data>
 	<data name="SqlHint" xml:space="preserve">
 		<value>Klicken Sie hier für Hinweise zum Arbeiten mit SQL-Datenbanken</value>
 	</data>
 	<data name="AdminPasswordHint" xml:space="preserve">
 		<value>Admin PIN: 1234
-Ändern des PIN versteckt diesem Hinweis</value>
+Ändern des PIN's versteckt diesen Hinweis</value>
 	</data>
 	<data name="AccountName" xml:space="preserve">
-		<value>Name des Kontos</value>
+		<value>Kontoname</value>
 	</data>
 	<data name="Address" xml:space="preserve">
 		<value>Adresse</value>
@@ -158,16 +158,16 @@
 		<value>Beschreibung</value>
 	</data>
 	<data name="ExpenseTransactions" xml:space="preserve">
-		<value>Ausgehende Zahlungsvorgänge</value>
+		<value>Entnahme</value>
 	</data>
 	<data name="GrandTotal" xml:space="preserve">
 		<value>Gesamtumsatz</value>
 	</data>
 	<data name="Income" xml:space="preserve">
-		<value>Eingehende Zahlungen</value>
+		<value>Einnahme</value>
 	</data>
 	<data name="IncomeTransactions" xml:space="preserve">
-		<value>Eingehende Zahlungsvorgänge</value>
+		<value>Einnahmen</value>
 	</data>
 	<data name="Note" xml:space="preserve">
 		<value>Bemerkung</value>
@@ -182,28 +182,28 @@
 		<value>Gutschein</value>
 	</data>
 	<data name="CreditCard_ab" xml:space="preserve">
-		<value>Kreditkarte</value>
+		<value>Kreditk.</value>
 	</data>
 	<data name="Voucher_ab" xml:space="preserve">
-		<value>Gutschein</value>
+		<value>Gutsch.</value>
 	</data>
 	<data name="OperationIncome" xml:space="preserve">
-		<value>Eingehender Vorgang</value>
+		<value>Einnahme</value>
 	</data>
 	<data name="StartOfDay" xml:space="preserve">
-		<value>Beginn der Arbeitszeit</value>
+		<value>Beginn der Arbeitsperiode</value>
 	</data>
 	<data name="NewIncomeTransaction" xml:space="preserve">
-		<value>Neuer eingehender Zahlungsvorgang</value>
+		<value>Neue Einnahme</value>
 	</data>
 	<data name="NewExpenseTransaction" xml:space="preserve">
-		<value>Neuer ausgehender Zahlungsvorgang</value>
+		<value>Neue Entnahme</value>
 	</data>
 	<data name="IncomeTransaction_r" xml:space="preserve">
-		<value>Eingehender Zahlungsvorgang</value>
+		<value>Einnahme</value>
 	</data>
 	<data name="ExpenseTransaction_r" xml:space="preserve">
-		<value>Ausgehender Zahlungsvorgang</value>
+		<value>Entnahme</value>
 	</data>
 	<data name="Cancel" xml:space="preserve">
 		<value>Abbrechen</value>
@@ -212,7 +212,7 @@
 		<value>Kundenkonten</value>
 	</data>
 	<data name="CustomerName" xml:space="preserve">
-		<value>Name des Kunden</value>
+		<value>Kundenname</value>
 	</data>
 	<data name="InternalAccount" xml:space="preserve">
 		<value>Internes Konto</value>
@@ -254,19 +254,23 @@
 		<value>Kunden</value>
 	</data>
 	<data name="SelectCustomer_r" xml:space="preserve">
-		<value>Kunden wählen</value>
+		<value>Kunden
+wählen</value>
 	</data>
 	<data name="NewCustomer_r" xml:space="preserve">
-		<value>Neukunde</value>
+		<value>Neuer
+Kunde</value>
 	</data>
 	<data name="FindTicket_r" xml:space="preserve">
-		<value>Ticket suchen</value>
+		<value>Ticket
+Suchen</value>
 	</data>
 	<data name="ResetCustomer_r" xml:space="preserve">
-		<value>Kunden zurücksetzen</value>
+		<value>Kunden
+zurücksetzen</value>
 	</data>
 	<data name="GetPayment_r" xml:space="preserve">
-		<value>Zahlung erhalten</value>
+		<value>Kassieren</value>
 	</data>
 	<data name="CustomerAccount_r" xml:space="preserve">
 		<value>Kundenkonto</value>
@@ -281,7 +285,7 @@
 		<value>Information</value>
 	</data>
 	<data name="CallerIdDriverError" xml:space="preserve">
-		<value>Um die Caller-ID anzeigen zu können müssen Sie die Hardwaretreiber installieren</value>
+		<value>Um die Caller-ID anzeigen zu können müssen Sie die Hardwaretreiber installieren.</value>
 	</data>
 	<data name="Calling" xml:space="preserve">
 		<value>Anrufen</value>
@@ -299,16 +303,16 @@
 		<value>Tastatur</value>
 	</data>
 	<data name="Add_f" xml:space="preserve">
-		<value>Hinzufügen {0}</value>
+		<value>{0} hinzufügen</value>
 	</data>
 	<data name="Edit_f" xml:space="preserve">
-		<value> Bearbeiten {0}</value>
+		<value>{0} bearbeiten</value>
 	</data>
 	<data name="Delete_f" xml:space="preserve">
-		<value>Löschen {0}</value>
+		<value>{0} löschen</value>
 	</data>
 	<data name="Clone_f" xml:space="preserve">
-		<value>Duplizieren {0}</value>
+		<value>{0} duplizieren</value>
 	</data>
 	<data name="List_f" xml:space="preserve">
 		<value>{0} Liste</value>
@@ -317,7 +321,7 @@
 		<value>Bestätigung</value>
 	</data>
 	<data name="DeleteItemConfirmation_f" xml:space="preserve">
-		<value>Löschen {0} [{1}]?</value>
+		<value>{0} [{1}] löschen?</value>
 	</data>
 	<data name="Warning" xml:space="preserve">
 		<value>Warnung</value>
@@ -326,19 +330,19 @@
 		<value>Speichern</value>
 	</data>
 	<data name="EditModel_f" xml:space="preserve">
-		<value>Bearbeiten von {0} ({1})</value>
+		<value>{0} ({1}) bearbeiten</value>
 	</data>
 	<data name="AddModel_f" xml:space="preserve">
-		<value>Hinzufügen neuer {0}</value>
+		<value>Neuen {0} hinzufügen</value>
 	</data>
 	<data name="EmptyNameError" xml:space="preserve">
-		<value>Lassen Sie {0} -namen nicht leer.</value>
+		<value>Lassen Sie {0}-namen nicht leer.</value>
 	</data>
 	<data name="CantSave" xml:space="preserve">
 		<value>Kann nicht gespeichert werden</value>
 	</data>
 	<data name="GroupCode" xml:space="preserve">
-		<value>Group Code</value>
+		<value>Gruppen Code</value>
 	</data>
 	<data name="BaseUnit" xml:space="preserve">
 		<value>Basis-Einheit</value>
@@ -347,7 +351,7 @@
 		<value>Transaktion-Einheit</value>
 	</data>
 	<data name="TransacitonUnitMultiplier" xml:space="preserve">
-		<value>Transaktions-Einheit-Multiplikator</value>
+		<value>Transaktions-Einheitsmultiplikator</value>
 	</data>
 	<data name="InventoryItems" xml:space="preserve">
 		<value>Bestands-Artikel</value>
@@ -365,7 +369,7 @@
 		<value>Wählen</value>
 	</data>
 	<data name="CantDeletePastEndOfDayRecords" xml:space="preserve">
-		<value>Tagesbericht kann nicht gelöscht werden</value>
+		<value>Alte Tagesberichte können nicht gelöscht werden</value>
 	</data>
 	<data name="EndOfDayRecord" xml:space="preserve">
 		<value>Tagesbericht</value>
@@ -398,7 +402,7 @@
 		<value>Bestands-Verbrauch</value>
 	</data>
 	<data name="InventoryItemName" xml:space="preserve">
-		<value>Bestands-Artikel-Name</value>
+		<value>Bestands-Artikelname</value>
 	</data>
 	<data name="Portion" xml:space="preserve">
 		<value>Portion</value>
@@ -437,7 +441,7 @@
 		<value>Bestand</value>
 	</data>
 	<data name="DocumentNo" xml:space="preserve">
-		<value>Dokument Nr.</value>
+		<value>Dokumenten-Nr.</value>
 	</data>
 	<data name="UnitPrice" xml:space="preserve">
 		<value>Einzelpreis</value>
@@ -452,7 +456,7 @@
 		<value>Bestandsartikel</value>
 	</data>
 	<data name="DeleteErrorDepartmentUsedInRole" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil diese Abteilung einem Benutzer zugewiesen ist.</value>
+		<value>Kann nicht gelöscht werden, weil diese Abteilung einem Nutzer zugewiesen ist.</value>
 	</data>
 	<data name="DepartmentName" xml:space="preserve">
 		<value>Name der Abteilung</value>
@@ -464,13 +468,13 @@
 		<value>Terminal-Menü</value>
 	</data>
 	<data name="POSTableView" xml:space="preserve">
-		<value>POS Tischansicht</value>
+		<value>POS Gastraumansicht</value>
 	</data>
 	<data name="TerminalTableView" xml:space="preserve">
-		<value>Terminal Tischansicht</value>
+		<value>Terminal Gastraumansicht</value>
 	</data>
 	<data name="OpenTicketView" xml:space="preserve">
-		<value>Offene Tickets anzeigen</value>
+		<value>Anzeige con offenen Tickets</value>
 	</data>
 	<data name="ColumnCount" xml:space="preserve">
 		<value>Spaltenzahl</value>
@@ -479,7 +483,7 @@
 		<value>POS Standard Ticket Tag</value>
 	</data>
 	<data name="TerminalDefaultTicketTag" xml:space="preserve">
-		<value>Terminal-Standard Ticket Tag</value>
+		<value>Terminal Standard Ticket Tag</value>
 	</data>
 	<data name="DepartmentType" xml:space="preserve">
 		<value>Abteilungsart</value>
@@ -488,22 +492,22 @@
 		<value>Fast-Food</value>
 	</data>
 	<data name="ALaCarte" xml:space="preserve">
-		<value>A-la Carte</value>
+		<value>Karte</value>
 	</data>
 	<data name="Delivery" xml:space="preserve">
-		<value>Lieferung</value>
+		<value>Lieferservice</value>
 	</data>
 	<data name="Numerators" xml:space="preserve">
 		<value>Zähler</value>
 	</data>
 	<data name="TicketNumerator" xml:space="preserve">
-		<value>Ticket Zähler</value>
+		<value>Ticket-Zähler</value>
 	</data>
 	<data name="OrderNumerator" xml:space="preserve">
 		<value>Bestellungs-Zähler</value>
 	</data>
 	<data name="TicketTags" xml:space="preserve">
-		<value>Ticket Tags</value>
+		<value>Ticket-Tags</value>
 	</data>
 	<data name="TagGroups" xml:space="preserve">
 		<value>Tag-Gruppen</value>
@@ -521,7 +525,7 @@
 		<value>Anlegen mehrerer Produkte</value>
 	</data>
 	<data name="BatchCreateProductsDialogHint" xml:space="preserve">
-		<value>Erstellen Sie eine Zeile für jedes Produkt mit [Produktname] [Preis]-Format. Beginnen Sie jede Kategorie mit # char und dem Kategorienamen.</value>
+		<value>Erstellen Sie eine Zeile für jedes Produkt mit [Produktname] [Preis]-Format. Beginnen Sie jede Kategorie mit # -Zeichen und dem Kategorienamen.</value>
 	</data>
 	<data name="DeleteErrorProductUsedInMenu" xml:space="preserve">
 		<value>Kann nicht gelöscht werden, da dieses Produkt einem Menü zugewiesen ist</value>
@@ -554,10 +558,10 @@
 		<value>Terminal-Ansicht</value>
 	</data>
 	<data name="Properties" xml:space="preserve">
-		<value>Modifiers</value>
+		<value>Eigenschaften</value>
 	</data>
 	<data name="Property" xml:space="preserve">
-		<value>Modifier</value>
+		<value>Eigenschaft</value>
 	</data>
 	<data name="Price" xml:space="preserve">
 		<value>Preis</value>
@@ -581,7 +585,7 @@
 		<value>Modifiergruppen</value>
 	</data>
 	<data name="SelectPropertyGroupsHint_f" xml:space="preserve">
-		<value>Wählen Sie die Modifiergruppe für {0} Produkt.</value>
+		<value>Wählen Sie die Modifiergruppe für Produkt  {0}.</value>
 	</data>
 	<data name="Departments" xml:space="preserve">
 		<value>Abteilungen</value>
@@ -626,13 +630,13 @@
 		<value>Schnell-Menü</value>
 	</data>
 	<data name="Gift" xml:space="preserve">
-		<value>Geschenk</value>
+		<value>Einladung</value>
 	</data>
 	<data name="Header" xml:space="preserve">
-		<value>Kopfzeile</value>
+		<value>Header</value>
 	</data>
 	<data name="ImagePath" xml:space="preserve">
-		<value>Image Path</value>
+		<value>Imagepfad</value>
 	</data>
 	<data name="MenuProperties" xml:space="preserve">
 		<value>Menueigenschaften</value>
@@ -662,7 +666,7 @@
 		<value>Menüname</value>
 	</data>
 	<data name="MenuCategories" xml:space="preserve">
-		<value>Menüwarengruppen</value>
+		<value>Warengruppen</value>
 	</data>
 	<data name="Menu" xml:space="preserve">
 		<value>Menü</value>
@@ -677,7 +681,7 @@
 		<value>Artikel einer Warengruppe</value>
 	</data>
 	<data name="Sort_f" xml:space="preserve">
-		<value>Sortieren {0}</value>
+		<value>{0} sortieren</value>
 	</data>
 	<data name="ProductProperties" xml:space="preserve">
 		<value>Artikeleigenschaften</value>
@@ -704,16 +708,16 @@
 		<value>Sortieren der Warengruppen</value>
 	</data>
 	<data name="SortCategoryProductsDialogHint_f" xml:space="preserve">
-		<value>Verschieben Sie {0} Artikel mit der Maus um die Position zu ändern.</value>
+		<value>Verschieben Sie {0}-Artikel mit der Maus um die Position zu ändern.</value>
 	</data>
 	<data name="SortCategoriesDialogHint_f" xml:space="preserve">
-		<value>Verschieben Sie {0} Warengruppen mit der Maus um die Position zu ändern.</value>
+		<value>Verschieben Sie {0}-Warengruppe mit der Maus um die Position zu ändern.</value>
 	</data>
 	<data name="DeleteErrorTagUsedInDepartment" xml:space="preserve">
 		<value>Kann nicht gelöscht werden, weil dieser Tag einer Abteilung zugeordnet ist</value>
 	</data>
 	<data name="TicketTagName" xml:space="preserve">
-		<value>Ticket Tagbezeichnung</value>
+		<value>Ticket-Tagbezeichnung</value>
 	</data>
 	<data name="Numerator" xml:space="preserve">
 		<value>Zähler</value>
@@ -728,7 +732,7 @@
 		<value>Auf dem Terminal zu verwenden</value>
 	</data>
 	<data name="SelectionRequired" xml:space="preserve">
-		<value>Auswahl nötig</value>
+		<value>Auswahl erforderlich</value>
 	</data>
 	<data name="NumericTags" xml:space="preserve">
 		<value>Numerische Tags</value>
@@ -755,7 +759,7 @@
 		<value>Konto</value>
 	</data>
 	<data name="NumericTagsShouldBeNumbersErrorMessage" xml:space="preserve">
-		<value>When "Numeric Tagging" ausgewählt müssen alle Tags Zahlenwerte enthalten.</value>
+		<value>When "Numeric Tagging" ausgewählt ist, müssen alle Tags Zahlenwerte enthalten.</value>
 	</data>
 	<data name="NewTag" xml:space="preserve">
 		<value>Neuer Tag</value>
@@ -776,55 +780,55 @@
 		<value>Tag</value>
 	</data>
 	<data name="CanNavigateCash" xml:space="preserve">
-		<value>Geht zum Cash Screen</value>
+		<value>Kann zum Kassen-Screen wechseln</value>
 	</data>
 	<data name="CanOpenNavigation" xml:space="preserve">
-		<value>Geht zum Navigationsfenster</value>
+		<value>Kann zum Navigationsfenster wechseln</value>
 	</data>
 	<data name="InternetBrowser" xml:space="preserve">
 		<value>Internet Browser</value>
 	</data>
 	<data name="BatchCreateGiftReasons" xml:space="preserve">
-		<value>Batch Create Gift Gründe</value>
+		<value>Kreiert mehrere Gründe für Einladungen</value>
 	</data>
 	<data name="BatchCreateReasonsHint" xml:space="preserve">
-		<value>Fügen Sie eine Zeile für jeden Grund den Sie hinzufügen möchten</value>
+		<value>Fügen Sie eine Zeile für jeden Grund ein, den Sie hinzufügen möchten.</value>
 	</data>
 	<data name="DeleteErrorGiftReasonInUse" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil diese Geschenkgrund in einem Ticket benutzt wird</value>
+		<value>Kann nicht gelöscht werden, weil dieser Einladungsgrund in einem Ticket benutzt wird.</value>
 	</data>
 	<data name="GiftReasonName" xml:space="preserve">
-		<value>Geschenkgrundbezeichnung</value>
+		<value>Bezeichnung für das Einladungsgrund</value>
 	</data>
 	<data name="GiftReason" xml:space="preserve">
-		<value>Geschenkgrund</value>
+		<value>Einladungsgrund</value>
 	</data>
 	<data name="DeleteErrorNumeratorIsOrderNumerator" xml:space="preserve">
 		<value>Kann nicht gelöscht werden, da dieser Zähler als Bestellungszähler verwendet wird</value>
 	</data>
 	<data name="DeleteErrorNumeratorIsTicketNumerator" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, da dieser Zähler als Ticket Zähler verwendet wird</value>
+		<value>Kann nicht gelöscht werden, da dieser Zähler als Ticketzähler verwendet wird</value>
 	</data>
 	<data name="DeleteErrorNumeratorUsedInTicket" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, da diesem Zähler ein Ticket Tag zugeordnet ist</value>
+		<value>Kann nicht gelöscht werden, da diesem Zähler ein Ticket-Tag zugeordnet ist.</value>
 	</data>
 	<data name="NumeratorName" xml:space="preserve">
 		<value>Zählerbezeichnung</value>
 	</data>
 	<data name="NumeratorFormat" xml:space="preserve">
-		<value>Numerierungsformat</value>
+		<value>Zahlen-Format</value>
 	</data>
 	<data name="DeleteErrorTemplateUsedInPrintJob" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, da diese Druckvorlage, einem Druckauftrag zugeordnet ist</value>
+		<value>Kann nicht gelöscht werden, da diese Druckvorlage einem Druckauftrag zugeordnet ist.</value>
 	</data>
 	<data name="TemplateName" xml:space="preserve">
 		<value>Vorlagenbezeichnung</value>
 	</data>
 	<data name="HeaderTemplate" xml:space="preserve">
-		<value>Feld für die Kopfzeile</value>
+		<value>Feld für Header</value>
 	</data>
 	<data name="LineTemplate" xml:space="preserve">
-		<value>Feld für Artikel</value>
+		<value>Eingabefeld</value>
 	</data>
 	<data name="GiftLineTemplate" xml:space="preserve">
 		<value>Feld für Einladungen</value>
@@ -851,43 +855,43 @@
 		<value>Zeit</value>
 	</data>
 	<data name="UniqueTicketId" xml:space="preserve">
-		<value>Einzigartige Ticket Id</value>
+		<value>Eindeutige Ticket Id</value>
 	</data>
 	<data name="TicketNumber" xml:space="preserve">
 		<value>Ticketnummer</value>
 	</data>
 	<data name="OptionalTicketTag" xml:space="preserve">
-		<value>Optional Ticket Tag</value>
+		<value>Optionales Ticket-Tag</value>
 	</data>
 	<data name="TableOrUserName" xml:space="preserve">
-		<value>Table Name, Wenn leer Benutzername</value>
+		<value>Tischnummer - Wenn leer Username</value>
 	</data>
 	<data name="UserName" xml:space="preserve">
-		<value>Benutzername</value>
+		<value>Username</value>
 	</data>
 	<data name="TableName" xml:space="preserve">
-		<value>Table Name</value>
+		<value>Tischnummer</value>
 	</data>
 	<data name="TicketNote" xml:space="preserve">
-		<value>Ticket Hinweis</value>
+		<value>Ticketnotiz</value>
 	</data>
 	<data name="AccountAddress" xml:space="preserve">
 		<value>Konto-Adresse</value>
 	</data>
 	<data name="AccountPhone" xml:space="preserve">
-		<value>Konto Phone</value>
+		<value>Konto-Telefon</value>
 	</data>
 	<data name="LineItemQuantity" xml:space="preserve">
-		<value># Line: Item Menge</value>
+		<value># Line: Artikelmenge</value>
 	</data>
 	<data name="LineItemName" xml:space="preserve">
-		<value># Line: Item Name</value>
+		<value># Line: Artikelname</value>
 	</data>
 	<data name="LineItemPrice" xml:space="preserve">
-		<value># Line: Artikel Preis</value>
+		<value># Line: Artikelpreis</value>
 	</data>
 	<data name="LineItemPriceCents" xml:space="preserve">
-		<value># Line: Artikel Preis On Cents</value>
+		<value># Line: Artikelpreis Cents</value>
 	</data>
 	<data name="LineItemTotal" xml:space="preserve">
 		<value># Line: Artikel Summe</value>
@@ -896,46 +900,46 @@
 		<value># Line: Artikel Summe x Menge</value>
 	</data>
 	<data name="LineItemTotalWithoutGifts" xml:space="preserve">
-		<value># Line: Item Total (Geschenke nicht eingeschlossen)</value>
+		<value># Line: Artikel Total (Einladungen nicht eingeschlossen)</value>
 	</data>
 	<data name="LineItemDetails" xml:space="preserve">
-		<value># Line: Item Properties</value>
+		<value># Line: Artikel Modifier</value>
 	</data>
 	<data name="LineItemDetailPrice" xml:space="preserve">
-		<value># Line: Item-Eigenschaft Preis</value>
+		<value># Line: Artikel Modifier Preis</value>
 	</data>
 	<data name="LineItemDetailQuantity" xml:space="preserve">
-		<value># Line: Item-Eigenschaft Menge</value>
+		<value># Line: Artikel Modifier Menge</value>
 	</data>
 	<data name="LineOrderNumber" xml:space="preserve">
-		<value># Line: Bestellnummer</value>
+		<value># Line: Bestellungsnummer</value>
 	</data>
 	<data name="LineGiftOrVoidReason" xml:space="preserve">
-		<value># Line: Gift oder Void Reason</value>
+		<value># Line: Einladungs- oder Stornierungsgrund</value>
 	</data>
 	<data name="TicketTotal" xml:space="preserve">
 		<value>Ticket Summe</value>
 	</data>
 	<data name="TicketPaidTotal" xml:space="preserve">
-		<value>Paid Ticket Betrag</value>
+		<value>Bezahlter Ticket-Betrag</value>
 	</data>
 	<data name="TicketRemainingAmount" xml:space="preserve">
-		<value>Verbleibende Anzahl Tickets</value>
+		<value>Verbleibender Betrag</value>
 	</data>
 	<data name="RemainingAmountIfPaid" xml:space="preserve">
-		<value>Zahlungsbetrag, wenn Paid</value>
+		<value>Zahlungsbetrag, wenn bezahlt</value>
 	</data>
 	<data name="DiscountTotalAndTicketTotal" xml:space="preserve">
-		<value>Discount-Linien, wenn vorhanden</value>
+		<value>Rabattzeilen, wenn vorhanden</value>
 	</data>
 	<data name="PrinterTemplate" xml:space="preserve">
-		<value>Printer-Vorlage</value>
+		<value>Druckvorlage</value>
 	</data>
 	<data name="PrinterName" xml:space="preserve">
-		<value>Printer Name</value>
+		<value>Druckername</value>
 	</data>
 	<data name="ShareNameAndPortName" xml:space="preserve">
-		<value>Printer Share Name / Port Name</value>
+		<value>Drucker Share Name / Port Name</value>
 	</data>
 	<data name="PrinterType" xml:space="preserve">
 		<value>Druckertyp</value>
@@ -947,7 +951,7 @@
 		<value>Line-Character Count</value>
 	</data>
 	<data name="TicketPrinter" xml:space="preserve">
-		<value>Ticket Printer</value>
+		<value>Ticketdrucker</value>
 	</data>
 	<data name="Text" xml:space="preserve">
 		<value>Text</value>
@@ -959,52 +963,52 @@
 		<value>Port-Drucker</value>
 	</data>
 	<data name="DemoPrinter" xml:space="preserve">
-		<value>Demo Printer (Notizblock)</value>
+		<value>Demodrucker (Notepad)</value>
 	</data>
 	<data name="Printer" xml:space="preserve">
 		<value>Drucker</value>
 	</data>
 	<data name="PrintJobName" xml:space="preserve">
-		<value>Print Job Name</value>
+		<value>Druckerauftrag</value>
 	</data>
 	<data name="ButtonHeader" xml:space="preserve">
 		<value>Button-Header</value>
 	</data>
 	<data name="LockTicket" xml:space="preserve">
-		<value>Lock-Ticket</value>
+		<value>Ticket sperren</value>
 	</data>
 	<data name="UseAtPosScreen" xml:space="preserve">
-		<value>Anzeige bei POS-Screen</value>
+		<value>Anzeigen auf POS-Screen</value>
 	</data>
 	<data name="UseAtPaymentScreen" xml:space="preserve">
-		<value>Anzeige bei Zahlung Bildschirm</value>
+		<value>Auf Kassen-Screen anzeigen</value>
 	</data>
 	<data name="UseAtTerminal" xml:space="preserve">
-		<value>Anzeige Am Terminal</value>
+		<value>Auf Terminal anzeigen</value>
 	</data>
 	<data name="UseAtOldTickets" xml:space="preserve">
-		<value>Nur für Old Tickets</value>
+		<value>Nur für alte Tickets</value>
 	</data>
 	<data name="PrintMapping" xml:space="preserve">
-		<value>Print Mapping</value>
+		<value>Druck-Zuordnung</value>
 	</data>
 	<data name="PrintContent" xml:space="preserve">
-		<value>Printing Inhalt</value>
+		<value>Druck Inhalt</value>
 	</data>
 	<data name="AutoPrintWhen" xml:space="preserve">
-		<value>Auto Print Nach</value>
+		<value>Automatisch drucken nach</value>
 	</data>
 	<data name="AutoPrintPaymentType" xml:space="preserve">
-		<value>Auto Print für Zahlungsarten</value>
+		<value>Automatisch drucken für Zahlungsarten</value>
 	</data>
 	<data name="MenuItemGroup" xml:space="preserve">
-		<value>Product Group</value>
+		<value>Warengruppe</value>
 	</data>
 	<data name="MenuItem" xml:space="preserve">
 		<value>Produkt</value>
 	</data>
 	<data name="Template" xml:space="preserve">
-		<value>Schablone</value>
+		<value>Vorlage</value>
 	</data>
 	<data name="Add" xml:space="preserve">
 		<value>Hinzufügen</value>
@@ -1013,10 +1017,10 @@
 		<value>Löschen</value>
 	</data>
 	<data name="Manual" xml:space="preserve">
-		<value>Handbuch</value>
+		<value>Manuell</value>
 	</data>
 	<data name="WhenNewLinesAddedToTicket" xml:space="preserve">
-		<value>Neue Zeilen hinzugefügt, um Tickets</value>
+		<value>Neue Zeilen zum Ticket hinzugefügt</value>
 	</data>
 	<data name="WhenTicketPaid" xml:space="preserve">
 		<value>Ticket bezahlt</value>
@@ -1025,19 +1029,19 @@
 		<value>Alle Zeilen</value>
 	</data>
 	<data name="OnlyNewLines" xml:space="preserve">
-		<value>Nur New Lines</value>
+		<value>Nur neue Eingaben</value>
 	</data>
 	<data name="LinesGroupedByBarcode" xml:space="preserve">
-		<value>Lines von Barcode Grouped</value>
+		<value>Eingaben gruppiert durch Barcode</value>
 	</data>
 	<data name="LinesGroupedByGroupCode" xml:space="preserve">
-		<value>Lines von Group Code Grouped</value>
+		<value>Eingaben gruppiert durch Warengruppen</value>
 	</data>
 	<data name="PrintJob" xml:space="preserve">
-		<value>Print Job</value>
+		<value>Druckauftrag</value>
 	</data>
 	<data name="DeleteSelectedMappingQuestion" xml:space="preserve">
-		<value>Delete Selected Mapping?</value>
+		<value>Ausgewählte Zuordnung löschen?</value>
 	</data>
 	<data name="TicketOptions" xml:space="preserve">
 		<value>Ticket-Einstellungen</value>
@@ -1052,16 +1056,16 @@
 		<value>Gewicht Barcode Prefix</value>
 	</data>
 	<data name="WeightBarcodeItemIdLength" xml:space="preserve">
-		<value>Gewicht Barcode Item Id Länge</value>
+		<value>Gewicht Barcode Artikel Id Länge</value>
 	</data>
 	<data name="WeightBarcodeQuantityLength" xml:space="preserve">
-		<value>Gewicht Barcode Menge Länge</value>
+		<value>Gewicht Barcode Mengenlänge</value>
 	</data>
 	<data name="ProgramSettings" xml:space="preserve">
 		<value>Programm-Einstellungen</value>
 	</data>
 	<data name="DayOperations" xml:space="preserve">
-		<value>Arbeitszeiten</value>
+		<value>Arbeitsperioden</value>
 	</data>
 	<data name="LocalSettings" xml:space="preserve">
 		<value>Lokale Einstellungen</value>
@@ -1073,28 +1077,28 @@
 		<value>Drucker</value>
 	</data>
 	<data name="PrintJobs" xml:space="preserve">
-		<value>Print Jobs</value>
+		<value>Druckaufträge</value>
 	</data>
 	<data name="PrinterTemplates" xml:space="preserve">
-		<value>Printer-Vorlagen</value>
+		<value>Druckvorlagen</value>
 	</data>
 	<data name="VoidReasons" xml:space="preserve">
-		<value>Void Gründe</value>
+		<value>Stornierungsgründe</value>
 	</data>
 	<data name="GiftReasons" xml:space="preserve">
-		<value>Gift Gründe</value>
+		<value>Einladungsgründe</value>
 	</data>
 	<data name="SambaPosWebsite" xml:space="preserve">
 		<value>SambaPOS Webseite</value>
 	</data>
 	<data name="SambaNetwork" xml:space="preserve">
-		<value>Samba-Netzwerk</value>
+		<value>Samba Network</value>
 	</data>
 	<data name="CanStartEndOfDay" xml:space="preserve">
-		<value>Kann End of Day auf Start</value>
+		<value>Kann Tagesbericht beginnen</value>
 	</data>
 	<data name="TerminalName" xml:space="preserve">
-		<value>Terminal Name</value>
+		<value>Terminal-Name</value>
 	</data>
 	<data name="ProgramLanguage" xml:space="preserve">
 		<value>Programmsprache</value>
@@ -1103,25 +1107,25 @@
 		<value>Data Connection String</value>
 	</data>
 	<data name="MessageServerName" xml:space="preserve">
-		<value>Message Server Namen</value>
+		<value>Message Server Name</value>
 	</data>
 	<data name="MessageServerPort" xml:space="preserve">
 		<value>Message-Server-Port</value>
 	</data>
 	<data name="AutoStartMessageClient" xml:space="preserve">
-		<value>Auto Start Message-Client</value>
+		<value>Automatisch den Message-Client starten</value>
 	</data>
 	<data name="StartClientNow" xml:space="preserve">
-		<value>Start Client Now</value>
+		<value>Client jetzt starten</value>
 	</data>
 	<data name="DeleteErrorShouldHaveAtLeastOneTerminal" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, da mindestens ein Endgerät sein sollte.</value>
+		<value>Kann nicht gelöscht werden, da mindestens ein Terminal vorhanden sein sollte.</value>
 	</data>
 	<data name="DefaultTerminal" xml:space="preserve">
 		<value>Standard-Terminal</value>
 	</data>
 	<data name="AutoLogout" xml:space="preserve">
-		<value>Auto Logout</value>
+		<value>Automatisches Logout</value>
 	</data>
 	<data name="PrinterOptions" xml:space="preserve">
 		<value>Druckereinstellungen</value>
@@ -1133,147 +1137,147 @@
 		<value>Bericht Printer</value>
 	</data>
 	<data name="SelectPrintJob" xml:space="preserve">
-		<value>Wählen Sie Print Job</value>
+		<value>Wählen Sie einen Druckauftrag</value>
 	</data>
 	<data name="Terminal" xml:space="preserve">
 		<value>Terminal</value>
 	</data>
 	<data name="PrintJobList" xml:space="preserve">
-		<value>Print Job-Liste</value>
+		<value>Liste der Druckafuträge</value>
 	</data>
 	<data name="SelectPrintJobsForTerminalHint_f" xml:space="preserve">
 		<value>Wählen Sie Druckaufträge, die Sie auf {0} Terminal hinzufügen möchten</value>
 	</data>
 	<data name="BatchAddVoidReasons" xml:space="preserve">
-		<value>Fügen Sie mehrere Void Gründe</value>
+		<value>Fügen Sie mehrere Stornierungsgründe hinzu</value>
 	</data>
 	<data name="BatchAddVoidReasonsDialogHint" xml:space="preserve">
-		<value>Fügen Sie eine Zeile für jeden Grund den Sie hinzufügen möchten</value>
+		<value>Fügen Sie eine Zeile für jeden Grund ein, den Sie hinzufügen möchten </value>
 	</data>
 	<data name="DeleteErrorVoidReasonUsed" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil aus diesem Grund in ein Ticket verwendet</value>
+		<value>Kann nicht gelöscht werden, weil dieser Grund in einem Ticket verwendet wird.</value>
 	</data>
 	<data name="VoidReasonName" xml:space="preserve">
-		<value>Void Reason Namen</value>
+		<value>Stornierungsgrundname</value>
 	</data>
 	<data name="VoidReason" xml:space="preserve">
-		<value>Void Reason</value>
+		<value>Stornierungsgrund</value>
 	</data>
 	<data name="CashContent" xml:space="preserve">
-		<value>Cash-Inhalt</value>
+		<value>Kasseninhalt</value>
 	</data>
 	<data name="WorkPeriodStartDate_f" xml:space="preserve">
-		<value>Date of Work Zeitraum: {0}</value>
+		<value>Datum des Arbeitsperiode: {0}</value>
 	</data>
 	<data name="WorkPeriodStartTime" xml:space="preserve">
-		<value>Zeit der Arbeit für den Zeitraum: {0}</value>
+		<value>Zeit des Arbeitsperiode: {0}</value>
 	</data>
 	<data name="TotalWorkTimeDays_f" xml:space="preserve">
-		<value>Total Work Time:
+		<value>Arbeitsperiode total:
 {0:0} Tage {1:0} Stunden {2:0} Minuten</value>
 	</data>
 	<data name="TotalWorkTimeHours_f" xml:space="preserve">
-		<value>Total Work Time: {0:0} Stunden {1:0} Minuten</value>
+		<value>Arbeitsperiode total: {0:0} Stunden {1:0} Minuten</value>
 	</data>
 	<data name="TotalWorkTimeMinutes_f" xml:space="preserve">
-		<value>Total Work Time: {0:0} Minuten</value>
+		<value>Arbeitsperiode total: {0:0} Minuten</value>
 	</data>
 	<data name="StartWorkPeriodToEnablePos" xml:space="preserve">
-		<value>Arbeit beginnen Zeitraum zu POS ermöglichen</value>
+		<value>Beginnen Sie eine Arbeitsperiode um das Kassensystem zu starten</value>
 	</data>
 	<data name="StartWorkPeriod" xml:space="preserve">
-		<value>Starten Arbeitszeit</value>
+		<value>Start der Arbeitsperiode</value>
 	</data>
 	<data name="EndWorkPeriod" xml:space="preserve">
-		<value>Ende des Arbeitstages</value>
+		<value>Ende der Arbeitsperiode</value>
 	</data>
 	<data name="StartingWorkPeriodCompleted" xml:space="preserve">
-		<value>Arbeit Periode begann.</value>
+		<value>Arbeitsperiode gestartet</value>
 	</data>
 	<data name="ThereAreOpenTicketsWarning_f" xml:space="preserve">
-		<value>Es gibt {0} offenen Tickets.
-Kann nicht am Ende des Arbeitstages, während offene Tickets</value>
+		<value>Es gibt {0} offene Tickets.
+Die Arbeitsperiode kann nicht beendet werden.</value>
 	</data>
 	<data name="Table" xml:space="preserve">
-		<value>Tabelle</value>
+		<value>Tisch</value>
 	</data>
 	<data name="SaveErrorDuplicateTableName" xml:space="preserve">
-		<value>Es gibt bereits eine Tabelle mit diesem Namen.</value>
+		<value>Es gibt bereits einen Tisch mit diesem Namen.</value>
 	</data>
 	<data name="AddMultipleTables" xml:space="preserve">
-		<value>Hinzufügen von mehreren Tabellen</value>
+		<value>Hinzufügen von mehreren Tischen</value>
 	</data>
 	<data name="AddMultipleTableHint" xml:space="preserve">
-		<value>Fügen Sie eine Zeile für jedes Table Name. Start Kategorien mit #-Zeichen.</value>
+		<value>Fügen Sie eine Zeile für jeden Tischnamen hinzu. Starten Sie Kategorien mit dem # -Zeichen.</value>
 	</data>
 	<data name="DeleteErrorTicketAssignedToTable" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil es ein Ticket zugewiesen, um die Tabelle</value>
+		<value>Kann nicht gelöscht werden, weil dem Tisch ein Ticket zugewiesen ist</value>
 	</data>
 	<data name="DeleteErrorTableUsedInTableView" xml:space="preserve">
-		<value>Kann nicht gelöscht werden becasuse dieser Tabelle, die einem Table View</value>
+		<value>Kann nicht gelöscht werden, weil dieser Tisch einem Gastraums zugeordnet ist</value>
 	</data>
 	<data name="TableViews" xml:space="preserve">
-		<value>Table Views</value>
+		<value>Gasträume</value>
 	</data>
 	<data name="Tables" xml:space="preserve">
-		<value>Tabellen</value>
+		<value>Tische</value>
 	</data>
 	<data name="CanOpenTableList" xml:space="preserve">
-		<value>Kann Display Table List</value>
+		<value>Kann die Tischliste darstellen</value>
 	</data>
 	<data name="CanChangeTable" xml:space="preserve">
-		<value>Kann Tabelle ein Ticket ändern</value>
+		<value>Kann den Tisch eines Tickets ändern</value>
 	</data>
 	<data name="DeleteErrorTableViewUsedInDepartment" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, da diese Tabelle, um eine Abteilung zugeordnet anzeigen</value>
+		<value>Kann nicht gelöscht werden, da dieser Gastraum einer Abteilung zugeordnet ist</value>
 	</data>
 	<data name="TableViewName" xml:space="preserve">
-		<value>View Name</value>
+		<value>Gastraumbezeichnung</value>
 	</data>
 	<data name="TableViewMode" xml:space="preserve">
-		<value>Ansichtsmodus</value>
+		<value>Gastraumanzeige</value>
 	</data>
 	<data name="BackgroundColor" xml:space="preserve">
 		<value>Hintergrundfarbe</value>
 	</data>
 	<data name="BackgroundImage" xml:space="preserve">
-		<value>Background Image</value>
+		<value>Hintergrundbild</value>
 	</data>
 	<data name="EmptyTableColor" xml:space="preserve">
-		<value>Leere Tabelle Farbe</value>
+		<value>Unbesetzte Tische</value>
 	</data>
 	<data name="UnavailableTableColor" xml:space="preserve">
-		<value>Full Table Farbe</value>
+		<value>Besetzte Tische</value>
 	</data>
 	<data name="LockedTableColor" xml:space="preserve">
-		<value>Gesperrt Tabelle Farbe</value>
+		<value>Blockierte Tische</value>
 	</data>
 	<data name="NumeratorHeight" xml:space="preserve">
-		<value>Zähler Höhe</value>
+		<value>Höhe des Zählers</value>
 	</data>
 	<data name="AlphanumericButtons" xml:space="preserve">
-		<value>Alphanumerische Tasten</value>
+		<value>Alphanumerische Buttons</value>
 	</data>
 	<data name="Automatic" xml:space="preserve">
 		<value>Automatisch</value>
 	</data>
 	<data name="Custom" xml:space="preserve">
-		<value>Brauch</value>
+		<value>Personalisiert</value>
 	</data>
 	<data name="Hidden" xml:space="preserve">
 		<value>Versteckt</value>
 	</data>
 	<data name="SelectTable" xml:space="preserve">
-		<value>Tabelle auswählen</value>
+		<value>Tisch auswählen</value>
 	</data>
 	<data name="TableList" xml:space="preserve">
-		<value>Table List</value>
+		<value>Tischliste</value>
 	</data>
 	<data name="SelectTableDialogHint_f" xml:space="preserve">
-		<value>Wählen Sie Tabellen, die Sie möchten, {0} Ansicht hinzufügen</value>
+		<value>Wählen Sie Tische aus die Sie dem Gastraum {0} hinzufügen wollen</value>
 	</data>
 	<data name="TableView" xml:space="preserve">
-		<value>Table View</value>
+		<value>Gastraumansicht</value>
 	</data>
 	<data name="EditMode" xml:space="preserve">
 		<value>Design-Modus</value>
@@ -1286,68 +1290,68 @@ Kann nicht am Ende des Arbeitstages, während offene Tickets</value>
 	</data>
 	<data name="TablesMerged_f" xml:space="preserve">
 		<value>{0} Ticket
-Fusion mit {1} Tisch.</value>
+wurde auf Tisch {1} umgebucht.</value>
 	</data>
 	<data name="TicketMergedToTable_f" xml:space="preserve">
-		<value>Ticket fusionierte mit {0} Tisch.</value>
+		<value>Ticket wurde auf Tisch {0} umgebucht.</value>
 	</data>
 	<data name="TicketMovedToTable_f" xml:space="preserve">
 		<value>{0} Ticket
-zog nach {1} Tisch.</value>
+wurde auf Tisch {1} verschoben.</value>
 	</data>
 	<data name="SelectTableThatYouWantToMoveTicket_f" xml:space="preserve">
 		<value>Wählen Sie einen neuen Tisch für {0} Ticket.</value>
 	</data>
 	<data name="SelectTableForTicket" xml:space="preserve">
-		<value>Wählen Sie Tabelle für Ticket.</value>
+		<value>Wählen Sie einen Tisch für das Ticket.</value>
 	</data>
 	<data name="SelectTableForOperation" xml:space="preserve">
-		<value>Wählen Sie die gewünschte Tabelle Bestellungen hinzu.</value>
+		<value>Wählen Sie einen Tisch um eine Bestellung hinzuzufügen</value>
 	</data>
 	<data name="FindProduct" xml:space="preserve">
-		<value>Suche Produkt</value>
+		<value>Produkt suchen</value>
 	</data>
 	<data name="FindTicket" xml:space="preserve">
-		<value>Suche Ticket</value>
+		<value>Ticket suchen</value>
 	</data>
 	<data name="FindTable" xml:space="preserve">
-		<value>Tabelle suchen</value>
+		<value>Tisch suchen</value>
 	</data>
 	<data name="DiscountTotal" xml:space="preserve">
-		<value>Discount insgesamt</value>
+		<value>Rabatt gesamt</value>
 	</data>
 	<data name="PaymentTotal" xml:space="preserve">
-		<value>Payment insgesamt</value>
+		<value>Zahlung gesamt</value>
 	</data>
 	<data name="Balance" xml:space="preserve">
-		<value>Balance</value>
+		<value>Gesamt</value>
 	</data>
 	<data name="ChargedAmount" xml:space="preserve">
-		<value>Charged</value>
+		<value>Kassiert</value>
 	</data>
 	<data name="Portions" xml:space="preserve">
-		<value>Teile</value>
+		<value>Portionen</value>
 	</data>
 	<data name="ExtraModifiers" xml:space="preserve">
-		<value>Extra-Modifikatoren</value>
+		<value>Extra-Modifier</value>
 	</data>
 	<data name="Update" xml:space="preserve">
-		<value>Aktualisierung</value>
+		<value>Aktualisieren</value>
 	</data>
 	<data name="AddAndSave" xml:space="preserve">
-		<value>Hinzuzufügen, und speichern</value>
+		<value>Hinzufügen und speichern</value>
 	</data>
 	<data name="Number" xml:space="preserve">
 		<value>Anzahl</value>
 	</data>
 	<data name="OpenClose_ab" xml:space="preserve">
-		<value>Op-Cls</value>
+		<value>öffn.-schl.</value>
 	</data>
 	<data name="TicketOpeningTime" xml:space="preserve">
-		<value>Ticket Eröffnung</value>
+		<value>Ticket öffnen</value>
 	</data>
 	<data name="LastOrderTime" xml:space="preserve">
-		<value>Last Order</value>
+		<value>Letzte Bestellung</value>
 	</data>
 	<data name="LastPaymentTime" xml:space="preserve">
 		<value>Letzte Zahlung</value>
@@ -1356,26 +1360,25 @@ zog nach {1} Tisch.</value>
 		<value>Drucken</value>
 	</data>
 	<data name="CloseTicket_r" xml:space="preserve">
-		<value>In der Nähe
-Ticket</value>
+		<value>Ticket
+schliessen</value>
 	</data>
 	<data name="CashPayment_r" xml:space="preserve">
-		<value>Bargeld
-Zahlung</value>
+		<value>Bar</value>
 	</data>
 	<data name="CreditCard_r" xml:space="preserve">
 		<value>Kredit
 Karte</value>
 	</data>
 	<data name="SelectCustomer" xml:space="preserve">
-		<value>Wählen Sie Kunde</value>
+		<value>Kunden wählen</value>
 	</data>
 	<data name="AllTickets_r" xml:space="preserve">
 		<value>Alle
 Tickets</value>
 	</data>
 	<data name="Void" xml:space="preserve">
-		<value>Leere</value>
+		<value>Storno</value>
 	</data>
 	<data name="Divide" xml:space="preserve">
 		<value>Teilen</value>
@@ -1384,92 +1387,92 @@ Tickets</value>
 		<value>Extra-Modifier</value>
 	</data>
 	<data name="ReleaseLock" xml:space="preserve">
-		<value>Sperre freigeben</value>
+		<value>Sperre aufheben</value>
 	</data>
 	<data name="ChangePrice" xml:space="preserve">
 		<value>Preis ändern</value>
 	</data>
 	<data name="ForChangingPriceTypeAPrice" xml:space="preserve">
-		<value>Zum Ändern Preis zum ersten Mal einen Preis von Zähler</value>
+		<value>Bitte geben Sie zuerst den neuen Preis ein</value>
 	</data>
 	<data name="NewTicket" xml:space="preserve">
-		<value>New Ticket</value>
+		<value>Neues Ticket</value>
 	</data>
 	<data name="ChangeTable_r" xml:space="preserve">
-		<value>Änderung
-Tabelle</value>
+		<value>Tisch
+wechseln</value>
 	</data>
 	<data name="SelectTable_r" xml:space="preserve">
-		<value>Wählen
-Tabelle</value>
+		<value>Tisch
+wählen</value>
 	</data>
 	<data name="CustomerInfo_r" xml:space="preserve">
-		<value>Kunde
+		<value>Kunden
 Info</value>
 	</data>
 	<data name="ChangeAmount_f" xml:space="preserve">
-		<value>Veränderung durch: {0}</value>
+		<value>Wechselgeld: {0}</value>
 	</data>
 	<data name="AccountBalance_r" xml:space="preserve">
 		<value>Konto
-Balance</value>
+gesamt</value>
 	</data>
 	<data name="All" xml:space="preserve">
 		<value>Alle</value>
 	</data>
 	<data name="Round" xml:space="preserve">
-		<value>Runde</value>
+		<value>Runden</value>
 	</data>
 	<data name="Flat" xml:space="preserve">
-		<value>Auto Round</value>
+		<value>Automatisch runden</value>
 	</data>
 	<data name="DiscountPercentSign" xml:space="preserve">
-		<value>Rabatt%</value>
+		<value>Rabatt %</value>
 	</data>
 	<data name="CanReleaseTicketLock" xml:space="preserve">
 		<value>Kann Ticket-Sperre entfernen</value>
 	</data>
 	<data name="CanRemoveTicketTag" xml:space="preserve">
-		<value>Kann Ticket Tag entfernen</value>
+		<value>Kann Ticket-Tag entfernen</value>
 	</data>
 	<data name="CanGiftItems" xml:space="preserve">
-		<value>Kann Geschenkartikel</value>
+		<value>Kann einladen</value>
 	</data>
 	<data name="CanVoidItems" xml:space="preserve">
-		<value>Kann Items Void</value>
+		<value>Kann stornieren</value>
 	</data>
 	<data name="CanMoveTicketLines" xml:space="preserve">
-		<value>Kann Items verschieben</value>
+		<value>Kann Artikel verschieben</value>
 	</data>
 	<data name="CanMergeTickets" xml:space="preserve">
-		<value>Kann Tickets Merge</value>
+		<value>Kann Tickets umbuchen</value>
 	</data>
 	<data name="CanDisplayOldTickets" xml:space="preserve">
-		<value>Kann Old Tickets anzeigen</value>
+		<value>Kann alte Tickets anzeigen</value>
 	</data>
 	<data name="CanMoveUnlockedTicketLines" xml:space="preserve">
-		<value>Entriegelt Ticket Linien bewegen</value>
+		<value>Kann entsperrte Tickets umbuchen</value>
 	</data>
 	<data name="CanUpdateExtraModifiers" xml:space="preserve">
-		<value>Können zusätzliche Modifikatoren Update-</value>
+		<value>Kann zusätzliche Modifier verändern </value>
 	</data>
 	<data name="CanGetPayment" xml:space="preserve">
-		<value>Kann Payment Get</value>
+		<value>Kann kassieren</value>
 	</data>
 	<data name="CanGetFastPayment" xml:space="preserve">
-		<value>Can Get Schnelle Zahlung</value>
+		<value>Kann sofort kassieren</value>
 	</data>
 	<data name="CanMakeDiscount" xml:space="preserve">
-		<value>Kann Discount Stellen</value>
+		<value>Kann Rabatte geben</value>
 	</data>
 	<data name="CanRoundTicketTotal" xml:space="preserve">
-		<value>Kann Round Ticket Summe</value>
+		<value>Kann Ticketsumme runden</value>
 	</data>
 	<data name="CanFlattenTicketTotal" xml:space="preserve">
-		<value>Kann Auto Round Ticket Summe</value>
+		<value>Kann Ticketsumme automatisch runden</value>
 	</data>
 	<data name="OnlyOpenTickets" xml:space="preserve">
-		<value>Open Tickets nur</value>
+		<value>Nur offene Tickets</value>
 	</data>
 	<data name="AllTickets" xml:space="preserve">
 		<value>Alle Tickets</value>
@@ -1478,40 +1481,40 @@ Balance</value>
 		<value>Total: {0}</value>
 	</data>
 	<data name="User" xml:space="preserve">
-		<value>Benutzer</value>
+		<value>User</value>
 	</data>
 	<data name="MainMenu" xml:space="preserve">
-		<value>Main Menu</value>
+		<value>Hauptmenü</value>
 	</data>
 	<data name="Yes" xml:space="preserve">
 		<value>Ja</value>
 	</data>
 	<data name="No" xml:space="preserve">
-		<value>Nicht</value>
+		<value>Nein</value>
 	</data>
 	<data name="DeleteErrorAdminUser" xml:space="preserve">
-		<value>Kann nicht gelöscht werden Admin-Benutzer.</value>
+		<value>Admin-User kann nicht gelöscht werden</value>
 	</data>
 	<data name="DeleteErrorLastUser" xml:space="preserve">
-		<value>Kann nicht gelöscht letzten Benutzerkontensteuerung</value>
+		<value>Das letzte User-Konto kann nicht gelöscht werden</value>
 	</data>
 	<data name="DeleteErrorUserDidTicketOperation" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, da diese Benutzer Tickets erstellt.</value>
+		<value>Kann nicht gelöscht werden, weil dieser User Tickets erstellt hat.</value>
 	</data>
 	<data name="UserRoleList" xml:space="preserve">
 		<value>Role-Liste</value>
 	</data>
 	<data name="Users" xml:space="preserve">
-		<value>Benutzer</value>
+		<value>User</value>
 	</data>
 	<data name="UserList" xml:space="preserve">
-		<value>Benutzerliste</value>
+		<value>User-Liste</value>
 	</data>
 	<data name="DeleteErrorThisRoleUsedInAUserAccount" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil diese Rolle zu einem Benutzer-Konto zugeordnet</value>
+		<value>Kann nicht gelöscht werden, weil diese Role einem User-Konto zugeordnet ist</value>
 	</data>
 	<data name="UserRoleName" xml:space="preserve">
-		<value>Rolle Name</value>
+		<value>Role-Name</value>
 	</data>
 	<data name="Permissions" xml:space="preserve">
 		<value>Berechtigungen</value>
@@ -1520,19 +1523,19 @@ Balance</value>
 		<value>Admin</value>
 	</data>
 	<data name="UserRole" xml:space="preserve">
-		<value>Benutzerrolle</value>
+		<value>User-Role</value>
 	</data>
 	<data name="PinCode" xml:space="preserve">
 		<value>Pin Code</value>
 	</data>
 	<data name="SaveErrorThisPinCodeInUse" xml:space="preserve">
-		<value>Dieser PIN-Code von einem anderen Benutzerkonto benutzt.</value>
+		<value>Dieser PIN-Code wird bereits von einem anderen User-Konto benutzt.</value>
 	</data>
 	<data name="OK" xml:space="preserve">
 		<value>OK</value>
 	</data>
 	<data name="PropertyEditor" xml:space="preserve">
-		<value>Property Editor</value>
+		<value>Eigenschaften Editor</value>
 	</data>
 	<data name="Details" xml:space="preserve">
 		<value>Details</value>
@@ -1541,29 +1544,29 @@ Balance</value>
 		<value>Liste</value>
 	</data>
 	<data name="DisplayAllValues" xml:space="preserve">
-		<value>Zeigt alle Werte</value>
+		<value>Alle Werte zeigen</value>
 	</data>
 	<data name="Selected" xml:space="preserve">
 		<value>Ausgewählt</value>
 	</data>
 	<data name="Selected_f" xml:space="preserve">
-		<value>Ausgewählte {0}</value>
+		<value>{0} ausgewählt</value>
 	</data>
 	<data name="WorkPeriodEndsMessage" xml:space="preserve">
-		<value>Die Arbeit endet.
-Besuchen Sie Abschnitt Berichte und schaffen Arbeit für den Zeitraum Reports</value>
+		<value>Die Arbeitsperiode ist beendet.
+Besuchen Sie die Berichtesektion und erstellen Sie einen Bericht für die Arbeitsperiode</value>
 	</data>
 	<data name="DontForgetEndingWorkPeriod" xml:space="preserve">
-		<value>NICHT VERGESSEN ENDING Arbeitszeit!</value>
+		<value>VERGESSEN SIE NICHT DIE ARBEITSPERIODE ZU BEENDEN!</value>
 	</data>
 	<data name="Paid" xml:space="preserve">
 		<value>Bezahlt</value>
 	</data>
 	<data name="Open" xml:space="preserve">
-		<value>Geöffnet</value>
+		<value>Offen</value>
 	</data>
 	<data name="AutoFlatten_ab" xml:space="preserve">
-		<value>Auto Rundung</value>
+		<value>Automatische Rundung</value>
 	</data>
 	<data name="Rounding" xml:space="preserve">
 		<value>Runden</value>
@@ -1575,7 +1578,7 @@ Besuchen Sie Abschnitt Berichte und schaffen Arbeit für den Zeitraum Reports</v
 		<value>Kontostand</value>
 	</data>
 	<data name="UndefinedPaymentType" xml:space="preserve">
-		<value>Undefined Payment Type</value>
+		<value>Undefinierte Zahlungsart</value>
 	</data>
 	<data name="Angle" xml:space="preserve">
 		<value>Winkel</value>
@@ -1590,16 +1593,16 @@ Besuchen Sie Abschnitt Berichte und schaffen Arbeit für den Zeitraum Reports</v
 		<value>Breite</value>
 	</data>
 	<data name="Gift_ab" xml:space="preserve">
-		<value>[Geschenkartikel]</value>
+		<value>[Einladung]</value>
 	</data>
 	<data name="Void_ab" xml:space="preserve">
-		<value>[Void]</value>
+		<value>[Storno]</value>
 	</data>
 	<data name="OrderNumber_f" xml:space="preserve">
-		<value>Ord.No: {0:0} - {1}</value>
+		<value>Best.No: {0:0} - {1}</value>
 	</data>
 	<data name="NewOrder" xml:space="preserve">
-		<value>New Order</value>
+		<value>Neue Bestellung</value>
 	</data>
 	<data name="Back" xml:space="preserve">
 		<value>Zurück</value>
@@ -1611,35 +1614,35 @@ Besuchen Sie Abschnitt Berichte und schaffen Arbeit für den Zeitraum Reports</v
 		<value>{0} ({1} min.)</value>
 	</data>
 	<data name="Table_f" xml:space="preserve">
-		<value>Tabelle: {0}</value>
+		<value>Tisch: {0}</value>
 	</data>
 	<data name="Account_f" xml:space="preserve">
 		<value>Konto: {0}</value>
 	</data>
 	<data name="TicketNumberAndTable_f" xml:space="preserve">
-		<value># {0} Tabelle: {1}</value>
+		<value># {0} Tisch: {1}</value>
 	</data>
 	<data name="TicketNumberAndAccount_f" xml:space="preserve">
-		<value># {0} Tabelle: {1}</value>
+		<value># {0} Tisch: {1}</value>
 	</data>
 	<data name="AccountNameAndTableName_f" xml:space="preserve">
 		<value># {0} Konto: {1}
-Tabelle: {2}</value>
+Tisch: {2}</value>
 	</data>
 	<data name="CantCompleteOperationWhenThereIsZeroPricedProduct" xml:space="preserve">
-		<value>Kann diesen Vorgang nicht abschließen, während Null preislich Bestellungen existiert.</value>
+		<value>Solange der Preis 0,00 ist, kann der Vorgang nicht abgeschlossen werden.</value>
 	</data>
 	<data name="TagCantBeEmpty_f" xml:space="preserve">
-		<value>Kann nicht verlassen {0} leer</value>
+		<value>{0} kann nicht leer gelassen werden.</value>
 	</data>
 	<data name="Reports" xml:space="preserve">
-		<value>Reports</value>
+		<value>Berichte</value>
 	</data>
 	<data name="CanDisplayReports" xml:space="preserve">
-		<value>Kann Reports anzeigen</value>
+		<value>Kann Berichte anzeigen</value>
 	</data>
 	<data name="CanChangeReportFilter" xml:space="preserve">
-		<value>Kann Report Date Filter wechseln</value>
+		<value>Kann Berichtdatenfilter wechseln</value>
 	</data>
 	<data name="Today" xml:space="preserve">
 		<value>Heute</value>
@@ -1648,10 +1651,10 @@ Tabelle: {2}</value>
 		<value>Gestern</value>
 	</data>
 	<data name="PastMonth" xml:space="preserve">
-		<value>Letzter Monat</value>
+		<value>Letztes Monat</value>
 	</data>
 	<data name="ThisMonth" xml:space="preserve">
-		<value>Dieser Monat</value>
+		<value>Dieses Monat</value>
 	</data>
 	<data name="ThisWeek" xml:space="preserve">
 		<value>Diese Woche</value>
@@ -1669,7 +1672,7 @@ Tabelle: {2}</value>
 		<value>Wie von {0}</value>
 	</data>
 	<data name="Accounts" xml:space="preserve">
-		<value>Accounts</value>
+		<value>Konten</value>
 	</data>
 	<data name="NoTransactionsFoundFor_f" xml:space="preserve">
 		<value>Keine Transaktionen für {0}</value>
@@ -1678,100 +1681,100 @@ Tabelle: {2}</value>
 		<value>Interne Konten</value>
 	</data>
 	<data name="AccountsLiability" xml:space="preserve">
-		<value>Accounts Haftung</value>
+		<value>Kontenhaftung</value>
 	</data>
 	<data name="AccountsReceivable" xml:space="preserve">
-		<value>Debitorenbuchhaltung</value>
+		<value>Forderungen</value>
 	</data>
 	<data name="CashReport" xml:space="preserve">
-		<value>Cash-Transaktionen zu melden</value>
+		<value>Bar-Transaktions-Bericht </value>
 	</data>
 	<data name="DateRangeIsNotActiveWorkPeriod" xml:space="preserve">
-		<value>Date-Bereich nicht in die aktive Arbeit Zeit</value>
+		<value>Keine Zeitspanne in der aktuellen Arbeitsperiode</value>
 	</data>
 	<data name="ReportDoesNotContainsCashState" xml:space="preserve">
-		<value>Bericht enthält keine Beträge auf Start</value>
+		<value>Bericht enthält keine Anfangsbeträge</value>
 	</data>
 	<data name="Expenses" xml:space="preserve">
 		<value>Kosten</value>
 	</data>
 	<data name="CashTransactions" xml:space="preserve">
-		<value>Cash-Transaktionen</value>
+		<value>Bar-Transaktionen</value>
 	</data>
 	<data name="Totals" xml:space="preserve">
-		<value>Totals</value>
+		<value>Gesamtsummen</value>
 	</data>
 	<data name="TotalExpense" xml:space="preserve">
-		<value>Total Expense</value>
+		<value>Gesamtentnahmen</value>
 	</data>
 	<data name="Incomes" xml:space="preserve">
-		<value>Einkommen</value>
+		<value>Einnahmen</value>
 	</data>
 	<data name="StartAmount" xml:space="preserve">
-		<value>Starten Beträge</value>
+		<value>Startsummen</value>
 	</data>
 	<data name="SalesIncome" xml:space="preserve">
-		<value>Umsatz Ergebnis</value>
+		<value>Verkaufseinnahmen</value>
 	</data>
 	<data name="TotalIncome" xml:space="preserve">
-		<value>Gesamteinkommen</value>
+		<value>Gesamteinnahmen</value>
 	</data>
 	<data name="CashStatus" xml:space="preserve">
-		<value>Cash-Status</value>
+		<value>Barbestand</value>
 	</data>
 	<data name="Drawer" xml:space="preserve">
-		<value>Cash Drawer</value>
+		<value>Kasse</value>
 	</data>
 	<data name="WorkPeriodReport" xml:space="preserve">
-		<value>Arbeitszeit-Bericht</value>
+		<value>Arbeitsperiodenbericht</value>
 	</data>
 	<data name="Sales" xml:space="preserve">
-		<value>Vertrieb</value>
+		<value>Verkauf</value>
 	</data>
 	<data name="GeneralInformation" xml:space="preserve">
 		<value>Allgemeine Informationen</value>
 	</data>
 	<data name="ItemProperties" xml:space="preserve">
-		<value>Extra-Item Properties</value>
+		<value>Extra Artikel-Modifier</value>
 	</data>
 	<data name="VoidsTotal" xml:space="preserve">
-		<value>Voids insgesamt</value>
+		<value>Storno gesamt</value>
 	</data>
 	<data name="DiscountsTotal" xml:space="preserve">
-		<value>Rabatte insgesamt</value>
+		<value>Rabatte gesamt</value>
 	</data>
 	<data name="GiftsTotal" xml:space="preserve">
-		<value>Geschenke Summe</value>
+		<value>Einladungen gesamt</value>
 	</data>
 	<data name="TicketCount" xml:space="preserve">
-		<value>Ticket Count</value>
+		<value>Ticketanzahl</value>
 	</data>
 	<data name="SalesDivTicket" xml:space="preserve">
-		<value>Umsatz Insgesamt / Ticket</value>
+		<value>Verkauf gesamt / Ticket</value>
 	</data>
 	<data name="Incomes_f" xml:space="preserve">
-		<value>{0} Einkommen</value>
+		<value>{0} Einnahmen</value>
 	</data>
 	<data name="TotalAmount_f" xml:space="preserve">
 		<value>{0} Gesamtbetrag:</value>
 	</data>
 	<data name="TicketTotal_f" xml:space="preserve">
-		<value>Insgesamt {0}:</value>
+		<value>Gesamt {0}:</value>
 	</data>
 	<data name="TotalAmountDivTag_f" xml:space="preserve">
-		<value>Total Amount / {0}:</value>
+		<value>Gesamtsumme / {0}:</value>
 	</data>
 	<data name="UserSales" xml:space="preserve">
-		<value>Benutzer Vertrieb</value>
+		<value>User-Verkauf</value>
 	</data>
 	<data name="ItemSales" xml:space="preserve">
-		<value>Item Sales</value>
+		<value>Artikel-Verkauf</value>
 	</data>
 	<data name="CostReport" xml:space="preserve">
-		<value>Cost-Bericht</value>
+		<value>Kostenbericht</value>
 	</data>
 	<data name="InventoryReport" xml:space="preserve">
-		<value>Inventory Report</value>
+		<value>Bestandsbericht</value>
 	</data>
 	<data name="CsvBuilder" xml:space="preserve">
 		<value>CSV Builder</value>
@@ -1780,31 +1783,31 @@ Tabelle: {2}</value>
 		<value>Durchschnittliche Kosten</value>
 	</data>
 	<data name="ThereAreNoCostTransactionsInThisPeriod" xml:space="preserve">
-		<value>Es gibt keine Kosten-Transaktionen in dieser Arbeit Zeit.</value>
+		<value>Es gibt keine Kosten-Transaktionen in dieser Arbeitperiode.</value>
 	</data>
 	<data name="InventoryPurchaseReport" xml:space="preserve">
-		<value>Vorräte zu kaufen, Bericht</value>
+		<value>Bestands-Kauf-Bericht</value>
 	</data>
 	<data name="InventoryGroup" xml:space="preserve">
-		<value>Warengruppe</value>
+		<value>Bestandsgruppe</value>
 	</data>
 	<data name="AveragePrice_ab" xml:space="preserve">
-		<value>Ca.Preis</value>
+		<value>Durchschn. Preis</value>
 	</data>
 	<data name="ItemSalesReport" xml:space="preserve">
-		<value>Item Sales Report</value>
+		<value>Artikelbericht</value>
 	</data>
 	<data name="SalesByItemGroup" xml:space="preserve">
-		<value>Umsatz nach Item-Gruppe</value>
+		<value>Umsatz nach Artikel-Gruppe</value>
 	</data>
 	<data name="QuantitiesByItemGroup" xml:space="preserve">
-		<value>Mengen, die von Item-Gruppe</value>
+		<value>Mengen nach Artikel-Gruppe</value>
 	</data>
 	<data name="Voids" xml:space="preserve">
-		<value>Voids</value>
+		<value>Stornos</value>
 	</data>
 	<data name="Gifts" xml:space="preserve">
-		<value>Geschenke</value>
+		<value>Einladungen</value>
 	</data>
 	<data name="Discounts" xml:space="preserve">
 		<value>Rabatte</value>
@@ -1813,77 +1816,77 @@ Tabelle: {2}</value>
 		<value>Tickets</value>
 	</data>
 	<data name="ByPersonnel_f" xml:space="preserve">
-		<value>{0} durch den Benutzer</value>
+		<value>{0} pro User</value>
 	</data>
 	<data name="NoPurchaseTransactionInCurrentDateRange" xml:space="preserve">
-		<value>Es gibt keine Kauf-Transaktionen in Datumsbereich.</value>
+		<value>Es gibt keine Kauf-Transaktionen in dieser Zeitspanne.</value>
 	</data>
 	<data name="TicketTemplate" xml:space="preserve">
-		<value>Ticket-Vorlage</value>
+		<value>Ticketvorlage</value>
 	</data>
 	<data name="KitchenOrderTemplate" xml:space="preserve">
-		<value>Kitchen Bestellungen Vorlage</value>
+		<value>Küchenbonvorlage</value>
 	</data>
 	<data name="InvoicePrinterTemplate" xml:space="preserve">
-		<value>Invoice Template</value>
+		<value>Rechnungsvorlage</value>
 	</data>
 	<data name="TicketTemplateHeaderValue" xml:space="preserve">
 		<value>&lt;T&gt; TICKET
 &lt;L00&gt; Datum: {TICKET DATE}
-&lt;L00&gt; Time: {TIME}
-&lt;L00&gt; Tabelle Nr.: {TABLE}
-&lt;L00&gt; Ticket No: {TICKET NO}
+&lt;L00&gt; Zeit: {TIME}
+&lt;L00&gt; Tisch-Nr.: {TABLE}
+&lt;L00&gt; Ticket-Nr: {TICKET NO}
 &lt;F&gt; -</value>
 	</data>
 	<data name="TicketTemplateFooterValue" xml:space="preserve">
 		<value>&lt;F&gt; =
 &lt;EB&gt;
 &lt;J10&gt; {IF DISCOUNT}
-&lt;J10&gt; [Total Geschenk: | {GIFT TOTAL}]
+&lt;J10&gt; [Total Einladung: | {GIFT TOTAL}]
 &lt;J10&gt; Total: | {TICKET TOTAL}
 {IF PAID}
 &lt;DB&gt;
 &lt;F&gt; =
-&lt;C10&gt; T H A N K Y O U</value>
+&lt;C10&gt; D A N K E </value>
 	</data>
 	<data name="KitchenTemplateHeaderValue" xml:space="preserve">
 		<value>&lt;T&gt; {TABLE USER}
 &lt;F&gt; -
 &lt;L00&gt; Datum: {TICKET DATE}
-&lt;L00&gt; Time: {TIME}
-&lt;L00&gt; Tabelle Nr.: {TABLE}
-&lt;L00&gt; Ticket No: {TICKET NO}
+&lt;L00&gt; Zeit: {TIME}
+&lt;L00&gt; Tisch-Nr.: {TABLE}
+&lt;L00&gt; Ticket-Nr: {TICKET NO}
 &lt;F&gt; -</value>
 	</data>
 	<data name="KitchenTemplateVoidedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; ** Void ** {QUANTITY} {NAME}
+		<value>&lt;L00&gt; ** Storno ** {QUANTITY} {NAME}
         * {PROPERTIES}</value>
 	</data>
 	<data name="InvoiceTemplateHeaderValue" xml:space="preserve">
 		<value>&lt;T&gt; INVOICE
 &lt;L00&gt; Datum: {TICKET DATE}
-&lt;L00&gt; Time: {TIME}
-&lt;L00&gt; Tabelle Nr.: {TABLE}
-&lt;L00&gt; Ticket No: {TICKET NO}
+&lt;L00&gt; Zeit: {TIME}
+&lt;L00&gt; Tisch-Nr.: {TABLE}
+&lt;L00&gt; Ticket-Nr.: {TICKET NO}
 &lt;F&gt; -</value>
 	</data>
 	<data name="KitchenPrinter" xml:space="preserve">
-		<value>Kitchen Printer</value>
+		<value>Küchendrucker</value>
 	</data>
 	<data name="InvoicePrinter" xml:space="preserve">
-		<value>Invoice Printer</value>
+		<value>Rechnungsdrucker</value>
 	</data>
 	<data name="Server" xml:space="preserve">
 		<value>Server</value>
 	</data>
 	<data name="PrintBill" xml:space="preserve">
-		<value>Print Bill</value>
+		<value>Ticket drucken</value>
 	</data>
 	<data name="PrintOrdersToKitchenPrinter" xml:space="preserve">
-		<value>Print Orders auf Küchendrucker</value>
+		<value>Druckaufträge für Küchendrucker</value>
 	</data>
 	<data name="AllTables" xml:space="preserve">
-		<value>Alle Tabellen</value>
+		<value>Alle Tische</value>
 	</data>
 	<data name="Search" xml:space="preserve">
 		<value>Suche</value>
@@ -1898,29 +1901,29 @@ Tabelle: {2}</value>
 		<value>Gutschein</value>
 	</data>
 	<data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; {QUANTITY} {NAME} | GIFT</value>
+		<value>&lt;L00&gt; {QUANTITY} {NAME} | EINLADUNG</value>
 	</data>
 	<data name="NavigationPermissions" xml:space="preserve">
-		<value>Navigation Permissions</value>
+		<value>Navigation-Berechtigung</value>
 	</data>
 	<data name="DepartmentPermissions" xml:space="preserve">
-		<value>Abteilung Berechtigungen</value>
+		<value>Abteilungs-Berechtigungen</value>
 	</data>
 	<data name="TicketPermissions" xml:space="preserve">
 		<value>Ticket-Berechtigungen</value>
 	</data>
 	<data name="SettlePermissions" xml:space="preserve">
-		<value>Payment Berechtigungen</value>
+		<value>Kassier-Berechtigungen</value>
 	</data>
 	<data name="ReportPermissions" xml:space="preserve">
-		<value>Reporting-Berechtigungen</value>
+		<value>Bericht-Berechtigungen</value>
 	</data>
 	<data name="NoTicketsFoundForTag" xml:space="preserve">
-		<value>Keine Tickets gefunden getaggt mit {0}-Tag.</value>
+		<value>Keine Tickets mit {0}-tag gefunden</value>
 	</data>
 	<data name="RemainingAmountIfPaidValue_f" xml:space="preserve">
-		<value>Paid: | {0}
-&lt;J&gt; Grand Total: | {1}</value>
+		<value>Bezahlt: | {0}
+&lt;J&gt; Gesamtbetrag: | {1}</value>
 	</data>
 	<data name="DiscountTotalAndTicketTotalValue_f" xml:space="preserve">
 		<value>Ticket TOTAL: | {0}
@@ -1936,7 +1939,7 @@ Tabelle: {2}</value>
 		<value>Export Sales Data</value>
 	</data>
 	<data name="ClickLinksToExportData" xml:space="preserve">
-		<value>Wählen Sie Datumsbereich, refresh Bericht und klicken Sie related link, um Daten zu exportieren.</value>
+		<value>Wählen Sie die Zeitspanne, laden Sie den Bericht neu und klicken Sie den entsprechenden link, um  die Daten zu exportieren.</value>
 	</data>
 	<data name="FooterTemplate" xml:space="preserve">
 		<value>Footer-Vorlage</value>
@@ -1945,7 +1948,7 @@ Tabelle: {2}</value>
 		<value>UI Sprache</value>
 	</data>
 	<data name="OverrideWindowsRegionalSettings" xml:space="preserve">
-		<value>Override Windows-Ländereinstellungen</value>
+		<value>Überschreiben der Windows-Ländereinstellungen</value>
 	</data>
 	<data name="RuleAction" xml:space="preserve">
 		<value>Aktion</value>
@@ -1957,19 +1960,19 @@ Tabelle: {2}</value>
 		<value>Keine Aktion</value>
 	</data>
 	<data name="ShowMessage" xml:space="preserve">
-		<value>Show Message</value>
+		<value>Message anzeigen</value>
 	</data>
 	<data name="ActionName" xml:space="preserve">
-		<value>Aktion Name</value>
+		<value>Aktionsname</value>
 	</data>
 	<data name="ActionType" xml:space="preserve">
-		<value>Action Type</value>
+		<value>Aktionstyp</value>
 	</data>
 	<data name="ActionParameter" xml:space="preserve">
-		<value>Aktion Parameter</value>
+		<value>Aktionsparameter</value>
 	</data>
 	<data name="Parameters" xml:space="preserve">
-		<value>Parameters</value>
+		<value>Parameter</value>
 	</data>
 	<data name="Message" xml:space="preserve">
 		<value>Nachricht</value>
@@ -1981,19 +1984,19 @@ Tabelle: {2}</value>
 		<value>Name der Regel</value>
 	</data>
 	<data name="EventName" xml:space="preserve">
-		<value>Name der Veranstaltung</value>
+		<value>Name des Ereignisses</value>
 	</data>
 	<data name="Actions" xml:space="preserve">
 		<value>Aktionen</value>
 	</data>
 	<data name="NewProperty" xml:space="preserve">
-		<value>New Property</value>
+		<value>Neue Eigenschaft</value>
 	</data>
 	<data name="Move" xml:space="preserve">
 		<value>Bewegen</value>
 	</data>
 	<data name="MoveTicketLine" xml:space="preserve">
-		<value>Bewegen</value>
+		<value>Verschieben</value>
 	</data>
 	<data name="Title" xml:space="preserve">
 		<value>Titel</value>
@@ -2002,7 +2005,7 @@ Tabelle: {2}</value>
 		<value>Popup anzeigen</value>
 	</data>
 	<data name="DeleteErrorInventoryItemUsedInEndOfDayRecord" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil ein Ende des Tages Cost Dokument enthält dieses Inventory Item.</value>
+		<value>Kann nicht gelöscht werden, weil ein Tagesbericht-Kosten-Dokument diesen Artikel enthält.</value>
 	</data>
 	<data name="Rules" xml:space="preserve">
 		<value>Regeln</value>
@@ -2011,7 +2014,7 @@ Tabelle: {2}</value>
 		<value>Aktion</value>
 	</data>
 	<data name="ActionList" xml:space="preserve">
-		<value>Action List</value>
+		<value>Liste der Aktionen</value>
 	</data>
 	<data name="SelectActions" xml:space="preserve">
 		<value>Wählen Sie Aktionen</value>
@@ -2023,7 +2026,7 @@ Tabelle: {2}</value>
 		<value>Kundennotiz</value>
 	</data>
 	<data name="GiftTotal" xml:space="preserve">
-		<value>Gift insgesamt</value>
+		<value>Einladungen gesamt</value>
 	</data>
 	<data name="UserLogin" xml:space="preserve">
 		<value>User Login</value>
@@ -2038,22 +2041,22 @@ Tabelle: {2}</value>
 		<value>Ticket Tag ausgewählt</value>
 	</data>
 	<data name="CustomerSelectedForTicket" xml:space="preserve">
-		<value>Kunden für das gewählte Ticket</value>
+		<value>Kunden für das Ticket gewählt</value>
 	</data>
 	<data name="TicketTotalChanged" xml:space="preserve">
-		<value>Ticket Insgesamt Changed</value>
+		<value>Ticket gesamt geändert</value>
 	</data>
 	<data name="WorkPeriodStarted" xml:space="preserve">
-		<value>Arbeitszeit Started</value>
+		<value>Arbeitsperiode hat begonnen</value>
 	</data>
 	<data name="WorkPeriodEnded" xml:space="preserve">
-		<value>Die Arbeit endete</value>
+		<value>Arbeitsperiode ist zu Ende</value>
 	</data>
 	<data name="ExecuteActionsIf" xml:space="preserve">
 		<value>Bedingungen</value>
 	</data>
 	<data name="ReportName" xml:space="preserve">
-		<value>Report Name</value>
+		<value>Berichtsname</value>
 	</data>
 	<data name="FileName" xml:space="preserve">
 		<value>File Name</value>
@@ -2062,7 +2065,7 @@ Tabelle: {2}</value>
 		<value>Rabattprozentsatz</value>
 	</data>
 	<data name="TriggerName" xml:space="preserve">
-		<value>Trigger-Namen</value>
+		<value>Trigger-Name</value>
 	</data>
 	<data name="Expression" xml:space="preserve">
 		<value>Ausdruck</value>
@@ -2095,10 +2098,10 @@ Tabelle: {2}</value>
 		<value>Alle 5 Minuten</value>
 	</data>
 	<data name="TwiceAnHour" xml:space="preserve">
-		<value>Zweimal eine Stunde</value>
+		<value>Zweimal pro Stunde</value>
 	</data>
 	<data name="OnceAnHour" xml:space="preserve">
-		<value>Nach einer Stunde</value>
+		<value>Einmal pro Stunde</value>
 	</data>
 	<data name="TwiceADay" xml:space="preserve">
 		<value>Zweimal am Tag</value>
@@ -2107,7 +2110,7 @@ Tabelle: {2}</value>
 		<value>Einmal am Tag</value>
 	</data>
 	<data name="OnceAWeek" xml:space="preserve">
-		<value>Einmal in der Woche</value>
+		<value>Einmal pro Woche</value>
 	</data>
 	<data name="FirstAndFifteenth" xml:space="preserve">
 		<value>1. und 15.</value>
@@ -2131,16 +2134,16 @@ Tabelle: {2}</value>
 		<value>Alle 30 Minuten</value>
 	</data>
 	<data name="TopOfTheHour" xml:space="preserve">
-		<value>Top der Stunde</value>
+		<value>Zur vollen Stunde</value>
 	</data>
 	<data name="QuarterPast" xml:space="preserve">
 		<value>Viertel nach</value>
 	</data>
 	<data name="HalfPast" xml:space="preserve">
-		<value>Halb</value>
+		<value>30 Minuten nach</value>
 	</data>
 	<data name="QuarterTil" xml:space="preserve">
-		<value>Quarter til</value>
+		<value>Viertel vor</value>
 	</data>
 	<data name="EveryHour" xml:space="preserve">
 		<value>Stündlich</value>
@@ -2167,7 +2170,7 @@ Tabelle: {2}</value>
 		<value>Mittag</value>
 	</data>
 	<data name="PM" xml:space="preserve">
-		<value>Uhr</value>
+		<value>p.m.</value>
 	</data>
 	<data name="AM" xml:space="preserve">
 		<value>a.m.</value>
@@ -2206,56 +2209,56 @@ Tabelle: {2}</value>
 		<value>Di, Do</value>
 	</data>
 	<data name="Trigger" xml:space="preserve">
-		<value>Auslöser</value>
-	</data>
-	<data name="Triggers" xml:space="preserve">
 		<value>Trigger</value>
 	</data>
+	<data name="Triggers" xml:space="preserve">
+		<value>Triggers</value>
+	</data>
 	<data name="ExpressionValid" xml:space="preserve">
-		<value>Expression Valid</value>
+		<value>Gültiger Ausdruck</value>
 	</data>
 	<data name="ErrorInExpression" xml:space="preserve">
-		<value>Fehler in Expression</value>
+		<value>Ungültiger Ausdruck</value>
 	</data>
 	<data name="TriggerTestResultMessage_f" xml:space="preserve">
-		<value>Next Trigger: {0}
-Will nach {1} Tage, {2} Stunden, {3} Minuten-Trigger</value>
+		<value>Nächster Trigger: {0}
+Trigger ausführen nach {1} Tage, {2} Stunden, {3} Minuten</value>
 	</data>
 	<data name="ThereIsAnotherPriceDefinition_f" xml:space="preserve">
-		<value>Es gibt einen weiteren Preis Definition mit {0}-Tag</value>
+		<value>Es gibt eine weitere Preis-Definition mit {0}-Tag</value>
 	</data>
 	<data name="PriceDefinition" xml:space="preserve">
-		<value>Preis Definition</value>
+		<value>Preis-Definition</value>
 	</data>
 	<data name="PriceDefinitions" xml:space="preserve">
-		<value>Preis Definitionen</value>
+		<value>Preis-Definitionen</value>
 	</data>
 	<data name="ClearFilter" xml:space="preserve">
-		<value>Filter</value>
+		<value>Filter entfernen</value>
 	</data>
 	<data name="From" xml:space="preserve">
 		<value>Von:</value>
 	</data>
 	<data name="To" xml:space="preserve">
-		<value>To:</value>
+		<value>Bis:</value>
 	</data>
 	<data name="TipsTotal" xml:space="preserve">
-		<value>Tipps gesamt</value>
+		<value>Trinkgelder gesamt</value>
 	</data>
 	<data name="TicketTipTotal" xml:space="preserve">
-		<value>Tipp insgesamt</value>
+		<value>Trinkgeld gesamt</value>
 	</data>
 	<data name="LinePriceTag" xml:space="preserve">
-		<value># Line: Price Tag</value>
+		<value># Line: Preis Tag</value>
 	</data>
 	<data name="TicketTipTotalAmount" xml:space="preserve">
-		<value>Insgesamt Ticket Spitze Betrag</value>
+		<value>Gesamtes Trinkgeld des Tickets</value>
 	</data>
 	<data name="PriceTag" xml:space="preserve">
-		<value>Preisschild</value>
+		<value>Preis Tag</value>
 	</data>
 	<data name="SaveErrorZeroOrNullInventoryLines" xml:space="preserve">
-		<value>Kann nicht speichern, weil es Zeilen mit leeren Inventar-Gegenstände oder Nullmenge sind</value>
+		<value>Kann nicht gespeichert werden, weil Inventarzeilen leer oder ohne Bestand sind.</value>
 	</data>
 	<data name="TriggerExecuted" xml:space="preserve">
 		<value>Trigger ausgeführt</value>
@@ -2264,46 +2267,46 @@ Will nach {1} Tage, {2} Stunden, {3} Minuten-Trigger</value>
 		<value>Nachricht empfangen</value>
 	</data>
 	<data name="MenuItemName" xml:space="preserve">
-		<value>Menu Item Name</value>
+		<value>Menü-Artikelname</value>
 	</data>
 	<data name="PortionName" xml:space="preserve">
-		<value>Portion Namen</value>
+		<value>Portionsname</value>
 	</data>
 	<data name="LinesGroupedByTag" xml:space="preserve">
-		<value>Zeilen, die von Tag Grouped</value>
+		<value>Zeilen gruppiert durch einen Tag</value>
 	</data>
 	<data name="SendEmail" xml:space="preserve">
 		<value>E-Mail senden</value>
 	</data>
 	<data name="AddTicketDiscount" xml:space="preserve">
-		<value>Add Ticket Rabatt</value>
+		<value>Ticket-Rabatt hinzufügen</value>
 	</data>
 	<data name="AddTicketItem" xml:space="preserve">
-		<value>Add Ticket Item</value>
+		<value>Ticket-Artikel hinzufügen</value>
 	</data>
 	<data name="UpdateTicketTag" xml:space="preserve">
-		<value>Update-Ticket-Tag</value>
+		<value>Ticket-Tag updaten</value>
 	</data>
 	<data name="UpdatePriceTag" xml:space="preserve">
-		<value>Ändern Preisliste</value>
+		<value>Preisliste wechseln</value>
 	</data>
 	<data name="RefreshCache" xml:space="preserve">
 		<value>Refresh Cache</value>
 	</data>
 	<data name="BroadcastMessage" xml:space="preserve">
-		<value>Broadcast Message</value>
+		<value>Message übertragen</value>
 	</data>
 	<data name="DisplayAppPath" xml:space="preserve">
-		<value>Anzeige App-Pfad</value>
+		<value>App-Pfad anzeigen</value>
 	</data>
 	<data name="DisplayUserPath" xml:space="preserve">
-		<value>Anzeige Benutzer-Pfad</value>
+		<value>Benutzer-Pfad anzeigen</value>
 	</data>
 	<data name="SaveReportToFile" xml:space="preserve">
-		<value>Save Report to File</value>
+		<value>Bericht in einer Datei speichern</value>
 	</data>
 	<data name="PriceDefinitonName" xml:space="preserve">
-		<value>Preis Definiton Namen</value>
+		<value>Preis-Definitonsname</value>
 	</data>
 	<data name="Previous" xml:space="preserve">
 		<value>Vorherige</value>
@@ -2312,37 +2315,37 @@ Will nach {1} Tage, {2} Stunden, {3} Minuten-Trigger</value>
 		<value>Nächste</value>
 	</data>
 	<data name="AddTag" xml:space="preserve">
-		<value>Add Tag</value>
+		<value>Tag hinzufügen</value>
 	</data>
 	<data name="Delete_ab" xml:space="preserve">
-		<value>Del</value>
+		<value>Entf.</value>
 	</data>
 	<data name="Divide_ab" xml:space="preserve">
-		<value>Div</value>
+		<value>Divid.</value>
 	</data>
 	<data name="Print_ab" xml:space="preserve">
-		<value>Prn</value>
+		<value>Drck.</value>
 	</data>
 	<data name="TicketMovedRetryLastOperation_f" xml:space="preserve">
-		<value>Ticket zog nach {0}. Ihre letzte Änderungen nicht gespeichert.</value>
+		<value>Ticket wurde nach {0} verschoben. Ihre letzte Änderung wurde nicht gespeichert.</value>
 	</data>
 	<data name="TicketPaidChangesNotSaved" xml:space="preserve">
-		<value>Ticket bezahlt. Ihre letzte Änderungen nicht gespeichert.</value>
+		<value>Ticket bezahlt. Ihre letzte Änderung wurde nicht gespeichert.</value>
 	</data>
 	<data name="TicketChangedRetryLastOperation" xml:space="preserve">
-		<value>Ticket geändert. Ihre letzte Änderungen nicht gespeichert.</value>
+		<value>Ticket geändert. Ihre letzte Änderung wurde nicht gespeichert.</value>
 	</data>
 	<data name="TicketPaidLastChangesNotSaved" xml:space="preserve">
-		<value>Ticket bezahlt. Ihre letzte Änderungen nicht gespeichert.</value>
+		<value>Ticket bezahlt. Ihre letzte Änderung wurde nicht gespeichert.</value>
 	</data>
 	<data name="TableChangedRetryLastOperation_f" xml:space="preserve">
-		<value>{0} Tabelle geändert. Ihre letzte Änderungen nicht gespeichert.</value>
+		<value>{0} Tisch geändert. Ihre letzte Änderung wurde nicht gespeichert.</value>
 	</data>
 	<data name="NewLiabilityTransaction" xml:space="preserve">
-		<value>New Credit Transaction</value>
+		<value>Neue Kredit-Transaktion</value>
 	</data>
 	<data name="NewReceivableTransaction" xml:space="preserve">
-		<value>New Debit Transaction</value>
+		<value>Neue Debit-Transaction</value>
 	</data>
 	<data name="AddLiability_r" xml:space="preserve">
 		<value>Kredit</value>
@@ -2351,70 +2354,70 @@ Will nach {1} Tage, {2} Stunden, {3} Minuten-Trigger</value>
 		<value>Soll</value>
 	</data>
 	<data name="VoidTicketItems" xml:space="preserve">
-		<value>Void Ticket Items</value>
+		<value>Stornierte Artikel</value>
 	</data>
 	<data name="SaveErrorMultipleDefaultTerminals" xml:space="preserve">
 		<value>Erstellen Sie nicht mehr als ein Standard-Terminal</value>
 	</data>
 	<data name="AllDiscountsRemoved" xml:space="preserve">
-		<value>Alle Rabatte, weil berechnete gesamte Skontobetrag entfernt ist größer als Ticket betragen.</value>
+		<value>Alle Rabatte wurden entfernt, weil der berechnete Gesamtrabatt größer ist als der Betrag de Tickets.</value>
 	</data>
 	<data name="WeightBarcodeItemIdFormat" xml:space="preserve">
-		<value>Gewicht Barcode Item Id Format</value>
+		<value>Gewicht Barcode Artikel Id Format</value>
 	</data>
 	<data name="SettingCheck" xml:space="preserve">
-		<value>Setzen Sie</value>
+		<value>Einstellung überprüfen</value>
 	</data>
 	<data name="UpdateProgramSetting" xml:space="preserve">
-		<value>Update-Programm einstellen</value>
+		<value>Update-Programm-Einstellung</value>
 	</data>
 	<data name="CashPermissions" xml:space="preserve">
-		<value>Cash-Berechtigungen</value>
+		<value>Bargeld-Berechtigungen</value>
 	</data>
 	<data name="CanMakeCashTransaction" xml:space="preserve">
-		<value>Kann machen Bartransaktion</value>
+		<value>Kann Bartransaktionen machen</value>
 	</data>
 	<data name="CanMakeCreditOrDeptTransaction" xml:space="preserve">
 		<value>Kann Kredit-oder Debit-Transaktion machen</value>
 	</data>
 	<data name="CanMakeAccountTransaction" xml:space="preserve">
-		<value>Kann machen Kontobewegung</value>
+		<value>Kann Kontotransaktionen machen</value>
 	</data>
 	<data name="SubButtonHeight" xml:space="preserve">
-		<value>Sub-Taste Höhe</value>
+		<value>Sub-Tastenhöhe</value>
 	</data>
 	<data name="MaxItems" xml:space="preserve">
-		<value>Max Items</value>
+		<value>Max. Artikel</value>
 	</data>
 	<data name="SortType" xml:space="preserve">
-		<value>Sortieren Type</value>
+		<value>Sortierart</value>
 	</data>
 	<data name="DeleteErrorProductUsedInMenuItemProperty" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil dieses Produkt an einen Menüpunkt Eigenschaft zugewiesen</value>
+		<value>Kann nicht gelöscht werden, weil dieses Produkt einem Modifier zugewiesen ist</value>
 	</data>
 	<data name="VatTemplates" xml:space="preserve">
-		<value>MwSt. Templates</value>
+		<value>MwSt.-Vorlagen</value>
 	</data>
 	<data name="VatTemplate" xml:space="preserve">
-		<value>Tax-Vorlage</value>
+		<value>MwSt.-Vorlage</value>
 	</data>
 	<data name="VatTemplateName" xml:space="preserve">
-		<value>MwSt. Template Name</value>
+		<value>MwSt.-Vorlagenname</value>
 	</data>
 	<data name="Rate" xml:space="preserve">
-		<value>Rate</value>
+		<value>Satz</value>
 	</data>
 	<data name="VatIncludedToPrice" xml:space="preserve">
-		<value>Inklusive Steuern, um Preis</value>
+		<value>Preis inklusive Steuern</value>
 	</data>
 	<data name="Vat" xml:space="preserve">
 		<value>Steuer</value>
 	</data>
 	<data name="VatTotal" xml:space="preserve">
-		<value>MwSt. Summe</value>
+		<value>MwSt. gesamt</value>
 	</data>
 	<data name="UpdateTicketVat" xml:space="preserve">
-		<value>Update-Ticket Tax</value>
+		<value>Update Ticket-Steuer</value>
 	</data>
 	<data name="One" xml:space="preserve">
 		<value>Ein</value>
@@ -2498,7 +2501,7 @@ Will nach {1} Tage, {2} Stunden, {3} Minuten-Trigger</value>
 		<value>Neunzig</value>
 	</data>
 	<data name="Thousand" xml:space="preserve">
-		<value>Bin</value>
+		<value>Tausend</value>
 	</data>
 	<data name="Million" xml:space="preserve">
 		<value>Million</value>
@@ -2525,101 +2528,101 @@ Will nach {1} Tage, {2} Stunden, {3} Minuten-Trigger</value>
 		<value>s</value>
 	</data>
 	<data name="OneHundred" xml:space="preserve">
-		<value>One Hundred</value>
+		<value>Einhundert</value>
 	</data>
 	<data name="OneThousand" xml:space="preserve">
-		<value>One Thousand</value>
+		<value>Eintausend</value>
 	</data>
 	<data name="AlwaysExcludeVat" xml:space="preserve">
-		<value>Immer Exclude TAX</value>
+		<value>Immer ohne Steuer</value>
 	</data>
 	<data name="RoundingTotal" xml:space="preserve">
-		<value>Abgerundet insgesamt</value>
+		<value>Gerundet insgesamt</value>
 	</data>
 	<data name="TaxServiceTemplates" xml:space="preserve">
-		<value>Service-Templates</value>
+		<value>Servicevorlage</value>
 	</data>
 	<data name="ChooseTaxServicesForDepartmentHint_f" xml:space="preserve">
-		<value>Wählen Sie Steuern oder Dienstleistungen für den Einsatz unter {0}-Abteilung.</value>
+		<value>Wählen Sie Steuern oder Servicebetrag für den Einsatz in der {0}-Abteilung.</value>
 	</data>
 	<data name="TaxServiceTemplate" xml:space="preserve">
-		<value>Service-Template</value>
+		<value>Servicevorlage</value>
 	</data>
 	<data name="TaxServiceTotal" xml:space="preserve">
-		<value>Dienstleistungen insgesamt</value>
+		<value>Service total</value>
 	</data>
 	<data name="CalculationMethod" xml:space="preserve">
 		<value>Berechnungsmethode</value>
 	</data>
 	<data name="RateOrAmount" xml:space="preserve">
-		<value>Dauer und Ausmaß</value>
+		<value>Prozentsatz oder Höhe</value>
 	</data>
 	<data name="RateFromTicketAmount" xml:space="preserve">
-		<value>Rate aus dem Kartenverkauf Menge</value>
+		<value>Prozentsatz von der Ticketsumme</value>
 	</data>
 	<data name="RateFromPreviousTemplate" xml:space="preserve">
-		<value>Rate der letzten Vorlage Menge</value>
+		<value>Prozentsatz von der vorherigen Vorlagensumme</value>
 	</data>
 	<data name="FixedAmount" xml:space="preserve">
 		<value>Fester Betrag</value>
 	</data>
 	<data name="RateFromVatIncludedTicketAmount" xml:space="preserve">
-		<value>Preis ab EUR inkl. Ticket-Betrag</value>
+		<value>Prozentsatz von der Ticketsumme inkl. Steuer</value>
 	</data>
 	<data name="UnhandledExceptionErrorMessage" xml:space="preserve">
-		<value>SambaPOS Ein unerwarteter Fehler ist. Problem Details protokolliert, um Datei trace.log</value>
+		<value>SambaPOS hat ein unerwartetes Problem festgestellt. Problemdetails wurden in einer trace.log datei protokolliert.</value>
 	</data>
 	<data name="SaveFreeTags" xml:space="preserve">
-		<value>Save Freie Schlagwörter</value>
+		<value>Freie Tags speichern</value>
 	</data>
 	<data name="RegenerateTicketVat" xml:space="preserve">
-		<value>Regenerate Ticket TAX</value>
+		<value>Ticketsteuer regenerieren</value>
 	</data>
 	<data name="UpdateTicketTaxService" xml:space="preserve">
-		<value>Update-Ticket Tax oder Service</value>
+		<value>Update Ticketsteuer oder Servicebetrag</value>
 	</data>
 	<data name="Included" xml:space="preserve">
-		<value>Eingeschlossen</value>
+		<value>Inklusive</value>
 	</data>
 	<data name="Excluded" xml:space="preserve">
-		<value>Ausgeschlossen</value>
+		<value>Exklusive</value>
 	</data>
 	<data name="EmptyDiscountRateFeedback" xml:space="preserve">
-		<value>Um Rabatte, geben Sie einen Satz aus und klicken Sie Rabatt-Taste. Um Rabatt klicken Sie Rabatt-Taste ohne Eingabe eines Wertes zu entfernen.</value>
+		<value>Um Rabatte zu geben, gebeb Sie einen Prozensatz ein und drücken Sie den Rabatt-Button. Um einen Rabatt zu entfernen klicken Sie den Rabatt-Button ohne Eingabe eines Wertes.</value>
 	</data>
 	<data name="TicketSubTotal" xml:space="preserve">
 		<value>Ticket Zwischensumme</value>
 	</data>
 	<data name="VatTotalsGroupedByVatTemplate" xml:space="preserve">
-		<value>Totals von Tax-Vorlage zusammengefasst</value>
+		<value>Geamtbeträge nach Steuer-Vorlage zusammengefasst</value>
 	</data>
 	<data name="TaxTotal" xml:space="preserve">
 		<value>MwSt. Summe</value>
 	</data>
 	<data name="TaxTotalsGroupedByTaxTemplate" xml:space="preserve">
-		<value>Totals von Service-Vorlage zusammengefasst</value>
+		<value>Gesamtbeträge nach Service-Vorlage zusammengefasst</value>
 	</data>
 	<data name="TextWrittenTotalValue" xml:space="preserve">
-		<value>Text geschrieben Gesamtwert</value>
+		<value>Gesamtbetrag als Text geschrieben</value>
 	</data>
 	<data name="TicketLocationChanged" xml:space="preserve">
-		<value>Ticket Standort gewechselt</value>
+		<value>Ticket Ort gewechselt</value>
 	</data>
 	<data name="UpdateTicketAccount" xml:space="preserve">
-		<value>Update-Ticket-Konto</value>
+		<value>Ticket-Konto Update</value>
 	</data>
 	<data name="SaveErrorSelectDefaultDepartment" xml:space="preserve">
-		<value>Bitte wählen Sie ein Standard-Abteilung</value>
+		<value>Bitte wählen Sie eine Standard-Abteilung</value>
 	</data>
 	<data name="Copy" xml:space="preserve">
-		<value>Kopie</value>
+		<value>Kopieren</value>
 	</data>
 	<data name="Send" xml:space="preserve">
 		<value>Senden</value>
 	</data>
 	<data name="ErrorReportWithoutFeedback" xml:space="preserve">
-		<value>Sie senden Fehler berichten, ohne auf Ihr Feedback.
-Bitte geben Sie einige Details darüber, wie es passiert ist.
+		<value>Sie senden einen Fehlerreport ohne  Ihr persönliches Feedback.
+Bitte teilen Sie uns einige Details mit, wie es passiert ist.
 
 Weiter ohne das Hinzufügen von Details?</value>
 	</data>
@@ -2630,37 +2633,37 @@ Weiter ohne das Hinzufügen von Details?</value>
 		<value>Fehlermeldung</value>
 	</data>
 	<data name="PleaseEnterABriefExplanationOf" xml:space="preserve">
-		<value>Bitte geben Sie eine kurze Erläuterung der Ereignisse, die zu dieser Ausnahme</value>
+		<value>Bitte geben Sie eine kurze Erläuterung der Ereignisse, die zu dieser Ausnahme führten.</value>
 	</data>
 	<data name="DetailedReport" xml:space="preserve">
 		<value>Ausführlicher Bericht</value>
 	</data>
 	<data name="Modifier" xml:space="preserve">
-		<value>Modifikator</value>
+		<value>Modifier</value>
 	</data>
 	<data name="ModifierGroup" xml:space="preserve">
 		<value>Modifier-Gruppe</value>
 	</data>
 	<data name="ModifierGroupName" xml:space="preserve">
-		<value>Modifier Group Name</value>
+		<value>Modifier Gruppen Name</value>
 	</data>
 	<data name="ModifierGroups" xml:space="preserve">
-		<value>Modifier Gruppen</value>
+		<value>Modifier-Gruppen</value>
 	</data>
 	<data name="Modifiers" xml:space="preserve">
-		<value>Modifiers</value>
+		<value>Modifier</value>
 	</data>
 	<data name="APortionShouldSelected" xml:space="preserve">
-		<value>Ein Teil sollte so gewählt</value>
+		<value>Ein Portion sollte ausgewählt sein</value>
 	</data>
 	<data name="ThereIsAnotherRecipeFor_f" xml:space="preserve">
 		<value>Es gibt ein weiteres Rezept für {0}</value>
 	</data>
 	<data name="DeleteErrorPrinterAssignedToTerminal" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, weil dieser Drucker zu einem Terminal zugeordnet</value>
+		<value>Kann nicht gelöscht werden, weil dieser Drucker einem Terminal zugeordnet ist</value>
 	</data>
 	<data name="DeleteErrorPrinterAssignedToPrinterMap" xml:space="preserve">
-		<value>Kann nicht gelöscht werden, da diese Drucker einen Druckauftrag vergeben</value>
+		<value>Kann nicht gelöscht werden, da dieser Drucker einem Druckauftrag zugewiesen ist.</value>
 	</data>
 	<data name="PriceTags" xml:space="preserve">
 		<value>Preis Tagging</value>
