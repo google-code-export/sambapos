@@ -91,7 +91,7 @@ namespace Samba.Presentation.ViewModels
 
         public decimal Price
         {
-            get { return Model.GetItemPrice(); }
+            get { return Model.GetMenuItemPrice(); }
         }
 
         public decimal TotalPrice

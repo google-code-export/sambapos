@@ -121,11 +121,11 @@ namespace Samba.Domain.Models.Tickets
 
         public void ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty property)
         {
-            if (group.MultipleSelection && group.CalculateWithParentPrice && property.Price.Amount == 0)
+            if (property.Name.ToLower() == "x")
             {
                 var groupItems = Properties.Where(x => x.PropertyGroupId == group.Id).ToList();
                 foreach (var tip in groupItems) Properties.Remove(tip);
-                Quantity = 1;
+                if (group.MultipleSelection) Quantity = 1;
                 return;
             }
 
@@ -244,6 +244,13 @@ namespace Samba.Domain.Models.Tickets
         public decimal GetItemPrice()
         {
             var result = Price + GetTotalPropertyPrice();
+            if (VatIncluded) result += VatAmount;
+            return result;
+        }
+
+        public decimal GetMenuItemPrice()
+        {
+            var result = Price + GetMenuItemPropertyPrice();
             if (VatIncluded) result += VatAmount;
             return result;
         }
