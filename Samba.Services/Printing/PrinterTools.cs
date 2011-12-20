@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Documents;
+using Samba.Infrastructure.Printing;
 
 namespace Samba.Services.Printing
 {
@@ -73,6 +74,7 @@ namespace Samba.Services.Printing
             var colLenghts = new int[table.Columns.Count];
             var colAlignments = new TextAlignment[table.Columns.Count];
 
+            if (table.RowGroups.Count == 0) return result;
 
             foreach (var row in table.RowGroups[0].Rows)
             {
@@ -86,7 +88,6 @@ namespace Samba.Services.Printing
                         colLenghts[i] = value.Length;
                 }
             }
-
 
             foreach (var row in table.RowGroups[0].Rows)
             {

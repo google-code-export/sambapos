@@ -1902,7 +1902,7 @@
 		<value>Купон</value>
 	</data>
 	<data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; {QUANTITY} {NAME} | Бонус</value>
+		<value>&lt;L00&gt;{QUANTITY} {NAME} | Бонус</value>
 	</data>
 	<data name="NavigationPermissions" xml:space="preserve">
 		<value>Разрешение по навигации</value>

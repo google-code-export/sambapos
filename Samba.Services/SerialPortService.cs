@@ -35,11 +35,25 @@ namespace Samba.Services
             WritePort(portName, Encoding.ASCII.GetBytes(data));
         }
 
+        public static void WritePort(string portName, string data, int codePage)
+        {
+            WritePort(portName, Encoding.GetEncoding(codePage).GetBytes(data));
+        }
+
         public static void ResetCache()
         {
             foreach (var key in Ports.Keys)
                 Ports[key].Close();
             Ports.Clear();
+        }
+
+        internal static void WriteCommand(string portName, string command, int codePage)
+        {
+            if (!string.IsNullOrEmpty(command))
+            {
+                var data = command.Trim().Split(',').Select(x => Convert.ToInt32(x)).Aggregate("", (current, i) => current + (char)i);
+                WritePort(data, command, codePage);
+            }
         }
     }
 }

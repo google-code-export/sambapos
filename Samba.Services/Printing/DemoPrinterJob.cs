@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Documents;
 using Samba.Domain.Models.Settings;
+using Samba.Infrastructure.Printing;
 
 namespace Samba.Services.Printing
 {
@@ -24,6 +25,7 @@ namespace Samba.Services.Printing
         public override void DoPrint(string[] lines)
         {
             Debug.Assert(!string.IsNullOrEmpty(Printer.ShareName));
+
             var pcs = Printer.ShareName.Split('#');
             var wname = "Edit";
             if (pcs.Length > 1)
@@ -39,6 +41,7 @@ namespace Samba.Services.Printing
             if (notepads[0] != null)
             {
                 IntPtr child = FindWindowEx(notepads[0].MainWindowHandle, new IntPtr(0), wname, null);
+                lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine).ToArray();
                 var text = lines.Aggregate("", (current, s) => current + RemoveTagFmt(s));
                 SendMessage(child, 0x000C, 0, text);
             }

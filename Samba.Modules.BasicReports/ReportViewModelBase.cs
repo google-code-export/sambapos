@@ -98,9 +98,13 @@ namespace Samba.Modules.BasicReports
 
         internal string AskFileName(string defaultName, string extenstion)
         {
+            defaultName = defaultName.Replace(" ", "_");
+            defaultName = defaultName.Replace(".", "_");
             var saveFileDialog = new SaveFileDialog
             {
+                InitialDirectory = LocalSettings.DocumentPath,
                 FileName = defaultName,
+                Filter = string.Format("{0} file (*.{1})|*.{1}", extenstion.Trim('.').ToUpper(), extenstion.Trim('.')),
                 DefaultExt = extenstion
             };
 

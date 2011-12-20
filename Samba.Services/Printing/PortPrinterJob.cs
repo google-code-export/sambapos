@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Documents;
 using Samba.Domain.Models.Settings;
+using Samba.Infrastructure.Printing;
 
 namespace Samba.Services.Printing
 {
@@ -18,15 +19,25 @@ namespace Samba.Services.Printing
             foreach (var line in lines)
             {
                 var data = line.Contains("<") ? line.Split('<').Where(x => !string.IsNullOrEmpty(x)).Select(x => '<' + x) : line.Split('#');
+                data = PrinterHelper.AlignLines(data, Printer.CharsPerLine);
                 foreach (var s in data)
                 {
                     if (s.Trim().ToLower() == "<w>")
+                    {
                         System.Threading.Thread.Sleep(100);
-                    if (s.ToLower().StartsWith("<lb"))
+                    }
+                    else if (s.ToLower().StartsWith("<lb"))
                     {
                         SerialPortService.WritePort(Printer.ShareName, RemoveTag(s) + "\n\r");
                     }
-                    else SerialPortService.WritePort(Printer.ShareName, RemoveTag(s));
+                    else if (s.ToLower().StartsWith("<xct"))
+                    {
+                        SerialPortService.WriteCommand(Printer.ShareName, RemoveTag(s), Printer.CodePage);
+                    }
+                    else
+                    {
+                        SerialPortService.WritePort(Printer.ShareName, RemoveTag(s));
+                    }
                 }
             }
         }

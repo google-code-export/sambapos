@@ -26,6 +26,9 @@ namespace Samba.Modules.InventoryModule
             set { Model.Date = value; }
         }
 
+        public string DateLabel { get { return string.Format(Resources.DocumentDate_f, Date); } }
+        public string TimeLabel { get { return string.Format(Resources.DocumentTime_f, Date); } }
+
         public ICaptionCommand AddTransactionItemCommand { get; set; }
         public ICaptionCommand DeleteTransactionItemCommand { get; set; }
 

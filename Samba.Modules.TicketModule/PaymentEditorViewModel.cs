@@ -346,6 +346,12 @@ namespace Samba.Modules.TicketModule
             ReturningAmount = string.Format(Resources.ChangeAmount_f, returningAmount.ToString(LocalSettings.DefaultCurrencyFormat));
             ReturningAmountVisibility = returningAmount > 0 ? Visibility.Visible : Visibility.Collapsed;
 
+            if (returningAmount > 0)
+            {
+                RuleExecutor.NotifyEvent(RuleEventNames.ChangeAmountChanged,
+                    new { Ticket = SelectedTicket.Model, TicketAmount = SelectedTicket.Model.TotalAmount, ChangeAmount = returningAmount, TenderedAmount = tenderedAmount });
+            }
+
             if (returningAmount == 0 && AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() == 0)
             {
                 ClosePaymentScreen();
@@ -597,7 +603,6 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("Label");
             RaisePropertyChanged("TotalLabel");
             RaisePropertyChanged("FontWeight");
-
         }
     }
 }

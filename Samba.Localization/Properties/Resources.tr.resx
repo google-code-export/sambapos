@@ -3068,4 +3068,38 @@ Bilgi eklemeden devam etmek istiyor musunuz?]]>
   <data name="ExecutePrintJob">
     <value xml:space="preserve">Yazdırma Görevi Çalıştır</value>
   </data>
+  <data name="PrintingErrorMessage_f">
+    <value>Yazdırma işlemi sırasında bir sorun meydana geldi. Lütfen yazıcı ve şablon ayarlarını kontrol ediniz.
+
+Mesaj:
+{0}
+    </value>
+  </data>
+  <data name="DocumentDate_f">
+    <value xml:space="preserve">Tarih: {0:d}</value>
+  </data>
+  <data name="DocumentTime_f">
+    <value xml:space="preserve">Saat: {0:t}</value>
+  </data>
+  <data name="LineAddedToTicket">
+    <value xml:space="preserve">Adisyona Satır Eklendiğinde</value>
+  </data>
+  <data name="LineItemProductTag">
+    <value xml:space="preserve">#Satır: Ürün Etiketi</value>
+  </data>
+  <data name="LastLinesByPrinterLineCount">
+    <value xml:space="preserve">Son Eklenen Satırlar</value>
+  </data>
+  <data name="LineCount">
+    <value xml:space="preserve">Satır Sayısı</value>
+  </data>
+  <data name="ChangeAmountUpdated">
+    <value xml:space="preserve">Para Üstü Güncellendiğinde</value>
+  </data>
+  <data name="TicketClosed">
+    <value xml:space="preserve">Adisyon Kapatıldığında</value>
+  </data>
+	<data name="ApplicationStarted">
+		<value xml:space="preserve">Program Başladığında</value>
+	</data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -69,9 +70,79 @@ namespace Samba.Infrastructure.Printing
 
     public class PrinterHelper
     {
+        public static IEnumerable<string> AlignLines(IEnumerable<string> lines, int maxWidth)
+        {
+            var result = new List<string>();
+            foreach (var line in lines)
+            {
+                if (line.Length < 4)
+                {
+                    result.Add(line);
+                }
+                else if (line.ToLower().StartsWith("<l>"))
+                {
+                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Left, false));
+                }
+                else if (line.ToLower().StartsWith("<r>"))
+                {
+                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Right, false));
+                }
+                else if (line.ToLower().StartsWith("<c>"))
+                {
+                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Center, false));
+                }
+                else if (line.ToLower().StartsWith("<j>"))
+                {
+                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Justify, false));
+                }
+                else result.Add(line);
+            }
+            return result;
+        }
+
+        public static string AlignLine(int maxWidth, int width, string line, LineAlignment alignment, bool canBreak)
+        {
+            maxWidth = maxWidth / (width + 1);
+
+            switch (alignment)
+            {
+                case LineAlignment.Right:
+                    return line.PadLeft(maxWidth, ' ');
+                case LineAlignment.Center:
+                    return line.PadLeft(((maxWidth + line.Length) / 2), ' ');
+                case LineAlignment.Justify:
+                    return JustifyText(maxWidth, line, canBreak);
+                default:
+                    return line;
+            }
+        }
+
+        private static string JustifyText(int maxWidth, string line, bool canBreak)
+        {
+            string[] parts = line.Split('|');
+
+            if (parts.Length == 2)
+            {
+                var line1Length = maxWidth - parts[1].Length;
+                while (parts[0].Length > line1Length && parts[0].Contains("  "))
+                {
+                    parts[0] = parts[0].Replace("  ", " ");
+                }
+
+                if (canBreak && parts[0].Length + parts[1].Length > maxWidth)
+                {
+                    var p1 = parts[1].PadLeft(maxWidth);
+                    return parts[0] + "\r" + p1;
+                }
+
+                return parts[0].PadRight(maxWidth - parts[1].Length).Substring(0, maxWidth - parts[1].Length) + parts[1];
+            }
+
+            return line;
+        }
         public static IntPtr GetPrinter(string szPrinterName)
         {
-            var di = new DOCINFOA {pDocName = "Samba POS Document", pDataType = "RAW"};
+            var di = new DOCINFOA { pDocName = "Samba POS Document", pDataType = "RAW" };
             IntPtr hPrinter;
             if (!OpenPrinter(szPrinterName, out hPrinter, IntPtr.Zero)) BombWin32();
             if (!StartDocPrinter(hPrinter, 1, di)) BombWin32();

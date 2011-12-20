@@ -56,7 +56,7 @@ namespace Samba.Presentation
             InteractionService.UserIntraction.ToggleSplashScreen();
 
             AppServices.MainDispatcher = Application.Current.Dispatcher;
-           
+
             AppServices.MessagingService.RegisterMessageListener(new MessageListener());
 
             if (LocalSettings.StartMessagingClient)
@@ -104,6 +104,7 @@ namespace Samba.Presentation
             Application.Current.MainWindow.Show();
             InteractionService.UserIntraction.ToggleSplashScreen();
             TriggerService.UpdateCronObjects();
+            RuleExecutor.NotifyEvent(RuleEventNames.ApplicationStarted, new { });
         }
     }
 }

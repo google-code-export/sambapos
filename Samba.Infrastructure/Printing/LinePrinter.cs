@@ -92,49 +92,10 @@ namespace Samba.Infrastructure.Printing
             else
             {
                 WriteData((char)0x1B + "a" + (char)0);
-                line = AlignLine(_maxChars, width, line, alignment);
+                line = PrinterHelper.AlignLine(_maxChars, width, line, alignment, true);
             }
 
             WriteData(line + (char)0xA);
-        }
-
-        private static string AlignLine(int maxWidth, int width, string line, LineAlignment alignment)
-        {
-            maxWidth = maxWidth / (width + 1);
-
-            switch (alignment)
-            {
-                case LineAlignment.Right:
-                    return line.PadLeft(maxWidth, ' ');
-                case LineAlignment.Center:
-                    return line.PadLeft(((maxWidth + line.Length) / 2), ' ');
-                case LineAlignment.Justify:
-                    return JustifyText(maxWidth, line);
-                default:
-                    return line;
-            }
-        }
-
-        private static string JustifyText(int maxWidth, string line)
-        {
-            string[] parts = line.Split('|');
-
-            if (parts.Length == 2)
-            {
-                var line1Length = maxWidth - parts[1].Length;
-                while (parts[0].Length > line1Length && parts[0].Contains("  "))
-                {
-                    parts[0] = parts[0].Replace("  ", " ");
-                }
-                if (parts[0].Length + parts[1].Length > maxWidth)
-                {
-                    var p1 = parts[1].PadLeft(maxWidth);
-                    return parts[0] + "\r" + p1;
-                }
-                return parts[0].PadRight(maxWidth - parts[1].Length) + parts[1];
-            }
-
-            return line;
         }
 
         public void PrintWindow(string line)

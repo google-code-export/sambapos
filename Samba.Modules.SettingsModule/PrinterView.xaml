@@ -23,6 +23,10 @@
             </Label>
             <Common:FilteredTextBox Type="Digits" HorizontalAlignment="Left" MinWidth="100" Text="{Binding CodePage}" />
             <Label>
+                <LocText ResourceIdentifierKey="LineCount" Suffix=":"/>
+            </Label>
+            <Common:FilteredTextBox Type="Digits" HorizontalAlignment="Left" MinWidth="100" Text="{Binding PageHeight}" />
+            <Label>
                 <LocText ResourceIdentifierKey="LineCharacterCount" Suffix=":"/>
             </Label>
             <Common:FilteredTextBox Type="Digits" HorizontalAlignment="Left" MinWidth="100" Text="{Binding CharsPerLine}" />

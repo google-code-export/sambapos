@@ -1604,7 +1604,7 @@ Navštivte sekci Reporty a vytvořte Report pracovní doby</value>
 		<value>[Void]</value>
 	</data>
 	<data name="OrderNumber_f" xml:space="preserve">
-		<value>Ord.No: {00:00} - {1}</value>
+		<value>Ord.No: {0:0} - {1}</value>
 	</data>
 	<data name="NewOrder" xml:space="preserve">
 		<value>Nová objednávka</value>
@@ -1906,7 +1906,7 @@ stůl: {2}</value>
 		<value>Poukaz</value>
 	</data>
 	<data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; {QUANTITY} {NAME} | Darování</value>
+		<value>&lt;L00&gt;{QUANTITY} {NAME} | Darování</value>
 	</data>
 	<data name="NavigationPermissions" xml:space="preserve">
 		<value>Oprávnění navigace</value>

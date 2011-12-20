@@ -271,7 +271,7 @@ namespace Samba.Modules.TicketModule
                             var oldLocationName = SelectedTicket.Location;
                             var ticketsMerged = x.Value.TicketId > 0 && x.Value.TicketId != SelectedTicket.Id;
                             TicketViewModel.AssignTableToSelectedTicket(x.Value.LocationId);
-                            
+
                             CloseTicket();
 
                             if (!AppServices.CurrentTerminal.AutoLogout)
@@ -468,13 +468,12 @@ namespace Samba.Modules.TicketModule
                             SelectedDepartment = AppServices.MainDataContext.Departments.FirstOrDefault();
                         RefreshVisuals();
                     }
-                }
-                );
+                });
         }
 
         private void UpdateSelectedTicketView()
         {
-            if (SelectedTicket != null || SelectedDepartment.IsFastFood)
+            if (SelectedTicket != null || (SelectedDepartment != null && SelectedDepartment.IsFastFood))
                 SelectedTicketView = SingleTicketView;
             else
             {
@@ -1057,6 +1056,9 @@ namespace Samba.Modules.TicketModule
             {
                 InteractionService.UserIntraction.GiveFeedback(result.ErrorMessage);
             }
+            
+            RuleExecutor.NotifyEvent(RuleEventNames.TicketClosed, new { Ticket = _selectedTicket.Model });
+
             _selectedTicket = null;
             _selectedTicketItems.Clear();
 

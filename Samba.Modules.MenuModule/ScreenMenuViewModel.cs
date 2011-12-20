@@ -126,7 +126,7 @@ namespace Samba.Modules.MenuModule
 
                 foreach (var screenMenuItem in SelectedCategory.ScreenMenuItems.ToList())
                 {
-                    if (!choosenValues.Contains(screenMenuItem))
+                    if (!choosenValues.Contains(screenMenuItem) && screenMenuItem.Id > 0)
                         _workspace.Delete(screenMenuItem);
                 }
 

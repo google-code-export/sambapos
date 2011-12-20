@@ -211,7 +211,7 @@ Changing PIN will hide this hint</value>
     <value>Operation Income</value>
   </data>
   <data name="StartOfDay" xml:space="preserve">
-    <value>Begining of Work Period</value>
+    <value>Beginning of Work Period</value>
   </data>
   <data name="NewIncomeTransaction" xml:space="preserve">
     <value>New Income Transaction</value>
@@ -1602,7 +1602,7 @@ Tickets</value>
     <value>Divide</value>
   </data>
   <data name="ExtraModifier" xml:space="preserve">
-    <value>Ekstra Modifier</value>
+    <value>Extra Modifier</value>
   </data>
   <data name="ReleaseLock" xml:space="preserve">
     <value>Release Lock</value>
@@ -3057,10 +3057,45 @@ Continue without adding details?</value>
     <value>Tag Type</value>
     <comment>Label content</comment>
   </data>
-	<data name="PaymentReceived">
-		<value xml:space="preserve">Payment Received</value>
+  <data name="PaymentReceived">
+    <value xml:space="preserve">Payment Received</value>
+  </data>
+  <data name="ExecutePrintJob">
+    <value xml:space="preserve">Execute Print Job</value>
+  </data>
+  <data name="LineCount">
+    <value xml:space="preserve">Line Count</value>
+  </data>
+  <data name="PrintingErrorMessage_f">
+    <value>
+There is a problem while printing. Please review printer and printer template settings.
+
+Error Message:
+{0}
+    </value>
+  </data>
+  <data name="DocumentDate_f">
+    <value xml:space="preserve">Date: {0:d}</value>
+  </data>
+  <data name="DocumentTime_f">
+    <value xml:space="preserve">Time: {0:t}</value>
+  </data>
+  <data name="LastLinesByPrinterLineCount">
+    <value xml:space="preserve">New Lines by Printer Line Count</value>
+  </data>
+  <data name="LineAddedToTicket">
+    <value xml:space="preserve">Line Added to Ticket</value>
+  </data>
+  <data name="LineItemProductTag">
+    <value xml:space="preserve">#Line: Product Tag</value>
+  </data>
+	<data name="ChangeAmountUpdated">
+		<value xml:space="preserve">Change Amount Updated</value>
 	</data>
-	<data name="ExecutePrintJob">
-		<value xml:space="preserve">Execute Print Job</value>
+	<data name="TicketClosed">
+		<value xml:space="preserve">Ticket Closed</value>
+	</data>
+	<data name="ApplicationStarted">
+		<value xml:space="preserve">Application Started</value>
 	</data>
 </root>

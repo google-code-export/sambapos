@@ -179,13 +179,13 @@ Al cambio de PIN, se oculta este mensaje</value>
 		<value>Total</value>
 	</data>
 	<data name="Voucher" xml:space="preserve">
-		<value>Factura</value>
+		<value>Vale</value>
 	</data>
 	<data name="CreditCard_ab" xml:space="preserve">
 		<value>Tarjeta Crédito</value>
 	</data>
 	<data name="Voucher_ab" xml:space="preserve">
-		<value>Fact.</value>
+		<value>Vale</value>
 	</data>
 	<data name="OperationIncome" xml:space="preserve">
 		<value>Operaciones de Ingreso</value>
@@ -221,7 +221,7 @@ Clientes</value>
 		<value>Cuenta interna</value>
 	</data>
 	<data name="Ticket" xml:space="preserve">
-		<value>Recibo</value>
+		<value>Ticket</value>
 	</data>
 	<data name="TotalSales" xml:space="preserve">
 		<value>Ventas totales</value>
@@ -369,7 +369,7 @@ Pago</value>
 		<value>Transacción</value>
 	</data>
 	<data name="EndOfDayRecords" xml:space="preserve">
-		<value>Final del Dia, Cerra Caja</value>
+		<value>Final del Dia, Cerrar Caja</value>
 	</data>
 	<data name="Select" xml:space="preserve">
 		<value>Seleccionar</value>
@@ -467,26 +467,17 @@ Pago</value>
 	<data name="DepartmentName" xml:space="preserve">
 		<value>Nombre del departamento</value>
 	</data>
-	<data name="POSMenu" xml:space="preserve">
-		<value>Menu POS</value>
-	</data>
 	<data name="TerminalMenu" xml:space="preserve">
 		<value>Menu Terminal</value>
-	</data>
-	<data name="POSTableView" xml:space="preserve">
-		<value>Ver Mesas POS</value>
 	</data>
 	<data name="TerminalTableView" xml:space="preserve">
 		<value>Ver Mesas Terminal</value>
 	</data>
 	<data name="OpenTicketView" xml:space="preserve">
-		<value>Ver recibos abiertos</value>
+		<value>Ver tickets abiertos</value>
 	</data>
 	<data name="ColumnCount" xml:space="preserve">
 		<value>Conteo de Columnas</value>
-	</data>
-	<data name="POSDefaultTicketTag" xml:space="preserve">
-		<value>Tag por defecto de recibo POS</value>
 	</data>
 	<data name="TerminalDefaultTicketTag" xml:space="preserve">
 		<value>Tag por defecto de recibo de Terminal</value>
@@ -537,7 +528,7 @@ Pago</value>
 		<value>No se puede eliminar porque este producto está asignado a un menú</value>
 	</data>
 	<data name="DeleteErrorProductUsedInReceipt" xml:space="preserve">
-		<value>No se puede eliminar porque este producto está asignado a una recepción.</value>
+		<value>No se puede eliminar porque este producto está asignado a una receta.</value>
 	</data>
 	<data name="DeleteErrorProductPropertyUsedInProduct" xml:space="preserve">
 		<value>No se puede eliminar porque esta propiedad del producto está asignado a un producto</value>
@@ -553,9 +544,6 @@ Pago</value>
 	</data>
 	<data name="AddPropertyPriceToProductPrice" xml:space="preserve">
 		<value>Agregar un Modificador de precio del producto</value>
-	</data>
-	<data name="POSView" xml:space="preserve">
-		<value>Ver punto de venta</value>
 	</data>
 	<data name="ButtonHeight" xml:space="preserve">
 		<value>Altura de botón</value>
@@ -576,7 +564,7 @@ Pago</value>
 		<value>C</value>
 	</data>
 	<data name="PropertyGroup" xml:space="preserve">
-		<value>Propiedades del Grupo</value>
+		<value>Grupo de propiedades</value>
 	</data>
 	<data name="Barcode" xml:space="preserve">
 		<value>Código de barras</value>
@@ -588,7 +576,7 @@ Pago</value>
 		<value>Multiplicador</value>
 	</data>
 	<data name="PropertyGroups" xml:space="preserve">
-		<value>Propiedades de los grupos</value>
+		<value>Grupos de propiedades</value>
 	</data>
 	<data name="SelectPropertyGroupsHint_f" xml:space="preserve">
 		<value>Seleccionar grupos de propiedades para {0} del producto.</value>
@@ -606,7 +594,7 @@ Pago</value>
 		<value>Lista de Menus</value>
 	</data>
 	<data name="BatchPriceList" xml:space="preserve">
-		<value>Editor de Precios de listas</value>
+		<value>Editor de Precios </value>
 	</data>
 	<data name="CanChangeDepartment" xml:space="preserve">
 		<value>Puede cambiar Departamento</value>
@@ -729,10 +717,7 @@ Pago</value>
 		<value>Numerador</value>
 	</data>
 	<data name="DoAfterTicketSelected" xml:space="preserve">
-		<value>Hágalo después de seleccionar recibo</value>
-	</data>
-	<data name="CanUseOnPOS" xml:space="preserve">
-		<value>Usar en POS</value>
+		<value>Lo hace después de seleccionar el recibo</value>
 	</data>
 	<data name="CanUseOnTerminal" xml:space="preserve">
 		<value>Usar en terminales</value>
@@ -1095,7 +1080,7 @@ Pago</value>
 		<value>Razones de Regalos</value>
 	</data>
 	<data name="SambaPosWebsite" xml:space="preserve">
-		<value>SambaPOS Sitio Web</value>
+		<value>SambaTPV Sitio Web</value>
 	</data>
 	<data name="SambaNetwork" xml:space="preserve">
 		<value>Samba Red</value>
@@ -1189,7 +1174,7 @@ Pago</value>
 		<value>Tiempo total de trabajo: {0:0} minuto</value>
 	</data>
 	<data name="StartWorkPeriodToEnablePos" xml:space="preserve">
-		<value>Iniciar periodo de trabajo para habilitar POS</value>
+		<value>Iniciar periodo de trabajo para habilitar TPV</value>
 	</data>
 	<data name="StartWorkPeriod" xml:space="preserve">
 		<value>Iniciar período de trabajo</value>
@@ -1842,7 +1827,7 @@ Tabla: {2}</value>
 		<value>Plantilla Facturas</value>
 	</data>
 	<data name="TicketTemplateHeaderValue" xml:space="preserve">
-		<value>&lt;T&gt; FACTURA
+		<value>&lt;T&gt;FACTURA
 &lt;L00&gt;Fecha: {TICKET DATE}
 &lt;L00&gt;Hora: {TIME}
 &lt;L00&gt;No Mesa: {TABLE}
@@ -1852,16 +1837,16 @@ Tabla: {2}</value>
 	<data name="TicketTemplateFooterValue" xml:space="preserve">
 		<value>&lt;F&gt;=
 &lt;EB&gt;
-&lt;J10&gt; {IF DISCOUNT}
-&lt;J10&gt; [Total Regalo: | {GIFT TOTAL}]
+&lt;J10&gt;{IF DISCOUNT}
+&lt;J10&gt;[Total Regalo: | {GIFT TOTAL}]
 &lt;J10&gt;Total de: | {TICKET TOTAL}
 {IF PAID}
 &lt;DB&gt;
 &lt;F&gt;=
-&lt;C10&gt; G R A C I A S !</value>
+&lt;C10&gt;G R A C I A S !</value>
 	</data>
 	<data name="KitchenTemplateHeaderValue" xml:space="preserve">
-		<value>&lt;T&gt; {TABLE USER}
+		<value>&lt;T&gt;{TABLE USER}
 &lt;F&gt;-
 &lt;L00&gt;Fecha: {TICKET DATE}
 &lt;L00&gt;Hora: {TIME}
@@ -1870,11 +1855,11 @@ Tabla: {2}</value>
 &lt;F&gt;-</value>
 	</data>
 	<data name="KitchenTemplateVoidedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; ** FACTURA ** {QUANTITY} {NAME}
+		<value>&lt;L00&gt;** FACTURA ** {QUANTITY} {NAME}
         * {PROPERTIES}</value>
 	</data>
 	<data name="InvoiceTemplateHeaderValue" xml:space="preserve">
-		<value>&lt;T&gt; FACTURA
+		<value>&lt;T&gt;FACTURA
 &lt;L00&gt;Fecha: {TICKET DATE}
 &lt;L00&gt;Tiempo: {TIME}
 &lt;L00&gt;No Tabla: {TABLE}
@@ -1912,7 +1897,7 @@ Tabla: {2}</value>
 		<value>Cupon</value>
 	</data>
 	<data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; {QUANTITY} {NAME} | REGALO</value>
+		<value>&lt;L00&gt;{QUANTITY} {NAME} | REGALO</value>
 	</data>
 	<data name="NavigationPermissions" xml:space="preserve">
 		<value>Permisos de navegación</value>
@@ -1934,17 +1919,17 @@ Tabla: {2}</value>
 	</data>
 	<data name="RemainingAmountIfPaidValue_f" xml:space="preserve">
 		<value>Pagado: | {0}
-&lt;J&gt; TOTAL: | {1}</value>
+&lt;J&gt;TOTAL: | {1}</value>
 	</data>
 	<data name="DiscountTotalAndTicketTotalValue_f" xml:space="preserve">
 		<value>Recibos TOTAL: | {0}
-&lt;J&gt; Descuento: | {1}</value>
+&lt;J&gt;Descuento: | {1}</value>
 	</data>
 	<data name="Restaurant" xml:space="preserve">
 		<value>Restaurante</value>
 	</data>
 	<data name="IfNegativeDiscountValue_f" xml:space="preserve">
-		<value>Redondeo&lt;J&gt;: | {0}</value>
+		<value>&lt;J&gt;Redondeo: | {0}</value>
 	</data>
 	<data name="ExportSalesData" xml:space="preserve">
 		<value>Exportación de datos de ventas</value>
@@ -2581,7 +2566,7 @@ Se activará después de {1} días {2} horas, {3} minutos</value>
 		<value>Tasa de IVA incluida en la cantidad del recibo</value>
 	</data>
 	<data name="UnhandledExceptionErrorMessage" xml:space="preserve">
-		<value>SambaPOS encontró un problema inesperado. Detalles del problema registrado en el archivo trace.log</value>
+		<value>SambaTPV encontró un problema inesperado. Detalles del problema registrado en el archivo trace.log</value>
 	</data>
 	<data name="SaveFreeTags" xml:space="preserve">
 		<value>Guardar etiquetas libres</value>
@@ -2636,9 +2621,6 @@ Se activará después de {1} días {2} horas, {3} minutos</value>
 Sírvase proporcionar más información acerca de lo ocurrido.
 
 Siguen sin añadir más detalles?</value>
-	</data>
-	<data name="SambaPOSReporter" xml:space="preserve">
-		<value>Reportes de SambaPOS</value>
 	</data>
 	<data name="ErrorMessage" xml:space="preserve">
 		<value>Mensaje de error</value>

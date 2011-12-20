@@ -109,10 +109,13 @@ html
             get { return _settingsObject.CurrentLanguage; }
             set
             {
-                _settingsObject.CurrentLanguage = value;
                 _cultureInfo = CultureInfo.GetCultureInfo(value);
+                if (_settingsObject.CurrentLanguage != value)
+                {
+                    _settingsObject.CurrentLanguage = value;
+                    SaveSettings();
+                }
                 UpdateThreadLanguage();
-                SaveSettings();
             }
         }
 
@@ -137,7 +140,7 @@ html
         public static string CurrencySymbol { get { return CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol; } }
 
         public static int DbVersion { get { return 10; } }
-        public static string AppVersion { get { return "2.71"; } }
+        public static string AppVersion { get { return "2.72"; } }
         public static IList<string> SupportedLanguages { get { return new[] { "en", "de", "es", "cs", "ru", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }

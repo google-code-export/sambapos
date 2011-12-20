@@ -4,8 +4,6 @@ using System.Printing;
 using System.Windows.Documents;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
-using Samba.Infrastructure;
-using Samba.Infrastructure.Settings;
 using Samba.Services.Printing;
 
 namespace Samba.Services
@@ -68,10 +66,16 @@ namespace Samba.Services
             return FindPrinterByName(shareName);
         }
 
+        public void ExecutePrintJob(PrintJob printJob)
+        {
+            TicketPrinter.ExecutePrintJob(printJob);
+        }
+
         public void ResetCache()
         {
             _printServer = null;
         }
 
+        
     }
 }

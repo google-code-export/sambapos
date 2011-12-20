@@ -4,6 +4,7 @@ using Microsoft.Practices.Prism.Events;
 using Samba.Domain.Models.Tickets;
 using Samba.Presentation.Common;
 using Samba.Presentation.ViewModels;
+using Samba.Services;
 
 namespace Samba.Modules.TicketModule
 {
@@ -19,7 +20,10 @@ namespace Samba.Modules.TicketModule
                 x =>
                 {
                     if (x.Topic == EventTopicNames.TicketItemAdded)
+                    {
                         Scroller.ScrollToEnd();
+                        RuleExecutor.NotifyEvent(RuleEventNames.TicketLineAdded, new { Ticket = AppServices.MainDataContext.SelectedTicket, x.Value.Model.MenuItemName });
+                    }
                 });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<TicketViewModel>>().Subscribe(

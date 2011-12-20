@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Threading;
@@ -68,7 +68,6 @@ namespace Samba.Services.Printing
 
         public static void ManualPrintTicket(Ticket ticket, PrintJob customPrinter)
         {
-            //Debug.Assert(!string.IsNullOrEmpty(ticket.TicketNumber));
             if (customPrinter.LocksTicket) ticket.RequestLock();
             ticket.AddPrintJob(customPrinter.Id);
             PrintOrders(customPrinter, ticket);
@@ -113,6 +112,9 @@ namespace Samba.Services.Printing
                 case (int)WhatToPrintTypes.GroupedByTag:
                     ti = GroupLinesByValue(ticket, x => x.Tag ?? "", Resources.UndefinedWithBrackets);
                     break;
+                case (int)WhatToPrintTypes.LastLinesByPrinterLineCount:
+                    ti = GetLastItems(ticket, printJob);
+                    break;
                 default:
                     ti = ticket.TicketItems.OrderBy(x => x.Id).ToList();
                     break;
@@ -128,9 +130,23 @@ namespace Samba.Services.Printing
                         }
                         catch (Exception e)
                         {
-                            AppServices.LogError(e, "Yazdırma işlemi sırasında bir sorun meydana geldi. Lütfen yazıcı ve şablon ayarlarını kontrol ediniz.\r\n\r\nMesaj:\r\n" + e.Message);
+                            AppServices.LogError(e, string.Format(Resources.PrintingErrorMessage_f, e.Message));
                         }
                     }));
+        }
+
+        private static IEnumerable<TicketItem> GetLastItems(Ticket ticket, PrintJob printJob)
+        {
+            if (ticket.TicketItems.Count > 1)
+            {
+                var printer = printJob.PrinterMaps.Count == 1 ? printJob.PrinterMaps[0]
+                    : GetPrinterMapForItem(printJob.PrinterMaps, ticket, ticket.TicketItems.Last().MenuItemId);
+                var result = ticket.TicketItems.OrderByDescending(x => x.CreatedDateTime).ToList();
+                if (printer.Printer.PageHeight > 0)
+                    result = result.Take(printer.Printer.PageHeight).ToList();
+                return result;
+            }
+            return ticket.TicketItems.ToList();
         }
 
         private static IEnumerable<TicketItem> GroupLinesByValue(Ticket ticket, Func<MenuItem, object> selector, string defaultValue, bool calcDiscounts = false)
@@ -219,6 +235,19 @@ namespace Samba.Services.Printing
             var printer = AppServices.CurrentTerminal.SlipReportPrinter;
             if (printer == null || string.IsNullOrEmpty(printer.ShareName)) return;
             PrintJobFactory.CreatePrintJob(printer).DoPrint(document);
+        }
+
+        public static void ExecutePrintJob(PrintJob printJob)
+        {
+            if (printJob.PrinterMaps.Count > 0)
+            {
+                var printerMap = printJob.PrinterMaps[0];
+                var content = printerMap
+                    .PrinterTemplate
+                    .HeaderTemplate
+                    .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                PrintJobFactory.CreatePrintJob(printerMap.Printer).DoPrint(content);
+            }
         }
     }
 }

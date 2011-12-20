@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Samba.Domain.Models.Customers;
+using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
@@ -239,6 +241,22 @@ namespace Samba.Services.Printing
             result = FormatData(result, "{TOTAL TEXT}", () => HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum()));
             result = FormatData(result, "{TOTALTEXT}", () => HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum(), true));
 
+            result = UpdateSettings(result);
+            return result;
+        }
+
+        private static string UpdateSettings(string result)
+        {
+            while (Regex.IsMatch(result, "{SETTING:[^}]+}", RegexOptions.Singleline))
+            {
+                var match = Regex.Match(result, "{SETTING:([^}]+)}");
+                var tagName = match.Groups[0].Value;
+                var settingName = match.Groups[1].Value;
+                var tagData = new TagData(result, tagName);
+                var value = !string.IsNullOrEmpty(settingName) ? AppServices.SettingService.GetCustomSetting(settingName).StringValue : "";
+                var replace = !string.IsNullOrEmpty(value) ? tagData.Title.Replace("<value>", value) : "";
+                result = result.Replace(tagData.DataString, replace);
+            }
             return result;
         }
 
@@ -348,7 +366,9 @@ namespace Samba.Services.Printing
                 result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, () => ticketItem.GetTotal().ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineOrderNumber, () => ticketItem.OrderNumber.ToString());
                 result = FormatData(result, Resources.TF_LineGiftOrVoidReason, () => AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
+                result = FormatData(result, "{MENU ITEM TAG}", () => Dao.SingleWithCache<MenuItem>(x => x.Id == ticketItem.MenuItemId).Tag);
                 result = FormatData(result, "{PRICE TAG}", () => ticketItem.PriceTag);
+                result = UpdateSettings(result);
                 if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
                 {
                     string lineFormat = result;
@@ -360,13 +380,14 @@ namespace Samba.Services.Printing
                             var itemProperty = property;
                             var lineValue = FormatData(lineFormat, Resources.TF_LineItemDetails, () => itemProperty.Name);
                             lineValue = FormatData(lineValue, Resources.TF_LineItemDetailQuantity, () => itemProperty.Quantity.ToString("#.##"));
-                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, () => itemProperty.CalculateWithParentPrice ? "" : property.PropertyPrice.Amount.ToString("#,#0.00"));
+                            lineValue = FormatData(lineValue, Resources.TF_LineItemDetailPrice, () => itemProperty.CalculateWithParentPrice ? "" : itemProperty.PropertyPrice.Amount.ToString("#,#0.00"));
                             label += lineValue + "\r\n";
                         }
                         result = "\r\n" + label;
                     }
                     else result = "";
                 }
+                result = result.Replace("<", "\r\n<");
             }
             return result;
         }

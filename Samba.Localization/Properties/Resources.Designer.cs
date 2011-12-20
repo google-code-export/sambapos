@@ -515,6 +515,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application Started.
+        /// </summary>
+        public static string ApplicationStarted {
+            get {
+                return ResourceManager.GetString("ApplicationStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to As of {0}.
         /// </summary>
         public static string As_f {
@@ -1250,6 +1259,15 @@ namespace Samba.Localization.Properties {
         public static string ChangeAmount_f {
             get {
                 return ResourceManager.GetString("ChangeAmount_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Amount Updated.
+        /// </summary>
+        public static string ChangeAmountUpdated {
+            get {
+                return ResourceManager.GetString("ChangeAmountUpdated", resourceCulture);
             }
         }
         
@@ -2215,11 +2233,29 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date: {0:d}.
+        /// </summary>
+        public static string DocumentDate_f {
+            get {
+                return ResourceManager.GetString("DocumentDate_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document No.
         /// </summary>
         public static string DocumentNo {
             get {
                 return ResourceManager.GetString("DocumentNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time: {0:t}.
+        /// </summary>
+        public static string DocumentTime_f {
+            get {
+                return ResourceManager.GetString("DocumentTime_f", resourceCulture);
             }
         }
         
@@ -2696,7 +2732,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ekstra Modifier.
+        ///   Looks up a localized string similar to Extra Modifier.
         /// </summary>
         public static string ExtraModifier {
             get {
@@ -3433,6 +3469,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Lines by Printer Line Count.
+        /// </summary>
+        public static string LastLinesByPrinterLineCount {
+            get {
+                return ResourceManager.GetString("LastLinesByPrinterLineCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Order.
         /// </summary>
         public static string LastOrder {
@@ -3496,11 +3541,29 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Line Added to Ticket.
+        /// </summary>
+        public static string LineAddedToTicket {
+            get {
+                return ResourceManager.GetString("LineAddedToTicket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Line Character Count.
         /// </summary>
         public static string LineCharacterCount {
             get {
                 return ResourceManager.GetString("LineCharacterCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Count.
+        /// </summary>
+        public static string LineCount {
+            get {
+                return ResourceManager.GetString("LineCount", resourceCulture);
             }
         }
         
@@ -3564,6 +3627,15 @@ namespace Samba.Localization.Properties {
         public static string LineItemPriceCents {
             get {
                 return ResourceManager.GetString("LineItemPriceCents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #Line: Product Tag.
+        /// </summary>
+        public static string LineItemProductTag {
+            get {
+                return ResourceManager.GetString("LineItemProductTag", resourceCulture);
             }
         }
         
@@ -4884,6 +4956,20 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 
+        ///There is a problem while printing. Please review printer and printer template settings.
+        ///
+        ///Error Message:
+        ///{0}
+        ///    .
+        /// </summary>
+        public static string PrintingErrorMessage_f {
+            get {
+                return ResourceManager.GetString("PrintingErrorMessage_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print Job.
         /// </summary>
         public static string PrintJob {
@@ -5923,7 +6009,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Begining of Work Period.
+        ///   Looks up a localized string similar to Beginning of Work Period.
         /// </summary>
         public static string StartOfDay {
             get {
@@ -6722,6 +6808,15 @@ namespace Samba.Localization.Properties {
         public static string TicketChangedRetryLastOperation {
             get {
                 return ResourceManager.GetString("TicketChangedRetryLastOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ticket Closed.
+        /// </summary>
+        public static string TicketClosed {
+            get {
+                return ResourceManager.GetString("TicketClosed", resourceCulture);
             }
         }
         

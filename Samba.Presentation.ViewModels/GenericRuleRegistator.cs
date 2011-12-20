@@ -63,6 +63,10 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0 });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { MenuItemName = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ChangeAmountChanged, Resources.ChangeAmountUpdated, new { TicketAmount = 0, ChangeAmount = 0, TenderedAmount = 0 });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketClosed, Resources.TicketClosed);
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ApplicationStarted, Resources.ApplicationStarted);
         }
 
         private static void RegisterParameterSources()
@@ -238,7 +242,6 @@ namespace Samba.Presentation.ViewModels
                         ti.Tag = tag;
 
                         TicketViewModel.RecalculateTicket(ticket);
-
                         EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                     }
                 }
@@ -294,13 +297,17 @@ namespace Samba.Presentation.ViewModels
                 if (x.Value.Action.ActionType == "ExecutePrintJob")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
-                    if (ticket != null)
+                    var pjName = x.Value.Action.GetParameter("PrintJobName");
+                    if (!string.IsNullOrEmpty(pjName))
                     {
-                        var pjName = x.Value.Action.GetParameter("PrintJobName");
-                        if (!string.IsNullOrEmpty(pjName))
+                        var j = AppServices.CurrentTerminal.PrintJobs.SingleOrDefault(y => y.Name == pjName);
+
+                        if (j != null)
                         {
-                            var j = AppServices.CurrentTerminal.PrintJobs.SingleOrDefault(y => y.Name == pjName);
-                            if (j != null) AppServices.PrintService.ManualPrintTicket(ticket, j);
+                            if (ticket != null)
+                                AppServices.PrintService.ManualPrintTicket(ticket, j);
+                            else
+                                AppServices.PrintService.ExecutePrintJob(j);
                         }
                     }
                 }
