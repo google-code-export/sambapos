@@ -8,10 +8,17 @@ using Samba.Presentation.Common;
 
 namespace Samba.Presentation.ViewModels
 {
-    public class CommandButtonViewModel
+    public class CommandButtonViewModel : ObservableObject
     {
         public ICaptionCommand Command { get; set; }
-        public string Caption { get; set; }
+
+        private string _caption;
+        public string Caption
+        {
+            get { return _caption; }
+            set { _caption = value; RaisePropertyChanged("Caption"); }
+        }
+
         public PrintJob Parameter { get; set; }
     }
 }

@@ -3102,4 +3102,7 @@ Mesaj:
 	<data name="ApplicationStarted">
 		<value xml:space="preserve">Program Başladığında</value>
 	</data>
+	<data name="LastPaidLines">
+		<value xml:space="preserve">Son Ödenen Satırlar</value>
+	</data>
 </root>

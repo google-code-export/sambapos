@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Samba.Domain.Foundation;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;

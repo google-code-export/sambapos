@@ -47,6 +47,7 @@ namespace Samba.Domain.Models.Tickets
         private Dictionary<string, string> _tagValues;
         private readonly List<TicketItem> _removedTicketItems;
         private readonly List<TaxService> _removedTaxServices;
+        private readonly Dictionary<int, decimal> _paidItemsCache = new Dictionary<int, decimal>();
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -664,6 +665,27 @@ namespace Samba.Domain.Models.Tickets
                 ticketItem.VatIncluded = vatTemplate.VatIncluded;
                 ticketItem.UpdatePrice(ticketItem.Price, ticketItem.PriceTag);
             }
+        }
+
+        public void CancelPaidItems()
+        {
+            _paidItemsCache.Clear();
+        }
+
+        public void UpdatePaidItems(int menuItemId)
+        {
+            if (!_paidItemsCache.ContainsKey(menuItemId))
+                _paidItemsCache.Add(menuItemId, 0);
+            _paidItemsCache[menuItemId]++;
+        }
+
+        public decimal GetPaidItemQuantity(int menuItemId)
+        {
+            return _paidItemsCache.ContainsKey(menuItemId) ? _paidItemsCache[menuItemId] : 0;
+        }
+        public int[] GetPaidItems()
+        {
+            return _paidItemsCache.Keys.ToArray();
         }
     }
 }

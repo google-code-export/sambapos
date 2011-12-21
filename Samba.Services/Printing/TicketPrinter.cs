@@ -115,6 +115,14 @@ namespace Samba.Services.Printing
                 case (int)WhatToPrintTypes.LastLinesByPrinterLineCount:
                     ti = GetLastItems(ticket, printJob);
                     break;
+                case (int)WhatToPrintTypes.LastPaidItems:
+                    ti = GetLastPaidItems(ticket).ToList();
+                    ticket = ObjectCloner.Clone(ticket);
+                    ticket.TicketItems.Clear();
+                    ticket.PaidItems.Clear();
+                    ticket.Payments.Clear();
+                    ti.ToList().ForEach(x => ticket.TicketItems.Add(x));
+                    break;
                 default:
                     ti = ticket.TicketItems.OrderBy(x => x.Id).ToList();
                     break;
@@ -133,6 +141,17 @@ namespace Samba.Services.Printing
                             AppServices.LogError(e, string.Format(Resources.PrintingErrorMessage_f, e.Message));
                         }
                     }));
+        }
+
+        private static IEnumerable<TicketItem> GetLastPaidItems(Ticket ticket)
+        {
+            var result = ticket.GetPaidItems().Select(x => ticket.TicketItems.First(y => y.MenuItemId == x)).ToList();
+            result = result.Select(ObjectCloner.Clone).ToList();
+            foreach (var ticketItem in result)
+            {
+                ticketItem.Quantity = ticket.GetPaidItemQuantity(ticketItem.MenuItemId);
+            }
+            return result;
         }
 
         private static IEnumerable<TicketItem> GetLastItems(Ticket ticket, PrintJob printJob)

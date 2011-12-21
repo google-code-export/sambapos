@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Samba.Infrastructure.Printing
 {
@@ -70,6 +71,16 @@ namespace Samba.Infrastructure.Printing
 
     public class PrinterHelper
     {
+        private static string RemoveTag(string line)
+        {
+            if (Regex.IsMatch(line, "<[^>]+>"))
+            {
+                var tag = Regex.Match(line, "<[^>]+>").Groups[0].Value;
+                return line.Replace(tag, "");
+            }
+            return line;
+        }
+
         public static IEnumerable<string> AlignLines(IEnumerable<string> lines, int maxWidth)
         {
             var result = new List<string>();
@@ -79,21 +90,27 @@ namespace Samba.Infrastructure.Printing
                 {
                     result.Add(line);
                 }
-                else if (line.ToLower().StartsWith("<l>"))
+                else if (line.ToLower().StartsWith("<l"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Left, false));
+                    result.Add(AlignLine(maxWidth, 0, RemoveTag(line), LineAlignment.Left, false));
                 }
-                else if (line.ToLower().StartsWith("<r>"))
+                else if (line.ToLower().StartsWith("<r"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Right, false));
+                    result.Add(AlignLine(maxWidth, 0, RemoveTag(line), LineAlignment.Right, false));
                 }
-                else if (line.ToLower().StartsWith("<c>"))
+                else if (line.ToLower().StartsWith("<c"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Center, false));
+                    result.Add(AlignLine(maxWidth, 0, RemoveTag(line), LineAlignment.Center, false));
                 }
-                else if (line.ToLower().StartsWith("<j>"))
+                else if (line.ToLower().StartsWith("<j"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line.Substring(3), LineAlignment.Justify, false));
+                    result.Add(AlignLine(maxWidth, 0, RemoveTag(line), LineAlignment.Justify, false));
+                }
+                else if (line.ToLower().StartsWith("<f>"))
+                {
+                    var c = RemoveTag(line).Trim();
+                    if (c.Length == 1)
+                        result.Add(AlignLine(maxWidth, 0, c.PadLeft(maxWidth, c[0]), LineAlignment.Justify, false));
                 }
                 else result.Add(line);
             }

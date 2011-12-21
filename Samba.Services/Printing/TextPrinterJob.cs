@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Documents;
 using Samba.Domain.Models.Settings;
+using Samba.Infrastructure.Printing;
 
 namespace Samba.Services.Printing
 {
@@ -16,6 +17,7 @@ namespace Samba.Services.Printing
         public override void DoPrint(string[] lines)
         {
             var q = AppServices.PrintService.GetPrinter(Printer.ShareName);
+            lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine).ToArray();
             var text = lines.Aggregate("", (current, s) => current + RemoveTag(s.Replace("|", "")) + "\r\n");
             PrintFlowDocument(q, new FlowDocument(new Paragraph(new Run(text))));
         }

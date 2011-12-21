@@ -154,6 +154,8 @@ namespace Samba.Modules.TicketModule
         private void OnManualPrint(PrintJob obj)
         {
             AppServices.PrintService.ManualPrintTicket(SelectedTicket.Model, obj);
+            SelectedTicket.PrintJobButtons.Where(x => x.Model.UseFromPaymentScreen).ToList().ForEach(
+                x => CommandButtons.First(u => u.Parameter == x.Model).Caption = x.Caption);
         }
 
         private static bool CanAutoSetDiscount(string arg)
@@ -352,6 +354,8 @@ namespace Samba.Modules.TicketModule
                     new { Ticket = SelectedTicket.Model, TicketAmount = SelectedTicket.Model.TotalAmount, ChangeAmount = returningAmount, TenderedAmount = tenderedAmount });
             }
 
+            AppServices.MainDataContext.SelectedTicket.CancelPaidItems();
+
             if (returningAmount == 0 && AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() == 0)
             {
                 ClosePaymentScreen();
@@ -492,6 +496,7 @@ namespace Samba.Modules.TicketModule
                 TenderedAmount = "";
                 _resetAmount = true;
                 obj.IncQuantity(quantity);
+                AppServices.MainDataContext.SelectedTicket.UpdatePaidItems(obj.MenuItemId);
             }
             ReturningAmountVisibility = Visibility.Collapsed;
         }
@@ -504,6 +509,7 @@ namespace Samba.Modules.TicketModule
                 mergedItem.PersistPaidItems();
             }
             RefreshValues();
+            AppServices.MainDataContext.SelectedTicket.CancelPaidItems();
         }
 
         private void CancelMergedItems()
@@ -515,6 +521,7 @@ namespace Samba.Modules.TicketModule
             }
             RefreshValues();
             ReturningAmountVisibility = Visibility.Collapsed;
+            AppServices.MainDataContext.SelectedTicket.CancelPaidItems();
         }
 
         public void CreateButtons()

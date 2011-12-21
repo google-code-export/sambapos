@@ -3098,4 +3098,7 @@ Error Message:
 	<data name="ApplicationStarted">
 		<value xml:space="preserve">Application Started</value>
 	</data>
+	<data name="LastPaidLines">
+		<value xml:space="preserve">Last Paid Lines</value>
+	</data>
 </root>
