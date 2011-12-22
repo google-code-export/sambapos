@@ -6,6 +6,7 @@ using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.ServiceLocation;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Engine;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
@@ -51,6 +52,13 @@ namespace Samba.Presentation
         protected override void InitializeShell()
         {
             LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
+            if(string.IsNullOrEmpty(LocalSettings.MajorCurrencyName))
+            {
+                LocalSettings.MajorCurrencyName = Resources.Dollar;
+                LocalSettings.MinorCurrencyName = Resources.Cent;
+                LocalSettings.PluralCurrencySuffix = Resources.PluralCurrencySuffix;
+            }
+
             LocalSettings.SetTraceLogPath("app");
             InteractionService.UserIntraction = ServiceLocator.Current.GetInstance<IUserInteraction>();
             InteractionService.UserIntraction.ToggleSplashScreen();

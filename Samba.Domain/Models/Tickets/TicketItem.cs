@@ -315,5 +315,10 @@ namespace Samba.Domain.Models.Tickets
             else if (VatRate > 0) VatAmount = (Price * VatRate) / 100;
             else VatAmount = 0;
         }
+
+        public decimal GetTotalVatAmount()
+        {
+            return !Voided && !Gifted ? (VatAmount + Properties.Sum(x => x.VatAmount)) * Quantity : 0;
+        }
     }
 }

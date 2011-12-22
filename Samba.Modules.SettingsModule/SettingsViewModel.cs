@@ -135,6 +135,24 @@ namespace Samba.Modules.SettingsModule
             }
         }
 
+        public string MajorCurrencyName
+        {
+            get { return LocalSettings.MajorCurrencyName; }
+            set { LocalSettings.MajorCurrencyName = value; }
+        }
+
+        public string MinorCurrencyName
+        {
+            get { return LocalSettings.MinorCurrencyName; }
+            set { LocalSettings.MinorCurrencyName = value; }
+        }
+
+        public string PluralCurrencySuffix
+        {
+            get { return LocalSettings.PluralCurrencySuffix; }
+            set { LocalSettings.PluralCurrencySuffix = value; }
+        }
+
         protected override string GetHeaderInfo()
         {
             return Resources.ProgramSettings;

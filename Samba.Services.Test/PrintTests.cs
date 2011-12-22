@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Samba.Domain.Models.Customers;
@@ -7,6 +9,7 @@ using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data;
+using Samba.Infrastructure.Printing;
 using Samba.Persistance.Data;
 using Samba.Services.Printing;
 
@@ -114,7 +117,7 @@ Toplam: 34,00";
             Assert.IsTrue(result == expectedResult);
 
             l2.Gifted = true;
-            template.GiftLineTemplate="{MİKTAR} {ÜRÜN} İKRAM";
+            template.GiftLineTemplate = "{MİKTAR} {ÜRÜN} İKRAM";
 
             expectedResult = @"SAMBA
 Adisyon Tarihi:01.01.2010
@@ -165,6 +168,31 @@ Toplam: 33,00";
             Assert.IsTrue(tagData.StartPos == data.IndexOf("[Fiyat:{FİYAT}]"));
             Assert.IsTrue(tagData.DataString == "[Fiyat:{FİYAT}]");
             Assert.IsTrue(tagData.Title == "Fiyat:<value>");
+        }
+
+        [TestMethod]
+        public void ColumnAlignmentTest()
+        {
+            var list = new List<string>();
+            list.Add("<J00>- 1 Şırdan Tuzlama|  8,00|  8,00");
+            list.Add("<J00>- 1 Ayak Paça|  8,00|  8,00");
+            list.Add("<J00>- 1 Kelle Paça|  15,00|  15,00");
+            list.Add("<J00>- 7 İşkembe|  6,50|  45,50");
+            list.Add("<J00>- 1 İşkembe Tuzlama|  8,00|  8,00");
+            list.Add("HELLO");
+            list.Add("<J00>12 |  12 |  12|  8,00");
+            list.Add("<J00>12 |  12 |  12|  18,00");
+
+
+            var result = PrinterHelper.AlignLines(list, 42).ToList();
+
+            Assert.AreEqual("- 1 Şırdan Tuzlama             8,00   8,00", result[0]);
+            Assert.AreEqual("- 1 Ayak Paça                  8,00   8,00", result[1]);
+            Assert.AreEqual("- 1 Kelle Paça                15,00  15,00", result[2]);
+            Assert.AreEqual("- 7 İşkembe                    6,50  45,50", result[3]);
+            Assert.AreEqual("- 1 İşkembe Tuzlama            8,00   8,00", result[4]);
+            Assert.AreEqual("12                           12  12   8,00", result[6]);
+            Assert.AreEqual("12                           12  12  18,00", result[7]);
         }
     }
 }

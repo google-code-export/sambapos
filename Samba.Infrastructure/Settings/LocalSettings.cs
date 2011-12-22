@@ -12,6 +12,9 @@ namespace Samba.Infrastructure.Settings
 {
     public class SettingsObject
     {
+        public string MajorCurrencyName { get; set; }
+        public string MinorCurrencyName { get; set; }
+        public string PluralCurrencySuffix { get; set; }
         public int MessagingServerPort { get; set; }
         public string MessagingServerName { get; set; }
         public string TerminalName { get; set; }
@@ -101,6 +104,24 @@ html
         {
             get { return _settingsObject.DefaultHtmlReportHeader; }
             set { _settingsObject.DefaultHtmlReportHeader = value; }
+        }
+
+        public static string MajorCurrencyName
+        {
+            get { return _settingsObject.MajorCurrencyName; }
+            set { _settingsObject.MajorCurrencyName = value; }
+        }
+
+        public static string MinorCurrencyName
+        {
+            get { return _settingsObject.MinorCurrencyName; }
+            set { _settingsObject.MinorCurrencyName = value; }
+        }
+
+        public static string PluralCurrencySuffix
+        {
+            get { return _settingsObject.PluralCurrencySuffix; }
+            set { _settingsObject.PluralCurrencySuffix = value; }
         }
 
         private static CultureInfo _cultureInfo;

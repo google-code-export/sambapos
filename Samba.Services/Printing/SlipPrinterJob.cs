@@ -17,6 +17,8 @@ namespace Samba.Services.Printing
 
         public override void DoPrint(string[] lines)
         {
+            lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine).ToArray();
+
             var printer = new LinePrinter(Printer.ShareName, Printer.CharsPerLine, Printer.CodePage);
 
             printer.StartDocument();
@@ -53,13 +55,13 @@ namespace Samba.Services.Printing
                 if (line.StartsWith("<T>"))
                     printer.PrintCenteredLabel(RemoveTag(line), true);
                 else if (line.StartsWith("<L"))
-                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth, LineAlignment.Left);
+                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth);
                 else if (line.StartsWith("<C"))
-                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth, LineAlignment.Center);
+                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth);
                 else if (line.StartsWith("<R"))
-                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth, LineAlignment.Right);
+                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth);
                 else if (line.StartsWith("<J"))
-                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth, LineAlignment.Justify);
+                    printer.WriteLine(RemoveTag(line), _lastHeight, _lastWidth);
                 else if (line.StartsWith("<F") && line.Length > 3)
                     printer.PrintFullLine(line[3]);
                 else if (line.StartsWith("<EB"))

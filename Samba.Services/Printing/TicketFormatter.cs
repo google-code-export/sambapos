@@ -8,6 +8,7 @@ using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
@@ -215,13 +216,13 @@ namespace Samba.Services.Printing
             var discount = ticket.GetDiscountAndRoundingTotal();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
-            var vatAmount = ticket.CalculateTax();
+            var vatAmount = GetTaxTotal(ticket.TicketItems, plainTotal, discount);
             var taxServicesTotal = ticket.GetTaxServicesTotal();
 
             result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", () => plainTotal.ToString("#,#0.00"));
             result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", () => discount.ToString("#,#0.00"));
             result = FormatDataIf(vatAmount > 0, result, "{TAX TOTAL}", () => vatAmount.ToString("#,#0.00"));
-            result = FormatDataIf(vatAmount > 0, result, "{SERVICE TOTAL}", () => taxServicesTotal.ToString("#,#0.00"));
+            result = FormatDataIf(taxServicesTotal > 0, result, "{SERVICE TOTAL}", () => taxServicesTotal.ToString("#,#0.00"));
             result = FormatDataIf(vatAmount > 0, result, "{TAX DETAILS}", () => GetTaxDetails(ticket.TicketItems, plainTotal, discount));
             result = FormatDataIf(taxServicesTotal > 0, result, "{SERVICE DETAILS}", () => GetServiceDetails(ticket));
 
@@ -288,7 +289,7 @@ namespace Samba.Services.Printing
                 var iGroup = @group;
                 var tb = AppServices.MainDataContext.VatTemplates.FirstOrDefault(x => x.Id == iGroup.Key);
                 var tbTitle = tb != null ? tb.Name : Resources.UndefinedWithBrackets;
-                var total = @group.Sum(x => x.VatAmount * x.Quantity);
+                var total = @group.Sum(x => x.GetTotalVatAmount());
                 if (discount > 0)
                 {
                     total -= (total * discount) / plainSum;
@@ -296,6 +297,16 @@ namespace Samba.Services.Printing
                 if (total > 0) sb.AppendLine("<J>" + tbTitle + ":|" + total.ToString("#,#0.00"));
             }
             return string.Join("\r", sb);
+        }
+
+        private static decimal GetTaxTotal(IEnumerable<TicketItem> ticketItems, decimal plainSum, decimal discount)
+        {
+            var result = ticketItems.Sum(x => x.GetTotalVatAmount());
+            if (discount > 0)
+            {
+                result -= (result * discount) / plainSum;
+            }
+            return result;
         }
 
         private static string FormatData(string data, string tag, Func<string> valueFunc)
@@ -366,7 +377,7 @@ namespace Samba.Services.Printing
                 result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, () => ticketItem.GetTotal().ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineOrderNumber, () => ticketItem.OrderNumber.ToString());
                 result = FormatData(result, Resources.TF_LineGiftOrVoidReason, () => AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
-                result = FormatData(result, "{MENU ITEM TAG}", () => Dao.SingleWithCache<MenuItem>(x => x.Id == ticketItem.MenuItemId).Tag);
+                result = FormatData(result, "{MENU ITEM TAG}", () => GetMenuItemTag(ticketItem));
                 result = FormatData(result, "{PRICE TAG}", () => ticketItem.PriceTag);
                 result = UpdateSettings(result);
                 if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
@@ -389,6 +400,13 @@ namespace Samba.Services.Printing
                 }
                 result = result.Replace("<", "\r\n<");
             }
+            return result;
+        }
+
+        private static string GetMenuItemTag(TicketItem ticketItem)
+        {
+            var result = Dao.SingleWithCache<MenuItem>(x => x.Id == ticketItem.MenuItemId).Tag;
+            if (string.IsNullOrEmpty(result)) result = ticketItem.MenuItemName;
             return result;
         }
     }
@@ -452,21 +470,21 @@ namespace Samba.Services.Printing
             {
                 var start = IntegerToWritten(Convert.ToInt32(value));
                 if (upper) start = start.Replace(" ", "").ToUpper();
-                result += string.Format("{0} {1} ", start, Resources.Dollar + GetPlural(value));
+                result += string.Format("{0} {1} ", start, LocalSettings.MajorCurrencyName + GetPlural(value));
             }
 
             if (fraction > 0)
             {
                 var end = IntegerToWritten(Convert.ToInt32(fraction * 100));
                 if (upper) end = end.Replace(" ", "").ToUpper();
-                result += string.Format("{0} {1} ", end, Resources.Cent + GetPlural(fraction));
+                result += string.Format("{0} {1} ", end, LocalSettings.MinorCurrencyName + GetPlural(fraction));
             }
             return result.Replace("  ", " ").Trim();
         }
 
         private static string GetPlural(decimal number)
         {
-            return number == 1 ? "" : Resources.PluralCurrencySuffix;
+            return number == 1 ? "" : LocalSettings.PluralCurrencySuffix;
         }
 
         public static string IntegerToWritten(int n)

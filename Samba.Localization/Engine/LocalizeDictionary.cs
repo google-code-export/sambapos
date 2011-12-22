@@ -844,9 +844,14 @@ namespace Samba.Localization.Engine
                     requestedLang = LocalSettings.SupportedLanguages.Contains(currentUiLanguage)
                                        ? currentUiLanguage
                                        : LocalSettings.SupportedLanguages[0];
+
                 }
             }
             Instance.Culture = CultureInfo.GetCultureInfo(requestedLang);
+            if (LocalSettings.CurrentLanguage != requestedLang)
+            {
+                LocalSettings.MajorCurrencyName = "";
+            }
             LocalSettings.CurrentLanguage = requestedLang;
         }
     }
