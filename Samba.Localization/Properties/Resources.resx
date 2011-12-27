@@ -2253,7 +2253,7 @@ Table: {2}</value>
     <value>{PROP QUANTITY}</value>
   </data>
   <data name="RemainingAmountIfPaidValue_f" xml:space="preserve">
-    <value>Paid:|{0}
+    <value>&lt;J&gt;Paid:|{0}
 &lt;J&gt;Grand TOTAL:|{1}</value>
   </data>
   <data name="DiscountTotalAndTicketTotalValue_f" xml:space="preserve">
@@ -3057,16 +3057,16 @@ Continue without adding details?</value>
     <value>Tag Type</value>
     <comment>Label content</comment>
   </data>
-  <data name="PaymentReceived">
-    <value xml:space="preserve">Payment Received</value>
+  <data name="PaymentReceived" xml:space="preserve">
+    <value>Payment Received</value>
   </data>
-  <data name="ExecutePrintJob">
-    <value xml:space="preserve">Execute Print Job</value>
+  <data name="ExecutePrintJob" xml:space="preserve">
+    <value>Execute Print Job</value>
   </data>
-  <data name="LineCount">
-    <value xml:space="preserve">Line Count</value>
+  <data name="LineCount" xml:space="preserve">
+    <value>Line Count</value>
   </data>
-  <data name="PrintingErrorMessage_f">
+  <data name="PrintingErrorMessage_f" xml:space="preserve">
     <value>
 There is a problem while printing. Please review printer and printer template settings.
 
@@ -3074,31 +3074,31 @@ Error Message:
 {0}
     </value>
   </data>
-  <data name="DocumentDate_f">
-    <value xml:space="preserve">Date: {0:d}</value>
+  <data name="DocumentDate_f" xml:space="preserve">
+    <value>Date: {0:d}</value>
   </data>
-  <data name="DocumentTime_f">
-    <value xml:space="preserve">Time: {0:t}</value>
+  <data name="DocumentTime_f" xml:space="preserve">
+    <value>Time: {0:t}</value>
   </data>
-  <data name="LastLinesByPrinterLineCount">
-    <value xml:space="preserve">New Lines by Printer Line Count</value>
+  <data name="LastLinesByPrinterLineCount" xml:space="preserve">
+    <value>New Lines by Printer Line Count</value>
   </data>
-  <data name="LineAddedToTicket">
-    <value xml:space="preserve">Line Added to Ticket</value>
+  <data name="LineAddedToTicket" xml:space="preserve">
+    <value>Line Added to Ticket</value>
   </data>
-  <data name="LineItemProductTag">
-    <value xml:space="preserve">#Line: Product Tag</value>
+  <data name="LineItemProductTag" xml:space="preserve">
+    <value>#Line: Product Tag</value>
   </data>
-	<data name="ChangeAmountUpdated">
-		<value xml:space="preserve">Change Amount Updated</value>
-	</data>
-	<data name="TicketClosed">
-		<value xml:space="preserve">Ticket Closed</value>
-	</data>
-	<data name="ApplicationStarted">
-		<value xml:space="preserve">Application Started</value>
-	</data>
-	<data name="LastPaidLines">
-		<value xml:space="preserve">Last Paid Lines</value>
-	</data>
+  <data name="ChangeAmountUpdated" xml:space="preserve">
+    <value>Change Amount Updated</value>
+  </data>
+  <data name="TicketClosed" xml:space="preserve">
+    <value>Ticket Closed</value>
+  </data>
+  <data name="ApplicationStarted" xml:space="preserve">
+    <value>Application Started</value>
+  </data>
+  <data name="LastPaidLines" xml:space="preserve">
+    <value>Last Paid Lines</value>
+  </data>
 </root>

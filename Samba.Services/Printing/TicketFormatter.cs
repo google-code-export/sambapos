@@ -216,7 +216,7 @@ namespace Samba.Services.Printing
             var discount = ticket.GetDiscountAndRoundingTotal();
             var plainTotal = ticket.GetPlainSum();
             var giftAmount = ticket.GetTotalGiftAmount();
-            var vatAmount = GetTaxTotal(ticket.TicketItems, plainTotal, discount);
+            var vatAmount = GetTaxTotal(ticket.TicketItems, plainTotal, ticket.GetDiscountTotal());
             var taxServicesTotal = ticket.GetTaxServicesTotal();
 
             result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", () => plainTotal.ToString("#,#0.00"));

@@ -86,30 +86,37 @@ namespace Samba.Infrastructure.Printing
         {
             var columnWidths = CalculateColumnWidths(lines);
             var result = new List<string>();
+            
 
             for (var i = 0; i < lines.Count(); i++)
             {
                 var line = lines.ElementAt(i);
+                var lastWidth = 0;
+                if (line.Length > 3 && Char.IsNumber(line[3]))
+                {
+                    lastWidth = Convert.ToInt32(line[3].ToString());
+                }
+
                 if (line.Length < 4)
                 {
                     result.Add(line);
                 }
                 else if (line.ToLower().StartsWith("<l"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line, LineAlignment.Left, false));
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Left, false));
                 }
                 else if (line.ToLower().StartsWith("<r"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line, LineAlignment.Right, false));
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Right, false));
                 }
                 else if (line.ToLower().StartsWith("<c"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line, LineAlignment.Center, false));
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Center, false));
                 }
                 else if (line.ToLower().StartsWith("<j"))
                 {
-                    result.Add(AlignLine(maxWidth, 0, line, LineAlignment.Justify, false, columnWidths[0]));
-                    if (i < lines.Count() - 1 && !lines.ElementAt(i + 1).ToLower().StartsWith("<j") && columnWidths.Count > 0)
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Justify, false, columnWidths[0]));
+                    if (i < lines.Count() - 1 && columnWidths.Count > 0 && (!lines.ElementAt(i + 1).ToLower().StartsWith("<j") || lines.ElementAt(i + 1).Split('|').Length != columnWidths[0].Length))
                         columnWidths.RemoveAt(0);
                 }
                 else if (line.ToLower().StartsWith("<f>"))
@@ -133,7 +140,7 @@ namespace Samba.Infrastructure.Printing
                 if (line.ToLower().StartsWith("<j"))
                 {
                     var parts = line.Split('|');
-                    if (tableNo == 0)
+                    if (tableNo == 0 || parts.Length != result[tableNo - 1].Length)
                     {
                         tableNo = result.Count + 1;
                         result.Add(new int[parts.Length]);

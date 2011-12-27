@@ -2247,7 +2247,7 @@ Masa: {2}</value>
     <value>{ÖZELLİK MİKTAR}</value>
   </data>
   <data name="RemainingAmountIfPaidValue_f" xml:space="preserve">
-    <value>Ödenen:|{0}
+    <value>&lt;J&gt;Ödenen:|{0}
 &lt;J&gt;Genel TOPLAM:|{1}</value>
   </data>
   <data name="DiscountTotalAndTicketTotalValue_f" xml:space="preserve">
@@ -2935,76 +2935,74 @@ Borçlandır</value>
     <value>Oran veya Tutar</value>
     <comment>Label.Content</comment>
   </data>
-  <data name="RateFromTicketAmount">
-    <value xml:space="preserve">Adisyon tutarından oranla</value>
+  <data name="RateFromTicketAmount" xml:space="preserve">
+    <value>Adisyon tutarından oranla</value>
   </data>
-  <data name="RateFromVatIncludedTicketAmount">
-    <value xml:space="preserve">KDV Dahil Adisyon tutarından oranla</value>
+  <data name="RateFromVatIncludedTicketAmount" xml:space="preserve">
+    <value>KDV Dahil Adisyon tutarından oranla</value>
   </data>
-  <data name="RateFromPreviousTemplate">
-    <value xml:space="preserve">Önceki şablon tutarından oranla</value>
+  <data name="RateFromPreviousTemplate" xml:space="preserve">
+    <value>Önceki şablon tutarından oranla</value>
   </data>
-  <data name="FixedAmount">
-    <value xml:space="preserve">Sabit tutar</value>
+  <data name="FixedAmount" xml:space="preserve">
+    <value>Sabit tutar</value>
   </data>
-  <data name="UnhandledExceptionErrorMessage">
-    <value xml:space="preserve">Samba POS Beklenmeyen bir sorunla karşılaştı. Uygulama şu anda kapatılacak. Detaylı bilgi için log dosyasını inceleyiniz</value>
+  <data name="UnhandledExceptionErrorMessage" xml:space="preserve">
+    <value>Samba POS Beklenmeyen bir sorunla karşılaştı. Uygulama şu anda kapatılacak. Detaylı bilgi için log dosyasını inceleyiniz</value>
   </data>
   <data name="SaveFreeTags" xml:space="preserve">
     <value>Serbest Etiketleri Kaydet</value>
   </data>
-  <data name="RegenerateTicketVat">
-    <value xml:space="preserve">Adisyon KDV oranlarını baştan oluştur</value>
+  <data name="RegenerateTicketVat" xml:space="preserve">
+    <value>Adisyon KDV oranlarını baştan oluştur</value>
   </data>
-  <data name="UpdateTicketTaxService">
-    <value xml:space="preserve">Adisyon Hizmeti Ekle</value>
+  <data name="UpdateTicketTaxService" xml:space="preserve">
+    <value>Adisyon Hizmeti Ekle</value>
   </data>
-  <data name="Included">
-    <value xml:space="preserve">Dahil</value>
+  <data name="Included" xml:space="preserve">
+    <value>Dahil</value>
   </data>
-  <data name="Excluded">
-    <value xml:space="preserve">Hariç</value>
+  <data name="Excluded" xml:space="preserve">
+    <value>Hariç</value>
   </data>
-  <data name="EmptyDiscountRateFeedback">
-    <value xml:space="preserve">İskonto yapmak için önce bir iskonto oranı yazıp sonra iskonto düğmelerine tıklayınız. İskontoyu kaldırmak için hiç bir rakam yazmadan boş bir şekilde iskonto düğmelerine tıklayınız. </value>
+  <data name="EmptyDiscountRateFeedback" xml:space="preserve">
+    <value>İskonto yapmak için önce bir iskonto oranı yazıp sonra iskonto düğmelerine tıklayınız. İskontoyu kaldırmak için hiç bir rakam yazmadan boş bir şekilde iskonto düğmelerine tıklayınız. </value>
   </data>
-  <data name="TicketSubTotal">
-    <value xml:space="preserve">Adisyon ara toplamı</value>
+  <data name="TicketSubTotal" xml:space="preserve">
+    <value>Adisyon ara toplamı</value>
   </data>
-  <data name="VatTotalsGroupedByVatTemplate">
-    <value xml:space="preserve">KDV türlerine göre gruplanmış KDV tutarları</value>
+  <data name="VatTotalsGroupedByVatTemplate" xml:space="preserve">
+    <value>KDV türlerine göre gruplanmış KDV tutarları</value>
   </data>
-  <data name="TaxTotal">
-    <value xml:space="preserve">Hizmet Toplamı</value>
+  <data name="TaxTotal" xml:space="preserve">
+    <value>Hizmet Toplamı</value>
   </data>
-  <data name="TaxTotalsGroupedByTaxTemplate">
-    <value xml:space="preserve">Hizmet türlerine göre gruplanmış Hizmet tutarları</value>
+  <data name="TaxTotalsGroupedByTaxTemplate" xml:space="preserve">
+    <value>Hizmet türlerine göre gruplanmış Hizmet tutarları</value>
   </data>
-  <data name="TextWrittenTotalValue">
-    <value xml:space="preserve">Yazıyla genel toplam</value>
+  <data name="TextWrittenTotalValue" xml:space="preserve">
+    <value>Yazıyla genel toplam</value>
   </data>
-  <data name="TicketLocationChanged">
-    <value xml:space="preserve">Adisyon Yeri Değişti</value>
+  <data name="TicketLocationChanged" xml:space="preserve">
+    <value>Adisyon Yeri Değişti</value>
   </data>
-  <data name="UpdateTicketAccount">
-    <value xml:space="preserve">Adisyon Hesabını Değiştir</value>
+  <data name="UpdateTicketAccount" xml:space="preserve">
+    <value>Adisyon Hesabını Değiştir</value>
   </data>
-  <data name="SaveErrorSelectDefaultDepartment">
-    <value xml:space="preserve">Lütfen varsayılan departmanı seçiniz.</value>
+  <data name="SaveErrorSelectDefaultDepartment" xml:space="preserve">
+    <value>Lütfen varsayılan departmanı seçiniz.</value>
   </data>
-  <data name="Copy">
-    <value xml:space="preserve">Kopyala</value>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopyala</value>
   </data>
-  <data name="Send">
-    <value xml:space="preserve">Gönder</value>
+  <data name="Send" xml:space="preserve">
+    <value>Gönder</value>
   </data>
-  <data name="ErrorReportWithoutFeedback">
-    <value>
-      <![CDATA[Raporu herhangi bir bilgi eklemeden gönderiyorsunuz.
+  <data name="ErrorReportWithoutFeedback" xml:space="preserve">
+    <value>Raporu herhangi bir bilgi eklemeden gönderiyorsunuz.
 Lütfen problemin nasıl oluştuğu ile ilgili bilgi veriniz.
 
-Bilgi eklemeden devam etmek istiyor musunuz?]]>
-    </value>
+Bilgi eklemeden devam etmek istiyor musunuz?</value>
   </data>
   <data name="SambaPOSReporter" xml:space="preserve">
     <value>SambaPOS Raporlayıcı</value>
@@ -3037,72 +3035,72 @@ Bilgi eklemeden devam etmek istiyor musunuz?]]>
   <data name="Modifiers" xml:space="preserve">
     <value>Özellikler</value>
   </data>
-  <data name="APortionShouldSelected">
-    <value xml:space="preserve">Bir porsiyon seçilmeli</value>
+  <data name="APortionShouldSelected" xml:space="preserve">
+    <value>Bir porsiyon seçilmeli</value>
   </data>
-  <data name="ThereIsAnotherRecipeFor_f">
-    <value xml:space="preserve">{0} için başka bir reçete var</value>
+  <data name="ThereIsAnotherRecipeFor_f" xml:space="preserve">
+    <value>{0} için başka bir reçete var</value>
   </data>
-  <data name="DeleteErrorPrinterAssignedToTerminal">
+  <data name="DeleteErrorPrinterAssignedToTerminal" xml:space="preserve">
     <value>Bu yazıcı bir terminalde kullanıldığı için silinemez.</value>
   </data>
-  <data name="DeleteErrorPrinterAssignedToPrinterMap">
+  <data name="DeleteErrorPrinterAssignedToPrinterMap" xml:space="preserve">
     <value>Bu yazıcı bir yazdırma görevinde kullanıldığı için silinemez.</value>
   </data>
   <data name="PriceTags" xml:space="preserve">
     <value>Fiyat Etiketleme</value>
   </data>
-  <data name="AlphaNumeric">
-    <value xml:space="preserve">Alfasayısal</value>
+  <data name="AlphaNumeric" xml:space="preserve">
+    <value>Alfasayısal</value>
   </data>
-  <data name="Numeric">
-    <value xml:space="preserve">Sayısal</value>
+  <data name="Numeric" xml:space="preserve">
+    <value>Sayısal</value>
   </data>
   <data name="TagType" xml:space="preserve">
     <value>Etiket Tipi</value>
     <comment>Label content</comment>
   </data>
-  <data name="PaymentReceived">
-    <value xml:space="preserve">Ödeme Alındığında</value>
+  <data name="PaymentReceived" xml:space="preserve">
+    <value>Ödeme Alındığında</value>
   </data>
-  <data name="ExecutePrintJob">
-    <value xml:space="preserve">Yazdırma Görevi Çalıştır</value>
+  <data name="ExecutePrintJob" xml:space="preserve">
+    <value>Yazdırma Görevi Çalıştır</value>
   </data>
-  <data name="PrintingErrorMessage_f">
+  <data name="PrintingErrorMessage_f" xml:space="preserve">
     <value>Yazdırma işlemi sırasında bir sorun meydana geldi. Lütfen yazıcı ve şablon ayarlarını kontrol ediniz.
 
 Mesaj:
 {0}
     </value>
   </data>
-  <data name="DocumentDate_f">
-    <value xml:space="preserve">Tarih: {0:d}</value>
+  <data name="DocumentDate_f" xml:space="preserve">
+    <value>Tarih: {0:d}</value>
   </data>
-  <data name="DocumentTime_f">
-    <value xml:space="preserve">Saat: {0:t}</value>
+  <data name="DocumentTime_f" xml:space="preserve">
+    <value>Saat: {0:t}</value>
   </data>
-  <data name="LineAddedToTicket">
-    <value xml:space="preserve">Adisyona Satır Eklendiğinde</value>
+  <data name="LineAddedToTicket" xml:space="preserve">
+    <value>Adisyona Satır Eklendiğinde</value>
   </data>
-  <data name="LineItemProductTag">
-    <value xml:space="preserve">#Satır: Ürün Etiketi</value>
+  <data name="LineItemProductTag" xml:space="preserve">
+    <value>#Satır: Ürün Etiketi</value>
   </data>
-  <data name="LastLinesByPrinterLineCount">
-    <value xml:space="preserve">Son Eklenen Satırlar</value>
+  <data name="LastLinesByPrinterLineCount" xml:space="preserve">
+    <value>Son Eklenen Satırlar</value>
   </data>
-  <data name="LineCount">
-    <value xml:space="preserve">Satır Sayısı</value>
+  <data name="LineCount" xml:space="preserve">
+    <value>Satır Sayısı</value>
   </data>
-  <data name="ChangeAmountUpdated">
-    <value xml:space="preserve">Para Üstü Güncellendiğinde</value>
+  <data name="ChangeAmountUpdated" xml:space="preserve">
+    <value>Para Üstü Güncellendiğinde</value>
   </data>
-  <data name="TicketClosed">
-    <value xml:space="preserve">Adisyon Kapatıldığında</value>
+  <data name="TicketClosed" xml:space="preserve">
+    <value>Adisyon Kapatıldığında</value>
   </data>
-	<data name="ApplicationStarted">
-		<value xml:space="preserve">Program Başladığında</value>
-	</data>
-	<data name="LastPaidLines">
-		<value xml:space="preserve">Son Ödenen Satırlar</value>
-	</data>
+  <data name="ApplicationStarted" xml:space="preserve">
+    <value>Program Başladığında</value>
+  </data>
+  <data name="LastPaidLines" xml:space="preserve">
+    <value>Son Ödenen Satırlar</value>
+  </data>
 </root>

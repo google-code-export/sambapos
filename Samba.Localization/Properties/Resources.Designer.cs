@@ -5321,7 +5321,7 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paid:|{0}
+        ///   Looks up a localized string similar to &lt;J&gt;Paid:|{0}
         ///&lt;J&gt;Grand TOTAL:|{1}.
         /// </summary>
         public static string RemainingAmountIfPaidValue_f {
