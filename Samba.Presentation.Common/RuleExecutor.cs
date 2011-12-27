@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using Samba.Domain.Models.Actions;
 using Samba.Services;
 
@@ -87,9 +88,20 @@ namespace Samba.Presentation.Common
                     if (condition.Name.StartsWith("SN$"))
                     {
                         var settingName = condition.Name.Replace("SN$", "");
+                        if (Regex.IsMatch(settingName, "\\[[^\\]]+\\]"))
+                        {
+                            var paramvalue = Regex.Match(settingName, "\\[[^\\]]+\\]").Groups[0].Value;
+                            var insideValue = paramvalue.Trim(new[] { '[', ']' });
+                            if (parameterNames.Contains(insideValue))
+                            {
+                                var v = dataObject.GetType().GetProperty(insideValue).GetValue(dataObject, null).ToString();
+                                settingName = settingName.Replace(paramvalue, v);
+                            }
+                        }
+
                         var settingValue = condition.Value;
-                        if (AppServices.SettingService.GetCustomSetting(settingName).StringValue != settingValue)
-                            return false;
+                        var customSettingValue = AppServices.SettingService.GetCustomSetting(settingName).StringValue ?? "";
+                        if (customSettingValue != settingValue) return false;
                     }
                     if (condition.Name == "TerminalName" && !string.IsNullOrEmpty(condition.Value))
                     {

@@ -376,6 +376,7 @@ namespace Samba.Modules.TicketModule
                             new
                             {
                                 Ticket = AppServices.MainDataContext.SelectedTicket,
+                                CustomerId = x.Value.Id,
                                 CustomerName = x.Value.Name,
                                 PhoneNumber = x.Value.PhoneNumber,
                                 CustomerNote = x.Value.Note
@@ -1056,7 +1057,7 @@ namespace Samba.Modules.TicketModule
             {
                 InteractionService.UserIntraction.GiveFeedback(result.ErrorMessage);
             }
-            
+
             RuleExecutor.NotifyEvent(RuleEventNames.TicketClosed, new { Ticket = _selectedTicket.Model });
 
             _selectedTicket = null;

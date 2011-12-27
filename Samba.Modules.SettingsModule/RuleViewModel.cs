@@ -126,7 +126,12 @@ namespace Samba.Modules.SettingsModule
                 .Where(x => x.Value != null)
                 .Select(x => x.GetConstraintData()));
             if (!string.IsNullOrEmpty(SettingConstraintName))
+            {
+                if (!string.IsNullOrEmpty(Model.EventConstraints))
+                    Model.EventConstraints = Model.EventConstraints + "#";
                 Model.EventConstraints += "SN$" + SettingConstraintName + ";=;" + SettingConstraintValue;
+            }
+
             base.OnSave(value);
         }
     }

@@ -546,7 +546,9 @@ namespace Samba.Presentation.ViewModels
                         TicketTotal = ticket.GetSum(),
                         DiscountTotal = ticket.GetDiscountAndRoundingTotal(),
                         GiftTotal = ticket.GetTotalGiftAmount(),
-                        PaymentTotal = ticket.GetPaymentAmount()
+                        PaymentTotal = ticket.GetPaymentAmount(),
+                        CustomerName = ticket.CustomerName,
+                        CustomerId = ticket.CustomerId
                     });
             }
         }
