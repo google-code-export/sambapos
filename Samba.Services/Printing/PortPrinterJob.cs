@@ -32,11 +32,12 @@ namespace Samba.Services.Printing
                     }
                     else if (s.ToLower().StartsWith("<xct"))
                     {
-                        SerialPortService.WriteCommand(Printer.ShareName, RemoveTag(s), Printer.CodePage);
+                        var lineData = s.ToLower().Replace("<xct", "").Trim(new[] { ' ', '<', '>' });
+                        SerialPortService.WriteCommand(Printer.ShareName, lineData, Printer.CodePage);
                     }
                     else
                     {
-                        SerialPortService.WritePort(Printer.ShareName, RemoveTag(s));
+                        SerialPortService.WritePort(Printer.ShareName, RemoveTag(s), Printer.CodePage);
                     }
                 }
             }

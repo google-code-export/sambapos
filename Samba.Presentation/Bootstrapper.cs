@@ -52,12 +52,6 @@ namespace Samba.Presentation
         protected override void InitializeShell()
         {
             LocalizeDictionary.ChangeLanguage(LocalSettings.CurrentLanguage);
-            if(string.IsNullOrEmpty(LocalSettings.MajorCurrencyName))
-            {
-                LocalSettings.MajorCurrencyName = Resources.Dollar;
-                LocalSettings.MinorCurrencyName = Resources.Cent;
-                LocalSettings.PluralCurrencySuffix = Resources.PluralCurrencySuffix;
-            }
 
             LocalSettings.SetTraceLogPath("app");
             InteractionService.UserIntraction = ServiceLocator.Current.GetInstance<IUserInteraction>();
@@ -105,8 +99,15 @@ namespace Samba.Presentation
                     LocalSettings.ConnectionString = "";
                 }
                 LocalSettings.SaveSettings();
-                Environment.Exit(1);
+                Environment.Exit(1); 
             }
+
+            //if (string.IsNullOrEmpty(LocalSettings.MajorCurrencyName))
+            //{
+            //    LocalSettings.MajorCurrencyName = Resources.Dollar;
+            //    LocalSettings.MinorCurrencyName = Resources.Cent;
+            //    LocalSettings.PluralCurrencySuffix = Resources.PluralCurrencySuffix;
+            //}
 
             Application.Current.MainWindow = (Shell)Shell;
             Application.Current.MainWindow.Show();

@@ -92,7 +92,7 @@ namespace Samba.Infrastructure.Printing
             {
                 var line = lines.ElementAt(i);
                 var lastWidth = 0;
-                if (line.Length > 3 && Char.IsNumber(line[3]))
+                if (line.Length > 3 && Char.IsNumber(line[3]) && Char.IsNumber(line[2]))
                 {
                     lastWidth = Convert.ToInt32(line[3].ToString());
                 }
