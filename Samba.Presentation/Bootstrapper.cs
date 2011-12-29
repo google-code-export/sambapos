@@ -102,12 +102,12 @@ namespace Samba.Presentation
                 Environment.Exit(1); 
             }
 
-            //if (string.IsNullOrEmpty(LocalSettings.MajorCurrencyName))
-            //{
-            //    LocalSettings.MajorCurrencyName = Resources.Dollar;
-            //    LocalSettings.MinorCurrencyName = Resources.Cent;
-            //    LocalSettings.PluralCurrencySuffix = Resources.PluralCurrencySuffix;
-            //}
+            if (string.IsNullOrEmpty(LocalSettings.MajorCurrencyName))
+            {
+                LocalSettings.MajorCurrencyName = Resources.Dollar;
+                LocalSettings.MinorCurrencyName = Resources.Cent;
+                LocalSettings.PluralCurrencySuffix = Resources.PluralCurrencySuffix;
+            }
 
             Application.Current.MainWindow = (Shell)Shell;
             Application.Current.MainWindow.Show();

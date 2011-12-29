@@ -183,7 +183,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Samba.Presentation_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Common.xaml">
