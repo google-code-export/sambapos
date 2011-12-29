@@ -86,7 +86,7 @@ namespace Samba.Infrastructure.Printing
         {
             var columnWidths = CalculateColumnWidths(lines);
             var result = new List<string>();
-            
+
 
             for (var i = 0; i < lines.Count(); i++)
             {
@@ -174,7 +174,7 @@ namespace Samba.Infrastructure.Printing
                 case LineAlignment.Right:
                     return tag + line.PadLeft(maxWidth, ' ');
                 case LineAlignment.Center:
-                    return tag + line.PadLeft(((maxWidth + line.Length) / 2), ' ');
+                    return tag + line.PadLeft(((maxWidth + line.Length) / 2), ' ').PadRight(maxWidth, ' ');
                 case LineAlignment.Justify:
                     return tag + JustifyText(maxWidth, line, canBreak, columnWidths);
                 default:
