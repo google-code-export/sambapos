@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.EnterpriseLibrary.Logging;
+﻿using System;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 using Microsoft.Practices.Prism.Logging;
 
 namespace Samba.Presentation
@@ -7,7 +8,13 @@ namespace Samba.Presentation
     {
         public void Log(string message, Category category, Priority priority)
         {
-            Logger.Write(message, category.ToString(), (int)priority);
+            try
+            {
+                Logger.Write(message, category.ToString(), (int)priority);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

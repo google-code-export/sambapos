@@ -27,8 +27,9 @@ namespace Samba.Services.Printing
             {
                 SendToPrinter(printer, s);
             }
-
-            printer.Cut();
+            
+            if (lines.Length >= 2)
+                printer.Cut();
             printer.EndDocument();
             _lastHeight = 0;
             _lastWidth = 0;
