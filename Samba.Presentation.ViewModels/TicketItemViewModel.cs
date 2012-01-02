@@ -238,13 +238,37 @@ namespace Samba.Presentation.ViewModels
         public void UpdatePortion(MenuItemPortion portion, string priceTag)
         {
             _model.UpdatePortion(portion, priceTag, AppServices.MainDataContext.GetVatTemplate(portion.MenuItemId));
+            RuleExecutor.NotifyEvent(RuleEventNames.PortionSelected,
+                   new
+                   {
+                       Ticket = AppServices.MainDataContext.SelectedTicket,
+                       MenuItemName = _model.MenuItemName,
+                       PortionName = portion.Name,
+                       PortionPrice = _model.Price
+                   });
             RaisePropertyChanged("Description");
             RaisePropertyChanged("TotalPrice");
         }
 
         public void ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty menuItemProperty)
         {
-            _model.ToggleProperty(group, menuItemProperty);
+            //new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierMenuItemId = 0, ModifierPrice = 0 });
+            var ti = _model.ToggleProperty(group, menuItemProperty);
+
+            if (ti != null)
+            {
+                RuleExecutor.NotifyEvent(RuleEventNames.ModifierSelected,
+                    new
+                        {
+                            MenuItemName = _model.MenuItemName,
+                            ModifierGroupName = group.Name,
+                            ModifierName = menuItemProperty.Name,
+                            ModifierPrice = ti.PropertyPrice.Amount + ti.VatAmount,
+                            ModifierQuantity = ti.Quantity,
+                            IsRemoved = !_model.Properties.Contains(ti),
+                            IsPriceAddedToParentPrice = ti.CalculateWithParentPrice
+                        });
+            }
             RefreshProperties();
             RaisePropertyChanged("TotalPrice");
             RaisePropertyChanged("Quantity");

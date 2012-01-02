@@ -321,6 +321,7 @@ namespace Samba.Modules.TicketModule
         private void SubmitPayment(PaymentType paymentType)
         {
             var tenderedAmount = GetTenderedValue();
+            var originalTenderedAmount = tenderedAmount;
             var remainingTicketAmount = GetPaymentValue();
             var returningAmount = 0m;
             if (tenderedAmount == 0) tenderedAmount = remainingTicketAmount;
@@ -351,7 +352,7 @@ namespace Samba.Modules.TicketModule
             if (returningAmount > 0)
             {
                 RuleExecutor.NotifyEvent(RuleEventNames.ChangeAmountChanged,
-                    new { Ticket = SelectedTicket.Model, TicketAmount = SelectedTicket.Model.TotalAmount, ChangeAmount = returningAmount, TenderedAmount = tenderedAmount });
+                    new { Ticket = SelectedTicket.Model, TicketAmount = SelectedTicket.Model.TotalAmount, ChangeAmount = returningAmount, TenderedAmount = originalTenderedAmount });
             }
 
             AppServices.MainDataContext.SelectedTicket.CancelPaidItems();

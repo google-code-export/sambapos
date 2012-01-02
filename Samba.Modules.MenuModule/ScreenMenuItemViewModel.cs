@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using Samba.Domain.Models.Menus;
 using Samba.Localization;
+using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 
 namespace Samba.Modules.MenuModule
@@ -16,10 +17,11 @@ namespace Samba.Modules.MenuModule
         [Browsable(false)]
         public ScreenMenuItem Model { get; private set; }
 
+        private string _menuItemDisplayString;
         [LocalizedDisplayName(ResourceStrings.Product)]
         public string MenuItemDisplayString
         {
-            get { return Name; }
+            get { return _menuItemDisplayString ?? (_menuItemDisplayString = Dao.SingleWithCache<MenuItem>(x => x.Id == Model.MenuItemId).Name); }
         }
 
         [LocalizedDisplayName(ResourceStrings.SortOrder)]

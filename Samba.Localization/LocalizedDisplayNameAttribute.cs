@@ -30,4 +30,28 @@ namespace Samba.Localization
             }
         }
     }
+
+    public class LocalizedDescriptionAttribute : DescriptionAttribute
+    {
+        private readonly string _resourceName;
+        public LocalizedDescriptionAttribute(string resourceName)
+        {
+            _resourceName = resourceName;
+        }
+
+        public LocalizedDescriptionAttribute()
+        {
+            var type = GetType();
+            _resourceName = type.Name;
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return Resources.ResourceManager.GetString(_resourceName);
+            }
+        }
+
+    }
 }

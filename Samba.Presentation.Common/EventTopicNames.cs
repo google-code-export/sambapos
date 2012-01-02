@@ -4,7 +4,9 @@ namespace Samba.Presentation.Common
 {
     public static class RuleEventNames
     {
-        public const string ApplicationStarted="ApplicationStarted";
+        public const string ModifierSelected = "ModifierSelected";
+        public const string PortionSelected = "PortionSelected";
+        public const string ApplicationStarted = "ApplicationStarted";
         public const string TicketClosed = "TicketClosed";
         public const string ChangeAmountChanged = "ChangeAmountChanged";
         public const string TicketLineAdded = "TicketLineAdded";
@@ -24,6 +26,7 @@ namespace Samba.Presentation.Common
 
     public static class EventTopicNames
     {
+        public const string FocusTicketScreen = "FocusTicketScreen";
         public const string AddLiabilityAmount = "Add Liability Amount";
         public const string AddReceivableAmount = "Add Receivable Amount";
         public const string LocationSelectedForTicket = "LocationSelectedForTicket";

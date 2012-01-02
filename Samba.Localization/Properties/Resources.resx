@@ -3101,4 +3101,19 @@ Error Message:
   <data name="LastPaidLines" xml:space="preserve">
     <value>Last Paid Lines</value>
   </data>
+  <data name="PortionSelected" xml:space="preserve">
+    <value>Portion Selected</value>
+  </data>
+  <data name="ModifierSelected" xml:space="preserve">
+    <value>Modifier Selected</value>
+  </data>
+  <data name="Big" xml:space="preserve">
+    <value>Big</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Small</value>
+  </data>
 </root>

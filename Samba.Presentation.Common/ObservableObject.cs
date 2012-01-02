@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using Samba.Infrastructure.Data.Serializer;
 
 namespace Samba.Presentation.Common
 {
@@ -13,7 +14,7 @@ namespace Samba.Presentation.Common
             var handler = PropertyChanged;
 
             if (handler == null) return;
-            
+
             var e = new PropertyChangedEventArgs(propertyName);
             handler(this, e);
         }
@@ -37,5 +38,6 @@ namespace Samba.Presentation.Common
         protected virtual bool ThrowOnInvalidPropertyName { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }

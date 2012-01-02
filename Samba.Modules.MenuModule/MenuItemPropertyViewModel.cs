@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using Samba.Domain.Models.Menus;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
@@ -19,7 +21,11 @@ namespace Samba.Modules.MenuModule
         }
 
         public string Name { get { return Model.Name; } set { Model.Name = value; } }
-        public decimal Price { get { return Model.Price.Amount; } set { Model.Price.Amount = value; } }
+        public decimal Price
+        {
+            get { return Model.Price.Amount; }
+            set { Model.Price.Amount = value; }
+        }
         public string CurrencyCode { get { return Model.Price.CurrencyCode; } set { Model.Price.CurrencyCode = value; } }
 
         public int MenuItemId
@@ -60,6 +66,5 @@ namespace Samba.Modules.MenuModule
                     MenuItem = Dao.Single<MenuItem>(x => x.Id == value, x => x.PropertyGroups, x => x.Portions);
             }
         }
-
     }
 }

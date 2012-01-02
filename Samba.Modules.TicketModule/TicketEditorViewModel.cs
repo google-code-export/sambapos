@@ -132,12 +132,14 @@ namespace Samba.Modules.TicketModule
         {
             SelectedView = 0;
             SelectedSubView = 0;
+            this.PublishEvent(EventTopicNames.FocusTicketScreen);
         }
 
         public void DisplayTicketDetailsScreen()
         {
             SelectedView = 0;
             SelectedSubView = 1;
+            this.PublishEvent(EventTopicNames.FocusTicketScreen);
         }
 
         public void DisplayTicketExplorerScreen()

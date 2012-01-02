@@ -749,6 +749,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Big.
+        /// </summary>
+        public static string Big {
+            get {
+                return ResourceManager.GetString("Big", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Billion.
         /// </summary>
         public static string Billion {
@@ -4019,6 +4028,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modifier Selected.
+        /// </summary>
+        public static string ModifierSelected {
+            get {
+                return ResourceManager.GetString("ModifierSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Month.
         /// </summary>
         public static string Month {
@@ -4241,6 +4259,15 @@ namespace Samba.Localization.Properties {
         public static string NoAction {
             get {
                 return ResourceManager.GetString("NoAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
             }
         }
         
@@ -4736,6 +4763,15 @@ namespace Samba.Localization.Properties {
         public static string Portions {
             get {
                 return ResourceManager.GetString("Portions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portion Selected.
+        /// </summary>
+        public static string PortionSelected {
+            get {
+                return ResourceManager.GetString("PortionSelected", resourceCulture);
             }
         }
         
@@ -5915,6 +5951,15 @@ namespace Samba.Localization.Properties {
         public static string SlipReportPrinter {
             get {
                 return ResourceManager.GetString("SlipReportPrinter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small.
+        /// </summary>
+        public static string Small {
+            get {
+                return ResourceManager.GetString("Small", resourceCulture);
             }
         }
         

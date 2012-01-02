@@ -119,14 +119,14 @@ namespace Samba.Domain.Models.Tickets
             }
         }
 
-        public void ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty property)
+        public TicketItemProperty ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty property)
         {
             if (property.Name.ToLower() == "x")
             {
                 var groupItems = Properties.Where(x => x.PropertyGroupId == group.Id).ToList();
                 foreach (var tip in groupItems) Properties.Remove(tip);
                 if (group.MultipleSelection) Quantity = 1;
-                return;
+                return null;
             }
 
             var ti = FindProperty(property.Name);
@@ -168,10 +168,12 @@ namespace Samba.Domain.Models.Tickets
             else if (!group.MultipleSelection && Properties.Contains(ti))
             {
                 Properties.Remove(ti);
-                return;
+                return ti;
             }
 
             if (!Properties.Contains(ti)) Properties.Add(ti);
+
+            return ti;
         }
 
         public TicketItemProperty GetCustomProperty()

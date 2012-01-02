@@ -238,6 +238,8 @@ namespace Samba.Modules.TicketModule
         private void OnPortionSelected(MenuItemPortion obj)
         {
             SelectedItem.UpdatePortion(obj, AppServices.MainDataContext.SelectedDepartment.PriceTag);
+            SelectedTicket.RefreshVisuals();
+            SelectedTicket.RecalculateTicket();
             if (SelectedItemPropertyGroups.Count == 0)
                 SelectedTicket.ClearSelectedItems();
         }
@@ -248,6 +250,7 @@ namespace Samba.Modules.TicketModule
             Debug.Assert(mig != null);
             SelectedItem.ToggleProperty(mig, obj);
             SelectedTicket.RefreshVisuals();
+            SelectedTicket.RecalculateTicket();
         }
 
         private void SetSelectedTicket(TicketViewModel ticketViewModel)

@@ -11,8 +11,11 @@ namespace Samba.Modules.MenuModule
 {
     public enum NumeratorType
     {
+        [LocalizedDescription(ResourceStrings.None)]
         Yok,
+        [LocalizedDescription(ResourceStrings.Small)]
         Küçük,
+        [LocalizedDescription(ResourceStrings.Big)]
         Büyük
     }
 

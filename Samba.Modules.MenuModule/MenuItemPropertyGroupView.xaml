@@ -96,8 +96,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="{LocText Price}"
-                             Binding="{Binding Path=Price,StringFormat='#,#0.00'}" CellStyle="{StaticResource RightAlignedCellStyle}" />
+
+                    <DataGridTextColumn Header="{LocText Price}" Binding="{Binding Path=Price,StringFormat='#,#0.00'}" CellStyle="{StaticResource RightAlignedCellStyle}" />
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>

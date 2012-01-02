@@ -230,13 +230,13 @@ namespace Samba.Services.Printing
 
         private static void PrintOrderLines(Ticket ticket, IEnumerable<TicketItem> lines, PrinterMap p)
         {
-            if (lines.Count() <= 0) return;
             if (p == null)
             {
                 MessageBox.Show("Yazdırma sırasında bir problem tespit edildi: Yazıcı Haritası null");
                 AppServices.Log("Yazıcı Haritası NULL problemi tespit edildi.");
                 return;
             }
+            if (!string.IsNullOrEmpty(p.PrinterTemplate.LineTemplate) && lines.Count() <= 0) return;
             if (p.Printer == null || string.IsNullOrEmpty(p.Printer.ShareName) || p.PrinterTemplate == null) return;
             var ticketLines = TicketFormatter.GetFormattedTicket(ticket, lines, p.PrinterTemplate);
             PrintJobFactory.CreatePrintJob(p.Printer).DoPrint(ticketLines);

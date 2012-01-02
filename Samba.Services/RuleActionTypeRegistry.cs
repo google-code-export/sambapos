@@ -233,6 +233,8 @@ namespace Samba.Services
 
         public static IEnumerable<string> GetParameterSource(string parameterName)
         {
+            if (parameterName.StartsWith("Is") && parameterName.Length > 2 && Char.IsUpper(parameterName[2]))
+                return new[] { "True", "False" };
             return ParameterSource.ContainsKey(parameterName) ? ParameterSource[parameterName].Invoke() : new List<string>();
         }
     }
