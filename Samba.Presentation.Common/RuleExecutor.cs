@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Samba.Domain.Models.Actions;
 using Samba.Services;
@@ -88,7 +89,7 @@ namespace Samba.Presentation.Common
                     if (condition.Name.StartsWith("SN$"))
                     {
                         var settingName = condition.Name.Replace("SN$", "");
-                        if (Regex.IsMatch(settingName, "\\[[^\\]]+\\]"))
+                        while (Regex.IsMatch(settingName, "\\[[^\\]]+\\]"))
                         {
                             var paramvalue = Regex.Match(settingName, "\\[[^\\]]+\\]").Groups[0].Value;
                             var insideValue = paramvalue.Trim(new[] { '[', ']' });
@@ -97,11 +98,20 @@ namespace Samba.Presentation.Common
                                 var v = dataObject.GetType().GetProperty(insideValue).GetValue(dataObject, null).ToString();
                                 settingName = settingName.Replace(paramvalue, v);
                             }
+                            else
+                            {
+                                if (paramvalue == "[Day]")
+                                    settingName = settingName.Replace(paramvalue, DateTime.Now.Day.ToString());
+                                else if (paramvalue == "[Month]")
+                                    settingName = settingName.Replace(paramvalue, DateTime.Now.Month.ToString());
+                                else if (paramvalue == "[Year]")
+                                    settingName = settingName.Replace(paramvalue, DateTime.Now.Year.ToString());
+                                else settingName = settingName.Replace(paramvalue, "");
+                            }
                         }
 
-                        var settingValue = condition.Value;
                         var customSettingValue = AppServices.SettingService.GetCustomSetting(settingName).StringValue ?? "";
-                        if (customSettingValue != settingValue) return false;
+                        if (!condition.ValueEquals(customSettingValue)) return false;
                     }
                     if (condition.Name == "TerminalName" && !string.IsNullOrEmpty(condition.Value))
                     {

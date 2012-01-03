@@ -62,8 +62,11 @@ namespace Samba.Modules.CustomerModule
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<EventAggregator>>().Subscribe(x =>
             {
-                if (x.Topic == EventTopicNames.ActivateCustomerView) ActivateCustomerView();
-                ((CustomerSelectorViewModel)_customerSelectorView.DataContext).RefreshSelectedCustomer();
+                if (x.Topic == EventTopicNames.ActivateCustomerView)
+                {
+                    ActivateCustomerView();
+                    ((CustomerSelectorViewModel)_customerSelectorView.DataContext).RefreshSelectedCustomer();
+                }
             });
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<Customer>>().Subscribe(x =>

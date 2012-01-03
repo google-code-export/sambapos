@@ -53,6 +53,7 @@ namespace Samba.Modules.SettingsModule
             result.Add(Resources.TF_TableName, Resources.TableName);
             result.Add(Resources.TF_TicketNote, Resources.TicketNote);
             result.Add(Resources.TF_AccountName, Resources.AccountName);
+            result.Add("{ACC GROUPCODE}", "Account Group Code");
             result.Add(Resources.TF_AccountAddress, Resources.AccountAddress);
             result.Add(Resources.TF_AccountPhone, Resources.AccountPhone);
             result.Add(Resources.TF_LineItemQuantity, Resources.LineItemQuantity);

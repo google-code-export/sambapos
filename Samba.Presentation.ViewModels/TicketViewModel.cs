@@ -259,6 +259,16 @@ namespace Samba.Presentation.ViewModels
             var ticketItemViewModel = new TicketItemViewModel(ti);
             _items.Add(ticketItemViewModel);
             RecalculateTicket();
+            RuleExecutor.NotifyEvent(RuleEventNames.TicketLineAdded, new
+            {
+                Ticket = AppServices.MainDataContext.SelectedTicket,
+                TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
+                Model.CustomerId,
+                Model.CustomerName,
+                Model.CustomerGroupCode,
+                MenuItemName = menuItem.Name,
+                MenuItemGroupCode = menuItem.GroupCode
+            });
             ticketItemViewModel.PublishEvent(EventTopicNames.TicketItemAdded);
             return ticketItemViewModel;
         }
@@ -547,8 +557,9 @@ namespace Samba.Presentation.ViewModels
                         DiscountTotal = ticket.GetDiscountAndRoundingTotal(),
                         GiftTotal = ticket.GetTotalGiftAmount(),
                         PaymentTotal = ticket.GetPaymentAmount(),
-                        CustomerName = ticket.CustomerName,
-                        CustomerId = ticket.CustomerId
+                        ticket.CustomerName,
+                        ticket.CustomerId,
+                        ticket.CustomerGroupCode
                     });
             }
         }

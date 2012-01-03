@@ -18,6 +18,22 @@ namespace Samba.Services
         public SettingService()
         {
             _workspace = WorkspaceFactory.Create();
+            if (PhoneNumberInputMask == null)
+            {
+                PhoneNumberInputMask = "(###) ### ####";
+                SaveChanges();
+            }
+            else if (PhoneNumberInputMask == "")
+            {
+                PhoneNumberInputMask = "##########";
+                SaveChanges();
+            }
+        }
+
+        public string PhoneNumberInputMask
+        {
+            get { return GetPhoneNumberInputMask().StringValue; }
+            set { GetPhoneNumberInputMask().StringValue = value; }
         }
 
         public string WeightBarcodePrefix
@@ -78,6 +94,12 @@ namespace Samba.Services
         public SettingGetter GetWeightBarcodeItemFormat()
         {
             return _weightBarcodeItemFormat ?? (_weightBarcodeItemFormat = GetSetting("WeightBarcodeItemFormat"));
+        }
+
+        private SettingGetter _phoneNumberInputMask;
+        public SettingGetter GetPhoneNumberInputMask()
+        {
+            return _phoneNumberInputMask ?? (_phoneNumberInputMask = GetSetting("PhoneNumberInputMask"));
         }
 
         public SettingGetter GetCustomSetting(string settingName)

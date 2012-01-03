@@ -35,13 +35,14 @@ namespace Samba.Presentation.ViewModels
         {
             RuleActionTypeRegistry.RegisterActionType("SendEmail", Resources.SendEmail, new { SMTPServer = "", SMTPUser = "", SMTPPassword = "", SMTPPort = 0, ToEMailAddress = "", Subject = "", FromEMailAddress = "", EMailMessage = "", FileName = "", DeleteFile = false });
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", Resources.AddTicketDiscount, new { DiscountPercentage = 0m });
-            RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, new { MenuItemName = "", PortionName = "", Quantity = 0, Gift = false, Tag = "" });
+            RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, new { MenuItemName = "", PortionName = "", Quantity = 0, Gift = false, GiftReason = "", Tag = "" });
+            RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "" });
             RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, new { MenuItemName = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, new { TagName = "", TagValue = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, new { DepartmentName = "", PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
-            RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "", UpdateType = Resources.Update });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketVat", Resources.UpdateTicketVat, new { VatTemplate = "" });
             RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
@@ -59,11 +60,11 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLocationChanged, Resources.TicketLocationChanged, new { OldLocation = "", NewLocation = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "", NumericValue = 0, TicketTag = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerId = 0, CustomerName = "", PhoneNumber = "", CustomerNote = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m, CustomerName = "", CustomerId = 0 });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerId = 0, CustomerName = "", CustomerGroupCode = "", PhoneNumber = "", CustomerNote = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m, CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0 });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { MenuItemName = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketTag = "", MenuItemName = "", MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { MenuItemName = "", PortionName = "", PortionPrice = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ChangeAmountChanged, Resources.ChangeAmountUpdated, new { TicketAmount = 0, ChangeAmount = 0, TenderedAmount = 0 });
@@ -84,7 +85,12 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("TaxServiceTemplate", () => Dao.Select<TaxServiceTemplate, string>(x => x.Name, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("TagName", () => Dao.Select<TicketTagGroup, string>(x => x.Name, x => x.Id > 0));
             RuleActionTypeRegistry.RegisterParameterSoruce("PaymentType", () => new[] { Resources.Cash, Resources.CreditCard, Resources.Ticket });
-            RuleActionTypeRegistry.RegisterParameterSoruce("PrintJobName", () => Dao.Select<PrintJob, string>(x => x.Name, x => x.Id > 0));
+            RuleActionTypeRegistry.RegisterParameterSoruce("PrintJobName", () => Dao.Distinct<PrintJob>(x => x.Name));
+            RuleActionTypeRegistry.RegisterParameterSoruce("CustomerGroupCode", () => Dao.Distinct<Customer>(x => x.GroupCode));
+            RuleActionTypeRegistry.RegisterParameterSoruce("MenuItemGroupCode", () => Dao.Distinct<MenuItem>(x => x.GroupCode));
+            RuleActionTypeRegistry.RegisterParameterSoruce("UpdateType", () => new[] { Resources.Update, Resources.Increase, Resources.Decrease });
+            RuleActionTypeRegistry.RegisterParameterSoruce("GiftReason", () => Dao.Select<Reason, string>(x => x.Name, x => x.ReasonType == 1).Distinct());
+            RuleActionTypeRegistry.RegisterParameterSoruce("PortionName", () => Dao.Distinct<MenuItemPortion>(x => x.Name));
         }
 
         private static void ResetCache()
@@ -98,6 +104,27 @@ namespace Samba.Presentation.ViewModels
         {
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
+                if (x.Value.Action.ActionType == "GiftLastTicketItem")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var ti = ticket.TicketItems.LastOrDefault();
+                        if (ti != null)
+                        {
+                            ti.Gifted = true;
+                            var giftReason = x.Value.Action.GetParameter("GiftReason");
+                            if (!string.IsNullOrEmpty(giftReason))
+                            {
+                                var reason = Dao.SingleWithCache<Reason>(u => u.Name == giftReason);
+                                if (reason != null) ti.ReasonId = reason.Id;
+                            }
+                            TicketViewModel.RecalculateTicket(ticket);
+                            EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
+                        }
+                    }
+                }
+
                 if (x.Value.Action.ActionType == "UpdateTicketAccount")
                 {
                     Expression<Func<Customer, bool>> qFilter = null;
@@ -136,9 +163,24 @@ namespace Samba.Presentation.ViewModels
                 {
                     var settingName = x.Value.GetAsString("SettingName");
                     var settingValue = x.Value.GetAsString("SettingValue");
+                    var updateType = x.Value.GetAsString("UpdateType");
                     if (!string.IsNullOrEmpty(settingName))
                     {
-                        AppServices.SettingService.GetCustomSetting(settingName).StringValue = settingValue;
+                        var setting = AppServices.SettingService.GetCustomSetting(settingName);
+                        if (updateType == Resources.Increase)
+                        {
+                            if (string.IsNullOrEmpty(setting.StringValue))
+                                setting.StringValue = settingValue;
+                            setting.IntegerValue++;
+                        }
+                        else if (updateType == Resources.Decrease)
+                        {
+                            if (string.IsNullOrEmpty(setting.StringValue))
+                                setting.StringValue = settingValue;
+                            setting.IntegerValue--;
+                        }
+                        else
+                            setting.StringValue = settingValue;
                         AppServices.SettingService.SaveChanges();
                     }
                 }
@@ -234,6 +276,7 @@ namespace Samba.Presentation.ViewModels
                         var portionName = x.Value.GetAsString("PortionName");
                         var quantity = x.Value.GetAsDecimal("Quantity");
                         var gifted = x.Value.GetAsBoolean("Gift");
+                        var giftReason = x.Value.GetAsString("GiftReason");
                         var tag = x.Value.GetAsString("Tag");
 
                         var ti = ticket.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portionName,
@@ -241,6 +284,15 @@ namespace Samba.Presentation.ViewModels
 
                         ti.Quantity = quantity;
                         ti.Gifted = gifted;
+                        if (gifted && !string.IsNullOrEmpty(giftReason))
+                        {
+                            var reason = Dao.SingleWithCache<Reason>(u => u.Name == giftReason);
+                            if (reason != null) ti.ReasonId = reason.Id;
+                        }
+                        else
+                        {
+                            ti.ReasonId = 0;
+                        }
                         ti.Tag = tag;
 
                         TicketViewModel.RecalculateTicket(ticket);

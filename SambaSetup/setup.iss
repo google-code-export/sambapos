@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.76 "
-#define FileVersion "276"
+#define Version "2.77 "
+#define FileVersion "277"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -46,6 +46,7 @@ en.custom_setup=Custom Setup
 en.sample_data=Sample Data
 en.handheld_terminal_app=Handheld terminal app
 en.ce_install_sp3_required=Compact SQL 4.0 removed from packages list because Service Pack 3 required for Compact SQL 4.0 installation. Program will run with TXT database.
+en.app_parameter=/en
 
 tr.full_setup=Tam Kurulum
 tr.compact_setup=Normal Kurulum
@@ -53,6 +54,12 @@ tr.custom_setup=Özel Kurulum
 tr.sample_data=Örnek Veri
 tr.handheld_terminal_app=El terminali uygulamasý
 tr.ce_install_sp3_required=Compact SQL 4.0 çalýþtýrmak için Service Pack 3 gerektiðinden kurulum listesinden kaldýrýldý. Program TXT dosya veritabaný üzerinden çalýþacak.
+tr.app_parameter=/tr
+
+de.app_parameter=/de
+es.app_parameter=/es
+ru.app_parameter=/ru
+cs.app_parameter=/cs
 
 [Setup]
 AppName=Samba POS
@@ -201,7 +208,7 @@ Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\Samba POS; Filename
 Name: {group}\Samba Data; Filename: {commonappdata}\Ozgu Tech\SambaPOS2\
 
 [Run]
-Filename: {app}\Samba.Presentation.exe; Description: {cm:LaunchProgram,Samba POS}; Flags: nowait postinstall skipifsilent unchecked
+Filename: {app}\Samba.Presentation.exe; Parameters: {cm:app_parameter}; Description: {cm:LaunchProgram,Samba POS}; Flags: nowait postinstall skipifsilent
 
 [Code]
 

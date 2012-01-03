@@ -370,6 +370,9 @@ namespace Samba.Modules.TicketModule
                 {
                     if (x.Topic == EventTopicNames.CustomerSelectedForTicket)
                     {
+                        if (AppServices.MainDataContext.SelectedTicket == null)
+                            TicketViewModel.CreateNewTicket();
+
                         AppServices.MainDataContext.AssignCustomerToSelectedTicket(x.Value);
 
                         RuleExecutor.NotifyEvent(RuleEventNames.CustomerSelectedForTicket,
@@ -378,8 +381,9 @@ namespace Samba.Modules.TicketModule
                                 Ticket = AppServices.MainDataContext.SelectedTicket,
                                 CustomerId = x.Value.Id,
                                 CustomerName = x.Value.Name,
-                                PhoneNumber = x.Value.PhoneNumber,
-                                CustomerNote = x.Value.Note
+                                x.Value.PhoneNumber,
+                                CustomerNote = x.Value.Note,
+                                CustomerGroupCode = x.Value.GroupCode
                             });
 
                         if (!string.IsNullOrEmpty(SelectedTicket.CustomerName) && SelectedTicket.Items.Count > 0)

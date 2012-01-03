@@ -60,6 +60,7 @@ namespace Samba.Domain.Models.Tickets
         public string LocationName { get; set; }
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
+        public string CustomerGroupCode { get; set; }
         public bool IsPaid { get; set; }
         public decimal RemainingAmount { get; set; }
         public decimal TotalAmount { get; set; }
@@ -605,11 +606,13 @@ namespace Samba.Domain.Models.Tickets
             {
                 CustomerId = 0;
                 CustomerName = "";
+                CustomerGroupCode = "";
             }
             else
             {
                 CustomerId = customer.Id;
                 CustomerName = customer.Name.Trim();
+                CustomerGroupCode = (customer.GroupCode ?? "").Trim();
             }
         }
 

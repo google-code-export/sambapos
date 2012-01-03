@@ -9,9 +9,14 @@
             </Label>
             <TextBox HorizontalAlignment="Left" MinWidth="200" Text="{Binding Name}" />
             <Label>
+                <LocText ResourceIdentifierKey="GroupCode" Suffix=":"/>
+            </Label>
+            <ComboBox HorizontalAlignment="Left" MinWidth="150" Text="{Binding GroupCode,Mode=TwoWay}"
+                      ItemsSource="{Binding GroupCodes}" IsEditable="True"/>
+            <Label>
                 <LocText ResourceIdentifierKey="PhoneNumber" Suffix=":"/>
             </Label>
-            <Common:MaskedTextBox HorizontalAlignment="Left" MinWidth="100" InputMask="(000) 000-0000"
+            <Common:MaskedTextBox HorizontalAlignment="Left" MinWidth="100" InputMask="{Binding PhoneNumberInputMask}"
                  PromptChar=" " UnmaskedText="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
             <Label>
                 <LocText ResourceIdentifierKey="Address" Suffix=":"/>

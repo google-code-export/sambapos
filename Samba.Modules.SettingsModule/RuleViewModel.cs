@@ -37,6 +37,7 @@ namespace Samba.Modules.SettingsModule
                     if (settingParts.Length == 3)
                     {
                         SettingConstraintName = settingParts[0].Replace("SN$", "");
+                        SettingConstraintOperation = settingParts[1];
                         SettingConstraintValue = settingParts[2];
                     }
                 }
@@ -88,7 +89,9 @@ namespace Samba.Modules.SettingsModule
         }
 
         public string SettingConstraintName { get; set; }
+        public string SettingConstraintOperation { get; set; }
         public string SettingConstraintValue { get; set; }
+        public IEnumerable<string> Operations { get { return new[] { "=", ">", "<", "!=" }; } }
 
         public IEnumerable<RuleEvent> Events { get { return RuleActionTypeRegistry.RuleEvents.Values; } }
 
@@ -129,7 +132,7 @@ namespace Samba.Modules.SettingsModule
             {
                 if (!string.IsNullOrEmpty(Model.EventConstraints))
                     Model.EventConstraints = Model.EventConstraints + "#";
-                Model.EventConstraints += "SN$" + SettingConstraintName + ";=;" + SettingConstraintValue;
+                Model.EventConstraints += "SN$" + SettingConstraintName + ";" + (SettingConstraintOperation ?? "=") + ";" + SettingConstraintValue;
             }
 
             base.OnSave(value);

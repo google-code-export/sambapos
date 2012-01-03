@@ -111,20 +111,23 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TextBlock Margin="0,0,2,2" Grid.Row="0" Grid.Column="0" Text="{LocText PhoneNumber}" />
                         <Common:MaskedTextBox Margin="0,0,2,2" Grid.Row="0" Grid.Column="1" Name="PhoneNumberTextBox"
-                             InputMask="(###) ### ####" UnmaskedText="{Binding SelectedCustomer.PhoneNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
+                             InputMask="{Binding PhoneNumberInputMask}" UnmaskedText="{Binding SelectedCustomer.PhoneNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
                              PromptChar=" " PreviewKeyDown="PhoneNumberTextBox_PreviewKeyDown" />
                         <TextBlock Margin="0,0,2,2" Grid.Row="1" Grid.Column="0" Text="{LocText CustomerName}" />
                         <TextBox Margin="0,0,2,2" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCustomer.Name,UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Margin="0,0,2,2" Grid.Row="2" Grid.Column="0" Text="{LocText Address}" />
-                        <TextBox Margin="0,0,2,2" Grid.Row="2" Grid.Column="1" Text="{Binding SelectedCustomer.Address,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock Margin="0,0,2,2" Grid.Row="2" Grid.Column="0" Text="{LocText GroupCode}" />
+                        <ComboBox Margin="0,0,2,2" Grid.Row="2" Grid.Column="1" IsEditable="True" ItemsSource="{Binding SelectedCustomer.GroupCodes}" Text="{Binding SelectedCustomer.GroupCode,UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Margin="0,0,2,2" Grid.Row="3" Grid.Column="0" Text="{LocText Address}" />
+                        <TextBox Margin="0,0,2,2" Grid.Row="3" Grid.Column="1" Text="{Binding SelectedCustomer.Address,UpdateSourceTrigger=PropertyChanged}"
                              AcceptsReturn="True" />
-                        <TextBlock Margin="0,0,2,2" Grid.Row="3" Grid.Column="0" Text="{LocText Note}" />
-                        <TextBox Margin="0,0,2,2" Grid.Row="3" Grid.Column="1" Text="{Binding SelectedCustomer.Note,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock Margin="0,0,2,2" Grid.Row="4" Grid.Column="0" Text="{LocText Note}" />
+                        <TextBox Margin="0,0,2,2" Grid.Row="4" Grid.Column="1" Text="{Binding SelectedCustomer.Note,UpdateSourceTrigger=PropertyChanged}"
                              AcceptsReturn="True" />
                     </Grid>
                     <Grid Visibility="{Binding SelectedCustomer.IsNotNew,Converter={StaticResource VisibilityConverter}}">

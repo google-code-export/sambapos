@@ -3116,4 +3116,55 @@ Error Message:
   <data name="Small" xml:space="preserve">
     <value>Small</value>
   </data>
+  <data name="GiftLastTicketItem">
+    <value xml:space="preserve">Gift Last Ticket Item</value>
+  </data>
+  <data name="Other">
+    <value xml:space="preserve">Other</value>
+  </data>
+  <data name="PhoneNumberInputMask">
+    <value xml:space="preserve">Phone Number Input Mask</value>
+  </data>
+  <data name="Increase">
+    <value xml:space="preserve">Increase</value>
+  </data>
+  <data name="Decrease">
+    <value xml:space="preserve">Decrease</value>
+  </data>
+  <data name="SettingName">
+    <value xml:space="preserve">Setting Name</value>
+  </data>
+  <data name="SettingValue">
+    <value xml:space="preserve">Setting Value</value>
+  </data>
+  <data name="UpdateType">
+    <value xml:space="preserve">Update Type</value>
+  </data>
+  <data name="Command">
+    <value xml:space="preserve">Command</value>
+  </data>
+  <data name="RoleName">
+    <value xml:space="preserve">Role Name</value>
+  </data>
+  <data name="OldLocation">
+    <value xml:space="preserve">Old Location</value>
+  </data>
+  <data name="NewLocation">
+    <value xml:space="preserve">New Location</value>
+  </data>
+  <data name="NumericValue">
+    <value xml:space="preserve">Numeric Value</value>
+  </data>
+  <data name="CustomerGroupCode">
+    <value xml:space="preserve">Customer Group Code</value>
+  </data>
+  <data name="CustomerId">
+    <value xml:space="preserve">Customer ID</value>
+  </data>
+  <data name="PaymentType">
+    <value xml:space="preserve">Payment Type</value>
+  </data>
+
+
+
 </root>

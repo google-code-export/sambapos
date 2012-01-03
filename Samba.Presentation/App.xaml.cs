@@ -2,6 +2,7 @@
 using System.Windows;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Samba.Infrastructure;
+using Samba.Infrastructure.Settings;
 using Samba.Presentation.Common.ErrorReport;
 using Samba.Presentation.Common.Services;
 
@@ -15,6 +16,12 @@ namespace Samba.Presentation
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            if (e.Args.Length > 0)
+            {
+                var lang = e.Args[0].Trim('/');
+                if (string.IsNullOrEmpty(LocalSettings.CurrentLanguage) && LocalSettings.SupportedLanguages.Contains(lang))
+                    LocalSettings.CurrentLanguage = lang;
+            }
 #if (DEBUG)
             RunInDebugMode();
 #else

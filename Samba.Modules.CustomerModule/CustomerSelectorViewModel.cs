@@ -36,6 +36,7 @@ namespace Samba.Modules.CustomerModule
         public ICaptionCommand AddReceivableCommand { get; set; }
         public ICaptionCommand AddLiabilityCommand { get; set; }
         public ICaptionCommand CloseAccountScreenCommand { get; set; }
+        public string PhoneNumberInputMask { get { return AppServices.SettingService.PhoneNumberInputMask; } }
 
         public Ticket SelectedTicket { get { return AppServices.MainDataContext.SelectedTicket; } }
         public ObservableCollection<CustomerViewModel> FoundCustomers { get; set; }
@@ -349,7 +350,6 @@ namespace Samba.Modules.CustomerModule
                 AppServices.MainDataContext.IsCurrentWorkPeriodOpen
                 && SelectedCustomer != null
                 && !string.IsNullOrEmpty(SelectedCustomer.PhoneNumber)
-                && !string.IsNullOrEmpty(SelectedCustomer.Address)
                 && !string.IsNullOrEmpty(SelectedCustomer.Name)
                 && (AppServices.MainDataContext.SelectedTicket == null || AppServices.MainDataContext.SelectedTicket.CustomerId == 0);
         }

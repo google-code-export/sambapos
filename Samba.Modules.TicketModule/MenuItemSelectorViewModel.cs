@@ -90,7 +90,7 @@ namespace Samba.Modules.TicketModule
                 SubCategories.Clear();
                 MenuItems.Clear();
                 var items = Categories.Select(x => x.Category).SelectMany(x => x.ScreenMenuItems).Where(
-                    x => numeratorValue.ToLower().Split(' ').All(y => x.Name.ToLower().Contains(y)))
+                    x => numeratorValue.ToLower().Split(' ').All(y => !string.IsNullOrEmpty(x.Name) && x.Name.ToLower().Contains(y)))
                     .Select(x => new ScreenMenuItemButton(x, MenuItemCommand, SelectedCategory));
                 MenuItems.AddRange(items.OrderBy(x => x.FindOrder(numeratorValue)).Take(30));
             }

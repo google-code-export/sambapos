@@ -88,12 +88,11 @@ namespace Samba.Services
                     return false;
             }
             return false;
-
         }
 
         public bool ValueEquals(object parameterValue)
         {
-            if (IsNumericType(parameterValue.GetType()))
+            if (IsNumericType(parameterValue.GetType()) || Operation.Contains(OpConst.Greater) || Operation.Contains(OpConst.Less))
             {
                 decimal propertyValue;
                 decimal.TryParse(parameterValue.ToString(), out propertyValue);

@@ -6,6 +6,7 @@ using System.Windows;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
+using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Presentation.Common.Services;
@@ -118,6 +119,8 @@ namespace Samba.Modules.MenuModule
                 IList<IOrderable> values = new List<IOrderable>(_workspace.All<MenuItem>().OrderBy(x => x.GroupCode + x.Name)
                     .Where(x => !SelectedCategory.ContainsMenuItem(x))
                     .Select(x => new ScreenMenuItem { MenuItemId = x.Id, Name = x.Name, MenuItem = x }));
+
+                SelectedCategory.ScreenMenuItems.ToList().ForEach(x=>x.MenuItem = Dao.SingleWithCache<MenuItem>(y=>y.Id == x.MenuItemId));
 
                 IList<IOrderable> selectedValues = new List<IOrderable>(SelectedCategory.ScreenMenuItems);
 

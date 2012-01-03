@@ -200,6 +200,7 @@ namespace Samba.Services.Printing
             result = FormatData(result, Resources.TF_TableName, () => ticket.LocationName);
             result = FormatData(result, Resources.TF_TicketNote, () => ticket.Note);
             result = FormatData(result, Resources.TF_AccountName, () => ticket.CustomerName);
+            result = FormatData(result, "{ACC GROUPCODE}", () => ticket.CustomerGroupCode);
 
             if (ticket.CustomerId > 0 && (result.Contains(Resources.TF_AccountAddress) || result.Contains(Resources.TF_AccountPhone)))
             {
