@@ -73,8 +73,19 @@ namespace FlexButton
         public static readonly DependencyProperty ButtonImageProperty =
             DependencyProperty.Register("ButtonImage", typeof(ImageSource), typeof(FlexButton));
 
+        public static readonly DependencyProperty IsImageOnlyProperty =
+            DependencyProperty.Register("IsImageOnly", typeof(bool), typeof(FlexButton));
 
         #region Properties...
+
+        public Visibility IsHeaderVisible { get { return IsImageOnly ? Visibility.Visible : Visibility.Collapsed; } }
+        public Visibility IsHeaderInvisible { get { return IsImageOnly ? Visibility.Collapsed : Visibility.Visible; } }
+
+        public bool IsImageOnly
+        {
+            get { return (bool)GetValue(IsImageOnlyProperty); }
+            set { SetValue(IsImageOnlyProperty, value); }
+        }
 
         public ImageSource ButtonImage
         {
@@ -152,11 +163,12 @@ namespace FlexButton
 
         public FlexButton()
         {
+
             HighlightMargin = new Thickness(0);
             HighlightBrightness = 100;
             GlowColor = Brushes.WhiteSmoke;
 
-            OuterBorderBrush = Brushes.Gray; 
+            OuterBorderBrush = Brushes.Gray;
 
             InnerBorderBrush = new LinearGradientBrush(Colors.White, Colors.LightGray, 90);
             InnerBorderThickness = new Thickness(1);

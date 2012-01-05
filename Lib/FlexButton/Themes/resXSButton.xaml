@@ -7,19 +7,19 @@
         <ResourceDictionary Source="/FlexButton;component/Themes/resXSButtonStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="stringTemplate">
+    <DataTemplate x:Key="stringOnlyTemplate">
         <Viewbox>
             <TextBlock Text="{Binding}" TextAlignment="Center"/>
         </Viewbox>
     </DataTemplate>
 
-    <DataTemplate x:Key="defaultTemplate">
+    <DataTemplate x:Key="defaultTextTemplate">
     </DataTemplate>
 
-    <local:ButtonContentTemplateSelector
-       DefaultTemplate="{StaticResource defaultTemplate}" 
-       StringTemplate="{StaticResource stringTemplate}" 
-       x:Key="buttonContentTemplateSelector" />
+    <local:ButtonTextTemplateSelector
+       DefaultTemplate="{StaticResource defaultTextTemplate}" 
+       StringTemplate="{StaticResource stringOnlyTemplate}" 
+       x:Key="buttonTextTemplateSelector" />
 
     <Style TargetType="{x:Type local:FlexButton}" >
 
@@ -72,14 +72,15 @@
                                     </Border.Background>
                                 </Border>
 
-                                <Border Name="padding"  Margin="{TemplateBinding Padding}">
+                                <Border Name="padding" Margin="{TemplateBinding Padding}"
+                                        Visibility="{Binding IsHeaderInvisible, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FlexButton}}}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Name="TopImage" Grid.Column="0" Stretch="Uniform" StretchDirection="DownOnly" Source="{Binding ButtonImage, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FlexButton}}}" Opacity="0.9">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Name="TopImage" Grid.Column="0" Stretch="Uniform" StretchDirection="DownOnly" Source="{Binding ButtonImage, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FlexButton}}}" Opacity="0.90">
                                             <Image.OpacityMask>
                                                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                                     <LinearGradientBrush.RelativeTransform>
@@ -108,11 +109,16 @@
                                                 <RowDefinition Height="5*"/>
                                             </Grid.RowDefinitions>
                                             <ContentPresenter Name="content" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                    ContentTemplateSelector="{StaticResource buttonContentTemplateSelector}">
+                                                    ContentTemplateSelector="{StaticResource buttonTextTemplateSelector}">
                                             </ContentPresenter>
                                         </Grid>
 
                                     </Grid>
+                                </Border>
+
+                                <Border Margin="{TemplateBinding Padding}" Name="ImageBorder"
+                                        Visibility="{Binding IsHeaderVisible, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FlexButton}}}">
+                                    <Image Opacity="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Stretch="Uniform" StretchDirection="DownOnly" Name="TopImage2" Source="{Binding ButtonImage, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FlexButton}}}"></Image>
                                 </Border>
                             </Grid>
                         </Border>
@@ -125,6 +131,7 @@
                             <Setter TargetName="content" Property="Margin" Value="3,1"/>
                             <Setter TargetName="Glow" Property="Opacity" Value="0.5" />
                             <Setter TargetName="Highlight" Property="Opacity" Value="0.5"/>
+                            <Setter TargetName="TopImage2" Property="Margin" Value="3"/>
                             <Setter Property="ButtonColor" Value="Gray"/>
                         </Trigger>
 

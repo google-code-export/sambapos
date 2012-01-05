@@ -3211,6 +3211,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image Only.
+        /// </summary>
+        public static string ImageOnly {
+            get {
+                return ResourceManager.GetString("ImageOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image Path.
         /// </summary>
         public static string ImagePath {

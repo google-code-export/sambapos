@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace FlexButton
 {
-    public class ButtonContentTemplateSelector : DataTemplateSelector
+    public class ButtonTextTemplateSelector : DataTemplateSelector
     {
         public DataTemplate DefaultTemplate { get; set; }
         public DataTemplate StringTemplate { get; set; }

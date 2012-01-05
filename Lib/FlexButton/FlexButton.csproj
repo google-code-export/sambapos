@@ -80,7 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ButtonContentTemplateSelector.cs" />
+    <Compile Include="ButtonTextTemplateSelector.cs" />
     <Compile Include="ColorHSL.cs" />
     <Compile Include="convertBrightnessToColorWithAlpha.cs" />
     <Compile Include="convertColorToColorWithAlpha.cs" />

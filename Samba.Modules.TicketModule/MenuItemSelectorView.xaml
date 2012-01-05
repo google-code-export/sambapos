@@ -126,7 +126,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <FxButton:FlexButton Focusable="False" ButtonColor="{Binding ButtonColor}" Content="{Binding Caption}"
+                                    <FxButton:FlexButton IsImageOnly="{Binding IsImageOnly}" Focusable="False" ButtonColor="{Binding ButtonColor}" Content="{Binding Caption}"
                                      Command="{Binding Command}" CommandParameter="{Binding ScreenMenuItem}" Height="{Binding ButtonHeight}"
                                       Margin="0,0,0,0" ButtonImage="{Binding ImagePath}"/>
                                 </DataTemplate>
@@ -157,7 +157,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBox IsReadOnly="True" Focusable="True" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                    <TextBox IsReadOnly="True" Focusable="false" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
                          FontSize="30" FontWeight="Bold" Text="{Binding NumeratorValue,Mode=TwoWay}" />
                     <FxButton:FlexButton MinWidth="40" Grid.Column="3" Grid.Row="0" Content='C' Command="{Binding TypeValueCommand}"
                          CommandParameter="C" Margin="2,0,0,2" Focusable="False" />

@@ -160,8 +160,8 @@ html
         public static string DefaultCurrencyFormat { get; set; }
         public static string CurrencySymbol { get { return CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol; } }
 
-        public static int DbVersion { get { return 11; } }
-        public static string AppVersion { get { return "2.77"; } }
+        public static int DbVersion { get { return 12; } }
+        public static string AppVersion { get { return "2.78"; } }
         public static IList<string> SupportedLanguages { get { return new[] { "en", "de", "es", "cs", "ru", "tr" }; } }
 
         public static long CurrentDbVersion { get; set; }

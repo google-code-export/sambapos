@@ -69,6 +69,9 @@ namespace Samba.Modules.MenuModule
             set { Model.ImagePath = value; RaisePropertyChanged("ImagePath"); }
         }
 
+        [LocalizedDisplayName(ResourceStrings.ImageOnly)]
+        public bool IsImageOnly { get { return Model.IsImageOnly; } set { Model.IsImageOnly = value; } }
+
         [LocalizedDisplayName(ResourceStrings.Header)]
         public string Name { get { return Model.Name; } set { Model.Name = value; RaisePropertyChanged("Name"); } }
 
