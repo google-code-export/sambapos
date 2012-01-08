@@ -105,6 +105,7 @@ namespace Samba.Domain.Models.Tickets
             set { _paidItems = value; }
         }
 
+        
         public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName)
         {
             // Only for tests

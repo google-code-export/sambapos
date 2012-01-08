@@ -294,6 +294,13 @@ namespace Samba.Domain.Models.Tickets
             _selectedQuantity = Quantity;
         }
 
+        public void UpdateSelectedQuantity(decimal value)
+        {
+            _selectedQuantity = value;
+            if (_selectedQuantity > Quantity) _selectedQuantity = 1;
+            if (_selectedQuantity < 1) _selectedQuantity = 1;
+        }
+
         public string GetPortionDesc()
         {
             if (PortionCount > 1

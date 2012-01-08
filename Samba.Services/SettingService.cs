@@ -102,11 +102,30 @@ namespace Samba.Services
             return _phoneNumberInputMask ?? (_phoneNumberInputMask = GetSetting("PhoneNumberInputMask"));
         }
 
-        public SettingGetter GetCustomSetting(string settingName)
+        public SettingGetter ReadLocalSetting(string settingName)
         {
             if (!_customSettingCache.ContainsKey(settingName))
-                _customSettingCache.Add(settingName, GetSetting(settingName));
+            {
+                var p = new ProgramSetting { Name = settingName };
+                var getter = new SettingGetter(p);
+                _customSettingCache.Add(settingName, getter);
+            }
             return _customSettingCache[settingName];
+        }
+
+        public SettingGetter ReadGlobalSetting(string settingName)
+        {
+            return GetSetting(settingName);
+        }
+
+        public SettingGetter ReadSetting(string settingName)
+        {
+            if (_customSettingCache.ContainsKey(settingName))
+                return _customSettingCache[settingName];
+            if (_settingCache.ContainsKey(settingName))
+                return new SettingGetter(_settingCache[settingName]);
+            var setting = _workspace.Single<ProgramSetting>(x => x.Name == settingName);
+            return setting != null ? new SettingGetter(setting) : SettingGetter.NullSetting;
         }
 
         public SettingGetter GetSetting(string valueName)
@@ -130,6 +149,7 @@ namespace Samba.Services
         public void SaveChanges()
         {
             _workspace.CommitChanges();
+            _workspace = WorkspaceFactory.Create();
         }
 
         public void ResetCache()

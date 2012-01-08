@@ -17,7 +17,7 @@ namespace Samba.Services.Printing
 
         public override void DoPrint(string[] lines)
         {
-            lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine).ToArray();
+            lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine, true).ToArray();
 
             var printer = new LinePrinter(Printer.ShareName, Printer.CharsPerLine, Printer.CodePage);
 
@@ -27,7 +27,7 @@ namespace Samba.Services.Printing
             {
                 SendToPrinter(printer, s);
             }
-            
+
             if (lines.Length >= 2)
                 printer.Cut();
             printer.EndDocument();

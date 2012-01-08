@@ -184,7 +184,7 @@ Toplam: 33,00";
             list.Add("<J00>12 |  12 |  12|  18,00");
 
 
-            var result = PrinterHelper.AlignLines(list, 42).ToList();
+            var result = PrinterHelper.AlignLines(list, 42, false).ToList();
 
             Assert.AreEqual("- 1 Şırdan Tuzlama             8,00   8,00", result[0]);
             Assert.AreEqual("- 1 Ayak Paça                  8,00   8,00", result[1]);

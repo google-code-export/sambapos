@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Samba.Domain.Models.Actions;
+using Samba.Infrastructure.Data.Serializer;
 using Samba.Services;
 
 namespace Samba.Presentation.Common
@@ -47,10 +49,36 @@ namespace Samba.Presentation.Common
         }
     }
 
+    public static class SettingAccessor
+    {
+        private static readonly IDictionary<string, string> Cache = new Dictionary<string, string>();
+
+        public static void ResetCache()
+        {
+            Cache.Clear();
+        }
+
+        public static string ReplaceSettings(string value)
+        {
+            while (Regex.IsMatch(value, "\\{:[^}]+\\}", RegexOptions.Singleline))
+            {
+                var match = Regex.Match(value, "\\{:([^}]+)\\}");
+                var tagName = match.Groups[0].Value;
+                var settingName = match.Groups[1].Value;
+                if (!Cache.ContainsKey(settingName))
+                    Cache.Add(settingName, AppServices.SettingService.ReadSetting(settingName).StringValue);
+                var settingValue = Cache[settingName];
+                value = value.Replace(tagName, settingValue);
+            }
+            return value;
+        }
+    }
+
     public static class RuleExecutor
     {
         public static void NotifyEvent(string eventName, object dataObject)
         {
+            SettingAccessor.ResetCache();
             var rules = AppServices.MainDataContext.Rules.Where(x => x.EventName == eventName);
             foreach (var rule in rules.Where(x => string.IsNullOrEmpty(x.EventConstraints) || SatisfiesConditions(x, dataObject)))
             {
@@ -60,7 +88,11 @@ namespace Samba.Presentation.Common
                     var action = AppServices.MainDataContext.Actions.SingleOrDefault(x => x.Id == container.AppActionId);
                     if (action != null)
                     {
-                        var data = new ActionData { Action = action, DataObject = dataObject, ParameterValues = container.ParameterValues };
+                        var clonedAction = ObjectCloner.Clone(action);
+                        var containerParameterValues = container.ParameterValues ?? "";
+                        clonedAction.Parameter = SettingAccessor.ReplaceSettings(clonedAction.Parameter);
+                        containerParameterValues = SettingAccessor.ReplaceSettings(containerParameterValues);
+                        var data = new ActionData { Action = clonedAction, DataObject = dataObject, ParameterValues = containerParameterValues };
                         data.PublishEvent(EventTopicNames.ExecuteEvent, true);
                     }
                 }
@@ -69,7 +101,9 @@ namespace Samba.Presentation.Common
 
         private static bool SatisfiesConditions(AppRule appRule, object dataObject)
         {
-            var conditions = appRule.EventConstraints.Split('#')
+            var constraints = SettingAccessor.ReplaceSettings(appRule.EventConstraints);
+
+            var conditions = constraints.Split('#')
                 .Select(x => new RuleConstraintViewModel(x));
 
             var parameterNames = dataObject.GetType().GetProperties().Select(x => x.Name);
@@ -110,7 +144,7 @@ namespace Samba.Presentation.Common
                             }
                         }
 
-                        var customSettingValue = AppServices.SettingService.GetCustomSetting(settingName).StringValue ?? "";
+                        var customSettingValue = AppServices.SettingService.ReadSetting(settingName).StringValue ?? "";
                         if (!condition.ValueEquals(customSettingValue)) return false;
                     }
                     if (condition.Name == "TerminalName" && !string.IsNullOrEmpty(condition.Value))

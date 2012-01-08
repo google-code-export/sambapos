@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Samba.Infrastructure.Printing
@@ -82,7 +81,7 @@ namespace Samba.Infrastructure.Printing
             return "";
         }
 
-        public static IEnumerable<string> AlignLines(IEnumerable<string> lines, int maxWidth)
+        public static IEnumerable<string> AlignLines(IEnumerable<string> lines, int maxWidth,bool  canBreak)
         {
             var columnWidths = CalculateColumnWidths(lines);
             var result = new List<string>();
@@ -103,19 +102,19 @@ namespace Samba.Infrastructure.Printing
                 }
                 else if (line.ToLower().StartsWith("<l"))
                 {
-                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Left, false));
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Left, canBreak));
                 }
                 else if (line.ToLower().StartsWith("<r"))
                 {
-                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Right, false));
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Right, canBreak));
                 }
                 else if (line.ToLower().StartsWith("<c"))
                 {
-                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Center, false));
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Center, canBreak));
                 }
                 else if (line.ToLower().StartsWith("<j"))
                 {
-                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Justify, false, columnWidths[0]));
+                    result.Add(AlignLine(maxWidth, lastWidth, line, LineAlignment.Justify, canBreak, columnWidths[0]));
                     if (i < lines.Count() - 1 && columnWidths.Count > 0 && (!lines.ElementAt(i + 1).ToLower().StartsWith("<j") || lines.ElementAt(i + 1).Split('|').Length != columnWidths[0].Length))
                         columnWidths.RemoveAt(0);
                 }

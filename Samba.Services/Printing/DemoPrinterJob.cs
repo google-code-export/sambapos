@@ -41,7 +41,7 @@ namespace Samba.Services.Printing
             if (notepads[0] != null)
             {
                 IntPtr child = FindWindowEx(notepads[0].MainWindowHandle, new IntPtr(0), wname, null);
-                lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine).ToArray();
+                lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine, false).ToArray();
                 var text = lines.Aggregate("", (current, s) => current + RemoveTagFmt(s));
                 SendMessage(child, 0x000C, 0, text);
             }

@@ -110,11 +110,11 @@ namespace Samba.Services
                 }
                 else if (Operation.Contains(OpConst.Greater))
                 {
-                    if (propertyValue < objectValue) return false;
+                    if (propertyValue <= objectValue) return false;
                 }
                 else if (Operation.Contains(OpConst.Less))
                 {
-                    if (propertyValue > objectValue) return false;
+                    if (propertyValue >= objectValue) return false;
                 }
             }
             else

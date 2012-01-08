@@ -409,7 +409,7 @@ namespace Samba.Modules.TicketModule
 
         public bool HandleTextInput(string text)
         {
-            if (IsNumeratorVisible)
+            if (SelectedCategory != null)
             {
                 OnTypeValueExecute(text);
                 return true;

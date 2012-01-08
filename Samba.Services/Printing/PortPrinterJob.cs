@@ -19,7 +19,7 @@ namespace Samba.Services.Printing
             foreach (var line in lines)
             {
                 var data = line.Contains("<") ? line.Split('<').Where(x => !string.IsNullOrEmpty(x)).Select(x => '<' + x) : line.Split('#');
-                data = PrinterHelper.AlignLines(data, Printer.CharsPerLine);
+                data = PrinterHelper.AlignLines(data, Printer.CharsPerLine, false);
                 foreach (var s in data)
                 {
                     if (s.Trim().ToLower() == "<w>")

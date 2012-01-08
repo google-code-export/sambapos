@@ -263,6 +263,7 @@ namespace Samba.Presentation.ViewModels
             {
                 Ticket = AppServices.MainDataContext.SelectedTicket,
                 TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
+                Quantity = quantity,
                 Model.CustomerId,
                 Model.CustomerName,
                 Model.CustomerGroupCode,
@@ -572,11 +573,13 @@ namespace Samba.Presentation.ViewModels
 
         public static void AddPaymentToSelectedTicket(decimal amount, PaymentType paymentType)
         {
-            AppServices.MainDataContext.SelectedTicket.AddPayment(DateTime.Now, amount, paymentType, AppServices.CurrentLoggedInUser.Id);
+            var ticket = AppServices.MainDataContext.SelectedTicket;
+            ticket.AddPayment(DateTime.Now, amount, paymentType, AppServices.CurrentLoggedInUser.Id);
             string paymentName = Resources.Cash;
             if (paymentType == PaymentType.CreditCard) paymentName = Resources.CreditCard;
             if (paymentType == PaymentType.Ticket) paymentName = Resources.Voucher;
-            RuleExecutor.NotifyEvent(RuleEventNames.PaymentReceived, new { Ticket = AppServices.MainDataContext.SelectedTicket, PaymentType = paymentName, Amount = amount });
+            RuleExecutor.NotifyEvent(RuleEventNames.PaymentReceived,
+                new { Ticket = ticket, PaymentType = paymentName, Amount = amount, TicketTag = ticket.Tag, ticket.CustomerId, ticket.CustomerName, ticket.CustomerGroupCode });
         }
 
         public static void PaySelectedTicket(PaymentType paymentType)

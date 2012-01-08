@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -36,13 +37,14 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("SendEmail", Resources.SendEmail, new { SMTPServer = "", SMTPUser = "", SMTPPassword = "", SMTPPort = 0, ToEMailAddress = "", Subject = "", FromEMailAddress = "", EMailMessage = "", FileName = "", DeleteFile = false });
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", Resources.AddTicketDiscount, new { DiscountPercentage = 0m });
             RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, new { MenuItemName = "", PortionName = "", Quantity = 0, Gift = false, GiftReason = "", Tag = "" });
-            RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "" });
+            RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "", Quantity = 0 });
+            RuleActionTypeRegistry.RegisterActionType("UpdateLastTicketItemPriceTag", "Update Last Ticket Item Price Tag", new { PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, new { MenuItemName = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, new { TagName = "", TagValue = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, new { DepartmentName = "", PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
-            RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "", UpdateType = Resources.Update });
+            RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "", UpdateType = Resources.Update, IsLocal = true });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketVat", Resources.UpdateTicketVat, new { VatTemplate = "" });
             RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
@@ -63,8 +65,8 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerId = 0, CustomerName = "", CustomerGroupCode = "", PhoneNumber = "", CustomerNote = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m, CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0 });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketTag = "", MenuItemName = "", MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0, TicketTag = "", CustomerId = 0, CustomerName = "", CustomerGroupCode = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { MenuItemName = "", PortionName = "", PortionPrice = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ChangeAmountChanged, Resources.ChangeAmountUpdated, new { TicketAmount = 0, ChangeAmount = 0, TenderedAmount = 0 });
@@ -104,6 +106,27 @@ namespace Samba.Presentation.ViewModels
         {
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
+                if (x.Value.Action.ActionType == "UpdateLastTicketItemPriceTag")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket == null) return;
+
+                    var ti = ticket.TicketItems.LastOrDefault();
+                    if (ti == null) return;
+
+                    var priceTag = x.Value.GetAsString("PriceTag");
+                    var mi = AppServices.DataAccessService.GetMenuItem(ti.MenuItemId);
+                    if (mi == null) return;
+
+                    var portion = mi.Portions.SingleOrDefault(y => y.Name == ti.PortionName);
+                    if (portion == null) return;
+
+                    ti.UpdatePortion(portion, priceTag, null);
+
+                    TicketViewModel.RecalculateTicket(ticket);
+                    EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
+                }
+
                 if (x.Value.Action.ActionType == "GiftLastTicketItem")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
@@ -112,6 +135,15 @@ namespace Samba.Presentation.ViewModels
                         var ti = ticket.TicketItems.LastOrDefault();
                         if (ti != null)
                         {
+                            decimal quantity;
+                            decimal.TryParse(x.Value.Action.GetParameter("Quantity"), out quantity);
+                            if (quantity > 0 && ti.Quantity > quantity)
+                            {
+                                ti.UpdateSelectedQuantity(quantity);
+                                ti = ticket.ExtractSelectedTicketItems(new List<TicketItem> { ti }).FirstOrDefault();
+                                if (ti == null) return;
+                                AppServices.MainDataContext.AddItemToSelectedTicket(ti);
+                            }
                             ti.Gifted = true;
                             var giftReason = x.Value.Action.GetParameter("GiftReason");
                             if (!string.IsNullOrEmpty(giftReason))
@@ -161,27 +193,39 @@ namespace Samba.Presentation.ViewModels
 
                 if (x.Value.Action.ActionType == "UpdateProgramSetting")
                 {
+                    SettingAccessor.ResetCache();
+
                     var settingName = x.Value.GetAsString("SettingName");
-                    var settingValue = x.Value.GetAsString("SettingValue");
                     var updateType = x.Value.GetAsString("UpdateType");
                     if (!string.IsNullOrEmpty(settingName))
                     {
-                        var setting = AppServices.SettingService.GetCustomSetting(settingName);
+                        var isLocal = x.Value.GetAsBoolean("IsLocal");
+                        var setting = isLocal
+                            ? AppServices.SettingService.ReadLocalSetting(settingName)
+                            : AppServices.SettingService.ReadGlobalSetting(settingName);
+
                         if (updateType == Resources.Increase)
                         {
+                            var settingValue = x.Value.GetAsInteger("SettingValue");
                             if (string.IsNullOrEmpty(setting.StringValue))
-                                setting.StringValue = settingValue;
-                            setting.IntegerValue++;
+                                setting.IntegerValue = settingValue;
+                            else
+                                setting.IntegerValue = setting.IntegerValue + settingValue;
                         }
                         else if (updateType == Resources.Decrease)
                         {
+                            var settingValue = x.Value.GetAsInteger("SettingValue");
                             if (string.IsNullOrEmpty(setting.StringValue))
-                                setting.StringValue = settingValue;
-                            setting.IntegerValue--;
+                                setting.IntegerValue = settingValue;
+                            else
+                                setting.IntegerValue = setting.IntegerValue - settingValue;
                         }
                         else
+                        {
+                            var settingValue = x.Value.GetAsString("SettingValue");
                             setting.StringValue = settingValue;
-                        AppServices.SettingService.SaveChanges();
+                        }
+                        if (!isLocal) AppServices.SettingService.SaveChanges();
                     }
                 }
 

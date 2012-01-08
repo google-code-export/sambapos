@@ -12,6 +12,8 @@ namespace Samba.Domain
             _programSetting = programSetting;
         }
 
+        public string SettingName { get { return _programSetting.Name; } }
+
         public string StringValue { get { return _programSetting.Value; } set { _programSetting.Value = value; } }
 
         public DateTime DateTimeValue
@@ -56,6 +58,12 @@ namespace Samba.Domain
                 return result;
             }
             set { _programSetting.Value = value.ToString(); }
+        }
+
+        private static SettingGetter _nullSetting;
+        public static SettingGetter NullSetting
+        {
+            get { return _nullSetting ?? (_nullSetting = new SettingGetter(new ProgramSetting())); }
         }
     }
 }
