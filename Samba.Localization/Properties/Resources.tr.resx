@@ -3124,9 +3124,9 @@ Mesaj:
   <data name="Other">
     <value xml:space="preserve">Diğer</value>
   </data>
-	<data name="PhoneNumberInputMask">
-		<value xml:space="preserve">Telefon Numarası Formatı</value>
-	</data>
+  <data name="PhoneNumberInputMask">
+    <value xml:space="preserve">Telefon Numarası Formatı</value>
+  </data>
   <data name="Increase">
     <value xml:space="preserve">Arttır</value>
   </data>
@@ -3165,5 +3165,14 @@ Mesaj:
   </data>
   <data name="PaymentType">
     <value xml:space="preserve">Ödeme Tipi</value>
+  </data>
+  <data name="UpdateLastTicketItemPriceTag">
+    <value xml:space="preserve">Son Satırın Fiyat Etiketini Değiştir</value>
+  </data>
+  <data name="TicketLineCancelled">
+    <value xml:space="preserve">Adisyon Satırı İptal Edildiğinde</value>
+  </data>
+  <data name="ImageOnly" xml:space="preserve">
+    <value>Sadece Resim</value>
   </data>
 </root>

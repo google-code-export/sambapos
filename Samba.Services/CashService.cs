@@ -93,7 +93,7 @@ namespace Samba.Services
                 return lines.ToList().Select(x => new CashTransactionData
                                        {
                                            Amount = x.CashTransaction.Amount,
-                                           CustomerName = x.Customer != null ? x.Customer.Name : Resources.UndefinedWithBrackets,
+                                           CustomerName = x.Customer != null ? x.Customer.Name : "",
                                            Date = x.CashTransaction.Date,
                                            Name = x.CashTransaction.Name,
                                            PaymentType = x.CashTransaction.PaymentType,

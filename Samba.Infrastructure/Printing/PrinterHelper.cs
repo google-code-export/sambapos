@@ -81,7 +81,7 @@ namespace Samba.Infrastructure.Printing
             return "";
         }
 
-        public static IEnumerable<string> AlignLines(IEnumerable<string> lines, int maxWidth,bool  canBreak)
+        public static IEnumerable<string> AlignLines(IEnumerable<string> lines, int maxWidth, bool canBreak)
         {
             var columnWidths = CalculateColumnWidths(lines);
             var result = new List<string>();
@@ -95,7 +95,6 @@ namespace Samba.Infrastructure.Printing
                 {
                     lastWidth = Convert.ToInt32(line[3].ToString());
                 }
-
                 if (line.Length < 4)
                 {
                     result.Add(line);
@@ -194,12 +193,12 @@ namespace Samba.Infrastructure.Printing
                 text = parts[i] + text;
             }
 
-            if (parts[0].Length > maxWidth)
+            if (!canBreak && parts[0].Length > maxWidth)
                 parts[0] = parts[0].Substring(0, maxWidth);
 
             if (canBreak && parts[0].Length + text.Length > maxWidth)
             {
-                return parts[0] + "\r" + text.PadLeft(maxWidth);
+                return parts[0].Trim() + "\n" + text.PadLeft(maxWidth);
             }
 
             return parts[0].PadRight(maxWidth - text.Length).Substring(0, maxWidth - text.Length) + text;

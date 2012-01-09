@@ -7046,6 +7046,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket Line Cancelled.
+        /// </summary>
+        public static string TicketLineCancelled {
+            get {
+                return ResourceManager.GetString("TicketLineCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ticket Location Changed.
         /// </summary>
         public static string TicketLocationChanged {
@@ -7761,6 +7770,15 @@ namespace Samba.Localization.Properties {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Last Ticket Item Price Tag.
+        /// </summary>
+        public static string UpdateLastTicketItemPriceTag {
+            get {
+                return ResourceManager.GetString("UpdateLastTicketItemPriceTag", resourceCulture);
             }
         }
         

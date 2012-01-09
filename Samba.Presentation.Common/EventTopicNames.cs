@@ -4,6 +4,7 @@ namespace Samba.Presentation.Common
 {
     public static class RuleEventNames
     {
+        public const string TicketLineCancelled = "TicketLineCancelled";
         public const string ModifierSelected = "ModifierSelected";
         public const string PortionSelected = "PortionSelected";
         public const string ApplicationStarted = "ApplicationStarted";

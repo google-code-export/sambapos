@@ -230,8 +230,8 @@ namespace Samba.Modules.TicketModule
 
             if (IsQuickNumeratorVisible)
                 NumeratorValue = QuickNumeratorValues[0];
-            if (IsNumeratorVisible)
-                NumeratorValue = "";
+            //if (IsNumeratorVisible)
+            NumeratorValue = "";
 
             if (selectedMultiplier > 0)
             {
@@ -336,7 +336,7 @@ namespace Samba.Modules.TicketModule
                 QuickNumeratorValues = string.IsNullOrEmpty(category.NumeratorValues) ? new[] { "1", "2", "3", "4", "5" } : category.NumeratorValues.Split(',');
                 NumeratorValue = QuickNumeratorValues[0];
             }
-            else NumeratorValue = "";
+            NumeratorValue = "";
 
             AlphaButtonValues = string.IsNullOrEmpty(category.AlphaButtonValues) ? new string[0] : category.AlphaButtonValues.Split(',');
 
@@ -409,6 +409,7 @@ namespace Samba.Modules.TicketModule
 
         public bool HandleTextInput(string text)
         {
+
             if (SelectedCategory != null)
             {
                 OnTypeValueExecute(text);

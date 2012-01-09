@@ -317,6 +317,21 @@ namespace Samba.Presentation.ViewModels
         public void CancelItems(IEnumerable<TicketItemViewModel> ticketItems, int userId)
         {
             VoidItems(ticketItems, 0, userId);
+            foreach (var ticketItemViewModel in ticketItems)
+            {
+                var mi = AppServices.DataAccessService.GetMenuItem(ticketItemViewModel.Model.MenuItemId);
+                RuleExecutor.NotifyEvent(RuleEventNames.TicketLineAdded, new
+                {
+                    Ticket = AppServices.MainDataContext.SelectedTicket,
+                    TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
+                    ticketItemViewModel.Quantity,
+                    Model.CustomerId,
+                    Model.CustomerName,
+                    Model.CustomerGroupCode,
+                    ticketItemViewModel.Model.MenuItemName,
+                    MenuItemGroupCode = mi.GroupCode
+                });
+            }
         }
 
         public void CancelSelectedItems()

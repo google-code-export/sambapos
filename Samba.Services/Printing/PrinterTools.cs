@@ -56,7 +56,7 @@ namespace Samba.Services.Printing
             var result = new List<string>();
             if (block is Paragraph)
             {
-                result.AddRange((block as Paragraph).Inlines.OfType<Run>().Select(inline => inline.Text));
+                result.AddRange((block as Paragraph).Inlines.OfType<Run>().Select(inline => inline.Text.Trim()));
             }
             return result;
         }
@@ -99,7 +99,12 @@ namespace Samba.Services.Printing
                     var values = ReadBlocks(row.Cells[i].Blocks);
 
                     if (i == row.Cells.Count - 1 && row != table.RowGroups[0].Rows[0])
-                        rowValue += " | " + string.Join(" ", values);
+                    {
+                        var v = string.Join(" ", values).Trim();
+                        if (!string.IsNullOrEmpty(rowValue))
+                            rowValue = rowValue.Trim() + " | " + v;
+                        else rowValue = "<R>" + v;
+                    }
                     else
                     {
                         var value = string.Join(" ", values);
@@ -111,17 +116,25 @@ namespace Samba.Services.Printing
                                 : value.PadRight(colLenghts[i] + 1);
                         }
 
-                        rowValue += value;
+                        rowValue += " " + value;
                     }
                 }
 
 
                 if (row == table.RowGroups[0].Rows[0])
                 {
+                    result.Add("<L00>");
                     result.Add("<C00>" + rowValue);
                     result.Add("<DB>");
+                    result.Add("<F>-");
                 }
-                else result.Add("<J00>" + rowValue);
+                else if (rowValue.Contains("|"))
+                    result.Add("<J00>" + rowValue);
+                else
+                {
+                    result.Add("<L00>");
+                    result.Add(rowValue);
+                }
             }
             return result;
         }

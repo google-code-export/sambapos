@@ -38,7 +38,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", Resources.AddTicketDiscount, new { DiscountPercentage = 0m });
             RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, new { MenuItemName = "", PortionName = "", Quantity = 0, Gift = false, GiftReason = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "", Quantity = 0 });
-            RuleActionTypeRegistry.RegisterActionType("UpdateLastTicketItemPriceTag", "Update Last Ticket Item Price Tag", new { PriceTag = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateLastTicketItemPriceTag", Resources.UpdateLastTicketItemPriceTag, new { PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, new { MenuItemName = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, new { TagName = "", TagValue = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, new { DepartmentName = "", PriceTag = "" });
@@ -67,6 +67,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0, TicketTag = "", CustomerId = 0, CustomerName = "", CustomerGroupCode = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineCancelled, Resources.TicketLineCancelled, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { MenuItemName = "", PortionName = "", PortionPrice = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ChangeAmountChanged, Resources.ChangeAmountUpdated, new { TicketAmount = 0, ChangeAmount = 0, TenderedAmount = 0 });
@@ -90,7 +91,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("PrintJobName", () => Dao.Distinct<PrintJob>(x => x.Name));
             RuleActionTypeRegistry.RegisterParameterSoruce("CustomerGroupCode", () => Dao.Distinct<Customer>(x => x.GroupCode));
             RuleActionTypeRegistry.RegisterParameterSoruce("MenuItemGroupCode", () => Dao.Distinct<MenuItem>(x => x.GroupCode));
-            RuleActionTypeRegistry.RegisterParameterSoruce("UpdateType", () => new[] { Resources.Update, Resources.Increase, Resources.Decrease });
+            RuleActionTypeRegistry.RegisterParameterSoruce("UpdateType", () => new[] { Resources.Update, Resources.Increase, Resources.Decrease, "Toggle" });
             RuleActionTypeRegistry.RegisterParameterSoruce("GiftReason", () => Dao.Select<Reason, string>(x => x.Name, x => x.ReasonType == 1).Distinct());
             RuleActionTypeRegistry.RegisterParameterSoruce("PortionName", () => Dao.Distinct<MenuItemPortion>(x => x.Name));
         }
@@ -219,6 +220,26 @@ namespace Samba.Presentation.ViewModels
                                 setting.IntegerValue = settingValue;
                             else
                                 setting.IntegerValue = setting.IntegerValue - settingValue;
+                        }
+                        else if (updateType == "Toggle")
+                        {
+                            var settingValue = x.Value.GetAsString("SettingValue");
+                            var parts = settingValue.Split(',');
+                            if (string.IsNullOrEmpty(setting.StringValue))
+                            {
+                                setting.StringValue = parts[0];
+                            }
+                            else
+                            {
+                                for (var i = 0; i < parts.Length; i++)
+                                {
+                                    if (parts[i] == setting.StringValue)
+                                    {
+                                        setting.StringValue = (i + 1) < parts.Length ? parts[i + 1] : parts[0];
+                                        break;
+                                    }
+                                }    
+                            }
                         }
                         else
                         {
