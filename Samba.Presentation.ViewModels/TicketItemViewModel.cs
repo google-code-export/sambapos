@@ -242,6 +242,7 @@ namespace Samba.Presentation.ViewModels
                    new
                    {
                        Ticket = AppServices.MainDataContext.SelectedTicket,
+                       TicketItem = Model,
                        MenuItemName = _model.MenuItemName,
                        PortionName = portion.Name,
                        PortionPrice = _model.Price
@@ -258,18 +259,23 @@ namespace Samba.Presentation.ViewModels
             if (ti != null)
             {
                 RuleExecutor.NotifyEvent(RuleEventNames.ModifierSelected,
-                    new
-                        {
-                            MenuItemName = _model.MenuItemName,
-                            ModifierGroupName = group.Name,
-                            ModifierName = menuItemProperty.Name,
-                            ModifierPrice = ti.PropertyPrice.Amount + ti.VatAmount,
-                            ModifierQuantity = ti.Quantity,
-                            IsRemoved = !_model.Properties.Contains(ti),
-                            IsPriceAddedToParentPrice = ti.CalculateWithParentPrice
-                        });
+                                         new
+                                             {
+                                                 Ticket = AppServices.MainDataContext.SelectedTicket,
+                                                 TicketItem = Model,
+                                                 MenuItemName = _model.MenuItemName,
+                                                 ModifierGroupName = group.Name,
+                                                 ModifierName = menuItemProperty.Name,
+                                                 ModifierPrice = ti.PropertyPrice.Amount + ti.VatAmount,
+                                                 ModifierQuantity = ti.Quantity,
+                                                 IsRemoved = !_model.Properties.Contains(ti),
+                                                 IsPriceAddedToParentPrice = ti.CalculateWithParentPrice,
+                                                 TotalModifierQuantity = Model.Properties.Where(x => x.PropertyGroupId == group.Id).Sum(x => x.Quantity),
+                                                 TotalModifierPrice = Model.Properties.Where(x => x.PropertyGroupId == group.Id).Sum(x => x.PropertyPrice.Amount + x.VatAmount)
+                                             });
             }
             RefreshProperties();
+            RaisePropertyChanged("Properties");
             RaisePropertyChanged("TotalPrice");
             RaisePropertyChanged("Quantity");
         }

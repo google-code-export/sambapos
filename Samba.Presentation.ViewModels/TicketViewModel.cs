@@ -262,6 +262,7 @@ namespace Samba.Presentation.ViewModels
             RuleExecutor.NotifyEvent(RuleEventNames.TicketLineAdded, new
             {
                 Ticket = AppServices.MainDataContext.SelectedTicket,
+                TicketItem = ti,
                 TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
                 Quantity = quantity,
                 Model.CustomerId,
@@ -320,9 +321,10 @@ namespace Samba.Presentation.ViewModels
             foreach (var ticketItemViewModel in ticketItems)
             {
                 var mi = AppServices.DataAccessService.GetMenuItem(ticketItemViewModel.Model.MenuItemId);
-                RuleExecutor.NotifyEvent(RuleEventNames.TicketLineAdded, new
+                RuleExecutor.NotifyEvent(RuleEventNames.TicketLineCancelled, new
                 {
                     Ticket = AppServices.MainDataContext.SelectedTicket,
+                    TicketItem = ticketItemViewModel.Model,
                     TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
                     ticketItemViewModel.Quantity,
                     Model.CustomerId,

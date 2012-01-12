@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -41,8 +42,7 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
 
         private void ExportSalesData()
         {
-            var fileName = AskFileName(
-                    Resources.ExportSalesData + "_" + DateTime.Now.ToString().Replace(":", "").Replace(" ", "_"), ".csv");
+            var fileName = AskFileName(Resources.ExportSalesData + "_" + String.Format("{0:yyyy-MM-dd_hh-mm-ss}.txt", DateTime.Now), ".csv");
 
             if (string.IsNullOrEmpty(fileName)) return;
 

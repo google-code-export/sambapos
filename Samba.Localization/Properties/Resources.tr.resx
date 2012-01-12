@@ -3175,4 +3175,10 @@ Mesaj:
   <data name="ImageOnly" xml:space="preserve">
     <value>Sadece Resim</value>
   </data>
+  <data name="MS_Connected">
+    <value xml:space="preserve">Bağlı.</value>
+  </data>
+  <data name="MS_Disconnected">
+    <value xml:space="preserve">Bağlanmadı.</value>
+  </data>
 </root>

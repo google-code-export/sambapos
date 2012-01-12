@@ -15,15 +15,28 @@ namespace Samba.Domain.Models.Settings
         public decimal CashAmount { get; set; }
         public decimal CreditCardAmount { get; set; }
         public decimal TicketAmount { get; set; }
+        public string Description
+        {
+            get
+            {
+                var desc = (StartDescription + " - " + EndDescription).Trim(' ', '-');
+                return desc;
+            }
+        }
 
         public override string ToString()
         {
             if (!string.IsNullOrEmpty(Name))
                 return Name;
 
-            return StartDate == EndDate 
-                ? StartDate.ToString("dd MMMMM yyyy HH:mm") 
-                : string.Format("{0} - {1}", StartDate.ToString("dd MMMMM yyyy HH:mm"), EndDate.ToString("dd MMMMM yyyy HH:mm"));
+            var desc = !string.IsNullOrEmpty(Description) ? " # " + Description : "";
+
+            if (StartDate == EndDate)
+            {
+                return StartDate.ToString("dd MMMMM yyyy HH:mm") + desc;
+            }
+
+            return string.Format("{0} - {1}{2}", StartDate.ToString("dd MMMMM yyyy HH:mm"), EndDate.ToString("dd MMMMM yyyy HH:mm"), desc).Trim();
         }
     }
 }

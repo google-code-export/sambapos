@@ -3167,10 +3167,16 @@ Error Message:
   <data name="ImageOnly" xml:space="preserve">
     <value>Image Only</value>
   </data>
-	<data name="UpdateLastTicketItemPriceTag">
-		<value xml:space="preserve">Update Last Ticket Item Price Tag</value>
-	</data>
-	<data name="TicketLineCancelled">
-		<value xml:space="preserve">Ticket Line Cancelled</value>
-	</data>
+  <data name="UpdateLastTicketItemPriceTag">
+    <value xml:space="preserve">Update Last Ticket Item Price Tag</value>
+  </data>
+  <data name="TicketLineCancelled">
+    <value xml:space="preserve">Ticket Line Cancelled</value>
+  </data>
+  <data name="MS_Connected">
+    <value xml:space="preserve">Connected.</value>
+  </data>
+  <data name="MS_Disconnected">
+    <value xml:space="preserve">Disconnected.</value>
+  </data>
 </root>

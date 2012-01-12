@@ -168,11 +168,11 @@ namespace Samba.Services.Printing
             result = FormatData(result, Resources.TF_TicketTag, ticket.GetTagData);
             result = FormatDataIf(true, result, "{DEPARTMENT}", () => GetDepartmentName(ticket.DepartmentId));
 
-            if (result.Contains(Resources.TF_OptionalTicketTag))
+            var ticketTagPattern = Resources.TF_OptionalTicketTag + "[^}]+}";
+
+            while (Regex.IsMatch(result,ticketTagPattern))
             {
-                var start = result.IndexOf(Resources.TF_OptionalTicketTag);
-                var end = result.IndexOf("}", start) + 1;
-                var value = result.Substring(start, end - start);
+                var value = Regex.Match(result, ticketTagPattern).Groups[0].Value;
                 var tags = "";
                 try
                 {
@@ -188,6 +188,27 @@ namespace Samba.Services.Printing
                     result = FormatData(result, value, () => "");
                 }
             }
+
+            //while (result.Contains(Resources.TF_OptionalTicketTag))
+            //{
+            //    var start = result.IndexOf(Resources.TF_OptionalTicketTag);
+            //    var end = result.IndexOf("}", start) + 1;
+            //    var value = result.Substring(start, end - start);
+            //    var tags = "";
+            //    try
+            //    {
+            //        var tag = value.Trim('{', '}').Split(':')[1];
+            //        tags = tag.Split(',').Aggregate(tags, (current, t) => current +
+            //            (!string.IsNullOrEmpty(ticket.GetTagValue(t.Trim()))
+            //            ? (t + ": " + ticket.GetTagValue(t.Trim()) + "\r")
+            //            : ""));
+            //        result = FormatData(result.Trim('\r'), value, () => tags);
+            //    }
+            //    catch (Exception)
+            //    {
+            //        result = FormatData(result, value, () => "");
+            //    }
+            //}
 
             var userName = AppServices.MainDataContext.GetUserName(userNo);
 

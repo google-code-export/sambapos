@@ -4145,6 +4145,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connected..
+        /// </summary>
+        public static string MS_Connected {
+            get {
+                return ResourceManager.GetString("MS_Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnected..
+        /// </summary>
+        public static string MS_Disconnected {
+            get {
+                return ResourceManager.GetString("MS_Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple Selection.
         /// </summary>
         public static string MultipleSelection {

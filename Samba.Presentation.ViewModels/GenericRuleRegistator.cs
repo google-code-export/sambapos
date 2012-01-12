@@ -34,7 +34,7 @@ namespace Samba.Presentation.ViewModels
 
         private static void RegisterActions()
         {
-            RuleActionTypeRegistry.RegisterActionType("SendEmail", Resources.SendEmail, new { SMTPServer = "", SMTPUser = "", SMTPPassword = "", SMTPPort = 0, ToEMailAddress = "", Subject = "", FromEMailAddress = "", EMailMessage = "", FileName = "", DeleteFile = false });
+            RuleActionTypeRegistry.RegisterActionType("SendEmail", Resources.SendEmail, new { SMTPServer = "", SMTPUser = "", SMTPPassword = "", SMTPPort = 0, ToEMailAddress = "", Subject = "", FromEMailAddress = "", EMailMessage = "", FileName = "", DeleteFile = false, BypassSslErrors = false });
             RuleActionTypeRegistry.RegisterActionType("AddTicketDiscount", Resources.AddTicketDiscount, new { DiscountPercentage = 0m });
             RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, new { MenuItemName = "", PortionName = "", Quantity = 0, Gift = false, GiftReason = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "", Quantity = 0 });
@@ -50,6 +50,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketAccount", Resources.UpdateTicketAccount, new { AccountPhone = "", AccountName = "", Note = "" });
             RuleActionTypeRegistry.RegisterActionType("ExecutePrintJob", Resources.ExecutePrintJob, new { PrintJobName = "" });
+            RuleActionTypeRegistry.RegisterActionType("RemoveLastModifier", "Remove Last Modifier");
         }
 
         private static void RegisterRules()
@@ -69,7 +70,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineCancelled, Resources.TicketLineCancelled, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { MenuItemName = "", PortionName = "", PortionPrice = 0 });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false, TotalModifierQuantity = 0m, TotalModifierPrice = 0m });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ChangeAmountChanged, Resources.ChangeAmountUpdated, new { TicketAmount = 0, ChangeAmount = 0, TenderedAmount = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketClosed, Resources.TicketClosed);
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ApplicationStarted, Resources.ApplicationStarted);
@@ -94,6 +95,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("UpdateType", () => new[] { Resources.Update, Resources.Increase, Resources.Decrease, "Toggle" });
             RuleActionTypeRegistry.RegisterParameterSoruce("GiftReason", () => Dao.Select<Reason, string>(x => x.Name, x => x.ReasonType == 1).Distinct());
             RuleActionTypeRegistry.RegisterParameterSoruce("PortionName", () => Dao.Distinct<MenuItemPortion>(x => x.Name));
+            RuleActionTypeRegistry.RegisterParameterSoruce("ModifierGroupName", () => Dao.Distinct<MenuItemPropertyGroup>(x => x.Name));
         }
 
         private static void ResetCache()
@@ -107,6 +109,22 @@ namespace Samba.Presentation.ViewModels
         {
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
+                if (x.Value.Action.ActionType == "RemoveLastModifier")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket == null) return;
+                    var ti = x.Value.GetDataValue<TicketItem>("TicketItem");
+                    if (ti == null) return;
+                    if (ti.Properties.Count > 0)
+                    {
+                        var prop = ti.Properties.Last();
+                        prop.Quantity--;
+                        if (prop.Quantity < 1)
+                            ti.Properties.Remove(prop);
+                    }
+                    TicketViewModel.RecalculateTicket(ticket);
+                }
+
                 if (x.Value.Action.ActionType == "UpdateLastTicketItemPriceTag")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
@@ -238,7 +256,7 @@ namespace Samba.Presentation.ViewModels
                                         setting.StringValue = (i + 1) < parts.Length ? parts[i + 1] : parts[0];
                                         break;
                                     }
-                                }    
+                                }
                             }
                         }
                         else
@@ -271,7 +289,8 @@ namespace Samba.Presentation.ViewModels
                         x.Value.GetAsString("Subject"),
                         x.Value.GetAsString("EMailMessage"),
                         x.Value.GetAsString("FileName"),
-                        x.Value.GetAsBoolean("DeleteFile"));
+                        x.Value.GetAsBoolean("DeleteFile"),
+                        x.Value.GetAsBoolean("BypassSslErrors"));
                 }
 
                 if (x.Value.Action.ActionType == "UpdateTicketVat")

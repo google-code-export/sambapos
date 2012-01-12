@@ -253,6 +253,9 @@ namespace Samba.Modules.BasicReports
                 report.AddHeader(workPeriod.StartDate.ToString("dd MMMM yyyy HH:mm") +
                 " - " + DateTime.Now.ToString("dd MMMM yyyy HH:mm"));
             }
+
+            if (!string.IsNullOrEmpty(workPeriod.Description))
+                report.AddHeader(workPeriod.Description);
         }
     }
 }

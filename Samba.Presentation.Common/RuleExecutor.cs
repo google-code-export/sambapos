@@ -60,6 +60,7 @@ namespace Samba.Presentation.Common
 
         public static string ReplaceSettings(string value)
         {
+            if (value == null) return "";
             while (Regex.IsMatch(value, "\\{:[^}]+\\}", RegexOptions.Singleline))
             {
                 var match = Regex.Match(value, "\\{:([^}]+)\\}");
