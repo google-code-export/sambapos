@@ -170,7 +170,7 @@ namespace Samba.Services.Printing
 
             var ticketTagPattern = Resources.TF_OptionalTicketTag + "[^}]+}";
 
-            while (Regex.IsMatch(result,ticketTagPattern))
+            while (Regex.IsMatch(result, ticketTagPattern))
             {
                 var value = Regex.Match(result, ticketTagPattern).Groups[0].Value;
                 var tags = "";
@@ -189,26 +189,22 @@ namespace Samba.Services.Printing
                 }
             }
 
-            //while (result.Contains(Resources.TF_OptionalTicketTag))
-            //{
-            //    var start = result.IndexOf(Resources.TF_OptionalTicketTag);
-            //    var end = result.IndexOf("}", start) + 1;
-            //    var value = result.Substring(start, end - start);
-            //    var tags = "";
-            //    try
-            //    {
-            //        var tag = value.Trim('{', '}').Split(':')[1];
-            //        tags = tag.Split(',').Aggregate(tags, (current, t) => current +
-            //            (!string.IsNullOrEmpty(ticket.GetTagValue(t.Trim()))
-            //            ? (t + ": " + ticket.GetTagValue(t.Trim()) + "\r")
-            //            : ""));
-            //        result = FormatData(result.Trim('\r'), value, () => tags);
-            //    }
-            //    catch (Exception)
-            //    {
-            //        result = FormatData(result, value, () => "");
-            //    }
-            //}
+            const string ticketTag2Pattern = "{TICKETTAG:[^}]+}";
+
+            while (Regex.IsMatch(result, ticketTag2Pattern))
+            {
+                var value = Regex.Match(result, ticketTag2Pattern).Groups[0].Value;
+                var tag = value.Trim('{', '}').Split(':')[1];
+                var tagValue = ticket.GetTagValue(tag);
+                try
+                {
+                    result = FormatData(result, value, () => tagValue);
+                }
+                catch (Exception)
+                {
+                    result = FormatData(result, value, () => "");
+                }
+            }
 
             var userName = AppServices.MainDataContext.GetUserName(userNo);
 

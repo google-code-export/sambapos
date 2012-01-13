@@ -48,6 +48,8 @@ namespace Samba.Modules.SettingsModule
             result.Add(Resources.TF_TicketTag, Resources.TicketTag);
             result.Add("{DEPARTMENT}", Resources.DepartmentName);
             result.Add(Resources.TF_OptionalTicketTag, Resources.OptionalTicketTag);
+            result.Add("{TICKETTAG:X}", Resources.ForPrintingTicketTagValue);
+            result.Add("{SETTING:X}", Resources.ForPrintingAppSettingValue);
             result.Add(Resources.TF_TableOrUserName, Resources.TableOrUserName);
             result.Add(Resources.TF_UserName, Resources.UserName);
             result.Add(Resources.TF_TableName, Resources.TableName);

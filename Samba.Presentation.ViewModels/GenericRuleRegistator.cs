@@ -40,6 +40,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "", Quantity = 0 });
             RuleActionTypeRegistry.RegisterActionType("UpdateLastTicketItemPriceTag", Resources.UpdateLastTicketItemPriceTag, new { PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, new { MenuItemName = "", Tag = "" });
+            RuleActionTypeRegistry.RegisterActionType("RemoveLastModifier", Resources.RemoveLastModifier);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, new { TagName = "", TagValue = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdatePriceTag", Resources.UpdatePriceTag, new { DepartmentName = "", PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
@@ -50,7 +51,6 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketAccount", Resources.UpdateTicketAccount, new { AccountPhone = "", AccountName = "", Note = "" });
             RuleActionTypeRegistry.RegisterActionType("ExecutePrintJob", Resources.ExecutePrintJob, new { PrintJobName = "" });
-            RuleActionTypeRegistry.RegisterActionType("RemoveLastModifier", "Remove Last Modifier");
         }
 
         private static void RegisterRules()

@@ -3181,4 +3181,10 @@ Mesaj:
   <data name="MS_Disconnected">
     <value xml:space="preserve">Bağlanmadı.</value>
   </data>
+	<data name="ForPrintingTicketTagValue">
+		<value xml:space="preserve">X isimli adisyon etiketinin değerini yazdırır.</value>
+	</data>
+	<data name="ForPrintingAppSettingValue">
+		<value xml:space="preserve">X isimli program ayarının değerini yazdırır.</value>
+	</data>
 </root>

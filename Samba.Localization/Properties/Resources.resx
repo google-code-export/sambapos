@@ -3179,4 +3179,13 @@ Error Message:
   <data name="MS_Disconnected">
     <value xml:space="preserve">Disconnected.</value>
   </data>
+	<data name="RemoveLastModifier">
+		<value xml:space="preserve">Remove Last Modifier</value>
+	</data>
+  <data name="ForPrintingTicketTagValue">
+    <value xml:space="preserve">For printing Ticket Tag value X</value>
+  </data>
+  <data name="ForPrintingAppSettingValue">
+    <value xml:space="preserve">For printing Application Setting value X</value>
+  </data>
 </root>

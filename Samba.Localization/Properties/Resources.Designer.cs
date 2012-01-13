@@ -2949,6 +2949,24 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For printing Application Setting value X.
+        /// </summary>
+        public static string ForPrintingAppSettingValue {
+            get {
+                return ResourceManager.GetString("ForPrintingAppSettingValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For printing Ticket Tag value X.
+        /// </summary>
+        public static string ForPrintingTicketTagValue {
+            get {
+                return ResourceManager.GetString("ForPrintingTicketTagValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forty.
         /// </summary>
         public static string Forty {
@@ -5498,6 +5516,15 @@ namespace Samba.Localization.Properties {
         public static string RemainingAmountIfPaidValue_f {
             get {
                 return ResourceManager.GetString("RemainingAmountIfPaidValue_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Last Modifier.
+        /// </summary>
+        public static string RemoveLastModifier {
+            get {
+                return ResourceManager.GetString("RemoveLastModifier", resourceCulture);
             }
         }
         
