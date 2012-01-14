@@ -263,6 +263,7 @@ namespace Samba.Presentation.ViewModels
             {
                 Ticket = AppServices.MainDataContext.SelectedTicket,
                 TicketItem = ti,
+                TicketId = AppServices.MainDataContext.SelectedTicket.Id,
                 TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
                 Quantity = quantity,
                 Model.CustomerId,

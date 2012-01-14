@@ -132,7 +132,6 @@ namespace Samba.Services.Printing
                     result.Add("<J00>" + rowValue);
                 else
                 {
-                    result.Add("<L00>");
                     result.Add(rowValue);
                 }
             }

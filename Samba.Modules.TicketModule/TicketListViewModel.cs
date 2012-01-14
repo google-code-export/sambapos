@@ -375,6 +375,13 @@ namespace Samba.Modules.TicketModule
 
                         AppServices.MainDataContext.AssignCustomerToSelectedTicket(x.Value);
 
+                        var lastOrder = Dao.Last<Ticket>(y => y.CustomerId == x.Value.Id);
+
+                        var lastOderDayCount = lastOrder != null
+                            ? Convert.ToInt32(new TimeSpan(DateTime.Now.Ticks - lastOrder.Date.Ticks).TotalDays) : -1;
+                        var lastOderTotal = lastOrder != null
+                            ? lastOrder.TotalAmount : -1;
+
                         RuleExecutor.NotifyEvent(RuleEventNames.CustomerSelectedForTicket,
                             new
                             {
@@ -383,7 +390,9 @@ namespace Samba.Modules.TicketModule
                                 CustomerName = x.Value.Name,
                                 x.Value.PhoneNumber,
                                 CustomerNote = x.Value.Note,
-                                CustomerGroupCode = x.Value.GroupCode
+                                CustomerGroupCode = x.Value.GroupCode,
+                                LastOrderTotal = lastOderTotal,
+                                LastOrderDayCount = lastOderDayCount
                             });
 
                         if (!string.IsNullOrEmpty(SelectedTicket.CustomerName) && SelectedTicket.Items.Count > 0)
@@ -1061,8 +1070,10 @@ namespace Samba.Modules.TicketModule
             {
                 InteractionService.UserIntraction.GiveFeedback(result.ErrorMessage);
             }
-
-            RuleExecutor.NotifyEvent(RuleEventNames.TicketClosed, new { Ticket = _selectedTicket.Model });
+            else
+            {
+                RuleExecutor.NotifyEvent(RuleEventNames.TicketClosed, new { Ticket = _selectedTicket.Model });
+            }
 
             _selectedTicket = null;
             _selectedTicketItems.Clear();

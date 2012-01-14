@@ -140,7 +140,21 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
         private static void PrepareModificationTable(SimpleReport report, Func<TicketItem, bool> predicate, string title)
         {
             var modifiedItems = ReportContext.Tickets
-                .SelectMany(x => x.TicketItems.Where(predicate).Select(y => new { Ticket = x, UserId = y.ModifiedUserId, MenuItem = y.MenuItemName, y.Quantity, y.ReasonId, y.ModifiedDateTime, Amount = y.GetItemValue() }));
+                .SelectMany(x =>
+                    x.TicketItems.Where(predicate)
+                                 .OrderBy(y => y.ModifiedDateTime)
+                                 .Select(y =>
+                                        new
+                                            {
+                                                Ticket = x,
+                                                UserId = y.ModifiedUserId,
+                                                MenuItem = y.MenuItemName,
+                                                y.Quantity,
+                                                y.ReasonId,
+                                                y.ModifiedDateTime,
+                                                Amount = y.GetItemValue()
+                                            }));
+
 
             if (modifiedItems.Count() == 0) return;
 
@@ -148,11 +162,13 @@ namespace Samba.Modules.BasicReports.Reports.ProductReport
             report.AddColumnLength(title, "14*", "45*", "28*", "13*");
             report.AddTable(title, title, "", "", "");
 
-            foreach (var voidItem in modifiedItems)
+            foreach (var voidItem in modifiedItems.GroupBy(x => x.ReasonId))
             {
-                report.AddRow(title, voidItem.Ticket.TicketNumber, voidItem.Quantity.ToString("#.##") + " " + voidItem.MenuItem, ReportContext.GetUserName(voidItem.UserId), voidItem.ModifiedDateTime.ToShortTimeString());
-                if (voidItem.ReasonId > 0)
-                    report.AddRow(title, ReportContext.GetReasonName(voidItem.ReasonId), "", "", "");
+                if (voidItem.Key > 0) report.AddRow(title, ReportContext.GetReasonName(voidItem.Key), "", "", "");
+                foreach (var vi in voidItem)
+                {
+                    report.AddRow(title, vi.Ticket.TicketNumber, vi.Quantity.ToString("#.##") + " " + vi.MenuItem, ReportContext.GetUserName(vi.UserId), vi.ModifiedDateTime.ToShortTimeString());
+                }
             }
 
             var voidGroups =

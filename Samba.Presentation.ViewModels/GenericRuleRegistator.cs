@@ -63,11 +63,11 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketCreated, Resources.TicketCreated);
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLocationChanged, Resources.TicketLocationChanged, new { OldLocation = "", NewLocation = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTagSelected, Resources.TicketTagSelected, new { TagName = "", TagValue = "", NumericValue = 0, TicketTag = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerId = 0, CustomerName = "", CustomerGroupCode = "", PhoneNumber = "", CustomerNote = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerId = 0, CustomerName = "", CustomerGroupCode = "", PhoneNumber = "", CustomerNote = "", LastOrderTotal = 0m, LastOrderDayCount = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m, CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0, TicketTag = "", CustomerId = 0, CustomerName = "", CustomerGroupCode = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketId = 0m, TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineCancelled, Resources.TicketLineCancelled, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { MenuItemName = "", PortionName = "", PortionPrice = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false, TotalModifierQuantity = 0m, TotalModifierPrice = 0m });
@@ -163,13 +163,14 @@ namespace Samba.Presentation.ViewModels
                                 if (ti == null) return;
                                 AppServices.MainDataContext.AddItemToSelectedTicket(ti);
                             }
-                            ti.Gifted = true;
+                            var reasonId = 0;
                             var giftReason = x.Value.Action.GetParameter("GiftReason");
                             if (!string.IsNullOrEmpty(giftReason))
                             {
                                 var reason = Dao.SingleWithCache<Reason>(u => u.Name == giftReason);
-                                if (reason != null) ti.ReasonId = reason.Id;
+                                if (reason != null) reasonId = reason.Id;
                             }
+                            ticket.GiftItem(ti, reasonId, AppServices.CurrentLoggedInUser.Id);
                             TicketViewModel.RecalculateTicket(ticket);
                             EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                         }

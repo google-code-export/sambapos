@@ -100,6 +100,8 @@ namespace Samba.Services
                 decimal objectValue;
                 decimal.TryParse(Value, out objectValue);
 
+                if (objectValue < 0 || propertyValue < 0) return false;
+
                 if (Operation.Contains(OpConst.NotEqual))
                 {
                     if (propertyValue.Equals(objectValue)) return false;

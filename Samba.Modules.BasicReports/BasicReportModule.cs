@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -41,7 +42,14 @@ namespace Samba.Modules.BasicReports
                         {
                             ReportContext.CurrentWorkPeriod = AppServices.MainDataContext.CurrentWorkPeriod;
                             var document = report.GetReportDocument();
-                            ReportViewModelBase.SaveAsXps(fileName, document);
+                            try
+                            {
+                                ReportViewModelBase.SaveAsXps(fileName, document);
+                            }
+                            catch (Exception e)
+                            {
+                                AppServices.LogError(e);
+                            }
                         }
                     }
                 }

@@ -89,8 +89,7 @@ namespace Samba.Modules.BasicReports
                 {
                     var xpsSm = new XpsSerializationManager(
                         new XpsPackagingPolicy(xpsDoc), false);
-                    DocumentPaginator dp =
-                        ((IDocumentPaginatorSource)document).DocumentPaginator;
+                    var dp = ((IDocumentPaginatorSource)document).DocumentPaginator;
                     xpsSm.SaveAsXaml(dp);
                 }
             }
