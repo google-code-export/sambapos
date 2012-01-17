@@ -57,6 +57,22 @@ namespace Samba.Infrastructure
             }
         }
 
+        public static int GetConnectionCount()
+        {
+            if (_serverObject != null)
+            {
+                try
+                {
+                    return _serverObject.GetConnectionCount();
+                }
+                catch (Exception)
+                {
+                    if (IsConnected) Disconnect();
+                }
+            }
+            return 0;
+        }
+
         public static void SendMessage(string message)
         {
             if (_serverObject != null)

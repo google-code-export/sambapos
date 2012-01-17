@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Threading;
+using System.Windows.Input;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
+using Samba.Infrastructure;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
@@ -32,6 +35,7 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
         public ICaptionCommand DisplayStartOfDayScreenCommand { get; set; }
         public ICaptionCommand DisplayEndOfDayScreenCommand { get; set; }
         public ICaptionCommand CancelCommand { get; set; }
+        public ICaptionCommand RequestShutdownCommand { get; set; }
 
         public WorkPeriod LastWorkPeriod { get { return AppServices.MainDataContext.CurrentWorkPeriod; } }
 
@@ -58,11 +62,29 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             set { _activeScreen = value; RaisePropertyChanged("ActiveScreen"); }
         }
 
+        public string ConnectionCountLabel
+        {
+            get
+            {
+                return string.Format(Resources.ActiveConnections_f, AppServices.MessagingService.ConnectionCount);
+            }
+        }
+
         public string StartDescription { get; set; }
         public string EndDescription { get; set; }
         public decimal CashAmount { get; set; }
         public decimal CreditCardAmount { get; set; }
         public decimal TicketAmount { get; set; }
+        public bool ShutdownRequested { get; set; }
+        public bool IsShutdownRequestVisible
+        {
+            get
+            {
+                if (AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
+                    return AppServices.MessagingService.ConnectionCount > 1;
+                return false;
+            }
+        }
 
         public string LastEndOfDayLabel
         {
@@ -88,10 +110,41 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             DisplayStartOfDayScreenCommand = new CaptionCommand<string>(Resources.StartWorkPeriod, OnDisplayStartOfDayScreenCommand, CanStartOfDayExecute);
             DisplayEndOfDayScreenCommand = new CaptionCommand<string>(Resources.EndWorkPeriod, OnDisplayEndOfDayScreenCommand, CanEndOfDayExecute);
             CancelCommand = new CaptionCommand<string>(Resources.Cancel, OnCancel);
+            RequestShutdownCommand = new CaptionCommand<string>(Resources.RequestShutdown, OnShutDownRequested, CanRequestShutDown);
+        }
+
+        private bool CanRequestShutDown(string arg)
+        {
+            return _timer == null;
+        }
+
+        private Timer _timer;
+        private void OnShutDownRequested(string obj)
+        {
+            AppServices.MessagingService.SendMessage(Messages.ShutdownRequest, "0");
+            _timer = new Timer(OnTimer, null, 500, 5000);
+        }
+
+        private void OnTimer(object state)
+        {
+            AppServices.MessagingService.SendMessage(Messages.PingMessage, "1");
+            RaisePropertyChanged("ConnectionCountLabel");
+            if (AppServices.MessagingService.ConnectionCount < 2)
+                StopTimer();
+            AppServices.MainDispatcher.Invoke(new Action(Refresh));
+        }
+
+        private void StopTimer()
+        {
+            RaisePropertyChanged("IsShutdownRequestVisible");
+            if (_timer != null)
+                _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            _timer = null;
         }
 
         private void OnCancel(string obj)
         {
+            StopTimer();
             ActiveScreen = 0;
         }
 
@@ -109,12 +162,14 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
         {
             return AppServices.ActiveAppScreen == AppScreens.WorkPeriods
                 && OpenTicketCount == 0
+                && (AppServices.MessagingService.ConnectionCount < 2 || AppServices.IsUserPermittedFor(PermissionNames.CloseActiveWorkPeriods))
                 && WorkPeriodTime.TotalMinutes > 1
                 && AppServices.MainDataContext.IsCurrentWorkPeriodOpen;
         }
 
         private void OnEndOfDayExecute(string obj)
         {
+            StopTimer();
             AppServices.MainDataContext.StopWorkPeriod(EndDescription);
             Refresh();
             AppServices.MainDataContext.CurrentWorkPeriod.PublishEvent(EventTopicNames.WorkPeriodStatusChanged);
@@ -156,6 +211,8 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             RaisePropertyChanged("WorkPeriods");
             RaisePropertyChanged("LastEndOfDayLabel");
             RaisePropertyChanged("WorkPeriods");
+            RaisePropertyChanged("IsShutdownRequestVisible");
+            RaisePropertyChanged("ConnectionCountLabel");
 
             StartDescription = "";
             EndDescription = "";
@@ -164,6 +221,8 @@ namespace Samba.Modules.SettingsModule.WorkPeriods
             TicketAmount = 0;
 
             ActiveScreen = 0;
+
+            CommandManager.InvalidateRequerySuggested();
         }
     }
 }

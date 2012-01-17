@@ -94,10 +94,11 @@ namespace Samba.Modules.SettingsModule
             ListRuleActionsCommand = new CategoryCommand<string>(Resources.RuleActions, Resources.Settings, OnListRuleActions);
             ListRulesCommand = new CategoryCommand<string>(Resources.Rules, Resources.Settings, OnListRules);
             ListTriggersCommand = new CategoryCommand<string>(Resources.Triggers, Resources.Settings, OnListTriggers);
-            
+
             ShowBrowser = new CategoryCommand<string>(Resources.SambaPosWebsite, Resources.SambaNetwork, OnShowBrowser) { Order = 99 };
 
             PermissionRegistry.RegisterPermission(PermissionNames.OpenWorkPeriods, PermissionCategories.Navigation, Resources.CanStartEndOfDay);
+            PermissionRegistry.RegisterPermission(PermissionNames.CloseActiveWorkPeriods, PermissionCategories.Navigation, Resources.ForceClosingActiveWorkPeriod);
 
             EventServiceFactory.EventService.GetEvent<GenericEvent<VisibleViewModelBase>>().Subscribe(s =>
             {

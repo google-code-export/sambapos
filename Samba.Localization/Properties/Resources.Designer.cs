@@ -216,6 +216,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Active Connections.
+        /// </summary>
+        public static string ActiveConnections_f {
+            get {
+                return ResourceManager.GetString("ActiveConnections_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -1323,6 +1332,15 @@ namespace Samba.Localization.Properties {
         public static string CheckDBVersion {
             get {
                 return ResourceManager.GetString("CheckDBVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking....
+        /// </summary>
+        public static string Checking {
+            get {
+                return ResourceManager.GetString("Checking", resourceCulture);
             }
         }
         
@@ -2704,6 +2722,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Execute Ticket Operation.
+        /// </summary>
+        public static string ExecuteTicketOperation {
+            get {
+                return ResourceManager.GetString("ExecuteTicketOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
@@ -2936,6 +2963,15 @@ namespace Samba.Localization.Properties {
         public static string FooterTemplate {
             get {
                 return ResourceManager.GetString("FooterTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Closing Active Work Period.
+        /// </summary>
+        public static string ForceClosingActiveWorkPeriod {
+            get {
+                return ResourceManager.GetString("ForceClosingActiveWorkPeriod", resourceCulture);
             }
         }
         
@@ -5574,6 +5610,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Request Shutdown.
+        /// </summary>
+        public static string RequestShutdown {
+            get {
+                return ResourceManager.GetString("RequestShutdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset
         ///Customer.
         /// </summary>
@@ -7543,6 +7588,33 @@ namespace Samba.Localization.Properties {
         public static string TotalIncome {
             get {
                 return ResourceManager.GetString("TotalIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Group Price.
+        /// </summary>
+        public static string TotalModifierPrice {
+            get {
+                return ResourceManager.GetString("TotalModifierPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Group Quantity.
+        /// </summary>
+        public static string TotalModifierQuantity {
+            get {
+                return ResourceManager.GetString("TotalModifierQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Modifier Count.
+        /// </summary>
+        public static string TotalPropertyCount {
+            get {
+                return ResourceManager.GetString("TotalPropertyCount", resourceCulture);
             }
         }
         

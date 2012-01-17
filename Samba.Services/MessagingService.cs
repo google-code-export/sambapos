@@ -17,6 +17,7 @@ namespace Samba.Services
         private IMessageListener _messageListener;
         public bool Reconnecting { get; set; }
         public bool IsConnected { get { return MessagingClient.IsConnected; } }
+        public int ConnectionCount { get { return GetConnectionCount(); } }
 
         public void RegisterMessageListener(IMessageListener listener)
         {
@@ -30,7 +31,7 @@ namespace Samba.Services
 
         public void StartMessagingClient()
         {
-            if(_messageListener != null)
+            if (_messageListener != null)
             {
                 if (!CanStartMessagingClient())
                     throw new Exception("Mesaj istemcisi başlatılamaz.");
@@ -66,6 +67,22 @@ namespace Samba.Services
             {
                 //AppServices.MainDispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(Reconnect));
             }
+        }
+
+        private static int GetConnectionCount()
+        {
+            try
+            {
+                if (MessagingClient.IsConnected)
+                {
+                    return MessagingClient.GetConnectionCount();
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            return 0;
         }
 
         public bool Connected()

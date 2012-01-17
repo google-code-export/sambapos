@@ -270,6 +270,7 @@ namespace Samba.Presentation.ViewModels
                                                  ModifierQuantity = ti.Quantity,
                                                  IsRemoved = !_model.Properties.Contains(ti),
                                                  IsPriceAddedToParentPrice = ti.CalculateWithParentPrice,
+                                                 TotalPropertyCount = Model.Properties.Count,
                                                  TotalModifierQuantity = Model.Properties.Where(x => x.PropertyGroupId == group.Id).Sum(x => x.Quantity),
                                                  TotalModifierPrice = Model.Properties.Where(x => x.PropertyGroupId == group.Id).Sum(x => x.PropertyPrice.Amount + x.VatAmount)
                                              });

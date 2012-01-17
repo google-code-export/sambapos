@@ -32,6 +32,11 @@
                     <FlexButton:FlexButton Margin="0,0,0,10" Height="40" Command="{Binding DisplayEndOfDayScreenCommand}"
                          Content="{Binding DisplayEndOfDayScreenCommand.Caption}" />
                     <TextBlock FontSize="16" Foreground="Red" FontWeight="Bold" Text="{Binding OpenTicketLabel}" />
+                    <StackPanel Visibility="{Binding IsShutdownRequestVisible,Converter={StaticResource VisibilityConverter}}">
+                        <TextBlock FontSize="16" Foreground="Red" FontWeight="Bold" Text="{Binding ConnectionCountLabel}" />
+                        <FlexButton:FlexButton Margin="0,0,0,10" Height="40" Command="{Binding RequestShutdownCommand}"
+                            Content="{Binding RequestShutdownCommand.Caption}" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
             <Grid>

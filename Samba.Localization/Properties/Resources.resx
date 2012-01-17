@@ -3167,25 +3167,53 @@ Error Message:
   <data name="ImageOnly" xml:space="preserve">
     <value>Image Only</value>
   </data>
-  <data name="UpdateLastTicketItemPriceTag">
-    <value xml:space="preserve">Update Last Ticket Item Price Tag</value>
+  <data name="UpdateLastTicketItemPriceTag" xml:space="preserve">
+    <value>Update Last Ticket Item Price Tag</value>
   </data>
-  <data name="TicketLineCancelled">
-    <value xml:space="preserve">Ticket Line Cancelled</value>
+  <data name="TicketLineCancelled" xml:space="preserve">
+    <value>Ticket Line Cancelled</value>
   </data>
-  <data name="MS_Connected">
-    <value xml:space="preserve">Connected.</value>
+  <data name="MS_Connected" xml:space="preserve">
+    <value>Connected.</value>
   </data>
-  <data name="MS_Disconnected">
-    <value xml:space="preserve">Disconnected.</value>
+  <data name="MS_Disconnected" xml:space="preserve">
+    <value>Disconnected.</value>
   </data>
-	<data name="RemoveLastModifier">
-		<value xml:space="preserve">Remove Last Modifier</value>
+  <data name="RemoveLastModifier" xml:space="preserve">
+    <value>Remove Last Modifier</value>
+  </data>
+  <data name="ForPrintingTicketTagValue" xml:space="preserve">
+    <value>For printing Ticket Tag value X</value>
+  </data>
+  <data name="ForPrintingAppSettingValue" xml:space="preserve">
+    <value>For printing Application Setting value X</value>
+  </data>
+  <data name="ForceClosingActiveWorkPeriod" xml:space="preserve">
+    <value>Force Closing Active Work Period</value>
+  </data>
+  <data name="RequestShutdown" xml:space="preserve">
+    <value>Request Shutdown</value>
+  </data>
+  <data name="ActiveConnections_f" xml:space="preserve">
+    <value>{0} Active Connections</value>
+  </data>
+  <data name="Checking" xml:space="preserve">
+    <value>Checking...</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TotalPropertyCount" xml:space="preserve">
+    <value>Total Modifier Count</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TotalModifierQuantity" xml:space="preserve">
+    <value>Total Group Quantity</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TotalModifierPrice" xml:space="preserve">
+    <value>Total Group Price</value>
+    <comment>Label content</comment>
+  </data>
+	<data name="ExecuteTicketOperation">
+		<value xml:space="preserve">Execute Ticket Operation</value>
 	</data>
-  <data name="ForPrintingTicketTagValue">
-    <value xml:space="preserve">For printing Ticket Tag value X</value>
-  </data>
-  <data name="ForPrintingAppSettingValue">
-    <value xml:space="preserve">For printing Application Setting value X</value>
-  </data>
 </root>

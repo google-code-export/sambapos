@@ -48,5 +48,10 @@ namespace Samba.Infrastructure
         {
             return null;
         }
+
+        public int GetConnectionCount()
+        {
+            return _clients.Count;
+        }
     }
 }

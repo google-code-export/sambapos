@@ -46,6 +46,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("RefreshCache", Resources.RefreshCache);
             RuleActionTypeRegistry.RegisterActionType("SendMessage", Resources.BroadcastMessage, new { Command = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateProgramSetting", Resources.UpdateProgramSetting, new { SettingName = "", SettingValue = "", UpdateType = Resources.Update, IsLocal = true });
+            RuleActionTypeRegistry.RegisterActionType("ExecuteTicketEvent", Resources.ExecuteTicketOperation, new { TicketOperationType = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketVat", Resources.UpdateTicketVat, new { VatTemplate = "" });
             RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
@@ -70,7 +71,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketId = 0m, TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineCancelled, Resources.TicketLineCancelled, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { MenuItemName = "", PortionName = "", PortionPrice = 0 });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false, TotalModifierQuantity = 0m, TotalModifierPrice = 0m });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false, TotalPropertyCount = 0, TotalModifierQuantity = 0m, TotalModifierPrice = 0m });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ChangeAmountChanged, Resources.ChangeAmountUpdated, new { TicketAmount = 0, ChangeAmount = 0, TenderedAmount = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketClosed, Resources.TicketClosed);
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ApplicationStarted, Resources.ApplicationStarted);
@@ -96,6 +97,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("GiftReason", () => Dao.Select<Reason, string>(x => x.Name, x => x.ReasonType == 1).Distinct());
             RuleActionTypeRegistry.RegisterParameterSoruce("PortionName", () => Dao.Distinct<MenuItemPortion>(x => x.Name));
             RuleActionTypeRegistry.RegisterParameterSoruce("ModifierGroupName", () => Dao.Distinct<MenuItemPropertyGroup>(x => x.Name));
+            RuleActionTypeRegistry.RegisterParameterSoruce("TicketOperationType", () => new[] { Resources.Refresh, Resources.Close });
         }
 
         private static void ResetCache()
@@ -293,6 +295,22 @@ namespace Samba.Presentation.ViewModels
                         x.Value.GetAsBoolean("DeleteFile"),
                         x.Value.GetAsBoolean("BypassSslErrors"));
                 }
+
+
+
+                if (x.Value.Action.ActionType == "ExecuteTicketEvent")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket != null)
+                    {
+                        var operationName = x.Value.GetAsString("TicketOperation");
+                        if (operationName == Resources.Refresh)
+                            EventServiceFactory.EventService.PublishEvent(EventTopicNames.DisplayTicketView);
+                        if (operationName == Resources.Close)
+                            ticket.PublishEvent(EventTopicNames.PaymentSubmitted);
+                    }
+                }
+
 
                 if (x.Value.Action.ActionType == "UpdateTicketVat")
                 {

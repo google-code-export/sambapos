@@ -3181,10 +3181,38 @@ Mesaj:
   <data name="MS_Disconnected">
     <value xml:space="preserve">Bağlanmadı.</value>
   </data>
-	<data name="ForPrintingTicketTagValue">
-		<value xml:space="preserve">X isimli adisyon etiketinin değerini yazdırır.</value>
-	</data>
-	<data name="ForPrintingAppSettingValue">
-		<value xml:space="preserve">X isimli program ayarının değerini yazdırır.</value>
-	</data>
+  <data name="ForPrintingTicketTagValue">
+    <value xml:space="preserve">X isimli adisyon etiketinin değerini yazdırır.</value>
+  </data>
+  <data name="ForPrintingAppSettingValue">
+    <value xml:space="preserve">X isimli program ayarının değerini yazdırır.</value>
+  </data>
+  <data name="ForceClosingActiveWorkPeriod">
+    <value xml:space="preserve">Aktif bağlantı varken gün sonu yapabilir.</value>
+  </data>
+  <data name="RequestShutdown">
+    <value xml:space="preserve">Kapanış İste</value>
+  </data>
+  <data name="ActiveConnections_f">
+    <value xml:space="preserve">{0} Aktif Bağlantı</value>
+  </data>
+  <data name="Checking" xml:space="preserve">
+    <value>Kontrol...</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TotalPropertyCount" xml:space="preserve">
+    <value>Toplam Özellik Sayısı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TotalModifierQuantity" xml:space="preserve">
+    <value>Toplam Group Miktarı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="TotalModifierPrice" xml:space="preserve">
+    <value>Toplam Grup Fiyatı</value>
+    <comment>Label content</comment>
+  </data>
+  <data name="ExecuteTicketOperation">
+    <value xml:space="preserve">Adisyon İşlemi Başlat</value>
+  </data>
 </root>

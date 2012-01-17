@@ -33,6 +33,7 @@ namespace Samba.Services
         public static string MakeCashTransaction = "MakeCashTransaction";
         public static string CreditOrDeptAccount = "CreditOrDeptAccount";
         public static string MakeAccountTransaction = "MakeAccountTransaction";
+        public static string CloseActiveWorkPeriods = "CloseActiveWorkPeriod";
     }
 
     public static class PermissionCategories
