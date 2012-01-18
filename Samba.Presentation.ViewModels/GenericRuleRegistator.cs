@@ -15,6 +15,7 @@ using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Services;
 using Samba.Services;
+using Samba.Infrastructure.Data.Serializer;
 
 namespace Samba.Presentation.ViewModels
 {
@@ -462,7 +463,7 @@ namespace Samba.Presentation.ViewModels
                         if (j != null)
                         {
                             if (ticket != null)
-                                AppServices.PrintService.ManualPrintTicket(ticket, j);
+                                AppServices.PrintService.ManualPrintTicket(ObjectCloner.Clone(ticket), j);
                             else
                                 AppServices.PrintService.ExecutePrintJob(j);
                         }
@@ -478,6 +479,11 @@ namespace Samba.Presentation.ViewModels
                 if (x.Topic == EventTopicNames.MessageReceivedEvent && x.Value.Command == "ActionMessage")
                 {
                     RuleExecutor.NotifyEvent(RuleEventNames.MessageReceived, new { Command = x.Value.Data });
+                }
+
+                if (x.Topic == EventTopicNames.MessageReceivedEvent && x.Value.Command == "SHUTDOWN")
+                {
+                    RuleExecutor.NotifyEvent(RuleEventNames.MessageReceived, new { Command = "SHUTDOWN" });
                 }
             });
 

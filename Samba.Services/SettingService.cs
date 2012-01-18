@@ -124,7 +124,7 @@ namespace Samba.Services
                 return _customSettingCache[settingName];
             if (_settingCache.ContainsKey(settingName))
                 return new SettingGetter(_settingCache[settingName]);
-            var setting = _workspace.Single<ProgramSetting>(x => x.Name == settingName);
+            var setting = Dao.Single<ProgramSetting>(x => x.Name == settingName); //_workspace.Single<ProgramSetting>(x => x.Name == settingName);)
             return setting != null ? new SettingGetter(setting) : SettingGetter.NullSetting;
         }
 
