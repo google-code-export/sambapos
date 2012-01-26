@@ -120,7 +120,7 @@ namespace Samba.Presentation.ViewModels
                     if (ti == null) return;
                     if (ti.Properties.Count > 0)
                     {
-                        var prop = ti.Properties.Last();
+                        var prop = ti.LastSelectedProperty ?? ti.Properties.Last();
                         prop.Quantity--;
                         if (prop.Quantity < 1)
                             ti.Properties.Remove(prop);
@@ -296,8 +296,6 @@ namespace Samba.Presentation.ViewModels
                         x.Value.GetAsBoolean("DeleteFile"),
                         x.Value.GetAsBoolean("BypassSslErrors"));
                 }
-
-
 
                 if (x.Value.Action.ActionType == "ExecuteTicketEvent")
                 {

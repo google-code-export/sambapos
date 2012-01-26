@@ -3216,4 +3216,7 @@ Error Message:
 	<data name="ExecuteTicketOperation">
 		<value xml:space="preserve">Execute Ticket Operation</value>
 	</data>
+	<data name="RemoveModifier">
+		<value xml:space="preserve">Remove Modifier</value>
+	</data>
 </root>

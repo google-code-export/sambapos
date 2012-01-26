@@ -293,5 +293,18 @@ namespace Samba.Presentation.ViewModels
             RaisePropertyChanged("Price");
             RaisePropertyChanged("TotalPrice");
         }
+
+        public void RemoveProperty(MenuItemPropertyGroup mig, MenuItemProperty menuItemProperty)
+        {
+            var p = Model.Properties.Where(x => x.PropertyGroupId == mig.Id && x.Name == menuItemProperty.Name).FirstOrDefault();
+            if (p != null)
+            {
+                Model.Properties.Remove(p);
+            }
+            RefreshProperties();
+            RaisePropertyChanged("Properties");
+            RaisePropertyChanged("TotalPrice");
+            RaisePropertyChanged("Quantity");
+        }
     }
 }

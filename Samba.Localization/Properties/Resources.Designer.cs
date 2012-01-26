@@ -5565,6 +5565,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Modifier.
+        /// </summary>
+        public static string RemoveModifier {
+            get {
+                return ResourceManager.GetString("RemoveModifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Report does not contain Start Amounts.
         /// </summary>
         public static string ReportDoesNotContainsCashState {

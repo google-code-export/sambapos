@@ -3181,6 +3181,9 @@ Mesaj:
   <data name="MS_Disconnected">
     <value xml:space="preserve">Bağlanmadı.</value>
   </data>
+  <data name="RemoveLastModifier" xml:space="preserve">
+    <value>Son Özelliği Kaldır</value>
+  </data>
   <data name="ForPrintingTicketTagValue">
     <value xml:space="preserve">X isimli adisyon etiketinin değerini yazdırır.</value>
   </data>
@@ -3215,4 +3218,7 @@ Mesaj:
   <data name="ExecuteTicketOperation">
     <value xml:space="preserve">Adisyon İşlemi Başlat</value>
   </data>
+	<data name="RemoveModifier">
+		<value xml:space="preserve">Özellik Kaldır</value>
+	</data>
 </root>

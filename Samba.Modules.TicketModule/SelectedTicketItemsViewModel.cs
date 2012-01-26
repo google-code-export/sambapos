@@ -21,6 +21,7 @@ namespace Samba.Modules.TicketModule
         private bool _showExtraPropertyEditor;
         private bool _showTicketNoteEditor;
         private bool _showFreeTagEditor;
+        private bool _removeModifier;
 
         public SelectedTicketItemsViewModel()
         {
@@ -29,6 +30,7 @@ namespace Samba.Modules.TicketModule
             SelectTicketTagCommand = new DelegateCommand<TicketTag>(OnTicketTagSelected);
             PortionSelectedCommand = new DelegateCommand<MenuItemPortion>(OnPortionSelected);
             PropertySelectedCommand = new DelegateCommand<MenuItemProperty>(OnPropertySelected);
+            RemoveModifierCommand = new CaptionCommand<string>(Resources.RemoveModifier, OnRemoveModifier);
             UpdateExtraPropertiesCommand = new CaptionCommand<string>(Resources.Update, OnUpdateExtraProperties);
             UpdateFreeTagCommand = new CaptionCommand<string>(Resources.AddAndSave, OnUpdateFreeTag, CanUpdateFreeTag);
             SelectedItemPortions = new ObservableCollection<MenuItemPortion>();
@@ -109,6 +111,7 @@ namespace Samba.Modules.TicketModule
             _showExtraPropertyEditor = false;
             _showTicketNoteEditor = false;
             _showFreeTagEditor = false;
+            _removeModifier = false;
             SetSelectedTicket(selectedTicket);
         }
 
@@ -116,6 +119,7 @@ namespace Samba.Modules.TicketModule
         public TicketItemViewModel SelectedItem { get; private set; }
 
         public ICaptionCommand CloseCommand { get; set; }
+        public ICaptionCommand RemoveModifierCommand { get; set; }
         public ICaptionCommand UpdateExtraPropertiesCommand { get; set; }
         public ICaptionCommand UpdateFreeTagCommand { get; set; }
         public ICommand SelectReasonCommand { get; set; }
@@ -168,11 +172,21 @@ namespace Samba.Modules.TicketModule
             }
         }
 
+        public string RemoveModifierButtonColor { get { return _removeModifier ? "Red" : "Black"; } }
+        public bool IsRemoveModifierButtonVisible { get { return SelectedItem != null && SelectedItem.Properties.Count > 0; } }
+
+        private void OnRemoveModifier(string obj)
+        {
+            _removeModifier = !_removeModifier;
+            RaisePropertyChanged("RemoveModifierButtonColor");
+        }
+
         private void OnCloseCommandExecuted(string obj)
         {
             _showTicketNoteEditor = false;
             _showExtraPropertyEditor = false;
             _showFreeTagEditor = false;
+            _removeModifier = false;
             FreeTag = string.Empty;
             SelectedTicket.ClearSelectedItems();
         }
@@ -248,9 +262,14 @@ namespace Samba.Modules.TicketModule
         {
             var mig = SelectedItemPropertyGroups.FirstOrDefault(propertyGroup => propertyGroup.Properties.Contains(obj));
             Debug.Assert(mig != null);
-            SelectedItem.ToggleProperty(mig, obj);
+            if (_removeModifier)
+                SelectedItem.RemoveProperty(mig, obj);
+            else SelectedItem.ToggleProperty(mig, obj);
             SelectedTicket.RefreshVisuals();
             SelectedTicket.RecalculateTicket();
+            if (_removeModifier)
+                OnRemoveModifier("");
+            RaisePropertyChanged("IsRemoveModifierButtonVisible");
         }
 
         private void SetSelectedTicket(TicketViewModel ticketViewModel)
@@ -263,6 +282,7 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("IsExtraPropertyEditorVisible");
             RaisePropertyChanged("IsFreeTagEditorVisible");
             RaisePropertyChanged("IsPortionsVisible");
+            RaisePropertyChanged("IsRemoveModifierButtonVisible");
         }
 
         public bool ShouldDisplay(TicketViewModel value)

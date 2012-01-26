@@ -56,6 +56,12 @@ namespace Samba.Domain.Models.Tickets
         decimal _selectedQuantity;
         public decimal SelectedQuantity { get { return _selectedQuantity; } }
 
+        private TicketItemProperty _lastSelectedProperty;
+        public TicketItemProperty LastSelectedProperty
+        {
+            get { return _lastSelectedProperty; }
+        }
+
         public void UpdateMenuItem(int userId, MenuItem menuItem, string portionName, string priceTag, int quantity, string defaultProperties)
         {
             MenuItemId = menuItem.Id;
@@ -77,9 +83,25 @@ namespace Samba.Domain.Models.Tickets
                     foreach (var defaultProperty in properties)
                     {
                         var property = defaultProperty.Trim();
+                        var pQuantity = 1;
+                        if (defaultProperty.Contains("*"))
+                        {
+                            var parts = defaultProperty.Split(new[] { '*' }, 1);
+                            if (!string.IsNullOrEmpty(parts[0].Trim()))
+                            {
+                                property = parts[0];
+                                int.TryParse(parts[1], out pQuantity);
+                            }
+                            else continue;
+                        }
                         var defaultValue = menuItemPropertyGroup.Properties.FirstOrDefault(x => x.Name == property);
                         if (defaultValue != null)
-                            ToggleProperty(menuItemPropertyGroup, defaultValue);
+                        {
+                            for (int i = 0; i < pQuantity; i++)
+                            {
+                                ToggleProperty(menuItemPropertyGroup, defaultValue);
+                            }
+                        }
                     }
                 }
             }
@@ -168,11 +190,13 @@ namespace Samba.Domain.Models.Tickets
             else if (!group.MultipleSelection && Properties.Contains(ti))
             {
                 Properties.Remove(ti);
+                _lastSelectedProperty = ti;
                 return ti;
             }
 
             if (!Properties.Contains(ti)) Properties.Add(ti);
 
+            _lastSelectedProperty = ti;
             return ti;
         }
 
