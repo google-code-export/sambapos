@@ -151,7 +151,7 @@ namespace Samba.Domain.Models.Tickets
                 return null;
             }
 
-            var ti = FindProperty(property.Name);
+            var ti = FindProperty(property);
             if (ti == null)
             {
                 ti = new TicketItemProperty
@@ -247,9 +247,9 @@ namespace Samba.Domain.Models.Tickets
             }
         }
 
-        private TicketItemProperty FindProperty(string propertyName)
+        private TicketItemProperty FindProperty(MenuItemProperty property)
         {
-            return Properties.FirstOrDefault(x => x.Name == propertyName);
+            return Properties.FirstOrDefault(x => x.Name == property.Name && (x.PropertyPrice.Amount + x.VatAmount) == property.Price.Amount);
         }
 
         public decimal GetTotal()

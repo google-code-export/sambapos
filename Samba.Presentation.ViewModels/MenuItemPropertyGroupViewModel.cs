@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Samba.Domain.Models.Menus;
+using Samba.Presentation.Common;
 
 namespace Samba.Presentation.ViewModels
 {
-    public class MenuItemPropertyGroupViewModel
+    public class MenuItemPropertyGroupViewModel : ObservableObject
     {
         public MenuItemPropertyGroup Model { get; set; }
 

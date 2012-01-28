@@ -359,53 +359,60 @@ namespace Samba.Infrastructure.Data.Serializer
                 prop.InnerText = value.ToString();
                 return;
             }
-            else
+
+            if (value is DateTime)
             {
-                TypeConverter tc = TypeDescriptor.GetConverter(pt);
+                var v = (DateTime)value;
+                prop.InnerText = v.ToString("o");
+                return;
+            }
+            var tc = TypeDescriptor.GetConverter(pt);
+            if (tc != null)
+            {
                 if (tc.CanConvertFrom(typeof(string)) && tc.CanConvertTo(typeof(string)))
                 {
                     prop.InnerText = (string)tc.ConvertTo(value, typeof(string));
                     return;
                 }
+            }
 
-                var complexclass = false;
-                // Holds whether the propertys type is an complex type (the properties of objects have to be iterated, either)
+            var complexclass = false;
+            // Holds whether the propertys type is an complex type (the properties of objects have to be iterated, either)
 
-                // Get all properties
-                PropertyInfo[] piarr2 = pt.GetProperties();
-                XmlElement proplist = null;
-                Debug.Assert(piarr2.Length > 0,
-                             "No property found to serialize for type " + pt.Name +
-                             "! Current implementation of Ellisys.Util.Serialization.XmlSerializer only work on public properties with get and set");
-                // Loop all properties
-                foreach (PropertyInfo pi2 in piarr2)
+            // Get all properties
+            PropertyInfo[] piarr2 = pt.GetProperties();
+            XmlElement proplist = null;
+            Debug.Assert(piarr2.Length > 0,
+                         "No property found to serialize for type " + pt.Name +
+                         "! Current implementation of Ellisys.Util.Serialization.XmlSerializer only work on public properties with get and set");
+            // Loop all properties
+            foreach (PropertyInfo pi2 in piarr2)
+            {
+                // Check whether this property can be serialized and deserialized
+                if (CheckPropertyHasToBeSerialized(pi2) &&
+                    (pi2.PropertyType.IsSerializable || IgnoreSerializableAttribute) && (pi2.CanWrite) &&
+                    ((pi2.PropertyType.IsPublic) || (pi2.PropertyType.IsEnum)))
                 {
-                    // Check whether this property can be serialized and deserialized
-                    if (CheckPropertyHasToBeSerialized(pi2) &&
-                        (pi2.PropertyType.IsSerializable || IgnoreSerializableAttribute) && (pi2.CanWrite) &&
-                        ((pi2.PropertyType.IsPublic) || (pi2.PropertyType.IsEnum)))
+                    // Seems to be a complex type
+                    complexclass = true;
+
+                    // Add a properties parent node
+                    if (proplist == null)
                     {
-                        // Seems to be a complex type
-                        complexclass = true;
-
-                        // Add a properties parent node
-                        if (proplist == null)
-                        {
-                            proplist = parent.OwnerDocument.CreateElement(_taglib.PROPERTIES_TAG);
-                            prop.AppendChild(proplist);
-                        }
-
-                        // Set the property (recursive call of this method!)
-                        SetProperty(value, pi2, proplist);
+                        proplist = parent.OwnerDocument.CreateElement(_taglib.PROPERTIES_TAG);
+                        prop.AppendChild(proplist);
                     }
-                }
 
-                // Ok, that was not a complex class either
-                if (!complexclass)
-                {
-                    // Converting to string was not possible, just set the value by ToString()
-                    prop.InnerText = value.ToString();
+                    // Set the property (recursive call of this method!)
+                    SetProperty(value, pi2, proplist);
                 }
+            }
+
+            // Ok, that was not a complex class either
+            if (!complexclass)
+            {
+                // Converting to string was not possible, just set the value by ToString()
+                prop.InnerText = value.ToString();
             }
         }
 

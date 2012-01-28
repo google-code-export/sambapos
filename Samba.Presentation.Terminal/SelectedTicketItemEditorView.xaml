@@ -119,10 +119,10 @@
                                         <FxButton:FlexButton 
                                             Height="{Binding DataContext.TerminalButtonHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
                                             Margin="0,1,1,0"  
-                                            ButtonColor="{Binding Name, Converter={StaticResource PropertyColorConverter}}" 
+                                            ButtonColor="{Binding TicketItemProperty, Converter={StaticResource PropertyColorConverter}}" 
                                             Command="{Binding DataContext.PropertySelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type ItemsControl}}}" 
                                             CommandParameter="{Binding}">
-                                            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Name}"/>
+                                            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Display}"/>
                                         </FxButton:FlexButton>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

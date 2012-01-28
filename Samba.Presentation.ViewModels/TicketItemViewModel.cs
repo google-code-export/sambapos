@@ -251,11 +251,9 @@ namespace Samba.Presentation.ViewModels
             RaisePropertyChanged("TotalPrice");
         }
 
-        public void ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty menuItemProperty)
+        public TicketItemProperty ToggleProperty(MenuItemPropertyGroup group, MenuItemProperty menuItemProperty)
         {
-            //new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierMenuItemId = 0, ModifierPrice = 0 });
             var ti = _model.ToggleProperty(group, menuItemProperty);
-
             if (ti != null)
             {
                 RuleExecutor.NotifyEvent(RuleEventNames.ModifierSelected,
@@ -279,6 +277,7 @@ namespace Samba.Presentation.ViewModels
             RaisePropertyChanged("Properties");
             RaisePropertyChanged("TotalPrice");
             RaisePropertyChanged("Quantity");
+            return ti;
         }
 
         private void RefreshProperties()
@@ -296,7 +295,7 @@ namespace Samba.Presentation.ViewModels
 
         public void RemoveProperty(MenuItemPropertyGroup mig, MenuItemProperty menuItemProperty)
         {
-            var p = Model.Properties.Where(x => x.PropertyGroupId == mig.Id && x.Name == menuItemProperty.Name).FirstOrDefault();
+            var p = Model.Properties.Where(x => x.PropertyGroupId == mig.Id && x.Name == menuItemProperty.Name && (x.VatAmount + x.PropertyPrice.Amount) == menuItemProperty.Price.Amount).FirstOrDefault();
             if (p != null)
             {
                 Model.Properties.Remove(p);

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Data;
 using System.Windows.Media;
+using Samba.Domain.Models.Tickets;
+using Samba.Presentation.ViewModels;
 
 namespace Samba.Presentation.Terminal
 {
@@ -45,8 +47,10 @@ namespace Samba.Presentation.Terminal
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (DataContext.SelectedTicketItem != null)
-                if (DataContext.SelectedTicketItem.Properties.SingleOrDefault(x => x.DisplayString == value.ToString()) != null)
-                    return Brushes.Red;
+            {
+                var val = value as TicketItemProperty;
+                if (val != null) return Brushes.Red;
+            }
             return Brushes.Transparent;
         }
 

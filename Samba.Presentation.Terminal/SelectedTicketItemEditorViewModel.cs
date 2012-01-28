@@ -156,6 +156,12 @@ namespace Samba.Presentation.Terminal
                 var mi = AppServices.DataAccessService.GetMenuItem(ticketItem.Model.MenuItemId);
                 if (mi.Portions.Count > 1) SelectedItemPortions.AddRange(mi.Portions.Select(x => new MenuItemPortionViewModel(x)));
                 SelectedItemPropertyGroups.AddRange(mi.PropertyGroups.Select(x => new MenuItemPropertyGroupViewModel(x)));
+                foreach (var ticketItemPropertyViewModel in ticketItem.Properties.ToList())
+                {
+                    var tip = ticketItemPropertyViewModel;
+                    var mig = SelectedItemPropertyGroups.Where(x => x.Model.Id == tip.Model.PropertyGroupId).SingleOrDefault();
+                    mig.Properties.SingleOrDefault(x => x.Name == tip.Model.Name).TicketItemProperty = ticketItemPropertyViewModel.Model;
+                }
             }
             else
             {
@@ -211,7 +217,8 @@ namespace Samba.Presentation.Terminal
         {
             var mig = SelectedItemPropertyGroups.FirstOrDefault(propertyGroup => propertyGroup.Properties.Contains(obj));
             Debug.Assert(mig != null);
-            SelectedItem.ToggleProperty(mig.Model, obj.Model);
+            var tip = SelectedItem.ToggleProperty(mig.Model, obj.Model);
+            obj.TicketItemProperty = tip;
 
             foreach (var model in SelectedItemPropertyGroups)
             {
