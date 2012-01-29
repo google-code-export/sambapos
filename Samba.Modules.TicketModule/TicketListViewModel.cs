@@ -887,7 +887,7 @@ namespace Samba.Modules.TicketModule
                 if (SelectedTicket != null && SelectedTicket.IsPaid) return false;
                 if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.Location)) return false;
                 if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.CustomerName)) return false;
-                if (SelectedTicket != null && SelectedTicket.IsTagged) return false;
+                if (SelectedTicket != null && SelectedDepartment != null && SelectedDepartment.TicketTagGroups.Any(x => SelectedTicket.IsTaggedWith(x.Name))) return false;
                 if (SelectedTicket != null && SelectedTicket.TicketRemainingValue == 0) return false;
                 return SelectedDepartment != null && SelectedDepartment.IsFastFood;
             }

@@ -228,11 +228,15 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
                 var tagGroups = dict.Select(x => new TicketTagInfo { Amount = x.Value.Sum(y => y.GetSumWithoutTax()), TicketCount = x.Value.Count, TagName = x.Key }).OrderBy(x => x.TagName);
 
-                var tagGrp = tagGroups.GroupBy(x => x.TagName.Split(':')[0]);
+                var tagGrp = tagGroups.GroupBy(x => x.TagName.Split(':')[0])
+                    .Where(x => ReportContext.TicketTagGroups.SingleOrDefault(y => y.Name == x.Key) != null);
 
-                report.AddColumTextAlignment("Etiket", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
-                report.AddColumnLength("Etiket", "45*", "Auto", "35*");
-                report.AddTable("Etiket", Resources.TicketTags, "", "");
+                if (tagGrp.Count() > 0)
+                {
+                    report.AddColumTextAlignment("Etiket", TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
+                    report.AddColumnLength("Etiket", "45*", "Auto", "35*");
+                    report.AddTable("Etiket", Resources.TicketTags, "", "");
+                }
 
                 foreach (var grp in tagGrp)
                 {

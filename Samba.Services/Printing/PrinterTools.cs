@@ -80,7 +80,7 @@ namespace Samba.Services.Printing
             {
                 for (var i = 0; i < row.Cells.Count; i++)
                 {
-                    if (row == table.RowGroups[0].Rows[1])
+                    if (table.RowGroups[0].Rows.Count > 1 && row == table.RowGroups[0].Rows[1])
                         colAlignments[i] = (row.Cells[i].Blocks.First()).TextAlignment;
 
                     var value = string.Join(" ", ReadBlocks(row.Cells[i].Blocks));
