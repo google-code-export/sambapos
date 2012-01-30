@@ -47,7 +47,7 @@ namespace Samba.Persistance.Data
             }
             else if (!string.IsNullOrEmpty(LocalSettings.ConnectionString))
             {
-                var cs = LocalSettings.ConnectionString;
+                var cs = LocalSettings.GetSqlServerConnectionString();
                 if (!cs.Trim().EndsWith(";"))
                     cs += ";";
                 if (!cs.ToLower().Contains("multipleactiveresultsets"))
@@ -107,7 +107,7 @@ namespace Samba.Persistance.Data
         }
     }
 
-    public class Initializer : IDatabaseInitializer<SambaContext>
+    class Initializer : IDatabaseInitializer<SambaContext>
     {
         public void InitializeDatabase(SambaContext context)
         {

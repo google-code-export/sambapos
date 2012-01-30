@@ -46,6 +46,8 @@ namespace Samba.Modules.TicketModule
             ReturningAmountVisibility = Visibility.Collapsed;
 
             LastTenderedAmount = "1";
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<CreditCardProcessingResult>>().Subscribe(OnProcessCreditCard);
         }
 
         public CaptionCommand<string> SubmitCashPaymentCommand { get; set; }
@@ -320,6 +322,21 @@ namespace Samba.Modules.TicketModule
 
         private void SubmitPayment(PaymentType paymentType)
         {
+            if (paymentType == PaymentType.CreditCard && CreditCardProcessingService.CanProcessCreditCards)
+            {
+                var ccpd = new CreditCardProcessingData
+                               {
+                                   TenderedAmount = GetTenderedValue(),
+                                   Ticket = AppServices.MainDataContext.SelectedTicket
+                               };
+                CreditCardProcessingService.Process(ccpd);
+                return;
+            }
+            ProcessPayment(paymentType);
+        }
+
+        private void ProcessPayment(PaymentType paymentType)
+        {
             var tenderedAmount = GetTenderedValue();
             var originalTenderedAmount = tenderedAmount;
             var remainingTicketAmount = GetPaymentValue();
@@ -533,13 +550,24 @@ namespace Samba.Modules.TicketModule
 
         public void Prepare()
         {
-            Debug.Assert(SelectedTicket == null);
-            SelectedTicket = new TicketViewModel(AppServices.MainDataContext.SelectedTicket, AppServices.MainDataContext.SelectedDepartment.IsFastFood);
-            TicketRemainingValue = AppServices.MainDataContext.SelectedTicket.GetRemainingAmount();
-            PrepareMergedItems();
-            RefreshValues();
-            LastTenderedAmount = PaymentAmount;
-            CreateButtons();
+            if (SelectedTicket == null)
+            {
+                SelectedTicket = new TicketViewModel(AppServices.MainDataContext.SelectedTicket, AppServices.MainDataContext.SelectedDepartment.IsFastFood);
+                TicketRemainingValue = AppServices.MainDataContext.SelectedTicket.GetRemainingAmount();
+                PrepareMergedItems();
+                RefreshValues();
+                LastTenderedAmount = PaymentAmount;
+                CreateButtons();
+            }
+        }
+
+        private void OnProcessCreditCard(EventParameters<CreditCardProcessingResult> obj)
+        {
+            if (obj.Topic == EventTopicNames.PaymentProcessed && AppServices.ActiveAppScreen == AppScreens.Payment)
+            {
+                AppServices.MainDataContext.SelectedTicket.PublishEvent(EventTopicNames.MakePayment);
+                if (obj.Value.IsCompleted) ProcessPayment(obj.Value.PaymentType);
+            }
         }
     }
 
@@ -612,5 +640,6 @@ namespace Samba.Modules.TicketModule
             RaisePropertyChanged("TotalLabel");
             RaisePropertyChanged("FontWeight");
         }
+
     }
 }

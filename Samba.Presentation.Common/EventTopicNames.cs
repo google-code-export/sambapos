@@ -27,6 +27,7 @@ namespace Samba.Presentation.Common
 
     public static class EventTopicNames
     {
+        public const string PaymentProcessed = "Payment Processed";
         public const string FocusTicketScreen = "FocusTicketScreen";
         public const string AddLiabilityAmount = "Add Liability Amount";
         public const string AddReceivableAmount = "Add Receivable Amount";

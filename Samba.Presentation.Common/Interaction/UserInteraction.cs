@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.ComponentModel.Composition;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using PropertyTools.Wpf;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
+using Samba.Presentation.Common.Interaction.Grayscale;
 using Samba.Services;
 using FlexButton;
 
@@ -279,6 +282,30 @@ namespace Samba.Presentation.Common.Interaction
             _popupDataViewModel.Add(title, content, dataObject, eventMessage, headerColor);
             PopupWindow.Show();
             MethodQueue.Queue("DisplayPopups", DisplayPopups);
+        }
+
+        private BlurEffect _blurEffect;
+        public BlurEffect BlurEffect
+        {
+            get { return _blurEffect ?? (_blurEffect = new BlurEffect { Radius = 20 }); }
+        }
+
+        private GrayscaleEffect _grayscaleEffect;
+        public GrayscaleEffect GrayscaleEffect
+        {
+            get { return _grayscaleEffect ?? (_grayscaleEffect = new GrayscaleEffect { DesaturationFactor = 50 }); }
+        }
+
+        public void BlurMainWindow()
+        {
+            Application.Current.MainWindow.Effect = GrayscaleEffect;
+            ((UIElement)VisualTreeHelper.GetChild(Application.Current.MainWindow, 0)).Effect = BlurEffect;
+        }
+
+        public void DeblurMainWindow()
+        {
+            Application.Current.MainWindow.Effect = null;
+            ((UIElement)VisualTreeHelper.GetChild(Application.Current.MainWindow, 0)).Effect = null;
         }
 
         public void DisplayPopups()

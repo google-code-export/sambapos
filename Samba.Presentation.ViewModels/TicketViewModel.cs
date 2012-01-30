@@ -596,6 +596,7 @@ namespace Samba.Presentation.ViewModels
             string paymentName = Resources.Cash;
             if (paymentType == PaymentType.CreditCard) paymentName = Resources.CreditCard;
             if (paymentType == PaymentType.Ticket) paymentName = Resources.Voucher;
+           
             RuleExecutor.NotifyEvent(RuleEventNames.PaymentReceived,
                 new { Ticket = ticket, PaymentType = paymentName, Amount = amount, TicketTag = ticket.Tag, ticket.CustomerId, ticket.CustomerName, ticket.CustomerGroupCode });
         }

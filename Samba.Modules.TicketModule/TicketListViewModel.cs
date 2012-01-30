@@ -483,6 +483,21 @@ namespace Samba.Modules.TicketModule
                         RefreshVisuals();
                     }
                 });
+
+            EventServiceFactory.EventService.GetEvent<GenericEvent<CreditCardProcessingResult>>().Subscribe(OnProcessCreditCard);
+        }
+
+        private void OnProcessCreditCard(EventParameters<CreditCardProcessingResult> obj)
+        {
+            if (obj.Topic == EventTopicNames.PaymentProcessed && AppServices.ActiveAppScreen != AppScreens.Payment)
+            {
+                if (obj.Value.IsCompleted)
+                {
+                    TicketViewModel.AddPaymentToSelectedTicket(obj.Value.Amount, obj.Value.PaymentType);
+                    if (AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() == 0)
+                        CloseTicket();
+                }
+            }
         }
 
         private void UpdateSelectedTicketView()
@@ -808,6 +823,16 @@ namespace Samba.Modules.TicketModule
 
         private void OnMakeCreditCardPaymentExecute(string obj)
         {
+            if (CreditCardProcessingService.CanProcessCreditCards)
+            {
+                var ccpd = new CreditCardProcessingData
+                {
+                    TenderedAmount = AppServices.MainDataContext.SelectedTicket.GetRemainingAmount(),
+                    Ticket = AppServices.MainDataContext.SelectedTicket
+                };
+                CreditCardProcessingService.Process(ccpd);
+                return;
+            }
             TicketViewModel.PaySelectedTicket(PaymentType.CreditCard);
             CloseTicket();
         }

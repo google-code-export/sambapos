@@ -20,6 +20,20 @@ namespace Samba.Modules.SettingsModule
             StartMessagingServerCommand = new CaptionCommand<string>(Resources.StartClientNow, OnStartMessagingServer, CanStartMessagingServer);
             DisplayCommonAppPathCommand = new CaptionCommand<string>(Resources.DisplayAppPath, OnDisplayAppPath);
             DisplayUserAppPathCommand = new CaptionCommand<string>(Resources.DisplayUserPath, OnDisplayUserPath);
+            EditCreditCardProcessorSettings = new CaptionCommand<string>("Credit Card Processor Settings", OnEditCreditCardProcessorSettings, CanEditCreditCardProcessorSettings);
+        }
+
+        private bool CanEditCreditCardProcessorSettings(string arg)
+        {
+            return CreditCardProcessingService.GetDefaultProcessor() != null;
+        }
+
+        public bool IsCreditCardProcessorEditorVisible { get { return CreditCardProcessorNames.Count() > 0; } }
+
+        private static void OnEditCreditCardProcessorSettings(string obj)
+        {
+            var defaultProcessor = CreditCardProcessingService.GetDefaultProcessor();
+            if (defaultProcessor != null) defaultProcessor.EditSettings();
         }
 
         public void OnDisplayUserPath(string obj)
@@ -54,6 +68,7 @@ namespace Samba.Modules.SettingsModule
         public ICaptionCommand StartMessagingServerCommand { get; set; }
         public ICaptionCommand DisplayCommonAppPathCommand { get; set; }
         public ICaptionCommand DisplayUserAppPathCommand { get; set; }
+        public ICaptionCommand EditCreditCardProcessorSettings { get; set; }
 
         public string TerminalName
         {
@@ -151,6 +166,19 @@ namespace Samba.Modules.SettingsModule
         {
             get { return LocalSettings.PluralCurrencySuffix; }
             set { LocalSettings.PluralCurrencySuffix = value; }
+        }
+
+        public IEnumerable<string> CreditCardProcessorNames { get { return CreditCardProcessingService.GetProcessors().Select(x => x.Name); } }
+
+        public string DefaultCreditCardProcessorName
+        {
+            get { return LocalSettings.DefaultCreditCardProcessorName; }
+            set
+            {
+                LocalSettings.DefaultCreditCardProcessorName =
+                    CreditCardProcessorNames.Contains(value) ? value : "";
+                RaisePropertyChanged("DefaultCreditCardProcessorName");
+            }
         }
 
         protected override string GetHeaderInfo()

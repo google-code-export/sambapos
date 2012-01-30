@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
      
         <PropertyEditorLibrary:PropertyEditor Margin="3" Grid.Row="0" Name="PropertyEditorControl"
-             ShowTabs="False" DefaultCategoryName="Özellikler" LabelWidth="150">
+             ShowTabs="False" DefaultCategoryName="Properties" LabelWidth="150">
             <PropertyEditorLibrary:PropertyEditor.Editors>
                 <PropertyEditorLibrary:TypeEditor EditedType="{x:Type Collections:IList}" EditorTemplate="{StaticResource SimpleGridEditor}" />
             </PropertyEditorLibrary:PropertyEditor.Editors>

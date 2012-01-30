@@ -140,6 +140,7 @@
     <Compile Include="Helpers.cs" />
     <Compile Include="IDiagram.cs" />
     <Compile Include="IModuleInitializationService.cs" />
+    <Compile Include="Interaction\Grayscale\GrayscaleEffect.cs" />
     <Compile Include="Interaction\GridEditorForm.xaml.cs">
       <DependentUpon>GridEditorForm.xaml</DependentUpon>
     </Compile>
@@ -323,6 +324,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Resource Include="Interaction\Grayscale\GrayscaleEffect.ps" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

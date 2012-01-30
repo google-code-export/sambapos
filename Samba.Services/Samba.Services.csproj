@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashService.cs" />
+    <Compile Include="CreditCardProcessingService.cs" />
     <Compile Include="DataAccessService.cs" />
     <Compile Include="EMailService.cs" />
     <Compile Include="HtmlConverter\HtmlCssParser.cs" />

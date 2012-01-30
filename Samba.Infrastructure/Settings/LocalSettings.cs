@@ -25,6 +25,7 @@ namespace Samba.Infrastructure.Settings
         public string CurrentLanguage { get; set; }
         public bool OverrideLanguage { get; set; }
         public bool OverrideWindowsRegionalSettings { get; set; }
+        public string DefaultCreditCardProcessorName { get; set; }
         public SerializableDictionary<string, string> CustomSettings { get; set; }
 
         public SettingsObject()
@@ -122,6 +123,12 @@ html
         {
             get { return _settingsObject.PluralCurrencySuffix; }
             set { _settingsObject.PluralCurrencySuffix = value; }
+        }
+
+        public static string DefaultCreditCardProcessorName
+        {
+            get { return _settingsObject.DefaultCreditCardProcessorName; }
+            set { _settingsObject.DefaultCreditCardProcessorName = value; }
         }
 
         private static CultureInfo _cultureInfo;
@@ -273,6 +280,20 @@ html
             {
 
             }
+        }
+
+        public static string GetSqlServerConnectionString()
+        {
+            var cs = ConnectionString;
+            if (!cs.Trim().EndsWith(";"))
+                cs += ";";
+            if (!cs.ToLower().Contains("multipleactiveresultsets"))
+                cs += " MultipleActiveResultSets=True;";
+            if (!cs.ToLower(CultureInfo.InvariantCulture).Contains("user id") && (!cs.ToLower(CultureInfo.InvariantCulture).Contains("integrated security")))
+                cs += " Integrated Security=True;";
+            if (cs.ToLower(CultureInfo.InvariantCulture).Contains("user id") && !cs.ToLower().Contains("persist security info"))
+                cs += " Persist Security Info=True;";
+            return cs;
         }
     }
 }

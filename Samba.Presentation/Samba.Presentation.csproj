@@ -227,6 +227,10 @@
       <Project>{629A2D7C-9014-4A85-A1E9-26161D5B3043}</Project>
       <Name>Samba.Modules.CidMonitor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Samba.Modules.CreditCardModule\Samba.Modules.CreditCardModule.csproj">
+      <Project>{23A725F8-C11B-4244-ADA7-9EB02351F815}</Project>
+      <Name>Samba.Modules.CreditCardModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Samba.Modules.CustomerModule\Samba.Modules.CustomerModule.csproj">
       <Project>{EDEF0022-075C-4DEC-853F-6558F9E8438A}</Project>
       <Name>Samba.Modules.CustomerModule</Name>
