@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Commands;
 using Samba.Presentation.Common;
+using Samba.Services;
 
 namespace Samba.Modules.CreditCardModule.ExternalProcessor
 {
     public class OnProcessedArgs
     {
-        public bool Cancelled { get; set; }
+        public ProcessType ProcessType { get; set; }
     }
 
     [Export]
@@ -24,25 +25,41 @@ namespace Samba.Modules.CreditCardModule.ExternalProcessor
         [ImportingConstructor]
         public ExternalProcessorViewModel()
         {
-            ProcessCommand = new DelegateCommand(OnProcess);
+            ForceCommand = new DelegateCommand(OnForce);
+            PreAuthCommand = new DelegateCommand(OnPreAuth, CanPreAuthExecute);
             CancelCommand = new DelegateCommand(OnCancel);
+        }
+
+        private bool CanPreAuthExecute()
+        {
+            return CanPreAuth;
+        }
+
+        private void OnPreAuth()
+        {
+            var args = new OnProcessedArgs { ProcessType = ProcessType.PreAuth };
+            InvokeProcessed(args);
         }
 
         private void OnCancel()
         {
-            InvokeProcessed(new OnProcessedArgs { Cancelled = true });
+            InvokeProcessed(new OnProcessedArgs { ProcessType = ProcessType.Cancel });
         }
 
-        private void OnProcess()
+        private void OnForce()
         {
-            InvokeProcessed(new OnProcessedArgs { Cancelled = false });
+            InvokeProcessed(new OnProcessedArgs { ProcessType = ProcessType.Force });
         }
 
-        public DelegateCommand ProcessCommand { get; set; }
+        public DelegateCommand PreAuthCommand { get; set; }
+        public DelegateCommand ForceCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
+
         public decimal TenderedAmount { get; set; }
+        public decimal Gratuity { get; set; }
         public string AuthCode { get; set; }
         public string CardholderName { get; set; }
+        public bool CanPreAuth { get; set; }
     }
 
 }

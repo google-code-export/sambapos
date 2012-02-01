@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CreditCardModule.cs" />
     <Compile Include="ExternalProcessor\ExternalCreditCardProcessor.cs" />
+    <Compile Include="ExternalProcessor\ExternalProcessorSettings.cs" />
     <Compile Include="ExternalProcessor\ExternalProcessorView.xaml.cs">
       <DependentUpon>ExternalProcessorView.xaml</DependentUpon>
     </Compile>

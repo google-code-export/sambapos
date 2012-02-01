@@ -8,15 +8,16 @@ using Samba.Infrastructure.Settings;
 
 namespace Samba.Services
 {
+    public enum ProcessType
+    {
+        PreAuth,
+        Force,
+        Cancel
+    }
+
     public class CreditCardProcessingResult
     {
-        public CreditCardProcessingResult()
-        {
-            PaymentType = PaymentType.CreditCard;
-        }
-        
-        public bool IsCompleted { get; set; }
-        public PaymentType PaymentType { get; set; }
+        public ProcessType ProcessType { get; set; }
         public decimal Amount { get; set; }
     }
 
@@ -31,6 +32,7 @@ namespace Samba.Services
         string Name { get; }
         void EditSettings();
         void Process(CreditCardProcessingData creditCardProcessingData);
+        bool ForcePayment(int ticketId);
     }
 
     public static class CreditCardProcessingService
@@ -64,6 +66,11 @@ namespace Samba.Services
         public static void Process(CreditCardProcessingData ccpd)
         {
             GetDefaultProcessor().Process(ccpd);
+        }
+
+        public static bool ForcePayment(int ticketId)
+        {
+            return (CanProcessCreditCards && GetDefaultProcessor().ForcePayment(ticketId));
         }
     }
 }

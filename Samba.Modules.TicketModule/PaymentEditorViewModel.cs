@@ -46,7 +46,6 @@ namespace Samba.Modules.TicketModule
             ReturningAmountVisibility = Visibility.Collapsed;
 
             LastTenderedAmount = "1";
-
             EventServiceFactory.EventService.GetEvent<GenericEvent<CreditCardProcessingResult>>().Subscribe(OnProcessCreditCard);
         }
 
@@ -324,6 +323,11 @@ namespace Samba.Modules.TicketModule
         {
             if (paymentType == PaymentType.CreditCard && CreditCardProcessingService.CanProcessCreditCards)
             {
+                if (SelectedTicket.Id == 0)
+                {
+                    var result = AppServices.MainDataContext.CloseTicket();
+                    AppServices.MainDataContext.OpenTicket(result.TicketId);
+                }
                 var ccpd = new CreditCardProcessingData
                                {
                                    TenderedAmount = GetTenderedValue(),
@@ -558,6 +562,12 @@ namespace Samba.Modules.TicketModule
                 RefreshValues();
                 LastTenderedAmount = PaymentAmount;
                 CreateButtons();
+                OnSetValue("");
+                if (CreditCardProcessingService.ForcePayment(SelectedTicket.Id))
+                {
+                    TenderedAmount = TicketRemainingValue.ToString("#,#0.00");
+                    SubmitPayment(PaymentType.CreditCard);
+                }
             }
         }
 
@@ -565,8 +575,19 @@ namespace Samba.Modules.TicketModule
         {
             if (obj.Topic == EventTopicNames.PaymentProcessed && AppServices.ActiveAppScreen == AppScreens.Payment)
             {
-                AppServices.MainDataContext.SelectedTicket.PublishEvent(EventTopicNames.MakePayment);
-                if (obj.Value.IsCompleted) ProcessPayment(obj.Value.PaymentType);
+                if (obj.Value.ProcessType == ProcessType.Force)
+                {
+                    SelectedTicket = null;
+                    Prepare();
+                    Debug.Assert(SelectedTicket != null);
+                    PaymentAmount = SelectedTicket.Model.GetRemainingAmount().ToString("#,#0.00");
+                    TenderedAmount = obj.Value.Amount.ToString("#,#0.00");
+                    ProcessPayment(PaymentType.CreditCard);
+                }
+                if (obj.Value.ProcessType == ProcessType.PreAuth)
+                    ClosePaymentScreen();
+                if (obj.Value.ProcessType == ProcessType.Cancel)
+                    AppServices.MainDataContext.SelectedTicket.PublishEvent(EventTopicNames.MakePayment);
             }
         }
     }

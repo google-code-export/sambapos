@@ -17,7 +17,7 @@ namespace Samba.Modules.CreditCardModule.ExternalProcessor
 
         private void ExternalProcessorWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            CardHolderBox.BackgroundFocus();
+            SwipeDataBox.BackgroundFocus();
         }
     }
 }
