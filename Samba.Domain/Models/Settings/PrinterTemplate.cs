@@ -18,6 +18,8 @@ namespace Samba.Domain.Models.Settings
         public string GiftLineTemplate { get; set; }
         [StringLength(500)]
         public string FooterTemplate { get; set; }
+        [StringLength(500)]
+        public string GroupTemplate { get; set; }
         public bool MergeLines { get; set; }
     }
 }

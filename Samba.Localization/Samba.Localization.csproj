@@ -62,10 +62,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.es.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.ro.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ro.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.ru.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.sq.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.sq.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.zh-CN.resx</DependentUpon>
     </Compile>
     <Compile Include="ResourceStrings.cs" />
     <Compile Include="LocalizedDisplayNameAttribute.cs" />
@@ -104,9 +119,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ro.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ro.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ru.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.sq.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.sq.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.tr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -121,6 +144,10 @@
     <EmbeddedResource Include="Properties\Resources.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.zh-CN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +166,9 @@ xcopy /y "$(TargetDir)cs\Samba.Localization.resources.dll" "$(SolutionDir)SambaS
 xcopy /y "$(TargetDir)es\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\es\"
 xcopy /y "$(TargetDir)ru\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\ru\"
 xcopy /y "$(TargetDir)de\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\de\"
+xcopy /y "$(TargetDir)ro\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\ro\"
+xcopy /y "$(TargetDir)sq\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\sq\"
+xcopy /y "$(TargetDir)zh-CN\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\zh-CN\"
 
 :End</PostBuildEvent>
   </PropertyGroup>

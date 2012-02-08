@@ -3170,6 +3170,9 @@ Error Message:
   <data name="UpdateLastTicketItemPriceTag" xml:space="preserve">
     <value>Update Last Ticket Item Price Tag</value>
   </data>
+  <data name="UpdateTicketItemPriceTag" xml:space="preserve">
+    <value>Update Ticket Item Price Tag</value>
+  </data>
   <data name="TicketLineCancelled" xml:space="preserve">
     <value>Ticket Line Cancelled</value>
   </data>
@@ -3213,10 +3216,22 @@ Error Message:
     <value>Total Group Price</value>
     <comment>Label content</comment>
   </data>
-	<data name="ExecuteTicketOperation">
-		<value xml:space="preserve">Execute Ticket Operation</value>
-	</data>
-	<data name="RemoveModifier">
-		<value xml:space="preserve">Remove Modifier</value>
-	</data>
+  <data name="ExecuteTicketOperation" xml:space="preserve">
+    <value>Execute Ticket Operation</value>
+  </data>
+  <data name="RemoveModifier" xml:space="preserve">
+    <value>Remove Modifier</value>
+  </data>
+  <data name="GroupTemplate" xml:space="preserve">
+    <value>Group Template</value>
+  </data>
+  <data name="AccountNote">
+    <value xml:space="preserve">Account Note</value>
+  </data>
+  <data name="AccountGroupCode">
+    <value xml:space="preserve">Account Group Code</value>
+  </data>
+  <data name="ProductGroup">
+    <value xml:space="preserve">Product Group</value>
+  </data>
 </root>

@@ -18,6 +18,7 @@ namespace Samba.Modules.SettingsModule
         public string VoidedLineTemplate { get { return Model.VoidedLineTemplate; } set { Model.VoidedLineTemplate = value; } }
         public string GiftLineTemplate { get { return Model.GiftLineTemplate; } set { Model.GiftLineTemplate = value; } }
         public string FooterTemplate { get { return Model.FooterTemplate; } set { Model.FooterTemplate = value; } }
+        public string GroupTemplate { get { return Model.GroupTemplate; } set { Model.GroupTemplate = value; } }
         public bool MergeLines { get { return Model.MergeLines; } set { Model.MergeLines = value; } }
 
         public override Type GetViewType()
@@ -55,9 +56,10 @@ namespace Samba.Modules.SettingsModule
             result.Add(Resources.TF_TableName, Resources.TableName);
             result.Add(Resources.TF_TicketNote, Resources.TicketNote);
             result.Add(Resources.TF_AccountName, Resources.AccountName);
-            result.Add("{ACC GROUPCODE}", "Account Group Code");
+            result.Add("{ACC GROUPCODE}", Resources.AccountGroupCode);
             result.Add(Resources.TF_AccountAddress, Resources.AccountAddress);
             result.Add(Resources.TF_AccountPhone, Resources.AccountPhone);
+            result.Add("{ACC NOTE}", Resources.AccountNote);
             result.Add(Resources.TF_LineItemQuantity, Resources.LineItemQuantity);
             result.Add(Resources.TF_LineItemName, Resources.LineItemName);
             result.Add(Resources.TF_LineItemPrice, Resources.LineItemPrice);
@@ -67,9 +69,10 @@ namespace Samba.Modules.SettingsModule
             result.Add(Resources.TF_LineItemTotalWithoutGifts, Resources.LineItemTotalWithoutGifts);
             result.Add(Resources.TF_LineItemDetails, Resources.LineItemDetails);
             result.Add(Resources.TF_LineItemDetailPrice, Resources.LineItemDetailPrice);
-            result.Add(Resources.TF_LineItemDetailQuantity, Resources.TF_LineItemDetailQuantity);
+            result.Add(Resources.TF_LineItemDetailQuantity, Resources.LineItemDetailQuantity);
             result.Add(Resources.TF_LineOrderNumber, Resources.LineOrderNumber);
             result.Add("{PRODUCT TAG}", Resources.LineItemProductTag);
+            result.Add("{PRODUCT GROUP}", Resources.ProductGroup);
             result.Add("{PRICE TAG}", Resources.LinePriceTag);
             result.Add(Resources.TF_LineGiftOrVoidReason, Resources.LineGiftOrVoidReason);
             result.Add(Resources.TF_TicketTotal, Resources.TicketTotal);

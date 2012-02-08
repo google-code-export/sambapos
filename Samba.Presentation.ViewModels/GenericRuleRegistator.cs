@@ -40,6 +40,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("AddTicketItem", Resources.AddTicketItem, new { MenuItemName = "", PortionName = "", Quantity = 0, Gift = false, GiftReason = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "", Quantity = 0 });
             RuleActionTypeRegistry.RegisterActionType("UpdateLastTicketItemPriceTag", Resources.UpdateLastTicketItemPriceTag, new { PriceTag = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketItemPriceTag", Resources.UpdateTicketItemPriceTag, new { PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, new { MenuItemName = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("RemoveLastModifier", Resources.RemoveLastModifier);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, new { TagName = "", TagValue = "" });
@@ -53,6 +54,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketAccount", Resources.UpdateTicketAccount, new { AccountPhone = "", AccountName = "", Note = "" });
             RuleActionTypeRegistry.RegisterActionType("ExecutePrintJob", Resources.ExecutePrintJob, new { PrintJobName = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateApplicationSubTitle", "Update Application Subtitle", new { Title = "", Color = "White", FontSize = 12 });
         }
 
         private static void RegisterRules()
@@ -71,11 +73,11 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0, TicketTag = "", CustomerId = 0, CustomerName = "", CustomerGroupCode = "" });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketId = 0m, TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineCancelled, Resources.TicketLineCancelled, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { MenuItemName = "", PortionName = "", PortionPrice = 0 });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false, TotalPropertyCount = 0, TotalModifierQuantity = 0m, TotalModifierPrice = 0m });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { TicketTag = "", MenuItemName = "", PortionName = "", PortionPrice = 0 });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ModifierSelected, Resources.ModifierSelected, new { TicketTag = "", MenuItemName = "", ModifierGroupName = "", ModifierName = "", ModifierPrice = 0, ModifierQuantity = 0, IsRemoved = false, IsPriceAddedToParentPrice = false, TotalPropertyCount = 0, TotalModifierQuantity = 0m, TotalModifierPrice = 0m });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ChangeAmountChanged, Resources.ChangeAmountUpdated, new { TicketAmount = 0, ChangeAmount = 0, TenderedAmount = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketClosed, Resources.TicketClosed);
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ApplicationStarted, Resources.ApplicationStarted);
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.ApplicationStarted, Resources.ApplicationStarted, new { CommandLineArguments = "" });
         }
 
         private static void RegisterParameterSources()
@@ -112,6 +114,16 @@ namespace Samba.Presentation.ViewModels
         {
             EventServiceFactory.EventService.GetEvent<GenericEvent<ActionData>>().Subscribe(x =>
             {
+                if (x.Value.Action.ActionType == "UpdateApplicationSubTitle")
+                {
+                    var title = x.Value.GetAsString("Title");
+                    PresentationServices.SubTitle.ApplicationTitle = title;
+                    var fontSize = x.Value.GetAsInteger("FontSize");
+                    if (fontSize > 0) PresentationServices.SubTitle.ApplicationTitleFontSize = fontSize;
+                    var fontColor = x.Value.GetAsString("Color");
+                    if (!string.IsNullOrEmpty(fontColor))
+                        PresentationServices.SubTitle.ApplicationTitleColor = fontColor;
+                }
                 if (x.Value.Action.ActionType == "RemoveLastModifier")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
@@ -126,6 +138,27 @@ namespace Samba.Presentation.ViewModels
                             ti.Properties.Remove(prop);
                     }
                     TicketViewModel.RecalculateTicket(ticket);
+                }
+
+                if (x.Value.Action.ActionType == "UpdateTicketItemPriceTag")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket == null) return;
+
+                    var ti = x.Value.GetDataValue<TicketItem>("TicketItem");
+                    if (ti == null) return;
+
+                    var priceTag = x.Value.GetAsString("PriceTag");
+                    var mi = AppServices.DataAccessService.GetMenuItem(ti.MenuItemId);
+                    if (mi == null) return;
+
+                    var portion = mi.Portions.SingleOrDefault(y => y.Name == ti.PortionName);
+                    if (portion == null) return;
+
+                    ti.UpdatePortion(portion, priceTag, null);
+
+                    TicketViewModel.RecalculateTicket(ticket);
+                    EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
                 }
 
                 if (x.Value.Action.ActionType == "UpdateLastTicketItemPriceTag")

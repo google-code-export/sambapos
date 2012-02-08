@@ -144,6 +144,7 @@
     <Compile Include="Interaction\GridEditorForm.xaml.cs">
       <DependentUpon>GridEditorForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\ApplicationSubTitleViewModel.cs" />
     <Compile Include="Services\InteractionService.cs" />
     <Compile Include="ICaptionCommand.cs" />
     <Compile Include="ICategoryCommand.cs" />

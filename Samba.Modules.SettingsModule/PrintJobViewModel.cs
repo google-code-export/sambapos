@@ -49,6 +49,7 @@ namespace Samba.Modules.SettingsModule
         public string WhenToPrint { get { return _whenToPrintTypes[Model.WhenToPrint]; } set { Model.WhenToPrint = _whenToPrintTypes.IndexOf(value); } }
         public string WhatToPrint { get { return _whatToPrintTypes[Model.WhatToPrint]; } set { Model.WhatToPrint = _whatToPrintTypes.IndexOf(value); } }
         public bool LocksTicket { get { return Model.LocksTicket; } set { Model.LocksTicket = value; } }
+        public bool CloseTicket { get { return Model.CloseTicket; } set { Model.CloseTicket = value; } }
         public bool UseFromPos { get { return Model.UseFromPos; } set { Model.UseFromPos = value; } }
         public bool UseFromPaymentScreen { get { return Model.UseFromPaymentScreen; } set { Model.UseFromPaymentScreen = value; } }
         public bool UseFromTerminal { get { return Model.UseFromTerminal; } set { Model.UseFromTerminal = value; } }

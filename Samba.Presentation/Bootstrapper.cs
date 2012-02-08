@@ -99,7 +99,7 @@ namespace Samba.Presentation
                     LocalSettings.ConnectionString = "";
                 }
                 LocalSettings.SaveSettings();
-                Environment.Exit(1); 
+                Environment.Exit(1);
             }
 
             if (string.IsNullOrEmpty(LocalSettings.MajorCurrencyName))
@@ -113,7 +113,8 @@ namespace Samba.Presentation
             Application.Current.MainWindow.Show();
             InteractionService.UserIntraction.ToggleSplashScreen();
             TriggerService.UpdateCronObjects();
-            RuleExecutor.NotifyEvent(RuleEventNames.ApplicationStarted, new { });
+
+            RuleExecutor.NotifyEvent(RuleEventNames.ApplicationStarted, new { CommandLineArguments = LocalSettings.StartupArguments });
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Samba.Domain.Models.Tickets;
+﻿using System.Collections.Generic;
 using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Settings
@@ -39,6 +35,7 @@ namespace Samba.Domain.Models.Settings
         public int WhenToPrint { get; set; }
         public int WhatToPrint { get; set; }
         public bool LocksTicket { get; set; }
+        public bool CloseTicket { get; set; }
         public bool UseFromPaymentScreen { get; set; }
         public bool UseFromTerminal { get; set; }
         public bool UseFromPos { get; set; }
@@ -57,6 +54,7 @@ namespace Samba.Domain.Models.Settings
             _printerMaps = new List<PrinterMap>();
             UseFromPos = true;
             UseFromPaymentScreen = true;
+            CloseTicket = true;
         }
     }
 }

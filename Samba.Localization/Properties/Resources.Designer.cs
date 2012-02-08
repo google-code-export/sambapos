@@ -107,6 +107,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Group Code.
+        /// </summary>
+        public static string AccountGroupCode {
+            get {
+                return ResourceManager.GetString("AccountGroupCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Name.
         /// </summary>
         public static string AccountName {
@@ -122,6 +131,15 @@ namespace Samba.Localization.Properties {
         public static string AccountNameAndTableName_f {
             get {
                 return ResourceManager.GetString("AccountNameAndTableName_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Note.
+        /// </summary>
+        public static string AccountNote {
+            get {
+                return ResourceManager.GetString("AccountNote", resourceCulture);
             }
         }
         
@@ -3184,6 +3202,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group Template.
+        /// </summary>
+        public static string GroupTemplate {
+            get {
+                return ResourceManager.GetString("GroupTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Half past.
         /// </summary>
         public static string HalfPast {
@@ -5263,6 +5290,15 @@ namespace Samba.Localization.Properties {
         public static string Product {
             get {
                 return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Group.
+        /// </summary>
+        public static string ProductGroup {
+            get {
+                return ResourceManager.GetString("ProductGroup", resourceCulture);
             }
         }
         
@@ -7932,6 +7968,15 @@ namespace Samba.Localization.Properties {
         public static string UpdateTicketAccount {
             get {
                 return ResourceManager.GetString("UpdateTicketAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Ticket Item Price Tag.
+        /// </summary>
+        public static string UpdateTicketItemPriceTag {
+            get {
+                return ResourceManager.GetString("UpdateTicketItemPriceTag", resourceCulture);
             }
         }
         

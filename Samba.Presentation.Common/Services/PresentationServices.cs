@@ -5,6 +5,12 @@ namespace Samba.Presentation.Common.Services
 {
     public static class PresentationServices
     {
+        private static ApplicationSubTitleViewModel _subTitle;
+        public static ApplicationSubTitleViewModel SubTitle
+        {
+            get { return _subTitle ?? (_subTitle = new ApplicationSubTitleViewModel()); }
+        }
+
         public static ObservableCollection<ICategoryCommand> NavigationCommandCategories { get; private set; }
         public static ObservableCollection<DashboardCommandCategory> DashboardCommandCategories { get; private set; }
 

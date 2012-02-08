@@ -243,6 +243,7 @@ namespace Samba.Presentation.ViewModels
                    {
                        Ticket = AppServices.MainDataContext.SelectedTicket,
                        TicketItem = Model,
+                       TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
                        MenuItemName = _model.MenuItemName,
                        PortionName = portion.Name,
                        PortionPrice = _model.Price
@@ -261,6 +262,7 @@ namespace Samba.Presentation.ViewModels
                                              {
                                                  Ticket = AppServices.MainDataContext.SelectedTicket,
                                                  TicketItem = Model,
+                                                 TicketTag = AppServices.MainDataContext.SelectedTicket.Tag,
                                                  MenuItemName = _model.MenuItemName,
                                                  ModifierGroupName = group.Name,
                                                  ModifierName = menuItemProperty.Name,

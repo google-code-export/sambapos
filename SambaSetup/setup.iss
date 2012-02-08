@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.85 "
-#define FileVersion "285"
+#define Version "2.86 "
+#define FileVersion "286"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -60,6 +60,7 @@ de.app_parameter=/de
 es.app_parameter=/es
 ru.app_parameter=/ru
 cs.app_parameter=/cs
+ro.app_parameter=/ro
 
 [Setup]
 AppName=Samba POS
@@ -105,6 +106,7 @@ Name: cs; MessagesFile: compiler:Languages\Czech.isl
 Name: es; MessagesFile: compiler:Languages\Spanish.isl
 Name: ru; MessagesFile: compiler:Languages\Russian.isl
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl
+Name: ro; MessagesFile: compiler:Languages\Romanian.isl
 
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Languages: ; Components: 
@@ -181,11 +183,20 @@ Source: src\GongSolutions.Wpf.DragDrop.dll; DestDir: {app}; Flags: ignoreversion
 Source: src\migrate.txt; DestDir: {userappdata}\Ozgu Tech\SambaPOS2; Flags: ignoreversion
 Source: C:\Windows\Fonts\lucon.ttf; DestDir: {fonts}; Flags: onlyifdoesntexist uninsneveruninstall; FontInstall: Lucida Console
 Source: src\Samba.Localization.dll; DestDir: {app}; Flags: ignoreversion
+Source: src\Training\Export2SqlCE.exe; DestDir: {app}\Training; Flags: ignoreversion
+Source: src\Training\ExportSqlCE40.exe; DestDir: {app}\Training; Flags: ignoreversion
+Source: src\Training\SambaPOS Training.lnk; DestDir: {app}\Training; Flags: ignoreversion
+Source: src\Training\SqlCeCmd40.exe; DestDir: {app}\Training; Flags: ignoreversion
+Source: src\Training\Training.vbs; DestDir: {app}\Training; Flags: ignoreversion
+Source: src\tr\Samba.MessagingServer.resources.dll; DestDir: {app}\tr\; Flags: ignoreversion
 Source: src\tr\Samba.Localization.resources.dll; DestDir: {app}\tr\; Flags: ignoreversion
 Source: src\cs\Samba.Localization.resources.dll; DestDir: {app}\cs\; Flags: ignoreversion
 Source: src\es\Samba.Localization.resources.dll; DestDir: {app}\es\; Flags: ignoreversion
 Source: src\ru\Samba.Localization.resources.dll; DestDir: {app}\ru\; Flags: ignoreversion
 Source: src\de\Samba.Localization.resources.dll; DestDir: {app}\de\; Flags: ignoreversion
+Source: src\ro\Samba.Localization.resources.dll; DestDir: {app}\ro\; Flags: ignoreversion
+Source: src\sq\Samba.Localization.resources.dll; DestDir: {app}\sq\; Flags: ignoreversion
+Source: src\zh-CN\Samba.Localization.resources.dll; DestDir: {app}\zh-CN\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -281,9 +292,13 @@ end;
 [Dirs]
 Name: {app}\Images
 Name: {app}\Imports
+Name: {app}\Training
 Name: {app}\tr
 Name: {app}\cs
 Name: {app}\es
 Name: {app}\ru
 Name: {app}\de
+Name: {app}\ro
+Name: {app}\sq
+Name: {app}\zh-CN
 Name: {commonappdata}\Ozgu Tech\SambaPOS2

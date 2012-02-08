@@ -37,6 +37,9 @@
             <CheckBox IsChecked="{Binding LocksTicket}" Margin="0,5,0,2">
                 <LocText ResourceIdentifierKey="LockTicket" />
             </CheckBox>
+            <CheckBox IsChecked="{Binding CloseTicket}" Margin="0,2">
+                <LocText ResourceIdentifierKey="CloseTicket" />
+            </CheckBox>
             <CheckBox IsChecked="{Binding UseFromPos}" Margin="0,2">
                 <LocText ResourceIdentifierKey="UseAtPosScreen" />
             </CheckBox>
@@ -114,7 +117,7 @@
                             <DataTemplate>
                                 <Grid>
                                     <TextBlock Style="{StaticResource GridBlockStyle}" HorizontalAlignment="Stretch" Text="{Binding TicketTagLabel}" />
-                                    <ComboBox Style="{StaticResource GridEditStyle}" HorizontalAlignment="Stretch" SelectedItem="{Binding TicketTag}"
+                                    <ComboBox IsEditable="True" Style="{StaticResource GridEditStyle}" HorizontalAlignment="Stretch" SelectedItem="{Binding TicketTag}"
                                          ItemsSource="{Binding TicketTags}" />
                                 </Grid>
                             </DataTemplate>

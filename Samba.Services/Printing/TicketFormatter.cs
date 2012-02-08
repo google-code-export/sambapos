@@ -100,13 +100,46 @@ namespace Samba.Services.Printing
             var userNo = lines.Count() > 0 ? lines.ElementAt(0).CreatingUserId : 0;
             var header = ReplaceDocumentVars(template.HeaderTemplate, ticket, orderNo, userNo);
             var footer = ReplaceDocumentVars(template.FooterTemplate, ticket, orderNo, userNo);
-            var lns = lines.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
+            var lns = GetFormattedLines(lines, template);
 
             var result = header.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             result.AddRange(lns);
             result.AddRange(footer.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
 
             return result.ToArray();
+        }
+
+        private static IEnumerable<string> GetFormattedLines(IEnumerable<TicketItem> lines, PrinterTemplate template)
+        {
+            if (!string.IsNullOrEmpty(template.GroupTemplate))
+            {
+                if (template.GroupTemplate.Contains("{PRODUCT GROUP}"))
+                {
+                    var groups = lines.GroupBy(GetMenuItemGroup);
+                    var result = new List<string>();
+                    foreach (var grp in groups)
+                    {
+                        var grpSep = template.GroupTemplate.Replace("{PRODUCT GROUP}", grp.Key);
+                        result.AddRange(grpSep.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+                        result.AddRange(grp.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)));
+                    }
+                    return result;
+                }
+
+                if (template.GroupTemplate.Contains("{PRODUCT TAG}"))
+                {
+                    var groups = lines.GroupBy(GetMenuItemTag);
+                    var result = new List<string>();
+                    foreach (var grp in groups)
+                    {
+                        var grpSep = template.GroupTemplate.Replace("{PRODUCT TAG}", grp.Key);
+                        result.AddRange(grpSep.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+                        result.AddRange(grp.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)));
+                    }
+                    return result;
+                }
+            }
+            return lines.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
         }
 
         private static IEnumerable<TicketItem> MergeLines(IEnumerable<TicketItem> lines)
@@ -215,15 +248,16 @@ namespace Samba.Services.Printing
             result = FormatData(result, Resources.TF_TableOrUserName, () => title);
             result = FormatData(result, Resources.TF_UserName, () => userName);
             result = FormatData(result, Resources.TF_TableName, () => ticket.LocationName);
-            result = FormatData(result, Resources.TF_TicketNote, () => ticket.Note);
+            result = FormatData(result, Resources.TF_TicketNote, () => ticket.Note ?? "");
             result = FormatData(result, Resources.TF_AccountName, () => ticket.CustomerName);
             result = FormatData(result, "{ACC GROUPCODE}", () => ticket.CustomerGroupCode);
 
-            if (ticket.CustomerId > 0 && (result.Contains(Resources.TF_AccountAddress) || result.Contains(Resources.TF_AccountPhone)))
+            if (ticket.CustomerId > 0 && (result.Contains(Resources.TF_AccountAddress) || result.Contains(Resources.TF_AccountPhone) || result.Contains("{ACC NOTE}")))
             {
                 var customer = Dao.SingleWithCache<Customer>(x => x.Id == ticket.CustomerId);
                 result = FormatData(result, Resources.TF_AccountAddress, () => customer.Address);
                 result = FormatData(result, Resources.TF_AccountPhone, () => customer.PhoneNumber);
+                result = FormatData(result, "{ACC NOTE}", () => customer.Note);
             }
 
             result = RemoveTag(result, Resources.TF_AccountAddress);
@@ -395,6 +429,7 @@ namespace Samba.Services.Printing
                 result = FormatData(result, Resources.TF_LineItemTotalWithoutGifts, () => ticketItem.GetTotal().ToString("#,#0.00"));
                 result = FormatData(result, Resources.TF_LineOrderNumber, () => ticketItem.OrderNumber.ToString());
                 result = FormatData(result, Resources.TF_LineGiftOrVoidReason, () => AppServices.MainDataContext.GetReason(ticketItem.ReasonId));
+                result = FormatData(result, "{MENU ITEM GROUP}", () => GetMenuItemGroup(ticketItem));
                 result = FormatData(result, "{MENU ITEM TAG}", () => GetMenuItemTag(ticketItem));
                 result = FormatData(result, "{PRICE TAG}", () => ticketItem.PriceTag);
                 result = UpdateSettings(result);
@@ -419,6 +454,11 @@ namespace Samba.Services.Printing
                 result = result.Replace("<", "\r\n<");
             }
             return result;
+        }
+
+        private static string GetMenuItemGroup(TicketItem ticketItem)
+        {
+            return Dao.SingleWithCache<MenuItem>(x => x.Id == ticketItem.MenuItemId).GroupCode;
         }
 
         private static string GetMenuItemTag(TicketItem ticketItem)

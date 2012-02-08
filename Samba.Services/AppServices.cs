@@ -30,7 +30,6 @@ namespace Samba.Services
     public static class AppServices
     {
         public static Dispatcher MainDispatcher { get; set; }
-
         public static AppScreens ActiveAppScreen { get; set; }
 
         private static IWorkspace _workspace;

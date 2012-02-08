@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Samba.Infrastructure;
@@ -18,9 +19,14 @@ namespace Samba.Presentation
             base.OnStartup(e);
             if (e.Args.Length > 0)
             {
-                var lang = e.Args[0].Trim('/');
-                if (string.IsNullOrEmpty(LocalSettings.CurrentLanguage) && LocalSettings.SupportedLanguages.Contains(lang))
-                    LocalSettings.CurrentLanguage = lang;
+                var langArg = e.Args.Where(x => !x.Contains("="));
+                if (langArg.Count() > 0)
+                {
+                    var lang = langArg.ElementAt(0).Trim('/');
+                    if (string.IsNullOrEmpty(LocalSettings.CurrentLanguage) && LocalSettings.SupportedLanguages.Contains(lang))
+                        LocalSettings.CurrentLanguage = lang;
+                }
+                LocalSettings.StartupArguments = e.Args.Aggregate("", (current, arg) => current + arg);
             }
 #if (DEBUG)
             RunInDebugMode();

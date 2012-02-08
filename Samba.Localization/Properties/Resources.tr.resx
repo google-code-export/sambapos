@@ -3103,11 +3103,11 @@ Mesaj:
   <data name="LastPaidLines" xml:space="preserve">
     <value>Son Ödenen Satırlar</value>
   </data>
-  <data name="PortionSelected">
-    <value xml:space="preserve">Porsiyon Seçildiğinde</value>
+  <data name="PortionSelected" xml:space="preserve">
+    <value>Porsiyon Seçildiğinde</value>
   </data>
-  <data name="ModifierSelected">
-    <value xml:space="preserve">Özellik Seçildiğinde</value>
+  <data name="ModifierSelected" xml:space="preserve">
+    <value>Özellik Seçildiğinde</value>
   </data>
   <data name="Big" xml:space="preserve">
     <value>Büyük</value>
@@ -3118,86 +3118,89 @@ Mesaj:
   <data name="Small" xml:space="preserve">
     <value>Küçük</value>
   </data>
-  <data name="GiftLastTicketItem">
-    <value xml:space="preserve">Son Adisyon Satırını İkram Et</value>
+  <data name="GiftLastTicketItem" xml:space="preserve">
+    <value>Son Adisyon Satırını İkram Et</value>
   </data>
-  <data name="Other">
-    <value xml:space="preserve">Diğer</value>
+  <data name="Other" xml:space="preserve">
+    <value>Diğer</value>
   </data>
-  <data name="PhoneNumberInputMask">
-    <value xml:space="preserve">Telefon Numarası Formatı</value>
+  <data name="PhoneNumberInputMask" xml:space="preserve">
+    <value>Telefon Numarası Formatı</value>
   </data>
-  <data name="Increase">
-    <value xml:space="preserve">Arttır</value>
+  <data name="Increase" xml:space="preserve">
+    <value>Arttır</value>
   </data>
-  <data name="Decrease">
-    <value xml:space="preserve">Azalt</value>
+  <data name="Decrease" xml:space="preserve">
+    <value>Azalt</value>
   </data>
-  <data name="SettingName">
-    <value xml:space="preserve">Ayar Adı</value>
+  <data name="SettingName" xml:space="preserve">
+    <value>Ayar Adı</value>
   </data>
-  <data name="SettingValue">
-    <value xml:space="preserve">Ayar Değeri</value>
+  <data name="SettingValue" xml:space="preserve">
+    <value>Ayar Değeri</value>
   </data>
-  <data name="UpdateType">
-    <value xml:space="preserve">Güncelleme Şekli</value>
+  <data name="UpdateType" xml:space="preserve">
+    <value>Güncelleme Şekli</value>
   </data>
-  <data name="Command">
-    <value xml:space="preserve">Komut</value>
+  <data name="Command" xml:space="preserve">
+    <value>Komut</value>
   </data>
-  <data name="RoleName">
-    <value xml:space="preserve">Rol Adı</value>
+  <data name="RoleName" xml:space="preserve">
+    <value>Rol Adı</value>
   </data>
-  <data name="OldLocation">
-    <value xml:space="preserve">Eski Yer</value>
+  <data name="OldLocation" xml:space="preserve">
+    <value>Eski Yer</value>
   </data>
-  <data name="NewLocation">
-    <value xml:space="preserve">Yeni Yer</value>
+  <data name="NewLocation" xml:space="preserve">
+    <value>Yeni Yer</value>
   </data>
-  <data name="NumericValue">
-    <value xml:space="preserve">Sayısal Değer</value>
+  <data name="NumericValue" xml:space="preserve">
+    <value>Sayısal Değer</value>
   </data>
-  <data name="CustomerGroupCode">
-    <value xml:space="preserve">Müşteri Grup Kodu</value>
+  <data name="CustomerGroupCode" xml:space="preserve">
+    <value>Müşteri Grup Kodu</value>
   </data>
-  <data name="CustomerId">
-    <value xml:space="preserve">Müşteri ID</value>
+  <data name="CustomerId" xml:space="preserve">
+    <value>Müşteri ID</value>
   </data>
-  <data name="PaymentType">
-    <value xml:space="preserve">Ödeme Tipi</value>
+  <data name="PaymentType" xml:space="preserve">
+    <value>Ödeme Tipi</value>
   </data>
-  <data name="UpdateLastTicketItemPriceTag">
-    <value xml:space="preserve">Son Satırın Fiyat Etiketini Değiştir</value>
+  <data name="UpdateTicketItemPriceTag" xml:space="preserve">
+    <value>Satırın Fiyat Etiketini Değiştir</value>
   </data>
-  <data name="TicketLineCancelled">
-    <value xml:space="preserve">Adisyon Satırı İptal Edildiğinde</value>
+  <data name="UpdateLastTicketItemPriceTag" xml:space="preserve">
+    <value>Son Satırın Fiyat Etiketini Değiştir</value>
+  </data>
+  <data name="TicketLineCancelled" xml:space="preserve">
+    <value>Adisyon Satırı İptal Edildiğinde</value>
   </data>
   <data name="ImageOnly" xml:space="preserve">
     <value>Sadece Resim</value>
   </data>
-  <data name="MS_Connected">
-    <value xml:space="preserve">Bağlı.</value>
+  <data name="MS_Connected" xml:space="preserve">
+    <value>Bağlı.</value>
   </data>
-  <data name="MS_Disconnected">
-    <value xml:space="preserve">Bağlanmadı.</value>
+  <data name="MS_Disconnected" xml:space="preserve">
+    <value>Bağlanmadı.</value>
   </data>
   <data name="RemoveLastModifier" xml:space="preserve">
     <value>Son Özelliği Kaldır</value>
   </data>
-  <data name="ForPrintingTicketTagValue">
-    <value xml:space="preserve">X isimli adisyon etiketinin değerini yazdırır.</value>
+  <data name="ForPrintingTicketTagValue" xml:space="preserve">
+    <value>X isimli adisyon etiketinin değerini yazdırır.</value>
   </data>
-  <data name="ForPrintingAppSettingValue">
-    <value xml:space="preserve">X isimli program ayarının değerini yazdırır.</value>
+  <data name="ForPrintingAppSettingValue" xml:space="preserve">
+    <value>X isimli program ayarının değerini yazdırır.</value>
   </data>
-  <data name="ForceClosingActiveWorkPeriod">
-    <value xml:space="preserve">Aktif bağlantı varken gün sonu yapabilir.</value>
+  <data name="ForceClosingActiveWorkPeriod" xml:space="preserve">
+    <value>Aktif bağlantı varken gün sonu yapabilir.</value>
   </data>
-  <data name="RequestShutdown">
-    <value xml:space="preserve">Kapanış İste</value>
+  <data name="RequestShutdown" xml:space="preserve">
+    <value>Kapanış İste</value>
   </data>
-  <data name="ActiveConnections_f">
-    <value xml:space="preserve">{0} Aktif Bağlantı</value>
+  <data name="ActiveConnections_f" xml:space="preserve">
+    <value>{0} Aktif Bağlantı</value>
   </data>
   <data name="Checking" xml:space="preserve">
     <value>Kontrol...</value>
@@ -3215,10 +3218,23 @@ Mesaj:
     <value>Toplam Grup Fiyatı</value>
     <comment>Label content</comment>
   </data>
-  <data name="ExecuteTicketOperation">
-    <value xml:space="preserve">Adisyon İşlemi Başlat</value>
+  <data name="ExecuteTicketOperation" xml:space="preserve">
+    <value>Adisyon İşlemi Başlat</value>
   </data>
-	<data name="RemoveModifier">
-		<value xml:space="preserve">Özellik Kaldır</value>
-	</data>
+  <data name="RemoveModifier" xml:space="preserve">
+    <value>Özellik Kaldır</value>
+  </data>
+  <data name="GroupTemplate" xml:space="preserve">
+    <value>Grup Şablonu</value>
+  </data>
+  <data name="AccountNote">
+    <value xml:space="preserve">Hesap Notu</value>
+  </data>
+  <data name="AccountGroupCode">
+    <value xml:space="preserve">Hesap Grup Kodu</value>
+  </data>
+  <data name="ProductGroup">
+    <value xml:space="preserve">Ürün Group Kodu</value>
+  </data>
+
 </root>

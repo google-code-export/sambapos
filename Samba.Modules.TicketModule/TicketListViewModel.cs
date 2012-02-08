@@ -583,7 +583,8 @@ namespace Samba.Modules.TicketModule
 
             if (printJob.WhenToPrint == (int)WhenToPrintTypes.Paid && !SelectedTicket.IsPaid)
                 MakePaymentCommand.Execute("");
-            else CloseTicket();
+            else if (printJob.CloseTicket)
+                CloseTicket();
         }
 
         private void SaveTicketIfNew()
