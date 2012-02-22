@@ -9,6 +9,14 @@
                     <LocText ResourceIdentifierKey="TerminalAdı" Suffix=":"/>
                 </Label>
                 <TextBox HorizontalAlignment="Left" Width="250" Text="{Binding Name}" />
+                <Label>
+                    <LocText ResourceIdentifierKey="Department" Suffix=":"/>
+                </Label>
+                <ComboBox HorizontalAlignment="Left" Width="250" IsEditable="True"
+                          SelectedValue="{Binding DepartmentId}" 
+                          ItemsSource="{Binding Departments}"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Id"/>
                 <CheckBox Margin="0,5" IsChecked="{Binding IsDefault, Mode=TwoWay}">
                     <LocText ResourceIdentifierKey="DefaultTerminal"/>
                 </CheckBox>

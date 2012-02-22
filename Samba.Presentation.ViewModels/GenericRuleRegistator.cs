@@ -414,7 +414,8 @@ namespace Samba.Presentation.ViewModels
                         var giftReason = x.Value.GetAsString("GiftReason");
                         var tag = x.Value.GetAsString("Tag");
 
-                        var ti = ticket.AddTicketItem(AppServices.CurrentLoggedInUser.Id, menuItem, portionName,
+                        var ti = ticket.AddTicketItem(AppServices.CurrentLoggedInUser.Id,
+                            AppServices.MainDataContext.SelectedDepartment.Id, menuItem, portionName,
                                  AppServices.MainDataContext.SelectedDepartment.PriceTag, "");
 
                         ti.Quantity = quantity;

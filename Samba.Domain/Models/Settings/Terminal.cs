@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Settings
@@ -12,6 +13,7 @@ namespace Samba.Domain.Models.Settings
         public bool AutoLogout { get; set; }
         public virtual Printer SlipReportPrinter { get; set; }
         public virtual Printer ReportPrinter { get; set; }
+        public int DepartmentId { get; set; }
 
         private IList<PrintJob> _printJobs;
         public virtual IList<PrintJob> PrintJobs

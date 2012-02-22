@@ -32,9 +32,9 @@ namespace Samba.Services.Printing
 
     public static class TicketPrinter
     {
-        private static PrinterMap GetPrinterMapForItem(IEnumerable<PrinterMap> printerMaps, Ticket ticket, int menuItemId)
+        private static PrinterMap GetPrinterMapForItem(IEnumerable<PrinterMap> printerMaps, Ticket ticket, TicketItem ticketItem)
         {
-            var menuItemGroupCode = Dao.Single<MenuItem, string>(menuItemId, x => x.GroupCode);
+            var menuItemGroupCode = Dao.Single<MenuItem, string>(ticketItem.MenuItemId, x => x.GroupCode);
 
             var maps = printerMaps;
 
@@ -42,16 +42,16 @@ namespace Samba.Services.Printing
                 ? maps.Where(x => !string.IsNullOrEmpty(x.TicketTag) && !string.IsNullOrEmpty(ticket.GetTagValue(x.TicketTag)))
                 : maps.Where(x => string.IsNullOrEmpty(x.TicketTag));
 
-            maps = maps.Count(x => x.Department != null && x.Department.Id == ticket.DepartmentId) > 0
-                       ? maps.Where(x => x.Department != null && x.Department.Id == ticket.DepartmentId)
+            maps = maps.Count(x => x.Department != null && x.Department.Id == ticketItem.DepartmentId) > 0
+                       ? maps.Where(x => x.Department != null && x.Department.Id == ticketItem.DepartmentId)
                        : maps.Where(x => x.Department == null);
 
             maps = maps.Count(x => x.MenuItemGroupCode == menuItemGroupCode) > 0
                        ? maps.Where(x => x.MenuItemGroupCode == menuItemGroupCode)
                        : maps.Where(x => x.MenuItemGroupCode == null);
 
-            maps = maps.Count(x => x.MenuItem != null && x.MenuItem.Id == menuItemId) > 0
-                       ? maps.Where(x => x.MenuItem != null && x.MenuItem.Id == menuItemId)
+            maps = maps.Count(x => x.MenuItem != null && x.MenuItem.Id == ticketItem.MenuItemId) > 0
+                       ? maps.Where(x => x.MenuItem != null && x.MenuItem.Id == ticketItem.MenuItemId)
                        : maps.Where(x => x.MenuItem == null);
 
             return maps.FirstOrDefault();
@@ -159,7 +159,7 @@ namespace Samba.Services.Printing
             if (ticket.TicketItems.Count > 1)
             {
                 var printer = printJob.PrinterMaps.Count == 1 ? printJob.PrinterMaps[0]
-                    : GetPrinterMapForItem(printJob.PrinterMaps, ticket, ticket.TicketItems.Last().MenuItemId);
+                    : GetPrinterMapForItem(printJob.PrinterMaps, ticket, ticket.TicketItems.Last());
                 var result = ticket.TicketItems.OrderByDescending(x => x.CreatedDateTime).ToList();
                 if (printer.Printer.PageHeight > 0)
                     result = result.Take(printer.Printer.PageHeight).ToList();
@@ -209,7 +209,7 @@ namespace Samba.Services.Printing
 
             foreach (var item in ticketItems)
             {
-                var p = GetPrinterMapForItem(printJob.PrinterMaps, ticket, item.MenuItemId);
+                var p = GetPrinterMapForItem(printJob.PrinterMaps, ticket, item);
                 if (p != null)
                 {
                     var lmap = p;

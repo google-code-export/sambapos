@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Samba.Domain.Models.Settings;
+using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
@@ -24,9 +25,11 @@ namespace Samba.Modules.SettingsModule
 
         public bool IsDefault { get { return Model.IsDefault; } set { Model.IsDefault = value; } }
         public bool AutoLogout { get { return Model.AutoLogout; } set { Model.AutoLogout = value; } }
+        public int? DepartmentId { get { return Model.DepartmentId; } set { Model.DepartmentId = value.GetValueOrDefault(0); } }
         public Printer SlipReportPrinter { get { return Model.SlipReportPrinter; } set { Model.SlipReportPrinter = value; } }
         public Printer ReportPrinter { get { return Model.ReportPrinter; } set { Model.ReportPrinter = value; } }
         public ObservableCollection<PrintJob> PrintJobs { get; set; }
+        public ObservableCollection<Department> Departments { get; set; }
         public IEnumerable<Printer> Printers { get; private set; }
         public IEnumerable<PrinterTemplate> PrinterTemplates { get; private set; }
 
@@ -48,6 +51,7 @@ namespace Samba.Modules.SettingsModule
             Printers = workspace.All<Printer>();
             PrinterTemplates = workspace.All<PrinterTemplate>();
             PrintJobs = new ObservableCollection<PrintJob>(Model.PrintJobs);
+            Departments = new ObservableCollection<Department>(workspace.All<Department>());
         }
 
         private void OnAddPrintJob(string obj)

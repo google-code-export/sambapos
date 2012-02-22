@@ -40,6 +40,7 @@ namespace Samba.Domain.Models.Tickets
         [StringLength(10)]
         public string PriceTag { get; set; }
         public string Tag { get; set; }
+        public int DepartmentId { get; set; }
 
         public decimal VatRate { get; set; }
         public decimal VatAmount { get; set; }

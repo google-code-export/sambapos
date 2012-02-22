@@ -105,17 +105,17 @@ namespace Samba.Domain.Models.Tickets
             set { _paidItems = value; }
         }
 
-        
+
         public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName)
         {
             // Only for tests
-            return AddTicketItem(userId, menuItem, portionName, "", "");
+            return AddTicketItem(userId, 0, menuItem, portionName, "", "");
         }
 
-        public TicketItem AddTicketItem(int userId, MenuItem menuItem, string portionName, string priceTag, string defaultProperties)
+        public TicketItem AddTicketItem(int userId, int departmentId, MenuItem menuItem, string portionName, string priceTag, string defaultProperties)
         {
             Locked = false;
-            var tif = new TicketItem();
+            var tif = new TicketItem {DepartmentId = departmentId};
             tif.UpdateMenuItem(userId, menuItem, portionName, priceTag, 1, defaultProperties);
             TicketItems.Add(tif);
             return tif;

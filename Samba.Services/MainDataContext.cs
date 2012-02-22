@@ -370,7 +370,7 @@ namespace Samba.Services
         {
             if (SelectedTicket == null)
             {
-                _ticketWorkspace.CreateTicket(SelectedDepartment);
+                CreateNewTicket();
             }
             AssignCustomerToTicket(SelectedTicket, customer);
         }
@@ -379,7 +379,7 @@ namespace Samba.Services
         {
             if (SelectedTicket == null)
             {
-                _ticketWorkspace.CreateTicket(SelectedDepartment);
+                CreateNewTicket();
             }
 
             var table = _ticketWorkspace.GetTableWithId(tableId);
@@ -403,7 +403,8 @@ namespace Samba.Services
             }
 
             SelectedTicket.LocationName = table.Name;
-            if (SelectedDepartment != null) SelectedTicket.DepartmentId = SelectedDepartment.Id;
+            //if (SelectedDepartment != null) 
+            //    SelectedTicket.DepartmentId = SelectedDepartment.Id;
             table.TicketId = SelectedTicket.GetRemainingAmount() > 0 ? SelectedTicket.Id : 0;
         }
 
@@ -562,7 +563,7 @@ namespace Samba.Services
 
                 SelectedTableScreen = null;
                 SelectedDepartment = null;
-                
+
                 _tableScreens = null;
                 _departments = null;
                 _permittedDepartments = null;
@@ -606,7 +607,10 @@ namespace Samba.Services
 
         public void CreateNewTicket()
         {
-            _ticketWorkspace.CreateTicket(SelectedDepartment);
+            var department = SelectedDepartment;
+            if (AppServices.CurrentTerminal.DepartmentId > 0 && AppServices.CurrentTerminal.DepartmentId != department.Id)
+                department = Departments.Single(x => x.Id == AppServices.CurrentTerminal.DepartmentId);
+            _ticketWorkspace.CreateTicket(department);
         }
 
         public TicketCommitResult MoveTicketItems(IEnumerable<TicketItem> selectedItems, int targetTicketId)
