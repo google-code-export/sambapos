@@ -51,6 +51,7 @@ namespace Samba.Domain.Models.Tickets
 
         public int Id { get; set; }
         public string Name { get; set; }
+        public int DepartmentId { get; set; }
         public DateTime LastUpdateTime { get; set; }
         public string TicketNumber { get; set; }
         public string PrintJobData { get; set; }
@@ -64,7 +65,7 @@ namespace Samba.Domain.Models.Tickets
         public bool IsPaid { get; set; }
         public decimal RemainingAmount { get; set; }
         public decimal TotalAmount { get; set; }
-        public int DepartmentId { get; set; }
+        //public int DepartmentId { get; set; }
         public string Note { get; set; }
         public bool Locked { get; set; }
         [StringLength(500)]
@@ -115,7 +116,7 @@ namespace Samba.Domain.Models.Tickets
         public TicketItem AddTicketItem(int userId, int departmentId, MenuItem menuItem, string portionName, string priceTag, string defaultProperties)
         {
             Locked = false;
-            var tif = new TicketItem {DepartmentId = departmentId};
+            var tif = new TicketItem { DepartmentId = departmentId };
             tif.UpdateMenuItem(userId, menuItem, portionName, priceTag, 1, defaultProperties);
             TicketItems.Add(tif);
             return tif;
@@ -123,7 +124,7 @@ namespace Samba.Domain.Models.Tickets
 
         public Payment AddPayment(DateTime date, decimal amount, PaymentType paymentType, int userId)
         {
-            var result = new Payment { Amount = amount, Date = date, PaymentType = (int)paymentType, UserId = userId };
+            var result = new Payment { Amount = amount, Date = date, PaymentType = (int)paymentType, UserId = userId, DepartmentId = DepartmentId };
             Payments.Add(result);
             LastPaymentDate = DateTime.Now;
             RemainingAmount = GetRemainingAmount();

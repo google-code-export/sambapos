@@ -98,8 +98,9 @@ namespace Samba.Services.Printing
             if (template.MergeLines) lines = MergeLines(lines);
             var orderNo = lines.Count() > 0 ? lines.ElementAt(0).OrderNumber : 0;
             var userNo = lines.Count() > 0 ? lines.ElementAt(0).CreatingUserId : 0;
-            var header = ReplaceDocumentVars(template.HeaderTemplate, ticket, orderNo, userNo);
-            var footer = ReplaceDocumentVars(template.FooterTemplate, ticket, orderNo, userNo);
+            var departmentNo = lines.Count() > 0 ? lines.ElementAt(0).DepartmentId : ticket.DepartmentId;
+            var header = ReplaceDocumentVars(template.HeaderTemplate, ticket, orderNo, userNo, departmentNo);
+            var footer = ReplaceDocumentVars(template.FooterTemplate, ticket, orderNo, userNo, departmentNo);
             var lns = GetFormattedLines(lines, template);
 
             var result = header.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -186,7 +187,7 @@ namespace Samba.Services.Printing
             return result;
         }
 
-        private static string ReplaceDocumentVars(string document, Ticket ticket, int orderNo, int userNo)
+        private static string ReplaceDocumentVars(string document, Ticket ticket, int orderNo, int userNo, int departmentNo)
         {
             string result = document;
             if (string.IsNullOrEmpty(document)) return "";
@@ -199,7 +200,7 @@ namespace Samba.Services.Printing
             result = FormatData(result, Resources.TF_TicketNumber, () => ticket.TicketNumber);
             result = FormatData(result, Resources.TF_LineOrderNumber, orderNo.ToString);
             result = FormatData(result, Resources.TF_TicketTag, ticket.GetTagData);
-            result = FormatDataIf(true, result, "{DEPARTMENT}", () => GetDepartmentName(ticket.DepartmentId));
+            result = FormatDataIf(true, result, "{DEPARTMENT}", () => GetDepartmentName(departmentNo));
 
             var ticketTagPattern = Resources.TF_OptionalTicketTag + "[^}]+}";
 

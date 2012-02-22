@@ -40,7 +40,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     TaxServices = x.Sum(y => y.GetTaxServicesTotal())
                 });
 
-            if (ticketGropus.Count() > 1)
+            if (ReportContext.Departments.Count() > 1)
             {
                 foreach (var departmentInfo in ticketGropus)
                 {
@@ -75,6 +75,20 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             if (ReportContext.Tickets.SelectMany(x => x.TicketItems.Select(y => new { x.DepartmentId, x.TicketItems })).Any(x => x.TicketItems.Any(y => y.DepartmentId != x.DepartmentId)))
             {
+                //var salesByOrder = ReportContext.Tickets.SelectMany(ticket => ticket.TicketItems.Select(ticketItem => new { Ticket = ticket, TicketItem = ticketItem }))
+                //    .GroupBy(x => new { x.TicketItem.DepartmentId })
+                //    .Select(x => new DepartmentInfo { DepartmentId = x.Key.DepartmentId, Amount = x.Sum(y => MenuGroupBuilder.CalculateTicketItemTotal(y.Ticket, y.TicketItem)) });
+
+                //report.AddColumnLength("DepartmentSales", "65*", "40*");
+                //report.AddColumTextAlignment("DepartmentSales", TextAlignment.Left, TextAlignment.Right);
+                //report.AddTable("DepartmentSales", "Sales By Order", "");
+                //foreach (var sale in salesByOrder)
+                //{
+                //    var cs = sale;
+                //    report.AddRow("DepartmentSales", cs.DepartmentName, cs.Amount.ToString(ReportContext.CurrencyFormat));
+                //}
+
+
                 report.AddColumnLength("CrossSales", "65*", "40*");
                 report.AddColumTextAlignment("CrossSales", TextAlignment.Left, TextAlignment.Right);
                 report.AddTable("CrossSales", "Cross Sales", "");
@@ -91,7 +105,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
                     if (crossSales.Count() > 0)
                     {
-                        report.AddBoldRow("CrossSales", departmentInfo.DepartmentName, "");
+                        report.AddBoldRow("CrossSales", departmentInfo.DepartmentName, (departmentInfo.Amount - crossSales.Sum(x => x.Amount)).ToString(ReportContext.CurrencyFormat));
                         foreach (var crossSale in crossSales)
                         {
                             var cs = crossSale;
@@ -201,8 +215,8 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                 foreach (var departmentInfo in ticketGropus)
                 {
                     var dPayments = ReportContext.Tickets
-                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
                         .SelectMany(x => x.Payments)
+                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
                         .GroupBy(x => new { x.PaymentType })
                         .Select(x => new TenderedAmount { PaymentType = x.Key.PaymentType, Amount = x.Sum(y => y.Amount) });
 
@@ -215,9 +229,8 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.TotalIncome, "", departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
 
                     var dvoids = ReportContext.Tickets
-                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
                         .SelectMany(x => x.TicketItems)
-                        .Where(x => x.Voided)
+                        .Where(x => x.Voided && x.DepartmentId == departmentInfo.DepartmentId)
                         .Sum(x => x.GetItemValue());
 
                     var ddiscounts = ReportContext.Tickets
@@ -226,9 +239,8 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         .Sum(x => x.DiscountAmount);
 
                     var dgifts = ReportContext.Tickets
-                        .Where(x => x.DepartmentId == departmentInfo.DepartmentId)
                         .SelectMany(x => x.TicketItems)
-                        .Where(x => x.Gifted)
+                        .Where(x => x.Gifted && x.DepartmentId == departmentInfo.DepartmentId)
                         .Sum(x => x.GetItemValue());
 
                     report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.VoidsTotal, "", dvoids.ToString(ReportContext.CurrencyFormat));

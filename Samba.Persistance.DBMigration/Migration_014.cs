@@ -13,6 +13,11 @@ namespace Samba.Persistance.DBMigration
         public override void Up()
         {
             Create.Column("DepartmentId").OnTable("TicketItems").AsInt32().WithDefaultValue(0);
+            Create.Column("DepartmentId").OnTable("Terminals").AsInt32().WithDefaultValue(0);
+            Create.Column("DepartmentId").OnTable("Payments").AsInt32().WithDefaultValue(0);
+
+            Execute.Sql("Update TicketItems set DepartmentId = (Select DepartmentId From Tickets Where Id = TicketItems.TicketId)");
+            Execute.Sql("Update Payments set DepartmentId = (Select DepartmentId From Tickets Where Id = Payments.Ticket_Id)");
         }
 
         public override void Down()

@@ -402,9 +402,11 @@ namespace Samba.Services
                 OpenTicket(table.TicketId);
             }
 
+            SelectedTicket.DepartmentId = AppServices.CurrentTerminal.DepartmentId > 0
+                ? AppServices.CurrentTerminal.DepartmentId
+                : SelectedDepartment.Id;
+
             SelectedTicket.LocationName = table.Name;
-            //if (SelectedDepartment != null) 
-            //    SelectedTicket.DepartmentId = SelectedDepartment.Id;
             table.TicketId = SelectedTicket.GetRemainingAmount() > 0 ? SelectedTicket.Id : 0;
         }
 
@@ -510,8 +512,10 @@ namespace Samba.Services
                 }
 
                 UpdateTicketTable(SelectedTicket);
+
                 if (SelectedTicket.Id > 0)  // eğer adisyonda satır yoksa ID burada 0 olmalı.
                     _ticketWorkspace.CommitChanges();
+
                 Debug.Assert(SelectedTicket.TicketItems.Count(x => x.OrderNumber == 0) == 0);
             }
             result.TicketId = SelectedTicket.Id;

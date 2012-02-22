@@ -15,5 +15,6 @@ namespace Samba.Domain.Models.Tickets
         public DateTime Date { get; set; }
         public int PaymentType { get; set; }
         public int UserId { get; set; }
+        public int DepartmentId { get; set; }
     }
 }
