@@ -6263,6 +6263,9 @@
         AAD/nwAA
 </value>
   </data>
+  <data name="notifyIcon1.Text" xml:space="preserve">
+    <value>Samba Mesaj Sunucusu</value>
+  </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 17</value>
   </data>

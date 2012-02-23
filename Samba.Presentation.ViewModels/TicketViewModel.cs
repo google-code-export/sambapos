@@ -253,7 +253,11 @@ namespace Samba.Presentation.ViewModels
                 portion = menuItem.Portions.First(x => x.Name == portionName);
             }
 
-            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, AppServices.MainDataContext.SelectedDepartment.Id, menuItem, portion.Name, AppServices.MainDataContext.SelectedDepartment.PriceTag, defaultProperties);
+            var departmentId = AppServices.CurrentTerminal.DepartmentId > 0
+                                   ? AppServices.MainDataContext.SelectedDepartment.Id
+                                   : Model.DepartmentId;
+
+            var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, departmentId, menuItem, portion.Name, AppServices.MainDataContext.SelectedDepartment.PriceTag, defaultProperties);
             ti.Quantity = quantity > 9 ? decimal.Round(quantity / portion.Multiplier, LocalSettings.Decimals) : quantity;
             ti.Gifted = gift;
             var ticketItemViewModel = new TicketItemViewModel(ti);

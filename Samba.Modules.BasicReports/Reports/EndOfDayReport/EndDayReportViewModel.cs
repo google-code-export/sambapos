@@ -87,11 +87,10 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                 //    var cs = sale;
                 //    report.AddRow("DepartmentSales", cs.DepartmentName, cs.Amount.ToString(ReportContext.CurrencyFormat));
                 //}
-
-
+                
                 report.AddColumnLength("CrossSales", "65*", "40*");
                 report.AddColumTextAlignment("CrossSales", TextAlignment.Left, TextAlignment.Right);
-                report.AddTable("CrossSales", "Cross Sales", "");
+                report.AddTable("CrossSales", Resources.CrossSales, "");
 
                 foreach (var departmentInfo in ticketGropus)
                 {

@@ -817,6 +817,9 @@ namespace Samba.Modules.TicketModule
 
         private bool CanMakePayment(string arg)
         {
+            if (AppServices.MainDataContext.SelectedDepartment!= null && AppServices.CurrentTerminal.DepartmentId > 0 
+                && AppServices.MainDataContext.SelectedDepartment.Id != AppServices.CurrentTerminal.DepartmentId)
+                return false;
             return SelectedTicket != null
                 && (SelectedTicket.TicketPlainTotalValue > 0 || SelectedTicket.Items.Count > 0)
                 && AppServices.IsUserPermittedFor(PermissionNames.MakePayment);

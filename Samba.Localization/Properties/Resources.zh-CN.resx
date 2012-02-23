@@ -2430,7 +2430,7 @@
 		<value>一</value>
 	</data>
 	<data name="Two" xml:space="preserve">
-		<value>两</value>
+		<value>二</value>
 	</data>
 	<data name="Three" xml:space="preserve">
 		<value>三</value>
@@ -2445,10 +2445,10 @@
 		<value>六</value>
 	</data>
 	<data name="Seven" xml:space="preserve">
-		<value>七个</value>
+		<value>七</value>
 	</data>
 	<data name="Eight" xml:space="preserve">
-		<value>八个</value>
+		<value>八</value>
 	</data>
 	<data name="Nine" xml:space="preserve">
 		<value>九</value>
@@ -2481,22 +2481,22 @@
 		<value>十一</value>
 	</data>
 	<data name="Ten" xml:space="preserve">
-		<value>十年</value>
+		<value>十</value>
 	</data>
 	<data name="Twenty" xml:space="preserve">
-		<value>第二十</value>
+		<value>二十</value>
 	</data>
 	<data name="Thirty" xml:space="preserve">
-		<value>第三</value>
+		<value>三十</value>
 	</data>
 	<data name="Forty" xml:space="preserve">
-		<value>第四</value>
+		<value>四十</value>
 	</data>
 	<data name="Fifty" xml:space="preserve">
-		<value>第五十</value>
+		<value>五十</value>
 	</data>
 	<data name="Sixty" xml:space="preserve">
-		<value>第六</value>
+		<value>六十</value>
 	</data>
 	<data name="Seventy" xml:space="preserve">
 		<value>七十</value>
@@ -2508,13 +2508,13 @@
 		<value>九十</value>
 	</data>
 	<data name="Thousand" xml:space="preserve">
-		<value>斌</value>
+		<value>千</value>
 	</data>
 	<data name="Million" xml:space="preserve">
-		<value>万美元</value>
+		<value>百万</value>
 	</data>
 	<data name="Billion" xml:space="preserve">
-		<value>亿</value>
+		<value>十亿</value>
 	</data>
 	<data name="Hundred" xml:space="preserve">
 		<value>百</value>
@@ -2523,7 +2523,7 @@
 		<value>零</value>
 	</data>
 	<data name="Negative" xml:space="preserve">
-		<value>负面</value>
+		<value>否定的</value>
 	</data>
 	<data name="Dollar" xml:space="preserve">
 		<value>美元</value>
@@ -2535,7 +2535,7 @@
 		<value>小号</value>
 	</data>
 	<data name="OneHundred" xml:space="preserve">
-		<value>一百年</value>
+		<value>一百</value>
 	</data>
 	<data name="OneThousand" xml:space="preserve">
 		<value>一仟</value>
@@ -2622,7 +2622,7 @@
 		<value>请选择一个默认的部门</value>
 	</data>
 	<data name="Copy" xml:space="preserve">
-		<value>复制</value>
+		<value>副件</value>
 	</data>
 	<data name="Send" xml:space="preserve">
 		<value>发送</value>

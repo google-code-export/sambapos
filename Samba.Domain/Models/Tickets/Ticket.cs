@@ -65,7 +65,6 @@ namespace Samba.Domain.Models.Tickets
         public bool IsPaid { get; set; }
         public decimal RemainingAmount { get; set; }
         public decimal TotalAmount { get; set; }
-        //public int DepartmentId { get; set; }
         public string Note { get; set; }
         public bool Locked { get; set; }
         [StringLength(500)]

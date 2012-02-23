@@ -3234,4 +3234,7 @@ Error Message:
   <data name="ProductGroup">
     <value xml:space="preserve">Product Group</value>
   </data>
+	<data name="CrossSales">
+		<value xml:space="preserve">Cross Sales</value>
+	</data>
 </root>

@@ -1599,6 +1599,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cross Sales.
+        /// </summary>
+        public static string CrossSales {
+            get {
+                return ResourceManager.GetString("CrossSales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV Builder.
         /// </summary>
         public static string CsvBuilder {

@@ -57,6 +57,7 @@ namespace Samba.Modules.BasicReports.Reports.CSVBuilder
                         UserName = ReportContext.GetUserName(x.TicketItem.CreatingUserId),
                         Account = x.Ticket.CustomerName,
                         Location = x.Ticket.LocationName,
+                        x.TicketItem.DepartmentId,
                         x.TicketItem.OrderNumber,
                         x.TicketItem.Voided,
                         x.TicketItem.Gifted,

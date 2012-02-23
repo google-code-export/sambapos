@@ -3236,5 +3236,7 @@ Mesaj:
   <data name="ProductGroup">
     <value xml:space="preserve">Ürün Group Kodu</value>
   </data>
-
+  <data name="CrossSales">
+    <value xml:space="preserve">Çapraz Satışlar</value>
+  </data>
 </root>

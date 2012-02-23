@@ -1,7 +1,7 @@
-' SambaPOS Training V3.0
+' SambaPOS Training V3.3
 '
 ' Developed by John Sheather (aka JohnSCS) for SambaPOS
-' 2-Feb-2012
+' 16-Feb-2012
 '
 ' Forum Support - http://forum2.sambapos.com/index.php/topic,184.0.html
 ' Web Site - http://www.sambapos.com/en
@@ -15,11 +15,10 @@ Const ForWriting = 2
 dim sampletext, objRegExp, SearchPattern, ReplacePattern, matches 
 dim outputArray, inputText, message, strDS, strIS, intReturn
 Dim objFSO, objFile, match, strFileName, strE2CE1, strE2CE2, strE2CE3, strE2CE4
-dim fso, oShell, strUserProfile, strSSLoc
+dim fso, oShell, strUserProfile, strSSLoc, strTrSQLLoc
 Dim sCurPath
 
 sCurPath = CreateObject("Scripting.FileSystemObject").GetAbsolutePathName(".")
-strTrSQLCE = sCurPath & "\SambaData2.sdf"
 strSamba = strInDir & "Samba.Presentation.exe"
 
 sParentPath = ""
@@ -44,16 +43,22 @@ End if
 
 If (fso.FileExists(strUserProfile&"\AppData\Roaming\Ozgu Tech\SambaPOS2\SambaSettings.txt")) Then
 	strSSLoc = strUserProfile&"\AppData\Roaming\Ozgu Tech\SambaPOS2\SambaSettings.txt"
+	strTrSQLLoc = strUserProfile&"\AppData\Roaming\Ozgu Tech\SambaPOS2\"
 Else if (fso.FileExists(strUserProfile&"\Application Data\Ozgu Tech\SambaPOS2\SambaSettings.txt")) Then
 	strSSLoc = strUserProfile&"\Application Data\Ozgu Tech\SambaPOS2\SambaSettings.txt"
+	strTrSQLLoc = strUserProfile&"\Application Data\Ozgu Tech\SambaPOS2\"
 Else if (fso.FileExists("C:\ProgramData\Ozgu Tech\SambaPOS2\SambaSettings.txt")) Then
 	strSSLoc = "C:\ProgramData\Ozgu Tech\SambaPOS2\SambaSettings.txt"
+	strTrSQLLoc = "C:\ProgramData\Ozgu Tech\SambaPOS2\"
 Else if (fso.FileExists("C:\Documents and Settings\All Users\Application Data\Ozgu Tech\SambaPOS2\SambaSettings.txt")) Then
 	strSSLoc = "C:\Documents and Settings\All Users\Application Data\Ozgu Tech\SambaPOS2\SambaSettings.txt"
+	strTrSQLLoc = "C:\Documents and Settings\All Users\Application Data\Ozgu Tech\SambaPOS2\"
 End If
 End If
 End If
 End If
+
+strTrSQLCE = strTrSQLLoc & "SambaTrain.sdf"
 
 ' Get data connection string
 
@@ -116,19 +121,19 @@ if (fso.FileExists(strTrSQLCE)=False) Then
 
 		Set WshShell = WScript.CreateObject("WScript.Shell")
 
-		strE2CE1 = "Export2sqlce " & chr(34) & "Data Source=" & strDS & ";Initial Catalog=SambaData2;Integrated Security=" & strIS & ";" & chr(34) & " SambaData2.sqlce"
-		strE2CE2 = "sqlcecmd40 -d " & chr(34) & "Data Source=SambaData2.sdf" & chr(34) & " -e create"
-		strE2CE3 = "cmd /c sqlcecmd40 -d " & chr(34) & "Data Source=SambaData2.sdf" & chr(34) & " -i SambaData2.sqlce > log.txt"
+		strE2CE1 = "Export2sqlce " & chr(34) & "Data Source=" & strDS & ";Initial Catalog=SambaData2;Integrated Security=" & strIS & ";" & chr(34) & " " & chr(34) & strTrSQLLoc & "SambaTrain.sqlce" & chr(34)
+		strE2CE2 = "sqlcecmd40 -d " & chr(34) & "Data Source=" & strTrSQLLoc & "SambaTrain.sdf" & chr(34) & " -e create"
+		strE2CE3 = "cmd /c sqlcecmd40 -d " & chr(34) & "Data Source=" & strTrSQLLoc & "SambaTrain.sdf" & chr(34) & " -i " & chr(34) & strTrSQLLoc & "SambaTrain.sqlce" & chr(34) & " > " & chr(34) & strTrSQLLoc & "log.txt" & chr(34)
 
 		intReturn = WshShell.Run(strE2CE1, 2, TRUE)
 		intReturn = WshShell.Run(strE2CE2, 2, TRUE)
 		intReturn = WshShell.Run(strE2CE3, 2, TRUE)
 
-		if (fso.FileExists("log.txt")) Then
-			fso.DeleteFile "log.txt", True
+		if (fso.FileExists(strTrSQLLoc & "log.txt")) Then
+			fso.DeleteFile strTrSQLLoc & "log.txt", True
 		End if
-		if (fso.FileExists("SambaData2.sqlce")) Then
-			fso.DeleteFile "SambaData2.sqlce", True
+		if (fso.FileExists(strTrSQLLoc & "SambaTrain.sqlce")) Then
+			fso.DeleteFile strTrSQLLoc & "SambaTrain.sqlce", True
 		End if
 	End if
 End If
@@ -159,7 +164,7 @@ objFile.Close
 ' Run SambaPOS
 
 Set WshShell = WScript.CreateObject("WScript.Shell")
-intReturn = WshShell.Run(chr(34) & sParentPath & strSamba & chr(34), 3, TRUE)
+intReturn = WshShell.Run(chr(34) & sParentPath & strSamba & chr(34) & " /Training", 3, TRUE)
 
 
 ' Change SambaSettings.txt to original setting
