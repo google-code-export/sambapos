@@ -3234,7 +3234,10 @@ Error Message:
   <data name="ProductGroup">
     <value xml:space="preserve">Product Group</value>
   </data>
-	<data name="CrossSales">
-		<value xml:space="preserve">Cross Sales</value>
+	<data name="DepartmentSales">
+		<value xml:space="preserve">Department Sales</value>
 	</data>
+  <data name="ItemsMovedToTable_f">
+    <value xml:space="preserve">Items moved to {0} table.</value>
+  </data>
 </root>

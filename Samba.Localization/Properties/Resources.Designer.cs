@@ -1599,15 +1599,6 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cross Sales.
-        /// </summary>
-        public static string CrossSales {
-            get {
-                return ResourceManager.GetString("CrossSales", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CSV Builder.
         /// </summary>
         public static string CsvBuilder {
@@ -2156,6 +2147,15 @@ namespace Samba.Localization.Properties {
         public static string Departments {
             get {
                 return ResourceManager.GetString("Departments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Sales.
+        /// </summary>
+        public static string DepartmentSales {
+            get {
+                return ResourceManager.GetString("DepartmentSales", resourceCulture);
             }
         }
         
@@ -3565,6 +3565,15 @@ namespace Samba.Localization.Properties {
         public static string ItemSalesReport {
             get {
                 return ResourceManager.GetString("ItemSalesReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items moved to {0} table..
+        /// </summary>
+        public static string ItemsMovedToTable_f {
+            get {
+                return ResourceManager.GetString("ItemsMovedToTable_f", resourceCulture);
             }
         }
         

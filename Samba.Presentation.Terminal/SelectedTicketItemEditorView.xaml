@@ -36,18 +36,18 @@
                         <ColumnDefinition Width="30*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" >
-                        <TextBlock FontWeight="Bold" MouseDown="TextBlock_MouseDown">Ekstra Özellik:</TextBlock>
+                        <TextBlock FontWeight="Bold" MouseDown="TextBlock_MouseDown" Text="{LocText ExtraModifier,Suffix=':'}"></TextBlock>
                         <TextBox Margin="2" Name="ExtraPropertyName" Text="{Binding SelectedItem.CustomPropertyName}" GotKeyboardFocus="ExtraPropertyName_GotKeyboardFocus" LostKeyboardFocus="ExtraPropertyName_LostKeyboardFocus"></TextBox>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
-                        <TextBlock FontWeight="Bold" MouseDown="TextBlock_MouseDown_1">Fiyat:</TextBlock>
+                        <TextBlock FontWeight="Bold" MouseDown="TextBlock_MouseDown_1" Text="{LocText Price,Suffix=':'}"></TextBlock>
                         <TextBox Margin="2" Name="ExtraPropertyPrice" Text="{Binding SelectedItem.CustomPropertyPrice}" GotKeyboardFocus="ExtraPropertyPrice_GotKeyboardFocus" LostFocus="ExtraPropertyPrice_LostFocus"></TextBox>
                     </StackPanel>
                 </Grid>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Visibility="{Binding IsPortionsVisible,Converter={StaticResource VisibilityConverter}}">
-                <TextBlock FontWeight="Bold" Text="Porsiyonlar"/>
+                <TextBlock FontWeight="Bold" Text="{LocText Portions,Suffix=':'}"/>
                 <ItemsControl ItemsSource="{Binding SelectedItemPortions}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

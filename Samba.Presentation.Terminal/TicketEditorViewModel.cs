@@ -104,7 +104,7 @@ namespace Samba.Presentation.Terminal
                     var result = SelectedTicket.Note;
                     if (SelectedTicket.IsTagged)
                         if (!string.IsNullOrEmpty(result))
-                            result = "Not: " + result + "\r";
+                            result = Resources.Note + ": " + result + "\r";
                     result += SelectedTicket.TagDisplay;
                     return result;
                 }
@@ -157,7 +157,7 @@ namespace Samba.Presentation.Terminal
             IncSelectedQuantityCommand = new CaptionCommand<string>("+", OnIncSelectedQuantity, CanIncSelectedQuantity);
             DecSelectedQuantityCommand = new CaptionCommand<string>("-", OnDecSelectedQuantity, CanDecSelectedQuantity);
             MoveSelectedItemsCommand = new CaptionCommand<string>(Resources.Divide_ab, OnMoveSelectedItems, CanMoveSelectedItems);
-            EditTicketNoteCommand = new CaptionCommand<string>("Not", OnEditTicketNote);
+            EditTicketNoteCommand = new CaptionCommand<string>(Resources.Note, OnEditTicketNote);
             PrintJobCommand = new CaptionCommand<PrintJob>(Resources.Print_ab, OnPrintJobExecute, CanExecutePrintJob);
             TicketTagCommand = new CaptionCommand<TicketTagGroup>("Tag", OnTicketTagExecute, CanTicketTagExecute);
 

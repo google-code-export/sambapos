@@ -855,6 +855,8 @@ namespace Samba.Modules.TicketModule
 
         private bool CanMakeFastPayment(string arg)
         {
+            if (AppServices.MainDataContext.SelectedDepartment != null && AppServices.CurrentTerminal.DepartmentId > 0
+                && AppServices.MainDataContext.SelectedDepartment.Id != AppServices.CurrentTerminal.DepartmentId) return false;
             return SelectedTicket != null && SelectedTicket.TicketRemainingValue > 0 && AppServices.IsUserPermittedFor(PermissionNames.MakeFastPayment);
         }
 
@@ -939,7 +941,7 @@ namespace Samba.Modules.TicketModule
 
             Expression<Func<Ticket, bool>> prediction;
 
-            if (department != null)
+            if (department != null && string.IsNullOrEmpty(selectedTag))
                 prediction = x => !x.IsPaid && x.DepartmentId == department.Id;
             else
                 prediction = x => !x.IsPaid;

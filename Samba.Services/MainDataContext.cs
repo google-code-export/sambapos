@@ -486,7 +486,12 @@ namespace Samba.Services
                 _ticketWorkspace.RemoveTicketItems(SelectedTicket.PopRemovedTicketItems());
                 _ticketWorkspace.RemoveTaxServices(SelectedTicket.PopRemovedTaxServices());
                 Recalculate(SelectedTicket);
+
+                if (!SelectedTicket.IsPaid && SelectedTicket.RemainingAmount == 0 && AppServices.CurrentTerminal.DepartmentId > 0)
+                    SelectedTicket.DepartmentId = AppServices.CurrentTerminal.DepartmentId;
+
                 SelectedTicket.IsPaid = SelectedTicket.RemainingAmount == 0;
+
 
                 if (SelectedTicket.TicketItems.Count > 0)
                 {

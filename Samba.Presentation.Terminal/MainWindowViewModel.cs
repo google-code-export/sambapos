@@ -7,6 +7,7 @@ using Samba.Domain.Models.Users;
 using Samba.Infrastructure;
 using Samba.Infrastructure.Settings;
 using Samba.Localization.Engine;
+using Samba.Localization.Properties;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
@@ -170,7 +171,7 @@ namespace Samba.Presentation.Terminal
         {
             if (!AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
             {
-                ShowFeedback("Gün Sonu yapıldığı için işlem yapamazsınız.");
+                ShowFeedback(Resources.WorkPeriodEnded);
                 return;
             }
 
@@ -192,7 +193,7 @@ namespace Samba.Presentation.Terminal
             //Id #10: Gün sonu yapıldıysa iptal et.
             if (!AppServices.MainDataContext.IsCurrentWorkPeriodOpen)
             {
-                ShowFeedback("Gün Sonu yapıldığı için işlem yapamazsınız.");
+                ShowFeedback(Resources.WorkPeriodEnded);
                 return;
             }
 
@@ -202,12 +203,13 @@ namespace Samba.Presentation.Terminal
                 {
                     TicketViewModel.AssignTableToSelectedTicket(selectedTable.Id);
                     //AppServices.MainDataContext.AssignTableToSelectedTicket(selectedTable.Id);
-                    ShowFeedback("Adisyon " + selectedTable.Name + " masasına taşındı.");
+                    //{LocText TicketMovedToTable_f}
+                    ShowFeedback(string.Format(Resources.TicketMovedToTable_f, "", selectedTable.Name));
                 }
                 else
                 {
                     MoveSelectedItems(selectedTable.Id);
-                    ShowFeedback("Seçili ürünler " + selectedTable.Name + " masasına taşındı.");
+                    ShowFeedback(string.Format(Resources.ItemsMovedToTable_f, selectedTable.Name));
                 }
                 CloseSelectedTicket();
                 ActivateTableView();

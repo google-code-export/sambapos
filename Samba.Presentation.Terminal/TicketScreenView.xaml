@@ -50,6 +50,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <FlexButton:FlexButton Margin="0,1,0,0" Command="{Binding CreateNewTicketCommand}" Grid.Row="1" HorizontalAlignment="Stretch" Height="30">Yeni Adisyon</FlexButton:FlexButton>
+        <FlexButton:FlexButton Margin="0,1,0,0" Command="{Binding CreateNewTicketCommand}" Content="{Binding CreateNewTicketCommand.Caption}" Grid.Row="1" HorizontalAlignment="Stretch" Height="30"></FlexButton:FlexButton>
     </Grid>
 </UserControl>

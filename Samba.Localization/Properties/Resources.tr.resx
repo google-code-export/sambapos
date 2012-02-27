@@ -1932,7 +1932,7 @@ Masa: {2}</value>
     <value>KASA HAREKETLERİ</value>
   </data>
   <data name="Totals" xml:space="preserve">
-    <value>TOPLAMLAR</value>
+    <value>Toplamlar</value>
   </data>
   <data name="TotalExpense" xml:space="preserve">
     <value>Toplam Gider</value>
@@ -3236,7 +3236,10 @@ Mesaj:
   <data name="ProductGroup">
     <value xml:space="preserve">Ürün Group Kodu</value>
   </data>
-  <data name="CrossSales">
-    <value xml:space="preserve">Çapraz Satışlar</value>
+  <data name="DepartmentSales">
+    <value xml:space="preserve">Departman Satışları</value>
+  </data>
+  <data name="ItemsMovedToTable_f">
+    <value xml:space="preserve">Seçili ürünler {0} masasına taşındı.</value>
   </data>
 </root>

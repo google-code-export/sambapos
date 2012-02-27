@@ -153,15 +153,15 @@
                     <Setter Property="FontSize" Value="10"/>
                 </Style>
             </UniformGrid.Resources>
-            <TextBlock Text="Belge Toplamı:" Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}"/>
+            <TextBlock Text="{LocText TicketTotal,Suffix=':'}" Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}"/>
             <TextBlock TextAlignment="Right" Text="{Binding SelectedTicket.TicketPlainTotalLabel}" Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}"/>
-            <TextBlock Text="İskonto Toplamı:" Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}"/>
+            <TextBlock Text="{LocText DiscountTotal,Suffix=':'}" Foreground="DarkRed" FontWeight="Bold" Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}"/>
             <TextBlock TextAlignment="Right" Foreground="DarkRed" FontWeight="Bold" Text="{Binding SelectedTicket.TicketDiscountLabel}" Visibility="{Binding IsTicketDiscountVisible,Converter={StaticResource VisibilityConverter}}"/>
-            <TextBlock Text="Genel Toplam:" Visibility="{Binding IsTicketTotalVisible,Converter={StaticResource VisibilityConverter}}"/>
+            <TextBlock Text="{LocText Total,Suffix=':'}" Visibility="{Binding IsTicketTotalVisible,Converter={StaticResource VisibilityConverter}}"/>
             <TextBlock TextAlignment="Right" Text="{Binding SelectedTicket.TicketTotalLabel}" Visibility="{Binding IsTicketTotalVisible,Converter={StaticResource VisibilityConverter}}"/>
-            <TextBlock Text="Tahsilat Toplamı:" Visibility="{Binding IsTicketPaymentVisible,Converter={StaticResource VisibilityConverter}}"/>
+            <TextBlock Text="{LocText PaymentTotal,Suffix=':'}" Visibility="{Binding IsTicketPaymentVisible,Converter={StaticResource VisibilityConverter}}"/>
             <TextBlock TextAlignment="Right" Text="{Binding SelectedTicket.TicketPaymentLabel}" Visibility="{Binding IsTicketPaymentVisible,Converter={StaticResource VisibilityConverter}}"/>
-            <TextBlock FontSize="12" FontWeight="Bold" Foreground="Red" Text="Bakiye:" Visibility="{Binding IsTicketRemainingVisible,Converter={StaticResource VisibilityConverter}}"/>
+            <TextBlock FontSize="12" FontWeight="Bold" Foreground="Red" Text="{LocText Balance,Suffix=':'}" Visibility="{Binding IsTicketRemainingVisible,Converter={StaticResource VisibilityConverter}}"/>
             <TextBlock FontSize="12" FontWeight="Bold" Foreground="Red" TextAlignment="Right" Text="{Binding SelectedTicket.TicketRemainingLabel}" Visibility="{Binding IsTicketRemainingVisible,Converter={StaticResource VisibilityConverter}}"/>
         </UniformGrid>
 

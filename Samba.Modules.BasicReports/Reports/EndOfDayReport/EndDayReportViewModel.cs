@@ -40,13 +40,13 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     TaxServices = x.Sum(y => y.GetTaxServicesTotal())
                 });
 
-            if (ReportContext.Departments.Count() > 1)
-            {
-                foreach (var departmentInfo in ticketGropus)
-                {
-                    report.AddRow("Departman", departmentInfo.DepartmentName, departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
-                }
-            }
+            //if (ReportContext.Departments.Count() > 1)
+            //{
+            //    foreach (var departmentInfo in ticketGropus)
+            //    {
+            //        report.AddRow("Departman", departmentInfo.DepartmentName, departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
+            //    }
+            //}
 
             report.AddRow("Departman", Resources.TotalSales.ToUpper(), ticketGropus.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
 
@@ -73,24 +73,12 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
 
             //---------------
 
-            if (ReportContext.Tickets.SelectMany(x => x.TicketItems.Select(y => new { x.DepartmentId, x.TicketItems })).Any(x => x.TicketItems.Any(y => y.DepartmentId != x.DepartmentId)))
+            if (ReportContext.Departments.Count() > 1)
             {
-                //var salesByOrder = ReportContext.Tickets.SelectMany(ticket => ticket.TicketItems.Select(ticketItem => new { Ticket = ticket, TicketItem = ticketItem }))
-                //    .GroupBy(x => new { x.TicketItem.DepartmentId })
-                //    .Select(x => new DepartmentInfo { DepartmentId = x.Key.DepartmentId, Amount = x.Sum(y => MenuGroupBuilder.CalculateTicketItemTotal(y.Ticket, y.TicketItem)) });
-
-                //report.AddColumnLength("DepartmentSales", "65*", "40*");
-                //report.AddColumTextAlignment("DepartmentSales", TextAlignment.Left, TextAlignment.Right);
-                //report.AddTable("DepartmentSales", "Sales By Order", "");
-                //foreach (var sale in salesByOrder)
-                //{
-                //    var cs = sale;
-                //    report.AddRow("DepartmentSales", cs.DepartmentName, cs.Amount.ToString(ReportContext.CurrencyFormat));
-                //}
-                
+                var showDepartmentTotals = false;
                 report.AddColumnLength("CrossSales", "65*", "40*");
                 report.AddColumTextAlignment("CrossSales", TextAlignment.Left, TextAlignment.Right);
-                report.AddTable("CrossSales", Resources.CrossSales, "");
+                report.AddTable("CrossSales", Resources.DepartmentSales, "");
 
                 foreach (var departmentInfo in ticketGropus)
                 {
@@ -102,14 +90,31 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                         .GroupBy(x => new { x.TicketItem.DepartmentId })
                         .Select(x => new DepartmentInfo { DepartmentId = x.Key.DepartmentId, Amount = x.Sum(y => MenuGroupBuilder.CalculateTicketItemTotal(y.Ticket, y.TicketItem)) });
 
+                    report.AddRow("CrossSales", string.Format("{0} {1}", departmentInfo.DepartmentName, Resources.Sales), (departmentInfo.Amount).ToString(ReportContext.CurrencyFormat));
+
                     if (crossSales.Count() > 0)
                     {
-                        report.AddBoldRow("CrossSales", departmentInfo.DepartmentName, (departmentInfo.Amount - crossSales.Sum(x => x.Amount)).ToString(ReportContext.CurrencyFormat));
+                        showDepartmentTotals = true;
+                        report.AddRow("CrossSales", "   -" + departmentInfo.DepartmentName, (departmentInfo.Amount - crossSales.Sum(x => x.Amount)).ToString(ReportContext.CurrencyFormat));
                         foreach (var crossSale in crossSales)
                         {
                             var cs = crossSale;
-                            report.AddRow("CrossSales", cs.DepartmentName, cs.Amount.ToString(ReportContext.CurrencyFormat));
+                            report.AddRow("CrossSales", "   -" + cs.DepartmentName, cs.Amount.ToString(ReportContext.CurrencyFormat));
                         }
+                    }
+                }
+
+                if (showDepartmentTotals)
+                {
+                    report.AddBoldRow("CrossSales", Resources.Department + " " + Resources.Totals, "");
+                    var salesByOrder = ReportContext.Tickets.SelectMany(ticket => ticket.TicketItems.Select(ticketItem => new { Ticket = ticket, TicketItem = ticketItem }))
+                        .GroupBy(x => new { x.TicketItem.DepartmentId })
+                        .Select(x => new DepartmentInfo { DepartmentId = x.Key.DepartmentId, Amount = x.Sum(y => MenuGroupBuilder.CalculateTicketItemTotal(y.Ticket, y.TicketItem)) });
+
+                    foreach (var sale in salesByOrder)
+                    {
+                        var cs = sale;
+                        report.AddRow("CrossSales", cs.DepartmentName, cs.Amount.ToString(ReportContext.CurrencyFormat));
                     }
                 }
             }
