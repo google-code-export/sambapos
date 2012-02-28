@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Samba.Domain.Models.Menus;
 using Samba.Presentation.Common;
@@ -25,10 +26,13 @@ namespace Samba.Presentation.ViewModels
 
         public IList<MenuItemPropertyViewModel> Properties { get; set; }
 
-        public void Refresh()
+        public void Refresh(ObservableCollection<TicketItemPropertyViewModel> properties)
         {
             foreach (var model in Properties)
             {
+                var m = model;
+                var tiv = properties.SingleOrDefault(x => x.Model.Name == m.Name);
+                model.TicketItemProperty = tiv != null ? tiv.Model : null;
                 model.Refresh();
             }
         }

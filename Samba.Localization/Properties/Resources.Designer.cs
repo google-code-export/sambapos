@@ -1617,6 +1617,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart application. Problem saved in log file..
+        /// </summary>
+        public static string CurrentErrorLoggedMessage {
+            get {
+                return ResourceManager.GetString("CurrentErrorLoggedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Inventory.
         /// </summary>
         public static string CurrentInventory {
@@ -1733,6 +1742,18 @@ namespace Samba.Localization.Properties {
         public static string CustomerSelectedForTicket {
             get {
                 return ResourceManager.GetString("CustomerSelectedForTicket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can not connect to database with current connection settings. Please check connection string below and retry.
+        ///
+        ///Error Message:
+        ///.
+        /// </summary>
+        public static string DatabaseErrorMessage {
+            get {
+                return ResourceManager.GetString("DatabaseErrorMessage", resourceCulture);
             }
         }
         

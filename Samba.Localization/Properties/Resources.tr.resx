@@ -3242,4 +3242,16 @@ Mesaj:
   <data name="ItemsMovedToTable_f">
     <value xml:space="preserve">Seçili ürünler {0} masasına taşındı.</value>
   </data>
+  <data name="DatabaseErrorMessage">
+    <value>
+      <![CDATA[Şu anki bağlantı ayarları ile veri tabanına bağlanılamıyor. Lütfen aşağıdaki bağlantı bilgisini kontrol ederek tekrar deneyiniz.
+
+Hata Mesajı:
+]]>
+    </value>
+  </data>
+  <data name="CurrentErrorLoggedMessage">
+    <value xml:space="preserve">Programı yeniden başlatınız. Mevcut problem log dosyasına kaydedildi.</value>
+  </data>
+
 </root>

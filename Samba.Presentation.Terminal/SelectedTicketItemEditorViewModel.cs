@@ -217,12 +217,11 @@ namespace Samba.Presentation.Terminal
         {
             var mig = SelectedItemPropertyGroups.FirstOrDefault(propertyGroup => propertyGroup.Properties.Contains(obj));
             Debug.Assert(mig != null);
-            var tip = SelectedItem.ToggleProperty(mig.Model, obj.Model);
-            obj.TicketItemProperty = tip;
-
+             SelectedItem.ToggleProperty(mig.Model, obj.Model);
+            
             foreach (var model in SelectedItemPropertyGroups)
             {
-                model.Refresh();
+                model.Refresh(SelectedItem.Properties);
             }
         }
 

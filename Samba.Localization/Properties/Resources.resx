@@ -3240,4 +3240,15 @@ Error Message:
   <data name="ItemsMovedToTable_f">
     <value xml:space="preserve">Items moved to {0} table.</value>
   </data>
+  <data name="DatabaseErrorMessage">
+    <value>
+      <![CDATA[Can not connect to database with current connection settings. Please check connection string below and retry.
+
+Error Message:
+]]>
+    </value>
+  </data>
+  <data name="CurrentErrorLoggedMessage">
+    <value xml:space="preserve">Restart application. Problem saved in log file.</value>
+  </data>
 </root>

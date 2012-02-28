@@ -82,8 +82,7 @@ namespace Samba.Presentation
                     var connectionString =
                         InteractionService.UserIntraction.GetStringFromUser(
                         "Connection String",
-                        "Şu anki bağlantı ayarları ile veri tabanına bağlanılamıyor. Lütfen aşağıdaki bağlantı bilgisini kontrol ederek tekrar deneyiniz.\r\r" +
-                        "Hata Mesajı:\r" + e.Message,
+                        Resources.DatabaseErrorMessage + e.Message,
                         LocalSettings.ConnectionString);
 
                     var cs = String.Join(" ", connectionString);
@@ -91,7 +90,7 @@ namespace Samba.Presentation
                     if (!string.IsNullOrEmpty(cs))
                         LocalSettings.ConnectionString = cs.Trim();
 
-                    AppServices.LogError(e, "Programı yeniden başlatınız. Mevcut problem log dosyasına kaydedildi.");
+                    AppServices.LogError(e, Resources.CurrentErrorLoggedMessage);
                 }
                 else
                 {
