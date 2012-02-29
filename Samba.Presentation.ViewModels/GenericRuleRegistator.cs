@@ -499,7 +499,10 @@ namespace Samba.Presentation.ViewModels
                         if (j != null)
                         {
                             if (ticket != null)
+                            {
+                                AppServices.MainDataContext.UpdateTicketNumber(ticket);
                                 AppServices.PrintService.ManualPrintTicket(ObjectCloner.Clone(ticket), j);
+                            }
                             else
                                 AppServices.PrintService.ExecutePrintJob(j);
                         }
