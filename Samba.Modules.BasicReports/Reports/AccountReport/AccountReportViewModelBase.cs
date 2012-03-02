@@ -28,7 +28,7 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
                 {
                     CustomerId = x.Key,
                     Amount = x.Sum(k => k.Payments.Where(y => y.PaymentType == 3).Sum(j => j.Amount))
-                });
+                }).ToList();
 
             var transactions = Dao.Query<CashTransaction>().Where(x => x.CustomerId > 0);
             var transactionSum = transactions.GroupBy(x => x.CustomerId).Select(
@@ -37,7 +37,7 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
                 {
                     CustomerId = x.Key,
                     Amount = x.Sum(y => y.TransactionType == 1 ? y.Amount : 0 - y.Amount)
-                });
+                }).ToList();
 
             var accountTransactions = Dao.Query<AccountTransaction>().Where(x => x.CustomerId > 0);
             var accountTransactionSum = accountTransactions.GroupBy(x => x.CustomerId).Select(
@@ -46,7 +46,7 @@ namespace Samba.Modules.BasicReports.Reports.AccountReport
                 {
                     CustomerId = x.Key,
                     Amount = x.Sum(y => y.TransactionType == 3 ? y.Amount : 0 - y.Amount)
-                });
+                }).ToList();
 
 
             var customerIds = paymentSum.Select(x => x.CustomerId).Distinct();

@@ -37,8 +37,8 @@ begin
   LGPLRefuse.Checked := true;
 	
   // Load the LGPL text into the new page
-  ExtractTemporaryFile('lgpl-3.0.txt');
-  LoadStringFromFile(ExpandConstant('{tmp}/lgpl-3.0.txt'), LGPLText);
+  ExtractTemporaryFile('licence.txt');
+  LoadStringFromFile(ExpandConstant('{tmp}/licence.txt'), LGPLText);
   LGPLPage.RichEditViewer.RTFText := LGPLText;
 end;
 
@@ -54,6 +54,7 @@ end;
 
 [Files]
 Source: src\lgpl-3.0.txt; DestDir: {app}; Flags: ignoreversion
+Source: src\licence.txt; DestDir: {app}; Flags: ignoreversion
 
 [CustomMessages]
 LGPLHeader=Please read the following License Agreement. Some components are licensed under the GNU Lesser General Public License.
