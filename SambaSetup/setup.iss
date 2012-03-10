@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.88 "
-#define FileVersion "288"
+#define Version "2.89 "
+#define FileVersion "289"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -197,6 +197,8 @@ Source: src\de\Samba.Localization.resources.dll; DestDir: {app}\de\; Flags: igno
 Source: src\ro\Samba.Localization.resources.dll; DestDir: {app}\ro\; Flags: ignoreversion
 Source: src\sq\Samba.Localization.resources.dll; DestDir: {app}\sq\; Flags: ignoreversion
 Source: src\zh-CN\Samba.Localization.resources.dll; DestDir: {app}\zh-CN\; Flags: ignoreversion
+Source: src\pt-BR\Samba.Localization.resources.dll; DestDir: {app}\pt-BR\; Flags: ignoreversion
+Source: src\it\Samba.Localization.resources.dll; DestDir: {app}\it\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -301,4 +303,6 @@ Name: {app}\de
 Name: {app}\ro
 Name: {app}\sq
 Name: {app}\zh-CN
+Name: {app}\it
+Name: {app}\pt-BR
 Name: {commonappdata}\Ozgu Tech\SambaPOS2

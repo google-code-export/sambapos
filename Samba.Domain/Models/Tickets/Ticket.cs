@@ -121,9 +121,10 @@ namespace Samba.Domain.Models.Tickets
             return tif;
         }
 
-        public Payment AddPayment(DateTime date, decimal amount, PaymentType paymentType, int userId)
+        public Payment AddPayment(DateTime date, decimal amount, PaymentType paymentType, int userId, int departmentId)
         {
-            var result = new Payment { Amount = amount, Date = date, PaymentType = (int)paymentType, UserId = userId, DepartmentId = DepartmentId };
+            var result = new Payment { Amount = amount, Date = date, PaymentType = (int)paymentType, UserId = userId, DepartmentId = departmentId };
+            DepartmentId = departmentId;
             Payments.Add(result);
             LastPaymentDate = DateTime.Now;
             RemainingAmount = GetRemainingAmount();

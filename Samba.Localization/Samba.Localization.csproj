@@ -62,6 +62,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.es.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.it.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.pt-BR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.pt-BR.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.ro.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,6 +129,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.it.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.pt-BR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ro.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ro.Designer.cs</LastGenOutput>
@@ -170,6 +188,8 @@ xcopy /y "$(TargetDir)de\Samba.Localization.resources.dll" "$(SolutionDir)SambaS
 xcopy /y "$(TargetDir)ro\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\ro\"
 xcopy /y "$(TargetDir)sq\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\sq\"
 xcopy /y "$(TargetDir)zh-CN\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\zh-CN\"
+xcopy /y "$(TargetDir)pt-BR\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\pt-BR\"
+xcopy /y "$(TargetDir)it\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\it\"
 
 :End</PostBuildEvent>
   </PropertyGroup>

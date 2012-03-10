@@ -817,7 +817,7 @@ namespace Samba.Modules.TicketModule
 
         private bool CanMakePayment(string arg)
         {
-            if (AppServices.MainDataContext.SelectedDepartment!= null && AppServices.CurrentTerminal.DepartmentId > 0 
+            if (AppServices.MainDataContext.SelectedDepartment != null && AppServices.CurrentTerminal.DepartmentId > 0
                 && AppServices.MainDataContext.SelectedDepartment.Id != AppServices.CurrentTerminal.DepartmentId)
                 return false;
             return SelectedTicket != null
@@ -908,7 +908,6 @@ namespace Samba.Modules.TicketModule
             }
             RefreshOpenTickets();
             RefreshVisuals();
-
         }
 
         public bool IsFastPaymentButtonsVisible
@@ -920,6 +919,7 @@ namespace Samba.Modules.TicketModule
                 if (SelectedTicket != null && !string.IsNullOrEmpty(SelectedTicket.CustomerName)) return false;
                 if (SelectedTicket != null && SelectedDepartment != null && SelectedDepartment.TicketTagGroups.Any(x => SelectedTicket.IsTaggedWith(x.Name))) return false;
                 if (SelectedTicket != null && SelectedTicket.TicketRemainingValue == 0) return false;
+                if (SelectedTicket != null && AppServices.CurrentTerminal.DepartmentId > 0 && SelectedDepartment != null && SelectedDepartment.Id != AppServices.CurrentTerminal.DepartmentId) return false;
                 return SelectedDepartment != null && SelectedDepartment.IsFastFood;
             }
         }

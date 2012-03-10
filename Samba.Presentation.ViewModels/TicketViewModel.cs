@@ -596,7 +596,11 @@ namespace Samba.Presentation.ViewModels
         public static void AddPaymentToSelectedTicket(decimal amount, PaymentType paymentType)
         {
             var ticket = AppServices.MainDataContext.SelectedTicket;
-            ticket.AddPayment(DateTime.Now, amount, paymentType, AppServices.CurrentLoggedInUser.Id);
+
+            var departmentId = AppServices.CurrentTerminal.DepartmentId > 0
+               ? AppServices.MainDataContext.SelectedDepartment.Id
+               : ticket.DepartmentId;
+            ticket.AddPayment(DateTime.Now, amount, paymentType, AppServices.CurrentLoggedInUser.Id, departmentId);
             string paymentName = Resources.Cash;
             if (paymentType == PaymentType.CreditCard) paymentName = Resources.CreditCard;
             if (paymentType == PaymentType.Ticket) paymentName = Resources.Voucher;

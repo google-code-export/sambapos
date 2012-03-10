@@ -230,7 +230,8 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.Cash, GetPercent(0, dPayments), GetAmount(0, dPayments).ToString(ReportContext.CurrencyFormat));
                     report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.CreditCard, GetPercent(1, dPayments), GetAmount(1, dPayments).ToString(ReportContext.CurrencyFormat));
                     report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.Voucher, GetPercent(2, dPayments), GetAmount(2, dPayments).ToString(ReportContext.CurrencyFormat));
-                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.TotalIncome, "", departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.AccountBalance, GetPercent(3, dPayments), GetAmount(3, dPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(departmentInfo.DepartmentName + Resources.Incomes, Resources.TotalIncome, "", dPayments.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
 
                     var dvoids = ReportContext.Tickets
                         .SelectMany(x => x.TicketItems)
