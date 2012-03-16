@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
@@ -116,16 +117,21 @@ namespace Samba.Modules.MenuModule
         {
             var portion = MenuItem.AddDefaultMenuPortion(Model);
             Portions.Add(new PortionViewModel(portion));
-            _workspace.Add(portion);
+            //_workspace.Add(portion);
         }
 
         private void OnDeletePortion(string value)
         {
             if (SelectedPortion != null)
             {
-                _workspace.Delete(SelectedPortion.Model);
-                Model.Portions.Remove(SelectedPortion.Model);
-                Portions.Remove(SelectedPortion);
+                var c = Dao.Count<Recipe>(x => x.Portion.Id == SelectedPortion.Model.Id);
+                if (c == 0)
+                {
+                    if (SelectedPortion.Model.Id > 0 && Model.Id > 0)
+                        _workspace.Delete(SelectedPortion.Model);
+                    Model.Portions.Remove(SelectedPortion.Model);
+                    Portions.Remove(SelectedPortion);
+                }
             }
         }
 
@@ -157,6 +163,11 @@ namespace Samba.Modules.MenuModule
         private static IEnumerable<MenuItemPropertyGroupViewModel> GetProperties(MenuItem model)
         {
             return model.PropertyGroups.Select(item => new MenuItemPropertyGroupViewModel(item));
+        }
+
+        protected override string GetSaveErrorMessage()
+        {
+            return base.GetSaveErrorMessage();
         }
     }
 }

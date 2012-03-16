@@ -33,7 +33,7 @@ namespace Samba.Modules.UserModule
                     Model.Permissions.Add(new Permission { Name = pName, Value = 0 });
                 }
             }
-            return Model.Permissions.Select(x => new PermissionViewModel(x));
+            return Model.Permissions.Where(x => PermissionRegistry.PermissionNames.ContainsKey(x.Name)).Select(x => new PermissionViewModel(x));
         }
 
         private IEnumerable<Department> _departments;

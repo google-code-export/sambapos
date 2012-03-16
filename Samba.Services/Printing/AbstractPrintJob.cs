@@ -26,6 +26,7 @@ namespace Samba.Services.Printing
 
         internal static void PrintFlowDocument(PrintQueue pq, FlowDocument flowDocument)
         {
+            if (pq == null) return;
             // Create a XpsDocumentWriter object, open a Windows common print dialog.
             // This methods returns a ref parameter that represents information about the dimensions of the printer media. 
             XpsDocumentWriter docWriter = PrintQueue.CreateXpsDocumentWriter(pq);

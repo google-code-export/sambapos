@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.89 "
-#define FileVersion "289"
+#define Version "2.90 "
+#define FileVersion "290"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -107,6 +107,7 @@ Name: es; MessagesFile: compiler:Languages\Spanish.isl
 Name: ru; MessagesFile: compiler:Languages\Russian.isl
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl
 Name: ro; MessagesFile: compiler:Languages\Romanian.isl
+Name: it; MessagesFile: compiler:Languages\Italian.isl
 
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Languages: ; Components: 

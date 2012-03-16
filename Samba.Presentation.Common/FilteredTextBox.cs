@@ -76,46 +76,48 @@ namespace Samba.Presentation.Common
         protected override void OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs e)
         {
             base.OnPreviewTextInput(e);
+            if (e.Text.Length != 1) 
+                return;
 
-            char LetterOrDigit = Convert.ToChar(e.Text);
-            char ds = CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator[0];
+            var letterOrDigit = Convert.ToChar(e.Text);
+            var ds = CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator[0];
 
             switch (Type)
             {
                 case FilteredTextBoxType.Digits:
-                    if (!char.IsDigit(LetterOrDigit))
+                    if (!char.IsDigit(letterOrDigit))
                     {
                         e.Handled = true;
                     }
                     break;
 
                 case FilteredTextBoxType.Number:
-                    if (LetterOrDigit == '-' && SelectionStart > 0)
+                    if (letterOrDigit == '-' && SelectionStart > 0)
                         e.Handled = true;
-                    if (LetterOrDigit == ds && Text.Contains(ds.ToString()))
+                    if (letterOrDigit == ds && Text.Contains(ds.ToString()))
                         e.Handled = true;
-                    else if (!char.IsDigit(LetterOrDigit) && (LetterOrDigit != ds) && (LetterOrDigit != '-'))
+                    else if (!char.IsDigit(letterOrDigit) && (letterOrDigit != ds) && (letterOrDigit != '-'))
                     {
                         e.Handled = true;
                     }
                     break;
 
                 case FilteredTextBoxType.Letters:
-                    if (!char.IsLetterOrDigit(LetterOrDigit))
+                    if (!char.IsLetterOrDigit(letterOrDigit))
                     {
                         e.Handled = true;
                     }
                     break;
 
                 case FilteredTextBoxType.Punctuation:
-                    if (!char.IsPunctuation(LetterOrDigit))
+                    if (!char.IsPunctuation(letterOrDigit))
                     {
                         e.Handled = true;
                     }
                     break;
 
                 case FilteredTextBoxType.Symbol:
-                    if (!char.IsSymbol(LetterOrDigit))
+                    if (!char.IsSymbol(letterOrDigit))
                     {
                         e.Handled = true;
                     }

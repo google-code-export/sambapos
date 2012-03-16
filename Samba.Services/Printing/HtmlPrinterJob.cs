@@ -20,7 +20,7 @@ namespace Samba.Services.Printing
 
         public override void DoPrint(FlowDocument document)
         {
-            DoPrint(PrinterTools.FlowDocumentToSlipPrinterFormat(document));
+            DoPrint(PrinterTools.FlowDocumentToSlipPrinterFormat(document, 0));
         }
 
         public override void DoPrint(string[] lines)

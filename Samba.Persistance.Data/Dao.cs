@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Data.Serializer;
 
@@ -10,23 +10,45 @@ namespace Samba.Persistance.Data
 {
     public static class Dao
     {
-        private static readonly IDictionary<Type, IDictionary<int, ArrayList>> Cache = new Dictionary<Type, IDictionary<int, ArrayList>>();
+        private static readonly IDictionary<Type, IDictionary<int, Dictionary<int, IEntity>>> Cache = new Dictionary<Type, IDictionary<int, Dictionary<int, IEntity>>>();
 
-        private static void AddToCache(Type t, int key, object item)
+        private static void AddToCache<T>(int key, T item) where T : class,IEntity
         {
             if (item == null) return;
-            if (!Cache.ContainsKey(t))
-                Cache.Add(t, new Dictionary<int, ArrayList>());
-            if (!Cache[t].ContainsKey(key))
-                Cache[t].Add(key, new ArrayList());
-            Cache[t][key].Add(item);
+            var type = typeof(T);
+            if (!Cache.ContainsKey(type)) Cache.Add(type, new Dictionary<int, Dictionary<int, IEntity>>());
+            if (!Cache[type].ContainsKey(key)) Cache[type].Add(key, new Dictionary<int, IEntity>());
+            try
+            {
+                Cache[type][key].Add(item.Id, item);
+            }
+            catch (Exception)
+            {
+#if DEBUG
+                throw;
+#else
+                Cache[type][key].Clear();
+#endif
+            }
         }
 
         private static T GetFromCache<T>(Expression<Func<T, bool>> predictate, int key)
         {
-            if (Cache.ContainsKey(typeof(T)))
-                if (Cache[typeof(T)].ContainsKey(key))
-                    return Cache[typeof(T)][key].Cast<T>().SingleOrDefault(predictate.Compile());
+            try
+            {
+                if (Cache.ContainsKey(typeof(T)))
+                    if (Cache[typeof(T)].ContainsKey(key))
+                        return Cache[typeof(T)][key].Values.Cast<T>().SingleOrDefault(predictate.Compile());
+            }
+            catch (Exception)
+            {
+#if DEBUG
+                throw;
+#else
+                ResetCache();
+                return default(T);
+#endif
+            }
             return default(T);
         }
 
@@ -34,6 +56,10 @@ namespace Samba.Persistance.Data
         {
             foreach (var arrayList in Cache.Values)
             {
+                foreach (var item in arrayList.Values)
+                {
+                    item.Clear();
+                }
                 arrayList.Clear();
             }
             Cache.Clear();
@@ -52,20 +78,22 @@ namespace Samba.Persistance.Data
             using (var workspace = WorkspaceFactory.CreateReadOnly())
             {
                 var result = workspace.Single(predictate, includes);
-                //AddToCache(typeof(T), ObjectCloner.DataHash(includes), result);
                 return result;
             }
         }
 
-        public static T SingleWithCache<T>(Expression<Func<T, bool>> predictate, params Expression<Func<T, object>>[] includes) where T : class
+        [MethodImplAttribute(MethodImplOptions.Synchronized)]
+        public static T SingleWithCache<T>(Expression<Func<T, bool>> predictate, params Expression<Func<T, object>>[] includes) where T : class, IEntity
         {
-            var ci = GetFromCache(predictate, ObjectCloner.DataHash(includes));
+            var lpredict = predictate;
+            var key = ObjectCloner.DataHash(includes);
+            var ci = GetFromCache(lpredict, key);
             if (ci != null) return ci;
 
             using (var workspace = WorkspaceFactory.CreateReadOnly())
             {
-                var result = workspace.Single(predictate, includes);
-                AddToCache(typeof(T), ObjectCloner.DataHash(includes), result);
+                var result = workspace.Single(lpredict, includes);
+                AddToCache(key, result);
                 return result;
             }
         }

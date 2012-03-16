@@ -133,8 +133,11 @@ namespace Samba.Services
                 foreach (var ticketItem in selectedItems)
                 {
                     Ticket.TicketItems.Remove(ticketItem);
-                    if (ticketItem.Id > 0)
+                    if (Ticket.Id > 0)
+                    {
+                        ticketItem.Properties.ToList().ForEach(_workspace.Delete);
                         _workspace.Delete(ticketItem);
+                    }
                 }
             }
 

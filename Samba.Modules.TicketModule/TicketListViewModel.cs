@@ -504,7 +504,7 @@ namespace Samba.Modules.TicketModule
         {
             if (SelectedTicket != null || (SelectedDepartment != null && SelectedDepartment.IsFastFood))
                 SelectedTicketView = SingleTicketView;
-            else
+            else if (SelectedDepartment != null)
             {
                 SelectedTicketView = OpenTicketListView;
                 RefreshOpenTickets();
@@ -946,7 +946,7 @@ namespace Samba.Modules.TicketModule
             else
                 prediction = x => !x.IsPaid;
 
-            var shouldWrap = !SelectedDepartment.IsTakeAway;
+            var shouldWrap = department != null && !department.IsTakeAway;
 
             OpenTickets = Dao.Select(x => new OpenTicketViewModel
             {
@@ -998,8 +998,6 @@ namespace Samba.Modules.TicketModule
             }
 
             SelectedTag = selectedTag;
-
-
             StartTimer();
         }
 

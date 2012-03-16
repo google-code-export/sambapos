@@ -133,7 +133,7 @@
 		<value>Controllare la versione del database</value>
 	</data>
 	<data name="SqlHint" xml:space="preserve">
-		<value>Clicca qui per informazioni su come lavorare con i database SQL</value>
+		<value>Clicca qui per informazioni su come lavorare con il database SQL</value>
 	</data>
 	<data name="AdminPasswordHint" xml:space="preserve">
 		<value>Admin PIN: 1234
@@ -179,7 +179,7 @@ Modificando il codice PIN si nasconderà questo suggerimento</value>
 		<value>Totale</value>
 	</data>
 	<data name="Voucher" xml:space="preserve">
-		<value>Voucher</value>
+		<value>Assegno</value>
 	</data>
 	<data name="CreditCard_ab" xml:space="preserve">
 		<value>C.Card</value>
@@ -294,7 +294,7 @@ Pagamento</value>
 		<value>Chiamata</value>
 	</data>
 	<data name="Management" xml:space="preserve">
-		<value>Gestire</value>
+		<value>Impostazioni</value>
 	</data>
 	<data name="Common" xml:space="preserve">
 		<value>Comune</value>
@@ -1309,7 +1309,7 @@ si trasferito a {1} tavolo.</value>
 		<value>Selezionare il Tavolo per il Ticket.</value>
 	</data>
 	<data name="SelectTableForOperation" xml:space="preserve">
-		<value>Selezionare il Tavolo che si desidera aggiungere ordini.</value>
+		<value>Selezionare il Tavolo per prendere un'ordine.</value>
 	</data>
 	<data name="FindProduct" xml:space="preserve">
 		<value>Cerca un prodotto</value>

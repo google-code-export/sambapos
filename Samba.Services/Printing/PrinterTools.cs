@@ -32,8 +32,11 @@ namespace Samba.Services.Printing
             return document;
         }
 
-        public static string[] FlowDocumentToSlipPrinterFormat(FlowDocument document)
+        private static int _maxWidth;
+
+        public static string[] FlowDocumentToSlipPrinterFormat(FlowDocument document, int maxWidth)
         {
+            _maxWidth = maxWidth;
             var result = new List<string>();
             if (document != null)
                 result.AddRange(ReadBlocks(document.Blocks));
@@ -89,6 +92,12 @@ namespace Samba.Services.Printing
                 }
             }
 
+            if (_maxWidth > 0 && colLenghts.Sum() > _maxWidth)
+            {
+                while (colLenghts.Sum() > _maxWidth)
+                    colLenghts[GetMaxCol(colLenghts)]--;
+            }
+
             foreach (var row in table.RowGroups[0].Rows)
             {
                 if (row == table.RowGroups[0].Rows[0]) result.Add("<EB>");
@@ -102,21 +111,26 @@ namespace Samba.Services.Printing
                     {
                         var v = string.Join(" ", values).Trim();
                         if (!string.IsNullOrEmpty(rowValue))
-                            rowValue = rowValue.Trim() + " | " + v;
+                            rowValue =  rowValue + " |   " + v;
                         else rowValue = "<R>" + v;
                     }
                     else
                     {
                         var value = string.Join(" ", values);
 
+                        if (value.Length > colLenghts[i] && row.Cells.Count > 1)
+                            value = value.Substring(0, colLenghts[i] - 1);
+
                         if (i < row.Cells.Count)
                         {
                             value = colAlignments[i] == TextAlignment.Right
-                                ? value.PadLeft(colLenghts[i] + 1)
-                                : value.PadRight(colLenghts[i] + 1);
+                                ? row == table.RowGroups[0].Rows[0] ? value.PadLeft(colLenghts[i]) : " | " + value
+                                : value.PadRight(colLenghts[i]);
                         }
 
-                        rowValue += " " + value;
+                        if (!string.IsNullOrEmpty(rowValue) && !rowValue.EndsWith(" ") && !value.StartsWith(" "))
+                            value = " " + value;
+                        rowValue += value;
                     }
                 }
 
@@ -134,6 +148,16 @@ namespace Samba.Services.Printing
                 {
                     result.Add(rowValue);
                 }
+            }
+            return result;
+        }
+
+        private static int GetMaxCol(IList<int> colLenghts)
+        {
+            var result = 0;
+            for (var i = 1; i < colLenghts.Count; i++)
+            {
+                if (colLenghts[i] > colLenghts[result]) result = i;
             }
             return result;
         }

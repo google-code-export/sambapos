@@ -90,7 +90,12 @@ namespace Samba.Services
                 pci.Purchase = tim.Sum(x => x.Quantity * x.Multiplier) / pci.UnitMultiplier;
                 var totalPrice = tim.Sum(x => x.Price * x.Quantity);
                 if (pci.InStock > 0 || pci.Purchase > 0)
-                    pci.Cost = decimal.Round((totalPrice + previousCost) / (pci.InStock + pci.Purchase), 2);
+                {
+                    pci.Cost = pci.InStock > 0
+                                   ? decimal.Round((totalPrice + previousCost)/(pci.InStock + pci.Purchase), 2)
+                                   : decimal.Round(totalPrice/pci.Purchase, 2);
+                }
+
             }
         }
 
