@@ -303,7 +303,10 @@ namespace Samba.Modules.TicketModule
             return AppServices.MainDataContext.SelectedTicket != null
                 && GetTenderedValue() > 0
                 && AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() > 0
-                && !AppServices.MainDataContext.SelectedTicket.Payments.Any(x => x.DepartmentId != AppServices.MainDataContext.SelectedDepartment.Id);
+                && (AppServices.CurrentTerminal.DepartmentId == 0 ||
+                !AppServices.MainDataContext
+                .SelectedTicket
+                .Payments.Any(x => x.DepartmentId != AppServices.MainDataContext.SelectedDepartment.Id));
         }
 
         private decimal GetTenderedValue()

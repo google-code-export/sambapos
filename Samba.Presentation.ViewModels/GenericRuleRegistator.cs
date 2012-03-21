@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Windows.Input;
 using System.Windows.Media;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
@@ -108,6 +109,7 @@ namespace Samba.Presentation.ViewModels
             TriggerService.UpdateCronObjects();
             AppServices.ResetCache();
             AppServices.MainDataContext.SelectedDepartment.PublishEvent(EventTopicNames.SelectedDepartmentChanged);
+            CommandManager.InvalidateRequerySuggested();
         }
 
         private static void HandleEvents()

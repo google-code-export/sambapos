@@ -12,6 +12,7 @@ using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
 using Samba.Infrastructure.Data;
 using Samba.Infrastructure.Data.Serializer;
+using Samba.Infrastructure.Settings;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 
@@ -45,7 +46,14 @@ namespace Samba.Services
                 Debug.Assert(_workspace == null);
                 Debug.Assert(Ticket == null);
                 _workspace = WorkspaceFactory.Create();
-                Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId);
+                if (LocalSettings.DatabaseLabel == "CE")
+                    Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId);
+                else
+                {
+                    Ticket = _workspace.Single<Ticket>(ticket => ticket.Id == ticketId,
+                        x => x.TicketItems.Select(y => y.Properties),
+                        x => x.Payments, x => x.Discounts, x => x.TaxServices);
+                }
             }
 
             public void CommitChanges()
