@@ -265,8 +265,18 @@ namespace Samba.Services.Printing
                     .PrinterTemplate
                     .HeaderTemplate
                     .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
                 if (!string.IsNullOrEmpty(printerMap.Printer.ShareName))
-                    PrintJobFactory.CreatePrintJob(printerMap.Printer).DoPrint(content);
+                {
+                    try
+                    {
+                        PrintJobFactory.CreatePrintJob(printerMap.Printer).DoPrint(content);
+                    }
+                    catch (Exception e)
+                    {
+                        AppServices.LogError(e, string.Format(Resources.PrintingErrorMessage_f, e.Message));
+                    }
+                }
             }
         }
     }
