@@ -311,7 +311,7 @@
                          Visibility="{Binding IsCloseButtonVisible,Converter={StaticResource VisibilityConverter}}" />
                 </Grid>
                 <StackPanel Grid.Column="0" Grid.RowSpan="5" Grid.Row="0" VerticalAlignment="Top"
-                     Width="80">
+                     Width="90">
                     <FxButton:FlexButton Height="50" Margin="0,0,3,3" Command="{Binding SelectTableCommand}"
                          Visibility="{Binding IsTableButtonVisible,Converter={StaticResource VisibilityConverter}}">
                         <TextBlock FontSize="16" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap"

@@ -18,6 +18,7 @@ namespace Samba.Presentation
 
         private void OnTimerTick(object state)
         {
+            if(Application.Current == null) return;
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle,
                 new Action(delegate
                 {

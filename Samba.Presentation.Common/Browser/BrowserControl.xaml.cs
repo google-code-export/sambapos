@@ -27,8 +27,58 @@ namespace Samba.Presentation.Common.Browser
             }
         }
 
+        private bool _isToolbarVisible;
+        public bool IsToolbarVisible
+        {
+            get { return _isToolbarVisible; }
+            set
+            {
+                _isToolbarVisible = value;
+                UpdateToolbars(this, value);
+            }
+        }
+
+        public static readonly DependencyProperty IsToolbarVisibleProperty =
+            DependencyProperty.RegisterAttached("IsToolbarVisible", typeof(bool), typeof(BrowserControl),
+                                                new UIPropertyMetadata(false, ToolbarVisiblePropertyChanged));
+
+        public static bool GetIsToolbarVisible(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsToolbarVisibleProperty);
+        }
+
+        public static void SetIsToolbarVisible(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsToolbarVisibleProperty, value);
+        }
+
+        private static void ToolbarVisiblePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var browser = d as BrowserControl;
+            if (browser != null)
+            {
+                browser.IsToolbarVisible = (bool)e.NewValue;
+            }
+        }
+
+        private static void UpdateToolbars(BrowserControl browser, bool isVisible)
+        {
+            if (isVisible)
+            {
+                browser.MainToolbar.Visibility = Visibility.Visible;
+                browser.tbMain.ItemContainerStyle = new Style(typeof(TabItem));
+                browser.tbMain.Items.Cast<TabItem>().ToList().ForEach(x => x.Visibility = Visibility.Visible);
+            }
+            else
+            {
+                browser.MainToolbar.Visibility = Visibility.Collapsed;
+                browser.tbMain.ItemContainerStyle = new Style(typeof(TabItem));
+                browser.tbMain.Items.Cast<TabItem>().ToList().ForEach(x => x.Visibility = Visibility.Collapsed);
+            }
+        }
+
         public static readonly DependencyProperty ActiveUrlProperty =
-            DependencyProperty.RegisterAttached("ActiveUrl", typeof(string), typeof(BrowserControl), new UIPropertyMetadata(null, ActiveUrlPropertyChanged));
+             DependencyProperty.RegisterAttached("ActiveUrl", typeof(string), typeof(BrowserControl), new UIPropertyMetadata(null, ActiveUrlPropertyChanged));
 
         public static string GetActiveUrl(DependencyObject obj)
         {
@@ -88,6 +138,7 @@ namespace Samba.Presentation.Common.Browser
 
             _browserTabs.Add(t, b);
             _tabQueue.Add(t);
+
             return t;
         }
 
@@ -135,6 +186,7 @@ namespace Samba.Presentation.Common.Browser
             TabItem t = CreateNewBrowserTab();
             _browserTabs[t].Navigate(new Uri("about:blank"));
             ControlShown();
+            UpdateToolbars(this, IsToolbarVisible);
         }
 
         private void CloseTab(TabItem tabPage)
@@ -157,7 +209,9 @@ namespace Samba.Presentation.Common.Browser
         {
             if (tbMain.Items.Count == 0)
             {
-                return CreateNewBrowserTab();
+                var result = CreateNewBrowserTab();
+                UpdateToolbars(this, IsToolbarVisible);
+                return result;
             }
             return tbMain.SelectedItem as TabItem;
         }
@@ -169,7 +223,7 @@ namespace Samba.Presentation.Common.Browser
 
         private bool HasActiveBrowser()
         {
-            return tbMain.Items.Count > 0 
+            return tbMain.Items.Count > 0
                 && tbMain.SelectedItem != null
                 && _browserTabs.ContainsKey(tbMain.SelectedItem as TabItem)
                 && _browserTabs[tbMain.SelectedItem as TabItem].Url != null;
@@ -178,7 +232,7 @@ namespace Samba.Presentation.Common.Browser
         public void Navigate(string urlString)
         {
             TabItem t = GetActiveTab();
-            if (urlString.ToLower() != "about:blank" && !urlString.StartsWith(Uri.UriSchemeHttp + Uri.SchemeDelimiter))
+            if (urlString.ToLower() != "about:blank" && !urlString.StartsWith(Uri.UriSchemeHttp + Uri.SchemeDelimiter) && !urlString.StartsWith(Uri.UriSchemeHttps + Uri.SchemeDelimiter))
                 if (urlString.Contains(" ") || !urlString.Contains("."))
                     urlString = "http://www.google.com/search?q=" + urlString;
                 else

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
@@ -68,6 +69,45 @@ namespace Samba.Presentation.Common
         public static ContextMenu ButtonContextMenu { get; set; }
 
         protected static void AddControl(IDiagram buttonHolder, InkCanvas parentControl)
+        {
+            if (!string.IsNullOrEmpty(buttonHolder.HtmlContent))
+                CreateHtmlViewer(buttonHolder, parentControl);
+            else CreateButton(buttonHolder, parentControl);
+        }
+
+        private static void CreateHtmlViewer(IDiagram buttonHolder, InkCanvas parentControl)
+        {
+            var ret = new Browser.BrowserControl()
+            {
+                DataContext = buttonHolder,
+                ContextMenu = ButtonContextMenu,
+                MinHeight = 10,
+                MinWidth = 10,
+            };
+
+            ret.IsToolbarVisible = false;
+            parentControl.Children.Add(ret);
+
+            var heightBinding = new Binding("Height") { Source = buttonHolder, Mode = BindingMode.TwoWay };
+            var widthBinding = new Binding("Width") { Source = buttonHolder, Mode = BindingMode.TwoWay };
+            var xBinding = new Binding("X") { Source = buttonHolder, Mode = BindingMode.TwoWay };
+            var yBinding = new Binding("Y") { Source = buttonHolder, Mode = BindingMode.TwoWay };
+            var enabledBinding = new Binding("IsEnabled") { Source = buttonHolder, Mode = BindingMode.OneWay };
+            var transformBinding = new Binding("RenderTransform") { Source = buttonHolder, Mode = BindingMode.OneWay };
+            var urlBinding = new Binding("HtmlContent") { Source = buttonHolder, Mode = BindingMode.OneWay };
+            var detailsVisibilityBinding = new Binding("IsDetailsVisible") { Source = buttonHolder, Mode = BindingMode.TwoWay };
+
+            ret.SetBinding(LeftProperty, xBinding);
+            ret.SetBinding(TopProperty, yBinding);
+            ret.SetBinding(HeightProperty, heightBinding);
+            ret.SetBinding(WidthProperty, widthBinding);
+            ret.SetBinding(RenderTransformProperty, transformBinding);
+            ret.SetBinding(IsEnabledProperty, enabledBinding);
+            ret.SetBinding(Browser.BrowserControl.ActiveUrlProperty, urlBinding);
+            ret.SetBinding(Browser.BrowserControl.IsToolbarVisibleProperty, detailsVisibilityBinding);
+        }
+
+        private static void CreateButton(IDiagram buttonHolder, InkCanvas parentControl)
         {
             var ret = new FlexButton.FlexButton { DataContext = buttonHolder, ContextMenu = ButtonContextMenu };
             ret.CommandParameter = buttonHolder;

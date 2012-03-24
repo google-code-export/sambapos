@@ -7,6 +7,7 @@ namespace Samba.Localization
 {
     public static class ResourceStrings
     {
+        public const string Table = "Table";
         public const string ImageOnly = "ImageOnly";
         public const string Big = "Big";
         public const string Small = "Small";

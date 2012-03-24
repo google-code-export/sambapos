@@ -16,6 +16,8 @@ namespace Samba.Presentation.Common
         ICommand Command { get; }
         CornerRadius CornerRadius { get; set; }
         Transform RenderTransform { get; set; }
+        string HtmlContent { get; set; }
+        bool IsDetailsVisible { get; set; }
         void EditProperties();
     }
 }

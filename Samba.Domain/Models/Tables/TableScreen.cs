@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Tables
@@ -48,6 +49,8 @@ namespace Samba.Domain.Models.Tables
                 return itemCount;
             }
         }
+
+
 
         public void AddScreenItem(Table choosenValue)
         {

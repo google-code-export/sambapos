@@ -1,4 +1,5 @@
-﻿using Samba.Infrastructure.Data;
+﻿using System;
+using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Tables
 {
@@ -17,6 +18,7 @@ namespace Samba.Domain.Models.Tables
         public int Width { get; set; }
         public int CornerRadius { get; set; }
         public double Angle { get; set; }
+        public string HtmlContent { get; set; }
 
         public string UserString
         {

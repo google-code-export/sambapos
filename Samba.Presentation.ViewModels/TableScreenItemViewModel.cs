@@ -43,7 +43,7 @@ namespace Samba.Presentation.ViewModels
             }
         }
 
-        [DisplayName("Masa")]
+        [LocalizedDisplayName(ResourceStrings.Table)]
         public string Name { get { return Model.Name; } }
 
         private string _buttonColor;
@@ -112,6 +112,23 @@ namespace Samba.Presentation.ViewModels
         {
             get { return new RotateTransform(Model.Angle); }
             set { Model.Angle = ((RotateTransform)value).Angle; }
+        }
+
+        public string HtmlContent
+        {
+            get { return Model.HtmlContent; }
+            set { Model.HtmlContent = value; }
+        }
+
+        private bool _isDetailsVisible;
+        public bool IsDetailsVisible
+        {
+            get { return _isDetailsVisible; }
+            set
+            {
+                _isDetailsVisible = value;
+                RaisePropertyChanged("IsDetailsVisible");
+            }
         }
 
         [LocalizedDisplayName(ResourceStrings.Angle)]

@@ -44,6 +44,8 @@
             </TextBlock>
         </StackPanel>
         <TextBlock Name="TimeLabel" Grid.Row="0" Grid.Column="1" Margin="10,5,10,0" FontSize="18" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="Lucida Console">SAAT</TextBlock>
+
+        
         <TabControl Background="LightGray" Grid.Row="1" Grid.ColumnSpan="2" cal:RegionManager.RegionName="MainRegion" SelectedIndex="0" Name="MainTabControl">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">
@@ -51,7 +53,6 @@
                 </Style>
             </TabControl.ItemContainerStyle>
         </TabControl>
-
         <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="LightGray">
             <Grid.Resources>
                 <Style TargetType="Button">

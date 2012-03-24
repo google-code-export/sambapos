@@ -230,7 +230,8 @@ namespace Samba.Modules.TableModule
             {
                 for (var i = 0; i < tableData.Count(); i++)
                 {
-                    ((TableScreenItemViewModel)Tables[i]).Model = tableData.ElementAt(i);
+                    if (Tables[i] is TableScreenItemViewModel)
+                        ((TableScreenItemViewModel)Tables[i]).Model = tableData.ElementAt(i);
                 }
             }
 

@@ -59,6 +59,7 @@ namespace Samba.Presentation
             _timer = new DispatcherTimer();
             _timer.Tick += TimerTick;
             TimeLabel.Text = "..."; // DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
+            
 
 #if !DEBUG
             WindowStyle = WindowStyle.None;

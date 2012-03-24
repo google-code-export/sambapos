@@ -465,6 +465,11 @@ namespace Samba.Services
                         }
                         changed = true;
                     }
+                    else if (SelectedTicket.RemainingAmount == 0 && currentTicket.TotalAmount != SelectedTicket.TotalAmount)
+                    {
+                        result.ErrorMessage = Resources.TicketChangedRetryLastOperation;
+                        changed = true;
+                    }
                     else if (currentTicket.LastPaymentDate != SelectedTicket.LastPaymentDate)
                     {
                         var currentPaymentIds = SelectedTicket.Payments.Select(x => x.Id).Distinct();
