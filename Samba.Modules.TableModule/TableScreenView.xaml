@@ -72,10 +72,6 @@
                         <LocText ResourceIdentifierKey="AlphanumericButtons" Suffix=":"/>
                     </Label>
                     <TextBox Margin="0,5,0,0" HorizontalAlignment="Left" MinWidth="100" Text="{Binding AlphaButtonValues}" />
-                    <Label Margin="0,5,0,0">
-                        HTML Content URL:
-                    </Label>
-                    <TextBox Margin="0,5,0,0" HorizontalAlignment="Left" MinWidth="100" Text="{Binding HtmlContent}" />
                 </UniformGrid>
             </StackPanel>
         </ScrollViewer>

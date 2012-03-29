@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using Samba.Presentation.Common.Browser;
 
 namespace Samba.Presentation.Common
 {
@@ -75,18 +77,31 @@ namespace Samba.Presentation.Common
             else CreateButton(buttonHolder, parentControl);
         }
 
+        private static readonly IDictionary<string, BrowserControl> BrowserCache = new Dictionary<string, BrowserControl>();
+
         private static void CreateHtmlViewer(IDiagram buttonHolder, InkCanvas parentControl)
         {
-            var ret = new Browser.BrowserControl()
+            if (!BrowserCache.ContainsKey(buttonHolder.Caption + buttonHolder.HtmlContent))
             {
-                DataContext = buttonHolder,
-                ContextMenu = ButtonContextMenu,
-                MinHeight = 10,
-                MinWidth = 10,
-            };
+                var brws = new BrowserControl
+                               {
+                                   DataContext = buttonHolder,
+                                   ContextMenu = ButtonContextMenu,
+                                   MinHeight = 10,
+                                   MinWidth = 10,
+                               };
 
+                BrowserCache.Add(buttonHolder.Caption + buttonHolder.HtmlContent, brws);
+            }
+
+            var ret = BrowserCache[buttonHolder.Caption + buttonHolder.HtmlContent];
+
+            ret.DataContext = buttonHolder;
+            ret.ContextMenu = ButtonContextMenu;
             ret.IsToolbarVisible = false;
             parentControl.Children.Add(ret);
+
+            BindingOperations.ClearAllBindings(ret);
 
             var heightBinding = new Binding("Height") { Source = buttonHolder, Mode = BindingMode.TwoWay };
             var widthBinding = new Binding("Width") { Source = buttonHolder, Mode = BindingMode.TwoWay };
@@ -103,8 +118,8 @@ namespace Samba.Presentation.Common
             ret.SetBinding(WidthProperty, widthBinding);
             ret.SetBinding(RenderTransformProperty, transformBinding);
             ret.SetBinding(IsEnabledProperty, enabledBinding);
-            ret.SetBinding(Browser.BrowserControl.ActiveUrlProperty, urlBinding);
-            ret.SetBinding(Browser.BrowserControl.IsToolbarVisibleProperty, detailsVisibilityBinding);
+            ret.SetBinding(BrowserControl.ActiveUrlProperty, urlBinding);
+            ret.SetBinding(BrowserControl.IsToolbarVisibleProperty, detailsVisibilityBinding);
         }
 
         private static void CreateButton(IDiagram buttonHolder, InkCanvas parentControl)
@@ -145,7 +160,7 @@ namespace Samba.Presentation.Common
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DiagramCanvas), new FrameworkPropertyMetadata(typeof(DiagramCanvas)));
             ButtonContextMenu = new ContextMenu();
-            var menuItem = new MenuItem() { Header = "Özellikler" };
+            var menuItem = new MenuItem { Header = "Özellikler" };
             menuItem.Click += MenuItemClick;
             ButtonContextMenu.Items.Add(menuItem);
         }
@@ -155,6 +170,5 @@ namespace Samba.Presentation.Common
             ((IDiagram)((Control)((ContextMenu)((MenuItem)sender).Parent).PlacementTarget).DataContext).
                 EditProperties();
         }
-
     }
 }

@@ -15,6 +15,8 @@ namespace Samba.Services
         public const string NotContain = "!?";
         public const string Greater = ">";
         public const string Less = "<";
+        public const string Starts = "|<";
+        public const string Ends = ">|";
     }
 
     public class RuleConstraintViewModel
@@ -92,7 +94,7 @@ namespace Samba.Services
 
         public bool ValueEquals(object parameterValue)
         {
-            if (IsNumericType(parameterValue.GetType()) || Operation.Contains(OpConst.Greater) || Operation.Contains(OpConst.Less))
+            if (IsNumericType(parameterValue.GetType()) || Operation.Trim() == OpConst.Greater || Operation.Trim() == OpConst.Less)
             {
                 decimal propertyValue;
                 decimal.TryParse(parameterValue.ToString(), out propertyValue);
@@ -131,6 +133,14 @@ namespace Samba.Services
                 else if (Operation.Contains(OpConst.Contain))
                 {
                     if (!propertyValue.Contains(objectValue)) return false;
+                }
+                else if (Operation.Contains(OpConst.Starts))
+                {
+                    if (!propertyValue.StartsWith(objectValue)) return false;
+                }
+                else if (Operation.Contains(OpConst.Ends))
+                {
+                    if (!propertyValue.EndsWith(objectValue)) return false;
                 }
                 else if (Operation.Contains(OpConst.NotEqual))
                 {
@@ -224,7 +234,7 @@ namespace Samba.Services
             {
                 return new[] { OpConst.Equal, OpConst.NotEqual, OpConst.Greater, OpConst.Less };
             }
-            return new[] { OpConst.Equal, OpConst.NotEqual, OpConst.Contain, OpConst.NotContain };
+            return new[] { OpConst.Equal, OpConst.NotEqual, OpConst.Contain, OpConst.NotContain, OpConst.Starts, OpConst.Ends };
         }
 
         public static void RegisterParameterSoruce(string parameterName, Func<IEnumerable<string>> action)

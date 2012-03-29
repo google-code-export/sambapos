@@ -18,6 +18,8 @@ namespace Samba.Domain.Models.Menus
         public byte[] LastUpdateTime { get; set; }
         public bool SingleSelection { get; set; }
         public bool MultipleSelection { get; set; }
+        public bool ForceValue{ get; set; }
+        public string GroupTag { get; set; }
 
         public int ColumnCount { get; set; }
         public int ButtonHeight { get; set; }

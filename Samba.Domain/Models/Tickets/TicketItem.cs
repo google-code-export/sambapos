@@ -175,7 +175,7 @@ namespace Samba.Domain.Models.Tickets
                 else if (VatRate > 0) ti.VatAmount = (property.Price.Amount * VatRate) / 100;
                 else ti.VatAmount = 0;
             }
-            if (group.SingleSelection)
+            if (group.SingleSelection || !string.IsNullOrEmpty(group.GroupTag))
             {
                 var tip = Properties.FirstOrDefault(x => x.PropertyGroupId == group.Id);
                 if (tip != null)

@@ -111,7 +111,7 @@ namespace Samba.Services.Printing
                     {
                         var v = string.Join(" ", values).Trim();
                         if (!string.IsNullOrEmpty(rowValue))
-                            rowValue =  rowValue + " |   " + v;
+                            rowValue = rowValue + " |   " + v;
                         else rowValue = "<R>" + v;
                     }
                     else
@@ -119,7 +119,7 @@ namespace Samba.Services.Printing
                         var value = string.Join(" ", values);
 
                         if (value.Length > colLenghts[i] && row.Cells.Count > 1)
-                            value = value.Substring(0, colLenghts[i] - 1);
+                            value = colLenghts[i] > 0 ? value.Substring(0, colLenghts[i] - 1) : "";
 
                         if (i < row.Cells.Count)
                         {

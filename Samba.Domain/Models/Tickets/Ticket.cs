@@ -465,11 +465,12 @@ namespace Samba.Domain.Models.Tickets
                     continue;
                 }
 
-                var item =
-                    mergedLines.SingleOrDefault(
+                var item = mergedLines.SingleOrDefault(
                         x =>
                         x.Properties.Count == 0 && x.MenuItemId == ti.MenuItemId &&
-                        x.PortionName == ti.PortionName && x.Gifted == ti.Gifted && x.Price == ti.Price);
+                        x.PortionName == ti.PortionName && x.Gifted == ti.Gifted &&
+                        x.Price == ti.Price && x.Tag == ti.Tag);
+
                 if (item == null) mergedLines.Add(ticketItem);
                 else item.Quantity += ticketItem.Quantity;
             }

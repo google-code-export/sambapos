@@ -46,6 +46,7 @@ namespace Samba.Modules.MenuModule
         public string ButtonColorWhenNoTagSelected { get { return Model.ButtonColorWhenNoTagSelected; } set { Model.ButtonColorWhenNoTagSelected = value; } }
         public bool ActiveOnPosClient { get { return Model.ActiveOnPosClient; } set { Model.ActiveOnPosClient = value; } }
         public bool ActiveOnTerminalClient { get { return Model.ActiveOnTerminalClient; } set { Model.ActiveOnTerminalClient = value; } }
+        public bool ExcludeInReports { get { return Model.ExcludeInReports; } set { Model.ExcludeInReports = value; } }
 
         public string TaggingType { get { return TagTypes[SelectedTaggingType]; } set { SelectedTaggingType = TagTypes.IndexOf(value); } }
 

@@ -32,8 +32,9 @@ namespace Samba.Domain.Models.Actions
             {
                 foreach (var propertyName in Regex.Matches(parameterValues, "\\[([^\\]]+)\\]").Cast<Match>().Select(match => match.Groups[1].Value).ToList())
                 {
+                    var value = dataObject.GetType().GetProperty(propertyName).GetValue(dataObject, null) ?? "";
                     parameterValues = parameterValues.Replace(string.Format("[{0}]", propertyName),
-                                             dataObject.GetType().GetProperty(propertyName).GetValue(dataObject, null).ToString());
+                                             value.ToString());
                 }
             }
 

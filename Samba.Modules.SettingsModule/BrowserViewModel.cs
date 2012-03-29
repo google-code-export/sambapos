@@ -32,7 +32,7 @@ namespace Samba.Modules.SettingsModule
                 RaisePropertyChanged("ActiveUrl");
             }
         }
-        
+
         protected override string GetHeaderInfo()
         {
             return Resources.InternetBrowser;

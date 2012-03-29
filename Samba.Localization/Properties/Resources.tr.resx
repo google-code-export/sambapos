@@ -3227,31 +3227,43 @@ Mesaj:
   <data name="GroupTemplate" xml:space="preserve">
     <value>Grup Şablonu</value>
   </data>
-  <data name="AccountNote">
-    <value xml:space="preserve">Hesap Notu</value>
+  <data name="AccountNote" xml:space="preserve">
+    <value>Hesap Notu</value>
   </data>
-  <data name="AccountGroupCode">
-    <value xml:space="preserve">Hesap Grup Kodu</value>
+  <data name="AccountGroupCode" xml:space="preserve">
+    <value>Hesap Grup Kodu</value>
   </data>
-  <data name="ProductGroup">
-    <value xml:space="preserve">Ürün Group Kodu</value>
+  <data name="ProductGroup" xml:space="preserve">
+    <value>Ürün Group Kodu</value>
   </data>
-  <data name="DepartmentSales">
-    <value xml:space="preserve">Departman Satışları</value>
+  <data name="DepartmentSales" xml:space="preserve">
+    <value>Departman Satışları</value>
   </data>
-  <data name="ItemsMovedToTable_f">
-    <value xml:space="preserve">Seçili ürünler {0} masasına taşındı.</value>
+  <data name="ItemsMovedToTable_f" xml:space="preserve">
+    <value>Seçili ürünler {0} masasına taşındı.</value>
   </data>
-  <data name="DatabaseErrorMessage">
-    <value>
-      <![CDATA[Şu anki bağlantı ayarları ile veri tabanına bağlanılamıyor. Lütfen aşağıdaki bağlantı bilgisini kontrol ederek tekrar deneyiniz.
+  <data name="DatabaseErrorMessage" xml:space="preserve">
+    <value>Şu anki bağlantı ayarları ile veri tabanına bağlanılamıyor. Lütfen aşağıdaki bağlantı bilgisini kontrol ederek tekrar deneyiniz.
 
 Hata Mesajı:
-]]>
-    </value>
+</value>
   </data>
-  <data name="CurrentErrorLoggedMessage">
-    <value xml:space="preserve">Programı yeniden başlatınız. Mevcut problem log dosyasına kaydedildi.</value>
+  <data name="CurrentErrorLoggedMessage" xml:space="preserve">
+    <value>Programı yeniden başlatınız. Mevcut problem log dosyasına kaydedildi.</value>
   </data>
-
+  <data name="SelectionRequired_f" xml:space="preserve">
+    <value>{0} seçimi zorunludur!</value>
+  </data>
+  <data name="GroupTag" xml:space="preserve">
+    <value>Grup Etiketi</value>
+  </data>
+  <data name="ReceivedBy_f" xml:space="preserve">
+    <value>{0} Tahsilatları</value>
+  </data>
+  <data name="UpdateTicketItemTag" xml:space="preserve">
+    <value>Satır Etiketini Değiştir</value>
+  </data>
+  <data name="HideItOnReports">
+    <value xml:space="preserve">Raporlarda Gizle</value>
+  </data>
 </root>

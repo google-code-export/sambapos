@@ -25,6 +25,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
@@ -101,7 +102,38 @@
                 </ItemsControl>
             </Grid>
 
-            <ItemsControl Grid.Row="2" 
+            <ItemsControl Grid.Row="3" 
+                          ItemsSource="{Binding SelectedItemGroupedPropertyItems}" 
+                          Visibility="{Binding IsEditorsVisible,Converter={StaticResource VisibilityConverter}}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Margin="1">
+                            <TextBlock DockPanel.Dock="Top" FontWeight="Bold" Text="{Binding Name}"/>
+                            <ItemsControl DockPanel.Dock="Bottom" ItemsSource="{Binding Properties}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="{Binding TerminalColumnCount}"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <FxButton:FlexButton 
+                                            Height="{Binding DataContext.TerminalButtonHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                            Margin="0,1,1,0"  
+                                            ButtonColor="{Binding TicketItemProperty, Converter={StaticResource PropertyColorConverter}}" 
+                                            Command="{Binding DataContext.PropertyGroupSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type ItemsControl}}}" 
+                                            CommandParameter="{Binding}">
+                                            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding Name}"/>
+                                        </FxButton:FlexButton>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+            <ItemsControl Grid.Row="3" 
                           ItemsSource="{Binding SelectedItemPropertyGroups}" 
                           Visibility="{Binding IsEditorsVisible,Converter={StaticResource VisibilityConverter}}">
                 <ItemsControl.ItemTemplate>
@@ -132,7 +164,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <Viewbox Grid.Row="3" VerticalAlignment="Bottom" Visibility="{Binding IsKeyboardVisible, Mode=TwoWay,Converter={StaticResource VisibilityConverter}}">
+            <Viewbox Grid.Row="4" VerticalAlignment="Bottom" Visibility="{Binding IsKeyboardVisible, Mode=TwoWay,Converter={StaticResource VisibilityConverter}}">
                 <VirtualKeyboard:KeyboardView2 ></VirtualKeyboard:KeyboardView2>
             </Viewbox>
 

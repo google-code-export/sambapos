@@ -1081,6 +1081,16 @@ namespace Samba.Modules.TicketModule
 
         private void OnCloseTicketExecute(string obj)
         {
+            if (SelectedTicketItem != null && !SelectedTicketItem.IsLocked)
+            {
+                var unselectedItem = AppServices.DataAccessService.GetUnselectedItem(SelectedTicketItem.Model);
+                if (unselectedItem != null)
+                {
+                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.SelectionRequired_f, unselectedItem.Name));
+                    return;
+                }
+            }
+
             if (SelectedTicket.Items.Count > 0 && SelectedTicket.Model.GetRemainingAmount() == 0)
             {
                 var message = SelectedTicket.GetPrintError();

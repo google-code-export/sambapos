@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using Samba.Domain.Models.Inventory;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tables;
+using Samba.Domain.Models.Tickets;
 using Samba.Persistance.Data;
 
 namespace Samba.Services
@@ -92,6 +93,12 @@ namespace Samba.Services
         public Table GetTable(string tableName)
         {
             return Dao.Single<Table>(x => x.Name == tableName);
+        }
+
+        public MenuItemPropertyGroup GetUnselectedItem(TicketItem ticketItem)
+        {
+            var mi = GetMenuItem(ticketItem.MenuItemId);
+            return mi.PropertyGroups.FirstOrDefault(x => x.ForceValue && ticketItem.Properties.Count(y => y.PropertyGroupId == x.Id) == 0);
         }
     }
 }

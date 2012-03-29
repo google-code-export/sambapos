@@ -19,6 +19,7 @@ namespace Samba.Domain.Models.Tickets
         public int Action { get; set; }
         public bool FreeTagging { get; set; }
         public bool SaveFreeTags { get; set; }
+        public bool ExcludeInReports { get; set; }
         public string ButtonColorWhenTagSelected { get; set; }
         public string ButtonColorWhenNoTagSelected { get; set; }
         public bool ActiveOnPosClient { get; set; }

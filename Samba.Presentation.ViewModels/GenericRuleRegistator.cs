@@ -42,6 +42,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("GiftLastTicketItem", Resources.GiftLastTicketItem, new { GiftReason = "", Quantity = 0 });
             RuleActionTypeRegistry.RegisterActionType("UpdateLastTicketItemPriceTag", Resources.UpdateLastTicketItemPriceTag, new { PriceTag = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketItemPriceTag", Resources.UpdateTicketItemPriceTag, new { PriceTag = "" });
+            RuleActionTypeRegistry.RegisterActionType("UpdateTicketItemTag", Resources.UpdateTicketItemTag, new { Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("VoidTicketItems", Resources.VoidTicketItems, new { MenuItemName = "", Tag = "" });
             RuleActionTypeRegistry.RegisterActionType("RemoveLastModifier", Resources.RemoveLastModifier);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTag", Resources.UpdateTicketTag, new { TagName = "", TagValue = "" });
@@ -54,7 +55,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterActionType("RegenerateTicketVat", Resources.RegenerateTicketVat);
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketTaxService", Resources.UpdateTicketTaxService, new { TaxServiceTemplate = "", Amount = 0m });
             RuleActionTypeRegistry.RegisterActionType("UpdateTicketAccount", Resources.UpdateTicketAccount, new { AccountPhone = "", AccountName = "", Note = "" });
-            RuleActionTypeRegistry.RegisterActionType("ExecutePrintJob", Resources.ExecutePrintJob, new { PrintJobName = "" });
+            RuleActionTypeRegistry.RegisterActionType("ExecutePrintJob", Resources.ExecutePrintJob, new { PrintJobName = "", TicketItemTag = "" });
             RuleActionTypeRegistry.RegisterActionType("UpdateApplicationSubTitle", "Update Application Subtitle", new { Title = "", Color = "White", FontSize = 12 });
         }
 
@@ -161,6 +162,18 @@ namespace Samba.Presentation.ViewModels
 
                     TicketViewModel.RecalculateTicket(ticket);
                     EventServiceFactory.EventService.PublishEvent(EventTopicNames.RefreshSelectedTicket);
+                }
+
+                if (x.Value.Action.ActionType == "UpdateTicketItemTag")
+                {
+                    var ticket = x.Value.GetDataValue<Ticket>("Ticket");
+                    if (ticket == null) return;
+
+                    var ti = x.Value.GetDataValue<TicketItem>("TicketItem");
+                    if (ti == null) return;
+
+                    var tag = x.Value.GetAsString("Tag");
+                    ti.Tag = tag;
                 }
 
                 if (x.Value.Action.ActionType == "UpdateLastTicketItemPriceTag")
@@ -468,6 +481,16 @@ namespace Samba.Presentation.ViewModels
                     {
                         var tagName = x.Value.GetAsString("TagName");
                         var tagValue = x.Value.GetAsString("TagValue");
+                        if (tagValue.Contains(","))
+                        {
+                            var ctag = ticket.GetTagValue(tagName);
+                            if (!string.IsNullOrEmpty(ctag))
+                            {
+                                var nextTag = tagValue.Split(',').SkipWhile(y => y != ctag).Skip(1).FirstOrDefault();
+                                if (string.IsNullOrEmpty(nextTag)) nextTag = tagValue.Split(',')[0];
+                                tagValue = nextTag;
+                            }
+                        }
                         ticket.SetTagValue(tagName, tagValue);
                         var tagData = new TicketTagData { TagName = tagName, TagValue = tagValue };
                         tagData.PublishEvent(EventTopicNames.TagSelectedForSelectedTicket);
@@ -494,6 +517,8 @@ namespace Samba.Presentation.ViewModels
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
                     var pjName = x.Value.Action.GetParameter("PrintJobName");
+                    var ticketItemTag = x.Value.Action.GetParameter("TicketItemTag");
+
                     if (!string.IsNullOrEmpty(pjName))
                     {
                         var j = AppServices.CurrentTerminal.PrintJobs.SingleOrDefault(y => y.Name == pjName);
@@ -503,7 +528,12 @@ namespace Samba.Presentation.ViewModels
                             if (ticket != null)
                             {
                                 AppServices.MainDataContext.UpdateTicketNumber(ticket);
-                                AppServices.PrintService.ManualPrintTicket(ObjectCloner.Clone(ticket), j);
+                                var clonedTicket = ObjectCloner.Clone(ticket);
+                                if (!string.IsNullOrEmpty(ticketItemTag))
+                                    clonedTicket.TicketItems =
+                                        clonedTicket.TicketItems.Where(
+                                            y => y.Tag.ToLower() == ticketItemTag.Trim().ToLower()).ToList();
+                                AppServices.PrintService.ManualPrintTicket(clonedTicket, j);
                             }
                             else
                                 AppServices.PrintService.ExecutePrintJob(j);

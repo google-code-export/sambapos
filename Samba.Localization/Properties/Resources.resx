@@ -3225,30 +3225,43 @@ Error Message:
   <data name="GroupTemplate" xml:space="preserve">
     <value>Group Template</value>
   </data>
-  <data name="AccountNote">
-    <value xml:space="preserve">Account Note</value>
+  <data name="AccountNote" xml:space="preserve">
+    <value>Account Note</value>
   </data>
-  <data name="AccountGroupCode">
-    <value xml:space="preserve">Account Group Code</value>
+  <data name="AccountGroupCode" xml:space="preserve">
+    <value>Account Group Code</value>
   </data>
-  <data name="ProductGroup">
-    <value xml:space="preserve">Product Group</value>
+  <data name="ProductGroup" xml:space="preserve">
+    <value>Product Group</value>
   </data>
-	<data name="DepartmentSales">
-		<value xml:space="preserve">Department Sales</value>
-	</data>
-  <data name="ItemsMovedToTable_f">
-    <value xml:space="preserve">Items moved to {0} table.</value>
+  <data name="DepartmentSales" xml:space="preserve">
+    <value>Department Sales</value>
   </data>
-  <data name="DatabaseErrorMessage">
-    <value>
-      <![CDATA[Can not connect to database with current connection settings. Please check connection string below and retry.
+  <data name="ItemsMovedToTable_f" xml:space="preserve">
+    <value>Items moved to {0} table.</value>
+  </data>
+  <data name="DatabaseErrorMessage" xml:space="preserve">
+    <value>Can not connect to database with current connection settings. Please check connection string below and retry.
 
 Error Message:
-]]>
-    </value>
+</value>
   </data>
-  <data name="CurrentErrorLoggedMessage">
-    <value xml:space="preserve">Restart application. Problem saved in log file.</value>
+  <data name="CurrentErrorLoggedMessage" xml:space="preserve">
+    <value>Restart application. Problem saved in log file.</value>
+  </data>
+  <data name="SelectionRequired_f" xml:space="preserve">
+    <value>{0} selection required!</value>
+  </data>
+  <data name="GroupTag" xml:space="preserve">
+    <value>Group Tag</value>
+  </data>
+  <data name="ReceivedBy_f" xml:space="preserve">
+    <value>Received by {0}</value>
+  </data>
+  <data name="UpdateTicketItemTag" xml:space="preserve">
+    <value>Update Ticket Item Tag</value>
+  </data>
+  <data name="HideItOnReports">
+    <value xml:space="preserve">Hide it on Reports</value>
   </data>
 </root>

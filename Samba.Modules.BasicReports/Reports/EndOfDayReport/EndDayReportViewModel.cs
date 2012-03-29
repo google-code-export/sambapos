@@ -286,7 +286,7 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                 foreach (var grp in tagGrp)
                 {
                     var tag = ReportContext.TicketTagGroups.SingleOrDefault(x => x.Name == grp.Key);
-                    if (tag == null) continue;
+                    if (tag == null || tag.ExcludeInReports) continue;
 
                     report.AddBoldRow("Etiket", grp.Key, "", "");
 
@@ -354,6 +354,35 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
             {
                 report.AddRow("Garson", ownerInfo.UserName, ownerInfo.Amount.ToString(ReportContext.CurrencyFormat));
             }
+            //---
+
+            var uInfo = ReportContext.Tickets.SelectMany(x => x.Payments).Select(x => x.UserId).Distinct().Select(
+                    x => new UserInfo { UserId = x });
+
+            if (uInfo.Count() > 1)
+            {
+                foreach (var userInfo in uInfo)
+                {
+                    var info = userInfo;
+                    var uPayments = ReportContext.Tickets
+                        .SelectMany(x => x.Payments)
+                        .Where(x => x.UserId == info.UserId)
+                        .GroupBy(x => new { x.PaymentType })
+                        .Select(x => new TenderedAmount { PaymentType = x.Key.PaymentType, Amount = x.Sum(y => y.Amount) });
+
+                    report.AddColumnLength(userInfo.UserName + Resources.Incomes, "40*", "Auto", "35*");
+                    report.AddColumTextAlignment(userInfo.UserName + Resources.Incomes, TextAlignment.Left, TextAlignment.Right, TextAlignment.Right);
+                    report.AddTable(userInfo.UserName + Resources.Incomes, string.Format(Resources.ReceivedBy_f, userInfo.UserName), "", "");
+                    report.AddRow(userInfo.UserName + Resources.Incomes, Resources.Cash, GetPercent(0, uPayments), GetAmount(0, uPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(userInfo.UserName + Resources.Incomes, Resources.CreditCard, GetPercent(1, uPayments), GetAmount(1, uPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(userInfo.UserName + Resources.Incomes, Resources.Voucher, GetPercent(2, uPayments), GetAmount(2, uPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(userInfo.UserName + Resources.Incomes, Resources.AccountBalance, GetPercent(3, uPayments), GetAmount(3, uPayments).ToString(ReportContext.CurrencyFormat));
+                    report.AddRow(userInfo.UserName + Resources.Incomes, Resources.Total, "", uPayments.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
+
+                }
+            }
+
+            //---
 
             var menuGroups = MenuGroupBuilder.CalculateMenuGroups(ReportContext.Tickets, ReportContext.MenuItems);
 

@@ -139,6 +139,19 @@ namespace Samba.Services.Printing
                     }
                     return result;
                 }
+
+                if (template.GroupTemplate.Contains("{ITEM TAG}"))
+                {
+                    var groups = lines.GroupBy(x => x.Tag);
+                    var result = new List<string>();
+                    foreach (var grp in groups)
+                    {
+                        var grpSep = template.GroupTemplate.Replace("{ITEM TAG}", grp.Key);
+                        result.AddRange(grpSep.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+                        result.AddRange(grp.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)));
+                    }
+                    return result;
+                }
             }
             return lines.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
         }

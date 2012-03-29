@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.91 "
-#define FileVersion "291"
+#define Version "2.93 "
+#define FileVersion "293"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -61,6 +61,8 @@ es.app_parameter=/es
 ru.app_parameter=/ru
 cs.app_parameter=/cs
 ro.app_parameter=/ro
+it.app_parameter=/it
+fr.app_parameter=/fr
 
 [Setup]
 AppName=Samba POS
@@ -108,6 +110,7 @@ Name: ru; MessagesFile: compiler:Languages\Russian.isl
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl
 Name: ro; MessagesFile: compiler:Languages\Romanian.isl
 Name: it; MessagesFile: compiler:Languages\Italian.isl
+Name: fr; MessagesFile: compiler:Languages\French.isl
 
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Languages: ; Components: 
@@ -200,6 +203,7 @@ Source: src\sq\Samba.Localization.resources.dll; DestDir: {app}\sq\; Flags: igno
 Source: src\zh-CN\Samba.Localization.resources.dll; DestDir: {app}\zh-CN\; Flags: ignoreversion
 Source: src\pt-BR\Samba.Localization.resources.dll; DestDir: {app}\pt-BR\; Flags: ignoreversion
 Source: src\it\Samba.Localization.resources.dll; DestDir: {app}\it\; Flags: ignoreversion
+Source: src\fr\Samba.Localization.resources.dll; DestDir: {app}\fr\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -305,5 +309,8 @@ Name: {app}\ro
 Name: {app}\sq
 Name: {app}\zh-CN
 Name: {app}\it
+Name: {app}\fr
 Name: {app}\pt-BR
 Name: {commonappdata}\Ozgu Tech\SambaPOS2
+[Registry]
+Root: HKLM; Subkey: SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION; ValueType: dword; ValueName: samba.presentation.exe; ValueData: 9999

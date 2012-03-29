@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Practices.Prism.Commands;
@@ -25,11 +26,16 @@ namespace Samba.Presentation.Terminal
 
         public DelegateCommand<MenuItemPortionViewModel> PortionSelectedCommand { get; set; }
         public DelegateCommand<MenuItemPropertyViewModel> PropertySelectedCommand { get; set; }
+        public DelegateCommand<MenuItemGroupedPropertyItemViewModel> PropertyGroupSelectedCommand { get; set; }
+
+
         public DelegateCommand<TicketTagViewModel> TicketTagSelectedCommand { get; set; }
         public ICaptionCommand AddTicketTagCommand { get; set; }
 
         public ObservableCollection<MenuItemPortionViewModel> SelectedItemPortions { get; set; }
         public ObservableCollection<MenuItemPropertyGroupViewModel> SelectedItemPropertyGroups { get; set; }
+        public ObservableCollection<MenuItemGroupedPropertyViewModel> SelectedItemGroupedPropertyItems { get; set; }
+
         public ObservableCollection<TicketTagViewModel> TicketTags { get; set; }
 
         private string _customTag;
@@ -49,10 +55,12 @@ namespace Samba.Presentation.Terminal
         {
             SelectedItemPortions = new ObservableCollection<MenuItemPortionViewModel>();
             SelectedItemPropertyGroups = new ObservableCollection<MenuItemPropertyGroupViewModel>();
+            SelectedItemGroupedPropertyItems = new ObservableCollection<MenuItemGroupedPropertyViewModel>();
             TicketTags = new ObservableCollection<TicketTagViewModel>();
 
             PortionSelectedCommand = new DelegateCommand<MenuItemPortionViewModel>(OnPortionSelected);
             PropertySelectedCommand = new DelegateCommand<MenuItemPropertyViewModel>(OnPropertySelected);
+            PropertyGroupSelectedCommand = new DelegateCommand<MenuItemGroupedPropertyItemViewModel>(OnPropertyGroupSelected);
             TicketTagSelectedCommand = new DelegateCommand<TicketTagViewModel>(OnTicketTagSelected);
             AddTicketTagCommand = new CaptionCommand<string>(Resources.AddTag, OnTicketTagAdded, CanAddTicketTag);
         }
@@ -147,6 +155,7 @@ namespace Samba.Presentation.Terminal
             SelectedTicketTag = null;
             SelectedItemPortions.Clear();
             SelectedItemPropertyGroups.Clear();
+            SelectedItemGroupedPropertyItems.Clear();
             TicketTags.Clear();
 
             SelectedItem = ticketItem;
@@ -155,12 +164,25 @@ namespace Samba.Presentation.Terminal
             {
                 var mi = AppServices.DataAccessService.GetMenuItem(ticketItem.Model.MenuItemId);
                 if (mi.Portions.Count > 1) SelectedItemPortions.AddRange(mi.Portions.Select(x => new MenuItemPortionViewModel(x)));
-                SelectedItemPropertyGroups.AddRange(mi.PropertyGroups.Select(x => new MenuItemPropertyGroupViewModel(x)));
+
+                SelectedItemGroupedPropertyItems.AddRange(mi.PropertyGroups.Where(x => !string.IsNullOrEmpty(x.GroupTag))
+                    .GroupBy(x => x.GroupTag)
+                    .Select(x => new MenuItemGroupedPropertyViewModel(SelectedItem, x)));
+
+                SelectedItemPropertyGroups.AddRange(mi.PropertyGroups
+                    .Where(x => string.IsNullOrEmpty(x.GroupTag))
+                    .Select(x => new MenuItemPropertyGroupViewModel(x)));
+
                 foreach (var ticketItemPropertyViewModel in ticketItem.Properties.ToList())
                 {
                     var tip = ticketItemPropertyViewModel;
                     var mig = SelectedItemPropertyGroups.Where(x => x.Model.Id == tip.Model.PropertyGroupId).SingleOrDefault();
-                    mig.Properties.SingleOrDefault(x => x.Name == tip.Model.Name).TicketItemProperty = ticketItemPropertyViewModel.Model;
+                    if (mig != null) mig.Properties.SingleOrDefault(x => x.Name == tip.Model.Name).TicketItemProperty = ticketItemPropertyViewModel.Model;
+                    
+                    var sig = SelectedItemGroupedPropertyItems.SelectMany(x => x.Properties).Where(
+                            x => x.MenuItemPropertyGroup.Id == tip.Model.PropertyGroupId).FirstOrDefault();
+                    if (sig != null) 
+                        sig.TicketItemProperty = ticketItemPropertyViewModel.Model;
                 }
             }
             else
@@ -200,6 +222,7 @@ namespace Samba.Presentation.Terminal
             SelectedItem = null;
             SelectedItemPortions.Clear();
             SelectedItemPropertyGroups.Clear();
+            SelectedItemGroupedPropertyItems.Clear();
             TicketTags.Clear();
             SelectedTicketTag = null;
         }
@@ -217,12 +240,19 @@ namespace Samba.Presentation.Terminal
         {
             var mig = SelectedItemPropertyGroups.FirstOrDefault(propertyGroup => propertyGroup.Properties.Contains(obj));
             Debug.Assert(mig != null);
-             SelectedItem.ToggleProperty(mig.Model, obj.Model);
-            
+            SelectedItem.ToggleProperty(mig.Model, obj.Model);
+
             foreach (var model in SelectedItemPropertyGroups)
             {
                 model.Refresh(SelectedItem.Properties);
             }
+        }
+
+        private void OnPropertyGroupSelected(MenuItemGroupedPropertyItemViewModel obj)
+        {
+            obj.TicketItemProperty =
+              SelectedItem.ToggleProperty(obj.MenuItemPropertyGroup, obj.NextProperty);
+            obj.UpdateNextProperty(obj.NextProperty);
         }
 
         private void OnTicketTagSelected(TicketTagViewModel obj)

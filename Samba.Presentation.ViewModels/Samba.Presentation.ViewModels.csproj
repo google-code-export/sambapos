@@ -52,6 +52,8 @@
     <Compile Include="DiscountViewModel.cs" />
     <Compile Include="GenericRuleRegistator.cs" />
     <Compile Include="LocationData.cs" />
+    <Compile Include="MenuItemGroupedPropertyItemViewModel.cs" />
+    <Compile Include="MenuItemGroupedPropertyViewModel.cs" />
     <Compile Include="MenuItemPortionViewModel.cs" />
     <Compile Include="MenuItemPropertyGroupViewModel.cs" />
     <Compile Include="MenuItemPropertyViewModel.cs" />

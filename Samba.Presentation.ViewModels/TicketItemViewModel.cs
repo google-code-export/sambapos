@@ -8,6 +8,7 @@ using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Services;
 
 namespace Samba.Presentation.ViewModels
@@ -179,7 +180,7 @@ namespace Samba.Presentation.ViewModels
 
         public string Reason { get { return Model.ReasonId > 0 ? AppServices.MainDataContext.GetReason(Model.ReasonId) : ""; } }
 
-        public string PriceTag { get { return Model.PriceTag; } }
+        public string PriceTag { get { return Model.PriceTag + (!string.IsNullOrEmpty(Model.Tag) ? string.Format(" [{0}]", Model.Tag) : ""); } }
 
         public ObservableCollection<TicketItemPropertyViewModel> Properties { get; private set; }
 
@@ -199,6 +200,15 @@ namespace Samba.Presentation.ViewModels
 
         private void OnItemSelected(TicketItemViewModel obj)
         {
+            if (Selected && !IsLocked)
+            {
+                var unselectedItem = AppServices.DataAccessService.GetUnselectedItem(obj.Model);
+                if (unselectedItem != null)
+                {
+                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.SelectionRequired_f, unselectedItem.Name));
+                    return;
+                }
+            }
             Selected = !Selected;
             if (!Selected) ResetSelectedQuantity();
             this.PublishEvent(EventTopicNames.SelectedItemsChanged);

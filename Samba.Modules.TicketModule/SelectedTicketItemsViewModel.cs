@@ -11,6 +11,7 @@ using Samba.Infrastructure;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Presentation.ViewModels;
 using Samba.Services;
 
@@ -30,11 +31,13 @@ namespace Samba.Modules.TicketModule
             SelectTicketTagCommand = new DelegateCommand<TicketTag>(OnTicketTagSelected);
             PortionSelectedCommand = new DelegateCommand<MenuItemPortion>(OnPortionSelected);
             PropertySelectedCommand = new DelegateCommand<MenuItemProperty>(OnPropertySelected);
+            PropertyGroupSelectedCommand = new DelegateCommand<MenuItemGroupedPropertyItemViewModel>(OnPropertyGroupSelected);
             RemoveModifierCommand = new CaptionCommand<string>(Resources.RemoveModifier, OnRemoveModifier);
             UpdateExtraPropertiesCommand = new CaptionCommand<string>(Resources.Update, OnUpdateExtraProperties);
             UpdateFreeTagCommand = new CaptionCommand<string>(Resources.AddAndSave, OnUpdateFreeTag, CanUpdateFreeTag);
             SelectedItemPortions = new ObservableCollection<MenuItemPortion>();
             SelectedItemPropertyGroups = new ObservableCollection<MenuItemPropertyGroup>();
+            SelectedItemGroupedPropertyItems = new ObservableCollection<MenuItemGroupedPropertyViewModel>();
             Reasons = new ObservableCollection<Reason>();
             TicketTags = new ObservableCollection<TicketTag>();
             EventServiceFactory.EventService.GetEvent<GenericEvent<TicketViewModel>>().Subscribe(OnTicketViewModelEvent);
@@ -106,6 +109,7 @@ namespace Samba.Modules.TicketModule
             SelectedItem = null;
             SelectedItemPortions.Clear();
             SelectedItemPropertyGroups.Clear();
+            SelectedItemGroupedPropertyItems.Clear();
             Reasons.Clear();
             TicketTags.Clear();
             _showExtraPropertyEditor = false;
@@ -130,6 +134,9 @@ namespace Samba.Modules.TicketModule
 
         public DelegateCommand<MenuItemProperty> PropertySelectedCommand { get; set; }
         public ObservableCollection<MenuItemPropertyGroup> SelectedItemPropertyGroups { get; set; }
+        public ObservableCollection<MenuItemGroupedPropertyViewModel> SelectedItemGroupedPropertyItems { get; set; }
+
+        public DelegateCommand<MenuItemGroupedPropertyItemViewModel> PropertyGroupSelectedCommand { get; set; }
 
         public ObservableCollection<Reason> Reasons { get; set; }
         public ObservableCollection<TicketTag> TicketTags { get; set; }
@@ -183,6 +190,13 @@ namespace Samba.Modules.TicketModule
 
         private void OnCloseCommandExecuted(string obj)
         {
+            var unselectedItem = SelectedItemPropertyGroups.FirstOrDefault(x => x.ForceValue && SelectedItem.Properties.Count(y => y.Model.PropertyGroupId == x.Id) == 0);
+            if (unselectedItem != null)
+            {
+                InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.SelectionRequired_f, unselectedItem.Name));
+                return;
+            }
+
             _showTicketNoteEditor = false;
             _showExtraPropertyEditor = false;
             _showFreeTagEditor = false;
@@ -254,7 +268,7 @@ namespace Samba.Modules.TicketModule
             SelectedItem.UpdatePortion(obj, AppServices.MainDataContext.SelectedDepartment.PriceTag);
             SelectedTicket.RefreshVisuals();
             SelectedTicket.RecalculateTicket();
-            if (SelectedItemPropertyGroups.Count == 0)
+            if (SelectedItemPropertyGroups.Count == 0 && SelectedItemGroupedPropertyItems.Count == 0)
                 SelectedTicket.ClearSelectedItems();
         }
 
@@ -263,8 +277,32 @@ namespace Samba.Modules.TicketModule
             var mig = SelectedItemPropertyGroups.FirstOrDefault(propertyGroup => propertyGroup.Properties.Contains(obj));
             Debug.Assert(mig != null);
             if (_removeModifier)
-                SelectedItem.RemoveProperty(mig, obj);
+            {
+                if (mig.ForceValue && SelectedItem.Properties.Count(x => x.Model.PropertyGroupId == mig.Id) < 2)
+                    InteractionService.UserIntraction.GiveFeedback(string.Format(Resources.SelectionRequired_f, mig.Name));
+                else
+                    SelectedItem.RemoveProperty(mig, obj);
+            }
             else SelectedItem.ToggleProperty(mig, obj);
+            SelectedTicket.RefreshVisuals();
+            SelectedTicket.RecalculateTicket();
+            if (_removeModifier)
+                OnRemoveModifier("");
+            RaisePropertyChanged("IsRemoveModifierButtonVisible");
+        }
+
+        private void OnPropertyGroupSelected(MenuItemGroupedPropertyItemViewModel obj)
+        {
+            if (_removeModifier)
+            {
+                SelectedItem.RemoveProperty(obj.MenuItemPropertyGroup, obj.CurrentProperty);
+                obj.UpdateNextProperty(null);
+            }
+            else
+            {
+                SelectedItem.ToggleProperty(obj.MenuItemPropertyGroup, obj.NextProperty);
+                obj.UpdateNextProperty(obj.NextProperty);
+            }
             SelectedTicket.RefreshVisuals();
             SelectedTicket.RecalculateTicket();
             if (_removeModifier)
@@ -297,11 +335,14 @@ namespace Samba.Modules.TicketModule
 
                 var mi = AppServices.DataAccessService.GetMenuItem(id);
                 if (SelectedItem.Model.PortionCount > 1) SelectedItemPortions.AddRange(mi.Portions);
-                SelectedItemPropertyGroups.AddRange(mi.PropertyGroups);
+                SelectedItemPropertyGroups.AddRange(mi.PropertyGroups.Where(x => string.IsNullOrEmpty(x.GroupTag)));
+
+                SelectedItemGroupedPropertyItems.AddRange(mi.PropertyGroups.Where(x => !string.IsNullOrEmpty(x.GroupTag))
+                    .GroupBy(x => x.GroupTag)
+                    .Select(x => new MenuItemGroupedPropertyViewModel(SelectedItem, x)));
                 RaisePropertyChanged("IsPortionsVisible");
             }
-
-            return SelectedItemPortions.Count > 1 || SelectedItemPropertyGroups.Count > 0;
+            return SelectedItemPortions.Count > 1 || SelectedItemPropertyGroups.Count > 0 || SelectedItemGroupedPropertyItems.Count > 0;
         }
     }
 }
