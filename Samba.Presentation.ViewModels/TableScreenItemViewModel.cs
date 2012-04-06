@@ -120,6 +120,12 @@ namespace Samba.Presentation.ViewModels
             set { Model.HtmlContent = value; }
         }
 
+        public bool AutoRefresh
+        {
+            get { return Model.AutoRefresh; }
+            set { Model.AutoRefresh = value; }
+        }
+
         private bool _isDetailsVisible;
         public bool IsDetailsVisible
         {

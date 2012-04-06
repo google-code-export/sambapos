@@ -41,6 +41,8 @@ namespace Samba.Presentation.Common.Browser
             }
         }
 
+        public bool AutoRefresh { get; set; }
+
         public static readonly DependencyProperty IsToolbarVisibleProperty =
             DependencyProperty.RegisterAttached("IsToolbarVisible", typeof(bool), typeof(BrowserControl),
                                                 new UIPropertyMetadata(false, ToolbarVisiblePropertyChanged));
@@ -96,7 +98,7 @@ namespace Samba.Presentation.Common.Browser
         public static void ActiveUrlPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             BrowserControl browser = o as BrowserControl;
-            if (browser != null)
+            if (browser != null && browser.AutoRefresh)
             {
                 string uri = e.NewValue as string;
                 if (!string.IsNullOrEmpty(uri))
@@ -107,6 +109,7 @@ namespace Samba.Presentation.Common.Browser
         public BrowserControl()
         {
             InitializeComponent();
+            AutoRefresh = true;
             Loaded += BrowserControl_Loaded;
         }
 
@@ -173,12 +176,12 @@ namespace Samba.Presentation.Common.Browser
             var index = tbMain.SelectedIndex;
             var tab = CreateNewBrowserTab();
             var page = new BrowserPage();
-            e.AutomationObject = _browserTabs[tab].ActiveXInstance;            
+            e.AutomationObject = _browserTabs[tab].ActiveXInstance;
             tbMain.SelectedIndex = index;
             tbMain.Items.Remove(tab);
             page.Closing += page_Closing;
             page.AssignTab(tab, _browserTabs[tab]);
-            
+
             //page.Show();
             //e.Cancel = true;
             //_browserTabs[tab].Navigate(e.Url);

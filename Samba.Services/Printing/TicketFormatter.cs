@@ -171,7 +171,8 @@ namespace Samba.Services.Printing
                                                     x.PortionName,
                                                     x.PortionCount,
                                                     x.ReasonId,
-                                                    x.CurrencyCode
+                                                    x.CurrencyCode,
+                                                    x.Tag
                                                 });
 
             var result = group.Select(x => new TicketItem
@@ -192,6 +193,7 @@ namespace Samba.Services.Printing
                                         PortionName = x.Key.PortionName,
                                         PortionCount = x.Key.PortionCount,
                                         CurrencyCode = x.Key.CurrencyCode,
+                                        Tag = x.Key.Tag,
                                         Quantity = x.Sum(y => y.Quantity)
                                     });
 

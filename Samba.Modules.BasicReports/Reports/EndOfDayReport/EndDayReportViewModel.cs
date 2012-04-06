@@ -378,7 +378,6 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     report.AddRow(userInfo.UserName + Resources.Incomes, Resources.Voucher, GetPercent(2, uPayments), GetAmount(2, uPayments).ToString(ReportContext.CurrencyFormat));
                     report.AddRow(userInfo.UserName + Resources.Incomes, Resources.AccountBalance, GetPercent(3, uPayments), GetAmount(3, uPayments).ToString(ReportContext.CurrencyFormat));
                     report.AddRow(userInfo.UserName + Resources.Incomes, Resources.Total, "", uPayments.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
-
                 }
             }
 

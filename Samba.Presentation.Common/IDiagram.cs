@@ -17,6 +17,7 @@ namespace Samba.Presentation.Common
         CornerRadius CornerRadius { get; set; }
         Transform RenderTransform { get; set; }
         string HtmlContent { get; set; }
+        bool AutoRefresh { get; set; }
         bool IsDetailsVisible { get; set; }
         void EditProperties();
     }

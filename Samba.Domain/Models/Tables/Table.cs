@@ -19,6 +19,7 @@ namespace Samba.Domain.Models.Tables
         public int CornerRadius { get; set; }
         public double Angle { get; set; }
         public string HtmlContent { get; set; }
+        public bool AutoRefresh { get; set; }
 
         public string UserString
         {
@@ -29,6 +30,7 @@ namespace Samba.Domain.Models.Tables
         {
             Height = 70;
             Width = 70;
+            AutoRefresh = true;
         }
     }
 }

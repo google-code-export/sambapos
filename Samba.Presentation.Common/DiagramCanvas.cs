@@ -88,7 +88,7 @@ namespace Samba.Presentation.Common
                                    DataContext = buttonHolder,
                                    ContextMenu = ButtonContextMenu,
                                    MinHeight = 10,
-                                   MinWidth = 10,
+                                   MinWidth = 10
                                };
 
                 BrowserCache.Add(buttonHolder.Caption + buttonHolder.HtmlContent, brws);
@@ -100,6 +100,7 @@ namespace Samba.Presentation.Common
             ret.ContextMenu = ButtonContextMenu;
             ret.IsToolbarVisible = false;
             parentControl.Children.Add(ret);
+            ret.AutoRefresh = buttonHolder.AutoRefresh;
 
             BindingOperations.ClearAllBindings(ret);
 
@@ -118,8 +119,8 @@ namespace Samba.Presentation.Common
             ret.SetBinding(WidthProperty, widthBinding);
             ret.SetBinding(RenderTransformProperty, transformBinding);
             ret.SetBinding(IsEnabledProperty, enabledBinding);
-            ret.SetBinding(BrowserControl.ActiveUrlProperty, urlBinding);
             ret.SetBinding(BrowserControl.IsToolbarVisibleProperty, detailsVisibilityBinding);
+            ret.SetBinding(BrowserControl.ActiveUrlProperty, urlBinding);
         }
 
         private static void CreateButton(IDiagram buttonHolder, InkCanvas parentControl)
