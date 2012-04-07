@@ -142,7 +142,7 @@ namespace Samba.Services.Printing
 
                 if (template.GroupTemplate.Contains("{ITEM TAG}"))
                 {
-                    var groups = lines.GroupBy(x => x.Tag);
+                    var groups = lines.GroupBy(x => (x.Tag ?? "").Split('|')[0]);
                     var result = new List<string>();
                     foreach (var grp in groups)
                     {
@@ -274,6 +274,12 @@ namespace Samba.Services.Printing
                 result = FormatData(result, Resources.TF_AccountAddress, () => customer.Address);
                 result = FormatData(result, Resources.TF_AccountPhone, () => customer.PhoneNumber);
                 result = FormatData(result, "{ACC NOTE}", () => customer.Note);
+            }
+
+            if (ticket.CustomerId > 0 && result.Contains("{ACC BALANCE}"))
+            {
+                var accBalance = CashService.GetAccountBalance(ticket.CustomerId);
+                result = FormatDataIf(accBalance != 0, result, "{ACC BALANCE}", () => accBalance.ToString("#,#0.00"));
             }
 
             result = RemoveTag(result, Resources.TF_AccountAddress);
@@ -448,7 +454,21 @@ namespace Samba.Services.Printing
                 result = FormatData(result, "{MENU ITEM GROUP}", () => GetMenuItemGroup(ticketItem));
                 result = FormatData(result, "{MENU ITEM TAG}", () => GetMenuItemTag(ticketItem));
                 result = FormatData(result, "{PRICE TAG}", () => ticketItem.PriceTag);
+                result = FormatData(result, "{ITEM TAG}", () => ticketItem.Tag);
+
+                while (Regex.IsMatch(result, "{ITEM TAG:[^}]+}", RegexOptions.Singleline))
+                {
+                    var tags = ticketItem.Tag.Split('|');
+                    var match = Regex.Match(result, "{ITEM TAG:([^}]+)}");
+                    var tagName = match.Groups[0].Value;
+                    int index;
+                    int.TryParse(match.Groups[1].Value, out index);
+                    var value = tags.Count() > index ? tags[index].Trim() : "";
+                    result = result.Replace(tagName, value);
+                }
+
                 result = UpdateSettings(result);
+
                 if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
                 {
                     string lineFormat = result;

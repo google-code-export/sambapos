@@ -137,7 +137,21 @@ namespace Samba.Services
                 workspace.CommitChanges();
             }
         }
+
+        public static decimal GetAccountBalance(int accountId)
+        {
+            using (var w = WorkspaceFactory.CreateReadOnly())
+            {
+                var p = w.Queryable<Ticket>().Where(x => x.CustomerId == accountId).SelectMany(x => x.Payments).Where(x => x.PaymentType == 3).Sum(x => (decimal?)x.Amount); //.Sum(x => x.Payments.Where(y => y.PaymentType == 3).Sum(y => y.Amount)));
+                var a = w.Queryable<AccountTransaction>().Where(x => x.CustomerId == accountId).Sum(x => (decimal?)(x.TransactionType == 3 ? x.Amount : 0 - x.Amount));
+                var t = w.Queryable<CashTransaction>().Where(x => x.CustomerId == accountId).Sum(x => (decimal?)(x.TransactionType == 1 ? x.Amount : 0 - x.Amount));
+                return p.GetValueOrDefault(0) + a.GetValueOrDefault(0) + t.GetValueOrDefault(0);
+            }
+
+            //var paymentSum = Dao.Query<Ticket>(x => x.CustomerId == accountId, x => x.Payments).Sum(x => x.Payments.Where(y => y.PaymentType == 3).Sum(y => y.Amount));
+            //var transactionSum = Dao.Query<CashTransaction>().Where(x => x.CustomerId == accountId).Sum(x => x.TransactionType == 1 ? x.Amount : 0 - x.Amount);
+            //var accountTransactionSum = Dao.Query<AccountTransaction>().Where(x => x.CustomerId == accountId).Sum(x => x.TransactionType == 3 ? x.Amount : 0 - x.Amount);
+            //return paymentSum + transactionSum + accountTransactionSum;
+        }
     }
-
-
 }

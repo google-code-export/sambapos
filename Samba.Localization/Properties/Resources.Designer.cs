@@ -3617,6 +3617,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item Tag.
+        /// </summary>
+        public static string ItemTag {
+            get {
+                return ResourceManager.GetString("ItemTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keyboard.
         /// </summary>
         public static string Keyboard {
@@ -4541,6 +4550,15 @@ namespace Samba.Localization.Properties {
         public static string NoTransactionsFoundFor_f {
             get {
                 return ResourceManager.GetString("NoTransactionsFoundFor_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to n.th Item Tag if merged with |.
+        /// </summary>
+        public static string nthItemTag {
+            get {
+                return ResourceManager.GetString("nthItemTag", resourceCulture);
             }
         }
         

@@ -137,17 +137,15 @@
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
                         <UniformGrid Columns="2" Grid.Row="0">
-                            <TextBlock FontSize="16" FontWeight="Bold" Text="{LocText TotalSales}">
-                            </TextBlock>
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="{LocText TotalSales}"/>
                             <TextBlock FontSize="16" Text="{Binding SelectedCustomer.TotalTicketAmount,StringFormat='#,#0.00'}" />
-                            <TextBlock FontSize="16" FontWeight="Bold" Text="{LocText LastOrderDate}">
-                            </TextBlock>
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="{LocText AccountBalance}"/>
+                            <TextBlock FontSize="16" Text="{Binding SelectedCustomer.AccountBalance,StringFormat='#,#0.00'}" />
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="{LocText LastOrderDate}"/>
                             <TextBlock FontSize="16" Text="{Binding SelectedCustomer.LastTicket.LastOrderDate,StringFormat='dd MMMM yyyy'}" />
-                            <TextBlock FontSize="16" FontWeight="Bold" Text="{LocText LastOrderStatus}">
-                            </TextBlock>
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="{LocText LastOrderStatus}"/>
                             <TextBlock FontSize="16" Text="{Binding SelectedCustomer.LastTicketStateString}" />
-                            <TextBlock Margin="0,5,0,0" FontSize="16" FontWeight="Bold" Text="{LocText LastOrder}">
-                            </TextBlock>
+                            <TextBlock Margin="0,5,0,0" FontSize="16" FontWeight="Bold" Text="{LocText LastOrder}"/>
                         </UniformGrid>
                         <ItemsControl Grid.Row="1" Margin="3" ItemsSource="{Binding SelectedCustomer.LastTicketLines}">
                             <ItemsControl.ItemTemplate>

@@ -118,7 +118,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="Clear" xml:space="preserve">
-		<value>Supprimer</value>
+		<value>Suppr</value>
 	</data>
 	<data name="EnterPin" xml:space="preserve">
 		<value>SAISIR CODE</value>
@@ -127,7 +127,7 @@
 		<value>Quitter</value>
 	</data>
 	<data name="Login" xml:space="preserve">
-		<value>Connecter</value>
+		<value>Login</value>
 	</data>
 	<data name="CheckDBVersion" xml:space="preserve">
 		<value>Vérification de la version de base de données</value>
@@ -200,16 +200,19 @@ La modification du code PIN permet de masquer cette astuce</value>
 		<value>Ajouter Dépense</value>
 	</data>
 	<data name="IncomeTransaction_r" xml:space="preserve">
-		<value>Opération sur revenu</value>
+		<value>Ajouter
+Revenu</value>
 	</data>
 	<data name="ExpenseTransaction_r" xml:space="preserve">
-		<value>Opération sur dépense</value>
+		<value>Ajouter
+Dépense</value>
 	</data>
 	<data name="Cancel" xml:space="preserve">
 		<value>Annuler</value>
 	</data>
 	<data name="CustomerAccounts" xml:space="preserve">
-		<value>Comptes Clients</value>
+		<value>Comptes
+Clients</value>
 	</data>
 	<data name="CustomerName" xml:space="preserve">
 		<value>Nom du client</value>
@@ -492,7 +495,7 @@ Paiement</value>
 		<value>Type de département</value>
 	</data>
 	<data name="FastFood" xml:space="preserve">
-		<value>Fast-Food</value>
+		<value>Restauration rapide</value>
 	</data>
 	<data name="ALaCarte" xml:space="preserve">
 		<value>A la carte</value>
@@ -1167,7 +1170,7 @@ Paiement</value>
 		<value>Motif Annulation</value>
 	</data>
 	<data name="CashContent" xml:space="preserve">
-		<value>Contenu de trésorerie</value>
+		<value>Contenu de la Trésorerie</value>
 	</data>
 	<data name="WorkPeriodStartDate_f" xml:space="preserve">
 		<value>Date de la période de travail: {0}</value>
@@ -1195,7 +1198,7 @@ Paiement</value>
 		<value>Fin de la Période de travail</value>
 	</data>
 	<data name="StartingWorkPeriodCompleted" xml:space="preserve">
-		<value>Période de travail en route.</value>
+		<value>Période de travail en cours</value>
 	</data>
 	<data name="ThereAreOpenTicketsWarning_f" xml:space="preserve">
 		<value>Il ya {0} tickets ouverts.
@@ -1312,13 +1315,13 @@ déménagé à {1} table.</value>
 		<value>Sélectionnez la table ou vous souhaitez ajouter des commandes.</value>
 	</data>
 	<data name="FindProduct" xml:space="preserve">
-		<value>Rechercher un produit</value>
+		<value>Rechercher un Produit</value>
 	</data>
 	<data name="FindTicket" xml:space="preserve">
-		<value>Trouver tickets</value>
+		<value>Rechercher un Ticket</value>
 	</data>
 	<data name="FindTable" xml:space="preserve">
-		<value>Rechercher une table</value>
+		<value>Rechercher une Table</value>
 	</data>
 	<data name="DiscountTotal" xml:space="preserve">
 		<value>Remise totale</value>
@@ -1348,7 +1351,7 @@ déménagé à {1} table.</value>
 		<value>Nombre</value>
 	</data>
 	<data name="OpenClose_ab" xml:space="preserve">
-		<value>Ou-Ferm</value>
+		<value>Ouv-Ferm</value>
 	</data>
 	<data name="TicketOpeningTime" xml:space="preserve">
 		<value>Ouverture Ticket</value>
@@ -1367,18 +1370,19 @@ déménagé à {1} table.</value>
 ticket</value>
 	</data>
 	<data name="CashPayment_r" xml:space="preserve">
-		<value>Espèces
-Paiement</value>
+		<value>Paiement
+Espèces</value>
 	</data>
 	<data name="CreditCard_r" xml:space="preserve">
-		<value>Crédit
-Carte</value>
+		<value>Carte
+Crédit</value>
 	</data>
 	<data name="SelectCustomer" xml:space="preserve">
-		<value>Sélectionnez Client</value>
+		<value>Sélectionner 
+Client</value>
 	</data>
 	<data name="AllTickets_r" xml:space="preserve">
-		<value>Tous
+		<value>Tous les
 tickets</value>
 	</data>
 	<data name="Void" xml:space="preserve">
@@ -1403,7 +1407,7 @@ tickets</value>
 		<value>Nouveau ticket</value>
 	</data>
 	<data name="ChangeTable_r" xml:space="preserve">
-		<value>Changer
+		<value>Modifier
 Table</value>
 	</data>
 	<data name="SelectTable_r" xml:space="preserve">
@@ -1411,8 +1415,8 @@ Table</value>
 Table</value>
 	</data>
 	<data name="CustomerInfo_r" xml:space="preserve">
-		<value>Client
-Infos</value>
+		<value>Infos
+Client</value>
 	</data>
 	<data name="ChangeAmount_f" xml:space="preserve">
 		<value>Changer raison: {0}</value>
@@ -1557,7 +1561,7 @@ Solde</value>
 		<value>Sélectionné {0}</value>
 	</data>
 	<data name="WorkPeriodEndsMessage" xml:space="preserve">
-		<value>Travailler fin de la Période.
+		<value>Fin de la Période de Travail
 Visitez la section Rapports et créer des rapports de travail Période</value>
 	</data>
 	<data name="DontForgetEndingWorkPeriod" xml:space="preserve">
@@ -1643,7 +1647,7 @@ Tableau: {2}</value>
 		<value>Rapports</value>
 	</data>
 	<data name="CanDisplayReports" xml:space="preserve">
-		<value>Pouvez afficher des rapports</value>
+		<value>Afficher Rapports</value>
 	</data>
 	<data name="CanChangeReportFilter" xml:space="preserve">
 		<value>Permet d'afficher le filtre date sur le rapport</value>
@@ -1691,7 +1695,7 @@ Tableau: {2}</value>
 		<value>Débiteurs</value>
 	</data>
 	<data name="CashReport" xml:space="preserve">
-		<value>opérations d'argent comptant Rapport</value>
+		<value>Rapport Trésorerie</value>
 	</data>
 	<data name="DateRangeIsNotActiveWorkPeriod" xml:space="preserve">
 		<value>Date de gamme n'est pas en période de travail actif</value>
@@ -1724,13 +1728,13 @@ Tableau: {2}</value>
 		<value>Revenu total</value>
 	</data>
 	<data name="CashStatus" xml:space="preserve">
-		<value>Statut de trésorerie</value>
+		<value>Statut de Trésorerie</value>
 	</data>
 	<data name="Drawer" xml:space="preserve">
-		<value>Tiroir-caisse</value>
+		<value>Caisse</value>
 	</data>
 	<data name="WorkPeriodReport" xml:space="preserve">
-		<value>Rapport sur le travail Période</value>
+		<value>Rapport sur la période travaillée</value>
 	</data>
 	<data name="Sales" xml:space="preserve">
 		<value>Ventes</value>
@@ -1787,7 +1791,7 @@ Tableau: {2}</value>
 		<value>Coût moyen</value>
 	</data>
 	<data name="ThereAreNoCostTransactionsInThisPeriod" xml:space="preserve">
-		<value>Il n'ya pas de opérations de coûts dans cette période de travail.</value>
+		<value>Aucune opération de coût dans cette période.</value>
 	</data>
 	<data name="InventoryPurchaseReport" xml:space="preserve">
 		<value>Rapport d'achat des stocks</value>
@@ -1799,7 +1803,7 @@ Tableau: {2}</value>
 		<value>Prix moyen</value>
 	</data>
 	<data name="ItemSalesReport" xml:space="preserve">
-		<value>Point de vente Rapport</value>
+		<value>Rapport Vente Articles</value>
 	</data>
 	<data name="SalesByItemGroup" xml:space="preserve">
 		<value>Chiffre d'affaires par groupe d'articles</value>
@@ -1823,7 +1827,7 @@ Tableau: {2}</value>
 		<value>{0} par l'utilisateur</value>
 	</data>
 	<data name="NoPurchaseTransactionInCurrentDateRange" xml:space="preserve">
-		<value>Il n'y a pas les opérations d'achat en plage de dates.</value>
+		<value>Aucune opération d'achat dans cette période.</value>
 	</data>
 	<data name="TicketTemplate" xml:space="preserve">
 		<value>Modèle Ticket</value>
@@ -1835,7 +1839,7 @@ Tableau: {2}</value>
 		<value>Modèle de facture</value>
 	</data>
 	<data name="TicketTemplateHeaderValue" xml:space="preserve">
-		<value>&lt;T&gt;ticket
+		<value>&lt;T&gt;TICKET
 &lt;L00&gt;Date: {TICKET DATE}
 &lt;L00&gt;Temps: {TIME}
 &lt;L00&gt;Pas de tableau: {TABLE} 
@@ -1905,7 +1909,7 @@ Tableau: {2}</value>
 		<value>Bon</value>
 	</data>
 	<data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; {QUANTITY} {NAME} | CADEAU</value>
+		<value>&lt;L00&gt;{QUANTITY} {NAME} | CADEAU</value>
 	</data>
 	<data name="NavigationPermissions" xml:space="preserve">
 		<value>Autorisations de navigation</value>
@@ -2036,7 +2040,7 @@ Remise &lt;J&gt;: | {1}</value>
 		<value>Connexion utilisateur</value>
 	</data>
 	<data name="UserLogout" xml:space="preserve">
-		<value>L'utilisateur Déconnexion</value>
+		<value>Déconnexion</value>
 	</data>
 	<data name="TicketCreated" xml:space="preserve">
 		<value>ticket Créé</value>

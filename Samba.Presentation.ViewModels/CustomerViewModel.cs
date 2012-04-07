@@ -31,6 +31,7 @@ namespace Samba.Presentation.ViewModels
         private IEnumerable<string> _groupCodes;
         public IEnumerable<string> GroupCodes { get { return _groupCodes ?? (_groupCodes = Dao.Distinct<Customer>(x => x.GroupCode)); } }
 
+        public decimal AccountBalance { get; private set; }
         public Ticket LastTicket { get; private set; }
         public bool IsNotNew { get { return Model.Id > 0; } }
 
@@ -50,6 +51,7 @@ namespace Samba.Presentation.ViewModels
         {
             LastTicket = Dao.Last<Ticket>(x => x.CustomerId == Model.Id, x => x.TicketItems);
             TotalTicketAmount = Dao.Sum<Ticket>(x => x.TotalAmount, x => x.CustomerId == Model.Id);
+            AccountBalance = CashService.GetAccountBalance(Model.Id);
         }
 
         public IEnumerable<TicketItemViewModel> LastTicketLines { get { return LastTicket != null ? LastTicket.TicketItems.Where(x => !x.Gifted || !x.Voided).Select(x => new TicketItemViewModel(x)) : null; } }

@@ -528,6 +528,8 @@ namespace Samba.Presentation.ViewModels
                             if (ticket != null)
                             {
                                 AppServices.MainDataContext.UpdateTicketNumber(ticket);
+                                if (j.LocksTicket) ticket.RequestLock();
+
                                 var clonedTicket = ObjectCloner.Clone(ticket);
                                 if (!string.IsNullOrEmpty(ticketItemTag))
                                     clonedTicket.TicketItems =

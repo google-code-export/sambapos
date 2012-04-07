@@ -60,6 +60,7 @@ namespace Samba.Modules.SettingsModule
             result.Add(Resources.TF_AccountAddress, Resources.AccountAddress);
             result.Add(Resources.TF_AccountPhone, Resources.AccountPhone);
             result.Add("{ACC NOTE}", Resources.AccountNote);
+            result.Add("{ACC BALANCE}", Resources.AccountBalance);
             result.Add(Resources.TF_LineItemQuantity, Resources.LineItemQuantity);
             result.Add(Resources.TF_LineItemName, Resources.LineItemName);
             result.Add(Resources.TF_LineItemPrice, Resources.LineItemPrice);
@@ -71,6 +72,8 @@ namespace Samba.Modules.SettingsModule
             result.Add(Resources.TF_LineItemDetailPrice, Resources.LineItemDetailPrice);
             result.Add(Resources.TF_LineItemDetailQuantity, Resources.LineItemDetailQuantity);
             result.Add(Resources.TF_LineOrderNumber, Resources.LineOrderNumber);
+            result.Add("{ITEM TAG}", Resources.ItemTag);
+            result.Add("{ITEM TAG:n}", Resources.nthItemTag);
             result.Add("{PRODUCT TAG}", Resources.LineItemProductTag);
             result.Add("{PRODUCT GROUP}", Resources.ProductGroup);
             result.Add("{PRICE TAG}", Resources.LinePriceTag);
