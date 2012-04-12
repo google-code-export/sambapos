@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.94 "
-#define FileVersion "294"
+#define Version "2.95 "
+#define FileVersion "295"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -118,6 +118,7 @@ Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription
 
 [Files]
 Source: src\Norm.dll; DestDir: {app}
+Source: src\NCalc.dll; DestDir: {app}
 Source: src\EntityFramework.dll; DestDir: {app}
 Source: src\Microsoft.Practices.Prism.dll; DestDir: {app}
 Source: src\Microsoft.Practices.Prism.MefExtensions.dll; DestDir: {app}

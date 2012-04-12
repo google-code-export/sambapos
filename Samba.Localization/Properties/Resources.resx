@@ -3270,4 +3270,7 @@ Error Message:
 	<data name="nthItemTag">
 		<value xml:space="preserve">n.th Item Tag if merged with |</value>
 	</data>
+	<data name="PrintJobHint">
+		<value xml:space="preserve">To be able to activate this printjob you should assign it to a terminal.</value>
+	</data>
 </root>

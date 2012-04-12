@@ -98,7 +98,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterParameterSoruce("PrintJobName", () => Dao.Distinct<PrintJob>(x => x.Name));
             RuleActionTypeRegistry.RegisterParameterSoruce("CustomerGroupCode", () => Dao.Distinct<Customer>(x => x.GroupCode));
             RuleActionTypeRegistry.RegisterParameterSoruce("MenuItemGroupCode", () => Dao.Distinct<MenuItem>(x => x.GroupCode));
-            RuleActionTypeRegistry.RegisterParameterSoruce("UpdateType", () => new[] { Resources.Update, Resources.Increase, Resources.Decrease, "Toggle" });
+            RuleActionTypeRegistry.RegisterParameterSoruce("UpdateType", () => new[] { Resources.Update, Resources.Increase, Resources.Decrease, "Toggle", "Multiply" });
             RuleActionTypeRegistry.RegisterParameterSoruce("GiftReason", () => Dao.Select<Reason, string>(x => x.Name, x => x.ReasonType == 1).Distinct());
             RuleActionTypeRegistry.RegisterParameterSoruce("PortionName", () => Dao.Distinct<MenuItemPortion>(x => x.Name));
             RuleActionTypeRegistry.RegisterParameterSoruce("ModifierGroupName", () => Dao.Distinct<MenuItemPropertyGroup>(x => x.Name));
@@ -290,6 +290,13 @@ namespace Samba.Presentation.ViewModels
                                 setting.IntegerValue = settingValue;
                             else
                                 setting.IntegerValue = setting.IntegerValue - settingValue;
+                        }
+                        else if (updateType == "Multiply")
+                        {
+                            if (string.IsNullOrEmpty(setting.StringValue))
+                                setting.DecimalValue = 0;
+                            else
+                                setting.DecimalValue = setting.DecimalValue * x.Value.GetAsDecimal("SettingValue");
                         }
                         else if (updateType == "Toggle")
                         {
@@ -516,8 +523,8 @@ namespace Samba.Presentation.ViewModels
                 if (x.Value.Action.ActionType == "ExecutePrintJob")
                 {
                     var ticket = x.Value.GetDataValue<Ticket>("Ticket");
-                    var pjName = x.Value.Action.GetParameter("PrintJobName");
-                    var ticketItemTag = x.Value.Action.GetParameter("TicketItemTag");
+                    var pjName = x.Value.GetAsString("PrintJobName");
+                    var ticketItemTag = x.Value.GetAsString("TicketItemTag");
 
                     if (!string.IsNullOrEmpty(pjName))
                     {
@@ -533,8 +540,8 @@ namespace Samba.Presentation.ViewModels
                                 var clonedTicket = ObjectCloner.Clone(ticket);
                                 if (!string.IsNullOrEmpty(ticketItemTag))
                                     clonedTicket.TicketItems =
-                                        clonedTicket.TicketItems.Where(
-                                            y => y.Tag.ToLower() == ticketItemTag.Trim().ToLower()).ToList();
+                                        clonedTicket.TicketItems.Where(y => !string.IsNullOrEmpty(y.Tag) &&
+                                                y.Tag.ToLower().Contains(ticketItemTag.Trim().ToLower())).ToList();
                                 AppServices.PrintService.ManualPrintTicket(clonedTicket, j);
                             }
                             else

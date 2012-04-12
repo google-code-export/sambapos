@@ -5315,6 +5315,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To be able to activate this printjob you should assign it to a terminal..
+        /// </summary>
+        public static string PrintJobHint {
+            get {
+                return ResourceManager.GetString("PrintJobHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Print Job List.
         /// </summary>
         public static string PrintJobList {

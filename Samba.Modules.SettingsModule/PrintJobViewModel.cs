@@ -7,9 +7,11 @@ using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
+using Samba.Persistance.Data;
 using Samba.Presentation.Common;
 using Samba.Presentation.Common.ModelBase;
 using Samba.Presentation.Common.Services;
+using Samba.Services;
 
 namespace Samba.Modules.SettingsModule
 {
@@ -55,6 +57,18 @@ namespace Samba.Modules.SettingsModule
         public bool UseFromTerminal { get { return Model.UseFromTerminal; } set { Model.UseFromTerminal = value; } }
         public bool UseForPaidTickets { get { return Model.UseForPaidTickets; } set { Model.UseForPaidTickets = value; } }
         public bool ExcludeVat { get { return Model.ExcludeVat; } set { Model.ExcludeVat = value; } }
+        public string PrintJobHint
+        {
+            get
+            {
+                if (Model.Id > 0 && !AppServices.Terminals.Any(x => x.PrintJobs.Any(y => y.Id == Model.Id)))
+                {
+                    if (Dao.Count<Terminal>(x => x.PrintJobs.Count(y => y.Id == Model.Id) > 0) > 0) return "";
+                    return Resources.PrintJobHint;
+                }
+                return "";
+            }
+        }
 
         public bool AutoPrintIfCash
         {

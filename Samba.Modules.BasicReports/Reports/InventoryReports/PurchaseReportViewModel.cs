@@ -25,11 +25,10 @@ namespace Samba.Modules.BasicReports.Reports.InventoryReports
 
             var transactionGroups = ReportContext.Transactions.SelectMany(x => x.TransactionItems)
                 .GroupBy(x => new { x.InventoryItem.GroupCode })
-                .Select(x => new { ItemName = x.Key.GroupCode, Total = x.Sum(y => y.Price * y.Quantity) });
+                .Select(x => new { ItemName = x.Key.GroupCode, Total = x.Sum(y => (y.Price * y.Quantity)) });
 
             if (transactionGroups.Count() > 0)
             {
-
                 report.AddColumTextAlignment("GrupToplam", TextAlignment.Left, TextAlignment.Right);
                 report.AddColumnLength("GrupToplam", "60*", "40*");
                 report.AddTable("GrupToplam", Resources.InventoryGroup, Resources.Total);

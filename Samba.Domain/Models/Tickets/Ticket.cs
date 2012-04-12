@@ -444,7 +444,7 @@ namespace Samba.Domain.Models.Tickets
 
         public IEnumerable<TicketItem> GetUnlockedLines()
         {
-            return TicketItems.Where(x => !x.Locked).OrderBy(x => x.Id).ToList();
+            return TicketItems.Where(x => !x.Locked).OrderBy(x => x.CreatedDateTime).ToList();
         }
 
         public void MergeLinesAndUpdateOrderNumbers(int orderNumber)

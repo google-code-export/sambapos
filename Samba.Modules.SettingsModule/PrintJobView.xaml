@@ -170,7 +170,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding PrintJobHint}" Foreground="Red"></TextBlock>
             <Button HorizontalAlignment="Left" Margin="0,5" MinWidth="80" Command="{Binding SaveCommand}"
                  Content="{Binding SaveCommand.Caption}" />
             <Label Content="{Binding Error}" Foreground="Red" />

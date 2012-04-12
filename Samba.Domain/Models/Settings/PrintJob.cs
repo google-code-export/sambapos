@@ -48,7 +48,7 @@ namespace Samba.Domain.Models.Settings
             get { return _printerMaps; }
             set { _printerMaps = value; }
         }
-        
+
         public PrintJob()
         {
             _printerMaps = new List<PrinterMap>();

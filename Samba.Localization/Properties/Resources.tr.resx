@@ -3272,4 +3272,7 @@ Hata Mesajı:
   <data name="nthItemTag">
     <value xml:space="preserve">n.inci Satır Etiketi</value>
   </data>
+  <data name="PrintJobHint">
+    <value xml:space="preserve">Bu yazdırma görevini aktifleştirmek için bir terminale ekleyiniz.</value>
+  </data>
 </root>

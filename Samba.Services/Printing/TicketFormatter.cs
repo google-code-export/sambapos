@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using NCalc;
 using Samba.Domain.Models.Customers;
 using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
@@ -147,6 +148,19 @@ namespace Samba.Services.Printing
                     foreach (var grp in groups)
                     {
                         var grpSep = template.GroupTemplate.Replace("{ITEM TAG}", grp.Key);
+                        result.AddRange(grpSep.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
+                        result.AddRange(grp.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)));
+                    }
+                    return result;
+                }
+
+                if (template.GroupTemplate.Contains("{ORDER NO}"))
+                {
+                    var groups = lines.GroupBy(x => x.OrderNumber);
+                    var result = new List<string>();
+                    foreach (var grp in groups)
+                    {
+                        var grpSep = template.GroupTemplate.Replace("{ORDER NO}", grp.Key.ToString());
                         result.AddRange(grpSep.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries));
                         result.AddRange(grp.SelectMany(x => FormatLines(template, x).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)));
                     }
@@ -317,6 +331,8 @@ namespace Samba.Services.Printing
             result = FormatData(result, "{TOTALTEXT}", () => HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum(), true));
 
             result = UpdateSettings(result);
+            result = UpdateExpressions(result);
+
             return result;
         }
 
@@ -333,6 +349,45 @@ namespace Samba.Services.Printing
                 result = result.Replace(tagData.DataString, replace);
             }
             return result;
+        }
+
+        private static string UpdateExpressions(string data)
+        {
+            while (Regex.IsMatch(data, "\\[=[^\\]]+\\]", RegexOptions.Singleline))
+            {
+                var match = Regex.Match(data, "\\[=([^\\]]+)\\]");
+                var tag = match.Groups[0].Value;
+                var expression = match.Groups[1].Value;
+                var e = new Expression(expression);
+                e.EvaluateFunction += delegate(string name, FunctionArgs args)
+                                          {
+                                              if (name == "Format")
+                                              {
+                                                  var fmt = args.Parameters.Length > 1
+                                                                ? args.Parameters[1].Evaluate().ToString()
+                                                                : "#,#0.00";
+                                                  args.Result = ((double)args.Parameters[0].Evaluate()).ToString(fmt);
+                                              }
+                                              if (name == "ToNumber")
+                                              {
+                                                  double d;
+                                                  double.TryParse(args.Parameters[0].Evaluate().ToString(), NumberStyles.Any, CultureInfo.CurrentCulture, out d);
+                                                  args.Result = d;
+                                              }
+                                          };
+                string result;
+                try
+                {
+                    result = e.Evaluate().ToString();
+                }
+                catch (EvaluationException)
+                {
+                    result = "";
+                }
+
+                data = data.Replace(tag, result);
+            }
+            return data;
         }
 
         private static string GetDepartmentName(int departmentId)
@@ -468,6 +523,7 @@ namespace Samba.Services.Printing
                 }
 
                 result = UpdateSettings(result);
+                result = UpdateExpressions(result);
 
                 if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
                 {
