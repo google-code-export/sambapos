@@ -174,6 +174,8 @@ namespace Samba.Presentation.ViewModels
 
                     var tag = x.Value.GetAsString("Tag");
                     ti.Tag = tag;
+                    decimal val;
+                    decimal.TryParse(tag, out val);
                 }
 
                 if (x.Value.Action.ActionType == "UpdateLastTicketItemPriceTag")

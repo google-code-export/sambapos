@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Windows.Threading;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Samba.Domain.Models.Users;
 using Samba.Localization.Properties;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Services;
 
 namespace Samba.Modules.NavigationModule
@@ -46,6 +49,8 @@ namespace Samba.Modules.NavigationModule
 
         private void ActivateNavigation()
         {
+            InteractionService.ClearMouseClickQueue();
+            
             if (AppServices.IsUserPermittedFor(PermissionNames.OpenNavigation))
             {
                 AppServices.ActiveAppScreen = AppScreens.Navigation;

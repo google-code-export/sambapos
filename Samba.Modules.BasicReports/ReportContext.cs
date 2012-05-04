@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using Samba.Domain;
@@ -8,6 +9,7 @@ using Samba.Domain.Models.Menus;
 using Samba.Domain.Models.Settings;
 using Samba.Domain.Models.Tickets;
 using Samba.Domain.Models.Users;
+using Samba.Infrastructure.Data;
 using Samba.Localization.Properties;
 using Samba.Modules.BasicReports.Reports;
 using Samba.Modules.BasicReports.Reports.AccountReport;
@@ -25,8 +27,11 @@ namespace Samba.Modules.BasicReports
     {
         public static IList<ReportViewModelBase> Reports { get; private set; }
 
+        private static IWorkspace _workspace;
+        public static IWorkspace Workspace { get { return _workspace ?? (_workspace = WorkspaceFactory.Create()); } }
+
         private static IEnumerable<Ticket> _tickets;
-        public static IEnumerable<Ticket> Tickets { get { return _tickets ?? (_tickets = GetTickets()); } }
+        public static IEnumerable<Ticket> Tickets { get { return _tickets ?? (_tickets = GetTickets(Workspace)); } }
 
         private static IEnumerable<Department> _departments;
         public static IEnumerable<Department> Departments { get { return _departments ?? (_departments = GetDepartments()); } }
@@ -136,19 +141,28 @@ namespace Samba.Modules.BasicReports
             return Dao.Query<Department>();
         }
 
-        private static IEnumerable<Ticket> GetTickets()
+        private static IEnumerable<Ticket> GetTickets(IWorkspace workspace)
         {
-            if (CurrentWorkPeriod.StartDate == CurrentWorkPeriod.EndDate)
-                return Dao.Query<Ticket>(x => x.LastPaymentDate >= CurrentWorkPeriod.StartDate,
-                                         x => x.Payments, x => x.TaxServices,
-                                         x => x.Discounts, x => x.TicketItems,
-                                         x => x.TicketItems.Select(y => y.Properties));
-
-            return
-                Dao.Query<Ticket>(x =>
-                    x.LastPaymentDate >= CurrentWorkPeriod.StartDate && x.LastPaymentDate < CurrentWorkPeriod.EndDate,
-                    x => x.Payments, x => x.TaxServices, x => x.Discounts, x => x.TicketItems.Select(y => y.Properties));
-
+            try
+            {
+                if (CurrentWorkPeriod.StartDate == CurrentWorkPeriod.EndDate)
+                    return Dao.Query<Ticket>(x => x.LastPaymentDate >= CurrentWorkPeriod.StartDate,
+                                             x => x.Payments, x => x.TaxServices,
+                                             x => x.Discounts, x => x.TicketItems,
+                                             x => x.TicketItems.Select(y => y.Properties));
+                return
+                    Dao.Query<Ticket>(x =>
+                        x.LastPaymentDate >= CurrentWorkPeriod.StartDate && x.LastPaymentDate < CurrentWorkPeriod.EndDate,
+                        x => x.Payments, x => x.TaxServices, x => x.Discounts, x => x.TicketItems.Select(y => y.Properties));
+            }
+            catch (SqlException)
+            {
+                if (CurrentWorkPeriod.StartDate == CurrentWorkPeriod.EndDate)
+                    return workspace.All<Ticket>(x => x.LastPaymentDate >= CurrentWorkPeriod.StartDate);
+                return
+                    workspace.All<Ticket>(x =>
+                        x.LastPaymentDate >= CurrentWorkPeriod.StartDate && x.LastPaymentDate < CurrentWorkPeriod.EndDate);
+            }
         }
 
         private static IEnumerable<CashTransactionData> GetCashTransactions()
@@ -190,6 +204,7 @@ namespace Samba.Modules.BasicReports
             _todayWorkPeriod = null;
             _workPeriods = null;
             _taxServiceTemplates = null;
+            _workspace = null;
         }
 
         private static WorkPeriod _thisMonthWorkPeriod;

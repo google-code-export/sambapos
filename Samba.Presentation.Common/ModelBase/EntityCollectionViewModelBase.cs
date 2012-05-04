@@ -153,10 +153,16 @@ namespace Samba.Presentation.Common.ModelBase
             var duplicate = ObjectCloner.Clone(SelectedItem.Model);
             duplicate.Id = 0;
             duplicate.Name = "_" + duplicate.Name;
+            PropertyComparor.ResetIds(duplicate);
             VisibleViewModelBase wm = InternalCreateNewViewModel(duplicate);
             if (wm is EntityViewModelBase<TModel>)
                 OpenViewModels.Add(wm as EntityViewModelBase<TModel>);
             wm.PublishEvent(EventTopicNames.ViewAdded);
+        }
+
+        private void ResetIds(object obj)
+        {
+            
         }
 
         protected override bool CanDuplicateItem(object arg)

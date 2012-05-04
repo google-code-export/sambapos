@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Linq;
+using System.Windows.Threading;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Regions;
@@ -10,6 +12,7 @@ using Samba.Domain.Models.Tickets;
 using Samba.Localization.Properties;
 using Samba.Persistance.Data;
 using Samba.Presentation.Common;
+using Samba.Presentation.Common.Services;
 using Samba.Services;
 
 namespace Samba.Modules.TicketModule
@@ -100,6 +103,7 @@ namespace Samba.Modules.TicketModule
 
         private void ActivateTicketEditorView()
         {
+            InteractionService.ClearMouseClickQueue();
             _regionManager.Regions[RegionNames.MainRegion].Activate(_ticketEditorView);
         }
 

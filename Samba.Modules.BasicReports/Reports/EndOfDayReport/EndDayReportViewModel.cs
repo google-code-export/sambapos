@@ -40,14 +40,6 @@ namespace Samba.Modules.BasicReports.Reports.EndOfDayReport
                     TaxServices = x.Sum(y => y.GetTaxServicesTotal())
                 });
 
-            //if (ReportContext.Departments.Count() > 1)
-            //{
-            //    foreach (var departmentInfo in ticketGropus)
-            //    {
-            //        report.AddRow("Departman", departmentInfo.DepartmentName, departmentInfo.Amount.ToString(ReportContext.CurrencyFormat));
-            //    }
-            //}
-
             report.AddRow("Departman", Resources.TotalSales.ToUpper(), ticketGropus.Sum(x => x.Amount).ToString(ReportContext.CurrencyFormat));
 
             var vatSum = ticketGropus.Sum(x => x.Vat);

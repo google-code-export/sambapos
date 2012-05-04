@@ -2001,6 +2001,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t delete because this product assigned to a Printer Map.
+        /// </summary>
+        public static string DeleteErrorProductUsedInPrinterMap {
+            get {
+                return ResourceManager.GetString("DeleteErrorProductUsedInPrinterMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t delete because this Product assigned to a Receipt..
         /// </summary>
         public static string DeleteErrorProductUsedInReceipt {

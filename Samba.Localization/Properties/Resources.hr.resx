@@ -118,2198 +118,2209 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="Clear" xml:space="preserve">
-		<value>Limpar</value>
+		<value>Očisti</value>
 	</data>
 	<data name="EnterPin" xml:space="preserve">
-		<value>DIGITE PIN</value>
+		<value>Unesite PIN</value>
 	</data>
 	<data name="Exit" xml:space="preserve">
-		<value>Sair</value>
+		<value>Izlaz</value>
 	</data>
 	<data name="Login" xml:space="preserve">
-		<value>Login</value>
+		<value>Prijava</value>
 	</data>
 	<data name="CheckDBVersion" xml:space="preserve">
-		<value>Verifique a versão de banco de dados</value>
+		<value>Provjerite verziju  baze podataka</value>
 	</data>
 	<data name="SqlHint" xml:space="preserve">
-		<value>Clique aqui para informações sobre como trabalhar com bancos de dados SQL</value>
+		<value>Kliknite ovdje za informacije o radu s SQL bazama podataka</value>
 	</data>
 	<data name="AdminPasswordHint" xml:space="preserve">
-		<value>PIN Admin: 1234
-Alterar PIN vai esconder essa dica </value>
+		<value>Admin PIN: 1234
+Promjena PIN-a će sakriti ovu poruku</value>
 	</data>
 	<data name="AccountName" xml:space="preserve">
-		<value>Nome da conta</value>
+		<value>Naziv korisničkog računa</value>
 	</data>
 	<data name="Address" xml:space="preserve">
-		<value>Endereço</value>
+		<value>Adresa</value>
 	</data>
 	<data name="Amount" xml:space="preserve">
-		<value>Quantidade</value>
+		<value>Iznos</value>
 	</data>
 	<data name="Cash" xml:space="preserve">
-		<value>Dinheiro</value>
+		<value>Gotovina</value>
 	</data>
 	<data name="CreditCard" xml:space="preserve">
-		<value>Cartão</value>
+		<value>Kreditna kartica</value>
 	</data>
 	<data name="Description" xml:space="preserve">
-		<value>Descrição</value>
+		<value>Opis</value>
 	</data>
 	<data name="ExpenseTransactions" xml:space="preserve">
-		<value>Transações despesas</value>
+		<value>Rashodi Transakcije</value>
 	</data>
 	<data name="GrandTotal" xml:space="preserve">
-		<value>Total geral</value>
+		<value>Sveukupno</value>
 	</data>
 	<data name="Income" xml:space="preserve">
-		<value>Renda</value>
+		<value>Dohodak</value>
 	</data>
 	<data name="IncomeTransactions" xml:space="preserve">
-		<value>Transações de Renda</value>
+		<value>Porez na transakcije</value>
 	</data>
 	<data name="Note" xml:space="preserve">
-		<value>Nota</value>
+		<value>Bilješke</value>
 	</data>
 	<data name="PhoneNumber" xml:space="preserve">
-		<value>Telefone</value>
+		<value>Telefon</value>
 	</data>
 	<data name="Total" xml:space="preserve">
-		<value>Total</value>
+		<value>Ukupno</value>
 	</data>
 	<data name="Voucher" xml:space="preserve">
-		<value>Cheque</value>
+		<value>Virman</value>
 	</data>
 	<data name="CreditCard_ab" xml:space="preserve">
-		<value>C.Cartão</value>
+		<value>K.Kartica</value>
 	</data>
 	<data name="Voucher_ab" xml:space="preserve">
-		<value>Cheque</value>
+		<value>Virman</value>
 	</data>
 	<data name="OperationIncome" xml:space="preserve">
-		<value>Receita Operacional</value>
+		<value>Ulaz</value>
 	</data>
 	<data name="StartOfDay" xml:space="preserve">
-		<value>Início do período de trabalho</value>
+		<value>Početak radnog vremena</value>
 	</data>
 	<data name="NewIncomeTransaction" xml:space="preserve">
-		<value>Transação de nova renda</value>
+		<value>Novi ulazni</value>
 	</data>
 	<data name="NewExpenseTransaction" xml:space="preserve">
-		<value>Transação nova despesa</value>
+		<value>Novi Troškovi transakcija</value>
 	</data>
 	<data name="IncomeTransaction_r" xml:space="preserve">
-		<value>Operação de
-Renda </value>
+		<value>Ulazne
+Transakcije</value>
 	</data>
 	<data name="ExpenseTransaction_r" xml:space="preserve">
-		<value>Operação de 
-“Despesa</value>
+		<value>Trošak
+Transakcija</value>
 	</data>
 	<data name="Cancel" xml:space="preserve">
-		<value>Cancelar</value>
+		<value>Otkazati</value>
 	</data>
 	<data name="CustomerAccounts" xml:space="preserve">
-		<value>Contas de cliente</value>
+		<value>Korisnički 
+Računi</value>
 	</data>
 	<data name="CustomerName" xml:space="preserve">
-		<value>Nome do cliente</value>
+		<value>Ime kupca</value>
 	</data>
 	<data name="InternalAccount" xml:space="preserve">
-		<value>Conta Interna</value>
+		<value>Unutarnji korisnički račun</value>
 	</data>
 	<data name="Ticket" xml:space="preserve">
-		<value>Ticket</value>
+		<value>Ulaznica</value>
 	</data>
 	<data name="TotalSales" xml:space="preserve">
-		<value>Total de vendas</value>
+		<value>Ukupna prodaja</value>
 	</data>
 	<data name="LastOrderDate" xml:space="preserve">
-		<value>Data da última ordem</value>
+		<value>Zadnja narudžba Datum</value>
 	</data>
 	<data name="LastOrderStatus" xml:space="preserve">
-		<value>Estado da última ordem</value>
+		<value>Zadnja narudžba Status</value>
 	</data>
 	<data name="LastOrder" xml:space="preserve">
-		<value>Última ordem</value>
+		<value>Zadnja narudžba</value>
 	</data>
 	<data name="Close" xml:space="preserve">
-		<value>Fechar</value>
+		<value>Zatvori</value>
 	</data>
 	<data name="Date" xml:space="preserve">
-		<value>Data</value>
+		<value>Datum</value>
 	</data>
 	<data name="Liability" xml:space="preserve">
-		<value>Responsabilidade</value>
+		<value>Odgovornost</value>
 	</data>
 	<data name="Receiveable" xml:space="preserve">
-		<value>Permitido receber</value>
+		<value>Može se primiti</value>
 	</data>
 	<data name="Customer" xml:space="preserve">
-		<value>Cliente</value>
+		<value>Kupac</value>
 	</data>
 	<data name="CustomerList" xml:space="preserve">
-		<value>Lista de Clientes</value>
+		<value>Popis korisnika</value>
 	</data>
 	<data name="Customers" xml:space="preserve">
-		<value>Clientes</value>
+		<value>Kupci</value>
 	</data>
 	<data name="SelectCustomer_r" xml:space="preserve">
-		<value>Selecione
-Cliente </value>
+		<value>Odaberi
+Kupca</value>
 	</data>
 	<data name="NewCustomer_r" xml:space="preserve">
-		<value>Novo Cliente </value>
+		<value>Novi
+Kupac</value>
 	</data>
 	<data name="FindTicket_r" xml:space="preserve">
-		<value>Encontrar Ticket </value>
+		<value>Pronađi
+Račun</value>
 	</data>
 	<data name="ResetCustomer_r" xml:space="preserve">
-		<value>Reset Cliente </value>
+		<value>Reset
+Kupac</value>
 	</data>
 	<data name="GetPayment_r" xml:space="preserve">
-		<value>Obter Pagamento </value>
+		<value>Naplati</value>
 	</data>
 	<data name="CustomerAccount_r" xml:space="preserve">
-		<value>Conta do Cliente</value>
+		<value>R1
+Račun</value>
 	</data>
 	<data name="MakePayment_r" xml:space="preserve">
-		<value>Fazer Pagamento </value>
+		<value>Naplati</value>
 	</data>
 	<data name="TicketNumber_f" xml:space="preserve">
-		<value>Número de Ticket: {0}</value>
+		<value>Broj računa: {0}</value>
 	</data>
 	<data name="Information" xml:space="preserve">
-		<value>Informações</value>
+		<value>Informacije</value>
 	</data>
 	<data name="CallerIdDriverError" xml:space="preserve">
-		<value>Para ser capaz de exibir o Caller ID, você deve instalar o driver de hardware.</value>
+		<value>Da biste mogli prikazati Caller-ID trebate instalirati upravljački program hardvera.</value>
 	</data>
 	<data name="Calling" xml:space="preserve">
-		<value>Chamada</value>
+		<value>Pozivanje</value>
 	</data>
 	<data name="Management" xml:space="preserve">
-		<value>Gerir</value>
+		<value>Upravljaj</value>
 	</data>
 	<data name="Common" xml:space="preserve">
-		<value>Comum</value>
+		<value>Zajednički</value>
 	</data>
 	<data name="CanOpenDashboard" xml:space="preserve">
-		<value>Pode Abrir o Dashboard</value>
+		<value>Može otvoriti nadzorne ploče</value>
 	</data>
 	<data name="Keyboard" xml:space="preserve">
-		<value>Teclado</value>
+		<value>Tipkovnica</value>
 	</data>
 	<data name="Add_f" xml:space="preserve">
-		<value>Adicione {0}</value>
+		<value>Dodaj {0}</value>
 	</data>
 	<data name="Edit_f" xml:space="preserve">
-		<value>Editar {0}</value>
+		<value>Uredi {0}</value>
 	</data>
 	<data name="Delete_f" xml:space="preserve">
-		<value>Excluir {0}</value>
+		<value>Obriši {0}</value>
 	</data>
 	<data name="Clone_f" xml:space="preserve">
-		<value>Clone {0}</value>
+		<value>Kloniraj {0}</value>
 	</data>
 	<data name="List_f" xml:space="preserve">
-		<value>{0} Lista</value>
+		<value>{0} Popis</value>
 	</data>
 	<data name="Confirmation" xml:space="preserve">
-		<value>Confirmação</value>
+		<value>Potvrdi</value>
 	</data>
 	<data name="DeleteItemConfirmation_f" xml:space="preserve">
-		<value>Excluir {0} [{1}]?</value>
+		<value>Obriši {0} [{1}]?</value>
 	</data>
 	<data name="Warning" xml:space="preserve">
-		<value>Aviso</value>
+		<value>Upozorenje</value>
 	</data>
 	<data name="Save" xml:space="preserve">
-		<value>Salvar</value>
+		<value>Spremi</value>
 	</data>
 	<data name="EditModel_f" xml:space="preserve">
-		<value>Edição {0} ({1})</value>
+		<value>Uredi {0} ({1})</value>
 	</data>
 	<data name="AddModel_f" xml:space="preserve">
-		<value>Adicionando um Novo {0}</value>
+		<value>Dodavanje novog {0}</value>
 	</data>
 	<data name="EmptyNameError" xml:space="preserve">
-		<value>Não deixe {0} nome vazio.</value>
+		<value>Ne ostavljajte {0} ime prazna.</value>
 	</data>
 	<data name="CantSave" xml:space="preserve">
-		<value>Não é possível salvar</value>
+		<value>Ne može spasiti</value>
 	</data>
 	<data name="GroupCode" xml:space="preserve">
-		<value>Código do Grupo</value>
+		<value>Šifra grupe</value>
 	</data>
 	<data name="BaseUnit" xml:space="preserve">
-		<value>Unidade de Base</value>
+		<value>Bazna jedinica</value>
 	</data>
 	<data name="TransactionUnit" xml:space="preserve">
-		<value>Unidade de transação</value>
+		<value>Transakcijska jedinica</value>
 	</data>
 	<data name="TransacitonUnitMultiplier" xml:space="preserve">
-		<value>Multiplicador de unidade de transação</value>
+		<value>Transakcija jedinica Multiplikator</value>
 	</data>
 	<data name="InventoryItems" xml:space="preserve">
-		<value>Itens de inventário</value>
+		<value>Artikli u skladištu</value>
 	</data>
 	<data name="Recipes" xml:space="preserve">
-		<value>Receitas</value>
+		<value>Računi</value>
 	</data>
 	<data name="Transactions" xml:space="preserve">
-		<value>Transação</value>
+		<value>Transakcija</value>
 	</data>
 	<data name="EndOfDayRecords" xml:space="preserve">
-		<value>Relatórios do fim do dia </value>
+		<value>Zatvaranje dana</value>
 	</data>
 	<data name="Select" xml:space="preserve">
-		<value>Selecionar</value>
+		<value>Odaberi</value>
 	</data>
 	<data name="CantDeletePastEndOfDayRecords" xml:space="preserve">
-		<value>Não é possível excluir os relatórios  finais do dia</value>
+		<value>Ne možete izbrisati povijest poslije zatvaranja kase</value>
 	</data>
 	<data name="EndOfDayRecord" xml:space="preserve">
-		<value>Relatório do fim do dia </value>
+		<value>Zatvaranje kase</value>
 	</data>
 	<data name="CalculateCost" xml:space="preserve">
-		<value>Calcular Custo</value>
+		<value>Izračun troškova</value>
 	</data>
 	<data name="Products" xml:space="preserve">
-		<value>Produtos</value>
+		<value>Proizvodi</value>
 	</data>
 	<data name="Cost" xml:space="preserve">
-		<value>Custo</value>
+		<value>Trošak</value>
 	</data>
 	<data name="CostPrediction" xml:space="preserve">
-		<value>Previsão de custo</value>
+		<value>Predviđanje troška</value>
 	</data>
 	<data name="Costs" xml:space="preserve">
-		<value>Custos</value>
+		<value>Troškovi</value>
 	</data>
 	<data name="CurrentCost" xml:space="preserve">
-		<value>Custo atual</value>
+		<value>Trenutna cijena</value>
 	</data>
 	<data name="CurrentInventory" xml:space="preserve">
-		<value>Inventário atual</value>
+		<value>Trenutna zaliha</value>
 	</data>
 	<data name="InStock" xml:space="preserve">
-		<value>Em estoque</value>
+		<value>Na lageru</value>
 	</data>
 	<data name="InventoryConsumption" xml:space="preserve">
-		<value>Consumo de Inventário</value>
+		<value>Popis Potrošnje</value>
 	</data>
 	<data name="InventoryItemName" xml:space="preserve">
-		<value>Nome do item do estoque</value>
+		<value>Popis skladišta, Naziv</value>
 	</data>
 	<data name="Portion" xml:space="preserve">
-		<value>Parte</value>
+		<value>Dio</value>
 	</data>
 	<data name="PredictedInventory" xml:space="preserve">
-		<value>Previsão de Inventário</value>
+		<value>Popis Predviđanja sklad.</value>
 	</data>
 	<data name="ProductName" xml:space="preserve">
-		<value>Nome do produto</value>
+		<value>Naziv proizvoda</value>
 	</data>
 	<data name="Purchase" xml:space="preserve">
-		<value>Compras</value>
+		<value>Kupi</value>
 	</data>
 	<data name="SellAmount" xml:space="preserve">
-		<value>Quantidade vendida</value>
+		<value>Iznos prodanog</value>
 	</data>
 	<data name="Unit" xml:space="preserve">
-		<value>Unidade</value>
+		<value>Jedinica</value>
 	</data>
 	<data name="RecipeName" xml:space="preserve">
-		<value>Nome da Receita</value>
+		<value>Ime Recepta</value>
 	</data>
 	<data name="Product" xml:space="preserve">
-		<value>Produto</value>
+		<value>Proizvod</value>
 	</data>
 	<data name="FixedCost" xml:space="preserve">
-		<value>Custo Fixo</value>
+		<value>Fiksni trošak</value>
 	</data>
 	<data name="Quantity" xml:space="preserve">
-		<value>Quantidade</value>
+		<value>Količina</value>
 	</data>
 	<data name="Recipe" xml:space="preserve">
-		<value>Receita</value>
+		<value>Recept</value>
 	</data>
 	<data name="Inventory" xml:space="preserve">
-		<value>Inventário</value>
+		<value>Popis</value>
 	</data>
 	<data name="DocumentNo" xml:space="preserve">
-		<value>Documento n º</value>
+		<value>Dokument br.</value>
 	</data>
 	<data name="UnitPrice" xml:space="preserve">
-		<value>Preço unitário</value>
+		<value>Jedinična Cijena</value>
 	</data>
 	<data name="TransactionDocument" xml:space="preserve">
-		<value>Documento de Transação</value>
+		<value>Transakcijski dokument</value>
 	</data>
 	<data name="Line" xml:space="preserve">
-		<value>Linha</value>
+		<value>Linija</value>
 	</data>
 	<data name="InventoryItem" xml:space="preserve">
-		<value>Item de inventário</value>
+		<value>Popis iventara</value>
 	</data>
 	<data name="DeleteErrorDepartmentUsedInRole" xml:space="preserve">
-		<value>Não é possível excluir porque esta função esta função é designada para usuários.</value>
+		<value>Ne možete izbrisati jer ovaj odjel jer je dodijeljen User ulozi.</value>
 	</data>
 	<data name="DepartmentName" xml:space="preserve">
-		<value>Nome do departamento</value>
+		<value>Ime odjela</value>
 	</data>
 	<data name="POSMenu" xml:space="preserve">
-		<value>POS menu</value>
+		<value>POS izbornik</value>
 	</data>
 	<data name="TerminalMenu" xml:space="preserve">
-		<value>Menu de Terminal</value>
+		<value>Terminal izbornik</value>
 	</data>
 	<data name="POSTableView" xml:space="preserve">
-		<value>POS Ver mesa</value>
+		<value>POS Tablica pregled</value>
 	</data>
 	<data name="TerminalTableView" xml:space="preserve">
-		<value>Terminal Ver mesa</value>
+		<value>Terminal Tablica pregled</value>
 	</data>
 	<data name="OpenTicketView" xml:space="preserve">
-		<value>Abrir tickets para ver</value>
+		<value>Pregled otvorenih računa</value>
 	</data>
 	<data name="ColumnCount" xml:space="preserve">
-		<value>Contagem de coluna</value>
+		<value>Stupac Count</value>
 	</data>
 	<data name="POSDefaultTicketTag" xml:space="preserve">
-		<value>POS Padrão do Ticket tag</value>
+		<value>Zadani Tag POS Računa</value>
 	</data>
 	<data name="TerminalDefaultTicketTag" xml:space="preserve">
-		<value>Terminal Padrão do Ticket tag</value>
+		<value>Zadani tag računa terminala</value>
 	</data>
 	<data name="DepartmentType" xml:space="preserve">
-		<value>Tipo de departamento</value>
+		<value>Vrsta odjela</value>
 	</data>
 	<data name="FastFood" xml:space="preserve">
-		<value>Fast-food</value>
+		<value>Fast-Food</value>
 	</data>
 	<data name="ALaCarte" xml:space="preserve">
-		<value>A-la Carte</value>
+		<value>A-La carte</value>
 	</data>
 	<data name="Delivery" xml:space="preserve">
-		<value>Delivery</value>
+		<value>Dostava</value>
 	</data>
 	<data name="Numerators" xml:space="preserve">
-		<value>Numeradores</value>
+		<value>Brojčanik</value>
 	</data>
 	<data name="TicketNumerator" xml:space="preserve">
-		<value>Numerador de Ticket</value>
+		<value>Numerator računa</value>
 	</data>
 	<data name="OrderNumerator" xml:space="preserve">
-		<value>Numerador do Ordem</value>
+		<value>Brojčanik narudćbi</value>
 	</data>
 	<data name="TicketTags" xml:space="preserve">
-		<value>Ticket Tags</value>
+		<value>Tags Računa</value>
 	</data>
 	<data name="TagGroups" xml:space="preserve">
-		<value>Grupos de tag</value>
+		<value>Tag Grupe</value>
 	</data>
 	<data name="TagGroup" xml:space="preserve">
-		<value>Grupo de tag</value>
+		<value>Oznaka grupe</value>
 	</data>
 	<data name="ChooseTagsForDepartmentHint" xml:space="preserve">
-		<value>Selecione tags para usar em {0} departamento.</value>
+		<value>Odaberite oznake za uporabu na {0} odjelu.</value>
 	</data>
 	<data name="Department" xml:space="preserve">
-		<value>Departamento</value>
+		<value>Odsjek</value>
 	</data>
 	<data name="BatchCreteProducts" xml:space="preserve">
-		<value>Criar lote de produtos</value>
+		<value>Batch stvaranje proizvoda</value>
 	</data>
 	<data name="BatchCreateProductsDialogHint" xml:space="preserve">
-		<value>Crie uma linha para cada produto com o formato do [Nome do produto] [Preço]. Início o nome do produto com o símbolo # .</value>
+		<value>Napravite liniju za svaki proizvod s [naziv proizvoda] [Cijena] format. Početak Kategorija imena s brojem char.</value>
 	</data>
 	<data name="DeleteErrorProductUsedInMenu" xml:space="preserve">
-		<value>Não é possível excluir porque este é produto atribuído a um menu</value>
+		<value>Ne možete izbrisati jer je taj proizvod dodijeljen u Izborniku</value>
 	</data>
 	<data name="DeleteErrorProductUsedInReceipt" xml:space="preserve">
-		<value>Não é possível excluir porque este produto atribuído é a uma Receita.</value>
+		<value>Ne možete izbrisati jer je taj proizvod dodijeljen primki</value>
 	</data>
 	<data name="DeleteErrorProductPropertyUsedInProduct" xml:space="preserve">
-		<value>Não é possível excluir porque esta propriedade do produto é atribuída a um produto</value>
+		<value>Ne možete izbrisati jer su svojstva tog proizvoda dodijeljena proizvodu</value>
 	</data>
 	<data name="PropertyGroupName" xml:space="preserve">
-		<value>Nome do Grupo de Propriedade</value>
+		<value>Ime svojstva grupe</value>
 	</data>
 	<data name="SingleSelection" xml:space="preserve">
-		<value>Seleção Simples</value>
+		<value>Jednokratni Izbor</value>
 	</data>
 	<data name="MultipleSelection" xml:space="preserve">
-		<value>Seleção múltipla</value>
+		<value>Višestruki odabir</value>
 	</data>
 	<data name="AddPropertyPriceToProductPrice" xml:space="preserve">
-		<value>Adicione Preço Modificador de preço do produto</value>
+		<value>Dodaj svojstva Cijene na cijenu proizvoda</value>
 	</data>
 	<data name="POSView" xml:space="preserve">
-		<value>POS Ver</value>
+		<value>POS pregled</value>
 	</data>
 	<data name="ButtonHeight" xml:space="preserve">
-		<value>Altura do botão</value>
+		<value>Visina tipke</value>
 	</data>
 	<data name="TerminalView" xml:space="preserve">
-		<value>Terminal Ver</value>
+		<value>Pregled terminala</value>
 	</data>
 	<data name="Properties" xml:space="preserve">
-		<value>Propriedades</value>
+		<value>Svojstva</value>
 	</data>
 	<data name="Property" xml:space="preserve">
-		<value>Propriedade</value>
+		<value>Svojstvo</value>
 	</data>
 	<data name="Price" xml:space="preserve">
-		<value>Preço</value>
+		<value>Cijena</value>
 	</data>
 	<data name="PB" xml:space="preserve">
 		<value>C</value>
 	</data>
 	<data name="PropertyGroup" xml:space="preserve">
-		<value>Grupo da propriedade</value>
+		<value>Svojstva grupe</value>
 	</data>
 	<data name="Barcode" xml:space="preserve">
-		<value>Código de barras</value>
+		<value>Barcode</value>
 	</data>
 	<data name="PortionPrices" xml:space="preserve">
-		<value>Preços das porções</value>
+		<value>Cijene porcije</value>
 	</data>
 	<data name="Multiplier" xml:space="preserve">
-		<value>Multiplicador</value>
+		<value>Multiplikator</value>
 	</data>
 	<data name="PropertyGroups" xml:space="preserve">
-		<value>Grupos de propriedade</value>
+		<value>Svojstva Grupe</value>
 	</data>
 	<data name="SelectPropertyGroupsHint_f" xml:space="preserve">
-		<value>Selecione Grupos de Propriedade para {0} produto.</value>
+		<value>Odaberite svojstva grupe za {0} proizvoda.</value>
 	</data>
 	<data name="Departments" xml:space="preserve">
-		<value>Departamentos</value>
+		<value>Odjeli</value>
 	</data>
 	<data name="Settings" xml:space="preserve">
-		<value>Configurações</value>
+		<value>Postavke</value>
 	</data>
 	<data name="ProductList" xml:space="preserve">
-		<value>Lista de Produtos</value>
+		<value>Popis proizvoda</value>
 	</data>
 	<data name="MenuList" xml:space="preserve">
-		<value>Lista do menu</value>
+		<value>Izbornik Popis</value>
 	</data>
 	<data name="BatchPriceList" xml:space="preserve">
-		<value>Editor de Lista de Preços</value>
+		<value>Uređivač cjenika</value>
 	</data>
 	<data name="CanChangeDepartment" xml:space="preserve">
-		<value>Pode Mudar Departamento</value>
+		<value>Možete promijeniti Odjel</value>
 	</data>
 	<data name="AlphanumericButtonValues" xml:space="preserve">
-		<value>Botões de valores alfanumérico</value>
+		<value>Alfanumerički gumb Vrijednosti</value>
 	</data>
 	<data name="AutoSelect" xml:space="preserve">
-		<value>Auto-selecione</value>
+		<value>Automatski odaberi</value>
 	</data>
 	<data name="ButtonColor" xml:space="preserve">
-		<value>Cor do botão</value>
+		<value>Boja gumba</value>
 	</data>
 	<data name="CategoryName" xml:space="preserve">
-		<value>Nome da Categoria</value>
+		<value>Ime kategorije</value>
 	</data>
 	<data name="CategoryProperties" xml:space="preserve">
-		<value>Propriedades da Categoria</value>
+		<value>Svojstva kategorije</value>
 	</data>
 	<data name="Color" xml:space="preserve">
-		<value>Cor</value>
+		<value>Boja</value>
 	</data>
 	<data name="DefaultProperties" xml:space="preserve">
-		<value>Propriedades Padrão</value>
+		<value>Zadane vrijednosti</value>
 	</data>
 	<data name="FastMenu" xml:space="preserve">
-		<value>Menu rápido</value>
+		<value>Brzi izbornik</value>
 	</data>
 	<data name="Gift" xml:space="preserve">
-		<value>Presente</value>
+		<value>Poklon</value>
 	</data>
 	<data name="Header" xml:space="preserve">
-		<value>Cabeçalho</value>
+		<value>Zaglavlje</value>
 	</data>
 	<data name="ImagePath" xml:space="preserve">
-		<value>Caminho da Imagem</value>
+		<value>Putanja slike</value>
 	</data>
 	<data name="MenuProperties" xml:space="preserve">
-		<value>Propriedades do Menu</value>
+		<value>Svojstva izbornika</value>
 	</data>
 	<data name="NumeratorProperties" xml:space="preserve">
-		<value>Propriedades do numerador</value>
+		<value>Svojstva brojčanika</value>
 	</data>
 	<data name="NumeratorType" xml:space="preserve">
-		<value>Tipo do numerador</value>
+		<value>Vrsta brojčanika</value>
 	</data>
 	<data name="NumeratorValue" xml:space="preserve">
-		<value>Valor do numerador</value>
+		<value>Vrijednost brojčanika</value>
 	</data>
 	<data name="SortOrder" xml:space="preserve">
-		<value>Ordenar</value>
+		<value>Sortiranje</value>
 	</data>
 	<data name="PageCount" xml:space="preserve">
-		<value>Contagem de páginas</value>
+		<value>Broj stranica</value>
 	</data>
 	<data name="WrapText" xml:space="preserve">
-		<value>Quebrar texto automaticamente</value>
+		<value>Prelomi tekst</value>
 	</data>
 	<data name="DeleteErrorMenuViewUsedInDepartment" xml:space="preserve">
-		<value>Não é possível excluir porque este menu é atribuído a um departamento</value>
+		<value>Ne možete izbrisati jer je to izbornik dodijeljena Odjelu</value>
 	</data>
 	<data name="MenuName" xml:space="preserve">
-		<value>Nome do Menu</value>
+		<value>Ime izbornika</value>
 	</data>
 	<data name="MenuCategories" xml:space="preserve">
-		<value>Categorias do Menu</value>
+		<value>Izbor Kategorije</value>
 	</data>
 	<data name="Menu" xml:space="preserve">
-		<value>Menu</value>
+		<value>Meni</value>
 	</data>
 	<data name="Categories" xml:space="preserve">
-		<value>Categorias</value>
+		<value>Kategorije</value>
 	</data>
 	<data name="Category" xml:space="preserve">
-		<value>Categoria</value>
+		<value>Kategorija</value>
 	</data>
 	<data name="CategoryProducts" xml:space="preserve">
-		<value>Categoria dos Produtos</value>
+		<value>Kategorija Proizvoda</value>
 	</data>
 	<data name="Sort_f" xml:space="preserve">
-		<value>Ordenar {0}</value>
+		<value>Sortiraj {0}</value>
 	</data>
 	<data name="ProductProperties" xml:space="preserve">
-		<value>Propriedades do produto</value>
+		<value>Svojstva artikla</value>
 	</data>
 	<data name="AllCategories" xml:space="preserve">
-		<value>Todas as Categorias</value>
+		<value>Sve kategorije</value>
 	</data>
 	<data name="AddCategoryHint" xml:space="preserve">
-		<value>Digite categorias que você deseja adicionar</value>
+		<value>Unesite Kategorije koje želite dodati</value>
 	</data>
 	<data name="AutoSelectProductsQuestion" xml:space="preserve">
-		<value>Auto selecionar os produtos para novas categorias?</value>
+		<value>Automatski odaberite proizvode za nove kategorije?</value>
 	</data>
 	<data name="AddProductsToCategoryHint_f" xml:space="preserve">
-		<value>Selecione Produtos para {0} categoria</value>
+		<value>Odaberite Proizvodie za {0} kategoriju</value>
 	</data>
 	<data name="DeleteSelectedCategoryQuestion" xml:space="preserve">
-		<value>Excluir a Categoria?</value>
+		<value>Brisanje odabrane kategorije?</value>
 	</data>
 	<data name="SortCategoryProducts" xml:space="preserve">
-		<value>Classificar categoria dos produtos</value>
+		<value>Sortiraj proizvode kategorija</value>
 	</data>
 	<data name="SortCategories" xml:space="preserve">
-		<value>Organizar categorias</value>
+		<value>Sortiraj Kategorije</value>
 	</data>
 	<data name="SortCategoryProductsDialogHint_f" xml:space="preserve">
-		<value>Arraste {0} categoria dos produtos para mudar a ordem.</value>
+		<value>Povucite {0} proizvodi kategorija promijeni redoslijed.</value>
 	</data>
 	<data name="SortCategoriesDialogHint_f" xml:space="preserve">
-		<value>Arraste {0} Categorias do menu para mudar a ordem.</value>
+		<value>Povucite {0} kategorije izbornika kako bi promijenili redoslijed.</value>
 	</data>
 	<data name="DeleteErrorTagUsedInDepartment" xml:space="preserve">
-		<value>Não é possível excluir porque esta Tag é atribuída a um departamento</value>
+		<value>Ne možete izbrisati jer je ta oznaka dodijeljena Odjelu</value>
 	</data>
 	<data name="TicketTagName" xml:space="preserve">
-		<value>Nome do Tag ticket</value>
+		<value>Račun Tag ime</value>
 	</data>
 	<data name="Numerator" xml:space="preserve">
-		<value>Numerador</value>
+		<value>Brojač</value>
 	</data>
 	<data name="DoAfterTicketSelected" xml:space="preserve">
-		<value>Fazê-lo após Ticket selecionado</value>
+		<value>Učinite to nakon što je odabran račun</value>
 	</data>
 	<data name="CanUseOnPOS" xml:space="preserve">
-		<value>Use em POS</value>
+		<value>Koristiti na POS</value>
 	</data>
 	<data name="CanUseOnTerminal" xml:space="preserve">
-		<value>Use em Terminal</value>
+		<value>Koristite na Terminalu</value>
 	</data>
 	<data name="SelectionRequired" xml:space="preserve">
-		<value>Seleção Obrigatória</value>
+		<value>Morate odabrati</value>
 	</data>
 	<data name="NumericTags" xml:space="preserve">
-		<value>Tags numérico</value>
+		<value>Numeričke oznake</value>
 	</data>
 	<data name="FreeTagging" xml:space="preserve">
-		<value>Tagg livre</value>
+		<value>Besplatno Označavanje</value>
 	</data>
 	<data name="ButtonColors" xml:space="preserve">
-		<value>Cores de botão</value>
+		<value>Boja tipke</value>
 	</data>
 	<data name="WhenTagSelected" xml:space="preserve">
-		<value>Quando Tagged</value>
+		<value>kad je označen</value>
 	</data>
 	<data name="WhenTagNotSelected" xml:space="preserve">
-		<value>Quando Untagged</value>
+		<value>Kad nije označeno</value>
 	</data>
 	<data name="SubTags" xml:space="preserve">
-		<value>Sub Tags</value>
+		<value>Pod oznake</value>
 	</data>
 	<data name="TagName" xml:space="preserve">
-		<value>Nome da Tag</value>
+		<value>Oznaka Naziv</value>
 	</data>
 	<data name="Account" xml:space="preserve">
-		<value>Conta</value>
+		<value>Korisnički račun</value>
 	</data>
 	<data name="NumericTagsShouldBeNumbersErrorMessage" xml:space="preserve">
-		<value>Quando "Tagging numérico" selecionado todas as tages devem conter valores numéricos.</value>
+		<value>Kada je "Numeričko Označavanje" odabrano sve oznake trebaju sadržavati numeričke vrijednosti.</value>
 	</data>
 	<data name="NewTag" xml:space="preserve">
-		<value>Nova Tag</value>
+		<value>Nova oznaka</value>
 	</data>
 	<data name="TicketTag" xml:space="preserve">
-		<value>Ticket Tags</value>
+		<value>Oznaka računa</value>
 	</data>
 	<data name="Refresh" xml:space="preserve">
-		<value>Recarregar</value>
+		<value>Osvježi</value>
 	</data>
 	<data name="CloseTicket" xml:space="preserve">
-		<value>Fechar Ticket </value>
+		<value>Zatvori Račun</value>
 	</data>
 	<data name="GetPayment" xml:space="preserve">
-		<value>Obter Pagamento </value>
+		<value>Naplati</value>
 	</data>
 	<data name="Tag" xml:space="preserve">
-		<value>Tag</value>
+		<value>Oznaka</value>
 	</data>
 	<data name="CanNavigateCash" xml:space="preserve">
-		<value>Pode entrar na tela de pagamentos</value>
+		<value>Može ući u zaslona gotovine</value>
 	</data>
 	<data name="CanOpenNavigation" xml:space="preserve">
-		<value>Pode entrar na tela de navegação</value>
+		<value>Može ući u navigacijski zaslon</value>
 	</data>
 	<data name="InternetBrowser" xml:space="preserve">
-		<value>Navegador de Internet</value>
+		<value>Internet Browser</value>
 	</data>
 	<data name="BatchCreateGiftReasons" xml:space="preserve">
-		<value>Adicione mais lotes de razão de presentes</value>
+		<value>Batch Stvaranje poklon razloga</value>
 	</data>
 	<data name="BatchCreateReasonsHint" xml:space="preserve">
-		<value>Adicionar uma linha para cada razão que você deseja adicionar</value>
+		<value>Dodaj jedan redak za svaku razloga želite dodati</value>
 	</data>
 	<data name="DeleteErrorGiftReasonInUse" xml:space="preserve">
-		<value>Não é possível excluir porque este razão do presente é usado em ticket</value>
+		<value>Ne možete izbrisati jer Poklon Razlog se koristi u Ulaznica</value>
 	</data>
 	<data name="GiftReasonName" xml:space="preserve">
-		<value>Nome do razão do presente</value>
+		<value>Poklon Razlog Ime</value>
 	</data>
 	<data name="GiftReason" xml:space="preserve">
-		<value>Razão do presente</value>
+		<value>Poklon Razlog</value>
 	</data>
 	<data name="DeleteErrorNumeratorIsOrderNumerator" xml:space="preserve">
-		<value>Não é possível excluir porque este Numerador é usado como Numerador da Ordem</value>
+		<value>Ne možete izbrisati jer to koriste kao brojnik reda brojniku</value>
 	</data>
 	<data name="DeleteErrorNumeratorIsTicketNumerator" xml:space="preserve">
-		<value>Não é possível excluir porque este Numerador é usado como Numerador de ticket</value>
+		<value>Ne možete izbrisati jer to koriste kao brojnik Ticket brojniku</value>
 	</data>
 	<data name="DeleteErrorNumeratorUsedInTicket" xml:space="preserve">
-		<value>Não é possível excluir porque este Numerador é atribuído a um ticket tag</value>
+		<value>Ne možete izbrisati zato jer ovu brojnik dodijeljen oznaki računa</value>
 	</data>
 	<data name="NumeratorName" xml:space="preserve">
-		<value>Nome do numerador</value>
+		<value>ime brojnika</value>
 	</data>
 	<data name="NumeratorFormat" xml:space="preserve">
-		<value>Formato de número</value>
+		<value>Format broja</value>
 	</data>
 	<data name="DeleteErrorTemplateUsedInPrintJob" xml:space="preserve">
-		<value>Não é possível excluir porque este modelo de impressão é atribuído a um trabalho de impressão</value>
+		<value>Ne možete izbrisati jer je Predložak dodijeljen ispisu</value>
 	</data>
 	<data name="TemplateName" xml:space="preserve">
-		<value>Nome do Modelo</value>
+		<value>Naziv predloška</value>
 	</data>
 	<data name="HeaderTemplate" xml:space="preserve">
-		<value>Modelo de cabeçalho</value>
+		<value>Zaglavlje predlošku</value>
 	</data>
 	<data name="LineTemplate" xml:space="preserve">
-		<value>Modelo da linha</value>
+		<value>Line predložak</value>
 	</data>
 	<data name="GiftLineTemplate" xml:space="preserve">
-		<value>Modelo da linha do presente</value>
+		<value>Poklon Line predlošku</value>
 	</data>
 	<data name="VoidLineTemplate" xml:space="preserve">
-		<value>Modelo da linha vazia</value>
+		<value>Poništi Line predložak</value>
 	</data>
 	<data name="SubLineTemplate" xml:space="preserve">
-		<value>Propriedades do Modelo da Linha</value>
+		<value>Svojstva Line predloška</value>
 	</data>
 	<data name="MergeLines" xml:space="preserve">
-		<value>Mesclar Linhas</value>
+		<value>Spajanje linije</value>
 	</data>
 	<data name="TicketDate" xml:space="preserve">
-		<value>Data do ticket</value>
+		<value>Datum</value>
 	</data>
 	<data name="TicketTime" xml:space="preserve">
-		<value>Horário do ticket</value>
+		<value>Vrijeme</value>
 	</data>
 	<data name="DayDate" xml:space="preserve">
-		<value>Data do dia</value>
+		<value>Datum dana</value>
 	</data>
 	<data name="DayTime" xml:space="preserve">
-		<value>Hora do Dia</value>
+		<value>Vrijeme dana</value>
 	</data>
 	<data name="UniqueTicketId" xml:space="preserve">
-		<value>Id Ticket único</value>
+		<value>Unique Ticket Id</value>
 	</data>
 	<data name="TicketNumber" xml:space="preserve">
-		<value>Número do ticket</value>
+		<value>Ticket Number</value>
 	</data>
 	<data name="OptionalTicketTag" xml:space="preserve">
-		<value>Tag Ticket Opcional</value>
+		<value>Dodatna oznaka računa</value>
 	</data>
 	<data name="TableOrUserName" xml:space="preserve">
-		<value>Nome da mesa, se Nome do Usuário é vazio</value>
+		<value>Tablica: Ime, ako je prazna Korisničko ime</value>
 	</data>
 	<data name="UserName" xml:space="preserve">
-		<value>Nome de usuário</value>
+		<value>Korisničko ime</value>
 	</data>
 	<data name="TableName" xml:space="preserve">
-		<value>Nome da mesa</value>
+		<value>Tablica Naziv</value>
 	</data>
 	<data name="TicketNote" xml:space="preserve">
-		<value>Nota do ticket</value>
+		<value>Bilješke računa</value>
 	</data>
 	<data name="AccountAddress" xml:space="preserve">
-		<value>Endereço da Conta</value>
+		<value>Adresa klijenta</value>
 	</data>
 	<data name="AccountPhone" xml:space="preserve">
-		<value>Telefone da conta</value>
+		<value>Telefon:</value>
 	</data>
 	<data name="LineItemQuantity" xml:space="preserve">
-		<value># Linha: Quantidade de itens</value>
+		<value># Linija: Kol</value>
 	</data>
 	<data name="LineItemName" xml:space="preserve">
-		<value># Linha: Nome do item</value>
+		<value># Linija: Artikl</value>
 	</data>
 	<data name="LineItemPrice" xml:space="preserve">
-		<value># Linha: Preço do item</value>
+		<value># Linija: Cijena</value>
 	</data>
 	<data name="LineItemPriceCents" xml:space="preserve">
-		<value># Linha: Preço do Item em centavos</value>
+		<value># Linija: Dec</value>
 	</data>
 	<data name="LineItemTotal" xml:space="preserve">
-		<value># Linha: Item total</value>
+		<value># Linija: Ukupno</value>
 	</data>
 	<data name="LineItemTotalAndQuantity" xml:space="preserve">
-		<value># Linha: Item total x quantidade</value>
+		<value># Linija: Zbroj</value>
 	</data>
 	<data name="LineItemTotalWithoutGifts" xml:space="preserve">
-		<value># Linha: Total Item (Presentes Excluídos)</value>
+		<value># Linija: Ukupno:</value>
 	</data>
 	<data name="LineItemDetails" xml:space="preserve">
-		<value># Linha: Propriedades do item</value>
+		<value># Linija: Opis:</value>
 	</data>
 	<data name="LineItemDetailPrice" xml:space="preserve">
-		<value># Linha: Preço da propriedade do Item</value>
+		<value># Linija: Cijena:</value>
 	</data>
 	<data name="LineItemDetailQuantity" xml:space="preserve">
-		<value># Linha: Quantidade da Propriedade do Item</value>
+		<value># Linija: Kol:</value>
 	</data>
 	<data name="LineOrderNumber" xml:space="preserve">
-		<value># Linha: Número de Ordem</value>
+		<value># Linija: Red Broj</value>
 	</data>
 	<data name="LineGiftOrVoidReason" xml:space="preserve">
-		<value># Linha: presente ou razão de anular</value>
+		<value># Linija: Razlog poklona</value>
 	</data>
 	<data name="TicketTotal" xml:space="preserve">
-		<value>Total do ticket</value>
+		<value>Ukupno račun</value>
 	</data>
 	<data name="TicketPaidTotal" xml:space="preserve">
-		<value>Valor recebido do Ticket</value>
+		<value>Plaćeni iznos računa</value>
 	</data>
 	<data name="TicketRemainingAmount" xml:space="preserve">
-		<value>Valor do Ticket Restante</value>
+		<value>Preostali iznos računa</value>
 	</data>
 	<data name="RemainingAmountIfPaid" xml:space="preserve">
-		<value>Valor do pagamento, se pago</value>
+		<value>Plaćani Iznos ako je plaćen</value>
 	</data>
 	<data name="DiscountTotalAndTicketTotal" xml:space="preserve">
-		<value>Linhas de desconto se existem</value>
+		<value>Popust ako postoji</value>
 	</data>
 	<data name="PrinterTemplate" xml:space="preserve">
-		<value>Modelo da Impressora</value>
+		<value>Predložak računa</value>
 	</data>
 	<data name="PrinterName" xml:space="preserve">
-		<value>Nome da impressora</value>
+		<value>Ime P</value>
 	</data>
 	<data name="ShareNameAndPortName" xml:space="preserve">
-		<value>Nome da impressora compartilhada / nome da porta</value>
+		<value>Dijeljenje pisača Ime / Ime porta</value>
 	</data>
 	<data name="PrinterType" xml:space="preserve">
-		<value>Tipo da impressora</value>
+		<value>Vrsta pisača</value>
 	</data>
 	<data name="CharacterSet" xml:space="preserve">
-		<value>Conjunto de Caracteres</value>
+		<value>Postavke fonta</value>
 	</data>
 	<data name="LineCharacterCount" xml:space="preserve">
-		<value>Contagem de Caracteres da Linha</value>
+		<value>Line znakova brojača</value>
 	</data>
 	<data name="TicketPrinter" xml:space="preserve">
-		<value> Ticket da Impressora</value>
+		<value>Račun za ispis</value>
 	</data>
 	<data name="Text" xml:space="preserve">
-		<value>Texto</value>
+		<value>Tekst</value>
 	</data>
 	<data name="Html" xml:space="preserve">
 		<value>HTML</value>
 	</data>
 	<data name="PortPrinter" xml:space="preserve">
-		<value>Porta de impressora</value>
+		<value>Port Pisača</value>
 	</data>
 	<data name="DemoPrinter" xml:space="preserve">
-		<value>Demo Printer (notepad)</value>
+		<value>Demo Pisač (notepad)</value>
 	</data>
 	<data name="Printer" xml:space="preserve">
-		<value>Impressora</value>
+		<value>Pisač</value>
 	</data>
 	<data name="PrintJobName" xml:space="preserve">
-		<value>Nome do trabalho da impressora</value>
+		<value>Naziv ispisa</value>
 	</data>
 	<data name="ButtonHeader" xml:space="preserve">
-		<value>Cabeçalho do botão</value>
+		<value>Button zaglavlja</value>
 	</data>
 	<data name="LockTicket" xml:space="preserve">
-		<value>Bloqueio do ticket</value>
+		<value>Zaključaj račun</value>
 	</data>
 	<data name="UseAtPosScreen" xml:space="preserve">
-		<value>Mostrar em POS tela</value>
+		<value>Prikaz na zaslonu POS</value>
 	</data>
 	<data name="UseAtPaymentScreen" xml:space="preserve">
-		<value>Mostrar na tela de pagamento</value>
+		<value>Prikaz na zaslonu plaćanja</value>
 	</data>
 	<data name="UseAtTerminal" xml:space="preserve">
-		<value>Mostrar no terminal</value>
+		<value>Prikaz na Terminalu</value>
 	</data>
 	<data name="UseAtOldTickets" xml:space="preserve">
-		<value>Somente para ticketes antigos</value>
+		<value>Samo za stare račune</value>
 	</data>
 	<data name="PrintMapping" xml:space="preserve">
-		<value>Print Mapping</value>
+		<value>Ispis Mapiranje</value>
 	</data>
 	<data name="PrintContent" xml:space="preserve">
-		<value>Conteúdo da impressão</value>
+		<value>Ispis Sadržaja</value>
 	</data>
 	<data name="AutoPrintWhen" xml:space="preserve">
-		<value>Auto-imprimir após</value>
+		<value>Auto Ispis Nakon</value>
 	</data>
 	<data name="AutoPrintPaymentType" xml:space="preserve">
-		<value>Auto-impressão para tipos de pagamento</value>
+		<value>Auto Ispis za vrste plaćanja</value>
 	</data>
 	<data name="MenuItemGroup" xml:space="preserve">
-		<value>Grupo de produtos</value>
+		<value>Grupa proizvoda</value>
 	</data>
 	<data name="MenuItem" xml:space="preserve">
-		<value>Produto</value>
+		<value>Proizvod</value>
 	</data>
 	<data name="Template" xml:space="preserve">
-		<value>Modelo</value>
+		<value>Predložak</value>
 	</data>
 	<data name="Add" xml:space="preserve">
-		<value>Adicionar</value>
+		<value>Dodati</value>
 	</data>
 	<data name="Delete" xml:space="preserve">
-		<value>Excluir</value>
+		<value>Izbrisati</value>
 	</data>
 	<data name="Manual" xml:space="preserve">
-		<value>Manual</value>
+		<value>Priručnik</value>
 	</data>
 	<data name="WhenNewLinesAddedToTicket" xml:space="preserve">
-		<value>Novas linhas adicionadas ao ticket</value>
+		<value>Dodavanje nove stavke računu</value>
 	</data>
 	<data name="WhenTicketPaid" xml:space="preserve">
-		<value>Ticket pago</value>
+		<value>Plažen račun</value>
 	</data>
 	<data name="AllLines" xml:space="preserve">
-		<value>Todas as linhas</value>
+		<value>Sve stavke</value>
 	</data>
 	<data name="OnlyNewLines" xml:space="preserve">
-		<value>Apenas linhas novas</value>
+		<value>Samo nove stavke</value>
 	</data>
 	<data name="LinesGroupedByBarcode" xml:space="preserve">
-		<value>Linhas agrupadas por código de barras</value>
+		<value>Rasporedij stavke po barkodu</value>
 	</data>
 	<data name="LinesGroupedByGroupCode" xml:space="preserve">
-		<value>Linhas agrupadas por código de grupo</value>
+		<value>Rasporedij stavke po barkodu</value>
 	</data>
 	<data name="PrintJob" xml:space="preserve">
-		<value>Trabalho de impressão</value>
+		<value>Ispis</value>
 	</data>
 	<data name="DeleteSelectedMappingQuestion" xml:space="preserve">
-		<value>Excluir mapeamento selecionado?</value>
+		<value>Brisanje Odabranog Mapiranja?</value>
 	</data>
 	<data name="TicketOptions" xml:space="preserve">
-		<value>Configurações do ticket</value>
+		<value>Postavke Računa</value>
 	</data>
 	<data name="AutoRounding" xml:space="preserve">
-		<value>Auto-Arredondamento</value>
+		<value>Auto Zaokruživanje</value>
 	</data>
 	<data name="WeightBarcodes" xml:space="preserve">
-		<value>Os códigos de barras de peso</value>
+		<value>Težina Barkodova</value>
 	</data>
 	<data name="WeightBarcodePefix" xml:space="preserve">
-		<value>Prefixo Barcode Peso</value>
+		<value>Težina Barcode Prefiksa</value>
 	</data>
 	<data name="WeightBarcodeItemIdLength" xml:space="preserve">
-		<value>Peso Barcode Comprimento Item Id</value>
+		<value>Težina Barcode ID predmeta Dužina</value>
 	</data>
 	<data name="WeightBarcodeQuantityLength" xml:space="preserve">
-		<value>Comprimento Peso Quantidade de código de barras</value>
+		<value>Težina Barcode Količina Duljina</value>
 	</data>
 	<data name="ProgramSettings" xml:space="preserve">
-		<value>Configurações do programa</value>
+		<value>Postavke programa</value>
 	</data>
 	<data name="DayOperations" xml:space="preserve">
-		<value>Períodos do trabalho</value>
+		<value>Razdoblje rada</value>
 	</data>
 	<data name="LocalSettings" xml:space="preserve">
-		<value>Configurações locais</value>
+		<value>Lokalne postavke</value>
 	</data>
 	<data name="Terminals" xml:space="preserve">
-		<value>Terminais</value>
+		<value>Terminali</value>
 	</data>
 	<data name="Printers" xml:space="preserve">
-		<value>Impressoras</value>
+		<value>Pisači</value>
 	</data>
 	<data name="PrintJobs" xml:space="preserve">
-		<value>Trabalhos de impressão</value>
+		<value>Ispisi</value>
 	</data>
 	<data name="PrinterTemplates" xml:space="preserve">
-		<value>Modelos de impressora</value>
+		<value>Predlošci za ispise</value>
 	</data>
 	<data name="VoidReasons" xml:space="preserve">
-		<value>Razões do anular</value>
+		<value>Razlozi brisanja</value>
 	</data>
 	<data name="GiftReasons" xml:space="preserve">
-		<value>Razões do presente</value>
+		<value>Poklon Razlozi</value>
 	</data>
 	<data name="SambaPosWebsite" xml:space="preserve">
-		<value>Site SambaPOS</value>
+		<value>Web sajt samba POS</value>
 	</data>
 	<data name="SambaNetwork" xml:space="preserve">
-		<value>Rede de Samba</value>
+		<value>Samba Mreža</value>
 	</data>
 	<data name="CanStartEndOfDay" xml:space="preserve">
-		<value>Pode início fim do dia</value>
+		<value>Može zatvoriti kasu</value>
 	</data>
 	<data name="TerminalName" xml:space="preserve">
-		<value>Nome do terminal</value>
+		<value>Ime terminala</value>
 	</data>
 	<data name="ProgramLanguage" xml:space="preserve">
-		<value>Idioma do programa</value>
+		<value>Jezik programa</value>
 	</data>
 	<data name="DataConnection" xml:space="preserve">
-		<value>String de data conexão</value>
+		<value>Data Connection String</value>
 	</data>
 	<data name="MessageServerName" xml:space="preserve">
-		<value>Nome do Message server</value>
+		<value>Poruka Naziv poslužitelja</value>
 	</data>
 	<data name="MessageServerPort" xml:space="preserve">
-		<value>Porto do Message server</value>
+		<value>Poruka Server Port</value>
 	</data>
 	<data name="AutoStartMessageClient" xml:space="preserve">
-		<value>Auto início da mensagem do cliente</value>
+		<value>Auto Start Poruka Klijent</value>
 	</data>
 	<data name="StartClientNow" xml:space="preserve">
-		<value>Iniciar Cliente Agora</value>
+		<value>Uključi klijenta</value>
 	</data>
 	<data name="DeleteErrorShouldHaveAtLeastOneTerminal" xml:space="preserve">
-		<value>Não é possível excluir porque deve ser de pelo menos um terminal.</value>
+		<value>Ne možete izbrisati jer bi trebao biti barem jedan terminal.</value>
 	</data>
 	<data name="DefaultTerminal" xml:space="preserve">
-		<value>Terminal padrão</value>
+		<value>Zadani terminal</value>
 	</data>
 	<data name="AutoLogout" xml:space="preserve">
-		<value>Auto Logout</value>
+		<value>Auto Odjava</value>
 	</data>
 	<data name="PrinterOptions" xml:space="preserve">
-		<value>Configurações da impressora</value>
+		<value>Postavke pisača</value>
 	</data>
 	<data name="SlipReportPrinter" xml:space="preserve">
-		<value>Relatório do deslizamento da impressora</value>
+		<value>Pisač za izvješće</value>
 	</data>
 	<data name="ReportPrinter" xml:space="preserve">
-		<value>Relatório da impressora</value>
+		<value>Pisač za izvješća</value>
 	</data>
 	<data name="SelectPrintJob" xml:space="preserve">
-		<value>Selecione trabalho de impressão</value>
+		<value>Odaberite ispis</value>
 	</data>
 	<data name="Terminal" xml:space="preserve">
 		<value>Terminal</value>
 	</data>
 	<data name="PrintJobList" xml:space="preserve">
-		<value>Lista dos trabalhos da impressora</value>
+		<value>Ispis popisa</value>
 	</data>
 	<data name="SelectPrintJobsForTerminalHint_f" xml:space="preserve">
-		<value>Selecione trabalhos de impressão que você deseja adicionar {0} terminais</value>
+		<value>Odaberite tiskanje radnih mjesta koja želite dodati {0} terminal</value>
 	</data>
 	<data name="BatchAddVoidReasons" xml:space="preserve">
-		<value>Adicionar razões do anulo múltiplas</value>
+		<value>Dodajte više razloga nevažećih</value>
 	</data>
 	<data name="BatchAddVoidReasonsDialogHint" xml:space="preserve">
-		<value>Adicionar uma linha para cada razão que você deseja adicionar</value>
+		<value>Dodaj jedan redak za svaku razloga želite dodati</value>
 	</data>
 	<data name="DeleteErrorVoidReasonUsed" xml:space="preserve">
-		<value>Não é possível excluir porque este razão é utilizado em ticket</value>
+		<value>Ne možete izbrisati jer ga koristi račun</value>
 	</data>
 	<data name="VoidReasonName" xml:space="preserve">
-		<value>Nome do Razão de anular</value>
+		<value>Brisanje Razlog Ime</value>
 	</data>
 	<data name="VoidReason" xml:space="preserve">
-		<value>Razão de anular</value>
+		<value>Razlog brisanja</value>
 	</data>
 	<data name="CashContent" xml:space="preserve">
-		<value>Conteúdo Dinheiro</value>
+		<value>Novac Sadržaj</value>
 	</data>
 	<data name="WorkPeriodStartDate_f" xml:space="preserve">
-		<value>Data de período de trabalho: {0}</value>
+		<value>Datum radnog vremena: {0}</value>
 	</data>
 	<data name="WorkPeriodStartTime" xml:space="preserve">
-		<value>Horário do período de trabalho: {0}</value>
+		<value>Vrijeme radnog vremena: {0}</value>
 	</data>
 	<data name="TotalWorkTimeDays_f" xml:space="preserve">
-		<value>Tempo de trabalho Total:
-{0:0} dias {01:00} horas {2:0} minutos </value>
+		<value>Ukupno Radno vrijeme:
+{0:0} dana {1:0} sati {2:0} minuta</value>
 	</data>
 	<data name="TotalWorkTimeHours_f" xml:space="preserve">
-		<value>Tempo total de trabalho: {0:0} {01:00 horas} minutos</value>
+		<value>Ukupno radnog vremena: {0:00} {sati 01:00} minuta</value>
 	</data>
 	<data name="TotalWorkTimeMinutes_f" xml:space="preserve">
-		<value>Tempo de trabalho Total: {0:0} minutos</value>
+		<value>Ukupno Radno vrijeme: {0:0} minuta</value>
 	</data>
 	<data name="StartWorkPeriodToEnablePos" xml:space="preserve">
-		<value>Iniciar Período de trabalho para permitir POS</value>
+		<value>Početak radnog vremena kako bi se omogućilo POS</value>
 	</data>
 	<data name="StartWorkPeriod" xml:space="preserve">
-		<value>Início do período de trabalho</value>
+		<value>Početak radnog vremena</value>
 	</data>
 	<data name="EndWorkPeriod" xml:space="preserve">
-		<value>Fim do Período de Trabalho</value>
+		<value>Kraj radnog vremena</value>
 	</data>
 	<data name="StartingWorkPeriodCompleted" xml:space="preserve">
-		<value>Período trabalho iniciado.</value>
+		<value>Početak radnog vremena</value>
 	</data>
 	<data name="ThereAreOpenTicketsWarning_f" xml:space="preserve">
-		<value>Existem {0} tickets em aberto.
-Não é possível acabar com período de trabalho, porque tem tickets abertos </value>
+		<value>Postoje {0} otvorene stavke
+Ne mogu završiti radno vreijeme, dok su računi otvoreni.</value>
 	</data>
 	<data name="Table" xml:space="preserve">
-		<value>Mesa</value>
+		<value>Stol</value>
 	</data>
 	<data name="SaveErrorDuplicateTableName" xml:space="preserve">
-		<value>Já existe uma mesa com aquele nome.</value>
+		<value>Već postoji stol sa tim imenom.</value>
 	</data>
 	<data name="AddMultipleTables" xml:space="preserve">
-		<value>Adicionar várias mesas</value>
+		<value>Dodajte više stolova</value>
 	</data>
 	<data name="AddMultipleTableHint" xml:space="preserve">
-		<value>Adicionar uma linha para cada nome da mesa. Iniciar Categorias com caractere #.</value>
+		<value>Dodaj jedan redak za svaki naziv stola. Početak kategorije s brojem karaktera.</value>
 	</data>
 	<data name="DeleteErrorTicketAssignedToTable" xml:space="preserve">
-		<value>Não é possível excluir porque há um ticket atribuído a essa mesa</value>
+		<value>Ne možete izbrisati jer je račun dodijeljen tom stolu</value>
 	</data>
 	<data name="DeleteErrorTableUsedInTableView" xml:space="preserve">
-		<value>Não é possível excluir porque esta mesa é atribuída a uma ver de mesa</value>
+		<value>Ne možete izbrisati jer Tablica dodijeljen Table View</value>
 	</data>
 	<data name="TableViews" xml:space="preserve">
-		<value>Ver mesas</value>
+		<value>Pregled stolova</value>
 	</data>
 	<data name="Tables" xml:space="preserve">
-		<value>Mesas</value>
+		<value>Stolovi</value>
 	</data>
 	<data name="CanOpenTableList" xml:space="preserve">
-		<value>Pode exibir Lista das mesas</value>
+		<value>Može prikazati popis stolova</value>
 	</data>
 	<data name="CanChangeTable" xml:space="preserve">
-		<value>Pode mudar mesa do ticket</value>
+		<value>Može promijeniti račun stola</value>
 	</data>
 	<data name="DeleteErrorTableViewUsedInDepartment" xml:space="preserve">
-		<value>Não é possível excluir porque esta ver de mesa é atribuída a um departamento</value>
+		<value>Ne možete izbrisati jer Tablični pregled dodijeljena Odjelu</value>
 	</data>
 	<data name="TableViewName" xml:space="preserve">
-		<value>Ver Nome</value>
+		<value>Pregled ime</value>
 	</data>
 	<data name="TableViewMode" xml:space="preserve">
-		<value>Ver modo</value>
+		<value>Pregled način</value>
 	</data>
 	<data name="BackgroundColor" xml:space="preserve">
-		<value>Cor de Fundo</value>
+		<value>Boja pozadine</value>
 	</data>
 	<data name="BackgroundImage" xml:space="preserve">
-		<value>Imagem de Fundo</value>
+		<value>Pozadinska slika</value>
 	</data>
 	<data name="EmptyTableColor" xml:space="preserve">
-		<value>Cor de mesa vazia</value>
+		<value>Prazna tablica boja</value>
 	</data>
 	<data name="UnavailableTableColor" xml:space="preserve">
-		<value>Cor de mesa ocupada</value>
+		<value>Puna tablica boja</value>
 	</data>
 	<data name="LockedTableColor" xml:space="preserve">
-		<value>Cor de mesa bloqueadas</value>
+		<value>Tablica Boja Zaključano</value>
 	</data>
 	<data name="NumeratorHeight" xml:space="preserve">
-		<value>Altura do numerador</value>
+		<value>Brojnik Visina</value>
 	</data>
 	<data name="AlphanumericButtons" xml:space="preserve">
-		<value>Botões alfanuméricos</value>
+		<value>Alfanumeričkih tipki</value>
 	</data>
 	<data name="Automatic" xml:space="preserve">
-		<value>Automático</value>
+		<value>Automatski</value>
 	</data>
 	<data name="Custom" xml:space="preserve">
-		<value>Personalizado</value>
+		<value>Prilagođeno</value>
 	</data>
 	<data name="Hidden" xml:space="preserve">
-		<value>Escondido</value>
+		<value>Skriven</value>
 	</data>
 	<data name="SelectTable" xml:space="preserve">
-		<value>Selecione Mesa</value>
+		<value>Odaberite Stol</value>
 	</data>
 	<data name="TableList" xml:space="preserve">
-		<value>Lista das mesas</value>
+		<value>Popis stolova</value>
 	</data>
 	<data name="SelectTableDialogHint_f" xml:space="preserve">
-		<value>Selecione as mesas que você deseja adicionar para {0} ver.</value>
+		<value>Odaberite tablice želite dodati u {0} pogledom</value>
 	</data>
 	<data name="TableView" xml:space="preserve">
-		<value>Ver mesas</value>
+		<value>Stolovi</value>
 	</data>
 	<data name="EditMode" xml:space="preserve">
-		<value>Modo de Design</value>
+		<value>Design mode</value>
 	</data>
 	<data name="NextPage" xml:space="preserve">
-		<value>Próxima Página</value>
+		<value>Slijedeća stranica</value>
 	</data>
 	<data name="PreviousPage" xml:space="preserve">
-		<value>Página Anterior</value>
+		<value>Prethodna stranica</value>
 	</data>
 	<data name="TablesMerged_f" xml:space="preserve">
-		<value>{0} ticket
-Fundiu-se com {1} mesa. </value>
+		<value>{0} Račun
+spoji sa {1} Stolom</value>
 	</data>
 	<data name="TicketMergedToTable_f" xml:space="preserve">
-		<value>Ticket fundiu-se com {0} mesa.</value>
+		<value>Račun spojen sa {0} stolom</value>
 	</data>
 	<data name="TicketMovedToTable_f" xml:space="preserve">
-		<value>{0} ticket
-Mudou-se para {1} mesa. </value>
+		<value>{0} ulaznica
+preselio se u {1} tablici.</value>
 	</data>
 	<data name="SelectTableThatYouWantToMoveTicket_f" xml:space="preserve">
-		<value>Selecione nova mesa para {0} ticket.</value>
+		<value>Odaberite novu tablicu za {0} karte.</value>
 	</data>
 	<data name="SelectTableForTicket" xml:space="preserve">
-		<value>Selecione mesa para o ticket.</value>
+		<value>Odaberite stol za kartu.</value>
 	</data>
 	<data name="SelectTableForOperation" xml:space="preserve">
-		<value>Selecione a tabela que você deseja adicionar ordens.</value>
+		<value>Odaberite tablicu koju želite dodati naloga.</value>
 	</data>
 	<data name="FindProduct" xml:space="preserve">
-		<value>Procurar produto</value>
+		<value>Nađi Proizvod</value>
 	</data>
 	<data name="FindTicket" xml:space="preserve">
-		<value>Procurar ticket</value>
+		<value>Nađi Ticket</value>
 	</data>
 	<data name="FindTable" xml:space="preserve">
-		<value>Procurar mesa</value>
+		<value>Pronađite tablicu</value>
 	</data>
 	<data name="DiscountTotal" xml:space="preserve">
-		<value>Total de desconto</value>
+		<value>Ukupno popusta</value>
 	</data>
 	<data name="PaymentTotal" xml:space="preserve">
-		<value>Total de pagamento</value>
+		<value>Plaćanje Ukupno</value>
 	</data>
 	<data name="Balance" xml:space="preserve">
-		<value>Saldo</value>
+		<value>Stanje</value>
 	</data>
 	<data name="ChargedAmount" xml:space="preserve">
-		<value>Cobrado</value>
+		<value>Optužen</value>
 	</data>
 	<data name="Portions" xml:space="preserve">
-		<value>Porções</value>
+		<value>Dijelovi</value>
 	</data>
 	<data name="ExtraModifiers" xml:space="preserve">
-		<value>Modificadores-extra</value>
+		<value>Dodatni Izmjenjivači</value>
 	</data>
 	<data name="Update" xml:space="preserve">
-		<value>Atualizar</value>
+		<value>Ažurirati</value>
 	</data>
 	<data name="AddAndSave" xml:space="preserve">
-		<value>Adicionar e guardar</value>
+		<value>Dodaj i uštedite</value>
 	</data>
 	<data name="Number" xml:space="preserve">
-		<value>Número</value>
+		<value>Broj</value>
 	</data>
 	<data name="OpenClose_ab" xml:space="preserve">
-		<value>Op-Cls</value>
+		<value>Op-žuta</value>
 	</data>
 	<data name="TicketOpeningTime" xml:space="preserve">
-		<value>Abertura de ticket</value>
+		<value>Ulaznica za otvorenje</value>
 	</data>
 	<data name="LastOrderTime" xml:space="preserve">
-		<value>Última Ordem</value>
+		<value>Zadnji red</value>
 	</data>
 	<data name="LastPaymentTime" xml:space="preserve">
-		<value>Último pagamento</value>
+		<value>Posljednje plaćanje</value>
 	</data>
 	<data name="Print" xml:space="preserve">
-		<value>Imprimir</value>
+		<value>Tiskati</value>
 	</data>
 	<data name="CloseTicket_r" xml:space="preserve">
-		<value>Fechar
-Ticket </value>
+		<value>Zatvoriti
+Ulaznica</value>
 	</data>
 	<data name="CashPayment_r" xml:space="preserve">
-		<value>Cash
-Pagamento </value>
+		<value>Gotovina
+Plaćanje</value>
 	</data>
 	<data name="CreditCard_r" xml:space="preserve">
-		<value>Cartão de credito</value>
+		<value>Kredit
+Kartica</value>
 	</data>
 	<data name="SelectCustomer" xml:space="preserve">
-		<value>Selecione Cliente</value>
+		<value>Odaberite klijenta</value>
 	</data>
 	<data name="AllTickets_r" xml:space="preserve">
-		<value>Todos os tickets </value>
+		<value>Sve
+Ulaznice</value>
 	</data>
 	<data name="Void" xml:space="preserve">
-		<value>Anular</value>
+		<value>Poništiti</value>
 	</data>
 	<data name="Divide" xml:space="preserve">
-		<value>Dividir</value>
+		<value>Podijeliti</value>
 	</data>
 	<data name="ExtraModifier" xml:space="preserve">
-		<value>Modificador-Extra</value>
+		<value>Ekstra Modifikacijska</value>
 	</data>
 	<data name="ReleaseLock" xml:space="preserve">
-		<value>Desbloqueio</value>
+		<value>Otpustite Lock</value>
 	</data>
 	<data name="ChangePrice" xml:space="preserve">
-		<value>Alterar preço</value>
+		<value>Promjena cijene</value>
 	</data>
 	<data name="ForChangingPriceTypeAPrice" xml:space="preserve">
-		<value>Para alterar preço primeiro digite um preço de numerador</value>
+		<value>Za promjenu cijena prvi upišite cijena od brojniku</value>
 	</data>
 	<data name="NewTicket" xml:space="preserve">
-		<value>Novo Ticket</value>
+		<value>Nova karta</value>
 	</data>
 	<data name="ChangeTable_r" xml:space="preserve">
-		<value>Alterar mesa </value>
+		<value>Promijeniti
+Stol</value>
 	</data>
 	<data name="SelectTable_r" xml:space="preserve">
-		<value>Selecione mesa </value>
+		<value>Odabrati
+Stol</value>
 	</data>
 	<data name="CustomerInfo_r" xml:space="preserve">
-		<value>Cliente Info </value>
+		<value>Kupac
+Info</value>
 	</data>
 	<data name="ChangeAmount_f" xml:space="preserve">
-		<value>Troco: {0}</value>
+		<value>Zbog Promjena: {0}</value>
 	</data>
 	<data name="AccountBalance_r" xml:space="preserve">
-		<value>Saldo da Conta</value>
+		<value>Račun
+Stanje</value>
 	</data>
 	<data name="All" xml:space="preserve">
-		<value>Todos</value>
+		<value>Sve</value>
 	</data>
 	<data name="Round" xml:space="preserve">
-		<value>Arredondar</value>
+		<value>Oko</value>
 	</data>
 	<data name="Flat" xml:space="preserve">
-		<value>Auto Arredonda</value>
+		<value>Auto krug</value>
 	</data>
 	<data name="DiscountPercentSign" xml:space="preserve">
-		<value>Desconto %</value>
+		<value>Popust%</value>
 	</data>
 	<data name="CanReleaseTicketLock" xml:space="preserve">
-		<value>Pode remover bloqueio do ticket</value>
+		<value>Može Remove Ticket Lock</value>
 	</data>
 	<data name="CanRemoveTicketTag" xml:space="preserve">
-		<value>Pode remover Tag Ticket</value>
+		<value>Može Remove Ticket oznaku</value>
 	</data>
 	<data name="CanGiftItems" xml:space="preserve">
-		<value>Pode fazer presente</value>
+		<value>Može Poklon Stavke</value>
 	</data>
 	<data name="CanVoidItems" xml:space="preserve">
-		<value>Pode anular Itens</value>
+		<value>Može poništiti stavke</value>
 	</data>
 	<data name="CanMoveTicketLines" xml:space="preserve">
-		<value>Pode mover itens</value>
+		<value>Stavke možete premjestiti</value>
 	</data>
 	<data name="CanMergeTickets" xml:space="preserve">
-		<value>Pode mesclar tickets</value>
+		<value>Ulaznice možete spojiti</value>
 	</data>
 	<data name="CanDisplayOldTickets" xml:space="preserve">
-		<value>Pode ver os tickets antigos</value>
+		<value>Može prikazati Old Ulaznice</value>
 	</data>
 	<data name="CanMoveUnlockedTicketLines" xml:space="preserve">
-		<value>Pode mover linhas de ticket desbloqueado</value>
+		<value>Može kretati otključan linije ulaznica</value>
 	</data>
 	<data name="CanUpdateExtraModifiers" xml:space="preserve">
-		<value>Pode atualizar modificadores extra</value>
+		<value>Može ažurirati Dodatni modifikatora</value>
 	</data>
 	<data name="CanGetPayment" xml:space="preserve">
-		<value>Pode receber o pagamento</value>
+		<value>Mogu dobiti plaćanja</value>
 	</data>
 	<data name="CanGetFastPayment" xml:space="preserve">
-		<value>Pode receber o pagamento rápido</value>
+		<value>Možete dobiti brzu isplatu</value>
 	</data>
 	<data name="CanMakeDiscount" xml:space="preserve">
-		<value>Pode fazer o desconto</value>
+		<value>Može napraviti popust</value>
 	</data>
 	<data name="CanRoundTicketTotal" xml:space="preserve">
-		<value>Pode arredondar total de ticket</value>
+		<value>Može Oko Ticket Ukupno</value>
 	</data>
 	<data name="CanFlattenTicketTotal" xml:space="preserve">
-		<value>Pode Auto arredondar total de ticket</value>
+		<value>Može Auto Oko Ticket Ukupno</value>
 	</data>
 	<data name="OnlyOpenTickets" xml:space="preserve">
-		<value>Somente os tickets abertos</value>
+		<value>Otvoreni Ulaznice samo</value>
 	</data>
 	<data name="AllTickets" xml:space="preserve">
-		<value>Todos os tickets</value>
+		<value>Sve ulaznice</value>
 	</data>
 	<data name="Total_f" xml:space="preserve">
-		<value>Total: {0}</value>
+		<value>Ukupno: {0}</value>
 	</data>
 	<data name="User" xml:space="preserve">
-		<value>Usuário</value>
+		<value>Korisnik</value>
 	</data>
 	<data name="MainMenu" xml:space="preserve">
-		<value>Menu Principal</value>
+		<value>Glavni izbornik</value>
 	</data>
 	<data name="Yes" xml:space="preserve">
-		<value>Sim</value>
+		<value>Da</value>
 	</data>
 	<data name="No" xml:space="preserve">
-		<value>Não</value>
+		<value>Ne</value>
 	</data>
 	<data name="DeleteErrorAdminUser" xml:space="preserve">
-		<value>Não é possível excluir usuário admin.</value>
+		<value>Ne možete izbrisati admin korisnika.</value>
 	</data>
 	<data name="DeleteErrorLastUser" xml:space="preserve">
-		<value>Não é possível excluir última conta de usuário</value>
+		<value>Ne možete izbrisati zadnji Korisnik Račun</value>
 	</data>
 	<data name="DeleteErrorUserDidTicketOperation" xml:space="preserve">
-		<value>Não é possível excluir porque este usuário criou ticket.</value>
+		<value>Ne možete izbrisati jer to User stvorio Ulaznice.</value>
 	</data>
 	<data name="UserRoleList" xml:space="preserve">
-		<value>Lista de função</value>
+		<value>Uloga Popis</value>
 	</data>
 	<data name="Users" xml:space="preserve">
-		<value>Usuários</value>
+		<value>Korisnici</value>
 	</data>
 	<data name="UserList" xml:space="preserve">
-		<value>Lista de usuários</value>
+		<value>Popis korisnika</value>
 	</data>
 	<data name="DeleteErrorThisRoleUsedInAUserAccount" xml:space="preserve">
-		<value>Não é possível excluir porque este função é atribuído a Conta de Usuário</value>
+		<value>Ne možete izbrisati jer ova uloga dodijeljena korisničkim računom</value>
 	</data>
 	<data name="UserRoleName" xml:space="preserve">
-		<value>Nome da função</value>
+		<value>Uloga Ime</value>
 	</data>
 	<data name="Permissions" xml:space="preserve">
-		<value>Permissões</value>
+		<value>Dopuštenja</value>
 	</data>
 	<data name="Admin" xml:space="preserve">
-		<value>Administrador</value>
+		<value>Admin</value>
 	</data>
 	<data name="UserRole" xml:space="preserve">
-		<value>Função do usuário</value>
+		<value>Upute Uloga</value>
 	</data>
 	<data name="PinCode" xml:space="preserve">
-		<value>Pin</value>
+		<value>Pin Code</value>
 	</data>
 	<data name="SaveErrorThisPinCodeInUse" xml:space="preserve">
-		<value>Este PIN é usado por outra conta do usuário.</value>
+		<value>Ovaj PIN Code koristi drugog korisničkog računa.</value>
 	</data>
 	<data name="OK" xml:space="preserve">
 		<value>OK</value>
 	</data>
 	<data name="PropertyEditor" xml:space="preserve">
-		<value>Editor de propriedades</value>
+		<value>Nekretnine urednik</value>
 	</data>
 	<data name="Details" xml:space="preserve">
-		<value>Detalhes</value>
+		<value>Detalji</value>
 	</data>
 	<data name="List" xml:space="preserve">
-		<value>Lista</value>
+		<value>Popis</value>
 	</data>
 	<data name="DisplayAllValues" xml:space="preserve">
-		<value>Exibir todos os valores</value>
+		<value>Prikaži sve vrijednosti</value>
 	</data>
 	<data name="Selected" xml:space="preserve">
-		<value>Selecionado</value>
+		<value>Odabran</value>
 	</data>
 	<data name="Selected_f" xml:space="preserve">
-		<value>Selecionado {0}</value>
+		<value>Odabrani {0}</value>
 	</data>
 	<data name="WorkPeriodEndsMessage" xml:space="preserve">
-		<value>Período do trabalho está terminando.
-Visite a seção Relatórios e crie relatório do período de trabalho </value>
+		<value>Radnog vremena završava.
+Posjetite Odjeljak Izvješća i stvaranje izvješća radnog vremena</value>
 	</data>
 	<data name="DontForgetEndingWorkPeriod" xml:space="preserve">
-		<value>NÃO SE ESQUEÇA O FECHAR DO PERÍODO DE TRABALHO!</value>
+		<value>NE ZABORAVITE ZAVR radnog vremena!</value>
 	</data>
 	<data name="Paid" xml:space="preserve">
-		<value>Pago</value>
+		<value>Plaćen</value>
 	</data>
 	<data name="Open" xml:space="preserve">
-		<value>Aberto</value>
+		<value>Otvoriti</value>
 	</data>
 	<data name="AutoFlatten_ab" xml:space="preserve">
-		<value>Arredondamento Auto</value>
+		<value>Auto Zaokruživanje</value>
 	</data>
 	<data name="Rounding" xml:space="preserve">
-		<value>Arredondamento</value>
+		<value>Zaokruživanje</value>
 	</data>
 	<data name="Flattening" xml:space="preserve">
-		<value>Arredondamento</value>
+		<value>Zaokruživanje</value>
 	</data>
 	<data name="AccountBalance" xml:space="preserve">
-		<value>Saldo em Conta</value>
+		<value>Stanje na računu</value>
 	</data>
 	<data name="UndefinedPaymentType" xml:space="preserve">
-		<value>Tipo de Pagamento indefinido</value>
+		<value>Neodređeno Plaćanje Tip</value>
 	</data>
 	<data name="Angle" xml:space="preserve">
-		<value>Ângulo</value>
+		<value>Kut</value>
 	</data>
 	<data name="CornerRadius" xml:space="preserve">
-		<value>Raio de Canto</value>
+		<value>Corner Radius</value>
 	</data>
 	<data name="Height" xml:space="preserve">
-		<value>Altura</value>
+		<value>Visina</value>
 	</data>
 	<data name="Width" xml:space="preserve">
-		<value>Largura</value>
+		<value>Širina</value>
 	</data>
 	<data name="Gift_ab" xml:space="preserve">
-		<value>[Presente]</value>
+		<value>[Poklon]</value>
 	</data>
 	<data name="Void_ab" xml:space="preserve">
-		<value>[Anular]</value>
+		<value>[Poništiti]</value>
 	</data>
 	<data name="OrderNumber_f" xml:space="preserve">
 		<value>Ord.No: {0:0} - {1}</value>
 	</data>
 	<data name="NewOrder" xml:space="preserve">
-		<value>Nova Ordem</value>
+		<value>New Order</value>
 	</data>
 	<data name="Back" xml:space="preserve">
-		<value>Voltar</value>
+		<value>Natrag</value>
 	</data>
 	<data name="Empty" xml:space="preserve">
-		<value>Vazio</value>
+		<value>Prazan</value>
 	</data>
 	<data name="TicketTimeDisplay_f" xml:space="preserve">
 		<value>{0} ({1} min.)</value>
 	</data>
 	<data name="Table_f" xml:space="preserve">
-		<value>Mesa: {0}</value>
+		<value>Tablica: {0}</value>
 	</data>
 	<data name="Account_f" xml:space="preserve">
-		<value>Conta: {0}</value>
+		<value>Račun: {0}</value>
 	</data>
 	<data name="TicketNumberAndTable_f" xml:space="preserve">
-		<value># Mesa {0}: {1}</value>
+		<value># {0} Tablica: {1}</value>
 	</data>
 	<data name="TicketNumberAndAccount_f" xml:space="preserve">
-		<value># Tabela {0}: {1}</value>
+		<value># {0} Tablica: {1}</value>
 	</data>
 	<data name="AccountNameAndTableName_f" xml:space="preserve">
-		<value># {0} Conta: {1}
-Mesa: {2} </value>
+		<value># {0} račun: {1}
+Tablica: {2}</value>
 	</data>
 	<data name="CantCompleteOperationWhenThereIsZeroPricedProduct" xml:space="preserve">
-		<value>Não é possível concluir esta operação enquanto a zero do valor de preço existe.</value>
+		<value>Ne može završiti ovu operaciju, a nula cijeni narudžbe postoji.</value>
 	</data>
 	<data name="TagCantBeEmpty_f" xml:space="preserve">
-		<value>Não pode deixar {0} vazio</value>
+		<value>Ne može ostaviti {0} prazna</value>
 	</data>
 	<data name="Reports" xml:space="preserve">
-		<value>Relatórios</value>
+		<value>Izvješća</value>
 	</data>
 	<data name="CanDisplayReports" xml:space="preserve">
-		<value>Pode exibir relatórios</value>
+		<value>Može prikazati izvješća</value>
 	</data>
 	<data name="CanChangeReportFilter" xml:space="preserve">
-		<value>Pode mudar filtro da data do relatório</value>
+		<value>Možete promijeniti filtar Datum Prijavi</value>
 	</data>
 	<data name="Today" xml:space="preserve">
-		<value>Hoje</value>
+		<value>Danas</value>
 	</data>
 	<data name="Yesterday" xml:space="preserve">
-		<value>Ontem</value>
+		<value>Jučer</value>
 	</data>
 	<data name="PastMonth" xml:space="preserve">
-		<value>Mês passado</value>
+		<value>Prošli mjesec</value>
 	</data>
 	<data name="ThisMonth" xml:space="preserve">
-		<value>Este mês</value>
+		<value>Ovaj mjesec</value>
 	</data>
 	<data name="ThisWeek" xml:space="preserve">
-		<value>Esta semana</value>
+		<value>Ovaj tjedan</value>
 	</data>
 	<data name="PastWeek" xml:space="preserve">
-		<value>Semana passada</value>
+		<value>Prošli tjedan</value>
 	</data>
 	<data name="UndefinedWithBrackets" xml:space="preserve">
-		<value>[Indefinido]</value>
+		<value>[Nedefinirano]</value>
 	</data>
 	<data name="TicketWithBrackets" xml:space="preserve">
-		<value>[Ticket]</value>
+		<value>[Ulaznica]</value>
 	</data>
 	<data name="As_f" xml:space="preserve">
-		<value>A partir de {0}</value>
+		<value>Od {0}</value>
 	</data>
 	<data name="Accounts" xml:space="preserve">
-		<value>Contas</value>
+		<value>Računi</value>
 	</data>
 	<data name="NoTransactionsFoundFor_f" xml:space="preserve">
-		<value>Não há transações para {0}</value>
+		<value>Nema transakcija za {0}</value>
 	</data>
 	<data name="InternalAccounts" xml:space="preserve">
-		<value>Contas internas</value>
+		<value>Interni računi</value>
 	</data>
 	<data name="AccountsLiability" xml:space="preserve">
-		<value>Responsabilidade das contas</value>
+		<value>Računi od odgovornosti</value>
 	</data>
 	<data name="AccountsReceivable" xml:space="preserve">
-		<value>Recebimentos das contas</value>
+		<value>Potraživanja</value>
 	</data>
 	<data name="CashReport" xml:space="preserve">
-		<value>Relatório de Caixa</value>
+		<value>Novac Transakcije Prijavi</value>
 	</data>
 	<data name="DateRangeIsNotActiveWorkPeriod" xml:space="preserve">
-		<value>Intervalo de data não está em período de trabalho ativo</value>
+		<value>Razdoblje nije u aktivnom radnog vremena</value>
 	</data>
 	<data name="ReportDoesNotContainsCashState" xml:space="preserve">
-		<value>Relatório não contém valor do início</value>
+		<value>Izvješće ne sadrži Početak iznose</value>
 	</data>
 	<data name="Expenses" xml:space="preserve">
-		<value>Despesas</value>
+		<value>Troškovi</value>
 	</data>
 	<data name="CashTransactions" xml:space="preserve">
-		<value>Transações da caixa</value>
+		<value>Gotovinskim transakcijama</value>
 	</data>
 	<data name="Totals" xml:space="preserve">
-		<value>Totais</value>
+		<value>Ukupan rezultat</value>
 	</data>
 	<data name="TotalExpense" xml:space="preserve">
-		<value>Despesa Total</value>
+		<value>Ukupni rashodi</value>
 	</data>
 	<data name="Incomes" xml:space="preserve">
-		<value>Rendimentos</value>
+		<value>Prihodi</value>
 	</data>
 	<data name="StartAmount" xml:space="preserve">
-		<value>Valores do início</value>
+		<value>Početak iznose</value>
 	</data>
 	<data name="SalesIncome" xml:space="preserve">
-		<value>Renda de vendas</value>
+		<value>Prihodi od prodaje</value>
 	</data>
 	<data name="TotalIncome" xml:space="preserve">
-		<value>Renda Total</value>
+		<value>Ukupni prihod</value>
 	</data>
 	<data name="CashStatus" xml:space="preserve">
-		<value>Status da Caixa</value>
+		<value>Novac Status</value>
 	</data>
 	<data name="Drawer" xml:space="preserve">
-		<value>Caixa</value>
+		<value>Ladica</value>
 	</data>
 	<data name="WorkPeriodReport" xml:space="preserve">
-		<value>Relatório do período do trabalho</value>
+		<value>Izvješće radnog vremena</value>
 	</data>
 	<data name="Sales" xml:space="preserve">
-		<value>Vendas</value>
+		<value>Prodajni</value>
 	</data>
 	<data name="GeneralInformation" xml:space="preserve">
-		<value>Informações gerais</value>
+		<value>Opće informacije</value>
 	</data>
 	<data name="ItemProperties" xml:space="preserve">
-		<value>Propriedades do item extra</value>
+		<value>Dodatni Artikl Nekretnine</value>
 	</data>
 	<data name="VoidsTotal" xml:space="preserve">
-		<value>Total anular</value>
+		<value>Pore ​​Ukupno</value>
 	</data>
 	<data name="DiscountsTotal" xml:space="preserve">
-		<value>Total de descontos</value>
+		<value>Popusti Ukupno</value>
 	</data>
 	<data name="GiftsTotal" xml:space="preserve">
-		<value>Total de presentes</value>
+		<value>Pokloni Ukupno</value>
 	</data>
 	<data name="TicketCount" xml:space="preserve">
-		<value>Contagem do ticket</value>
+		<value>Broj ulaznica</value>
 	</data>
 	<data name="SalesDivTicket" xml:space="preserve">
-		<value>Total de Vendas / Ticket</value>
+		<value>Prodaja Ukupno / ulaznice</value>
 	</data>
 	<data name="Incomes_f" xml:space="preserve">
-		<value>{0} Rendimentos</value>
+		<value>{0} Prihodi</value>
 	</data>
 	<data name="TotalAmount_f" xml:space="preserve">
-		<value>{0} Valor Total:</value>
+		<value>{0} Ukupan iznos:</value>
 	</data>
 	<data name="TicketTotal_f" xml:space="preserve">
-		<value>Total {0}:</value>
+		<value>Ukupno {0}:</value>
 	</data>
 	<data name="TotalAmountDivTag_f" xml:space="preserve">
-		<value>Valor Total / {0}:</value>
+		<value>Ukupan iznos / {0}:</value>
 	</data>
 	<data name="UserSales" xml:space="preserve">
-		<value>Vendas do usuário</value>
+		<value>Upute Prodaja</value>
 	</data>
 	<data name="ItemSales" xml:space="preserve">
-		<value>Vendas de itens</value>
+		<value>Artikl Prodaja</value>
 	</data>
 	<data name="CostReport" xml:space="preserve">
-		<value>Relatório de custo</value>
+		<value>Troškovi izvješće</value>
 	</data>
 	<data name="InventoryReport" xml:space="preserve">
-		<value>Relatório de Inventário</value>
+		<value>Izvješće o inventaru</value>
 	</data>
 	<data name="CsvBuilder" xml:space="preserve">
-		<value>CSV construtor</value>
+		<value>CSV Builder</value>
 	</data>
 	<data name="AverageCost" xml:space="preserve">
-		<value>Custo Médio</value>
+		<value>Prosječna cijena</value>
 	</data>
 	<data name="ThereAreNoCostTransactionsInThisPeriod" xml:space="preserve">
-		<value>Não há transações dos custos neste período de trabalho.</value>
+		<value>Ne postoje troškovi transakcije u ovom radnog vremena.</value>
 	</data>
 	<data name="InventoryPurchaseReport" xml:space="preserve">
-		<value>Relatório de Compra de Inventário</value>
+		<value>Popis za kupnju Prijavi</value>
 	</data>
 	<data name="InventoryGroup" xml:space="preserve">
-		<value>Grupo de Inventário</value>
+		<value>Popis grupa</value>
 	</data>
 	<data name="AveragePrice_ab" xml:space="preserve">
-		<value>PreçoMed</value>
+		<value>Avg.Price</value>
 	</data>
 	<data name="ItemSalesReport" xml:space="preserve">
-		<value>Relatório das vendas do item</value>
+		<value>Točka prodaje Prijavi</value>
 	</data>
 	<data name="SalesByItemGroup" xml:space="preserve">
-		<value>Vendas por Grupo de itens</value>
+		<value>Prodaja točke Grupe</value>
 	</data>
 	<data name="QuantitiesByItemGroup" xml:space="preserve">
-		<value>Quantidades por Grupo de itens</value>
+		<value>Količine po točki Grupe</value>
 	</data>
 	<data name="Voids" xml:space="preserve">
-		<value>Ânulos</value>
+		<value>Pore</value>
 	</data>
 	<data name="Gifts" xml:space="preserve">
-		<value>Presentes</value>
+		<value>Pokloni</value>
 	</data>
 	<data name="Discounts" xml:space="preserve">
-		<value>Descontos</value>
+		<value>Popusti</value>
 	</data>
 	<data name="Tickets" xml:space="preserve">
-		<value>Tickets</value>
+		<value>Ulaznice</value>
 	</data>
 	<data name="ByPersonnel_f" xml:space="preserve">
-		<value>{0} pelo Usuário</value>
+		<value>{0} od strane korisnika</value>
 	</data>
 	<data name="NoPurchaseTransactionInCurrentDateRange" xml:space="preserve">
-		<value>Não há transações de compra no intervalo de datas.</value>
+		<value>Nema više kupovnih transakcija u razdoblju.</value>
 	</data>
 	<data name="TicketTemplate" xml:space="preserve">
-		<value>Modelo de ticket</value>
+		<value>Predložak ulaznica</value>
 	</data>
 	<data name="KitchenOrderTemplate" xml:space="preserve">
-		<value>Modelo de ordem da cozinha</value>
+		<value>Kuhinja Narudžbe predlošku</value>
 	</data>
 	<data name="InvoicePrinterTemplate" xml:space="preserve">
-		<value>Modelo da fatura</value>
+		<value>Račun predlošku</value>
 	</data>
 	<data name="TicketTemplateHeaderValue" xml:space="preserve">
-		<value>&lt;T&gt;TICKET
-&lt;L00&gt;Data: {TICKET DATE}
-&lt;L00&gt;Horário: {TIME}
-&lt;L00&gt;Nº da mesa: {TABLE}
-&lt;L00&gt;Nº do ticket: {TICKET NO}
-&lt;F&gt;- </value>
+		<value>&lt;T&gt;ULAZNICA
+&lt;L00&gt;Datum: {TICKET DATE}
+&lt;L00&gt;Vrijeme: {TIME}
+&lt;L00&gt;Tablica br: {TABLE}
+&lt;L00&gt;Ulaznica broj: {TICKET NO}
+&lt;F&gt;-</value>
 	</data>
 	<data name="TicketTemplateFooterValue" xml:space="preserve">
 		<value>&lt;F&gt;=
 &lt;EB&gt;
 &lt;J10&gt; {IF DISCOUNT}
-&lt;J10&gt; [Presente total: | {GIFT TOTAL}]
-&lt;J10&gt;Total: | {TICKET TOTAL} 
+&lt;J10&gt; [Ukupno Poklon: | {GIFT TOTAL}]
+&lt;J10&gt; Ukupno: | {TICKET TOTAL}
 {IF PAID}
 &lt;DB&gt;
 &lt;F&gt;=
-&lt;C10&gt; O B R I G A D O </value>
+&lt;C10&gt; T H N K O Y U</value>
 	</data>
 	<data name="KitchenTemplateHeaderValue" xml:space="preserve">
-		<value>&lt;T&gt; {TABLE USER}
+		<value>&lt;T&gt;{TABLE USER}
 &lt;F&gt;-
-&lt;L00&gt; Data: {TICKET DATE}
-&lt;L00&gt; Horário: {TIME}
-&lt;L00&gt; Nº da mesa: {TABLE}
-&lt;L00&gt;Nº ticket: {TICKET NO}
-&lt;F&gt;- </value>
+&lt;L00&gt;Datum: {TICKET DATE}
+&lt;L00&gt;Vrijeme: {TIME}
+&lt;L00&gt;Tablica br: {TABLE}
+&lt;L00&gt;Ulaznica broj: {TICKET NO}
+&lt;F&gt;-</value>
 	</data>
 	<data name="KitchenTemplateVoidedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; ** VOID ** {QUANTITY} {NAME}
-        * {PROPERTIES} </value>
+		<value>&lt;L00&gt;**VOID** {QUANTITY} {NAME}
+        * {PROPERTIES}</value>
 	</data>
 	<data name="InvoiceTemplateHeaderValue" xml:space="preserve">
-		<value>&lt;T&gt;FATURA
-&lt;L00&gt; Data: {TICKET DATE}
-&lt;L00&gt; Horário: {TIME}
-&lt;L00&gt; Mesa: {TABLE}
-&lt;L00&gt;Nº do ticket: {TICKET NO}
-&lt;F&gt;- </value>
+		<value>&lt;T&gt;RAČUN
+&lt;L00&gt;Datum: {TICKET DATE}
+&lt;L00&gt;Vrijeme: {TIME}
+&lt;L00&gt;Tablica br: {TABLE}
+&lt;L00&gt;Ulaznica broj: {TICKET NO}
+&lt;F&gt;-</value>
 	</data>
 	<data name="KitchenPrinter" xml:space="preserve">
-		<value>Impressora da cozinha</value>
+		<value>Kuhinja ispis</value>
 	</data>
 	<data name="InvoicePrinter" xml:space="preserve">
-		<value>Impressora da fatura</value>
+		<value>Račun ispis</value>
 	</data>
 	<data name="Server" xml:space="preserve">
-		<value>Servidor</value>
+		<value>Server</value>
 	</data>
 	<data name="PrintBill" xml:space="preserve">
-		<value>Impressão da conta</value>
+		<value>Ispis Bill</value>
 	</data>
 	<data name="PrintOrdersToKitchenPrinter" xml:space="preserve">
-		<value>Imprimir ordens na impressora da cozinha</value>
+		<value>Ispis naloga za Kuhinja pisač</value>
 	</data>
 	<data name="AllTables" xml:space="preserve">
-		<value>Todas as mesas</value>
+		<value>Svi stolovi</value>
 	</data>
 	<data name="Search" xml:space="preserve">
-		<value>Pesquisar</value>
+		<value>Traži</value>
 	</data>
 	<data name="OpenTicketButtonDuration" xml:space="preserve">
 		<value>{0} min</value>
 	</data>
 	<data name="CIDSettings" xml:space="preserve">
-		<value>Configurações CID</value>
+		<value>CID Postavke</value>
 	</data>
 	<data name="Voucher_r" xml:space="preserve">
-		<value>Comprovante</value>
+		<value>Voucher</value>
 	</data>
 	<data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
-		<value>&lt;L00&gt; {QUANTITY} {NAME} | PRESENTE</value>
+		<value>&lt;L00&gt;{QUANTITY} {NAME} | DAR</value>
 	</data>
 	<data name="NavigationPermissions" xml:space="preserve">
-		<value>Permissões da navegação</value>
+		<value>Nalazite se dozvole</value>
 	</data>
 	<data name="DepartmentPermissions" xml:space="preserve">
-		<value>Permissões do departamento</value>
+		<value>Odjel za dozvole</value>
 	</data>
 	<data name="TicketPermissions" xml:space="preserve">
-		<value>Permissões de ticket</value>
+		<value>Dozvole ulaznica</value>
 	</data>
 	<data name="SettlePermissions" xml:space="preserve">
-		<value>Permissões de pagamento</value>
+		<value>Dozvole plaćanja</value>
 	</data>
 	<data name="ReportPermissions" xml:space="preserve">
-		<value>Permissões dos relatórios</value>
+		<value>Izvješćivanje dozvole</value>
 	</data>
 	<data name="NoTicketsFoundForTag" xml:space="preserve">
-		<value>Não encontrou tickets marcados com {0} tag.</value>
+		<value>Nema ulaznica naći tagged with {0} oznaku.</value>
 	</data>
 	<data name="RemainingAmountIfPaidValue_f" xml:space="preserve">
-		<value>Pago: | {0}
-&lt;J&gt; TOTAL Grande : | {1} </value>
+		<value>Plaćeni: | {0}
+&lt;J&gt; Grand UKUPNO: | {1}</value>
 	</data>
 	<data name="DiscountTotalAndTicketTotalValue_f" xml:space="preserve">
-		<value>TOTAL TICKET: | {0}
-&lt;J&gt; Desconto: | {1} </value>
+		<value>Ulaznica UKUPNO: | {0}
+&lt;J&gt; Popust: | {1}</value>
 	</data>
 	<data name="Restaurant" xml:space="preserve">
-		<value>Restaurante</value>
+		<value>Restoran</value>
 	</data>
 	<data name="IfNegativeDiscountValue_f" xml:space="preserve">
-		<value>&lt;J&gt; Arredondamento: | {0}</value>
+		<value>&lt;J&gt; Zaokruživanje: | {0}</value>
 	</data>
 	<data name="ExportSalesData" xml:space="preserve">
-		<value>Exportar dados de vendas</value>
+		<value>Izvoz podataka o prodaji</value>
 	</data>
 	<data name="ClickLinksToExportData" xml:space="preserve">
-		<value>Selecione intervalo de datas, atualiza o relatório e clique no link relacionado para exportar dados.</value>
+		<value>Odaberite raspon datuma i Refresh izvješće i kliknite vezu vezane za izvoz podataka.</value>
 	</data>
 	<data name="FooterTemplate" xml:space="preserve">
-		<value>Modelo de rodapé</value>
+		<value>Podnožje predlošku</value>
 	</data>
 	<data name="UiLanguage" xml:space="preserve">
-		<value>Língua do programa</value>
+		<value>UI Jezik</value>
 	</data>
 	<data name="OverrideWindowsRegionalSettings" xml:space="preserve">
-		<value>Substituir configurações regionais do Windows</value>
+		<value>Override regionalne postavke sustava Windows</value>
 	</data>
 	<data name="RuleAction" xml:space="preserve">
-		<value>Ação</value>
+		<value>Akcija</value>
 	</data>
 	<data name="RuleActions" xml:space="preserve">
-		<value>Ações</value>
+		<value>Akcije</value>
 	</data>
 	<data name="NoAction" xml:space="preserve">
-		<value>Nenhuma Ação</value>
+		<value>Ne Akcija</value>
 	</data>
 	<data name="ShowMessage" xml:space="preserve">
-		<value>Mostrar mensagem</value>
+		<value>Prikaži poruku</value>
 	</data>
 	<data name="ActionName" xml:space="preserve">
-		<value>Nome da Ação</value>
+		<value>Naziv radnje</value>
 	</data>
 	<data name="ActionType" xml:space="preserve">
-		<value>Tipo de Ação</value>
+		<value>Akcija Tip</value>
 	</data>
 	<data name="ActionParameter" xml:space="preserve">
-		<value>Parâmetro da Ação</value>
+		<value>Akcija parametara</value>
 	</data>
 	<data name="Parameters" xml:space="preserve">
-		<value>Parâmetros</value>
+		<value>Parametri</value>
 	</data>
 	<data name="Message" xml:space="preserve">
-		<value>Mensagem</value>
+		<value>Poruka</value>
 	</data>
 	<data name="Rule" xml:space="preserve">
-		<value>Regra</value>
+		<value>Pravilo</value>
 	</data>
 	<data name="RuleName" xml:space="preserve">
-		<value>Nome da Regra</value>
+		<value>Pravilo Ime</value>
 	</data>
 	<data name="EventName" xml:space="preserve">
-		<value>Nome do Evento</value>
+		<value>Event Name</value>
 	</data>
 	<data name="Actions" xml:space="preserve">
-		<value>Ações</value>
+		<value>Akcije</value>
 	</data>
 	<data name="NewProperty" xml:space="preserve">
-		<value>Nova propriedade</value>
+		<value>Novi nekretnine</value>
 	</data>
 	<data name="Move" xml:space="preserve">
-		<value>Mover</value>
+		<value>Premjestiti</value>
 	</data>
 	<data name="MoveTicketLine" xml:space="preserve">
-		<value>Mover</value>
+		<value>Premjestiti</value>
 	</data>
 	<data name="Title" xml:space="preserve">
-		<value>Título</value>
+		<value>Naslov</value>
 	</data>
 	<data name="DisplayPopup" xml:space="preserve">
-		<value>Mostrar Popup</value>
+		<value>Prikaz Popup</value>
 	</data>
 	<data name="DeleteErrorInventoryItemUsedInEndOfDayRecord" xml:space="preserve">
-		<value>Não é possível excluir porque um final de dia Custo documento contém este item de estoque.</value>
+		<value>Ne možete izbrisati, jer na kraju dana troškovima dokumenta sadrži ovu stavku inventara.</value>
 	</data>
 	<data name="Rules" xml:space="preserve">
-		<value>Regras</value>
+		<value>Pravila</value>
 	</data>
 	<data name="Action" xml:space="preserve">
-		<value>Ação</value>
+		<value>Akcija</value>
 	</data>
 	<data name="ActionList" xml:space="preserve">
-		<value>Lista de Ações</value>
+		<value>Akcija Popis</value>
 	</data>
 	<data name="SelectActions" xml:space="preserve">
-		<value>Selecione Ações</value>
+		<value>Odaberite Akcije</value>
 	</data>
 	<data name="TagValue" xml:space="preserve">
-		<value>Valor do Tag</value>
+		<value>Tag vrijednost</value>
 	</data>
 	<data name="CustomerNote" xml:space="preserve">
-		<value>Nota do cliente</value>
+		<value>Korisnička Bilješka</value>
 	</data>
 	<data name="GiftTotal" xml:space="preserve">
-		<value>Presente total</value>
+		<value>Poklon Ukupno</value>
 	</data>
 	<data name="UserLogin" xml:space="preserve">
-		<value>Login de Usuário</value>
+		<value>Upute Prijava</value>
 	</data>
 	<data name="UserLogout" xml:space="preserve">
-		<value>Usuário Sair</value>
+		<value>Upute za Odjava</value>
 	</data>
 	<data name="TicketCreated" xml:space="preserve">
-		<value>Ticket criado</value>
+		<value>Objavljeno ulaznica</value>
 	</data>
 	<data name="TicketTagSelected" xml:space="preserve">
-		<value>Tag Ticket Selecionado</value>
+		<value>Ulaznica Tag Odabrani</value>
 	</data>
 	<data name="CustomerSelectedForTicket" xml:space="preserve">
-		<value>Cliente Selecionado para ticket</value>
+		<value>Korisnička Odabrani za ulaznice</value>
 	</data>
 	<data name="TicketTotalChanged" xml:space="preserve">
-		<value>Total do ticket Mudou</value>
+		<value>Ulaznica Ukupno Promijenjen</value>
 	</data>
 	<data name="WorkPeriodStarted" xml:space="preserve">
-		<value>Período do trabalho iniciado</value>
+		<value>Radnog vremena rada</value>
 	</data>
 	<data name="WorkPeriodEnded" xml:space="preserve">
-		<value>Período de trabalho encerrado</value>
+		<value>Rad period završeno na dan</value>
 	</data>
 	<data name="ExecuteActionsIf" xml:space="preserve">
-		<value>Condições</value>
+		<value>Uvjeti</value>
 	</data>
 	<data name="ReportName" xml:space="preserve">
-		<value>Nome do relatório</value>
+		<value>Naziv izvješća</value>
 	</data>
 	<data name="FileName" xml:space="preserve">
-		<value>Nome do arquivo</value>
+		<value>Naziv datoteke</value>
 	</data>
 	<data name="DiscountPercentage" xml:space="preserve">
-		<value>Percentual de desconto</value>
+		<value>Postotak popusta</value>
 	</data>
 	<data name="TriggerName" xml:space="preserve">
-		<value>Nome gatilho</value>
+		<value>Trigger Ime</value>
 	</data>
 	<data name="Expression" xml:space="preserve">
-		<value>Expressão</value>
+		<value>Izraz</value>
 	</data>
 	<data name="ExpressionBuilder" xml:space="preserve">
-		<value>Construtor de expressões</value>
+		<value>Expression Builder</value>
 	</data>
 	<data name="CommonSettings" xml:space="preserve">
-		<value>Configurações comuns</value>
+		<value>Zajedničke postavke</value>
 	</data>
 	<data name="Minute" xml:space="preserve">
-		<value>Minuto</value>
+		<value>Minuta</value>
 	</data>
 	<data name="Hour" xml:space="preserve">
-		<value>Hora</value>
+		<value>Sat</value>
 	</data>
 	<data name="Day" xml:space="preserve">
-		<value>Dia</value>
+		<value>Dan</value>
 	</data>
 	<data name="Month" xml:space="preserve">
-		<value>Mês</value>
+		<value>Mjesec</value>
 	</data>
 	<data name="Weekday" xml:space="preserve">
-		<value>Dia da semana</value>
+		<value>Radni dan</value>
 	</data>
 	<data name="EveryMinute" xml:space="preserve">
-		<value>A cada minuto</value>
+		<value>Svake minute</value>
 	</data>
 	<data name="Every5Minutes" xml:space="preserve">
-		<value>A cada 5 minutos</value>
+		<value>Svakih 5 minuta</value>
 	</data>
 	<data name="TwiceAnHour" xml:space="preserve">
-		<value>Duas vezes por hora</value>
+		<value>Dva sata</value>
 	</data>
 	<data name="OnceAnHour" xml:space="preserve">
-		<value>Uma vez por hora</value>
+		<value>Nakon sat vremena</value>
 	</data>
 	<data name="TwiceADay" xml:space="preserve">
-		<value>Duas vezes por dia</value>
+		<value>Dva puta na dan</value>
 	</data>
 	<data name="OnceADay" xml:space="preserve">
-		<value>Uma vez por dia</value>
+		<value>Jednom na dan</value>
 	</data>
 	<data name="OnceAWeek" xml:space="preserve">
-		<value>Uma vez por semana</value>
+		<value>Jednom tjedno</value>
 	</data>
 	<data name="FirstAndFifteenth" xml:space="preserve">
-		<value>1º e 15º</value>
+		<value>1. i 15.</value>
 	</data>
 	<data name="OnceAMonth" xml:space="preserve">
-		<value>Uma vez por mês</value>
+		<value>Jednom mjesečno</value>
 	</data>
 	<data name="OnceAYear" xml:space="preserve">
-		<value>Uma vez por ano</value>
+		<value>Jednom godišnje</value>
 	</data>
 	<data name="EveryOtherMinute" xml:space="preserve">
-		<value>A cada 2 minutos</value>
+		<value>Svaki Ostalo minute</value>
 	</data>
 	<data name="Every10Minutes" xml:space="preserve">
-		<value>A cada 10 minutos</value>
+		<value>Svakih 10 minuta</value>
 	</data>
 	<data name="Every15Minutes" xml:space="preserve">
-		<value>A cada 15 minutos</value>
+		<value>Svakih 15 minuta</value>
 	</data>
 	<data name="Every30Minutes" xml:space="preserve">
-		<value>Cada 30 Minutos</value>
+		<value>Svakih 30 minuta</value>
 	</data>
 	<data name="TopOfTheHour" xml:space="preserve">
-		<value>Início da hora</value>
+		<value>Vrh sat</value>
 	</data>
 	<data name="QuarterPast" xml:space="preserve">
-		<value>Passado trimestre</value>
+		<value>Četvrt</value>
 	</data>
 	<data name="HalfPast" xml:space="preserve">
-		<value>Meia</value>
+		<value>Pola</value>
 	</data>
 	<data name="QuarterTil" xml:space="preserve">
-		<value>Trimestre até</value>
+		<value>Četvrtina til</value>
 	</data>
 	<data name="EveryHour" xml:space="preserve">
-		<value>Todas as horas</value>
+		<value>Svaki sat</value>
 	</data>
 	<data name="EveryOtherHour" xml:space="preserve">
-		<value>Cada duas horas</value>
+		<value>Svaki drugi sat</value>
 	</data>
 	<data name="Every3Hours" xml:space="preserve">
-		<value>A cada 3 horas</value>
+		<value>Svakih 3 sata</value>
 	</data>
 	<data name="Every4Hours" xml:space="preserve">
-		<value>A cada 4 horas</value>
+		<value>Svakih 4 sata</value>
 	</data>
 	<data name="Every6Hours" xml:space="preserve">
-		<value>A cada 6 horas</value>
+		<value>Svakih 6 sati</value>
 	</data>
 	<data name="Every12Hours" xml:space="preserve">
-		<value>A cada 12 horas</value>
+		<value>Svakih 12 sati</value>
 	</data>
 	<data name="TwelveAmMidnight" xml:space="preserve">
-		<value>Meia-noite 12 hs</value>
+		<value>00:00 ponoć</value>
 	</data>
 	<data name="Noon" xml:space="preserve">
-		<value>Meio-dia</value>
+		<value>podne</value>
 	</data>
 	<data name="PM" xml:space="preserve">
-		<value>Da tarde</value>
+		<value>popodne</value>
 	</data>
 	<data name="AM" xml:space="preserve">
-		<value>Da manhã</value>
+		<value>prije podne</value>
 	</data>
 	<data name="EveryDay" xml:space="preserve">
-		<value>Todos os dias</value>
+		<value>Svaki dan</value>
 	</data>
 	<data name="EveryOtherDay" xml:space="preserve">
-		<value>A cada dois dias</value>
+		<value>Svaki drugi dan</value>
 	</data>
 	<data name="EveryMonth" xml:space="preserve">
-		<value>Todos os meses</value>
+		<value>Svaki mjesec</value>
 	</data>
 	<data name="EveryOtherMonth" xml:space="preserve">
-		<value>A cada 2 meses</value>
+		<value>Svaki drugi mjesec</value>
 	</data>
 	<data name="Every3Months" xml:space="preserve">
-		<value>A cada 3 meses</value>
+		<value>Svaka 3 mjeseca</value>
 	</data>
 	<data name="Every6Months" xml:space="preserve">
-		<value>A cada 6 meses</value>
+		<value>Svakih 6 mjeseci</value>
 	</data>
 	<data name="EveryWeekday" xml:space="preserve">
-		<value>Cada dia da semana</value>
+		<value>Svaki dan u tjednu</value>
 	</data>
 	<data name="MonThruFri" xml:space="preserve">
-		<value>Seg sex através</value>
+		<value>Pon kroz pet</value>
 	</data>
 	<data name="SatAndSun" xml:space="preserve">
-		<value>Sáb e dom.</value>
+		<value>Sub i Ned.</value>
 	</data>
 	<data name="MonWedFri" xml:space="preserve">
-		<value>Seg, Qua, Sex</value>
+		<value>Pon, sri, pet.</value>
 	</data>
 	<data name="TuesAndThurs" xml:space="preserve">
-		<value>Ter qui</value>
+		<value>Ut. I čet</value>
 	</data>
 	<data name="Trigger" xml:space="preserve">
-		<value>Desencadear</value>
+		<value>Izazvati</value>
 	</data>
 	<data name="Triggers" xml:space="preserve">
-		<value>Desencadeia</value>
+		<value>Aktivira</value>
 	</data>
 	<data name="ExpressionValid" xml:space="preserve">
-		<value>Expressão válida</value>
+		<value>Vrijedi izraz</value>
 	</data>
 	<data name="ErrorInExpression" xml:space="preserve">
-		<value>Erro na Expressão</value>
+		<value>Pogreška u izrazu</value>
 	</data>
 	<data name="TriggerTestResultMessage_f" xml:space="preserve">
-		<value>desencadear seguinte: {0}
-Irá disparar após {1} dias, {2} horas, {3} minutos </value>
+		<value>Sljedeća Trigger: {0}
+Će pokrenuti nakon {1} dana, {2} sati, {3} minuta</value>
 	</data>
 	<data name="ThereIsAnotherPriceDefinition_f" xml:space="preserve">
-		<value>Há outra definição de preços com {0} tag</value>
+		<value>Postoji još jedna definicija Cijena s {0} tag</value>
 	</data>
 	<data name="PriceDefinition" xml:space="preserve">
-		<value>Definição de preço</value>
+		<value>Cijena Definicija</value>
 	</data>
 	<data name="PriceDefinitions" xml:space="preserve">
-		<value>Definições de preços</value>
+		<value>Cijena Definicije</value>
 	</data>
 	<data name="ClearFilter" xml:space="preserve">
-		<value>Limpar filtro</value>
+		<value>Clear filter</value>
 	</data>
 	<data name="From" xml:space="preserve">
-		<value>De:</value>
+		<value>Od:</value>
 	</data>
 	<data name="To" xml:space="preserve">
-		<value>Para:</value>
+		<value>Da biste:</value>
 	</data>
 	<data name="TipsTotal" xml:space="preserve">
-		<value>Total de percentagem</value>
+		<value>Savjeti Ukupno</value>
 	</data>
 	<data name="TicketTipTotal" xml:space="preserve">
-		<value>Total de percentagem</value>
+		<value>Savjet Ukupno</value>
 	</data>
 	<data name="LinePriceTag" xml:space="preserve">
-		<value># Linha: Price Tag</value>
+		<value>Line #: Cijena Tag</value>
 	</data>
 	<data name="TicketTipTotalAmount" xml:space="preserve">
-		<value>Quantidade total de ponta bilhete</value>
+		<value>Ukupna količina ulaznica vrh</value>
 	</data>
 	<data name="PriceTag" xml:space="preserve">
-		<value>Price Tag</value>
+		<value>Cijena Tag</value>
 	</data>
 	<data name="SaveErrorZeroOrNullInventoryLines" xml:space="preserve">
-		<value>Não é possível salvar porque há linhas com itens de estoque vazias ou quantidade zero</value>
+		<value>Ne može spasiti, jer postoji povezanost s praznim zaliha proizvoda ili nulte količina</value>
 	</data>
 	<data name="TriggerExecuted" xml:space="preserve">
-		<value>Disparador executado</value>
+		<value>Trigger izvršena</value>
 	</data>
 	<data name="MessageReceived" xml:space="preserve">
-		<value>Mensagem Recebida</value>
+		<value>Poruka primljena</value>
 	</data>
 	<data name="MenuItemName" xml:space="preserve">
-		<value>Nome do item de menu</value>
+		<value>Naziv Izbornika</value>
 	</data>
 	<data name="PortionName" xml:space="preserve">
-		<value>Nome Parcela</value>
+		<value>Dio Ime</value>
 	</data>
 	<data name="LinesGroupedByTag" xml:space="preserve">
-		<value>Linhas agrupadas por Tag</value>
+		<value>Linije Grupirano po Tag</value>
 	</data>
 	<data name="SendEmail" xml:space="preserve">
-		<value>Enviar e-mail</value>
+		<value>Pošalji e-poštu</value>
 	</data>
 	<data name="AddTicketDiscount" xml:space="preserve">
-		<value>Adicionar Desconto de Bilheteira</value>
+		<value>Dodaj ulaznica popust</value>
 	</data>
 	<data name="AddTicketItem" xml:space="preserve">
-		<value>Adicionar Item Bilheteira</value>
+		<value>Dodaj Ticket stavku</value>
 	</data>
 	<data name="UpdateTicketTag" xml:space="preserve">
-		<value>Atualize Tag Bilheteira</value>
+		<value>Ažurirajte Ticket oznaku</value>
 	</data>
 	<data name="UpdatePriceTag" xml:space="preserve">
-		<value>Alterar Lista de Preços</value>
+		<value>Promjena Cjenik</value>
 	</data>
 	<data name="RefreshCache" xml:space="preserve">
-		<value>Atualizar Cache</value>
+		<value>Osvježi Cache</value>
 	</data>
 	<data name="BroadcastMessage" xml:space="preserve">
-		<value>Mensagem de Broadcast</value>
+		<value>Prijenos poruka</value>
 	</data>
 	<data name="DisplayAppPath" xml:space="preserve">
-		<value>Mostrar Caminho App</value>
+		<value>Prikaz App put</value>
 	</data>
 	<data name="DisplayUserPath" xml:space="preserve">
-		<value>Mostrar caminho do usuário</value>
+		<value>Prikaz korisnika put</value>
 	</data>
 	<data name="SaveReportToFile" xml:space="preserve">
-		<value>Salvar Relatório para Arquivo</value>
+		<value>Spremi izvješće u datoteku</value>
 	</data>
 	<data name="PriceDefinitonName" xml:space="preserve">
-		<value>Nome Definiton Preço</value>
+		<value>Cijena definiciju, Ime</value>
 	</data>
 	<data name="Previous" xml:space="preserve">
-		<value>Anterior</value>
+		<value>Prethodna</value>
 	</data>
 	<data name="Next" xml:space="preserve">
-		<value>Próximo</value>
+		<value>Sljedeći</value>
 	</data>
 	<data name="AddTag" xml:space="preserve">
-		<value>Adicionar Tag</value>
+		<value>Dodaj oznaku</value>
 	</data>
 	<data name="Delete_ab" xml:space="preserve">
 		<value>Del</value>
@@ -2318,555 +2329,555 @@ Irá disparar após {1} dias, {2} horas, {3} minutos </value>
 		<value>Div</value>
 	</data>
 	<data name="Print_ab" xml:space="preserve">
-		<value>Prn</value>
+		<value>PRN</value>
 	</data>
 	<data name="TicketMovedRetryLastOperation_f" xml:space="preserve">
-		<value>Ticket mudou-se para {0}. Suas últimas alterações não salvas.</value>
+		<value>Ulaznica preselila u {0}. Vaše najnovije promjene nisu spremljene.</value>
 	</data>
 	<data name="TicketPaidChangesNotSaved" xml:space="preserve">
-		<value>Bilhete pago. Suas últimas alterações não salvas.</value>
+		<value>Plaćena ulaznica. Vaše najnovije promjene nisu spremljene.</value>
 	</data>
 	<data name="TicketChangedRetryLastOperation" xml:space="preserve">
-		<value>Bilhete alterado. Suas últimas alterações não salvas.</value>
+		<value>Ulaznica promijenilo. Vaše najnovije promjene nisu spremljene.</value>
 	</data>
 	<data name="TicketPaidLastChangesNotSaved" xml:space="preserve">
-		<value>Bilhete pago. Suas últimas alterações não salvas.</value>
+		<value>Ulaznica plaćeni. Vaše najnovije promjene nisu spremljene.</value>
 	</data>
 	<data name="TableChangedRetryLastOperation_f" xml:space="preserve">
-		<value>{0} tabela alterado. Suas últimas alterações não salvas.</value>
+		<value>{0} stol promijenio. Vaše najnovije promjene nisu spremljene.</value>
 	</data>
 	<data name="NewLiabilityTransaction" xml:space="preserve">
-		<value>Nova operação de crédito</value>
+		<value>Nova kreditna transakcija</value>
 	</data>
 	<data name="NewReceivableTransaction" xml:space="preserve">
-		<value>Nova operação de débito</value>
+		<value>Novo zaduženje transakcija</value>
 	</data>
 	<data name="AddLiability_r" xml:space="preserve">
-		<value>Crédito</value>
+		<value>Kredit</value>
 	</data>
 	<data name="AddReceivable_r" xml:space="preserve">
-		<value>Débito</value>
+		<value>Zaduženje</value>
 	</data>
 	<data name="VoidTicketItems" xml:space="preserve">
-		<value>Invalidar artigos do bilhete</value>
+		<value>Poništiti ulaznica stavke</value>
 	</data>
 	<data name="SaveErrorMultipleDefaultTerminals" xml:space="preserve">
-		<value>Não crie mais de um terminal padrão</value>
+		<value>Nemojte stvarati više od jednog terminala zadani</value>
 	</data>
 	<data name="AllDiscountsRemoved" xml:space="preserve">
-		<value>Todos os descontos são removidos devido valor do desconto total calculado é maior do que a quantidade de bilhetes.</value>
+		<value>Svi popusti uklonjen jer izračuna ukupnog iznosa popusta veći od iznosa karte.</value>
 	</data>
 	<data name="WeightBarcodeItemIdFormat" xml:space="preserve">
-		<value>Peso Barcode Formato Item Id</value>
+		<value>Težina Barcode ID predmeta Format</value>
 	</data>
 	<data name="SettingCheck" xml:space="preserve">
-		<value>Definir Verificação</value>
+		<value>Postavljanje provjeru</value>
 	</data>
 	<data name="UpdateProgramSetting" xml:space="preserve">
-		<value>Atualize ajuste do programa</value>
+		<value>Ažurirajte postavke programa</value>
 	</data>
 	<data name="CashPermissions" xml:space="preserve">
-		<value>Permissões de Caixa</value>
+		<value>Novac Dopuštenja</value>
 	</data>
 	<data name="CanMakeCashTransaction" xml:space="preserve">
-		<value>Pode fazer transação em dinheiro</value>
+		<value>Može napraviti gotovinskoj transakciji</value>
 	</data>
 	<data name="CanMakeCreditOrDeptTransaction" xml:space="preserve">
-		<value>Pode fazer operação de crédito ou débito</value>
+		<value>Može napraviti kreditne ili debitne transakcije</value>
 	</data>
 	<data name="CanMakeAccountTransaction" xml:space="preserve">
-		<value>Pode fazer operação conta</value>
+		<value>Može napraviti račun transakciju</value>
 	</data>
 	<data name="SubButtonHeight" xml:space="preserve">
-		<value>Altura Botão Sub</value>
+		<value>Sub Button Visina</value>
 	</data>
 	<data name="MaxItems" xml:space="preserve">
-		<value>Itens Max.</value>
+		<value>Max Proizvodi</value>
 	</data>
 	<data name="SortType" xml:space="preserve">
-		<value>Tipo de classificação</value>
+		<value>Sortiraj Tip</value>
 	</data>
 	<data name="DeleteErrorProductUsedInMenuItemProperty" xml:space="preserve">
-		<value>Não é possível excluir, pois o produto atribuído a uma propriedade item de menu</value>
+		<value>Ne možete izbrisati jer ovaj proizvod dodijeljena imovine stavke izbornika</value>
 	</data>
 	<data name="VatTemplates" xml:space="preserve">
-		<value>Modelos Fiscais</value>
+		<value>Porezni Predlošci</value>
 	</data>
 	<data name="VatTemplate" xml:space="preserve">
-		<value>Template Imposto</value>
+		<value>Porezna predlošku</value>
 	</data>
 	<data name="VatTemplateName" xml:space="preserve">
-		<value>Nome do modelo imposto</value>
+		<value>Porezna Naziv predloška</value>
 	</data>
 	<data name="Rate" xml:space="preserve">
-		<value>Taxa</value>
+		<value>Stopa</value>
 	</data>
 	<data name="VatIncludedToPrice" xml:space="preserve">
-		<value>Incluído IVA para Preço</value>
+		<value>Pristojba uključena u cijenu</value>
 	</data>
 	<data name="Vat" xml:space="preserve">
-		<value>Imposto</value>
+		<value>Porez</value>
 	</data>
 	<data name="VatTotal" xml:space="preserve">
-		<value>Total de Imposto</value>
+		<value>Ukupno porez na</value>
 	</data>
 	<data name="UpdateTicketVat" xml:space="preserve">
-		<value>Atualize Imposto de Bilheteira</value>
+		<value>Ažurirajte Ticket porez</value>
 	</data>
 	<data name="One" xml:space="preserve">
-		<value>Um</value>
+		<value>Jedan</value>
 	</data>
 	<data name="Two" xml:space="preserve">
-		<value>Dois</value>
+		<value>Dva</value>
 	</data>
 	<data name="Three" xml:space="preserve">
-		<value>Três</value>
+		<value>Tri</value>
 	</data>
 	<data name="Four" xml:space="preserve">
-		<value>Quatro</value>
+		<value>Četiri</value>
 	</data>
 	<data name="Five" xml:space="preserve">
-		<value>Cinco</value>
+		<value>Pet</value>
 	</data>
 	<data name="Six" xml:space="preserve">
-		<value>Seis</value>
+		<value>Šest</value>
 	</data>
 	<data name="Seven" xml:space="preserve">
-		<value>Sete</value>
+		<value>Sedam</value>
 	</data>
 	<data name="Eight" xml:space="preserve">
-		<value>Oito</value>
+		<value>Osam</value>
 	</data>
 	<data name="Nine" xml:space="preserve">
-		<value>Nove</value>
+		<value>Devet</value>
 	</data>
 	<data name="Nineteen" xml:space="preserve">
-		<value>Dezenove</value>
+		<value>Devetnaest</value>
 	</data>
 	<data name="Eighteen" xml:space="preserve">
-		<value>Dezoito</value>
+		<value>Osamnaest</value>
 	</data>
 	<data name="Seventeen" xml:space="preserve">
-		<value>Dezessete</value>
+		<value>Sedamnaest</value>
 	</data>
 	<data name="Sixteen" xml:space="preserve">
-		<value>Dezesseis</value>
+		<value>Šesnaest</value>
 	</data>
 	<data name="Fifteen" xml:space="preserve">
-		<value>Quinze</value>
+		<value>Petnaest</value>
 	</data>
 	<data name="Fourteen" xml:space="preserve">
-		<value>Catorze</value>
+		<value>Četrnaest</value>
 	</data>
 	<data name="Thirteen" xml:space="preserve">
-		<value>Treze</value>
+		<value>Trinaest</value>
 	</data>
 	<data name="Twelve" xml:space="preserve">
-		<value>Doze</value>
+		<value>Dvanaest</value>
 	</data>
 	<data name="Eleven" xml:space="preserve">
-		<value>Onze</value>
+		<value>Jedanaest</value>
 	</data>
 	<data name="Ten" xml:space="preserve">
-		<value>Dez</value>
+		<value>Deset</value>
 	</data>
 	<data name="Twenty" xml:space="preserve">
-		<value>Vinte</value>
+		<value>Dvadeset</value>
 	</data>
 	<data name="Thirty" xml:space="preserve">
-		<value>Trinta</value>
+		<value>Trideset</value>
 	</data>
 	<data name="Forty" xml:space="preserve">
-		<value>Quarenta</value>
+		<value>Četrdeset</value>
 	</data>
 	<data name="Fifty" xml:space="preserve">
-		<value>Cinqüenta</value>
+		<value>Pedeset</value>
 	</data>
 	<data name="Sixty" xml:space="preserve">
-		<value>Sessenta</value>
+		<value>Šezdeset</value>
 	</data>
 	<data name="Seventy" xml:space="preserve">
-		<value>Setenta</value>
+		<value>Sedamdeset</value>
 	</data>
 	<data name="Eighty" xml:space="preserve">
-		<value>Oitenta</value>
+		<value>Osamdeset</value>
 	</data>
 	<data name="Ninety" xml:space="preserve">
-		<value>Noventa</value>
+		<value>Devedeset</value>
 	</data>
 	<data name="Thousand" xml:space="preserve">
-		<value>Caixa</value>
+		<value>Kanta</value>
 	</data>
 	<data name="Million" xml:space="preserve">
-		<value>Milhão</value>
+		<value>Milijuna</value>
 	</data>
 	<data name="Billion" xml:space="preserve">
-		<value>Mil milhões</value>
+		<value>Milijardi kuna</value>
 	</data>
 	<data name="Hundred" xml:space="preserve">
-		<value>Cem</value>
+		<value>Sto</value>
 	</data>
 	<data name="Zero" xml:space="preserve">
-		<value>Zero</value>
+		<value>Nula</value>
 	</data>
 	<data name="Negative" xml:space="preserve">
-		<value>Negativo</value>
+		<value>Negativan</value>
 	</data>
 	<data name="Dollar" xml:space="preserve">
-		<value>Dólar</value>
+		<value>Dolar</value>
 	</data>
 	<data name="Cent" xml:space="preserve">
-		<value>Centavo</value>
+		<value>Cent</value>
 	</data>
 	<data name="PluralCurrencySuffix" xml:space="preserve">
 		<value>s</value>
 	</data>
 	<data name="OneHundred" xml:space="preserve">
-		<value>Cem</value>
+		<value>Sto</value>
 	</data>
 	<data name="OneThousand" xml:space="preserve">
-		<value>Mil</value>
+		<value>Tisuću</value>
 	</data>
 	<data name="AlwaysExcludeVat" xml:space="preserve">
-		<value>Sempre Excluir IMPOSTO</value>
+		<value>Uvijek isključiti POREZ</value>
 	</data>
 	<data name="RoundingTotal" xml:space="preserve">
-		<value>Total de arredondamento</value>
+		<value>Zaokruživanje Ukupno</value>
 	</data>
 	<data name="TaxServiceTemplates" xml:space="preserve">
-		<value>Modelos de serviços</value>
+		<value>Usluga Predlošci</value>
 	</data>
 	<data name="ChooseTaxServicesForDepartmentHint_f" xml:space="preserve">
-		<value>Selecione fiscal ou serviços para uso em {0} departamento.</value>
+		<value>Odaberite porez ili usluge za korištenje u {0} odjelu.</value>
 	</data>
 	<data name="TaxServiceTemplate" xml:space="preserve">
-		<value>Modelo de serviço</value>
+		<value>Usluga predlošku</value>
 	</data>
 	<data name="TaxServiceTotal" xml:space="preserve">
-		<value>Totais Serviços</value>
+		<value>Usluge Ukupno</value>
 	</data>
 	<data name="CalculationMethod" xml:space="preserve">
-		<value>Método de Cálculo</value>
+		<value>Metoda proračuna</value>
 	</data>
 	<data name="RateOrAmount" xml:space="preserve">
-		<value>Taxa ou Valor</value>
+		<value>Stopa ili iznos</value>
 	</data>
 	<data name="RateFromTicketAmount" xml:space="preserve">
-		<value>Taxa de quantidade de bilhetes</value>
+		<value>Ocijenite od ulaznica iznosu</value>
 	</data>
 	<data name="RateFromPreviousTemplate" xml:space="preserve">
-		<value>Taxa de quantidade modelo anterior</value>
+		<value>Ocijenite iz prethodnog predloška iznosu</value>
 	</data>
 	<data name="FixedAmount" xml:space="preserve">
-		<value>Quantia fixa</value>
+		<value>Fiksni iznos</value>
 	</data>
 	<data name="RateFromVatIncludedTicketAmount" xml:space="preserve">
-		<value>Taxa do Imposto incluído quantidade de bilhetes</value>
+		<value>Ocijenite od pristojba uključena ulaznica iznos</value>
 	</data>
 	<data name="UnhandledExceptionErrorMessage" xml:space="preserve">
-		<value>SambaPOS encontrou um problema inesperado. Detalhes do problema registrados para rastro.log arquivo</value>
+		<value>SambaPOS naišao na neočekivani problem. Problem detalji prijavljeni da trace.log datoteku</value>
 	</data>
 	<data name="SaveFreeTags" xml:space="preserve">
-		<value>Save Tags grátis</value>
+		<value>Spremi Besplatne Tags</value>
 	</data>
 	<data name="RegenerateTicketVat" xml:space="preserve">
-		<value>Regenerar IMPOSTO Bilheteira</value>
+		<value>Osvježite Ticket POREZ</value>
 	</data>
 	<data name="UpdateTicketTaxService" xml:space="preserve">
-		<value>Atualize Imposto Ticket ou Serviço</value>
+		<value>Ažurirajte Ticket porez ili uslugu</value>
 	</data>
 	<data name="Included" xml:space="preserve">
-		<value>Incluído</value>
+		<value>Uključen</value>
 	</data>
 	<data name="Excluded" xml:space="preserve">
-		<value>Excluídos</value>
+		<value>Isključeni</value>
 	</data>
 	<data name="EmptyDiscountRateFeedback" xml:space="preserve">
-		<value>Para adicionar descontos, digite uma taxa de desconto e clique no botão. Para remover desconto botão desconto clique sem digitar um valor.</value>
+		<value>Da biste dodali popuste, upišite stope i kliknite na gumb popust. Da biste uklonili gumb popusta popusta Saznaj bez unosa vrijednosti.</value>
 	</data>
 	<data name="TicketSubTotal" xml:space="preserve">
-		<value>Total da sub Bilheteira</value>
+		<value>Ulaznica Sub Ukupno</value>
 	</data>
 	<data name="VatTotalsGroupedByVatTemplate" xml:space="preserve">
-		<value>Totais agrupados por modelo de Imposto</value>
+		<value>Ukupni grupirane Porezne predlošku</value>
 	</data>
 	<data name="TaxTotal" xml:space="preserve">
-		<value>Total de Imposto</value>
+		<value>Ukupno porez na</value>
 	</data>
 	<data name="TaxTotalsGroupedByTaxTemplate" xml:space="preserve">
-		<value>Totais agrupados por modelo de serviço</value>
+		<value>Ukupni grupirane po predlošku usluge</value>
 	</data>
 	<data name="TextWrittenTotalValue" xml:space="preserve">
-		<value>Texto escrito valor total</value>
+		<value>Tekst napisao ukupna vrijednost</value>
 	</data>
 	<data name="TicketLocationChanged" xml:space="preserve">
-		<value>Localização Ticket Mudou</value>
+		<value>Ulaznica Location Promijenjen</value>
 	</data>
 	<data name="UpdateTicketAccount" xml:space="preserve">
-		<value>Atualize Conta Bilheteira</value>
+		<value>Ažurirajte Ticket račun</value>
 	</data>
 	<data name="SaveErrorSelectDefaultDepartment" xml:space="preserve">
-		<value>Por favor, selecione um departamento padrão</value>
+		<value>Odaberite zadani odjel</value>
 	</data>
 	<data name="Copy" xml:space="preserve">
-		<value>Copiar</value>
+		<value>Kopirajte</value>
 	</data>
 	<data name="Send" xml:space="preserve">
-		<value>Enviar</value>
+		<value>Slati</value>
 	</data>
 	<data name="ErrorReportWithoutFeedback" xml:space="preserve">
-		<value>Você está enviando relatório de erro sem o seu feedback.
-Por favor, dar alguns detalhes sobre como isso aconteceu.
-Comando
-Continuar sem acrescentar detalhes? </value>
+		<value>Vi šaljete izvješće o pogrešci, bez povratne informacije.
+Molimo navesti neke detalje o tome kako to dogoditi.
+
+Nastaviti bez dodavanja detalja?</value>
 	</data>
 	<data name="SambaPOSReporter" xml:space="preserve">
-		<value>Repórter SambaPOS</value>
+		<value>SambaPOS Reporter</value>
 	</data>
 	<data name="ErrorMessage" xml:space="preserve">
-		<value>Mensagem de erro</value>
+		<value>Poruka o pogrešci</value>
 	</data>
 	<data name="PleaseEnterABriefExplanationOf" xml:space="preserve">
-		<value>Por favor, digite uma breve explicação de eventos que levaram a essa exceção</value>
+		<value>Molimo unesite kratko objašnjenje događaja koji vode do ove iznimke</value>
 	</data>
 	<data name="DetailedReport" xml:space="preserve">
-		<value>Relatório detalhado</value>
+		<value>Detaljno izvješće</value>
 	</data>
 	<data name="Modifier" xml:space="preserve">
-		<value>Modifier</value>
+		<value>Riječ koja određuje drugu</value>
 	</data>
 	<data name="ModifierGroup" xml:space="preserve">
-		<value>Grupo Modificações</value>
+		<value>Modifikacijska Grupa</value>
 	</data>
 	<data name="ModifierGroupName" xml:space="preserve">
-		<value>Nome do grupo modificador</value>
+		<value>Modifikacijska Naziv grupe</value>
 	</data>
 	<data name="ModifierGroups" xml:space="preserve">
-		<value>Grupos de modificação de</value>
+		<value>Modifikatora Grupe</value>
 	</data>
 	<data name="Modifiers" xml:space="preserve">
-		<value>Modificadores</value>
+		<value>Izmjenjivači</value>
 	</data>
 	<data name="APortionShouldSelected" xml:space="preserve">
-		<value>Uma porção deve selecionado</value>
+		<value>Dio treba odabrati</value>
 	</data>
 	<data name="ThereIsAnotherRecipeFor_f" xml:space="preserve">
-		<value>Não há outra receita para {0}</value>
+		<value>Tu je još jedan recept za {0}</value>
 	</data>
 	<data name="DeleteErrorPrinterAssignedToTerminal" xml:space="preserve">
-		<value>Não é possível excluir porque esta impressora atribuído a um Terminal</value>
+		<value>Ne možete izbrisati jer pisača dodjeljuje se terminal</value>
 	</data>
 	<data name="DeleteErrorPrinterAssignedToPrinterMap" xml:space="preserve">
-		<value>Não é possível excluir porque esta impressora atribuído a um trabalho de impressão</value>
+		<value>Ne možete izbrisati jer Printer dodijeljen ispis</value>
 	</data>
 	<data name="PriceTags" xml:space="preserve">
-		<value>Marcação de Preço</value>
+		<value>Cijena Označavanje</value>
 	</data>
 	<data name="AlphaNumeric" xml:space="preserve">
-		<value>Alfanumérico</value>
+		<value>Alfanumerički</value>
 	</data>
 	<data name="Numeric" xml:space="preserve">
-		<value>Numérico</value>
+		<value>Numerički</value>
 	</data>
 	<data name="TagType" xml:space="preserve">
-		<value>Tipo Tag</value>
+		<value>Oznaka Type</value>
 	</data>
 	<data name="PaymentReceived" xml:space="preserve">
-		<value>Pagamento Recebido</value>
+		<value>Uplata primljena</value>
 	</data>
 	<data name="ExecutePrintJob" xml:space="preserve">
-		<value>Executar trabalho de impressão</value>
+		<value>Izvršiti ispis</value>
 	</data>
 	<data name="LineCount" xml:space="preserve">
-		<value>Contagem de Linha</value>
+		<value>Line Count</value>
 	</data>
 	<data name="PrintingErrorMessage_f" xml:space="preserve">
-		<value>Há um problema durante a impressão. Por favor, impressora de revisão e configurações do modelo da impressora.
+		<value>Došlo je do problema tijekom ispisa. Molimo pregledajte pisača i pisača predloška postavke.
 
-Mensagem de erro:
-{0} </value>
+Poruka o pogrešci:
+{0}</value>
 	</data>
 	<data name="DocumentDate_f" xml:space="preserve">
-		<value>Data: {0:d}</value>
+		<value>Datum: {0:d}</value>
 	</data>
 	<data name="DocumentTime_f" xml:space="preserve">
-		<value>Horário: {0:t}</value>
+		<value>Vrijeme: {0:t}</value>
 	</data>
 	<data name="LastLinesByPrinterLineCount" xml:space="preserve">
-		<value>Novas Linhas de contas de impressão</value>
+		<value>Nove linije po Line Printer Count</value>
 	</data>
 	<data name="LineAddedToTicket" xml:space="preserve">
-		<value>Linha Adicionado ao Ticket</value>
+		<value>Line Dodano ulaznice</value>
 	</data>
 	<data name="LineItemProductTag" xml:space="preserve">
-		<value># Linha: Produto Tag</value>
+		<value># Linija: Proizvod Tag</value>
 	</data>
 	<data name="ChangeAmountUpdated" xml:space="preserve">
-		<value>Montante de Variação Atualizado</value>
+		<value>Promijeni Iznos Ažurirano</value>
 	</data>
 	<data name="TicketClosed" xml:space="preserve">
-		<value>Ticket Fechado</value>
+		<value>Zatvoreno ulaznica</value>
 	</data>
 	<data name="ApplicationStarted" xml:space="preserve">
-		<value>Aplicação Iniciado</value>
+		<value>Primjena Started</value>
 	</data>
 	<data name="LastPaidLines" xml:space="preserve">
-		<value>Últimas Linhas Pagas</value>
+		<value>Zadnjeg plaćenog linije</value>
 	</data>
 	<data name="PortionSelected" xml:space="preserve">
-		<value>Parte selecionada</value>
+		<value>Odabrani dio</value>
 	</data>
 	<data name="ModifierSelected" xml:space="preserve">
 		<value>ModifierSelected</value>
 	</data>
 	<data name="Big" xml:space="preserve">
-		<value>Grande</value>
+		<value>Velik</value>
 	</data>
 	<data name="None" xml:space="preserve">
-		<value>Nenhum</value>
+		<value>Nijedan</value>
 	</data>
 	<data name="Small" xml:space="preserve">
-		<value>Pequeno</value>
+		<value>Mali</value>
 	</data>
 	<data name="GiftLastTicketItem" xml:space="preserve">
-		<value>Presente item Ticket Última</value>
+		<value>Poklon Zadnji ulaznica predmeta</value>
 	</data>
 	<data name="Other" xml:space="preserve">
-		<value>Outro</value>
+		<value>Drugi</value>
 	</data>
 	<data name="PhoneNumberInputMask" xml:space="preserve">
-		<value>Telefone Máscara de Entrada Número</value>
+		<value>Telefonski broj ulaza Maska</value>
 	</data>
 	<data name="Increase" xml:space="preserve">
-		<value>Aumentar</value>
+		<value>Povećati</value>
 	</data>
 	<data name="Decrease" xml:space="preserve">
-		<value>Diminuir</value>
+		<value>Smanjenje</value>
 	</data>
 	<data name="SettingName" xml:space="preserve">
-		<value>Definir Nome</value>
+		<value>Postavljanje ime</value>
 	</data>
 	<data name="SettingValue" xml:space="preserve">
-		<value>Configuração Valor</value>
+		<value>Postavljanje vrijednosti</value>
 	</data>
 	<data name="UpdateType" xml:space="preserve">
-		<value>Atualize Tipo</value>
+		<value>Obnove</value>
 	</data>
 	<data name="Command" xml:space="preserve">
-		<value>Comando</value>
+		<value>Naredba</value>
 	</data>
 	<data name="RoleName" xml:space="preserve">
-		<value>Nome da Função</value>
+		<value>Uloga Ime</value>
 	</data>
 	<data name="OldLocation" xml:space="preserve">
-		<value>antiga localização</value>
+		<value>Stari Položaj</value>
 	</data>
 	<data name="NewLocation" xml:space="preserve">
-		<value>Localização de Nova</value>
+		<value>Novo Mjesto</value>
 	</data>
 	<data name="NumericValue" xml:space="preserve">
-		<value>Valor Numérico</value>
+		<value>Numerička vrijednost</value>
 	</data>
 	<data name="CustomerGroupCode" xml:space="preserve">
-		<value>Código do Cliente Grupo</value>
+		<value>Korisnik Group Code</value>
 	</data>
 	<data name="CustomerId" xml:space="preserve">
-		<value>ID do cliente</value>
+		<value>ID klijenta</value>
 	</data>
 	<data name="PaymentType" xml:space="preserve">
-		<value>Tipo de Pagamento</value>
+		<value>Vrsta plaćanja</value>
 	</data>
 	<data name="ImageOnly" xml:space="preserve">
-		<value>Só a imagem</value>
+		<value>Samo slika</value>
 	</data>
 	<data name="UpdateLastTicketItemPriceTag" xml:space="preserve">
-		<value>Última Atualização Ticket Tag item Preço</value>
+		<value>Ažurirajte Last Ticket predmeta cijena oznaku</value>
 	</data>
 	<data name="UpdateTicketItemPriceTag" xml:space="preserve">
-		<value>Atualize bilhete tag preço do item</value>
+		<value>Ažuriranje karata predmeta cijena oznaku</value>
 	</data>
 	<data name="TicketLineCancelled" xml:space="preserve">
-		<value>Ticket Line Cancelado</value>
+		<value>Ticket Line Otkazan</value>
 	</data>
 	<data name="MS_Connected" xml:space="preserve">
-		<value>Conectado.</value>
+		<value>Povezani.</value>
 	</data>
 	<data name="MS_Disconnected" xml:space="preserve">
-		<value>Desconectado.</value>
+		<value>Isključen.</value>
 	</data>
 	<data name="RemoveLastModifier" xml:space="preserve">
-		<value>Remover Último modificador</value>
+		<value>Uklonite Zadnji modifikator</value>
 	</data>
 	<data name="ForPrintingTicketTagValue" xml:space="preserve">
-		<value>Para impressão Ticket Tag valor X</value>
+		<value>Za tiskanje karata Tag vrijednosti X</value>
 	</data>
 	<data name="ForPrintingAppSettingValue" xml:space="preserve">
-		<value>Para aplicação de impressão Definindo X valor</value>
+		<value>Za tiskanje zahtjev u kojem vrijednost x</value>
 	</data>
 	<data name="ForceClosingActiveWorkPeriod" xml:space="preserve">
-		<value>Forçar encerramento do período de trabalho ativo</value>
+		<value>Prisilno Zatvaranje aktivnog radnog vremena</value>
 	</data>
 	<data name="RequestShutdown" xml:space="preserve">
-		<value>encerramento pedido</value>
+		<value>Zahtjev za gašenje</value>
 	</data>
 	<data name="ActiveConnections_f" xml:space="preserve">
-		<value>{0} conexões ativas</value>
+		<value>{0} aktivne veze</value>
 	</data>
 	<data name="Checking" xml:space="preserve">
-		<value>Verificando ...</value>
+		<value>Provjera ...</value>
 	</data>
 	<data name="TotalPropertyCount" xml:space="preserve">
-		<value>Contagem total Modifier</value>
+		<value>Ukupno Modifikacijska Count</value>
 	</data>
 	<data name="TotalModifierQuantity" xml:space="preserve">
-		<value>Quantidade Grupo Total</value>
+		<value>Ukupna količina Grupa</value>
 	</data>
 	<data name="TotalModifierPrice" xml:space="preserve">
-		<value>Preço Grupo Total</value>
+		<value>Ukupno Grupa Cijena</value>
 	</data>
 	<data name="ExecuteTicketOperation" xml:space="preserve">
-		<value>Executar a operação de Bilheteira</value>
+		<value>Izvršiti Ticket operaciju</value>
 	</data>
 	<data name="RemoveModifier" xml:space="preserve">
-		<value>Remover Modificação</value>
+		<value>Uklonite modifikator</value>
 	</data>
 	<data name="GroupTemplate" xml:space="preserve">
-		<value>modelo de grupo</value>
+		<value>Grupa predlošku</value>
 	</data>
 	<data name="AccountNote" xml:space="preserve">
-		<value>nota conta</value>
+		<value>Napomena račun</value>
 	</data>
 	<data name="AccountGroupCode" xml:space="preserve">
-		<value>Código de grupo de contas</value>
+		<value>Grupa računa kod</value>
 	</data>
 	<data name="ProductGroup" xml:space="preserve">
-		<value>grupo de produtos</value>
+		<value>Product Group</value>
 	</data>
 	<data name="DepartmentSales" xml:space="preserve">
-		<value>departamento de vendas</value>
+		<value>Odjel prodaje</value>
 	</data>
 	<data name="ItemsMovedToTable_f" xml:space="preserve">
-		<value>Itens movidos para {0} tabela.</value>
+		<value>Stavke se preselila u {0} tablici.</value>
 	</data>
 	<data name="DatabaseErrorMessage" xml:space="preserve">
-		<value>Não é possível conectar ao banco de dados com as configurações atuais de conexão. Verifique seqüência de conexão abaixo e tente novamente.
+		<value>Ne može spojiti na bazu podataka sa sadašnjim postavkama veze. Provjerite vezu string dolje i pokušajte ponovo.
 
-Mensagem de erro:
+Poruka o pogrešci:
 </value>
 	</data>
 	<data name="CurrentErrorLoggedMessage" xml:space="preserve">
-		<value>Reinicie o aplicativo. Problema salvos no arquivo de log.</value>
+		<value>Ponovno pokrenite program. Problem spremljena u log datoteku.</value>
 	</data>
 	<data name="SelectionRequired_f" xml:space="preserve">
-		<value>{0} seleção exigido!</value>
+		<value>{0} izbor potrebna!</value>
 	</data>
 	<data name="GroupTag" xml:space="preserve">
-		<value>grupo Tag</value>
+		<value>Grupa Tag</value>
 	</data>
 	<data name="ReceivedBy_f" xml:space="preserve">
-		<value>Recebido por {0}</value>
+		<value>Primio je {0}</value>
 	</data>
 	<data name="UpdateTicketItemTag" xml:space="preserve">
-		<value>Atualize tag item bilhete</value>
+		<value>Ažurirajte oznaku predmeta ulaznica</value>
 	</data>
 </root>

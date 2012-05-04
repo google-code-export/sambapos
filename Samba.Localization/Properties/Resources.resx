@@ -3264,13 +3264,16 @@ Error Message:
   <data name="HideItOnReports">
     <value xml:space="preserve">Hide it on Reports</value>
   </data>
-	<data name="ItemTag">
-		<value xml:space="preserve">Item Tag</value>
-	</data>
-	<data name="nthItemTag">
-		<value xml:space="preserve">n.th Item Tag if merged with |</value>
-	</data>
-	<data name="PrintJobHint">
-		<value xml:space="preserve">To be able to activate this printjob you should assign it to a terminal.</value>
-	</data>
+  <data name="ItemTag">
+    <value xml:space="preserve">Item Tag</value>
+  </data>
+  <data name="nthItemTag">
+    <value xml:space="preserve">n.th Item Tag if merged with |</value>
+  </data>
+  <data name="PrintJobHint">
+    <value xml:space="preserve">To be able to activate this printjob you should assign it to a terminal.</value>
+  </data>
+  <data name="DeleteErrorProductUsedInPrinterMap" xml:space="preserve">
+    <value>Can't delete because this product assigned to a Printer Map</value>
+  </data>
 </root>

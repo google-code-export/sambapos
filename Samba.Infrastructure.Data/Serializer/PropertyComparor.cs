@@ -101,5 +101,32 @@ namespace Samba.Infrastructure.Data.Serializer
             if (actualList.Count != expectedList.Count) return false;
             return !actualList.Cast<object>().Where((t, i) => !AreEquals(t, expectedList[i])).Any();
         }
+
+        public static void ResetIds(object item)
+        {
+            var itemName = item.GetType().Name;
+            if (itemName.Contains("_")) itemName = itemName.Substring(0, itemName.IndexOf("_"));
+
+            var properties = item.GetType().GetProperties();
+            foreach (var property in properties)
+            {
+                var value = property.GetValue(item, null);
+                if (value != null && value.GetType().GetProperty("Id") != null && value.GetType().GetProperty(itemName + "Id") != null)
+                {
+                    value.GetType().GetProperty("Id").SetValue(value, 0, null);
+                }
+                else if (value is IList)
+                {
+                    var list = value as IList;
+                    Debug.Assert(list != null);
+                    foreach (var listItem in list)
+                    {
+                        if (listItem.GetType().GetProperty("Id") != null && listItem.GetType().GetProperty(itemName + "Id") != null)
+                            listItem.GetType().GetProperty("Id").SetValue(listItem, 0, null);
+                        ResetIds(listItem);
+                    }
+                }
+            }
+        }
     }
 }

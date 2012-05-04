@@ -3275,4 +3275,7 @@ Hata Mesajı:
   <data name="PrintJobHint">
     <value xml:space="preserve">Bu yazdırma görevini aktifleştirmek için bir terminale ekleyiniz.</value>
   </data>
+  <data name="DeleteErrorProductUsedInPrinterMap" xml:space="preserve">
+    <value>Bu ürün bir yazıcı görevinde kullanıldığı için silinemez.</value>
+  </data>
 </root>

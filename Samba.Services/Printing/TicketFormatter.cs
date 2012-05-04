@@ -36,7 +36,8 @@ namespace Samba.Services.Printing
 
             DataString = BracketContains(data, '[', ']', Tag) ? GetBracketValue(data, '[', ']') : data.Substring(StartPos, Length);
             DataString = DataString.Replace("<newline>", "\r\n");
-            Title = DataString.Trim('[', ']').Replace(Tag, "<value>");
+            Title = !DataString.StartsWith("[=") ? DataString.Trim('[', ']') : DataString;
+            Title = Title.Replace(Tag, "<value>");
             Length = DataString.Length;
             StartPos = data.IndexOf(DataString);
             EndPos = StartPos + Length;
@@ -453,7 +454,17 @@ namespace Samba.Services.Printing
 
         private static string FormatDataIf(bool condition, string data, string tag, Func<string> valueFunc)
         {
-            if (condition && data.Contains(tag)) return FormatData(data, tag, valueFunc.Invoke);
+            if (condition && data.Contains(tag))
+            {
+                Func<string> value = valueFunc.Invoke;
+                var i = 0;
+                while (data.Contains(tag) && i < 99) // Sonsuz döngüye sokulabilir. Önlem
+                {
+                    data = FormatData(data, tag, value);
+                    i++;
+                }
+                return data;
+            }
             return RemoveTag(data, tag);
         }
 

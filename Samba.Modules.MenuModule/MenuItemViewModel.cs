@@ -117,7 +117,6 @@ namespace Samba.Modules.MenuModule
         {
             var portion = MenuItem.AddDefaultMenuPortion(Model);
             Portions.Add(new PortionViewModel(portion));
-            //_workspace.Add(portion);
         }
 
         private void OnDeletePortion(string value)

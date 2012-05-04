@@ -155,16 +155,29 @@ namespace Samba.Modules.TicketModule
             return AppServices.MainDataContext.SelectedTicket == null;
         }
 
+        private static string GetInsertedData(string data, params char[] multiplier)
+        {
+            if (!multiplier.Any(x => data.ToLower().Contains(x))) return data;
+            return data.Substring(data.IndexOf(multiplier.FirstOrDefault(x => data.ToLower().Contains(x))) + 1);
+        }
+
+        private static decimal GetInsertedQuantity(string data, params char[] multiplier)
+        {
+            decimal result = 1;
+            if (multiplier.Any(x => data.ToLower().Contains(x)))
+            {
+                decimal.TryParse(
+                    data.Substring(0, data.IndexOf(multiplier.FirstOrDefault(x => data.ToLower().Contains(x)))),
+                    out result);
+            }
+            return result;
+        }
+
         private void OnFindMenuItemCommand(string obj)
         {
-            var insertedData = NumeratorValue;
-            decimal quantity = 1;
-            if (NumeratorValue.ToLower().Contains("x"))
-            {
-                insertedData = NumeratorValue.Substring(NumeratorValue.ToLower().IndexOf("x") + 1);
-                string q = NumeratorValue.Substring(0, NumeratorValue.ToLower().IndexOf("x"));
-                decimal.TryParse(q, out quantity);
-            }
+            var insertedData = GetInsertedData(NumeratorValue, 'x', '*');
+            var quantity = GetInsertedQuantity(NumeratorValue, 'x', '*');
+
             NumeratorValue = "";
 
             if (quantity > 0)

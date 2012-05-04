@@ -146,7 +146,7 @@ namespace Samba.Modules.SettingsModule
             get
             {
                 return _supportedLanguages ?? (_supportedLanguages =
-                    LocalSettings.SupportedLanguages.Select(CultureInfo.GetCultureInfo).ToList());
+                    LocalSettings.SupportedLanguages.Select(CultureInfo.GetCultureInfo).ToList().OrderBy(x => x.DisplayName));
             }
         }
 
