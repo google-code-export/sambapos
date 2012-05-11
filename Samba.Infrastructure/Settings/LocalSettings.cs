@@ -168,7 +168,7 @@ html
         public static string CurrencySymbol { get { return CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol; } }
 
         public static int DbVersion { get { return 18; } }
-        public static string AppVersion { get { return "2.96"; } }
+        public static string AppVersion { get { return "2.97"; } }
         public static IList<string> SupportedLanguages { get { return new[] { "en", "de", "fr", "es", "cs", "ru", "hr", "tr", "pt-BR", "it", "ro", "sq", "zh-CN" }; } }
 
         public static long CurrentDbVersion { get; set; }

@@ -337,7 +337,7 @@ namespace Samba.Modules.TicketModule
                 if (SelectedItem.Model.PortionCount > 1) SelectedItemPortions.AddRange(mi.Portions);
                 SelectedItemPropertyGroups.AddRange(mi.PropertyGroups.Where(x => string.IsNullOrEmpty(x.GroupTag)));
 
-                SelectedItemGroupedPropertyItems.AddRange(mi.PropertyGroups.Where(x => !string.IsNullOrEmpty(x.GroupTag))
+                SelectedItemGroupedPropertyItems.AddRange(mi.PropertyGroups.Where(x => !string.IsNullOrEmpty(x.GroupTag) && x.Properties.Count > 1)
                     .GroupBy(x => x.GroupTag)
                     .Select(x => new MenuItemGroupedPropertyViewModel(SelectedItem, x)));
                 RaisePropertyChanged("IsPortionsVisible");

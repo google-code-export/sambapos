@@ -52,6 +52,7 @@ namespace Samba.Presentation
         private static void RunInReleaseMode()
         {
             AppDomain.CurrentDomain.UnhandledException += AppDomainUnhandledException;
+            Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             try
             {
                 var bootstrapper = new Bootstrapper();
@@ -61,6 +62,11 @@ namespace Samba.Presentation
             {
                 HandleException(ex);
             }
+        }
+
+        static void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            HandleException(e.Exception);
         }
 
         private static void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
