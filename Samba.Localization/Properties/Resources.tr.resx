@@ -3278,4 +3278,10 @@ Hata Mesajı:
   <data name="DeleteErrorProductUsedInPrinterMap" xml:space="preserve">
     <value>Bu ürün bir yazıcı görevinde kullanıldığı için silinemez.</value>
   </data>
+  <data name="CharacterReplacementPattern">
+    <value xml:space="preserve">Karakter Değişim Şablonu</value>
+  </data>
+  <data name="CharacterReplacementPatternInfo">
+    <value xml:space="preserve">Desteklenmeyen harfleri Ğ=G şeklinde değiştirebilirsiniz. Birden fazla değeri noktalı virgül (;) ile birleştirin. </value>
+  </data>
 </root>

@@ -13,6 +13,7 @@ namespace Samba.Domain.Models.Settings
         public int CodePage { get; set; }
         public int CharsPerLine { get; set; }
         public int PageHeight { get; set; }
+        public string ReplacementPattern { get; set; }
 
         public Printer()
         {

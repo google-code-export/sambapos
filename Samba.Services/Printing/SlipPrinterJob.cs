@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Documents;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Printing;
@@ -18,6 +16,7 @@ namespace Samba.Services.Printing
         public override void DoPrint(string[] lines)
         {
             lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine, true).ToArray();
+            lines = PrinterHelper.ReplaceChars(lines, Printer.ReplacementPattern).ToArray();
 
             var printer = new LinePrinter(Printer.ShareName, Printer.CharsPerLine, Printer.CodePage);
 
@@ -84,7 +83,5 @@ namespace Samba.Services.Printing
                 else printer.WriteLine(line);
             }
         }
-
-
     }
 }

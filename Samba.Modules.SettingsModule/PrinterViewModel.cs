@@ -12,6 +12,7 @@ namespace Samba.Modules.SettingsModule
         public PrinterViewModel(Printer model)
             : base(model)
         {
+            
         }
 
         public IList<string> PrinterTypes { get { return new[] { Resources.TicketPrinter, Resources.Text, Resources.Html, Resources.PortPrinter, Resources.DemoPrinter }; } }
@@ -26,6 +27,7 @@ namespace Samba.Modules.SettingsModule
         public int CodePage { get { return Model.CodePage; } set { Model.CodePage = value; } }
         public int CharsPerLine { get { return Model.CharsPerLine; } set { Model.CharsPerLine = value; } }
         public int PageHeight { get { return Model.PageHeight; } set { Model.PageHeight = value; } }
+        public string ReplacementPattern { get { return Model.ReplacementPattern; } set { Model.ReplacementPattern = value; } }
 
         private IEnumerable<string> _printerNames;
         public IEnumerable<string> PrinterNames

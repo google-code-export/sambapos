@@ -81,11 +81,26 @@ namespace Samba.Infrastructure.Printing
             return "";
         }
 
+        public static IEnumerable<string> ReplaceChars(IEnumerable<string> lines, string pattern)
+        {
+            if (string.IsNullOrEmpty(pattern)) return lines;
+            var result = new List<string>(lines);
+            var patterns = pattern.Split(';');
+            foreach (var s in patterns)
+            {
+                var parts = s.Split('=');
+                for (var i = 0; i < result.Count; i++)
+                {
+                    result[i] = result[i].Replace(parts[0], parts[1]);
+                }
+            }
+            return result;
+        }
+
         public static IEnumerable<string> AlignLines(IEnumerable<string> lines, int maxWidth, bool canBreak)
         {
             var columnWidths = CalculateColumnWidths(lines);
             var result = new List<string>();
-
 
             for (var i = 0; i < lines.Count(); i++)
             {

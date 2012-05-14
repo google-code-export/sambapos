@@ -23,7 +23,11 @@ namespace Samba.Modules.CidMonitor
             }
             catch (Exception)
             {
+#if DEBUG
+                var i = 0;
+#else
                 InteractionService.UserIntraction.DisplayPopup(Resources.Information, Resources.CallerIdDriverError, "", "");
+#endif
             }
         }
 

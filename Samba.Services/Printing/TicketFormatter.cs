@@ -71,7 +71,7 @@ namespace Samba.Services.Printing
         {
             if (!content.Contains(open)) return false;
             var br = GetBracketValue(content, open, close);
-            return (br.Contains(testValue));
+            return (br.Contains(testValue)) && !br.StartsWith("[=");
         }
 
         public static string GetBracketValue(string content, char open, char close)
@@ -307,6 +307,7 @@ namespace Samba.Services.Printing
             var giftAmount = ticket.GetTotalGiftAmount();
             var vatAmount = GetTaxTotal(ticket.TicketItems, plainTotal, ticket.GetDiscountTotal());
             var taxServicesTotal = ticket.GetTaxServicesTotal();
+            var ticketPaymentAmount = ticket.GetPaymentAmount();
 
             result = FormatDataIf(vatAmount > 0 || discount > 0 || taxServicesTotal > 0, result, "{PLAIN TOTAL}", () => plainTotal.ToString("#,#0.00"));
             result = FormatDataIf(discount > 0, result, "{DISCOUNT TOTAL}", () => discount.ToString("#,#0.00"));
@@ -325,16 +326,24 @@ namespace Samba.Services.Printing
             result = FormatDataIf(discount < 0, result, Resources.TF_IfFlatten, () => string.Format(Resources.IfNegativeDiscountValue_f, discount.ToString("#,#0.00")));
 
             result = FormatData(result, Resources.TF_TicketTotal, () => ticket.GetSum().ToString("#,#0.00"));
-            result = FormatData(result, Resources.TF_TicketPaidTotal, () => ticket.GetPaymentAmount().ToString("#,#0.00"));
+
+            result = FormatDataIf(ticketPaymentAmount > 0, result, Resources.TF_TicketPaidTotal, () => ticketPaymentAmount.ToString("#,#0.00"));
             result = FormatData(result, Resources.TF_TicketRemainingAmount, () => ticket.GetRemainingAmount().ToString("#,#0.00"));
 
             result = FormatData(result, "{TOTAL TEXT}", () => HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum()));
             result = FormatData(result, "{TOTALTEXT}", () => HumanFriendlyInteger.CurrencyToWritten(ticket.GetSum(), true));
 
-            result = UpdateSettings(result);
-            result = UpdateExpressions(result);
+            result = UpdateGlobalValues(result);
 
             return result;
+        }
+
+        private static string UpdateGlobalValues(string data)
+        {
+            data = UpdateSettings(data);
+            data = UpdateExpressions(data);
+
+            return data;
         }
 
         private static string UpdateSettings(string result)
@@ -362,14 +371,14 @@ namespace Samba.Services.Printing
                 var e = new Expression(expression);
                 e.EvaluateFunction += delegate(string name, FunctionArgs args)
                                           {
-                                              if (name == "Format")
+                                              if (name == "Format" || name == "F")
                                               {
                                                   var fmt = args.Parameters.Length > 1
                                                                 ? args.Parameters[1].Evaluate().ToString()
                                                                 : "#,#0.00";
                                                   args.Result = ((double)args.Parameters[0].Evaluate()).ToString(fmt);
                                               }
-                                              if (name == "ToNumber")
+                                              if (name == "ToNumber" || name == "TN")
                                               {
                                                   double d;
                                                   double.TryParse(args.Parameters[0].Evaluate().ToString(), NumberStyles.Any, CultureInfo.CurrentCulture, out d);
@@ -388,6 +397,7 @@ namespace Samba.Services.Printing
 
                 data = data.Replace(tag, result);
             }
+
             return data;
         }
 
@@ -443,13 +453,20 @@ namespace Samba.Services.Printing
         {
             if (!data.Contains(tag)) return data;
 
-            var value = valueFunc.Invoke();
-            var tagData = new TagData(data, tag);
-            if (!string.IsNullOrEmpty(value)) value =
-                !string.IsNullOrEmpty(tagData.Title) && tagData.Title.Contains("<value>")
-                ? tagData.Title.Replace("<value>", value)
-                : tagData.Title + value;
-            return data.Replace(tagData.DataString, value);
+            var i = 0;
+            while (data.Contains(tag) && i < 99)
+            {
+                var value = valueFunc.Invoke();
+                var tagData = new TagData(data, tag);
+                if (!string.IsNullOrEmpty(value)) value =
+                    !string.IsNullOrEmpty(tagData.Title) && tagData.Title.Contains("<value>")
+                    ? tagData.Title.Replace("<value>", value)
+                    : tagData.Title + value;
+                var spos = data.IndexOf(tagData.DataString);
+                data = data.Remove(spos, tagData.Length).Insert(spos, value ?? "");
+                i++;
+            }
+            return data;
         }
 
         private static string FormatDataIf(bool condition, string data, string tag, Func<string> valueFunc)
@@ -457,12 +474,7 @@ namespace Samba.Services.Printing
             if (condition && data.Contains(tag))
             {
                 Func<string> value = valueFunc.Invoke;
-                var i = 0;
-                while (data.Contains(tag) && i < 99) // Sonsuz döngüye sokulabilir. Önlem
-                {
-                    data = FormatData(data, tag, value);
-                    i++;
-                }
+                data = FormatData(data, tag, value);
                 return data;
             }
             return RemoveTag(data, tag);
@@ -470,8 +482,15 @@ namespace Samba.Services.Printing
 
         private static string RemoveTag(string data, string tag)
         {
-            var tagData = new TagData(data, tag);
-            return data.Replace(tagData.DataString, "");
+            var i = 0;
+            while (data.Contains(tag) && i < 99)
+            {
+                var tagData = new TagData(data, tag);
+                var spos = data.IndexOf(tagData.DataString);
+                data = data.Remove(spos, tagData.Length);
+                i++;
+            }
+            return data;
         }
 
         private static string FormatLines(PrinterTemplate template, TicketItem ticketItem)
@@ -533,9 +552,6 @@ namespace Samba.Services.Printing
                     result = result.Replace(tagName, value);
                 }
 
-                result = UpdateSettings(result);
-                result = UpdateExpressions(result);
-
                 if (result.Contains(Resources.TF_LineItemDetails.Substring(0, Resources.TF_LineItemDetails.Length - 1)))
                 {
                     string lineFormat = result;
@@ -554,6 +570,8 @@ namespace Samba.Services.Printing
                     }
                     else result = "";
                 }
+
+                result = UpdateGlobalValues(result);
                 result = result.Replace("<", "\r\n<");
             }
             return result;

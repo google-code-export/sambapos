@@ -3276,4 +3276,10 @@ Error Message:
   <data name="DeleteErrorProductUsedInPrinterMap" xml:space="preserve">
     <value>Can't delete because this product assigned to a Printer Map</value>
   </data>
+  <data name="CharacterReplacementPattern">
+    <value xml:space="preserve">Character Replacement Pattern</value>
+  </data>
+  <data name="CharacterReplacementPatternInfo">
+    <value xml:space="preserve">Use ß=ss for replacing unsupported characters. Merge multiple values with semicolon (;) </value>
+  </data>
 </root>

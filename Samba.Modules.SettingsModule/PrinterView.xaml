@@ -30,6 +30,15 @@
                 <LocText ResourceIdentifierKey="LineCharacterCount" Suffix=":"/>
             </Label>
             <Common:FilteredTextBox Type="Digits" HorizontalAlignment="Left" MinWidth="100" Text="{Binding CharsPerLine}" />
+            <Label>
+                <LocText ResourceIdentifierKey="CharacterReplacementPattern" Suffix=":"/>
+            </Label>
+            <TextBox HorizontalAlignment="Left" MinWidth="150" Text="{Binding ReplacementPattern}" />
+            <TextBlock Foreground="Gray" FontStyle="Italic" TextWrapping="Wrap">
+                <TextBlock.Text>
+                    <LocText ResourceIdentifierKey="CharacterReplacementPatternInfo"/>
+                </TextBlock.Text>
+            </TextBlock>
             <Button HorizontalAlignment="Left" Margin="0,10" MinWidth="70" Content="{Binding SaveCommand.Caption}"
                  Command="{Binding SaveCommand}" />
             <Label Content="{Binding Error}" Foreground="Red" />
