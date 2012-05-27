@@ -139,6 +139,8 @@ namespace Samba.Persistance.Data
             if (!context.Database.Connection.ConnectionString.ToLower().Contains(".sdf"))
             {
                 context.ObjContext().ExecuteStoreCommand("CREATE NONCLUSTERED INDEX IDX_TicketItems_All ON TicketItems (TicketId) INCLUDE (Id,MenuItemId,MenuItemName,PortionName,Price,CurrencyCode,Quantity,PortionCount,Locked,Voided,ReasonId,Gifted,OrderNumber,CreatingUserId,CreatedDateTime,ModifiedUserId,ModifiedDateTime,PriceTag,Tag,DepartmentId,VatRate,VatAmount,VatTemplateId,VatIncluded)");
+                context.ObjContext().ExecuteStoreCommand("CREATE NONCLUSTERED INDEX IDX_TicketItemProperties_All ON TicketItemProperties (TicketItemId) INCLUDE (Id,Name,PropertyPrice_CurrencyCode,PropertyPrice_Amount,PropertyGroupId,Quantity,MenuItemId,PortionName,CalculateWithParentPrice,VatAmount)");
+                context.ObjContext().ExecuteStoreCommand("CREATE NONCLUSTERED INDEX IDX_Payments_All ON Payments (Ticket_Id) INCLUDE (Id,Amount,Date,PaymentType,UserId,DepartmentId)");
             }
             GetMigrateVersions(context);
             LocalSettings.CurrentDbVersion = LocalSettings.DbVersion;

@@ -693,5 +693,13 @@ namespace Samba.Domain.Models.Tickets
         {
             return _paidItemsCache.Keys.ToArray();
         }
+
+        public void UpdatePaidItems(int[] getPaidItems)
+        {
+            foreach (var paidItem in getPaidItems)
+            {
+                UpdatePaidItems(paidItem);
+            }
+        }
     }
 }

@@ -540,6 +540,7 @@ namespace Samba.Presentation.ViewModels
                                 if (j.LocksTicket) ticket.RequestLock();
 
                                 var clonedTicket = ObjectCloner.Clone(ticket);
+                                clonedTicket.UpdatePaidItems(ticket.GetPaidItems());
                                 if (!string.IsNullOrEmpty(ticketItemTag))
                                     clonedTicket.TicketItems =
                                         clonedTicket.TicketItems.Where(y => !string.IsNullOrEmpty(y.Tag) &&

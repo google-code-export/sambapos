@@ -380,8 +380,6 @@ namespace Samba.Modules.TicketModule
                     new { Ticket = SelectedTicket.Model, TicketAmount = SelectedTicket.Model.TotalAmount, ChangeAmount = returningAmount, TenderedAmount = originalTenderedAmount });
             }
 
-            AppServices.MainDataContext.SelectedTicket.CancelPaidItems();
-
             if (returningAmount == 0 && AppServices.MainDataContext.SelectedTicket.GetRemainingAmount() == 0)
             {
                 ClosePaymentScreen();
