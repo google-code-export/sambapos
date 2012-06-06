@@ -72,7 +72,7 @@ namespace Samba.Presentation.ViewModels
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.CustomerSelectedForTicket, Resources.CustomerSelectedForTicket, new { CustomerId = 0, CustomerName = "", CustomerGroupCode = "", PhoneNumber = "", CustomerNote = "", LastOrderTotal = 0m, LastOrderDayCount = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketTotalChanged, Resources.TicketTotalChanged, new { TicketTotal = 0m, PreviousTotal = 0m, DiscountTotal = 0m, GiftTotal = 0m, DiscountAmount = 0m, TipAmount = 0m, CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.MessageReceived, Resources.MessageReceived, new { Command = "" });
-            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0, TicketTag = "", CustomerId = 0, CustomerName = "", CustomerGroupCode = "" });
+            RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PaymentReceived, Resources.PaymentReceived, new { PaymentType = "", Amount = 0, TicketTag = "", CustomerId = 0, CustomerName = "", CustomerGroupCode = "", SelectedLinesCount = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineAdded, Resources.LineAddedToTicket, new { TicketId = 0m, TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.TicketLineCancelled, Resources.TicketLineCancelled, new { TicketTag = "", MenuItemName = "", Quantity = 0m, MenuItemGroupCode = "", CustomerName = "", CustomerGroupCode = "", CustomerId = 0 });
             RuleActionTypeRegistry.RegisterEvent(RuleEventNames.PortionSelected, Resources.PortionSelected, new { TicketTag = "", MenuItemName = "", PortionName = "", PortionPrice = 0 });
@@ -540,7 +540,7 @@ namespace Samba.Presentation.ViewModels
                                 if (j.LocksTicket) ticket.RequestLock();
 
                                 var clonedTicket = ObjectCloner.Clone(ticket);
-                                clonedTicket.UpdatePaidItems(ticket.GetPaidItems());
+                                clonedTicket.CopyPaidItemsCache(ticket);
                                 if (!string.IsNullOrEmpty(ticketItemTag))
                                     clonedTicket.TicketItems =
                                         clonedTicket.TicketItems.Where(y => !string.IsNullOrEmpty(y.Tag) &&

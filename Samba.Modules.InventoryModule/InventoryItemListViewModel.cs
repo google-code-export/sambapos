@@ -21,8 +21,9 @@ namespace Samba.Modules.InventoryModule
         protected override string CanDeleteItem(InventoryItem model)
         {
             var item = Dao.Count<PeriodicConsumptionItem>(x => x.InventoryItem.Id == model.Id);
-            if (item > 0)
-                return Resources.DeleteErrorInventoryItemUsedInEndOfDayRecord;
+            if (item > 0) return Resources.DeleteErrorInventoryItemUsedInEndOfDayRecord;
+            var item1 = Dao.Count<RecipeItem>(x => x.InventoryItem.Id == model.Id);
+            if (item1 > 1) return Resources.DeleteErrorProductUsedInReceipt;
             return base.CanDeleteItem(model);
         }
     }

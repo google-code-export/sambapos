@@ -3322,6 +3322,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide Exit Button.
+        /// </summary>
+        public static string HideExitButton {
+            get {
+                return ResourceManager.GetString("HideExitButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide it on Reports.
         /// </summary>
         public static string HideItOnReports {
@@ -5965,6 +5974,15 @@ namespace Samba.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This name used for another {0}..
+        /// </summary>
+        public static string SaveErrorDuplicateItemName_f {
+            get {
+                return ResourceManager.GetString("SaveErrorDuplicateItemName_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is already a table with that name..
         /// </summary>
         public static string SaveErrorDuplicateTableName {
@@ -6088,6 +6106,15 @@ namespace Samba.Localization.Properties {
         public static string Selected_f {
             get {
                 return ResourceManager.GetString("Selected_f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Lines Count.
+        /// </summary>
+        public static string SelectedLinesCount {
+            get {
+                return ResourceManager.GetString("SelectedLinesCount", resourceCulture);
             }
         }
         

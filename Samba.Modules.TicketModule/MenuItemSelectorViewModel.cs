@@ -243,7 +243,7 @@ namespace Samba.Modules.TicketModule
 
             if (IsQuickNumeratorVisible)
                 NumeratorValue = QuickNumeratorValues[0];
-            //if (IsNumeratorVisible)
+            
             NumeratorValue = "";
 
             if (selectedMultiplier > 0)

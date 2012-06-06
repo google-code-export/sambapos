@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Samba.Domain.Models.Tickets;
 using Samba.Infrastructure.Data;
 
 namespace Samba.Domain.Models.Settings
@@ -11,6 +10,7 @@ namespace Samba.Domain.Models.Settings
         public byte[] LastUpdateTime { get; set; }
         public bool IsDefault { get; set; }
         public bool AutoLogout { get; set; }
+        public bool HideExitButton { get; set; }
         public virtual Printer SlipReportPrinter { get; set; }
         public virtual Printer ReportPrinter { get; set; }
         public int DepartmentId { get; set; }

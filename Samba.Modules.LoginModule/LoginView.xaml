@@ -32,7 +32,7 @@ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             <TextBlock FontSize="14" HorizontalAlignment="Center" Text="{Binding AdminPasswordHint}"
                  TextAlignment="Center" />
             <Button HorizontalAlignment="Center" MinWidth="100" Height="50" FontWeight="Bold" FontSize="18"
-                 Margin="5" Click="Button_Click">
+                 Margin="5" Click="Button_Click" Visibility="{Binding IsExitButtonVisible,Converter={StaticResource VisibilityConverter}}">
                 <DockPanel>
                     <Image Source="Images/LanShutDown.icon.gif" Stretch="None"/>
                     <Label>

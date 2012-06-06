@@ -258,7 +258,9 @@ namespace Samba.Presentation.ViewModels
                                    : Model.DepartmentId;
 
             var ti = Model.AddTicketItem(AppServices.CurrentLoggedInUser.Id, departmentId, menuItem, portion.Name, AppServices.MainDataContext.SelectedDepartment.PriceTag, defaultProperties);
+
             ti.Quantity = quantity > 9 ? decimal.Round(quantity / portion.Multiplier, LocalSettings.Decimals) : quantity;
+
             ti.Gifted = gift;
             var ticketItemViewModel = new TicketItemViewModel(ti);
             _items.Add(ticketItemViewModel);
@@ -606,7 +608,7 @@ namespace Samba.Presentation.ViewModels
             if (paymentType == PaymentType.Ticket) paymentName = Resources.Voucher;
 
             RuleExecutor.NotifyEvent(RuleEventNames.PaymentReceived,
-                new { Ticket = ticket, PaymentType = paymentName, Amount = amount, TicketTag = ticket.Tag, ticket.CustomerId, ticket.CustomerName, ticket.CustomerGroupCode });
+                new { Ticket = ticket, PaymentType = paymentName, Amount = amount, TicketTag = ticket.Tag, ticket.CustomerId, ticket.CustomerName, ticket.CustomerGroupCode, SelectedLinesCount = ticket.GetPaidItems().Count() });
         }
 
         public static void PaySelectedTicket(PaymentType paymentType)

@@ -47,7 +47,7 @@ namespace Samba.Domain.Models.Tickets
         private Dictionary<string, string> _tagValues;
         private readonly List<TicketItem> _removedTicketItems;
         private readonly List<TaxService> _removedTaxServices;
-        private readonly Dictionary<int, decimal> _paidItemsCache = new Dictionary<int, decimal>();
+        private Dictionary<int, decimal> _paidItemsCache = new Dictionary<int, decimal>();
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -694,12 +694,9 @@ namespace Samba.Domain.Models.Tickets
             return _paidItemsCache.Keys.ToArray();
         }
 
-        public void UpdatePaidItems(int[] getPaidItems)
+        public void CopyPaidItemsCache(Ticket ticket)
         {
-            foreach (var paidItem in getPaidItems)
-            {
-                UpdatePaidItems(paidItem);
-            }
+            _paidItemsCache = new Dictionary<int, decimal>(ticket._paidItemsCache);
         }
     }
 }

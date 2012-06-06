@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Documents;
 using Samba.Domain.Models.Settings;
 using Samba.Infrastructure.Printing;
@@ -26,10 +25,53 @@ namespace Samba.Services.Printing
         {
             Debug.Assert(!string.IsNullOrEmpty(Printer.ShareName));
 
-            var pcs = Printer.ShareName.Split('#');
+            lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine, false).ToArray();
+            lines = PrinterHelper.ReplaceChars(lines, Printer.ReplacementPattern).ToArray();
+            var text = lines.Aggregate("", (current, s) => current + RemoveTagFmt(s));
+            if (!IsValidFile(Printer.ShareName) || !SaveToFile(Printer.ShareName, text))
+                SendToNotepad(Printer, text);
+        }
+
+        private static bool IsValidFile(string fileName)
+        {
+            fileName = fileName.Trim();
+            if (fileName == "." || !fileName.Contains(".")) return false;
+            var result = false;
+            try
+            {
+                new FileInfo(fileName);
+                result = true;
+            }
+            catch (ArgumentException)
+            {
+            }
+            catch (PathTooLongException)
+            {
+            }
+            catch (NotSupportedException)
+            {
+            }
+            return result;
+        }
+
+        private static bool SaveToFile(string fileName, string text)
+        {
+            try
+            {
+                File.WriteAllText(fileName, text);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private static void SendToNotepad(Printer printer, string text)
+        {
+            var pcs = printer.ShareName.Split('#');
             var wname = "Edit";
-            if (pcs.Length > 1)
-                wname = pcs[1];
+            if (pcs.Length > 1) wname = pcs[1];
 
             var notepads = Process.GetProcessesByName(pcs[0]);
 
@@ -41,9 +83,6 @@ namespace Samba.Services.Printing
             if (notepads[0] != null)
             {
                 IntPtr child = FindWindowEx(notepads[0].MainWindowHandle, new IntPtr(0), wname, null);
-                lines = PrinterHelper.AlignLines(lines, Printer.CharsPerLine, false).ToArray();
-                lines = PrinterHelper.ReplaceChars(lines, Printer.ReplacementPattern).ToArray();
-                var text = lines.Aggregate("", (current, s) => current + RemoveTagFmt(s));
                 SendMessage(child, 0x000C, 0, text);
             }
         }

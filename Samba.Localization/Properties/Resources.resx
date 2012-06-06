@@ -3282,4 +3282,13 @@ Error Message:
   <data name="CharacterReplacementPatternInfo">
     <value xml:space="preserve">Use ß=ss for replacing unsupported characters. Merge multiple values with semicolon (;) </value>
   </data>
+  <data name="SaveErrorDuplicateItemName_f" xml:space="preserve">
+    <value>This name used for another {0}.</value>
+  </data>
+  <data name="HideExitButton">
+    <value xml:space="preserve">Hide Exit Button</value>
+  </data>
+  <data name="SelectedLinesCount">
+    <value xml:space="preserve">Selected Lines Count</value>
+  </data>
 </root>

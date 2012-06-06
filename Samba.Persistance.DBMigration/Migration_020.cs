@@ -13,6 +13,7 @@ namespace Samba.Persistance.DBMigration
                 Execute.Sql("CREATE NONCLUSTERED INDEX IDX_TicketItemProperties_All ON TicketItemProperties (TicketItemId) INCLUDE (Id,Name,PropertyPrice_CurrencyCode,PropertyPrice_Amount,PropertyGroupId,Quantity,MenuItemId,PortionName,CalculateWithParentPrice,VatAmount)");
                 Execute.Sql("CREATE NONCLUSTERED INDEX IDX_Payments_All ON Payments (Ticket_Id) INCLUDE (Id,Amount,Date,PaymentType,UserId,DepartmentId)");
             }
+            Create.Column("HideExitButton").OnTable("Terminals").AsBoolean().WithDefaultValue(false);
         }
 
         public override void Down()

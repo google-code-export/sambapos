@@ -182,10 +182,10 @@ Modificando il codice PIN si nasconderà questo suggerimento</value>
 		<value>Assegno</value>
 	</data>
 	<data name="CreditCard_ab" xml:space="preserve">
-		<value>C.Card</value>
+		<value>Carta</value>
 	</data>
 	<data name="Voucher_ab" xml:space="preserve">
-		<value>Vochr</value>
+		<value>Assegno</value>
 	</data>
 	<data name="OperationIncome" xml:space="preserve">
 		<value>Operazione reddito</value>
@@ -315,7 +315,7 @@ Pagamento</value>
 		<value>Elimina {0}</value>
 	</data>
 	<data name="Clone_f" xml:space="preserve">
-		<value>Clone {0}</value>
+		<value>Copia {0}</value>
 	</data>
 	<data name="List_f" xml:space="preserve">
 		<value>{0} Lista</value>
@@ -327,7 +327,7 @@ Pagamento</value>
 		<value>Elimina {0} [{1}]?</value>
 	</data>
 	<data name="Warning" xml:space="preserve">
-		<value>Warning</value>
+		<value>Attenzione</value>
 	</data>
 	<data name="Save" xml:space="preserve">
 		<value>Salva</value>
@@ -564,7 +564,7 @@ Pagamento</value>
 		<value>Proprietà</value>
 	</data>
 	<data name="Property" xml:space="preserve">
-		<value>Fondo</value>
+		<value>Propietà</value>
 	</data>
 	<data name="Price" xml:space="preserve">
 		<value>Prezzo</value>
@@ -585,7 +585,7 @@ Pagamento</value>
 		<value>Moltiplicatore</value>
 	</data>
 	<data name="PropertyGroups" xml:space="preserve">
-		<value>Gruppi di Proprietà</value>
+		<value>Proprietà Gruppi</value>
 	</data>
 	<data name="SelectPropertyGroupsHint_f" xml:space="preserve">
 		<value>Selezionare gruppi di proprietà per {0} prodotto.</value>
@@ -633,7 +633,7 @@ Pagamento</value>
 		<value>Menu Veloce</value>
 	</data>
 	<data name="Gift" xml:space="preserve">
-		<value>Regalo</value>
+		<value>Offerto</value>
 	</data>
 	<data name="Header" xml:space="preserve">
 		<value>Intestazione</value>
@@ -762,7 +762,7 @@ Pagamento</value>
 		<value>Account</value>
 	</data>
 	<data name="NumericTagsShouldBeNumbersErrorMessage" xml:space="preserve">
-		<value>Quando "Tagging Numeric" è selezionato tutti i tag devono contenere valori numerici.</value>
+		<value>Quando "Tagging Numerico" è selezionato tutti i tag devono contenere valori numerici.</value>
 	</data>
 	<data name="NewTag" xml:space="preserve">
 		<value>New Tag</value>
@@ -777,10 +777,10 @@ Pagamento</value>
 		<value>Criudi Conto</value>
 	</data>
 	<data name="GetPayment" xml:space="preserve">
-		<value>Risolvere</value>
+		<value>Saldare</value>
 	</data>
 	<data name="Tag" xml:space="preserve">
-		<value>Etichetta</value>
+		<value>Tag</value>
 	</data>
 	<data name="CanNavigateCash" xml:space="preserve">
 		<value>Può accedere alla schermata Contanti</value>
@@ -792,7 +792,7 @@ Pagamento</value>
 		<value>Internet Browser</value>
 	</data>
 	<data name="BatchCreateGiftReasons" xml:space="preserve">
-		<value>Batch creare motivi regalo</value>
+		<value>Batch creare motivi offerto</value>
 	</data>
 	<data name="BatchCreateReasonsHint" xml:space="preserve">
 		<value>Aggiungere una riga per ciascun motivo che si desidera aggiungere</value>
@@ -801,10 +801,10 @@ Pagamento</value>
 		<value>Impossibile eliminare perché questa regalo è usato in un ticket</value>
 	</data>
 	<data name="GiftReasonName" xml:space="preserve">
-		<value>Nome Motivo Regalo</value>
+		<value>Nome Motivo Offerto</value>
 	</data>
 	<data name="GiftReason" xml:space="preserve">
-		<value>Motivo Regalo</value>
+		<value>Motivo Offerto</value>
 	</data>
 	<data name="DeleteErrorNumeratorIsOrderNumerator" xml:space="preserve">
 		<value>Impossibile eliminare perché questo Numeratore perchè è usato in un Ordine</value>
@@ -834,10 +834,10 @@ Pagamento</value>
 		<value>Modello Linea</value>
 	</data>
 	<data name="GiftLineTemplate" xml:space="preserve">
-		<value>Modello Linea Regalo</value>
+		<value>Modello Linea Offerto</value>
 	</data>
 	<data name="VoidLineTemplate" xml:space="preserve">
-		<value>Modello linea Vuota</value>
+		<value>Modello linea Eliminato</value>
 	</data>
 	<data name="SubLineTemplate" xml:space="preserve">
 		<value>Modello linea Proprietà</value>
@@ -894,7 +894,7 @@ Pagamento</value>
 		<value># Linea: Articolo Prezzo</value>
 	</data>
 	<data name="LineItemPriceCents" xml:space="preserve">
-		<value># Linea: Articolo Prezzo  Cents</value>
+		<value># Linea: Articolo Prezzo  Centesimi</value>
 	</data>
 	<data name="LineItemTotal" xml:space="preserve">
 		<value># Linea: Totale Articolo</value>
@@ -903,7 +903,7 @@ Pagamento</value>
 		<value># Linea: Articolo Quantità x Totale</value>
 	</data>
 	<data name="LineItemTotalWithoutGifts" xml:space="preserve">
-		<value># Linea: Totale Prodotti (Regalo escluso)</value>
+		<value># Linea: Totale Prodotti (Offerto escluso)</value>
 	</data>
 	<data name="LineItemDetails" xml:space="preserve">
 		<value># Linea: Proprietà Prodotti</value>
@@ -918,7 +918,7 @@ Pagamento</value>
 		<value># Linea: Numero Ordine</value>
 	</data>
 	<data name="LineGiftOrVoidReason" xml:space="preserve">
-		<value># Linea: Motivo Regalo o Annullamento</value>
+		<value># Linea: Motivo Offerto o Annullamento</value>
 	</data>
 	<data name="TicketTotal" xml:space="preserve">
 		<value>Totale del Ticket</value>
@@ -1274,7 +1274,7 @@ Non può finire il periodo di lavoro mentre i biglietti aprire</value>
 		<value>Selezionare Tavolo</value>
 	</data>
 	<data name="TableList" xml:space="preserve">
-		<value>KLista Tavoli</value>
+		<value>Lista Tavoli</value>
 	</data>
 	<data name="SelectTableDialogHint_f" xml:space="preserve">
 		<value>Selezionare le tabelle che si desidera aggiungere a {0} vista</value>
@@ -1370,8 +1370,7 @@ Ticket</value>
 		<value>Pagamento Contanti</value>
 	</data>
 	<data name="CreditCard_r" xml:space="preserve">
-		<value>Credito
-Scheda</value>
+		<value>Carta</value>
 	</data>
 	<data name="SelectCustomer" xml:space="preserve">
 		<value>Selezionare Cliente</value>
@@ -1417,11 +1416,10 @@ Info</value>
 		<value>Variazione: {0}</value>
 	</data>
 	<data name="AccountBalance_r" xml:space="preserve">
-		<value>Conto
-Saldo</value>
+		<value>Debito</value>
 	</data>
 	<data name="All" xml:space="preserve">
-		<value>Tutti</value>
+		<value>Tutto</value>
 	</data>
 	<data name="Round" xml:space="preserve">
 		<value>Arrotondare</value>
@@ -1569,13 +1567,13 @@ Visita la sezione di report e creare report periodo di lavoro</value>
 		<value>Aperto</value>
 	</data>
 	<data name="AutoFlatten_ab" xml:space="preserve">
-		<value>Auto Arrotondamento</value>
+		<value>Auto Arrotondare</value>
 	</data>
 	<data name="Rounding" xml:space="preserve">
 		<value>Arrotondamento</value>
 	</data>
 	<data name="Flattening" xml:space="preserve">
-		<value>Arrotondamento</value>
+		<value>Arrotondare</value>
 	</data>
 	<data name="AccountBalance" xml:space="preserve">
 		<value>Bilancio Account</value>
@@ -1720,7 +1718,7 @@ Tavolo: {2}</value>
 		<value>Proventi delle Vendite</value>
 	</data>
 	<data name="TotalIncome" xml:space="preserve">
-		<value>Margine di intermediazione</value>
+		<value>Totale Entrate</value>
 	</data>
 	<data name="CashStatus" xml:space="preserve">
 		<value>Stato Pagamento</value>
@@ -1729,7 +1727,7 @@ Tavolo: {2}</value>
 		<value>Cassa</value>
 	</data>
 	<data name="WorkPeriodReport" xml:space="preserve">
-		<value>Lavora Periodo di report</value>
+		<value>Report Periodo di Lavoro</value>
 	</data>
 	<data name="Sales" xml:space="preserve">
 		<value>Vendite</value>
@@ -1741,13 +1739,13 @@ Tavolo: {2}</value>
 		<value>Proprietà degli elementi aggiuntivi</value>
 	</data>
 	<data name="VoidsTotal" xml:space="preserve">
-		<value>Totale Vuoto</value>
+		<value>Totale Annullamenti</value>
 	</data>
 	<data name="DiscountsTotal" xml:space="preserve">
 		<value>Sconti</value>
 	</data>
 	<data name="GiftsTotal" xml:space="preserve">
-		<value>Regali Totale</value>
+		<value>Totale Omaggio</value>
 	</data>
 	<data name="TicketCount" xml:space="preserve">
 		<value>Ticket Conto</value>
@@ -1810,7 +1808,7 @@ Tavolo: {2}</value>
 		<value>Vuoto</value>
 	</data>
 	<data name="Gifts" xml:space="preserve">
-		<value>Regali</value>
+		<value>Omaggio</value>
 	</data>
 	<data name="Discounts" xml:space="preserve">
 		<value>Sconti</value>
@@ -1901,7 +1899,7 @@ Tavolo: {2}</value>
 		<value>Impostazioni CID</value>
 	</data>
 	<data name="Voucher_r" xml:space="preserve">
-		<value>Voucher</value>
+		<value>Assegno</value>
 	</data>
 	<data name="TicketTemplateGiftedLineTemplateValue" xml:space="preserve">
 		<value>&lt;L00&gt;{QUANTITY} {NAME} | GIFT</value>
@@ -1910,7 +1908,7 @@ Tavolo: {2}</value>
 		<value>Permessi di navigazione</value>
 	</data>
 	<data name="DepartmentPermissions" xml:space="preserve">
-		<value>Dipartimento delle autorizzazioni</value>
+		<value>Autorizzazioni Dipartimento</value>
 	</data>
 	<data name="TicketPermissions" xml:space="preserve">
 		<value>Ticket Autorizzazioni</value>
@@ -2029,7 +2027,7 @@ Tavolo: {2}</value>
 		<value>Nota cliente</value>
 	</data>
 	<data name="GiftTotal" xml:space="preserve">
-		<value>Dono totale</value>
+		<value>Offerto totale</value>
 	</data>
 	<data name="UserLogin" xml:space="preserve">
 		<value>Login Utente</value>
@@ -2231,10 +2229,10 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>C'è un'altra Definizione dei prezzi con {0} tag</value>
 	</data>
 	<data name="PriceDefinition" xml:space="preserve">
-		<value>Prezzo Definizione</value>
+		<value>Definizione Prezzo</value>
 	</data>
 	<data name="PriceDefinitions" xml:space="preserve">
-		<value>Prezzo Definizioni</value>
+		<value>Definizioni Prezzo</value>
 	</data>
 	<data name="ClearFilter" xml:space="preserve">
 		<value>Eliminare filtro</value>
@@ -2306,7 +2304,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Visualizza percorso dell'utente</value>
 	</data>
 	<data name="SaveReportToFile" xml:space="preserve">
-		<value>Salva Segnala su file</value>
+		<value>Salva Report su file</value>
 	</data>
 	<data name="PriceDefinitonName" xml:space="preserve">
 		<value>Prezzo Definizione Nome</value>
@@ -2390,7 +2388,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Altezza pulsante Sottomenu</value>
 	</data>
 	<data name="MaxItems" xml:space="preserve">
-		<value>Max Articoli</value>
+		<value>Articoli Massimo</value>
 	</data>
 	<data name="SortType" xml:space="preserve">
 		<value>Ordina Tipo</value>
@@ -2402,10 +2400,10 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Modelli fiscali</value>
 	</data>
 	<data name="VatTemplate" xml:space="preserve">
-		<value>Tax Modello</value>
+		<value>Modello IVA</value>
 	</data>
 	<data name="VatTemplateName" xml:space="preserve">
-		<value>Tax Nome modello</value>
+		<value>Nome modello IVA</value>
 	</data>
 	<data name="Rate" xml:space="preserve">
 		<value>Tasso</value>
@@ -2417,7 +2415,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Imposta</value>
 	</data>
 	<data name="VatTotal" xml:space="preserve">
-		<value>Totale Tax</value>
+		<value>Totale IVA</value>
 	</data>
 	<data name="UpdateTicketVat" xml:space="preserve">
 		<value>Aggiornamento tassa sui biglietti</value>
@@ -2525,7 +2523,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Euro</value>
 	</data>
 	<data name="Cent" xml:space="preserve">
-		<value>Cent</value>
+		<value>Centesimi</value>
 	</data>
 	<data name="PluralCurrencySuffix" xml:space="preserve">
 		<value>e</value>
@@ -2540,7 +2538,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Sempre non includono la tassa</value>
 	</data>
 	<data name="RoundingTotal" xml:space="preserve">
-		<value>Arrotondamento totale</value>
+		<value>Arrotondare Totale</value>
 	</data>
 	<data name="TaxServiceTemplates" xml:space="preserve">
 		<value>Modelli di servizio</value>
@@ -2570,7 +2568,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Importo fisso</value>
 	</data>
 	<data name="RateFromVatIncludedTicketAmount" xml:space="preserve">
-		<value>Tariffa a partire da IVA inclusa valore del biglietto</value>
+		<value>Tariffa a partire da IVA inclusa valore del Ticket</value>
 	</data>
 	<data name="UnhandledExceptionErrorMessage" xml:space="preserve">
 		<value>SambaPOS si è verificato un problema imprevisto. Informazioni dettagliate sui problemi registrati in file di trace.log</value>
@@ -2600,7 +2598,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Totali Raggruppati per Modello Fiscale</value>
 	</data>
 	<data name="TaxTotal" xml:space="preserve">
-		<value>Totale Tassa</value>
+		<value>Totale IVA</value>
 	</data>
 	<data name="TaxTotalsGroupedByTaxTemplate" xml:space="preserve">
 		<value>Totali raggruppati per modello di servizio</value>
@@ -2609,7 +2607,7 @@ Attiverà dopo {1} giorni, {2} ore, {3} minuti</value>
 		<value>Testo scritto valore totale</value>
 	</data>
 	<data name="TicketLocationChanged" xml:space="preserve">
-		<value>Biglietteria Ubicazione Cambiato</value>
+		<value>Cambiata Ubicazione Ticket</value>
 	</data>
 	<data name="UpdateTicketAccount" xml:space="preserve">
 		<value>Aggiornamento Account Ticket</value>
@@ -2657,16 +2655,16 @@ Continua senza aggiungere dettagli?</value>
 		<value>Modificatori</value>
 	</data>
 	<data name="APortionShouldSelected" xml:space="preserve">
-		<value>Una porzione selezionata deve</value>
+		<value>Bisogna selezionare una porzione</value>
 	</data>
 	<data name="ThereIsAnotherRecipeFor_f" xml:space="preserve">
 		<value>C'è un'altra ricetta per {0}</value>
 	</data>
 	<data name="DeleteErrorPrinterAssignedToTerminal" xml:space="preserve">
-		<value>Impossibile eliminare perché questa stampante assegnata a un terminale</value>
+		<value>Impossibile eliminare perché questa stampante è assegnata a un terminale</value>
 	</data>
 	<data name="DeleteErrorPrinterAssignedToPrinterMap" xml:space="preserve">
-		<value>Impossibile eliminare perché questa stampante assegnato ad un lavoro di stampa</value>
+		<value>Impossibile eliminare perché questa stampante è assegnato ad un lavoro di stampa</value>
 	</data>
 	<data name="PriceTags" xml:space="preserve">
 		<value>Prezzo Tagging</value>
@@ -2687,7 +2685,7 @@ Continua senza aggiungere dettagli?</value>
 		<value>Esegui lavoro di stampa</value>
 	</data>
 	<data name="LineCount" xml:space="preserve">
-		<value>Linea Conte</value>
+		<value>Contatore linee</value>
 	</data>
 	<data name="PrintingErrorMessage_f" xml:space="preserve">
 		<value>C'è un problema durante la stampa. Si prega di stampante revisione e impostazioni del modello della stampante.
@@ -2720,10 +2718,10 @@ Messaggio di errore:
 		<value>Applicazione Avviata</value>
 	</data>
 	<data name="LastPaidLines" xml:space="preserve">
-		<value>Ultimi Linee pagamento</value>
+		<value>Ultime Linee pagamento</value>
 	</data>
 	<data name="PortionSelected" xml:space="preserve">
-		<value>Porzione selezionata</value>
+		<value>Porzione Selezionata</value>
 	</data>
 	<data name="ModifierSelected" xml:space="preserve">
 		<value>ModificaSeleziona</value>
@@ -2780,7 +2778,7 @@ Messaggio di errore:
 		<value>Clienti Codice di Gruppo</value>
 	</data>
 	<data name="CustomerId" xml:space="preserve">
-		<value>ID cliente</value>
+		<value>ID Cliente</value>
 	</data>
 	<data name="PaymentType" xml:space="preserve">
 		<value>Tipo di Pagamento</value>
@@ -2795,7 +2793,7 @@ Messaggio di errore:
 		<value>Linea Ticket Annullato</value>
 	</data>
 	<data name="MS_Connected" xml:space="preserve">
-		<value>Collegato.</value>
+		<value>Connesso.</value>
 	</data>
 	<data name="MS_Disconnected" xml:space="preserve">
 		<value>Disconnesso.</value>
@@ -2807,10 +2805,10 @@ Messaggio di errore:
 		<value>Per la stampa il valore X Ticket Tag</value>
 	</data>
 	<data name="ForPrintingAppSettingValue" xml:space="preserve">
-		<value>Per l'applicazione di stampa Impostazione valore X</value>
+		<value>Per l'applicazione di stampa Impostare valore X</value>
 	</data>
 	<data name="ForceClosingActiveWorkPeriod" xml:space="preserve">
-		<value>Forza di chiusura periodo attivo di lavoro</value>
+		<value>Forza la chiusura del Periodo di Lavoro</value>
 	</data>
 	<data name="RequestShutdown" xml:space="preserve">
 		<value>Richiesta di arresto</value>
@@ -2822,7 +2820,7 @@ Messaggio di errore:
 		<value>Verifica ...</value>
 	</data>
 	<data name="TotalPropertyCount" xml:space="preserve">
-		<value>Modifier conteggio totale</value>
+		<value>Modificatore Conteggio Totale</value>
 	</data>
 	<data name="TotalModifierQuantity" xml:space="preserve">
 		<value>Grouppo Quantità totale</value>

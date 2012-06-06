@@ -29,6 +29,7 @@ namespace Samba.Login
         public string AppLabel { get { return "SAMBA POS " + LocalSettings.AppVersion + " - " + GetDatabaseLabel(); } }
         public string AdminPasswordHint { get { return GetAdminPasswordHint(); } }
         public string SqlHint { get { return GetSqlHint(); } }
+        public bool IsExitButtonVisible { get { return !AppServices.CurrentTerminal.HideExitButton; } }
 
         private static string GetSqlHint()
         {

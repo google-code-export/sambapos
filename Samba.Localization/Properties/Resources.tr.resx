@@ -3284,4 +3284,13 @@ Hata Mesajı:
   <data name="CharacterReplacementPatternInfo">
     <value xml:space="preserve">Desteklenmeyen harfleri Ğ=G şeklinde değiştirebilirsiniz. Birden fazla değeri noktalı virgül (;) ile birleştirin. </value>
   </data>
+  <data name="SaveErrorDuplicateItemName_f" xml:space="preserve">
+    <value>Bu isim başka bir {0} için kullanılmış.</value>
+  </data>
+  <data name="HideExitButton">
+    <value xml:space="preserve">Çıkış Düğmesini Gizle</value>
+  </data>
+  <data name="SelectedLinesCount">
+    <value xml:space="preserve">Seçilen Satır Sayısı</value>
+  </data>
 </root>

@@ -74,5 +74,12 @@ namespace Samba.Modules.InventoryModule
         }
 
         public string GroupValue { get { return Model.GroupCode; } }
+
+        protected override string GetSaveErrorMessage()
+        {
+            if (Dao.Single<InventoryItem>(x => x.Name.ToLower() == Model.Name.ToLower() && x.Id != Model.Id) != null)
+                return string.Format(Resources.SaveErrorDuplicateItemName_f, Resources.InventoryItem);
+            return base.GetSaveErrorMessage();
+        }
     }
 }

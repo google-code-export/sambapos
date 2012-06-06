@@ -25,6 +25,7 @@ namespace Samba.Modules.SettingsModule
 
         public bool IsDefault { get { return Model.IsDefault; } set { Model.IsDefault = value; } }
         public bool AutoLogout { get { return Model.AutoLogout; } set { Model.AutoLogout = value; } }
+        public bool HideExitButton { get { return Model.HideExitButton; } set { Model.HideExitButton = value; } }
         public int? DepartmentId { get { return Model.DepartmentId; } set { Model.DepartmentId = value.GetValueOrDefault(0); } }
         public Printer SlipReportPrinter { get { return Model.SlipReportPrinter; } set { Model.SlipReportPrinter = value; } }
         public Printer ReportPrinter { get { return Model.ReportPrinter; } set { Model.ReportPrinter = value; } }
