@@ -130,7 +130,18 @@ namespace Samba.Services
 
         public SettingGetter GetSetting(string valueName)
         {
-            var setting = _workspace.Single<ProgramSetting>(x => x.Name == valueName);
+            ProgramSetting setting;
+            try
+            {
+                setting = _workspace.Single<ProgramSetting>(x => x.Name == valueName);
+            }
+            catch (Exception)
+            {
+                _workspace.Delete<ProgramSetting>(x => x.Name == valueName);
+                _workspace.CommitChanges();
+                setting = null;
+            }
+
             if (_settingCache.ContainsKey(valueName))
             {
                 if (setting == null)
@@ -142,6 +153,7 @@ namespace Samba.Services
                 setting = new ProgramSetting { Name = valueName };
                 _settingCache.Add(valueName, setting);
                 _workspace.Add(setting);
+                _workspace.CommitChanges();
             }
             return new SettingGetter(setting);
         }

@@ -77,6 +77,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.it.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.nl-NL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.nl-NL.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.pt-BR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,6 +156,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.nl-NL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.nl-NL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.pt-BR.Designer.cs</LastGenOutput>
@@ -210,6 +219,7 @@ xcopy /y "$(TargetDir)pt-BR\Samba.Localization.resources.dll" "$(SolutionDir)Sam
 xcopy /y "$(TargetDir)it\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\it\"
 xcopy /y "$(TargetDir)fr\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\fr\"
 xcopy /y "$(TargetDir)hr\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\hr\"
+xcopy /y "$(TargetDir)nl-NL\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\nl-NL\"
 
 :End</PostBuildEvent>
   </PropertyGroup>

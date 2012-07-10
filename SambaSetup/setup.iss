@@ -32,8 +32,8 @@
 //#include "scripts\products\mdac28.iss"
 //#include "scripts\products\jet4sp8.iss"
 
-#define Version "2.98 "
-#define FileVersion "298"
+#define Version "2.99 "
+#define FileVersion "299"
 
 [CustomMessages]
 win2000sp3_title=Windows 2000 Service Pack 3
@@ -203,6 +203,7 @@ Source: src\ro\Samba.Localization.resources.dll; DestDir: {app}\ro\; Flags: igno
 Source: src\sq\Samba.Localization.resources.dll; DestDir: {app}\sq\; Flags: ignoreversion
 Source: src\zh-CN\Samba.Localization.resources.dll; DestDir: {app}\zh-CN\; Flags: ignoreversion
 Source: src\pt-BR\Samba.Localization.resources.dll; DestDir: {app}\pt-BR\; Flags: ignoreversion
+Source: src\nl-NL\Samba.Localization.resources.dll; DestDir: {app}\nl-NL\; Flags: ignoreversion
 Source: src\it\Samba.Localization.resources.dll; DestDir: {app}\it\; Flags: ignoreversion
 Source: src\fr\Samba.Localization.resources.dll; DestDir: {app}\fr\; Flags: ignoreversion
 Source: src\hr\Samba.Localization.resources.dll; DestDir: {app}\hr\; Flags: ignoreversion
@@ -314,6 +315,7 @@ Name: {app}\it
 Name: {app}\fr
 Name: {app}\hr
 Name: {app}\pt-BR
+Name: {app}\nl-NL
 Name: {commonappdata}\Ozgu Tech\SambaPOS2
 [Registry]
 Root: HKLM; Subkey: SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION; ValueType: dword; ValueName: samba.presentation.exe; ValueData: 9999

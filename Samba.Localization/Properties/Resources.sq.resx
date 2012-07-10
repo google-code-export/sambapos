@@ -127,7 +127,7 @@
 		<value>Dalje</value>
 	</data>
 	<data name="Login" xml:space="preserve">
-		<value>Hyrje</value>
+		<value>Logohu</value>
 	</data>
 	<data name="CheckDBVersion" xml:space="preserve">
 		<value>Kontrollo Versionin e Databases</value>
@@ -137,16 +137,16 @@
 	</data>
 	<data name="AdminPasswordHint" xml:space="preserve">
 		<value>PIN Admin: 1234
-Ndryshimi i PIN-it do të fsheh këtë aluzion</value>
+Ndryshimi i PIN-it do të fsheh këtë informacion</value>
 	</data>
 	<data name="AccountName" xml:space="preserve">
-		<value>Emri i llogarisë</value>
+		<value>Emri i Perdoruesit</value>
 	</data>
 	<data name="Address" xml:space="preserve">
-		<value>Adresë</value>
+		<value>Adresa</value>
 	</data>
 	<data name="Amount" xml:space="preserve">
-		<value>Shumë</value>
+		<value>Shuma</value>
 	</data>
 	<data name="Cash" xml:space="preserve">
 		<value>Para në dorë</value>
@@ -158,7 +158,7 @@ Ndryshimi i PIN-it do të fsheh këtë aluzion</value>
 		<value>Përshkrim</value>
 	</data>
 	<data name="ExpenseTransactions" xml:space="preserve">
-		<value>Transaksionet e shpenzimeve</value>
+		<value>Lista e shpenzimeve</value>
 	</data>
 	<data name="GrandTotal" xml:space="preserve">
 		<value>Totali Komplet</value>
@@ -167,7 +167,7 @@ Ndryshimi i PIN-it do të fsheh këtë aluzion</value>
 		<value>Të ardhurat</value>
 	</data>
 	<data name="IncomeTransactions" xml:space="preserve">
-		<value>Transaksionet e të ardhurave</value>
+		<value>Lista e të ardhurave</value>
 	</data>
 	<data name="Note" xml:space="preserve">
 		<value>Shënim</value>
@@ -179,33 +179,32 @@ Ndryshimi i PIN-it do të fsheh këtë aluzion</value>
 		<value>Total</value>
 	</data>
 	<data name="Voucher" xml:space="preserve">
-		<value>Kuponi</value>
+		<value>Fature</value>
 	</data>
 	<data name="CreditCard_ab" xml:space="preserve">
 		<value>C. Card</value>
 	</data>
 	<data name="Voucher_ab" xml:space="preserve">
-		<value>Kupon</value>
+		<value>Fature</value>
 	</data>
 	<data name="OperationIncome" xml:space="preserve">
-		<value>Operacioni i të ardhurave</value>
+		<value>Veprimet e të ardhurave</value>
 	</data>
 	<data name="StartOfDay" xml:space="preserve">
 		<value>Fillo Periudhën e Punës</value>
 	</data>
 	<data name="NewIncomeTransaction" xml:space="preserve">
-		<value>Transaksion i të ardhurave</value>
+		<value>Transaksion i ri i të ardhurave</value>
 	</data>
 	<data name="NewExpenseTransaction" xml:space="preserve">
-		<value>Transaksion i shpenzimeve</value>
+		<value>Transaksion i ri i shpenzimeve</value>
 	</data>
 	<data name="IncomeTransaction_r" xml:space="preserve">
-		<value>Të ardhurat e
-Transaksionit</value>
+		<value>Të ardhurat
+</value>
 	</data>
 	<data name="ExpenseTransaction_r" xml:space="preserve">
-		<value>Shpenzimet e
-Transaksionit</value>
+		<value>Shpenzimet</value>
 	</data>
 	<data name="Cancel" xml:space="preserve">
 		<value>Anullo</value>
@@ -218,7 +217,7 @@ Klientëve</value>
 		<value>Emri i konsumatorëve</value>
 	</data>
 	<data name="InternalAccount" xml:space="preserve">
-		<value>Llogaria e brendshme</value>
+		<value>Llogari e brendshme</value>
 	</data>
 	<data name="Ticket" xml:space="preserve">
 		<value>Biletë</value>
@@ -227,10 +226,10 @@ Klientëve</value>
 		<value>Shitjet totale</value>
 	</data>
 	<data name="LastOrderDate" xml:space="preserve">
-		<value>Data e fundit e Porosisë</value>
+		<value>Data e Porosise se Fundit</value>
 	</data>
 	<data name="LastOrderStatus" xml:space="preserve">
-		<value>Statusi i fundit i Porosisë</value>
+		<value>Statusi i Porosise se Fundit</value>
 	</data>
 	<data name="LastOrder" xml:space="preserve">
 		<value>Porosia e Fundit</value>
@@ -242,23 +241,23 @@ Klientëve</value>
 		<value>Data</value>
 	</data>
 	<data name="Liability" xml:space="preserve">
-		<value>Borxh</value>
+		<value>Detyrimi</value>
 	</data>
 	<data name="Receiveable" xml:space="preserve">
-		<value>Arkëtimet</value>
+		<value>Arkëtimi</value>
 	</data>
 	<data name="Customer" xml:space="preserve">
 		<value>Klient</value>
 	</data>
 	<data name="CustomerList" xml:space="preserve">
-		<value>Lista e konsumatorëve</value>
+		<value>Lista e Klienteve</value>
 	</data>
 	<data name="Customers" xml:space="preserve">
 		<value>Konsumatorët</value>
 	</data>
 	<data name="SelectCustomer_r" xml:space="preserve">
 		<value>Përzgjedh
-Klient</value>
+Klientin</value>
 	</data>
 	<data name="NewCustomer_r" xml:space="preserve">
 		<value>Klient i
@@ -318,7 +317,7 @@ Pagesën</value>
 		<value>Fshije {0}</value>
 	</data>
 	<data name="Clone_f" xml:space="preserve">
-		<value>Clone {0}</value>
+		<value>Clono {0}</value>
 	</data>
 	<data name="List_f" xml:space="preserve">
 		<value>{0} Lista</value>
@@ -339,13 +338,13 @@ Pagesën</value>
 		<value>Edito {0} ({1})</value>
 	</data>
 	<data name="AddModel_f" xml:space="preserve">
-		<value>Shtimi i të rejave {0}</value>
+		<value>Shto te ri {0}</value>
 	</data>
 	<data name="EmptyNameError" xml:space="preserve">
-		<value>Mos i lënë {0} emrat bosh.</value>
+		<value>Mos leni {0} emrin bosh.</value>
 	</data>
 	<data name="CantSave" xml:space="preserve">
-		<value>Nuk mund ta Ruaj</value>
+		<value>Nuk mund te Ruaj</value>
 	</data>
 	<data name="GroupCode" xml:space="preserve">
 		<value>Kodi i Grupit</value>
@@ -354,31 +353,31 @@ Pagesën</value>
 		<value>Njësia bazë</value>
 	</data>
 	<data name="TransactionUnit" xml:space="preserve">
-		<value>Njësia e Transaksionit</value>
+		<value>Njësia e Levizjeve</value>
 	</data>
 	<data name="TransacitonUnitMultiplier" xml:space="preserve">
-		<value>Njësia e Transaksionit Multiplikativ</value>
+		<value>Njësia e Levizjeve Multiplikative</value>
 	</data>
 	<data name="InventoryItems" xml:space="preserve">
-		<value>Gjerat ne Inventar</value>
+		<value>Artikujt e Inventarit</value>
 	</data>
 	<data name="Recipes" xml:space="preserve">
 		<value>Recetat</value>
 	</data>
 	<data name="Transactions" xml:space="preserve">
-		<value>Transaksion</value>
+		<value>Levizjet</value>
 	</data>
 	<data name="EndOfDayRecords" xml:space="preserve">
-		<value>Fundi i Turnit</value>
+		<value>Fundi i te dhenave te dites</value>
 	</data>
 	<data name="Select" xml:space="preserve">
-		<value>Përzgjedh</value>
+		<value>Selekto</value>
 	</data>
 	<data name="CantDeletePastEndOfDayRecords" xml:space="preserve">
-		<value>Nuk mund të fshini të dhënave ditës</value>
+		<value>S'mund të fshini të dhënave ditës</value>
 	</data>
 	<data name="EndOfDayRecord" xml:space="preserve">
-		<value>Fundi i Turnin Rgjistrimet</value>
+		<value>Fundi i Regjistrimit te Fundit</value>
 	</data>
 	<data name="CalculateCost" xml:space="preserve">
 		<value>Llogarit Koston</value>
@@ -393,7 +392,7 @@ Pagesën</value>
 		<value>Parashikimi i Kostos</value>
 	</data>
 	<data name="Costs" xml:space="preserve">
-		<value>Shpenzimet</value>
+		<value>Kostot</value>
 	</data>
 	<data name="CurrentCost" xml:space="preserve">
 		<value>Kostot aktuale</value>
@@ -477,7 +476,7 @@ Pagesën</value>
 		<value>POS Shiko Tavoninat</value>
 	</data>
 	<data name="TerminalTableView" xml:space="preserve">
-		<value>Shiko Tavoninat</value>
+		<value>Terminal Shiko Tavoninat</value>
 	</data>
 	<data name="OpenTicketView" xml:space="preserve">
 		<value>Shiko Faturat e Hapura</value>
@@ -489,7 +488,7 @@ Pagesën</value>
 		<value>POS Bileta Default</value>
 	</data>
 	<data name="TerminalDefaultTicketTag" xml:space="preserve">
-		<value>Bileta Default</value>
+		<value>Terminal Bileta Default</value>
 	</data>
 	<data name="DepartmentType" xml:space="preserve">
 		<value>Tipi i Sektorit</value>
@@ -510,7 +509,7 @@ Pagesën</value>
 		<value>Numerimi i Faturave</value>
 	</data>
 	<data name="OrderNumerator" xml:space="preserve">
-		<value>Rendi Numerues</value>
+		<value>Rradhitja e Numerimit</value>
 	</data>
 	<data name="TicketTags" xml:space="preserve">
 		<value>Etiketimi i Faturës</value>
@@ -528,19 +527,19 @@ Pagesën</value>
 		<value>Sektor</value>
 	</data>
 	<data name="BatchCreteProducts" xml:space="preserve">
-		<value>Krijo Produkte ne Seri</value>
+		<value>Grumbullo Profuktet </value>
 	</data>
 	<data name="BatchCreateProductsDialogHint" xml:space="preserve">
-		<value>Krijo një rrjesht për çdo produkt me [Emri i Produktit] [Çmimi] . Filloni Emrat e Kategorive me # char.</value>
+		<value>Krijo një rrjesht për çdo produkt me [Emri i Produktit] [Çmimi] . Fillo Emrin e Kategorise me # char.</value>
 	</data>
 	<data name="DeleteErrorProductUsedInMenu" xml:space="preserve">
-		<value>Nuk mund të fshini sepse ky Produkt është i caktuar në një Menu</value>
+		<value>Nuk mund të fshini sepse ky Produkt i perket një Menuje</value>
 	</data>
 	<data name="DeleteErrorProductUsedInReceipt" xml:space="preserve">
 		<value>Nuk mund të fshini sepse ky Produkt është i caktuar në një faturë.</value>
 	</data>
 	<data name="DeleteErrorProductPropertyUsedInProduct" xml:space="preserve">
-		<value>Nuk mund të fshini sepse kjo Tiparë Produkt është caktuar në një Produkt</value>
+		<value>Nuk mund të fshini sepse ky Tipare Produkti është i caktuar në një Produkt</value>
 	</data>
 	<data name="PropertyGroupName" xml:space="preserve">
 		<value>Tipari i Emrit të Grupit</value>
@@ -561,7 +560,7 @@ Pagesën</value>
 		<value>Lartësia e Butonit</value>
 	</data>
 	<data name="TerminalView" xml:space="preserve">
-		<value>Shiko Terminal</value>
+		<value>Shiko Terminalin</value>
 	</data>
 	<data name="Properties" xml:space="preserve">
 		<value>Tiparët</value>
@@ -591,13 +590,13 @@ Pagesën</value>
 		<value>Tiparët e Grupeve</value>
 	</data>
 	<data name="SelectPropertyGroupsHint_f" xml:space="preserve">
-		<value>Zgjidh Tiparët e Grupeve për {0} produkt.</value>
+		<value>Zgjidh Tiparët e Grupeve për {0} produkte.</value>
 	</data>
 	<data name="Departments" xml:space="preserve">
 		<value>Sektorët</value>
 	</data>
 	<data name="Settings" xml:space="preserve">
-		<value>Parametrat</value>
+		<value>Rregullimet</value>
 	</data>
 	<data name="ProductList" xml:space="preserve">
 		<value>Lista e produkteve</value>
@@ -606,13 +605,13 @@ Pagesën</value>
 		<value>Lista e Menus</value>
 	</data>
 	<data name="BatchPriceList" xml:space="preserve">
-		<value>Lista e Çmimeve Editor</value>
+		<value>Editimi i Listes se Çmimeve</value>
 	</data>
 	<data name="CanChangeDepartment" xml:space="preserve">
 		<value>Sektori mund të ndryshojë</value>
 	</data>
 	<data name="AlphanumericButtonValues" xml:space="preserve">
-		<value>Vlerat alfanumerike Buton</value>
+		<value>Vlerat Buton alfanumerike </value>
 	</data>
 	<data name="AutoSelect" xml:space="preserve">
 		<value>Zgjidh Auto</value>
@@ -621,10 +620,10 @@ Pagesën</value>
 		<value>Ngjyra e Butonit</value>
 	</data>
 	<data name="CategoryName" xml:space="preserve">
-		<value>Emri Kategoria</value>
+		<value>Emri i Kategoris</value>
 	</data>
 	<data name="CategoryProperties" xml:space="preserve">
-		<value>Tiparët e Kategorive</value>
+		<value>Tiparët e Kategoris</value>
 	</data>
 	<data name="Color" xml:space="preserve">
 		<value>Ngjyrë</value>
@@ -642,10 +641,10 @@ Pagesën</value>
 		<value>Koka</value>
 	</data>
 	<data name="ImagePath" xml:space="preserve">
-		<value>Vendodhja e Imaxhit</value>
+		<value>Vendodhja e Fotos</value>
 	</data>
 	<data name="MenuProperties" xml:space="preserve">
-		<value>Perberja e Menu</value>
+		<value>Perberja e Menus</value>
 	</data>
 	<data name="NumeratorProperties" xml:space="preserve">
 		<value>Perberja e numëruesit</value>
@@ -684,55 +683,55 @@ Pagesën</value>
 		<value>Kategori</value>
 	</data>
 	<data name="CategoryProducts" xml:space="preserve">
-		<value>Produkte Category</value>
+		<value>Kategoria e Produktit</value>
 	</data>
 	<data name="Sort_f" xml:space="preserve">
 		<value>Rendit {0}</value>
 	</data>
 	<data name="ProductProperties" xml:space="preserve">
-		<value>Prona të produktit</value>
+		<value>Cilesite e produktit</value>
 	</data>
 	<data name="AllCategories" xml:space="preserve">
 		<value>Të gjitha Kategoritë</value>
 	</data>
 	<data name="AddCategoryHint" xml:space="preserve">
-		<value>Shkruani Temat që dëshironi të shtoni</value>
+		<value>Shkruani Kategorite që doni të shtoni</value>
 	</data>
 	<data name="AutoSelectProductsQuestion" xml:space="preserve">
-		<value>Produkteve auto zgjedhur për kategori të reja?</value>
+		<value>Produkteve te auto zgjedhur për kategori të reja?</value>
 	</data>
 	<data name="AddProductsToCategoryHint_f" xml:space="preserve">
 		<value>Zgjidh Produktet për {0} kategori</value>
 	</data>
 	<data name="DeleteSelectedCategoryQuestion" xml:space="preserve">
-		<value>Delete Selected Category?</value>
+		<value>Fshi Kategorine e Zgjellur?</value>
 	</data>
 	<data name="SortCategoryProducts" xml:space="preserve">
-		<value>Produkte Kategoria Rendit</value>
+		<value>Rendit Kategorite e Produkteve</value>
 	</data>
 	<data name="SortCategories" xml:space="preserve">
-		<value>Kategoritë Rendit</value>
+		<value>Rendit Kategoritë</value>
 	</data>
 	<data name="SortCategoryProductsDialogHint_f" xml:space="preserve">
-		<value>Drag {0} produkteve kategori për të ndryshuar rendin.</value>
+		<value>Zhvendos {0} kategorine e produkteve për të ndryshuar rendin.</value>
 	</data>
 	<data name="SortCategoriesDialogHint_f" xml:space="preserve">
-		<value>Drag {0} menuja e kategorive për të ndryshuar rendin.</value>
+		<value>Zhvendos {0} Kategorine e menuse për të ndryshuar rendin.</value>
 	</data>
 	<data name="DeleteErrorTagUsedInDepartment" xml:space="preserve">
-		<value>Nuk mund të fshini sepse kjo Tag caktuar në një Departamenti</value>
+		<value>Nuk mund të fshini sepse kjo Etikete eshte caktuar në një Sektor</value>
 	</data>
 	<data name="TicketTagName" xml:space="preserve">
-		<value>Tag Ticket Emri</value>
+		<value>Etiketim i emrit te fatures</value>
 	</data>
 	<data name="Numerator" xml:space="preserve">
 		<value>Numërues</value>
 	</data>
 	<data name="DoAfterTicketSelected" xml:space="preserve">
-		<value>A atë pas biletë zgjedhur</value>
+		<value>Beje pasi te zgjillet fatura</value>
 	</data>
 	<data name="CanUseOnPOS" xml:space="preserve">
-		<value>Përdorur në POS</value>
+		<value>Përdor në POS</value>
 	</data>
 	<data name="CanUseOnTerminal" xml:space="preserve">
 		<value>Përdorur në Terminal</value>
