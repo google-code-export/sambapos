@@ -207,6 +207,8 @@ Source: src\nl-NL\Samba.Localization.resources.dll; DestDir: {app}\nl-NL\; Flags
 Source: src\it\Samba.Localization.resources.dll; DestDir: {app}\it\; Flags: ignoreversion
 Source: src\fr\Samba.Localization.resources.dll; DestDir: {app}\fr\; Flags: ignoreversion
 Source: src\hr\Samba.Localization.resources.dll; DestDir: {app}\hr\; Flags: ignoreversion
+Source: src\id\Samba.Localization.resources.dll; DestDir: {app}\id\; Flags: ignoreversion
+Source: src\el\Samba.Localization.resources.dll; DestDir: {app}\el\; Flags: ignoreversion
 
 [Components]
 Name: pos; Description: Samba POS; Types: full compact custom; Flags: fixed
@@ -316,6 +318,8 @@ Name: {app}\fr
 Name: {app}\hr
 Name: {app}\pt-BR
 Name: {app}\nl-NL
+Name: {app}\id
+Name: {app}\el
 Name: {commonappdata}\Ozgu Tech\SambaPOS2
 [Registry]
 Root: HKLM; Subkey: SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION; ValueType: dword; ValueName: samba.presentation.exe; ValueData: 9999

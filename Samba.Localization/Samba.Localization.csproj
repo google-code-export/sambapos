@@ -57,6 +57,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.de.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.el.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.el.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +76,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.hr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.id.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.id.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.it.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -140,6 +150,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.cs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.el.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.el.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.es.Designer.cs</LastGenOutput>
@@ -151,6 +165,10 @@
     <EmbeddedResource Include="Properties\Resources.hr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.hr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.id.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.id.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.it.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -220,7 +238,8 @@ xcopy /y "$(TargetDir)it\Samba.Localization.resources.dll" "$(SolutionDir)SambaS
 xcopy /y "$(TargetDir)fr\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\fr\"
 xcopy /y "$(TargetDir)hr\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\hr\"
 xcopy /y "$(TargetDir)nl-NL\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\nl-NL\"
-
+xcopy /y "$(TargetDir)id\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\id\"
+xcopy /y "$(TargetDir)el\Samba.Localization.resources.dll" "$(SolutionDir)SambaSetup\src\el\"
 :End</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
