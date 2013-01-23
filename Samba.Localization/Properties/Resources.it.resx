@@ -243,7 +243,7 @@ Transazione</value>
 		<value>Debito</value>
 	</data>
 	<data name="Receiveable" xml:space="preserve">
-		<value>Ricevibile</value>
+		<value>Credito</value>
 	</data>
 	<data name="Customer" xml:space="preserve">
 		<value>Cliente</value>
@@ -408,7 +408,7 @@ Pagamento</value>
 		<value>Inventario Nome articolo</value>
 	</data>
 	<data name="Portion" xml:space="preserve">
-		<value>Porzione </value>
+		<value>Porzione</value>
 	</data>
 	<data name="PredictedInventory" xml:space="preserve">
 		<value>Inventario Analisi</value>
@@ -552,7 +552,7 @@ Pagamento</value>
 		<value>Aggiungere al prezzo Prodotto il Prezzo della Proprietà</value>
 	</data>
 	<data name="POSView" xml:space="preserve">
-		<value>POS Vista </value>
+		<value>POS Vista</value>
 	</data>
 	<data name="ButtonHeight" xml:space="preserve">
 		<value>Altezza Pulsante</value>
@@ -720,7 +720,7 @@ Pagamento</value>
 		<value>Impossibile eliminare perché questo Tag è assegnato ad un reparto</value>
 	</data>
 	<data name="TicketTagName" xml:space="preserve">
-		<value>Nome Ticket Tag </value>
+		<value>Nome Ticket Tag</value>
 	</data>
 	<data name="Numerator" xml:space="preserve">
 		<value>Numeratore</value>
@@ -1473,10 +1473,10 @@ Info</value>
 		<value>Può Totale Automatico approssimativo Ticket</value>
 	</data>
 	<data name="OnlyOpenTickets" xml:space="preserve">
-		<value>Può solo aprite Ticket</value>
+		<value>Solo Ticket Aperti</value>
 	</data>
 	<data name="AllTickets" xml:space="preserve">
-		<value>Tutti i biglietti</value>
+		<value>Tutti i Ticket</value>
 	</data>
 	<data name="Total_f" xml:space="preserve">
 		<value>Totale: {0}</value>
@@ -1787,7 +1787,7 @@ Tavolo: {2}</value>
 		<value>Non ci sono operazioni di costo in questo periodo di lavoro.</value>
 	</data>
 	<data name="InventoryPurchaseReport" xml:space="preserve">
-		<value>Inventario Acquisto Rapporto</value>
+		<value>Rapporto Acquisto</value>
 	</data>
 	<data name="InventoryGroup" xml:space="preserve">
 		<value>Gruppo Magazzino</value>
