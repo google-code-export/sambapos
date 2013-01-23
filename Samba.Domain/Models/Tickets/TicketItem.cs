@@ -348,6 +348,7 @@ namespace Samba.Domain.Models.Tickets
             }
             else if (VatRate > 0) VatAmount = (Price * VatRate) / 100;
             else VatAmount = 0;
+            VatAmount = decimal.Round(VatAmount, 2);
         }
 
         public decimal GetTotalVatAmount()
